@@ -135,8 +135,8 @@ FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromID(unsigned int de
                  {
                      if( _usageMapToInputEvent[vendorUSBID][productUSBID].find(controlID) != _usageMapToInputEvent[vendorUSBID][productUSBID].end())
                      {
-                         FSEventAction isPressed = FSInputRest;
-                         (value == 0 ) ? isPressed = FSInputPressed : NULL;
+                         FSEventAction isPressed = FSInputPressed;
+                         (value == 0 ) ? isPressed = FSInputRest: NULL;
                          return FSUSBElementInfoMap(0,1,_usageMapToInputEvent[vendorUSBID][productUSBID][controlID],isPressed);
                      }
                  }

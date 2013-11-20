@@ -26,6 +26,7 @@ JoyStickConfigWidget::JoyStickConfigWidget(QWidget *parent) :
 
 JoyStickConfigWidget::~JoyStickConfigWidget()
 {
+    delete timer;
     delete ui;
 }
 void JoyStickConfigWidget::OnStickMove(FSDeviceInputEvent event)

@@ -44,6 +44,7 @@ namespace  freestick
         virtual FSDeviceType getClassType() const {return FSBaseDeviceType;}
            const std::string & GetFrendlyName() const {return _friendlyName;}
         FSBaseDevice(unsigned int id);
+        virtual ~FSBaseDevice();
 
     };
 }

@@ -47,6 +47,14 @@ void FSBaseManager::init( )
 
 FSBaseManager::~FSBaseManager()
 {
+  if( deviceMap.size() !=0)
+  {
+      for( std::map<unsigned int, FSBaseDevice * >::iterator itr = deviceMap.begin() ; itr != deviceMap.end(); itr++)
+      {
+          delete itr->second;
+      }
+  }
+  deviceMap.clear();
 
 }
 
@@ -121,7 +129,7 @@ void FSBaseManager::updateEvent(FSBaseEvent & event)
         switch (event.getEventType())
         {
             case FS_BUTTON_EVENT:
-               if ( ( (FSDeviceInputEvent *)&event)->getNewInputValue() == 1)
+               if ( event.getEventAction() == FSInputPressed )
                      ListenerToCall->OnButtonDown(*(FSDeviceInputEvent *)&event);
                else
                    ListenerToCall->OnButtonUp(*(FSDeviceInputEvent *)&event);

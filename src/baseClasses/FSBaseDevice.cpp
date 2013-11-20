@@ -42,3 +42,9 @@ unsigned int FSBaseDevice::getJoystickID() const
     return _id;
 }
 
+FSBaseDevice::~FSBaseDevice()
+{
+
+}
+
+
