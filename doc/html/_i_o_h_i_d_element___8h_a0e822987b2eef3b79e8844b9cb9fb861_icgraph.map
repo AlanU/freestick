@@ -1,0 +1,9 @@
+<map id="IOHIDElement_GetDoubleProperty" name="IOHIDElement_GetDoubleProperty">
+<area shape="rect" href="$_i_o_h_i_d_element___8h.html#a5201e7e6b0394d07e40d8afdfea342bf" title="IOHIDElement_GetCalibrationMin" alt="" coords="323,5,581,32"/>
+<area shape="rect" href="$_i_o_h_i_d_element___8h.html#a9d26bd5fa098f56777809154e574feb1" title="IOHIDElement_GetCalibrationMax" alt="" coords="320,56,584,83"/>
+<area shape="rect" href="$_i_o_h_i_d_element___8h.html#aba9ac03c9cb22d66b7b1c7136772289f" title="IOHIDElement_GetCalibration\lSaturationMin" alt="" coords="335,107,569,152"/>
+<area shape="rect" href="$_i_o_h_i_d_element___8h.html#a2afa3868f7423cc31de890e068162dde" title="IOHIDElement_GetCalibration\lSaturationMax" alt="" coords="335,176,569,221"/>
+<area shape="rect" href="$_i_o_h_i_d_element___8h.html#a9abb39eee45e1061448da19cc3a5d753" title="IOHIDElement_GetCalibration\lDeadZoneMin" alt="" coords="335,245,569,291"/>
+<area shape="rect" href="$_i_o_h_i_d_element___8h.html#af795abfef087c556a3fdfa4ee567f21b" title="IOHIDElement_GetCalibration\lDeadZoneMax" alt="" coords="335,315,569,360"/>
+<area shape="rect" href="$_i_o_h_i_d_element___8h.html#a71af44742d5795185510108aca7ba462" title="IOHIDElement_GetCalibration\lGranularity" alt="" coords="335,384,569,429"/>
+</map>

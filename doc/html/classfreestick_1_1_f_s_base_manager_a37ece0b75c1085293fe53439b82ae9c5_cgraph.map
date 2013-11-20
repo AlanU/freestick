@@ -1,0 +1,10 @@
+<map id="freestick::FSBaseManager::inputOnDeviceChanged" name="freestick::FSBaseManager::inputOnDeviceChanged">
+<area shape="rect" href="$classfreestick_1_1_f_s_base_manager.html#afe89aed4e7fb5056df31bc8dd00865cc" title="freestick::FSBaseManager\l::updateEvent" alt="" coords="263,213,468,259"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_base_event.html#a1709a72b114af0962dcc714a05172401" title="freestick::FSBaseEvent\l::getEventType" alt="" coords="539,5,720,51"/>
+<area shape="rect" href="$classfreestick_1_1_i_f_s_joystick_listener.html#a34766ebf1503f0ae4a4bb47cc447cf13" title="freestick::IFSJoystickListener\l::OnConnect" alt="" coords="519,75,740,120"/>
+<area shape="rect" href="$classfreestick_1_1_i_f_s_joystick_listener.html#ae74ebc7d738f3f5fd796320cf899eb89" title="freestick::IFSJoystickListener\l::OnDisconnect" alt="" coords="519,144,740,189"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_base_event.html#a4cf1099067b90d3fa4d2e04b7ec7a235" title="freestick::FSBaseEvent\l::getEventAction" alt="" coords="539,213,720,259"/>
+<area shape="rect" href="$classfreestick_1_1_i_f_s_joystick_listener.html#a8ba3729aa6c15249f31b774e247fb471" title="freestick::IFSJoystickListener\l::OnButtonDown" alt="" coords="519,283,740,328"/>
+<area shape="rect" href="$classfreestick_1_1_i_f_s_joystick_listener.html#ab62f737124870c7a7199f072fc75d848" title="freestick::IFSJoystickListener\l::OnButtonUp" alt="" coords="519,352,740,397"/>
+<area shape="rect" href="$classfreestick_1_1_i_f_s_joystick_listener.html#ac7aaee0d256d4a2715bf97d1d612eb96" title="freestick::IFSJoystickListener\l::OnStickMove" alt="" coords="519,421,740,467"/>
+</map>

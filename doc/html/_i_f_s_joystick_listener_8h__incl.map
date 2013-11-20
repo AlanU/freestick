@@ -1,0 +1,6 @@
+<map id="src/Interfaces/IFSJoystickListener.h" name="src/Interfaces/IFSJoystickListener.h">
+<area shape="rect" href="$_i_f_s_event_8h.html" title="IFSEvent.h" alt="" coords="115,255,211,281"/>
+<area shape="rect" href="$_f_s_base_event_8h.html" title="../baseClasses/FSBaseEvent.h" alt="" coords="48,177,277,204"/>
+<area shape="rect" href="$_f_s_device_input_event_8h.html" title="../FSDeviceInputEvent.h" alt="" coords="149,100,339,127"/>
+<area shape="rect" href="$_i_f_s_device_8h.html" title="IFSDevice.h" alt="" coords="187,332,291,359"/>
+</map>

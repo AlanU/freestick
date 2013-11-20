@@ -1,0 +1,5 @@
+<map id="freestick::FSUSBJoystick::FSUSBJoystick" name="freestick::FSUSBJoystick::FSUSBJoystick">
+<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a04cf217a240ee978334285d671c2dbc9" title="numberOfButtons" alt="" coords="247,15,396,41"/>
+<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#af30a94f398959e7b216e2e11c064566f" title="numberOfDeviecType" alt="" coords="447,15,625,41"/>
+<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a3680ae0a81ef04740edb194eb90db4ff" title="numberOfAnalogSticks" alt="" coords="676,15,863,41"/>
+</map>

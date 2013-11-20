@@ -1,0 +1,12 @@
+<map id="freestick::FSBaseDevice::getJoystickID" name="freestick::FSBaseDevice::getJoystickID">
+<area shape="rect" href="$classfreestick_1_1_f_s_base_manager.html#a2055fefcc07e10a37b430a5486b086a1" title="freestick::FSBaseManager\l::addDevice" alt="" coords="247,37,452,83"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a4ad73c0ebcaad2daf322dc7eed42492e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::addDevice" alt="" coords="501,63,752,108"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_base_manager.html#ac531f509ef2600f343208d0f43747840" title="freestick::FSBaseManager\l::removeDevice" alt="" coords="247,157,452,203"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a7d3b860eb8305da72ddf3a4649614d2e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadWasAdded" alt="" coords="812,5,1100,51"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a37672c3beb149385bfba1bb0119efd43" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::addDevice" alt="" coords="831,75,1081,120"/>
+<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#ab43b8668f25a1f144bb6806bb7ea3c5d" title="setupIOHDIManager" alt="" coords="1161,84,1327,111"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::init" alt="" coords="1376,75,1627,120"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a0da12b7477919c79cc55ba39e02638cc" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::removeDevice" alt="" coords="501,157,752,203"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#aace77ce7465a2261e16d509a6d63515c" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadWasRemoved" alt="" coords="800,144,1112,189"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#ad5d7f537afcd6e0cc877ebc2b2a2ac30" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::removeDevice" alt="" coords="831,213,1081,259"/>
+</map>

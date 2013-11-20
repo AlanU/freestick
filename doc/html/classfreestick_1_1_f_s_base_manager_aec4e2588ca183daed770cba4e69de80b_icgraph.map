@@ -1,0 +1,5 @@
+<map id="freestick::FSBaseManager::getDevice" name="freestick::FSBaseManager::getDevice">
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_device_manager.html#a1d713193e04aefde22282dd5ecfd9331" title="freestick::FSUSBDeviceManager\l::addMapping" alt="" coords="261,5,512,51"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_device_manager.html#a3df9977676e0832d3547efd95915ed6d" title="freestick::FSUSBDeviceManager\l::lookUpDeviceInputFromID" alt="" coords="261,75,512,120"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#ad5d7f537afcd6e0cc877ebc2b2a2ac30" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::removeDevice" alt="" coords="261,144,512,189"/>
+</map>

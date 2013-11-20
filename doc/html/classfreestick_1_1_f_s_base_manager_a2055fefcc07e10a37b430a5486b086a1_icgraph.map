@@ -1,0 +1,7 @@
+<map id="freestick::FSBaseManager::addDevice" name="freestick::FSBaseManager::addDevice">
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a4ad73c0ebcaad2daf322dc7eed42492e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::addDevice" alt="" coords="261,40,512,85"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a7d3b860eb8305da72ddf3a4649614d2e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadWasAdded" alt="" coords="561,5,849,51"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a37672c3beb149385bfba1bb0119efd43" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::addDevice" alt="" coords="580,75,831,120"/>
+<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#ab43b8668f25a1f144bb6806bb7ea3c5d" title="setupIOHDIManager" alt="" coords="900,15,1065,41"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::init" alt="" coords="1115,5,1365,51"/>
+</map>

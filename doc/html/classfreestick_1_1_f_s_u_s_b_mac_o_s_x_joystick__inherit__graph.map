@@ -1,0 +1,6 @@
+<map id="freestick::FSUSBMacOSXJoystick" name="freestick::FSUSBMacOSXJoystick">
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_joystick.html" title="freestick::FSUSBJoystick" alt="" coords="36,239,225,265"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_device.html" title="freestick::FSUSBDevice" alt="" coords="37,161,224,188"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_base_device.html" title="freestick::FSBaseDevice" alt="" coords="35,84,227,111"/>
+<area shape="rect" href="$classfreestick_1_1_i_f_s_device.html" title="freestick::IFSDevice" alt="" coords="51,7,211,33"/>
+</map>

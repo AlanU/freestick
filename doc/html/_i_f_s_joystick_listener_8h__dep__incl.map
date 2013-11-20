@@ -1,0 +1,12 @@
+<map id="src/Interfaces/IFSJoystickListener.h" name="src/Interfaces/IFSJoystickListener.h">
+<area shape="rect" href="$_f_s_base_manager_8h.html" title="src/baseClasses/FSBaseManager.h" alt="" coords="192,100,459,127"/>
+<area shape="rect" href="$_f_s_base_manager_8cpp.html" title="src/baseClasses/FSBaseManager.cpp" alt="" coords="5,177,288,204"/>
+<area shape="rect" href="$_f_s_u_s_b_device_manager_8h.html" title="src/USB/FSUSBDeviceManager.h" alt="" coords="365,177,616,204"/>
+<area shape="rect" href="$_f_s_u_s_b_device_manager_8cpp.html" title="src/USB/FSUSBDeviceManager.cpp" alt="" coords="188,263,457,289"/>
+<area shape="rect" href="$_f_s_u_s_b_joystick_device_manager_8h.html" title="src/USB/FSUSBJoystickDevice\lManager.h" alt="" coords="603,253,829,299"/>
+<area shape="rect" href="$_f_s_u_s_b_joystick_device_manager_8cpp.html" title="src/USB/FSUSBJoystickDevice\lManager.cpp" alt="" coords="309,347,536,392"/>
+<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8h.html" title="src/USB/platform/MacOSX\l/FSUSBMacOSXJoystickDeviceManager.h" alt="" coords="560,347,872,392"/>
+<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html" title="src/USB/platform/MacOSX\l/FSUSBMacOSXJoystickDeviceManager.cpp" alt="" coords="569,440,897,485"/>
+<area shape="rect" href="$_f_s_u_s_b_null_joystick_device_manager_8h.html" title="src/USB/platform/NULL\l/FSUSBNullJoystickDeviceManager.h" alt="" coords="947,347,1227,392"/>
+<area shape="rect" href="$_f_s_u_s_b_null_joystick_device_manager_8cpp.html" title="src/USB/platform/NULL\l/FSUSBNullJoystickDeviceManager.cpp" alt="" coords="939,440,1235,485"/>
+</map>

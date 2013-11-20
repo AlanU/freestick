@@ -1,0 +1,16 @@
+<map id="freestick::FSUSBMacOSXJoystickDeviceManager::gamepadAction" name="freestick::FSUSBMacOSXJoystickDeviceManager::gamepadAction">
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a35a1d6e4d69c241a5a59ac5e3b5e4a8b" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::getDeviceIDFromIOHIDevice" alt="" coords="313,5,660,51"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_device_manager.html#a9240de2e52c3949556b92ae67376c743" title="freestick::FSUSBDeviceManager\l::lookUpDeviceInputFromID" alt="" coords="361,75,612,120"/>
+<area shape="rect" href="$classfreestick_1_1_i_f_s_event.html#a956620e51bce239ed65e2015859edf4f" title="freestick::IFSEvent\l::getEventFromInputType" alt="" coords="385,144,588,189"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_element_info_map.html#a4568ce86fa99f9920a804fc150df8cf9" title="freestick::FSUSBElementInfo\lMap::getDeviceInput" alt="" coords="375,213,599,259"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_base_manager.html#a37ece0b75c1085293fe53439b82ae9c5" title="freestick::FSBaseManager\l::inputOnDeviceChanged" alt="" coords="384,283,589,328"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_element_info_map.html#a0aa84ddd7f491c8eccafa8fa8a98e74a" title="freestick::FSUSBElementInfo\lMap::getEventMapping" alt="" coords="375,352,599,397"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_base_manager.html#afe89aed4e7fb5056df31bc8dd00865cc" title="freestick::FSBaseManager\l::updateEvent" alt="" coords="711,283,916,328"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_base_event.html#a1709a72b114af0962dcc714a05172401" title="freestick::FSBaseEvent\l::getEventType" alt="" coords="987,75,1168,120"/>
+<area shape="rect" href="$classfreestick_1_1_i_f_s_joystick_listener.html#a34766ebf1503f0ae4a4bb47cc447cf13" title="freestick::IFSJoystickListener\l::OnConnect" alt="" coords="967,144,1188,189"/>
+<area shape="rect" href="$classfreestick_1_1_i_f_s_joystick_listener.html#ae74ebc7d738f3f5fd796320cf899eb89" title="freestick::IFSJoystickListener\l::OnDisconnect" alt="" coords="967,213,1188,259"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_base_event.html#a4cf1099067b90d3fa4d2e04b7ec7a235" title="freestick::FSBaseEvent\l::getEventAction" alt="" coords="987,283,1168,328"/>
+<area shape="rect" href="$classfreestick_1_1_i_f_s_joystick_listener.html#a8ba3729aa6c15249f31b774e247fb471" title="freestick::IFSJoystickListener\l::OnButtonDown" alt="" coords="967,352,1188,397"/>
+<area shape="rect" href="$classfreestick_1_1_i_f_s_joystick_listener.html#ab62f737124870c7a7199f072fc75d848" title="freestick::IFSJoystickListener\l::OnButtonUp" alt="" coords="967,421,1188,467"/>
+<area shape="rect" href="$classfreestick_1_1_i_f_s_joystick_listener.html#ac7aaee0d256d4a2715bf97d1d612eb96" title="freestick::IFSJoystickListener\l::OnStickMove" alt="" coords="967,491,1188,536"/>
+</map>

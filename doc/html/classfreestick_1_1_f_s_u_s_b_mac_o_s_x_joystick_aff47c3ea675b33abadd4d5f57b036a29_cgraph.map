@@ -1,0 +1,6 @@
+<map id="freestick::FSUSBMacOSXJoystick::FSUSBMacOSXJoystick" name="freestick::FSUSBMacOSXJoystick::FSUSBMacOSXJoystick">
+<area shape="rect" href="$_i_o_h_i_d_device___8c.html#a61b48a7723380a69eafe6e56124185b1" title="IOHIDDevice_GetVendorID" alt="" coords="328,5,539,32"/>
+<area shape="rect" href="$_i_o_h_i_d_device___8c.html#a00820aafcaa01e19b5c20754223bdca1" title="IOHIDDevice_GetProductID" alt="" coords="327,56,540,83"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_device.html#a278b535459c3dabb521e3e84442a320c" title="freestick::FSUSBDevice\l::GetFrendlyVenderNameFromID" alt="" coords="305,107,561,152"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_device.html#aa55be87c7e7afc05148a3a642f2eb65d" title="freestick::FSUSBDevice\l::GetFrendlyProductNameFromID" alt="" coords="304,176,563,221"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="numberOfDeviecType" name="numberOfDeviecType">
+<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a04cf217a240ee978334285d671c2dbc9" title="numberOfButtons" alt="" coords="255,43,404,69"/>
+<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a3680ae0a81ef04740edb194eb90db4ff" title="numberOfAnalogSticks" alt="" coords="236,93,423,120"/>
+<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#af974b03dff445e967e3bd0583c116a16" title="numberOfAnalogAxis" alt="" coords="511,144,684,171"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_joystick.html#a88d05bb26f41fd996698c3479b757a27" title="freestick::FSUSBJoystick\l::FSUSBJoystick" alt="" coords="503,5,692,51"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a37672c3beb149385bfba1bb0119efd43" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::addDevice" alt="" coords="472,75,723,120"/>
+</map>

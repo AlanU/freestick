@@ -1,0 +1,16 @@
+<map id="src/baseClasses/FSBaseEvent.h" name="src/baseClasses/FSBaseEvent.h">
+<area shape="rect" href="$_f_s_base_event_8cpp.html" title="src/baseClasses/FSBaseEvent.cpp" alt="" coords="5,84,264,111"/>
+<area shape="rect" href="$_i_f_s_joystick_listener_8h.html" title="src/Interfaces/IFSJoystick\lListener.h" alt="" coords="339,160,533,205"/>
+<area shape="rect" href="$_f_s_base_manager_8h.html" title="src/baseClasses/FSBaseManager.h" alt="" coords="217,255,484,281"/>
+<area shape="rect" href="$_f_s_base_manager_8cpp.html" title="src/baseClasses/FSBaseManager.cpp" alt="" coords="500,332,783,359"/>
+<area shape="rect" href="$_f_s_device_input_event_8h.html" title="src/FSDeviceInputEvent.h" alt="" coords="469,84,672,111"/>
+<area shape="rect" href="$_f_s_u_s_b_device_manager_8h.html" title="src/USB/FSUSBDeviceManager.h" alt="" coords="225,332,476,359"/>
+<area shape="rect" href="$_f_s_u_s_b_device_manager_8cpp.html" title="src/USB/FSUSBDeviceManager.cpp" alt="" coords="47,417,316,444"/>
+<area shape="rect" href="$_f_s_u_s_b_joystick_device_manager_8h.html" title="src/USB/FSUSBJoystickDevice\lManager.h" alt="" coords="391,408,617,453"/>
+<area shape="rect" href="$_f_s_u_s_b_joystick_device_manager_8cpp.html" title="src/USB/FSUSBJoystickDevice\lManager.cpp" alt="" coords="240,501,467,547"/>
+<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8h.html" title="src/USB/platform/MacOSX\l/FSUSBMacOSXJoystickDeviceManager.h" alt="" coords="541,501,853,547"/>
+<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html" title="src/USB/platform/MacOSX\l/FSUSBMacOSXJoystickDeviceManager.cpp" alt="" coords="429,595,757,640"/>
+<area shape="rect" href="$_f_s_u_s_b_null_joystick_device_manager_8h.html" title="src/USB/platform/NULL\l/FSUSBNullJoystickDeviceManager.h" alt="" coords="877,501,1157,547"/>
+<area shape="rect" href="$_f_s_u_s_b_null_joystick_device_manager_8cpp.html" title="src/USB/platform/NULL\l/FSUSBNullJoystickDeviceManager.cpp" alt="" coords="869,595,1165,640"/>
+<area shape="rect" href="$_f_s_device_input_event_8cpp.html" title="src/FSDeviceInputEvent.cpp" alt="" coords="608,169,827,196"/>
+</map>
