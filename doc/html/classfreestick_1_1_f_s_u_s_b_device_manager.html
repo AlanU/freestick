@@ -74,7 +74,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -125,6 +125,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a9240de2e52c3949556b92ae67376c743"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3df9977676e0832d3547efd95915ed6d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classfreestick_1_1_f_s_u_s_b_element_info_map.html">FSUSBElementInfoMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_u_s_b_device_manager.html#a3df9977676e0832d3547efd95915ed6d">lookUpDeviceInputFromID</a> (unsigned int deviceID, unsigned int controlID, signed long min, signed long max, int value)</td></tr>
 <tr class="separator:a3df9977676e0832d3547efd95915ed6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3d988ae4e3aa02aa3fd91c818545015"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classfreestick_1_1_f_s_u_s_b_element_info_map.html">FSUSBElementInfoMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_u_s_b_device_manager.html#aa3d988ae4e3aa02aa3fd91c818545015">lookUpDeviceInputFromUSBID</a> (unsigned int vendorUSBID, unsigned int productUSBID, unsigned int controlID, signed long min, signed long max, int value)</td></tr>
+<tr class="separator:aa3d988ae4e3aa02aa3fd91c818545015"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6de642a6cfccce7c6e3a13a768ed5abc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_u_s_b_device_manager.html#a6de642a6cfccce7c6e3a13a768ed5abc">FSUSBDeviceManager</a> ()</td></tr>
 <tr class="separator:a6de642a6cfccce7c6e3a13a768ed5abc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a634bc01536ebc6c6177ea1abdb8014d4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_u_s_b_device_manager.html#a634bc01536ebc6c6177ea1abdb8014d4">init</a> ()</td></tr>
@@ -185,6 +187,7 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>populate map _usageMapToInputEvent </dd></dl>
 
 </div>
 </div>
@@ -247,7 +250,7 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>need to put into correct map based on min max </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>need to put into correct map based on min max </dd></dl>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -362,7 +365,7 @@ Here is the call graph for this function:</div>
 
 <p>Reimplemented from <a class="el" href="classfreestick_1_1_f_s_base_manager.html#a0c6a2c812697952858c86f0aec4aab26">freestick::FSBaseManager</a>.</p>
 
-<p>Reimplemented in <a class="el" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e">freestick::FSUSBMacOSXJoystickDeviceManager</a>, <a class="el" href="classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html#a2051a89a2e6073ff1dbc8849ab10553e">freestick::FSUSBJoystickDeviceManager</a>, and <a class="el" href="classfreestick_1_1_f_s_u_s_b_null_joystick_device_manager.html#a30bff31a1f79ba09e8bc51a35db08708">freestick::FSUSBNullJoystickDeviceManager</a>.</p>
+<p>Reimplemented in <a class="el" href="classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html#a2051a89a2e6073ff1dbc8849ab10553e">freestick::FSUSBJoystickDeviceManager</a>, <a class="el" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e">freestick::FSUSBMacOSXJoystickDeviceManager</a>, and <a class="el" href="classfreestick_1_1_f_s_u_s_b_null_joystick_device_manager.html#a30bff31a1f79ba09e8bc51a35db08708">freestick::FSUSBNullJoystickDeviceManager</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -407,15 +410,6 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classfreestick_1_1_f_s_u_s_b_device_manager_a9240de2e52c3949556b92ae67376c743_icgraph.png" border="0" usemap="#classfreestick_1_1_f_s_u_s_b_device_manager_a9240de2e52c3949556b92ae67376c743_icgraph" alt=""/></div>
-<map name="classfreestick_1_1_f_s_u_s_b_device_manager_a9240de2e52c3949556b92ae67376c743_icgraph" id="classfreestick_1_1_f_s_u_s_b_device_manager_a9240de2e52c3949556b92ae67376c743_icgraph">
-<area shape="rect" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2a9e26628802fdafd65935996ebc9e8d" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadAction" alt="" coords="304,5,563,51"/><area shape="rect" href="_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#ab43b8668f25a1f144bb6806bb7ea3c5d" title="setupIOHDIManager" alt="" coords="612,15,777,41"/><area shape="rect" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::init" alt="" coords="827,5,1077,51"/></map>
-</div>
-</p>
 
 </div>
 </div>
@@ -466,7 +460,75 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classfreestick_1_1_f_s_u_s_b_device_manager_a3df9977676e0832d3547efd95915ed6d_cgraph.png" border="0" usemap="#classfreestick_1_1_f_s_u_s_b_device_manager_a3df9977676e0832d3547efd95915ed6d_cgraph" alt=""/></div>
 <map name="classfreestick_1_1_f_s_u_s_b_device_manager_a3df9977676e0832d3547efd95915ed6d_cgraph" id="classfreestick_1_1_f_s_u_s_b_device_manager_a3df9977676e0832d3547efd95915ed6d_cgraph">
-<area shape="rect" href="classfreestick_1_1_f_s_base_manager.html#aec4e2588ca183daed770cba4e69de80b" title="freestick::FSBaseManager\l::getDevice" alt="" coords="315,5,520,51"/><area shape="rect" href="classfreestick_1_1_f_s_u_s_b_device.html#ac8620ba8735f70fcfb6826c109b23cdf" title="freestick::FSUSBDevice\l::getVenderID" alt="" coords="324,75,511,120"/><area shape="rect" href="classfreestick_1_1_f_s_u_s_b_device.html#a169919f9f809a0ffbf020ed888164941" title="freestick::FSUSBDevice\l::getProductID" alt="" coords="324,144,511,189"/><area shape="rect" href="classfreestick_1_1_f_s_u_s_b_element_info_map.html#a1747566bc099e25a0e83065facbf4178" title="freestick::FSUSBElementInfo\lMap::getMin" alt="" coords="305,213,529,259"/><area shape="rect" href="classfreestick_1_1_f_s_u_s_b_element_info_map.html#a33d8fe8e64af4f28fa4bb89a9378e5b9" title="freestick::FSUSBElementInfo\lMap::getMax" alt="" coords="305,283,529,328"/></map>
+<area shape="rect" href="classfreestick_1_1_f_s_base_manager.html#aec4e2588ca183daed770cba4e69de80b" title="freestick::FSBaseManager\l::getDevice" alt="" coords="327,5,532,51"/><area shape="rect" href="classfreestick_1_1_f_s_u_s_b_device.html#ac8620ba8735f70fcfb6826c109b23cdf" title="freestick::FSUSBDevice\l::getVenderID" alt="" coords="336,75,523,120"/><area shape="rect" href="classfreestick_1_1_f_s_u_s_b_device.html#a169919f9f809a0ffbf020ed888164941" title="freestick::FSUSBDevice\l::getProductID" alt="" coords="336,144,523,189"/><area shape="rect" href="classfreestick_1_1_f_s_u_s_b_device_manager.html#aa3d988ae4e3aa02aa3fd91c818545015" title="freestick::FSUSBDeviceManager\l::lookUpDeviceInputFromUSBID" alt="" coords="304,213,555,259"/><area shape="rect" href="classfreestick_1_1_f_s_u_s_b_element_info_map.html#a1747566bc099e25a0e83065facbf4178" title="freestick::FSUSBElementInfo\lMap::getMin" alt="" coords="604,179,828,224"/><area shape="rect" href="classfreestick_1_1_f_s_u_s_b_element_info_map.html#a33d8fe8e64af4f28fa4bb89a9378e5b9" title="freestick::FSUSBElementInfo\lMap::getMax" alt="" coords="604,248,828,293"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aa3d988ae4e3aa02aa3fd91c818545015"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classfreestick_1_1_f_s_u_s_b_element_info_map.html">FSUSBElementInfoMap</a> FSUSBDeviceManager::lookUpDeviceInputFromUSBID </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>vendorUSBID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>productUSBID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>controlID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">signed long&#160;</td>
+          <td class="paramname"><em>min</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">signed long&#160;</td>
+          <td class="paramname"><em>max</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classfreestick_1_1_f_s_u_s_b_device_manager_aa3d988ae4e3aa02aa3fd91c818545015_cgraph.png" border="0" usemap="#classfreestick_1_1_f_s_u_s_b_device_manager_aa3d988ae4e3aa02aa3fd91c818545015_cgraph" alt=""/></div>
+<map name="classfreestick_1_1_f_s_u_s_b_device_manager_aa3d988ae4e3aa02aa3fd91c818545015_cgraph" id="classfreestick_1_1_f_s_u_s_b_device_manager_aa3d988ae4e3aa02aa3fd91c818545015_cgraph">
+<area shape="rect" href="classfreestick_1_1_f_s_u_s_b_element_info_map.html#a1747566bc099e25a0e83065facbf4178" title="freestick::FSUSBElementInfo\lMap::getMin" alt="" coords="305,5,529,51"/><area shape="rect" href="classfreestick_1_1_f_s_u_s_b_element_info_map.html#a33d8fe8e64af4f28fa4bb89a9378e5b9" title="freestick::FSUSBElementInfo\lMap::getMax" alt="" coords="305,75,529,120"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classfreestick_1_1_f_s_u_s_b_device_manager_aa3d988ae4e3aa02aa3fd91c818545015_icgraph.png" border="0" usemap="#classfreestick_1_1_f_s_u_s_b_device_manager_aa3d988ae4e3aa02aa3fd91c818545015_icgraph" alt=""/></div>
+<map name="classfreestick_1_1_f_s_u_s_b_device_manager_aa3d988ae4e3aa02aa3fd91c818545015_icgraph" id="classfreestick_1_1_f_s_u_s_b_device_manager_aa3d988ae4e3aa02aa3fd91c818545015_icgraph">
+<area shape="rect" href="classfreestick_1_1_f_s_u_s_b_device_manager.html#a3df9977676e0832d3547efd95915ed6d" title="freestick::FSUSBDeviceManager\l::lookUpDeviceInputFromID" alt="" coords="304,5,555,51"/><area shape="rect" href="classfreestick_1_1_f_s_u_s_b_joy_stick_input_element.html#a39beb4f122a87ac894a2115e4158cc58" title="freestick::FSUSBJoyStick\lInputElement::getMapping" alt="" coords="323,75,536,120"/><area shape="rect" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2a9e26628802fdafd65935996ebc9e8d" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadAction" alt="" coords="603,75,861,120"/><area shape="rect" href="_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#ab43b8668f25a1f144bb6806bb7ea3c5d" title="setupIOHDIManager" alt="" coords="911,84,1076,111"/><area shape="rect" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::init" alt="" coords="1125,75,1376,120"/></map>
 </div>
 </p>
 
@@ -479,7 +541,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Nov 20 2013 01:10:16 for FreeStick by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Apr 13 2014 11:40:34 for FreeStick by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

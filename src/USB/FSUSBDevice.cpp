@@ -57,7 +57,7 @@ std::string  FSUSBDevice::GetFrendlyProductNameFromID(long venderID, long produc
             return s_productFriendlyNames[venderID][productID];
         }
     }
-    return "unknown";
+    return "unknown";//Call down and ask the device
 }
 
  std::string  FSUSBDevice::GetFrendlyVenderNameFromID(long venderID)
@@ -79,7 +79,7 @@ std::string  FSUSBDevice::GetFrendlyProductNameFromID(long venderID, long produc
     if(s_venderFriendlyNames.find(venderID) != s_venderFriendlyNames.end())
         return s_venderFriendlyNames[venderID];
     else
-        return "unknown";
+        return "unknown"; //call down and ask the device
 
 
 }

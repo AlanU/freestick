@@ -1,6 +1,11 @@
 <map id="src/USB/FSUSBJoystick.h" name="src/USB/FSUSBJoystick.h">
 <area shape="rect" href="$_f_s_u_s_b_joystick_8cpp.html" title="src/USB/FSUSBJoystick.cpp" alt="" coords="5,92,213,119"/>
-<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_8h.html" title="src/USB/platform/MacOSX\l/FSUSBMacOSXJoystick.h" alt="" coords="237,83,443,128"/>
-<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_8cpp.html" title="src/USB/platform/MacOSX\l/FSUSBMacOSXJoystick.cpp" alt="" coords="84,176,300,221"/>
-<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html" title="src/USB/platform/MacOSX\l/FSUSBMacOSXJoystickDeviceManager.cpp" alt="" coords="324,176,652,221"/>
+<area shape="rect" href="$_f_s_u_s_b_joystick_device_manager_8h.html" title="src/USB/FSUSBJoystickDevice\lManager.h" alt="" coords="308,83,535,128"/>
+<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_8h.html" title="src/USB/platform/MacOSX\l/FSUSBMacOSXJoystick.h" alt="" coords="128,176,333,221"/>
+<area shape="rect" href="$_f_s_u_s_b_joystick_device_manager_8cpp.html" title="src/USB/FSUSBJoystickDevice\lManager.cpp" alt="" coords="459,176,685,221"/>
+<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_8cpp.html" title="src/USB/platform/MacOSX\l/FSUSBMacOSXJoystick.cpp" alt="" coords="123,269,339,315"/>
+<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html" title="src/USB/platform/MacOSX\l/FSUSBMacOSXJoystickDeviceManager.cpp" alt="" coords="363,269,691,315"/>
+<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8h.html" title="src/USB/platform/MacOSX\l/FSUSBMacOSXJoystickDeviceManager.h" alt="" coords="709,176,1021,221"/>
+<area shape="rect" href="$_f_s_u_s_b_null_joystick_device_manager_8h.html" title="src/USB/platform/NULL\l/FSUSBNullJoystickDeviceManager.h" alt="" coords="1045,176,1325,221"/>
+<area shape="rect" href="$_f_s_u_s_b_null_joystick_device_manager_8cpp.html" title="src/USB/platform/NULL\l/FSUSBNullJoystickDeviceManager.cpp" alt="" coords="1037,269,1333,315"/>
 </map>

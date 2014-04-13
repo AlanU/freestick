@@ -28,6 +28,7 @@ and must not be misrepresented as being the original software.
 #pragma once
 #include "../../FSUSBJoystick.h"
 #include <IOKit/hid/IOHIDLib.h>
+#include "../../FSUSBJoystickDeviceManager.h"
 namespace freestick
 {
     class FSUSBMacOSXJoystick : public FSUSBJoystick
@@ -43,6 +44,7 @@ namespace freestick
                             unsigned int numberOfAnlogSticks,
                             unsigned int numberOfDigitalSticks,
                             bool forceFeedBackSupported );
+        unsigned int Init(FSUSBJoystickDeviceManager & usbJoystickManager);
         virtual ~FSUSBMacOSXJoystick();
         IOHIDDeviceRef GetIOHIDDeviceRef() const {return _macIOHIDDeviceRef;}
         virtual FSDeviceType getClassType() const {return FSUSBMACOSXJoystickType;}

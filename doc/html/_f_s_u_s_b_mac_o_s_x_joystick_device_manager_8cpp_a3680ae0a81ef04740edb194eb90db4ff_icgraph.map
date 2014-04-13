@@ -1,7 +1,8 @@
 <map id="numberOfAnalogSticks" name="numberOfAnalogSticks">
-<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#af30a94f398959e7b216e2e11c064566f" title="numberOfDeviecType" alt="" coords="244,15,423,41"/>
-<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a37672c3beb149385bfba1bb0119efd43" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::addDevice" alt="" coords="696,91,947,136"/>
-<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#af974b03dff445e967e3bd0583c116a16" title="numberOfAnalogAxis" alt="" coords="473,65,647,92"/>
-<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a04cf217a240ee978334285d671c2dbc9" title="numberOfButtons" alt="" coords="485,15,635,41"/>
-<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_joystick.html#a88d05bb26f41fd996698c3479b757a27" title="freestick::FSUSBJoystick\l::FSUSBJoystick" alt="" coords="727,5,916,51"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick.html#a24723761d0d3339dc7c58244a5ccd7b6" title="freestick::FSUSBMacOSXJoystick\l::Init" alt="" coords="696,5,947,51"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a37672c3beb149385bfba1bb0119efd43" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::addDevice" alt="" coords="995,65,1245,111"/>
+<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#af30a94f398959e7b216e2e11c064566f" title="numberOfDeviecType" alt="" coords="244,75,423,101"/>
+<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#af974b03dff445e967e3bd0583c116a16" title="numberOfAnalogAxis" alt="" coords="473,125,647,152"/>
+<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a04cf217a240ee978334285d671c2dbc9" title="numberOfButtons" alt="" coords="485,75,635,101"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_joystick.html#a88d05bb26f41fd996698c3479b757a27" title="freestick::FSUSBJoystick\l::FSUSBJoystick" alt="" coords="727,125,916,171"/>
 </map>

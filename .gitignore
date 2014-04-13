@@ -1,1 +1,10 @@
 *.o
+*.a
+*.user
+build/QT/JoyStickConfig/JoyStickConfig.app
+build/QT/build-FreeStickTestApp-Desktop_Qt_5_2_0_clang_64bit-Debug
+build/QT/build-FreeStickTestApp-Desktop_Qt_5_2_1_clang_64bit-Debug
+build/QT/FreeStick/Makefile
+build/QT/JoyStickConfig/Makefile
+.qmake.stash
+joystickconfigwidget.cpp.autosave

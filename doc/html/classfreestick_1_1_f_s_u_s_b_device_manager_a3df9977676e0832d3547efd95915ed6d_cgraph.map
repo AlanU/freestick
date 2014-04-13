@@ -1,7 +1,8 @@
 <map id="freestick::FSUSBDeviceManager::lookUpDeviceInputFromID" name="freestick::FSUSBDeviceManager::lookUpDeviceInputFromID">
-<area shape="rect" href="$classfreestick_1_1_f_s_base_manager.html#aec4e2588ca183daed770cba4e69de80b" title="freestick::FSBaseManager\l::getDevice" alt="" coords="315,5,520,51"/>
-<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_device.html#ac8620ba8735f70fcfb6826c109b23cdf" title="freestick::FSUSBDevice\l::getVenderID" alt="" coords="324,75,511,120"/>
-<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_device.html#a169919f9f809a0ffbf020ed888164941" title="freestick::FSUSBDevice\l::getProductID" alt="" coords="324,144,511,189"/>
-<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_element_info_map.html#a1747566bc099e25a0e83065facbf4178" title="freestick::FSUSBElementInfo\lMap::getMin" alt="" coords="305,213,529,259"/>
-<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_element_info_map.html#a33d8fe8e64af4f28fa4bb89a9378e5b9" title="freestick::FSUSBElementInfo\lMap::getMax" alt="" coords="305,283,529,328"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_base_manager.html#aec4e2588ca183daed770cba4e69de80b" title="freestick::FSBaseManager\l::getDevice" alt="" coords="327,5,532,51"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_device.html#ac8620ba8735f70fcfb6826c109b23cdf" title="freestick::FSUSBDevice\l::getVenderID" alt="" coords="336,75,523,120"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_device.html#a169919f9f809a0ffbf020ed888164941" title="freestick::FSUSBDevice\l::getProductID" alt="" coords="336,144,523,189"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_device_manager.html#aa3d988ae4e3aa02aa3fd91c818545015" title="freestick::FSUSBDeviceManager\l::lookUpDeviceInputFromUSBID" alt="" coords="304,213,555,259"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_element_info_map.html#a1747566bc099e25a0e83065facbf4178" title="freestick::FSUSBElementInfo\lMap::getMin" alt="" coords="604,179,828,224"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_element_info_map.html#a33d8fe8e64af4f28fa4bb89a9378e5b9" title="freestick::FSUSBElementInfo\lMap::getMax" alt="" coords="604,248,828,293"/>
 </map>

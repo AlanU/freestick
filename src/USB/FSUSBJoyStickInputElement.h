@@ -27,6 +27,8 @@ and must not be misrepresented as being the original software.
 
 #pragma once
 #include "FSUSBDevice.h"
+#include <map>
+#include "FSUSBDeviceManager.h"
 namespace freestick
 {
 typedef signed long  MinMaxNumber;
@@ -41,16 +43,18 @@ typedef signed long  MinMaxNumber;
         MinMaxNumber _elementMax;
         MinMaxNumber _oldValue;
         MinMaxNumber _value;
+        bool _intialized;
+        FSUSBDeviceManager * _usbDeviceManager;
     protected:
-          FSUSBJoyStickInputElement();
+
     public:
+        //FSUSBJoyStickInputElement(const & FSUSBJoyStickInputElement copy){}
+                 FSUSBJoyStickInputElement();
         FSUSBJoyStickInputElement(unsigned int id, MinMaxNumber elementMin, MinMaxNumber elementMax, long venderID,
-                                  long productID);
-        virtual FSDeviceInput getMapping(int inputValue) = 0 ;
+                                  long productID,FSUSBDeviceManager & _manager);
+        FSUSBElementInfoMap getMapping(int inputValue) ;
         inline MinMaxNumber getValue() {return _value;}
-        void setValue(MinMaxNumber newValue) { if (newValue != _value) { _oldValue = _value; _value = newValue;}  }
-
-
+        void setValue(MinMaxNumber newValue);
 
     };
 }

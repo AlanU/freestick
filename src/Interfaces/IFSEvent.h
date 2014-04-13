@@ -27,6 +27,7 @@ and must not be misrepresented as being the original software.
 
 #pragma once
 #include "IFSDevice.h"
+#include <assert.h>
 namespace freestick 
 {
     typedef enum
@@ -71,10 +72,7 @@ namespace freestick
             {
                 return FS_TRIGGER_EVENT;
             }
-            else if(LastValueUp == inputType)
-            {
-                return FS_BUTTON_EVENT;
-            }
+            //assert(false);
             return FS_LAST_EVENT;
         }
     };

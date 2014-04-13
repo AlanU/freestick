@@ -31,11 +31,41 @@ FSUSBJoyStickInputElement::FSUSBJoyStickInputElement()
 {
 }
 
+FSUSBElementInfoMap FSUSBJoyStickInputElement::getMapping(int inputValue)
+{
+    //asset(_usbDeviceManager != NULL);
+   FSUSBElementInfoMap map = _usbDeviceManager->lookUpDeviceInputFromUSBID(_vendorID,_productID,getJoystickID(),_elementMin,_elementMax,inputValue);
+   if(map.getDeviceInput() == LastValueUp)
+   {
+         FSUSBElementInfoMap LastValueMap =  _usbDeviceManager->lookUpDeviceInputFromUSBID(_vendorID,_productID,getJoystickID(),_elementMin,_elementMax,_value);
+         map = FSUSBElementInfoMap(LastValueMap.getMin(),LastValueMap.getMax(),LastValueMap.getDeviceInput(),FSInputRest);
+   }
+   this->setValue(inputValue);
+   return map;
+}
+
+void FSUSBJoyStickInputElement::setValue(MinMaxNumber newValue)
+{
+    if (_intialized == false)
+    {
+        _oldValue = newValue;
+        _value = newValue;
+        _intialized = true;
+    }
+    if (newValue != _value )
+    {
+        _oldValue = _value;
+        _value = newValue;
+    }
+}
+
 FSUSBJoyStickInputElement::FSUSBJoyStickInputElement(unsigned int id, MinMaxNumber elementMin, MinMaxNumber elementMax ,long venderID,
-                                                     long productID):FSUSBDevice(id,venderID,productID)
+                                                     long productID,FSUSBDeviceManager & _manager):FSUSBDevice(id,venderID,productID)
 {
      _elementMin = elementMin;
      _elementMax = elementMax;
-     _oldValue = 0;
-    _value = 0;
+     _oldValue = -1;
+    _value = -2;
+    _intialized =false;
+    _usbDeviceManager = &_manager;
 }

@@ -31,10 +31,10 @@ and must not be misrepresented as being the original software.
 #include <IOKit/IOKitLib.h>
 #include "../../FSUSBJoystickDeviceManager.h"
 #include <CoreFoundation/CoreFoundation.h>
-
+#include <iostream>
 using namespace freestick;
 
-unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager * usbJoystickManager)
+unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickManager)
 {
     CFArrayRef  deviceElements;
     unsigned int numberOfButtons = 0;
@@ -46,10 +46,9 @@ unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager * usbJoystickM
     //std::map<IOHIDElementCookie,int> idMap;
     CFIndex min = 0;
      CFIndex max  = 0;
-    if (device) {
-        assert( IOHIDDeviceGetTypeID() == CFGetTypeID(device) );
+        assert( IOHIDDeviceGetTypeID() == CFGetTypeID(_macIOHIDDeviceRef) );
 
-        deviceElements = IOHIDDeviceCopyMatchingElements(device, NULL, kIOHIDOptionsTypeNone);
+        deviceElements = IOHIDDeviceCopyMatchingElements(_macIOHIDDeviceRef, NULL, kIOHIDOptionsTypeNone);
         CFIndex index;
         CFIndex deviceArrayCount = CFArrayGetCount(deviceElements);
         if(deviceArrayCount > 0)
@@ -104,16 +103,16 @@ unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager * usbJoystickM
                         {
                             numberOfAnalogButtons++;
                         }
-                        this->addInputElement(new FSUSBJoyStickInputElement(elemnetID, min, elementMax, _vendorID,
-                                                                            _productID));
+                        FSUSBJoyStickInputElement temp(elemnetID, min, max, _vendorID,_productID,usbJoystickManager);
+                        this->addInputElement(temp);
 
                 }
 
             }
 
         }
-    }
-    if(TotalNumberOfButtons)
+
+   /* if(TotalNumberOfButtons)
     {
         (*TotalNumberOfButtons) = numberOfButtons;
     }
@@ -125,7 +124,8 @@ unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager * usbJoystickM
     {
        (*TotalNumberOfAnalogButtons) = numberOfAnalogButtons;
     }
-    return numberOfButtons + numberOfAnalogSticks + numberOfAnalogButtons;
+    return numberOfButtons + numberOfAnalogSticks + numberOfAnalogButtons;*/
+        return 0;
 }
 
 
@@ -161,10 +161,6 @@ FSUSBMacOSXJoystick::FSUSBMacOSXJoystick(IOHIDDeviceRef device,
 
 }
 
-void FSUSBMacOSXJoystick::populateDeviceElements(FSUSBJoystickDeviceManager * usbJoystickManager)
-{
 
-
-}
 
 

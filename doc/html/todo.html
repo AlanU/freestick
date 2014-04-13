@@ -66,7 +66,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -84,15 +84,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock"><dl class="reflist">
 <dt><a class="anchor" id="_todo000002"></a>Member <a class="el" href="classfreestick_1_1_f_s_u_s_b_device.html#a278b535459c3dabb521e3e84442a320c">freestick::FSUSBDevice::GetFrendlyVenderNameFromID</a>  (long venderID)</dt>
 <dd>make this const  </dd>
-<dt><a class="anchor" id="_todo000003"></a>Member <a class="el" href="classfreestick_1_1_f_s_u_s_b_device_manager.html#a3da1717c1c670eb946192ebae46b81c3">freestick::FSUSBDeviceManager::addMapping</a>  (unsigned int vendorUSBID, unsigned int productUSBID, unsigned int controlUSBID, FSDeviceInput deviceInput)</dt>
+<dt><a class="anchor" id="_todo000004"></a>Member <a class="el" href="classfreestick_1_1_f_s_u_s_b_device_manager.html#a3da1717c1c670eb946192ebae46b81c3">freestick::FSUSBDeviceManager::addMapping</a>  (unsigned int vendorUSBID, unsigned int productUSBID, unsigned int controlUSBID, FSDeviceInput deviceInput)</dt>
 <dd>need to put into correct map based on min max  </dd>
+<dt><a class="anchor" id="_todo000003"></a>Member <a class="el" href="classfreestick_1_1_f_s_u_s_b_device_manager.html#a6de642a6cfccce7c6e3a13a768ed5abc">freestick::FSUSBDeviceManager::FSUSBDeviceManager</a>  ()</dt>
+<dd>populate map _usageMapToInputEvent  </dd>
+<dt><a class="anchor" id="_todo000006"></a>Member <a class="el" href="classfreestick_1_1_f_s_u_s_b_joystick.html#ae4fd2a735b547fd9061d1629a6d4d72b">freestick::FSUSBJoystick::~FSUSBJoystick</a>  ()</dt>
+<dd>delete map free memory  </dd>
+<dt><a class="anchor" id="_todo000008"></a>Member <a class="el" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a35a1d6e4d69c241a5a59ac5e3b5e4a8b">freestick::FSUSBMacOSXJoystickDeviceManager::getDeviceIDFromIOHIDevice</a>  (IOHIDDeviceRef deviceRef)</dt>
+<dd>check to see if deive ref exist and return error if not  </dd>
 <dt><a class="anchor" id="_todo000001"></a>Class <a class="el" href="classfreestick_1_1_i_f_s_joystick_info.html">freestick::IFSJoystickInfo</a>  </dt>
 <dd>needs to have a small memory foot print fast to copy </dd>
 </dl>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Nov 20 2013 01:10:16 for FreeStick by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Apr 13 2014 11:40:34 for FreeStick by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

@@ -1,10 +1,10 @@
 <map id="src/USB/FSUSBDeviceManager.h" name="src/USB/FSUSBDeviceManager.h">
-<area shape="rect" href="$_f_s_base_manager_8h.html" title="../baseClasses/FSBaseManager.h" alt="" coords="532,84,785,111"/>
-<area shape="rect" href="$_i_f_s_device_8h.html" title="IFSDevice.h" alt="" coords="343,487,447,513"/>
-<area shape="rect" href="$_i_f_s_joystick_listener_8h.html" title="../Interfaces/IFSJoystick\lListener.h" alt="" coords="105,160,289,205"/>
-<area shape="rect" href="$_f_s_base_event_8h.html" title="../baseClasses/FSBaseEvent.h" alt="" coords="43,332,272,359"/>
-<area shape="rect" href="$_i_f_s_joystick_info_8h.html" title="../Interfaces/IFSJoystick\lInfo.h" alt="" coords="415,160,599,205"/>
-<area shape="rect" href="$_f_s_base_device_8h.html" title="../baseClasses/FSBaseDevice.h" alt="" coords="967,169,1207,196"/>
-<area shape="rect" href="$_i_f_s_event_8h.html" title="IFSEvent.h" alt="" coords="347,409,443,436"/>
-<area shape="rect" href="$_f_s_device_input_event_8h.html" title="../FSDeviceInputEvent.h" alt="" coords="163,255,352,281"/>
+<area shape="rect" href="$_f_s_base_manager_8h.html" title="../baseClasses/FSBaseManager.h" alt="" coords="768,84,1021,111"/>
+<area shape="rect" href="$_i_f_s_device_8h.html" title="IFSDevice.h" alt="" coords="457,487,561,513"/>
+<area shape="rect" href="$_i_f_s_joystick_listener_8h.html" title="../Interfaces/IFSJoystick\lListener.h" alt="" coords="77,160,261,205"/>
+<area shape="rect" href="$_f_s_base_event_8h.html" title="../baseClasses/FSBaseEvent.h" alt="" coords="155,332,384,359"/>
+<area shape="rect" href="$_i_f_s_joystick_info_8h.html" title="../Interfaces/IFSJoystick\lInfo.h" alt="" coords="651,160,835,205"/>
+<area shape="rect" href="$_f_s_base_device_8h.html" title="../baseClasses/FSBaseDevice.h" alt="" coords="387,169,627,196"/>
+<area shape="rect" href="$_i_f_s_event_8h.html" title="IFSEvent.h" alt="" coords="221,409,317,436"/>
+<area shape="rect" href="$_f_s_device_input_event_8h.html" title="../FSDeviceInputEvent.h" alt="" coords="205,255,395,281"/>
 </map>

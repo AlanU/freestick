@@ -27,6 +27,7 @@ and must not be misrepresented as being the original software.
 
 #pragma once
 #include "FSUSBDeviceManager.h"
+#include "FSUSBJoystick.h"
 namespace freestick
 {
     class FSUSBJoystickDeviceManager : public FSUSBDeviceManager
@@ -35,6 +36,6 @@ namespace freestick
         FSUSBJoystickDeviceManager();
         virtual ~FSUSBJoystickDeviceManager();
         virtual void init( );
-
+        const FSUSBJoystick * getUSBJoystickDevice(unsigned int deviceID){return (const FSUSBJoystick *)FSUSBDeviceManager::getDevice(deviceID);}
     };
 }

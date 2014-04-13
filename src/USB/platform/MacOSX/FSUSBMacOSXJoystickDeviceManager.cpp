@@ -218,7 +218,7 @@ unsigned int numberOfDeviecType(IOHIDDeviceRef device,int * TotalNumberOfButtons
                          }
                       }
                  }*/
-                if(type == kIOHIDElementTypeInput_Axis || type == kIOHIDElementTypeInput_Button || type == kIOHIDElementTypeInput_Misc || type == kIOHIDElementTypeInput_ScanCodes)
+                if(type == kIOHIDElementTypeInput_Axis || type == kIOHIDElementTypeInput_Button )// type == kIOHIDElementTypeInput_Misc || type == kIOHIDElementTypeInput_ScanCodes)
                 {
                     if(value != 0)
                     {
@@ -351,15 +351,16 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn i
     uint32_t elementID = IOHIDElementGetCookie(element);
     CFIndex min = IOHIDElementGetLogicalMin(element);
     CFIndex max = IOHIDElementGetLogicalMax(element);
-    if(min+1 != max)
+    //if(min+1 != max)
       //  return;
-    printf("Gamepad talked! type of input %i id %i\n",(unsigned int)IOHIDElementGetType(element),elementID);
 
     int elementValue = 0;
     if(IOHIDValueGetLength(value) > sizeof(CFIndex))
     {
+      //  printf("\n");
         return ;
     }
+    printf("Gamepad talked! type of input %i id %i: ",(unsigned int)IOHIDElementGetType(element),elementID);
 
      elementValue=  IOHIDValueGetIntegerValue(value);
      usage =IOHIDElementGetUsage(element);
@@ -370,24 +371,39 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn i
         //CFShow(element);
         //printf("Element: %s \n", element);
 
-        printf("Element value: %i \n", elementValue);
+        printf("Element value: %i ", elementValue);
 
-        printf("Element Usage page %i with Usage %i\n",usagePage,usage);
+        printf("Element Usage page %i with Usage %i min %i max %i",usagePage,usage,min,max);
     }
         FSUSBMacOSXJoystickDeviceManager * manager = (FSUSBMacOSXJoystickDeviceManager *) inContext;
         unsigned int deviceID = manager->getDeviceIDFromIOHIDevice(device);
-        FSUSBElementInfoMap inputType = manager->lookUpDeviceInputFromID(deviceID,(unsigned int)IOHIDElementGetCookie(element),IOHIDElementGetLogicalMin(element),IOHIDElementGetLogicalMax(element),elementValue);
-        FreeStickEventType eventType =  IFSEvent::getEventFromInputType(inputType.getDeviceInput());
-        //pass in FSEventMaping so we can map release vs press
-        if( eventType != FS_LAST_EVENT && inputType.getDeviceInput() != LastInput )
+        const FSUSBJoystick * fsDevice = manager->getUSBJoystickDevice(deviceID);
+         FSUSBJoyStickInputElement * elementDevice = NULL;
+        if(fsDevice)
         {
-            if(FSUSBElementInfoMap.getDeviceInput() == LastValueUp)
+           elementDevice =  (FSUSBJoyStickInputElement * )fsDevice->findInputElement(elementID);
+        }
+        if(elementDevice)
+        {
+          //  FSUSBElementInfoMap inputType = manager->lookUpDeviceInputFromID(deviceID,(unsigned int)IOHIDElementGetCookie(element),IOHIDElementGetLogicalMin(element),IOHIDElementGetLogicalMax(element),elementValue);
+           // FreeStickEventType eventType =  IFSEvent::getEventFromInputType(inputType.getDeviceInput());
+             FSUSBElementInfoMap inputType = elementDevice->getMapping(elementValue);
+             FreeStickEventType eventType =  IFSEvent::getEventFromInputType(inputType.getDeviceInput());
+
+            //pass in FSEventMaping so we can map release vs press
+            if( eventType != FS_LAST_EVENT && inputType.getDeviceInput() != LastInput )
             {
 
-            }
-            manager->inputOnDeviceChanged(eventType,inputType.getEventMapping(),inputType.getDeviceInput(),deviceID,IOHIDElementGetCookie(element),elementValue,0,IOHIDElementGetLogicalMin(element),IOHIDElementGetLogicalMax(element));
 
+                manager->inputOnDeviceChanged(eventType,inputType.getEventMapping(),inputType.getDeviceInput(),
+                                              deviceID,elementDevice->getJoystickID(),
+                                              elementDevice->getValue(),0,
+                                              IOHIDElementGetLogicalMin(element),
+                                              IOHIDElementGetLogicalMax(element));
+
+            }
         }
+         printf("\n");
 }
 
 
@@ -473,6 +489,7 @@ FSUSBMacOSXJoystickDeviceManager::~FSUSBMacOSXJoystickDeviceManager()
 void FSUSBMacOSXJoystickDeviceManager::addDevice(IOHIDDeviceRef  device)
 {
     FSUSBMacOSXJoystick * temp = new FSUSBMacOSXJoystick(device, this->getNextID(),numberOfButtons(device),numberOfAnalogSticks(device),0,isForceFeedBackSupported(device));
+    temp->Init(*this);
     this->addDevice(temp);
     findDpad(device);
     printf("Gamepad was plugged in with %lu buttons and %lu sticks \n",temp->getNumberOfButtons(),temp->getNumberOfAnlogSticks());

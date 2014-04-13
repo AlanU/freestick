@@ -55,6 +55,18 @@ FSUSBJoystick::FSUSBJoystick(unsigned int joyStickID,
 
 void FSUSBJoystick::addInputElement(FSUSBJoyStickInputElement & element)
 {
-    if(_inputElementMap.find(element.getJoystickID()) != _inputElementMap.end())
-        _inputElementMap[element.getJoystickID()] = &element;
+    if(_inputElementMap.find(element.getJoystickID()) == _inputElementMap.end())
+        _inputElementMap[element.getJoystickID()] = element;
+}
+const FSUSBJoyStickInputElement * FSUSBJoystick::findInputElement(unsigned int id) const
+{
+    std::map<unsigned int,FSUSBJoyStickInputElement >::const_iterator itr = _inputElementMap.find(id);
+
+    if(itr != _inputElementMap.end())
+    {
+
+        return &(itr->second);
+    }
+    else
+       return NULL;
 }

@@ -20,7 +20,7 @@ var searchData=
   ['getinputtype',['getInputType',['../classfreestick_1_1_f_s_device_input_event.html#a8f4f36e07130e3a795e51e3986074bb6',1,'freestick::FSDeviceInputEvent']]],
   ['getiohiddeviceref',['GetIOHIDDeviceRef',['../classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick.html#a3fee00dcdcf73bf81bd3e3cbe02a2d7f',1,'freestick::FSUSBMacOSXJoystick']]],
   ['getjoystickid',['getJoystickID',['../classfreestick_1_1_f_s_base_device.html#a4060a6ffa96acffccaf76ff7adfe128b',1,'freestick::FSBaseDevice::getJoystickID()'],['../classfreestick_1_1_f_s_base_joystick_info.html#ab29472464f5221282822604ff4a46fa4',1,'freestick::FSBaseJoystickInfo::getJoystickID()'],['../classfreestick_1_1_i_f_s_device.html#adbf55558323d0abb62127b6fe002ece2',1,'freestick::IFSDevice::getJoystickID()']]],
-  ['getmapping',['getMapping',['../classfreestick_1_1_f_s_u_s_b_joystick_button.html#a2ede80b8e7c9dfa5f9c63c265f43460f',1,'freestick::FSUSBJoystickButton::getMapping()'],['../classfreestick_1_1_f_s_u_s_b_joy_stick_input_element.html#a69974238513cf0d9a4276af612c3bb37',1,'freestick::FSUSBJoyStickInputElement::getMapping()']]],
+  ['getmapping',['getMapping',['../classfreestick_1_1_f_s_u_s_b_joystick_button.html#a2ede80b8e7c9dfa5f9c63c265f43460f',1,'freestick::FSUSBJoystickButton::getMapping()'],['../classfreestick_1_1_f_s_u_s_b_joy_stick_input_element.html#a39beb4f122a87ac894a2115e4158cc58',1,'freestick::FSUSBJoyStickInputElement::getMapping()']]],
   ['getmax',['getMax',['../classfreestick_1_1_f_s_u_s_b_element_info_map.html#a33d8fe8e64af4f28fa4bb89a9378e5b9',1,'freestick::FSUSBElementInfoMap']]],
   ['getmin',['getMin',['../classfreestick_1_1_f_s_u_s_b_element_info_map.html#a1747566bc099e25a0e83065facbf4178',1,'freestick::FSUSBElementInfoMap']]],
   ['getnewinputvalue',['getNewInputValue',['../classfreestick_1_1_f_s_device_input_event.html#a311798621ac29599d367d5a37b442181',1,'freestick::FSDeviceInputEvent']]],
@@ -32,6 +32,8 @@ var searchData=
   ['getproductfrendlyname',['getProductFrendlyName',['../classfreestick_1_1_f_s_u_s_b_device.html#a653989dde3f079866f1fc5b4c1f1ef38',1,'freestick::FSUSBDevice']]],
   ['getproductid',['getProductID',['../classfreestick_1_1_f_s_u_s_b_device.html#a169919f9f809a0ffbf020ed888164941',1,'freestick::FSUSBDevice']]],
   ['gettimestamp',['getTimeStamp',['../classfreestick_1_1_f_s_base_event.html#a69c6010406b23296dff574ee29534a63',1,'freestick::FSBaseEvent::getTimeStamp()'],['../classfreestick_1_1_i_f_s_event.html#ae6cbebf88f46a6f7dd0614b342400df3',1,'freestick::IFSEvent::getTimeStamp()']]],
+  ['getusbjoystickdevice',['getUSBJoystickDevice',['../classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html#afbf48d9abb9b03164ae38f770a4f5c33',1,'freestick::FSUSBJoystickDeviceManager']]],
+  ['getvalue',['getValue',['../classfreestick_1_1_f_s_u_s_b_joy_stick_input_element.html#a38b8300a80432c8c6f3dc021b2fa1f4d',1,'freestick::FSUSBJoyStickInputElement']]],
   ['getvenderfriendlyname',['getVenderFriendlyName',['../classfreestick_1_1_f_s_u_s_b_device.html#ae2492d696b3af28642fe67be8aed023b',1,'freestick::FSUSBDevice']]],
   ['getvenderid',['getVenderID',['../classfreestick_1_1_f_s_u_s_b_device.html#ac8620ba8735f70fcfb6826c109b23cdf',1,'freestick::FSUSBDevice']]]
 ];

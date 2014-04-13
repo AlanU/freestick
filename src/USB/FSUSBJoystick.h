@@ -38,11 +38,12 @@ namespace freestick
         unsigned int _numberOfAnlogSticks;
         unsigned int _numberOfDigitalSticks;
         bool        _forceFeedBackSupported;
-        std::map<unsigned int,FSUSBJoyStickInputElement *> _inputElementMap;
+        std::map<unsigned int,FSUSBJoyStickInputElement > _inputElementMap;
 
     protected:
         FSUSBJoystick();
     public:
+        ~FSUSBJoystick();
         FSUSBJoystick(unsigned int joyStickID,
                       unsigned int numberOfButtons,
                       unsigned int numberOfAnlogSticks,
@@ -56,6 +57,7 @@ namespace freestick
         bool getForceFeedbackSupport() const {return _forceFeedBackSupported;}
         virtual FSDeviceType getClassType() const {return FSUSBJoystickType;}
         void addInputElement(FSUSBJoyStickInputElement & element);
+        const FSUSBJoyStickInputElement * findInputElement(unsigned int id) const;
 
     };
 }

@@ -35,6 +35,12 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     /** \todo
     * populate map _usageMapToInputEvent
     */
+
+    //" Playstation 3 Controller"
+    const unsigned int SonyVenderID = 1356;
+    const unsigned int Playstation3ControllerID = 616;
+
+
     // "Logitech Dual Action"
     const unsigned int LogitchVenderID = 1133;
     const unsigned int LogitchDualActionID = 49686;
@@ -44,13 +50,24 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputEvent[LogitchVenderID][LogitchDualActionID][7] = Button4;
     _usageMapToInputEvent[LogitchVenderID][LogitchDualActionID][8]= Button5;
     _usageMapToInputEvent[LogitchVenderID][LogitchDualActionID][9] = Button6;
+    _usageMapToInputEvent[LogitchVenderID][LogitchDualActionID][10] = Button7;
+    _usageMapToInputEvent[LogitchVenderID][LogitchDualActionID][11] = Button8;
+    _usageMapToInputEvent[LogitchVenderID][LogitchDualActionID][12] = Button9;
+    _usageMapToInputEvent[LogitchVenderID][LogitchDualActionID][13] = Button10;
 
     _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][20].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
     _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][20].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
     _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][20].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][20].push_back(FSUSBElementInfoMap(3,3,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][20].push_back(FSUSBElementInfoMap(7,7,DPadDown,FSInputPressed));
     _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][20].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
     _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][20].push_back(FSUSBElementInfoMap(8,8,LastValueUp,FSInputRest));
 
+    _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][16].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));//LXaxis stick trigger
+    _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][17].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));//LYaxis stick trigger
+
+    _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][19].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));//LXaxis stick trigger
+    _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][18].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));//LYaxis stick trigger
     const unsigned int MicrosoftVentderID = 1118;
     const unsigned int MictrosftXbox360WindowsControllerID = 654;
 
@@ -126,12 +143,12 @@ FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromID(unsigned int de
     {
         unsigned int vendorUSBID = usbDeice->getVenderID();
         unsigned int productUSBID = usbDeice->getProductID();
-        lookUpDeviceInputFromID(vendorUSBID,
+        lookUpDeviceInputFromUSBID(vendorUSBID,
                                 productUSBID ,
                                 controlID,
                                 min,
                                 max,
-                                value)
+                                value);
 
     }
 }
@@ -153,8 +170,8 @@ FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromUSBID( unsigned in
     {
          if(_usageMapToInputRangeEvent.find(vendorUSBID) != _usageMapToInputRangeEvent.end() &&
                   _usageMapToInputRangeEvent[vendorUSBID].find(productUSBID) != _usageMapToInputRangeEvent[vendorUSBID].end() &&
-                  _usageMapToInputRangeEvent[vendorUSBID][productUSBID].find(controlID) != _usageMapToInputRangeEvent[vendorUSBID][productUSBID].end())
-         {
+                 _usageMapToInputRangeEvent[vendorUSBID][productUSBID].find(controlID) != _usageMapToInputRangeEvent[vendorUSBID][productUSBID].end())
+        {
              std::vector<FSUSBElementInfoMap>::iterator rangeUsageList = _usageMapToInputRangeEvent[vendorUSBID][productUSBID][controlID].begin();
              for(rangeUsageList; rangeUsageList != _usageMapToInputRangeEvent[vendorUSBID][productUSBID][controlID].end();rangeUsageList++)
              {
