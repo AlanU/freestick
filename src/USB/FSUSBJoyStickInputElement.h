@@ -29,6 +29,7 @@ and must not be misrepresented as being the original software.
 #include "FSUSBDevice.h"
 namespace freestick
 {
+typedef signed long  MinMaxNumber;
     class FSUSBJoyStickInputElement : public FSUSBDevice
     {
     private:
@@ -36,12 +37,20 @@ namespace freestick
          *typedef these private data members and other classes
          *so type of the elements can change easly if a given platform needs to
          */
-        signed long _elementMin;
-        signed long _elementMax;
+        MinMaxNumber _elementMin;
+        MinMaxNumber _elementMax;
+        MinMaxNumber _oldValue;
+        MinMaxNumber _value;
     protected:
           FSUSBJoyStickInputElement();
     public:
-        FSUSBJoyStickInputElement(signed long elementMin,signed long elementMax);
+        FSUSBJoyStickInputElement(unsigned int id, MinMaxNumber elementMin, MinMaxNumber elementMax, long venderID,
+                                  long productID);
         virtual FSDeviceInput getMapping(int inputValue) = 0 ;
+        inline MinMaxNumber getValue() {return _value;}
+        void setValue(MinMaxNumber newValue) { if (newValue != _value) { _oldValue = _value; _value = newValue;}  }
+
+
+
     };
 }

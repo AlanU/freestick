@@ -28,6 +28,7 @@ and must not be misrepresented as being the original software.
 #pragma once
 #include <string>
 #include "FSUSBDevice.h"
+#include "FSUSBJoyStickInputElement.h"
 namespace freestick
 {
     class FSUSBJoystick : public FSUSBDevice
@@ -37,6 +38,7 @@ namespace freestick
         unsigned int _numberOfAnlogSticks;
         unsigned int _numberOfDigitalSticks;
         bool        _forceFeedBackSupported;
+        std::map<unsigned int,FSUSBJoyStickInputElement *> _inputElementMap;
 
     protected:
         FSUSBJoystick();
@@ -53,6 +55,7 @@ namespace freestick
         unsigned int getNumberOfDigitalSticks() const {return _numberOfDigitalSticks;}
         bool getForceFeedbackSupport() const {return _forceFeedBackSupported;}
         virtual FSDeviceType getClassType() const {return FSUSBJoystickType;}
+        void addInputElement(FSUSBJoyStickInputElement & element);
 
     };
 }

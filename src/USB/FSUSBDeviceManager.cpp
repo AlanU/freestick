@@ -32,7 +32,7 @@ and must not be misrepresented as being the original software.
 using namespace freestick;
 FSUSBDeviceManager::FSUSBDeviceManager()
 {
-    /*/todo
+    /** \todo
     * populate map _usageMapToInputEvent
     */
     // "Logitech Dual Action"
@@ -119,53 +119,53 @@ FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromID(unsigned int de
 {
 
 }
-
 FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromID(unsigned int deviceID, unsigned int controlID,signed long min,signed long max,int value)
+{
+    const FSUSBDevice * usbDeice = (const FSUSBDevice *)getDevice(deviceID);
+    if(usbDeice != NULL)
+    {
+        unsigned int vendorUSBID = usbDeice->getVenderID();
+        unsigned int productUSBID = usbDeice->getProductID();
+        lookUpDeviceInputFromID(vendorUSBID,
+                                productUSBID ,
+                                controlID,
+                                min,
+                                max,
+                                value)
+
+    }
+}
+
+FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromUSBID( unsigned int vendorUSBID, unsigned int productUSBID , unsigned int controlID,signed long min,signed long max,int value)
  {
-     const FSUSBDevice * usbDeice = (const FSUSBDevice *)getDevice(deviceID);
-     if(usbDeice != NULL)
+     if(min==0 && max == 1)
      {
-         unsigned int vendorUSBID = usbDeice->getVenderID();
-         unsigned int productUSBID = usbDeice->getProductID();
-         if(min==0 && max == 1)
+         if(_usageMapToInputEvent.find(vendorUSBID) != _usageMapToInputEvent.end() &&
+                 _usageMapToInputEvent[vendorUSBID].find(productUSBID) != _usageMapToInputEvent[vendorUSBID].end() &&
+                 _usageMapToInputEvent[vendorUSBID][productUSBID].find(controlID) != _usageMapToInputEvent[vendorUSBID][productUSBID].end())
          {
-             if(_usageMapToInputEvent.find(vendorUSBID) != _usageMapToInputEvent.end())
-             {
-                 if( _usageMapToInputEvent[vendorUSBID].find(productUSBID) != _usageMapToInputEvent[vendorUSBID].end())
-                 {
-                     if( _usageMapToInputEvent[vendorUSBID][productUSBID].find(controlID) != _usageMapToInputEvent[vendorUSBID][productUSBID].end())
-                     {
-                         FSEventAction isPressed = FSInputPressed;
-                         (value == 0 ) ? isPressed = FSInputRest: NULL;
-                         return FSUSBElementInfoMap(0,1,_usageMapToInputEvent[vendorUSBID][productUSBID][controlID],isPressed);
-                     }
-                 }
-
-             }
+             FSEventAction isPressed = FSInputPressed;
+             (value == 0 ) ? isPressed = FSInputRest: NULL;
+             return FSUSBElementInfoMap(0,1,_usageMapToInputEvent[vendorUSBID][productUSBID][controlID],isPressed);
          }
-         else
-        {
-             if(_usageMapToInputRangeEvent.find(vendorUSBID) != _usageMapToInputRangeEvent.end())
+     }
+     else
+    {
+         if(_usageMapToInputRangeEvent.find(vendorUSBID) != _usageMapToInputRangeEvent.end() &&
+                  _usageMapToInputRangeEvent[vendorUSBID].find(productUSBID) != _usageMapToInputRangeEvent[vendorUSBID].end() &&
+                  _usageMapToInputRangeEvent[vendorUSBID][productUSBID].find(controlID) != _usageMapToInputRangeEvent[vendorUSBID][productUSBID].end())
+         {
+             std::vector<FSUSBElementInfoMap>::iterator rangeUsageList = _usageMapToInputRangeEvent[vendorUSBID][productUSBID][controlID].begin();
+             for(rangeUsageList; rangeUsageList != _usageMapToInputRangeEvent[vendorUSBID][productUSBID][controlID].end();rangeUsageList++)
              {
-                 if( _usageMapToInputRangeEvent[vendorUSBID].find(productUSBID) != _usageMapToInputRangeEvent[vendorUSBID].end())
+                 FSUSBElementInfoMap * item  = &(*rangeUsageList);
+                 if(value >= item->getMin()  && value <= item->getMax())
                  {
-                     if( _usageMapToInputRangeEvent[vendorUSBID][productUSBID].find(controlID) != _usageMapToInputRangeEvent[vendorUSBID][productUSBID].end())
-                     {
-
-                         std::vector<FSUSBElementInfoMap>::iterator rangeUsageList = _usageMapToInputRangeEvent[vendorUSBID][productUSBID][controlID].begin();
-                         for(rangeUsageList; rangeUsageList != _usageMapToInputRangeEvent[vendorUSBID][productUSBID][controlID].end();rangeUsageList++)
-                         {
-                             FSUSBElementInfoMap * item  = &(*rangeUsageList);
-                             if(value >= item->getMin()  && value <= item->getMax())
-                             {
-                                 return *item;
-                             }
-                         }
-                     }
+                     return *item;
                  }
-
              }
          }
      }
-     return FSUSBElementInfoMap(0,1,LastInput,FSInputChanged);
+
+    return FSUSBElementInfoMap(0,1,LastInput,FSInputChanged);
  }

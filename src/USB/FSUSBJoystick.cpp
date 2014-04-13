@@ -31,7 +31,11 @@ FSUSBJoystick::FSUSBJoystick()
 {
 }
 
-
+FSUSBJoystick::~FSUSBJoystick()
+{
+    /** \todo delete map free memory
+      */
+}
 FSUSBJoystick::FSUSBJoystick(unsigned int joyStickID,
                              unsigned int numberOfButtons,
                              unsigned int numberOfAnlogSticks,
@@ -46,4 +50,11 @@ FSUSBJoystick::FSUSBJoystick(unsigned int joyStickID,
     _numberOfAnlogSticks = numberOfAnlogSticks;
     _numberOfDigitalSticks = numberOfDigitalSticks;
     _forceFeedBackSupported = forceFeedBackSupported;
+}
+
+
+void FSUSBJoystick::addInputElement(FSUSBJoyStickInputElement & element)
+{
+    if(_inputElementMap.find(element.getJoystickID()) != _inputElementMap.end())
+        _inputElementMap[element.getJoystickID()] = &element;
 }

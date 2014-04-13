@@ -30,8 +30,8 @@ namespace freestick
 {
 
     /** \todo
-    //needs to have a small memory foot print
-    //fast to copy
+     *needs to have a small memory foot print
+     *fast to copy
     */
     class IFSJoystickInfo
     {

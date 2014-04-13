@@ -71,6 +71,10 @@ namespace freestick
             {
                 return FS_TRIGGER_EVENT;
             }
+            else if(LastValueUp == inputType)
+            {
+                return FS_BUTTON_EVENT;
+            }
             return FS_LAST_EVENT;
         }
     };

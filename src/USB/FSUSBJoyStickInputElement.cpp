@@ -30,3 +30,12 @@ using namespace freestick;
 FSUSBJoyStickInputElement::FSUSBJoyStickInputElement()
 {
 }
+
+FSUSBJoyStickInputElement::FSUSBJoyStickInputElement(unsigned int id, MinMaxNumber elementMin, MinMaxNumber elementMax ,long venderID,
+                                                     long productID):FSUSBDevice(id,venderID,productID)
+{
+     _elementMin = elementMin;
+     _elementMax = elementMax;
+     _oldValue = 0;
+    _value = 0;
+}

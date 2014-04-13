@@ -44,11 +44,13 @@ FSUSBMacOSXJoystickDeviceManager::FSUSBMacOSXJoystickDeviceManager()
 
 unsigned int FSUSBMacOSXJoystickDeviceManager::getDeviceIDFromIOHIDevice(IOHIDDeviceRef deviceRef)
 {
-    /*/todo
+    /** \todo
      * check to see if deive ref exist and return error if not
      */
     return IOHIDDeviceToIDMap[deviceRef];
 }
+
+
 
 void FSUSBMacOSXJoystickDeviceManager::addDevice(FSBaseDevice * device)
 {
@@ -379,6 +381,10 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn i
         //pass in FSEventMaping so we can map release vs press
         if( eventType != FS_LAST_EVENT && inputType.getDeviceInput() != LastInput )
         {
+            if(FSUSBElementInfoMap.getDeviceInput() == LastValueUp)
+            {
+
+            }
             manager->inputOnDeviceChanged(eventType,inputType.getEventMapping(),inputType.getDeviceInput(),deviceID,IOHIDElementGetCookie(element),elementValue,0,IOHIDElementGetLogicalMin(element),IOHIDElementGetLogicalMax(element));
 
         }
