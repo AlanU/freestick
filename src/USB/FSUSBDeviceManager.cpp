@@ -72,16 +72,16 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     const unsigned int MictrosftXbox360WindowsControllerID = 654;
 
     _usageMapToInputEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][23] = Button1;//x
-    _usageMapToInputEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][24]= Button2;//y
-    _usageMapToInputEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][29]= Button3;//b
-    _usageMapToInputEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][21]= Button4;//a
+    _usageMapToInputEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][24] = Button2;//y
+    _usageMapToInputEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][22] = Button3;//b
+    _usageMapToInputEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][21] = Button4;//a
 
-    _usageMapToInputEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][16]= Button5;//L3 left thumb down
-    _usageMapToInputEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][17]= Button6;//R3 right thumb down
+    _usageMapToInputEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][16] = Button5;//L3 left thumb down
+    _usageMapToInputEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][17] = Button6;//R3 right thumb down
 
-    _usageMapToInputEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][15]= Button7;//back
-    _usageMapToInputEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][20]= Button8;//Microsoft xbox button
-    _usageMapToInputEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][14]= Button9;//start
+    _usageMapToInputEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][15] = Button7;//back
+    _usageMapToInputEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][20] = Button8;//Microsoft xbox button
+    _usageMapToInputEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][14] = Button9;//start
 
 
 
@@ -96,7 +96,7 @@ FSUSBDeviceManager::FSUSBDeviceManager()
 
     _usageMapToInputEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][18] = Button5;//L1 sholder button
     _usageMapToInputEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][19] = Button6;//R2 sholder button
-    _usageMapToInputEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][10]  = DPadUp;
+    _usageMapToInputEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][10] = DPadUp;
     _usageMapToInputEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][11] = DPadDown;
     _usageMapToInputEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][12] = DPadLeft;
     _usageMapToInputEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][13] = DPadRight;
