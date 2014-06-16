@@ -1,31 +1,13 @@
 # README #
- FreeStick Cross Platform Joystick and Gamepad Library. #
-Create a device manager and call init.
+ FreeStick is a Cross Platform Joystick and Gamepad Library written in c++.
 
-```This README would normally document whatever steps are necessary to get your application up and running.
+The Requirements to compile the code is [Qmke](http://qt-project.org) and the corresponding OS you which to build for.
+There is a NULL device if you wish to build and test the code out on an unsupported platform. 
 
-### What is this repository for? ###
+This code is in a alpha state and currently only works on MacOSX.
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+The future versions will support iOS, Android, MacOSX, Windows ,and Linux.
 
-### How do I get set up? ###
+We are looking for contributors. Contact AlanU for more information
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+See the [wiki](https://bitbucket.org/AlanU/freestick/wiki) and [doc](https://bitbucket.org/AlanU/freestick/src/) folder in repo for more documentation.
