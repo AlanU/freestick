@@ -37,9 +37,7 @@ namespace freestick
     public:
         virtual void OnButtonDown(FSDeviceInputEvent event) = 0;
         virtual void OnButtonUp(FSDeviceInputEvent event)= 0;
-        virtual void OnButtonUpdate(FSDeviceInputEvent event) = 0;
         virtual void OnStickMove(FSDeviceInputEvent event) = 0;
-        virtual void OnStickMoveUpdate(FSDeviceInputEvent event) = 0;
         virtual void OnDisconnect(FSBaseEvent event) =0;
         virtual void OnConnect(FSBaseEvent event) = 0;
     

@@ -21,6 +21,11 @@ using namespace freestick;
         #include "../../../src/USB/platform/MacOSX/FSUSBMacOSXJoystickDeviceManager.h"
         typedef FSUSBMacOSXJoystickDeviceManager JoystickManager;
     #endif
+#elif __ANDROID__
+    //define for android
+    #include "../../../src/USB/platform/Android/FSHIDAndroidJoysickDeviceManager.h"
+typedef FSHIDAndroidJoysickDeviceManager JoystickManager;
+
 #else
     typedef FSUSBNullJoystickManager JoystickManager;
 #endif
@@ -39,11 +44,10 @@ public:
     ~JoyStickConfigWidget();
     virtual void OnButtonDown(FSDeviceInputEvent event);
     virtual void OnButtonUp(FSDeviceInputEvent event) ;
-    virtual void OnButtonUpdate(FSDeviceInputEvent event){ }
     virtual void OnStickMove(FSDeviceInputEvent event);
-    virtual void OnStickMoveUpdate(FSDeviceInputEvent event){ }
     virtual void OnDisconnect(FSBaseEvent event);
     virtual void OnConnect(FSBaseEvent event);
+    bool isCurrentDevice(unsigned int device);
 public slots:
     void update();
 private slots:

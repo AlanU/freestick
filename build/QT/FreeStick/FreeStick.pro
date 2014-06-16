@@ -8,8 +8,11 @@ QT       -= core gui
 
 TARGET = FreeStick
 TEMPLATE = lib
-CONFIG += staticlib
-
+android {
+    CONFIG += shared
+}else{
+    CONFIG += staticlib
+}
 SOURCES += \
         ../../../src/baseClasses/FSBaseDevice.cpp \
         ../../../src/baseClasses/FSBaseManager.cpp \
@@ -22,9 +25,10 @@ SOURCES += \
     ../../../src/FSDeviceInputEvent.cpp \
     ../../../src/USB/FSUSBJoyStickInputElement.cpp \
     ../../../src/USB/FSUSBJoystickButton.cpp \
-    ../../../src/USB/platform/NULL/*.cpp
+    $$files(../../../src/USB/platform/NULL/*.cpp)
+
 HEADERS += \
-        ../../../src/*.h \
+        $$files(../../../src/*.h) \
         ../../../src/Interfaces/IFSDevice.h \
         ../../../src/Interfaces/IFSJoystickInfo.h \
          ../../../src/Interfaces/IFSJoystickListener.h \
@@ -34,22 +38,50 @@ HEADERS += \
         ../../../src/USB/FSUSBDeviceManager.h \
         ../../../src/USB/FSUSBJoystick.h \
         ../../../src/USB/FSUSBJoystickDeviceManager.h \
-        ../../../src/USB/FSUSBNullDevice.h \
         ../../../src/baseClasses/FSBaseJoystickInfo.h \
         ../../../src/Interfaces/IFSEvent.h \
         ../../../src/baseClasses/FSBaseEvent.h \
     ../../../src/FSDeviceInputEvent.h \
     ../../../src/USB/FSUSBJoyStickInputElement.h \
     ../../../src/USB/FSUSBJoystickButton.h \
-    ../../../src/USB/platform/NULL/*.h
+    $$files(../../../src/USB/platform/NULL/*.h)
 
-unix:!symbian {
+unix:!symbian:!android {
     maemo5 {
         target.path = /opt/usr/lib
-    } else {
+    }
+    else {
         target.path = /usr/lib
     }
     INSTALLS += target
+}
+
+android
+{
+  target.path = /libs/armeabi-v7a
+  INSTALLS += target
+
+}
+
+android {
+    SOURCES += $$files(../../../src/USB/platform/Android/*.cpp)
+
+   SOURCES += $$files(../../../src/USB/platform/Android/*.c)
+
+   HEADERS += $$files(../../../src/USB/platform/Android/*.h)
+
+   INCLUDEPATH +=  $$(JAVA_HOME)/include \
+                   $$(JAVA_HOME)/include/darwin
+    message("JDK Path")
+    message($$INCLUDEPATH)
+  #  QT += androidextras
+   # ANDROID_PACKAGE_SOURCE_DIR = $$PWD/src/USB/platform/Android/Java
+    #message("Freestick Android Package Source")
+   # message($$ANDROID_PACKAGE_SOURCE_DIR)
+
+   # OTHER_FILES+= $$files(../../../src/USB/platform/Android/Java/*.java) \
+          #        $$files(../../../src/USB/platform/Android/Java/*.xml)
+
 }
 
 macx {
@@ -59,15 +91,18 @@ SOURCES += \
         ../../../src/USB/platform/MacOSX/FSUSBMacOSXJoystick.cpp \
         ../../../src/USB/platform/MacOSX/FSUSBMacOSXJoystickDeviceManager.cpp \
 
-HEADERS+= \
+
+HEADERS += \
         ../../../src/3rdPary/Mac/IOHID/*.h \
         ../../../src/USB/platform/MacOSX/FSUSBMacOSXJoystick.h \
-        ../../../src/USB/platform/MacOSX/FSUSBMacOSXJoystickDeviceManager.h
+        ../../../src/USB/platform/MacOSX/FSUSBMacOSXJoystickDeviceManager.h \
 
 LIBS += -framework IOKit \
         -framework ForceFeedback \
-        -framework CoreFoundation
+        -framework CoreFoundation \
 }
+
+
 
 
 

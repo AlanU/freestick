@@ -122,7 +122,7 @@ void FSBaseManager::updateEvent(FSBaseEvent & event)
         }
     }
 
-    rangedItr = _joystickDeviceInputListeners[( (FSDeviceInputEvent *)&event)->getDeiveID()].equal_range(event.getEventType());
+    rangedItr = _joystickDeviceInputListeners[( (FSDeviceInputEvent *)&event)->getDeviceID()].equal_range(event.getEventType());
     for (std::multimap< FreeStickEventType,IFSJoystickListener *>::iterator it2 = rangedItr.first;it2 != rangedItr.second;++it2)
     {
         ListenerToCall = (it2)->second;
@@ -143,9 +143,20 @@ void FSBaseManager::updateEvent(FSBaseEvent & event)
     }
 
 }
+
+float FSBaseManager::convertRawToNormalizedRanger(int value,signed long maxValue,signed long minValue)
+{
+    float newNormilzedValue = (value/(float)maxValue);
+
+    return newNormilzedValue;
+}
+
 void FSBaseManager::inputOnDeviceChanged(FreeStickEventType eventType,FSEventAction eventAction,FSDeviceInput inputType,unsigned int deviceID,unsigned int deviceControlID,int newValue,int oldValue,signed long min, signed long max)
 {
-    FSDeviceInputEvent newInputEvent(eventType,eventAction,std::time(0),deviceID,deviceControlID,(oldValue/(float)max),(newValue/(float)max) ,inputType);
+    FSDeviceInputEvent newInputEvent(eventType,eventAction,std::time(0),deviceID,deviceControlID,
+                                     convertRawToNormalizedRanger(oldValue,max,min),
+                                     convertRawToNormalizedRanger(newValue,max,min) ,
+                                     inputType);
     updateEvent(newInputEvent);
 }
 

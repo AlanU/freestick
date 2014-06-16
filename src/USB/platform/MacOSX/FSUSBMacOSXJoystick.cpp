@@ -46,7 +46,12 @@ unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickM
     //std::map<IOHIDElementCookie,int> idMap;
     CFIndex min = 0;
      CFIndex max  = 0;
-        assert( IOHIDDeviceGetTypeID() == CFGetTypeID(_macIOHIDDeviceRef) );
+     CFStringRef Devicename = IOHIDDevice_GetProduct(_macIOHIDDeviceRef);
+
+     char foo[256] = {'\0'};
+    CFStringGetCString(Devicename,foo,CFStringGetLength(Devicename)+1,kCFStringEncodingMacRoman);
+      //_prodcutIDFriendlyName = foo;
+     assert( IOHIDDeviceGetTypeID() == CFGetTypeID(_macIOHIDDeviceRef) );
 
         deviceElements = IOHIDDeviceCopyMatchingElements(_macIOHIDDeviceRef, NULL, kIOHIDOptionsTypeNone);
         CFIndex index;

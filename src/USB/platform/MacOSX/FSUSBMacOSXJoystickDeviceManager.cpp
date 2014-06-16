@@ -205,6 +205,8 @@ unsigned int numberOfDeviecType(IOHIDDeviceRef device,int * TotalNumberOfButtons
                  elemnetID =IOHIDElementGetCookie(elemnet);
                  usage =IOHIDElementGetUsage(elemnet);
                  usagePage = IOHIDElementGetUsagePage(elemnet);
+                 CFStringRef name = IOHIDElementGetName(elemnet);
+                 const char * nameChar = CFStringGetCStringPtr(name,kCFStringEncodingASCII);
                  CFIndex value = 0;
                  IOHIDValueRef   tIOHIDValueRef;
                /*  if ( kIOReturnSuccess == IOHIDDeviceGetValue(device, elemnet, &tIOHIDValueRef) )
@@ -227,7 +229,7 @@ unsigned int numberOfDeviecType(IOHIDDeviceRef device,int * TotalNumberOfButtons
                     }
                         if(min != max)
                         {
-                           std::cout<<"("<<min<<","<<max<<")"<<" ID: "<<elemnetID<<" Usage page" <<usagePage<< " Usage "<<usage<<" Value "<<value<<std::endl;
+                           std::cout<<"("<<min<<","<<max<<")"<<" ID: "<<elemnetID<<" name "<<nameChar<<" Usage page" <<usagePage<< " Usage "<<usage<<" Value "<<value<<std::endl;
                         }
                         if (min == 0 && max == 1)
                         {

@@ -34,10 +34,15 @@ namespace freestick
     private:
         unsigned int _id;
     protected:
-       FSBaseJoystickInfo();
+
     public:
-        virtual unsigned int getJoystickID() ;
-        FSBaseJoystickInfo(unsigned int id);
+           FSBaseJoystickInfo();
+        virtual unsigned int getJoystickID(){return 0;} ;
+        virtual unsigned int JoystickID() {return 0;}
+        virtual unsigned int NumberOfButtons() { return 0;};
+        virtual unsigned int NumberOfAnlogSticks() {return 0;};
+        virtual unsigned int NumberOfDigitalSticks() {return 0;};
+       // FSBaseJoystickInfo(unsigned int id);
     };
 }
 

@@ -27,6 +27,7 @@ and must not be misrepresented as being the original software.
 
 #include "FSBaseJoystickInfo.h"
 using namespace freestick;
-FSBaseJoystickInfo::FSBaseJoystickInfo()
+FSBaseJoystickInfo::FSBaseJoystickInfo():IFSJoystickInfo()
 {
+
 }

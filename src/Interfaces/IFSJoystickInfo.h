@@ -35,6 +35,7 @@ namespace freestick
     */
     class IFSJoystickInfo
     {
+    public:
         virtual unsigned int JoystickID() = 0;
         virtual unsigned int NumberOfButtons() = 0;
         virtual unsigned int NumberOfAnlogSticks() = 0;

@@ -11,12 +11,13 @@ JoyStickConfigWidget::JoyStickConfigWidget(QWidget *parent) :
     ui(new Ui::JoyStickConfigWidget)
 {
     ui->setupUi(this);
+
     deviceManager.init();
     deviceManager.ListenForJoystickConnection(*this);
     deviceManager.ListenForJoystickDisconnections(*this);
     deviceManager.ListenForAllJoysticksForEventType(FS_BUTTON_EVENT,*this);
     deviceManager.ListenForAllJoysticksForEventType(FS_AXIS_EVENT,*this);
-       deviceManager.ListenForAllJoysticksForEventType(FS_TRIGGER_EVENT,*this);
+    deviceManager.ListenForAllJoysticksForEventType(FS_TRIGGER_EVENT,*this);
     ui->DeviceID->hide();
     ui->FoceFeedBack->hide();
     timer= new QTimer(this);
@@ -29,11 +30,21 @@ JoyStickConfigWidget::~JoyStickConfigWidget()
     delete timer;
     delete ui;
 }
+
+bool JoyStickConfigWidget::isCurrentDevice(unsigned int device)
+{
+  return (ui->DeviceListBox->currentData().toUInt() == device ) ? true : false;
+
+}
+
 void JoyStickConfigWidget::OnStickMove(FSDeviceInputEvent event)
 {
+    if(!isCurrentDevice(event.getDeviceID()))
+        return;
+
     QString text;
     if(FS_isAxis(event.getInputType()))
-    {
+    { 
          text = tr("Axise ");
     }
     else if(FS_isTrigger(event.getInputType()))
@@ -41,7 +52,7 @@ void JoyStickConfigWidget::OnStickMove(FSDeviceInputEvent event)
          text = tr("Trigger ");
     }
     text += tr("Changed for device ");
-    text += QString::number(event.getDeiveID());
+    text += QString::number(event.getDeviceID());
     text += tr(" with AnologID ");
     text += QString::number(event.getControlID());
     text += tr(" with Value of ");
@@ -51,6 +62,9 @@ void JoyStickConfigWidget::OnStickMove(FSDeviceInputEvent event)
 
 void JoyStickConfigWidget::OnButtonDown(FSDeviceInputEvent event)
 {
+    if(!isCurrentDevice(event.getDeviceID()))
+        return;
+
     QString text;
     if(FS_isDpad(event.getInputType()) )
     {
@@ -61,7 +75,7 @@ void JoyStickConfigWidget::OnButtonDown(FSDeviceInputEvent event)
          text = tr("Button ");
     }
     text += tr("Down for device ");
-    text += QString::number(event.getDeiveID());
+    text += QString::number(event.getDeviceID());
     text += tr(" with buttonID ");
     text += QString::number(event.getControlID());
     text += tr(" with Value of ");
@@ -72,6 +86,9 @@ void JoyStickConfigWidget::OnButtonDown(FSDeviceInputEvent event)
 
  void JoyStickConfigWidget::OnButtonUp(FSDeviceInputEvent event)
 {
+     if(!isCurrentDevice(event.getDeviceID()))
+         return;
+
      QString text;
      if(FS_isDpad(event.getInputType()) )
      {
@@ -82,7 +99,7 @@ void JoyStickConfigWidget::OnButtonDown(FSDeviceInputEvent event)
           text = tr("Button ");
      }
      text += tr("Up for device");
-     text += QString::number(event.getDeiveID());
+     text += QString::number(event.getDeviceID());
      text += tr(" with buttonID ");
      text += QString::number(event.getControlID());
 
@@ -90,10 +107,10 @@ void JoyStickConfigWidget::OnButtonDown(FSDeviceInputEvent event)
 }
 void JoyStickConfigWidget::OnConnect(FSBaseEvent event)
 {
-    std::cout<<"Event Type "<<event.getEventType()<<" ID "<<event.getDeiveID()<<" time stamp "<<event.getTimeStamp()<<std::endl;
-    const FSBaseDevice * device = deviceManager.getDevice(event.getDeiveID());
+    std::cout<<"Event Type "<<event.getEventType()<<" ID "<<event.getDeviceID()<<" time stamp "<<event.getTimeStamp()<<std::endl;
+    const FSBaseDevice * device = deviceManager.getDevice(event.getDeviceID());
     QString deviceBoxName = tr(device->GetFrendlyName().c_str());
-    ui->DeviceListBox->addItem(deviceBoxName,event.getDeiveID());
+    ui->DeviceListBox->addItem(deviceBoxName,event.getDeviceID());
     PopulateDeviceStats(ui->DeviceListBox->itemData(ui->DeviceListBox->currentIndex()).toUInt());
 
 }
@@ -105,8 +122,8 @@ void JoyStickConfigWidget::update()
 
 void JoyStickConfigWidget::OnDisconnect(FSBaseEvent event)
 {
-    std::cout<<"Event Type "<<event.getEventType()<<" ID "<<event.getDeiveID()<<" time stamp "<<event.getTimeStamp()<<std::endl;
-    int index = ui->DeviceListBox->findData(event.getDeiveID(),int(Qt::UserRole));
+    std::cout<<"Event Type "<<event.getEventType()<<" ID "<<event.getDeviceID()<<" time stamp "<<event.getTimeStamp()<<std::endl;
+    int index = ui->DeviceListBox->findData(event.getDeviceID(),int(Qt::UserRole));
     if(index != -1)
     {
         ui->DeviceListBox->removeItem(index);
@@ -145,7 +162,7 @@ void JoyStickConfigWidget::PopulateDeviceStats(unsigned int id)
       \
 
     }
-    ui->FoceFeedBack->setChecked(FFBackSupport);
+     ui->FoceFeedBack->setChecked(FFBackSupport);
      ui->DeviceID->setText(DeviceInfo);
      ui->DeviceID->show();
      ui->FoceFeedBack->show();

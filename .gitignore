@@ -8,3 +8,7 @@ build/QT/FreeStick/Makefile
 build/QT/JoyStickConfig/Makefile
 .qmake.stash
 joystickconfigwidget.cpp.autosave
+build/QT/build-*
+android-libJoyStickConfig.so-deployment-settings.json
+libFreeStick.so
+libJoyStickConfig.so

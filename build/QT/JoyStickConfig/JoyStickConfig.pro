@@ -9,8 +9,18 @@ QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = JoyStickConfig
-TEMPLATE = app
 
+android {
+QT += androidextras
+ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android-source
+   message("JoyStickConfig Android Package Source")
+   message($$ANDROID_PACKAGE_SOURCE_DIR)
+OTHER_FILES+= $$files(android-source/src/org/freestick/*.java) \
+                  $$files(android-source/*.xml)
+#CONFIG += dylib
+}
+
+TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -26,8 +36,6 @@ LIBS += -framework IOKit \
         -framework ForceFeedback \
         -framework CoreFoundation
 }
-
-
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../FreeStick/release/ -lFreeStick
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../FreeStick/debug/ -lFreeStick

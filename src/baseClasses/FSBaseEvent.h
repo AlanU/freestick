@@ -44,7 +44,7 @@ namespace freestick
          virtual unsigned int getTimeStamp() {return _timeStamp;}
          virtual FSEventAction getEventAction() {return _eventAction;}
          virtual FreeStickEventType getEventType() {return _eventType;}
-         unsigned int getDeiveID() {return _deviceID;}
+         unsigned int getDeviceID() {return _deviceID;}
     };
 
 }

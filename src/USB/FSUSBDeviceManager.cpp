@@ -36,6 +36,36 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     * populate map _usageMapToInputEvent
     */
 
+    const unsigned int SteelSeriesVenderID = 4152;
+    const unsigned int SteelSeriesFreeControllerID = 5138;
+
+    _usageMapToInputRangeEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][20].push_back(FSUSBElementInfoMap(-128,127,XAxis,FSInputChanged));
+    _usageMapToInputRangeEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][21].push_back(FSUSBElementInfoMap(-128,127,YAxis,FSInputChanged));
+
+    _usageMapToInputRangeEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][22].push_back(FSUSBElementInfoMap(-128,127,XAxis2,FSInputChanged));
+    _usageMapToInputRangeEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][23].push_back(FSUSBElementInfoMap(-128,127,YAxis2,FSInputChanged));
+
+    _usageMapToInputRangeEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][19].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][19].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][19].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][19].push_back(FSUSBElementInfoMap(3,3,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][19].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][19].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][19].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][19].push_back(FSUSBElementInfoMap(7,7,DPadUp,FSInputPressed));
+
+    _usageMapToInputRangeEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][19].push_back(FSUSBElementInfoMap(15,15,LastValueUp,FSInputRest));
+
+    _usageMapToInputEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][6] = Button1;
+    _usageMapToInputEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][7] = Button2;
+    _usageMapToInputEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][4] = Button3;
+    _usageMapToInputEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][3] = Button4;
+    _usageMapToInputEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][15] = Button5;//a
+    _usageMapToInputEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][14] = Button6;//b
+    _usageMapToInputEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][9] = Button5;//left trigger
+    _usageMapToInputEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][10] = Button6;//right trigger
+
+
     //" Playstation 3 Controller"
     const unsigned int SonyVenderID = 1356;
     const unsigned int Playstation3ControllerID = 616;
@@ -68,6 +98,8 @@ FSUSBDeviceManager::FSUSBDeviceManager()
 
     _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][19].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));//LXaxis stick trigger
     _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][18].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));//LYaxis stick trigger
+
+
     const unsigned int MicrosoftVentderID = 1118;
     const unsigned int MictrosftXbox360WindowsControllerID = 654;
 

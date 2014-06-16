@@ -50,9 +50,7 @@ and must not be misrepresented as being the original software.
            ~JoystickEventHandler();
            virtual void OnButtonDown(FSDeviceInputEvent event) {}
            virtual void OnButtonUp(FSDeviceInputEvent event) {}
-           virtual void OnButtonUpdate(FSDeviceInputEvent event){ }
            virtual void OnStickMove(FSDeviceInputEvent event) { }
-           virtual void OnStickMoveUpdate(FSDeviceInputEvent event){ }
            virtual void OnDisconnect(FSBaseEvent event){};
            virtual void OnConnect(FSBaseEvent event){};
     };
@@ -111,6 +109,7 @@ namespace freestick
 
         void ListenForJoystickEvent(FreeStickEventType eventType,IFSJoystickListener & listener);
 
+        inline float convertRawToNormalizedRanger(int value,signed long maxValue,signed long minValue);
       // const std::vector<IFSJoystickInfo> & listOfConnectedJoysticks();
        virtual void init() ;
 #pragma mark -Advance API
