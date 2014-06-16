@@ -12,3 +12,7 @@ build/QT/build-*
 android-libJoyStickConfig.so-deployment-settings.json
 libFreeStick.so
 libJoyStickConfig.so
+build/QT/JoyStickConfig/moc_joystickconfigwidget.cpp
+build/QT/JoyStickConfig/moc_mainwindow.cpp
+build/QT/JoyStickConfig/ui_joystickconfigwidget.h
+build/QT/JoyStickConfig/ui_mainwindow.h

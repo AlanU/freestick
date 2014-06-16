@@ -27,6 +27,7 @@ and must not be misrepresented as being the original software.
 
 #pragma once
 #include "../Interfaces/IFSEvent.h"
+
 namespace freestick
 {
     class FSBaseEvent : public IFSEvent

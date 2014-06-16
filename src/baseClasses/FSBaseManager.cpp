@@ -147,7 +147,7 @@ void FSBaseManager::updateEvent(FSBaseEvent & event)
 float FSBaseManager::convertRawToNormalizedRanger(int value,signed long maxValue,signed long minValue)
 {
     float newNormilzedValue = (value/(float)maxValue);
-
+    newNormilzedValue = (newNormilzedValue) * 2.0f-1.0f;
     return newNormilzedValue;
 }
 

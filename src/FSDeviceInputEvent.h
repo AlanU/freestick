@@ -28,6 +28,8 @@ and must not be misrepresented as being the original software.
 #pragma once
 #include "baseClasses/FSBaseEvent.h"
 #include "Interfaces/IFSDevice.h"
+const float MAX_EVENT_VALUE = 1;
+const float MIN_EVENT_VALUE = -1;
 namespace freestick {
 
     class FSDeviceInputEvent : public FSBaseEvent

@@ -37,21 +37,21 @@ FSDeviceInputEvent::FSDeviceInputEvent(FreeStickEventType eventType,FSEventActio
     _newValue(newValue) ,
     _inputType(inputType) ,FSBaseEvent(eventType,eventAction,timeStamp,deviceID)
 {
-    if(_oldValue < 0 )
+    if(_oldValue < MIN_EVENT_VALUE )
     {
-        _oldValue = 0;
+        _oldValue = MIN_EVENT_VALUE;
     }
-    else if(_oldValue >1 )
+    else if(_oldValue > MAX_EVENT_VALUE )
     {
-        _oldValue = 1;
+        _oldValue = MAX_EVENT_VALUE;
     }
-    if(_newValue < 0)
+    if(_newValue < MIN_EVENT_VALUE)
     {
-        _newValue = 0;
+        _newValue = MIN_EVENT_VALUE;
     }
-    else if(_newValue > 1)
+    else if(_newValue > MAX_EVENT_VALUE)
     {
-        _newValue = 1;
+        _newValue = MAX_EVENT_VALUE;
     }
 
 }
