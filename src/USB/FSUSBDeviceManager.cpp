@@ -177,7 +177,7 @@ FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromID(unsigned int de
     {
         unsigned int vendorUSBID = usbDeice->getVenderID();
         unsigned int productUSBID = usbDeice->getProductID();
-        lookUpDeviceInputFromUSBID(vendorUSBID,
+        return lookUpDeviceInputFromUSBID(vendorUSBID,
                                 productUSBID ,
                                 controlID,
                                 min,
