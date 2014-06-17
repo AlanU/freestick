@@ -60,11 +60,11 @@ and must not be misrepresented as being the original software.
        JoystickEventHandler handler;
        FSUSBMacOSXJoystickDeviceManager deviceManager;
        deviceManager.init();
-       deviceManager.ListenForJoystickConnection(&handler);
-       deviceManager.ListenForJoystickDisconnections(&handler);
-       deviceManager.ListenForAllJoysticksForEventType(FS_BUTTON_EVENT,*this);
-       deviceManager.ListenForAllJoysticksForEventType(FS_AXIS_EVENT,*this);
-       deviceManager.ListenForAllJoysticksForEventType(FS_TRIGGER_EVENT,*this);
+       deviceManager.ListenForJoystickConnection(handler);
+       deviceManager.ListenForJoystickDisconnections(handler);
+       deviceManager.ListenForAllJoysticksForEventType(FS_BUTTON_EVENT,handler);
+       deviceManager.ListenForAllJoysticksForEventType(FS_AXIS_EVENT,handler);
+       deviceManager.ListenForAllJoysticksForEventType(FS_TRIGGER_EVENT,handler);
    }
    \endcode
   */
