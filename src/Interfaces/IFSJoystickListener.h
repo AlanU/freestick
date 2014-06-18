@@ -31,16 +31,13 @@ and must not be misrepresented as being the original software.
 #include "../FSDeviceInputEvent.h"
 namespace freestick
 {
-
     class IFSJoystickListener
     {
     public:
-        virtual void OnButtonDown(FSDeviceInputEvent event) = 0;
-        virtual void OnButtonUp(FSDeviceInputEvent event)= 0;
-        virtual void OnStickMove(FSDeviceInputEvent event) = 0;
-        virtual void OnDisconnect(FSBaseEvent event) =0;
-        virtual void OnConnect(FSBaseEvent event) = 0;
-    
-    
+        virtual void onButtonDown(FSDeviceInputEvent event) = 0;
+        virtual void onButtonUp(FSDeviceInputEvent event) = 0;
+        virtual void onStickMove(FSDeviceInputEvent event) = 0;
+        virtual void onDisconnect(FSBaseEvent event) = 0;
+        virtual void onConnect(FSBaseEvent event) = 0;
     };
 }

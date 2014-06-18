@@ -103,21 +103,23 @@ void FSBaseManager::updateEvent(FSBaseEvent & event)
         switch (event.getEventType())
         {
             case FS_JOYSTICK_CONNECTED_EVENT:
-                ListenerToCall->OnConnect(event);
+                ListenerToCall->onConnect(event);
             break;
             case FS_JOYSTICK_DISCONNECT_EVENT:
-                ListenerToCall->OnDisconnect(event);
+                ListenerToCall->onDisconnect(event);
             break;
             case FS_BUTTON_EVENT:
 
                if (event.getEventAction() == FSInputPressed )
-                     ListenerToCall->OnButtonDown(*(FSDeviceInputEvent *)&event);
+                     ListenerToCall->onButtonDown(*(FSDeviceInputEvent *)&event);
                else
-                   ListenerToCall->OnButtonUp(*(FSDeviceInputEvent *)&event);
+                   ListenerToCall->onButtonUp(*(FSDeviceInputEvent *)&event);
             break;
             case FS_TRIGGER_EVENT:
             case FS_AXIS_EVENT:
-                ListenerToCall->OnStickMove(*(FSDeviceInputEvent *)&event);
+                ListenerToCall->onStickMove(*(FSDeviceInputEvent *)&event);
+            break;
+            default:
             break;
         }
     }
@@ -130,18 +132,18 @@ void FSBaseManager::updateEvent(FSBaseEvent & event)
         {
             case FS_BUTTON_EVENT:
                if ( event.getEventAction() == FSInputPressed )
-                     ListenerToCall->OnButtonDown(*(FSDeviceInputEvent *)&event);
+                     ListenerToCall->onButtonDown(*(FSDeviceInputEvent *)&event);
                else
-                   ListenerToCall->OnButtonUp(*(FSDeviceInputEvent *)&event);
+                   ListenerToCall->onButtonUp(*(FSDeviceInputEvent *)&event);
             break;
             case FS_TRIGGER_EVENT:
             case FS_AXIS_EVENT:
-                 ListenerToCall->OnStickMove(*(FSDeviceInputEvent *)&event);
+                 ListenerToCall->onStickMove(*(FSDeviceInputEvent *)&event);
             break;
-
+            default:
+            break;
         }
     }
-
 }
 
 float FSBaseManager::convertRawToNormalizedRanger(int value,signed long maxValue,signed long minValue)
