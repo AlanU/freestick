@@ -96,8 +96,8 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][16].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));//LXaxis stick trigger
     _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][17].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));//LYaxis stick trigger
 
-    _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][19].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));//LXaxis stick trigger
-    _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][18].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));//LYaxis stick trigger
+    _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][19].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));//LXaxis stick trigger
+    _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][18].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));//LYaxis stick trigger
 
 
     const unsigned int MicrosoftVentderID = 1118;
