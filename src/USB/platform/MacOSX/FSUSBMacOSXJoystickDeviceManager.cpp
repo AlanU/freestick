@@ -229,7 +229,8 @@ unsigned int numberOfDeviecType(IOHIDDeviceRef device,int * TotalNumberOfButtons
                     }
                         if(min != max)
                         {
-                           std::cout<<"("<<min<<","<<max<<")"<<" ID: "<<elemnetID<<" name "<<nameChar<<" Usage page" <<usagePage<< " Usage "<<usage<<" Value "<<value<<std::endl;
+
+                           std::cout<<"("<<min<<","<<max<<")"<<" ID: "<<elemnetID<<" name "<<(nameChar?nameChar:"")<<" Usage page" <<usagePage<< " Usage "<<usage<<" Value "<<value<<std::endl;
                         }
                         if (min == 0 && max == 1)
                         {
