@@ -32,23 +32,22 @@ and must not be misrepresented as being the original software.
 #include <QTimer>
 
 #include "../../../src/freestick.h"
-
 namespace Ui {
 class JoyStickConfigWidget;
 }
 
-class JoyStickConfigWidget : public QWidget , public IFSJoystickListener
+class JoyStickConfigWidget : public QWidget , public freestick::IFSJoystickListener
 {
     Q_OBJECT
 
 public:
     explicit JoyStickConfigWidget(QWidget *parent = 0);
     ~JoyStickConfigWidget();
-    virtual void onButtonDown(FSDeviceInputEvent event);
-    virtual void onButtonUp(FSDeviceInputEvent event) ;
-    virtual void onStickMove(FSDeviceInputEvent event);
-    virtual void onDisconnect(FSBaseEvent event);
-    virtual void onConnect(FSBaseEvent event);
+    virtual void onButtonDown(freestick::FSDeviceInputEvent event);
+    virtual void onButtonUp(freestick::FSDeviceInputEvent event) ;
+    virtual void onStickMove(freestick::FSDeviceInputEvent event);
+    virtual void onDisconnect(freestick::FSBaseEvent event);
+    virtual void onConnect(freestick::FSBaseEvent event);
     bool isCurrentDevice(unsigned int device);
 public slots:
     void update();

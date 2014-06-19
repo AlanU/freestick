@@ -29,7 +29,7 @@ and must not be misrepresented as being the original software.
 #include "ui_joystickconfigwidget.h"
 #include <iostream>
 #include <QTimer>
-
+using namespace freestick;
 JoyStickConfigWidget::JoyStickConfigWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::JoyStickConfigWidget)
