@@ -1,10 +1,12 @@
 var searchData=
 [
+  ['freestickdevicemanager',['FreestickDeviceManager',['../classorg_1_1freestick_1_1_freestick_device_manager.html',1,'org::freestick']]],
   ['fsbasedevice',['FSBaseDevice',['../classfreestick_1_1_f_s_base_device.html',1,'freestick']]],
   ['fsbaseevent',['FSBaseEvent',['../classfreestick_1_1_f_s_base_event.html',1,'freestick']]],
   ['fsbasejoystickinfo',['FSBaseJoystickInfo',['../classfreestick_1_1_f_s_base_joystick_info.html',1,'freestick']]],
   ['fsbasemanager',['FSBaseManager',['../classfreestick_1_1_f_s_base_manager.html',1,'freestick']]],
   ['fsdeviceinputevent',['FSDeviceInputEvent',['../classfreestick_1_1_f_s_device_input_event.html',1,'freestick']]],
+  ['fshidandroidjoysickdevicemanager',['FSHIDAndroidJoysickDeviceManager',['../classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html',1,'freestick']]],
   ['fsusbdevice',['FSUSBDevice',['../classfreestick_1_1_f_s_u_s_b_device.html',1,'freestick']]],
   ['fsusbdevicemanager',['FSUSBDeviceManager',['../classfreestick_1_1_f_s_u_s_b_device_manager.html',1,'freestick']]],
   ['fsusbelementinfomap',['FSUSBElementInfoMap',['../classfreestick_1_1_f_s_u_s_b_element_info_map.html',1,'freestick']]],

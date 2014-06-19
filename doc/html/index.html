@@ -86,35 +86,34 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  Derive your class that is going to proceess joystick events from IFSJoystickListener and implmet you interface funtions<br/>
  then register your class with the Device Manager for the call back you are intrested in<br/>
  </p>
-<div class="fragment"><div class="line"> <span class="keyword">class </span>JoystickEventHandler: <span class="keyword">public</span> IFSJoystickListener</div>
+<div class="fragment"><div class="line"><span class="preprocessor"> #include &quot;<a class="code" href="freestick_8h.html">freestick.h</a>&quot;</span></div>
+<div class="line"> <span class="keyword">class </span>JoystickEventHandler: <span class="keyword">public</span> IFSJoystickListener</div>
 <div class="line"> {</div>
 <div class="line">    <span class="keyword">public</span>:</div>
 <div class="line">        JoystickEventHandler();</div>
 <div class="line">        ~JoystickEventHandler();</div>
-<div class="line">        <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnButtonDown(FSDeviceInputEvent event) {}</div>
-<div class="line">        <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnButtonUp(FSDeviceInputEvent event) {}</div>
-<div class="line">        <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnButtonUpdate(FSDeviceInputEvent event){ }</div>
-<div class="line">        <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnStickMove(FSDeviceInputEvent event) { }</div>
-<div class="line">        <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnStickMoveUpdate(FSDeviceInputEvent event){ }</div>
-<div class="line">        <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnDisconnect(FSBaseEvent event){};</div>
-<div class="line">        <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnConnect(FSBaseEvent event){};</div>
+<div class="line">        <span class="keyword">virtual</span> <span class="keywordtype">void</span> onButtonDown(FSDeviceInputEvent event) {}</div>
+<div class="line">        <span class="keyword">virtual</span> <span class="keywordtype">void</span> onButtonUp(FSDeviceInputEvent event) {}</div>
+<div class="line">        <span class="keyword">virtual</span> <span class="keywordtype">void</span> onStickMove(FSDeviceInputEvent event) { }</div>
+<div class="line">        <span class="keyword">virtual</span> <span class="keywordtype">void</span> onDisconnect(FSBaseEvent event){};</div>
+<div class="line">        <span class="keyword">virtual</span> <span class="keywordtype">void</span> onConnect(FSBaseEvent event){};</div>
 <div class="line"> };</div>
 <div class="line"></div>
 <div class="line"><span class="keywordtype">void</span> main()</div>
 <div class="line">{</div>
 <div class="line">    JoystickEventHandler handler;</div>
-<div class="line">    FSUSBMacOSXJoystickDeviceManager deviceManager;</div>
+<div class="line">    <a class="code" href="freestick_8h.html#a8ce8995ce6ddd1e4644f2b43e5189e16">JoystickManager</a> deviceManager;</div>
 <div class="line">    deviceManager.init();</div>
-<div class="line">    deviceManager.ListenForJoystickConnection(&amp;handler);</div>
-<div class="line">    deviceManager.ListenForJoystickDisconnections(&amp;handler);</div>
-<div class="line">    deviceManager.ListenForAllJoysticksForEventType(<a class="code" href="namespacefreestick.html#a4fc52780a06e02ce6e645aa6651e2db7abe42b004eaea1be7d08f8dea32abd704">FS_BUTTON_EVENT</a>,*<span class="keyword">this</span>);</div>
-<div class="line">    deviceManager.ListenForAllJoysticksForEventType(<a class="code" href="namespacefreestick.html#a4fc52780a06e02ce6e645aa6651e2db7a25dbbc62af15dac9c3026cf6f67d07d2">FS_AXIS_EVENT</a>,*<span class="keyword">this</span>);</div>
-<div class="line">    deviceManager.ListenForAllJoysticksForEventType(<a class="code" href="namespacefreestick.html#a4fc52780a06e02ce6e645aa6651e2db7adeeff1e030490e9c356b78b5295fd804">FS_TRIGGER_EVENT</a>,*<span class="keyword">this</span>);</div>
+<div class="line">    deviceManager.ListenForJoystickConnection(handler);</div>
+<div class="line">    deviceManager.ListenForJoystickDisconnections(handler);</div>
+<div class="line">    deviceManager.ListenForAllJoysticksForEventType(<a class="code" href="namespacefreestick.html#a4fc52780a06e02ce6e645aa6651e2db7abe42b004eaea1be7d08f8dea32abd704">FS_BUTTON_EVENT</a>,handler);</div>
+<div class="line">    deviceManager.ListenForAllJoysticksForEventType(<a class="code" href="namespacefreestick.html#a4fc52780a06e02ce6e645aa6651e2db7a25dbbc62af15dac9c3026cf6f67d07d2">FS_AXIS_EVENT</a>,handler);</div>
+<div class="line">    deviceManager.ListenForAllJoysticksForEventType(<a class="code" href="namespacefreestick.html#a4fc52780a06e02ce6e645aa6651e2db7adeeff1e030490e9c356b78b5295fd804">FS_TRIGGER_EVENT</a>,handler);</div>
 <div class="line">}</div>
 </div><!-- fragment --> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Apr 13 2014 11:40:34 for FreeStick by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jun 19 2014 01:30:43 for FreeStick by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

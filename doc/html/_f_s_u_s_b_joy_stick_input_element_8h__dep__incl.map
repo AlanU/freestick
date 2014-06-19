@@ -1,15 +1,18 @@
 <map id="src/USB/FSUSBJoyStickInputElement.h" name="src/USB/FSUSBJoyStickInputElement.h">
-<area shape="rect" href="$_f_s_u_s_b_joystick_8h.html" title="src/USB/FSUSBJoystick.h" alt="" coords="272,108,464,135"/>
-<area shape="rect" href="$_f_s_u_s_b_joystick_button_8h.html" title="src/USB/FSUSBJoystickButton.h" alt="" coords="616,108,856,135"/>
-<area shape="rect" href="$_f_s_u_s_b_joy_stick_input_element_8cpp.html" title="src/USB/FSUSBJoyStickInput\lElement.cpp" alt="" coords="880,99,1099,144"/>
-<area shape="rect" href="$_f_s_u_s_b_joystick_8cpp.html" title="src/USB/FSUSBJoystick.cpp" alt="" coords="441,201,649,228"/>
-<area shape="rect" href="$_f_s_u_s_b_joystick_device_manager_8h.html" title="src/USB/FSUSBJoystickDevice\lManager.h" alt="" coords="191,192,417,237"/>
-<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_8h.html" title="src/USB/platform/MacOSX\l/FSUSBMacOSXJoystick.h" alt="" coords="11,285,216,331"/>
-<area shape="rect" href="$_f_s_u_s_b_joystick_device_manager_8cpp.html" title="src/USB/FSUSBJoystickDevice\lManager.cpp" alt="" coords="981,285,1208,331"/>
-<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_8cpp.html" title="src/USB/platform/MacOSX\l/FSUSBMacOSXJoystick.cpp" alt="" coords="5,379,221,424"/>
-<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html" title="src/USB/platform/MacOSX\l/FSUSBMacOSXJoystickDeviceManager.cpp" alt="" coords="245,379,573,424"/>
-<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8h.html" title="src/USB/platform/MacOSX\l/FSUSBMacOSXJoystickDeviceManager.h" alt="" coords="341,285,653,331"/>
-<area shape="rect" href="$_f_s_u_s_b_null_joystick_device_manager_8h.html" title="src/USB/platform/NULL\l/FSUSBNullJoystickDeviceManager.h" alt="" coords="677,285,957,331"/>
-<area shape="rect" href="$_f_s_u_s_b_null_joystick_device_manager_8cpp.html" title="src/USB/platform/NULL\l/FSUSBNullJoystickDeviceManager.cpp" alt="" coords="669,379,965,424"/>
-<area shape="rect" href="$_f_s_u_s_b_joystick_button_8cpp.html" title="src/USB/FSUSBJoystickButton.cpp" alt="" coords="673,201,929,228"/>
+<area shape="rect" href="$_f_s_u_s_b_joystick_button_8h.html" title="src/USB/FSUSBJoystickButton.h" alt="" coords="252,108,492,135"/>
+<area shape="rect" href="$freestick_8h.html" title="src/freestick.h" alt="" coords="309,388,429,415"/>
+<area shape="rect" href="$_f_s_u_s_b_joystick_8h.html" title="src/USB/FSUSBJoystick.h" alt="" coords="760,108,952,135"/>
+<area shape="rect" href="$_f_s_u_s_b_joy_stick_input_element_8cpp.html" title="src/USB/FSUSBJoyStickInput\lElement.cpp" alt="" coords="976,99,1195,144"/>
+<area shape="rect" href="$_f_s_u_s_b_joystick_button_8cpp.html" title="src/USB/FSUSBJoystickButton.cpp" alt="" coords="79,201,335,228"/>
+<area shape="rect" href="$_f_s_u_s_b_joystick_device_manager_8h.html" title="src/USB/FSUSBJoystickDevice\lManager.h" alt="" coords="987,192,1213,237"/>
+<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_8h.html" title="src/USB/platform/MacOSX\l/FSUSBMacOSXJoystick.h" alt="" coords="1439,285,1644,331"/>
+<area shape="rect" href="$_f_s_u_s_b_joystick_8cpp.html" title="src/USB/FSUSBJoystick.cpp" alt="" coords="1237,201,1445,228"/>
+<area shape="rect" href="$_f_s_u_s_b_null_joystick_device_manager_8h.html" title="src/USB/platform/NULL\l/FSUSBNullJoystickDeviceManager.h" alt="" coords="460,285,740,331"/>
+<area shape="rect" href="$_f_s_u_s_b_joystick_device_manager_8cpp.html" title="src/USB/FSUSBJoystickDevice\lManager.cpp" alt="" coords="1188,285,1415,331"/>
+<area shape="rect" href="$_f_s_h_i_d_android_joysick_device_manager_8h.html" title="src/USB/platform/Android\l/FSHIDAndroidJoysickDeviceManager.h" alt="" coords="764,285,1063,331"/>
+<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_8cpp.html" title="src/USB/platform/MacOSX\l/FSUSBMacOSXJoystick.cpp" alt="" coords="1124,379,1340,424"/>
+<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html" title="src/USB/platform/MacOSX\l/FSUSBMacOSXJoystickDeviceManager.cpp" alt="" coords="1377,379,1705,424"/>
+<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8h.html" title="src/USB/platform/MacOSX\l/FSUSBMacOSXJoystickDeviceManager.h" alt="" coords="1668,285,1980,331"/>
+<area shape="rect" href="$_f_s_u_s_b_null_joystick_device_manager_8cpp.html" title="src/USB/platform/NULL\l/FSUSBNullJoystickDeviceManager.cpp" alt="" coords="453,379,749,424"/>
+<area shape="rect" href="$_f_s_h_i_d_android_joysick_device_manager_8cpp.html" title="src/USB/platform/Android\l/FSHIDAndroidJoysickDeviceManager.cpp" alt="" coords="773,379,1088,424"/>
 </map>

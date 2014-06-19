@@ -1,0 +1,18 @@
+<map id="freestick::IFSJoystickListener::onStickMove" name="freestick::IFSJoystickListener::onStickMove">
+<area shape="rect" href="$classfreestick_1_1_f_s_base_manager.html#afe89aed4e7fb5056df31bc8dd00865cc" title="freestick::FSBaseManager\l::updateEvent" alt="" coords="279,224,484,269"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_base_manager.html#a37ece0b75c1085293fe53439b82ae9c5" title="freestick::FSBaseManager\l::inputOnDeviceChanged" alt="" coords="535,120,740,165"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_base_manager.html#a2055fefcc07e10a37b430a5486b086a1" title="freestick::FSBaseManager\l::addDevice" alt="" coords="535,224,740,269"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_base_manager.html#ac531f509ef2600f343208d0f43747840" title="freestick::FSBaseManager\l::removeDevice" alt="" coords="535,328,740,373"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2a9e26628802fdafd65935996ebc9e8d" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadAction" alt="" coords="789,65,1048,111"/>
+<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#ab43b8668f25a1f144bb6806bb7ea3c5d" title="setupIOHDIManager" alt="" coords="1473,251,1639,277"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::init" alt="" coords="1688,241,1939,287"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#ad90271e4517cf15f3e3172c125b1d712" title="freestick::FSHIDAndroidJoysick\lDeviceManager::addDevice" alt="" coords="800,172,1037,217"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a4ad73c0ebcaad2daf322dc7eed42492e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::addDevice" alt="" coords="793,241,1044,287"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#a9f3524a5721ed990fd042c6b438756fe" title="freestick::FSHIDAndroidJoysick\lDeviceManager::gamepadWasAddedFrom\lJINBridge" alt="" coords="1097,87,1423,148"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#aa921f540e305e584748a176d2de66200" title="freestick::FSHIDAndroidJoysick\lDeviceManager::addDevice" alt="" coords="1141,172,1379,217"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a7d3b860eb8305da72ddf3a4649614d2e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadWasAdded" alt="" coords="1116,241,1404,287"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a37672c3beb149385bfba1bb0119efd43" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::addDevice" alt="" coords="1135,311,1385,356"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a0da12b7477919c79cc55ba39e02638cc" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::removeDevice" alt="" coords="793,380,1044,425"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#aace77ce7465a2261e16d509a6d63515c" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadWasRemoved" alt="" coords="1104,380,1416,425"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#ad5d7f537afcd6e0cc877ebc2b2a2ac30" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::removeDevice" alt="" coords="1135,449,1385,495"/>
+</map>

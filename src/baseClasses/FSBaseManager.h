@@ -43,22 +43,23 @@ and must not be misrepresented as being the original software.
   * Derive your class that is going to proceess joystick events from IFSJoystickListener and implmet you interface funtions<br>
   * then register your class with the Device Manager for the call back you are intrested in<br>
   * \code
+    #include "freestick.h"
     class JoystickEventHandler: public IFSJoystickListener
     {
        public:
            JoystickEventHandler();
            ~JoystickEventHandler();
-           virtual void OnButtonDown(FSDeviceInputEvent event) {}
-           virtual void OnButtonUp(FSDeviceInputEvent event) {}
-           virtual void OnStickMove(FSDeviceInputEvent event) { }
-           virtual void OnDisconnect(FSBaseEvent event){};
-           virtual void OnConnect(FSBaseEvent event){};
+           virtual void onButtonDown(FSDeviceInputEvent event) {}
+           virtual void onButtonUp(FSDeviceInputEvent event) {}
+           virtual void onStickMove(FSDeviceInputEvent event) { }
+           virtual void onDisconnect(FSBaseEvent event){};
+           virtual void onConnect(FSBaseEvent event){};
     };
 
    void main()
    {
        JoystickEventHandler handler;
-       FSUSBMacOSXJoystickDeviceManager deviceManager;
+       JoystickManager deviceManager;
        deviceManager.init();
        deviceManager.ListenForJoystickConnection(handler);
        deviceManager.ListenForJoystickDisconnections(handler);

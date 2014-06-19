@@ -1,0 +1,18 @@
+<map id="src/USB/platform/Android/FSHIDAndroidJoysickDeviceManager.cpp" name="src/USB/platform/Android/FSHIDAndroidJoysickDeviceManager.cpp">
+<area shape="rect" href="$_f_s_h_i_d_android_joysick_device_manager_8h.html" title="FSHIDAndroidJoysickDevice\lManager.h" alt="" coords="1441,99,1657,144"/>
+<area shape="rect" href="$jni__wrapper_8h.html" title="jni_wrapper.h" alt="" coords="1655,201,1772,228"/>
+<area shape="rect" href="$_f_s_u_s_b_null_device_8h.html" title="../NULL/FSUSBNullDevice.h" alt="" coords="1293,364,1504,391"/>
+<area shape="rect" href="$_f_s_u_s_b_joystick_device_manager_8h.html" title="../../FSUSBJoystickDevice\lManager.h" alt="" coords="1436,192,1631,237"/>
+<area shape="rect" href="$_f_s_u_s_b_device_manager_8h.html" title="FSUSBDeviceManager.h" alt="" coords="921,441,1116,468"/>
+<area shape="rect" href="$_f_s_u_s_b_joystick_8h.html" title="FSUSBJoystick.h" alt="" coords="1471,287,1604,313"/>
+<area shape="rect" href="$_f_s_base_manager_8h.html" title="../baseClasses/FSBaseManager.h" alt="" coords="627,519,880,545"/>
+<area shape="rect" href="$_i_f_s_device_8h.html" title="IFSDevice.h" alt="" coords="136,921,240,948"/>
+<area shape="rect" href="$_i_f_s_joystick_listener_8h.html" title="../Interfaces/IFSJoystick\lListener.h" alt="" coords="200,595,384,640"/>
+<area shape="rect" href="$_f_s_base_event_8h.html" title="../baseClasses/FSBaseEvent.h" alt="" coords="348,767,577,793"/>
+<area shape="rect" href="$_i_f_s_joystick_info_8h.html" title="../Interfaces/IFSJoystick\lInfo.h" alt="" coords="509,595,693,640"/>
+<area shape="rect" href="$_f_s_base_device_8h.html" title="../baseClasses/FSBaseDevice.h" alt="" coords="1213,604,1453,631"/>
+<area shape="rect" href="$_i_f_s_event_8h.html" title="IFSEvent.h" alt="" coords="263,844,359,871"/>
+<area shape="rect" href="$_f_s_device_input_event_8h.html" title="../FSDeviceInputEvent.h" alt="" coords="93,689,283,716"/>
+<area shape="rect" href="$_f_s_u_s_b_device_8h.html" title="FSUSBDevice.h" alt="" coords="1284,519,1415,545"/>
+<area shape="rect" href="$_f_s_u_s_b_joy_stick_input_element_8h.html" title="FSUSBJoyStickInputElement.h" alt="" coords="1035,364,1269,391"/>
+</map>

@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['freestick_2eh',['freestick.h',['../freestick_8h.html',1,'']]],
+  ['freestickdevicemanager_2ejava',['FreestickDeviceManager.java',['../_freestick_device_manager_8java.html',1,'']]],
   ['fsbasedevice_2ecpp',['FSBaseDevice.cpp',['../_f_s_base_device_8cpp.html',1,'']]],
   ['fsbasedevice_2eh',['FSBaseDevice.h',['../_f_s_base_device_8h.html',1,'']]],
   ['fsbaseevent_2ecpp',['FSBaseEvent.cpp',['../_f_s_base_event_8cpp.html',1,'']]],
@@ -10,6 +12,8 @@ var searchData=
   ['fsbasemanager_2eh',['FSBaseManager.h',['../_f_s_base_manager_8h.html',1,'']]],
   ['fsdeviceinputevent_2ecpp',['FSDeviceInputEvent.cpp',['../_f_s_device_input_event_8cpp.html',1,'']]],
   ['fsdeviceinputevent_2eh',['FSDeviceInputEvent.h',['../_f_s_device_input_event_8h.html',1,'']]],
+  ['fshidandroidjoysickdevicemanager_2ecpp',['FSHIDAndroidJoysickDeviceManager.cpp',['../_f_s_h_i_d_android_joysick_device_manager_8cpp.html',1,'']]],
+  ['fshidandroidjoysickdevicemanager_2eh',['FSHIDAndroidJoysickDeviceManager.h',['../_f_s_h_i_d_android_joysick_device_manager_8h.html',1,'']]],
   ['fsusbdevice_2ecpp',['FSUSBDevice.cpp',['../_f_s_u_s_b_device_8cpp.html',1,'']]],
   ['fsusbdevice_2eh',['FSUSBDevice.h',['../_f_s_u_s_b_device_8h.html',1,'']]],
   ['fsusbdevicemanager_2ecpp',['FSUSBDeviceManager.cpp',['../_f_s_u_s_b_device_manager_8cpp.html',1,'']]],
