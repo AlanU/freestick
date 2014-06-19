@@ -27,9 +27,6 @@ and must not be misrepresented as being the original software.
 
 #include "joystickconfigwidget.h"
 #include "ui_joystickconfigwidget.h"
-#include "../../../src/baseClasses/FSBaseDevice.h"
-#include "../../../src/USB/FSUSBJoystick.h"
-#include "../../../src/FSDeviceInputEvent.h"
 #include <iostream>
 #include <QTimer>
 
@@ -64,7 +61,7 @@ bool JoyStickConfigWidget::isCurrentDevice(unsigned int device)
 
 }
 
-void JoyStickConfigWidget::OnStickMove(FSDeviceInputEvent event)
+void JoyStickConfigWidget::onStickMove(FSDeviceInputEvent event)
 {
     if(!isCurrentDevice(event.getDeviceID()))
         return;
@@ -87,7 +84,7 @@ void JoyStickConfigWidget::OnStickMove(FSDeviceInputEvent event)
     ui->AnologDebugControl->setText(text);
 }
 
-void JoyStickConfigWidget::OnButtonDown(FSDeviceInputEvent event)
+void JoyStickConfigWidget::onButtonDown(FSDeviceInputEvent event)
 {
     if(!isCurrentDevice(event.getDeviceID()))
         return;
@@ -111,7 +108,7 @@ void JoyStickConfigWidget::OnButtonDown(FSDeviceInputEvent event)
     ui->DebugControl->setText(text);
 }
 
- void JoyStickConfigWidget::OnButtonUp(FSDeviceInputEvent event)
+ void JoyStickConfigWidget::onButtonUp(FSDeviceInputEvent event)
 {
      if(!isCurrentDevice(event.getDeviceID()))
          return;
@@ -132,7 +129,7 @@ void JoyStickConfigWidget::OnButtonDown(FSDeviceInputEvent event)
 
      ui->DebugControl->setText(text);
 }
-void JoyStickConfigWidget::OnConnect(FSBaseEvent event)
+void JoyStickConfigWidget::onConnect(FSBaseEvent event)
 {
     std::cout<<"Event Type "<<event.getEventType()<<" ID "<<event.getDeviceID()<<" time stamp "<<event.getTimeStamp()<<std::endl;
     const FSBaseDevice * device = deviceManager.getDevice(event.getDeviceID());
@@ -147,7 +144,7 @@ void JoyStickConfigWidget::update()
     //deviceManager.update();
 }
 
-void JoyStickConfigWidget::OnDisconnect(FSBaseEvent event)
+void JoyStickConfigWidget::onDisconnect(FSBaseEvent event)
 {
     std::cout<<"Event Type "<<event.getEventType()<<" ID "<<event.getDeviceID()<<" time stamp "<<event.getTimeStamp()<<std::endl;
     int index = ui->DeviceListBox->findData(event.getDeviceID(),int(Qt::UserRole));

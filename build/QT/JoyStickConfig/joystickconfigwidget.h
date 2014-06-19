@@ -29,34 +29,9 @@ and must not be misrepresented as being the original software.
 #define JOYSTICKCONFIGWIDGET_H
 
 #include <QWidget>
-#include "../../../src/Interfaces/IFSJoystickListener.h"
-#include "../../../src/USB/platform/NULL/FSUSBNullJoystickDeviceManager.h"
-
 #include <QTimer>
-using namespace freestick;
-#ifdef __APPLE__
-    #include "TargetConditionals.h"
-    #if TARGET_OS_IPHONE && TARGET_IPHONE_SIMULATOR
-        // define something for simulator
-        typedef FSUSBNullJoystickDeviceManager JoystickManager;
-    #elif TARGET_OS_IPHONE
-        // define something for iphone
-        typedef FSUSBNullJoystickManager JoystickManager;
-    #else
-        #define TARGET_OS_OSX 1
-        // define something for OSX
-        #include "../../../src/USB/platform/MacOSX/FSUSBMacOSXJoystickDeviceManager.h"
-        typedef FSUSBMacOSXJoystickDeviceManager JoystickManager;
-    #endif
-#elif __ANDROID__
-    //define for android
-    #include "../../../src/USB/platform/Android/FSHIDAndroidJoysickDeviceManager.h"
-typedef FSHIDAndroidJoysickDeviceManager JoystickManager;
 
-#else
-    typedef FSUSBNullJoystickManager JoystickManager;
-#endif
-
+#include "../../../src/freestick.h"
 
 namespace Ui {
 class JoyStickConfigWidget;
@@ -69,11 +44,11 @@ class JoyStickConfigWidget : public QWidget , public IFSJoystickListener
 public:
     explicit JoyStickConfigWidget(QWidget *parent = 0);
     ~JoyStickConfigWidget();
-    virtual void OnButtonDown(FSDeviceInputEvent event);
-    virtual void OnButtonUp(FSDeviceInputEvent event) ;
-    virtual void OnStickMove(FSDeviceInputEvent event);
-    virtual void OnDisconnect(FSBaseEvent event);
-    virtual void OnConnect(FSBaseEvent event);
+    virtual void onButtonDown(FSDeviceInputEvent event);
+    virtual void onButtonUp(FSDeviceInputEvent event) ;
+    virtual void onStickMove(FSDeviceInputEvent event);
+    virtual void onDisconnect(FSBaseEvent event);
+    virtual void onConnect(FSBaseEvent event);
     bool isCurrentDevice(unsigned int device);
 public slots:
     void update();
