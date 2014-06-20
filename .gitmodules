@@ -1,4 +1,3 @@
-[submodule "src/3rdPary/EELog"]
-	path = src/3rdPary/EELog
-	url = https://alanu@bitbucket.org/AlanU/eelog.git
-	branch = master
+[submodule "src/3rdParty/EELog"]
+	path = src/3rdParty/EELog
+	url = git@bitbucket.org:AlanU/eelog.git
