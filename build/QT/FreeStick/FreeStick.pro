@@ -46,7 +46,8 @@ SOURCES += \
     ../../../src/FSDeviceInputEvent.cpp \
     ../../../src/USB/FSUSBJoyStickInputElement.cpp \
     ../../../src/USB/FSUSBJoystickButton.cpp \
-    $$files(../../../src/USB/platform/NULL/*.cpp)
+    $$files(../../../src/USB/platform/NULL/*.cpp) \
+    $$files(../../../src/3rdParty/EELog/src/*.cpp)
 
 HEADERS += \
         $$files(../../../src/*.h) \
@@ -65,7 +66,10 @@ HEADERS += \
     ../../../src/FSDeviceInputEvent.h \
     ../../../src/USB/FSUSBJoyStickInputElement.h \
     ../../../src/USB/FSUSBJoystickButton.h \
-    $$files(../../../src/USB/platform/NULL/*.h)
+    ../../../src/FreeStickLog.h \
+    $$files(../../../src/USB/platform/NULL/*.h) \
+    $$files(../../../src/3rdParty/EELog/src/*.h)
+
 
 unix:!symbian:!android {
     maemo5 {
@@ -108,13 +112,13 @@ android {
 macx {
 
 SOURCES += \
-         ../../../src/3rdPary/Mac/IOHID/*.c \
+         ../../../src/3rdParty/Mac/IOHID/*.c \
         ../../../src/USB/platform/MacOSX/FSUSBMacOSXJoystick.cpp \
         ../../../src/USB/platform/MacOSX/FSUSBMacOSXJoystickDeviceManager.cpp \
 
 
 HEADERS += \
-        ../../../src/3rdPary/Mac/IOHID/*.h \
+        ../../../src/3rdParty/Mac/IOHID/*.h \
         ../../../src/USB/platform/MacOSX/FSUSBMacOSXJoystick.h \
         ../../../src/USB/platform/MacOSX/FSUSBMacOSXJoystickDeviceManager.h \
 
@@ -128,3 +132,16 @@ LIBS += -framework IOKit \
 
 
 
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../../src/3rdParty/EELog/build/Qmake/EELog/release/ -lEELog
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../../src/3rdParty/EELog/build/Qmake/EELog/debug/ -lEELog
+else:unix: LIBS += -L$$OUT_PWD/../../../src/3rdParty/EELog/build/Qmake/EELog/ -lEELog
+
+INCLUDEPATH += $$PWD/../../../src/3rdParty/EELog/build/Qmake/EELog
+DEPENDPATH += $$PWD/../../../src/3rdParty/EELog/build/Qmake/EELog
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../../../src/3rdParty/EELog/build/Qmake/EELog/release/libEELog.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../../../src/3rdParty/EELog/build/Qmake/EELog/debug/libEELog.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../../../src/3rdParty/EELog/build/Qmake/EELog/release/EELog.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../../../src/3rdParty/EELog/build/Qmake/EELog/debug/EELog.lib
+else:unix: PRE_TARGETDEPS += $$OUT_PWD/../../../src/3rdParty/EELog/build/Qmake/EELog/libEELog.a

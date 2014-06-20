@@ -26,12 +26,12 @@ and must not be misrepresented as being the original software.
 **************************************************************************/
 
 #include "FSUSBMacOSXJoystick.h"
-#include "../../../3rdPary/Mac/IOHID/IOHIDDevice_.h"
+#include "../../../3rdParty/Mac/IOHID/IOHIDDevice_.h"
 #include <IOKit/hid/IOHIDLib.h>
 #include <IOKit/IOKitLib.h>
 #include "../../FSUSBJoystickDeviceManager.h"
 #include <CoreFoundation/CoreFoundation.h>
-#include <iostream>
+#include "../../../FreeStickLog.h"
 using namespace freestick;
 
 unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickManager)
@@ -45,34 +45,34 @@ unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickM
     uint32_t usagePage = 0;
     //std::map<IOHIDElementCookie,int> idMap;
     CFIndex min = 0;
-     CFIndex max  = 0;
-     CFStringRef Devicename = IOHIDDevice_GetProduct(_macIOHIDDeviceRef);
+    CFIndex max  = 0;
+    CFStringRef Devicename = IOHIDDevice_GetProduct(_macIOHIDDeviceRef);
 
-     char foo[256] = {'\0'};
+    char foo[256] = {'\0'};
     CFStringGetCString(Devicename,foo,CFStringGetLength(Devicename)+1,kCFStringEncodingMacRoman);
-      //_prodcutIDFriendlyName = foo;
-     assert( IOHIDDeviceGetTypeID() == CFGetTypeID(_macIOHIDDeviceRef) );
+    //_prodcutIDFriendlyName = foo;
+    assert( IOHIDDeviceGetTypeID() == CFGetTypeID(_macIOHIDDeviceRef) );
 
-        deviceElements = IOHIDDeviceCopyMatchingElements(_macIOHIDDeviceRef, NULL, kIOHIDOptionsTypeNone);
-        CFIndex index;
-        CFIndex deviceArrayCount = CFArrayGetCount(deviceElements);
-        if(deviceArrayCount > 0)
+    deviceElements = IOHIDDeviceCopyMatchingElements(_macIOHIDDeviceRef, NULL, kIOHIDOptionsTypeNone);
+    CFIndex index;
+    CFIndex deviceArrayCount = CFArrayGetCount(deviceElements);
+    if(deviceArrayCount > 0)
+    {
+        for (index =0; index < deviceArrayCount;index++)
         {
-            for (index =0; index < deviceArrayCount;index++)
-            {
-                IOHIDElementRef elemnet = (IOHIDElementRef) CFArrayGetValueAtIndex(deviceElements, index);
-                if(!elemnet)
-                    continue;
+            IOHIDElementRef elemnet = (IOHIDElementRef) CFArrayGetValueAtIndex(deviceElements, index);
+            if(!elemnet)
+                continue;
 
-                IOHIDElementType type = IOHIDElementGetType(elemnet);
-                 min = IOHIDElementGetLogicalMin(elemnet);
-                 max = IOHIDElementGetLogicalMax(elemnet);
-                 elemnetID =IOHIDElementGetCookie(elemnet);
-                 usage =IOHIDElementGetUsage(elemnet);
-                 usagePage = IOHIDElementGetUsagePage(elemnet);
-                 CFIndex value = 0;
-                 IOHIDValueRef   tIOHIDValueRef;
-               /*  if ( kIOReturnSuccess == IOHIDDeviceGetValue(device, elemnet, &tIOHIDValueRef) )
+            IOHIDElementType type = IOHIDElementGetType(elemnet);
+            min = IOHIDElementGetLogicalMin(elemnet);
+            max = IOHIDElementGetLogicalMax(elemnet);
+            elemnetID =IOHIDElementGetCookie(elemnet);
+            usage =IOHIDElementGetUsage(elemnet);
+            usagePage = IOHIDElementGetUsagePage(elemnet);
+            CFIndex value = 0;
+            IOHIDValueRef   tIOHIDValueRef;
+            /*  if ( kIOReturnSuccess == IOHIDDeviceGetValue(device, elemnet, &tIOHIDValueRef) )
                  {
                       if(CFGetTypeID(tIOHIDValueRef) == IOHIDValueGetTypeID())
                       {
@@ -83,41 +83,41 @@ unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickM
                          }
                       }
                  }*/
-               // FSUSBElementInfoMap  map = usbJoystickManager->lookUpDeviceInputFromUSBID(_vendorID,_productID,elementID,min,max,min);
+            // FSUSBElementInfoMap  map = usbJoystickManager->lookUpDeviceInputFromUSBID(_vendorID,_productID,elementID,min,max,min);
 
-                if(type == kIOHIDElementTypeInput_Axis || type == kIOHIDElementTypeInput_Button || type == kIOHIDElementTypeInput_Misc || type == kIOHIDElementTypeInput_ScanCodes)
+            if(type == kIOHIDElementTypeInput_Axis || type == kIOHIDElementTypeInput_Button || type == kIOHIDElementTypeInput_Misc || type == kIOHIDElementTypeInput_ScanCodes)
+            {
+                if(value != 0)
                 {
-                    if(value != 0)
-                    {
-                        int t=0;
-
-                    }
-                        if(min != max)
-                        {
-                           std::cout<<"("<<min<<","<<max<<")"<<" ID: "<<elemnetID<<" Usage page" <<usagePage<< " Usage "<<usage<<" Value "<<value<<std::endl;
-                        }
-                        if (min == 0 && max == 1)
-                        {
-                            numberOfButtons++;
-                        }
-                        else if ((min*-1) == (max+1) )
-                        {
-                            numberOfAnalogSticks++;
-                        }
-                        else if (min == 0 && max > 1)
-                        {
-                            numberOfAnalogButtons++;
-                        }
-                        FSUSBJoyStickInputElement temp(elemnetID, min, max, _vendorID,_productID,usbJoystickManager);
-                        this->addInputElement(temp);
+                    int t=0;
 
                 }
+                if(min != max)
+                {
+                    EE_DEBUG<<"("<<min<<","<<max<<")"<<" ID: "<<elemnetID<<" Usage page" <<usagePage<< " Usage "<<usage<<" Value "<<value<<std::endl;
+                }
+                if (min == 0 && max == 1)
+                {
+                    numberOfButtons++;
+                }
+                else if ((min*-1) == (max+1) )
+                {
+                    numberOfAnalogSticks++;
+                }
+                else if (min == 0 && max > 1)
+                {
+                    numberOfAnalogButtons++;
+                }
+                FSUSBJoyStickInputElement temp(elemnetID, min, max, _vendorID,_productID,usbJoystickManager);
+                this->addInputElement(temp);
 
             }
 
         }
 
-   /* if(TotalNumberOfButtons)
+    }
+
+    /* if(TotalNumberOfButtons)
     {
         (*TotalNumberOfButtons) = numberOfButtons;
     }
@@ -130,7 +130,7 @@ unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickM
        (*TotalNumberOfAnalogButtons) = numberOfAnalogButtons;
     }
     return numberOfButtons + numberOfAnalogSticks + numberOfAnalogButtons;*/
-        return 0;
+    return 0;
 }
 
 

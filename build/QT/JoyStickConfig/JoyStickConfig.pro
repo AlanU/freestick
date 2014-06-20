@@ -42,7 +42,7 @@ OTHER_FILES+= $$files(android-source/src/org/freestick/*.java) \
 }
 
 TEMPLATE = app
-PRECOMPILED_HEADER = $$PWD/../../../src/freestick.h
+PRECOMPILED_HEADER = $$PWD/../../../src/FreeStick.h
 
 SOURCES += main.cpp\
         mainwindow.cpp \

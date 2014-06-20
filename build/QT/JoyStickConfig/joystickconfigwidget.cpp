@@ -27,8 +27,8 @@ and must not be misrepresented as being the original software.
 
 #include "joystickconfigwidget.h"
 #include "ui_joystickconfigwidget.h"
-#include <iostream>
 #include <QTimer>
+#include <QDebug>
 using namespace freestick;
 JoyStickConfigWidget::JoyStickConfigWidget(QWidget *parent) :
     QWidget(parent),
@@ -131,7 +131,7 @@ void JoyStickConfigWidget::onButtonDown(FSDeviceInputEvent event)
 }
 void JoyStickConfigWidget::onConnect(FSBaseEvent event)
 {
-    std::cout<<"Event Type "<<event.getEventType()<<" ID "<<event.getDeviceID()<<" time stamp "<<event.getTimeStamp()<<std::endl;
+    qDebug()<<"Event Type "<<event.getEventType()<<" ID "<<event.getDeviceID()<<" time stamp "<<event.getTimeStamp()<<endl;
     const FSBaseDevice * device = deviceManager.getDevice(event.getDeviceID());
     QString deviceBoxName = tr(device->GetFrendlyName().c_str());
     ui->DeviceListBox->addItem(deviceBoxName,event.getDeviceID());
@@ -146,7 +146,7 @@ void JoyStickConfigWidget::update()
 
 void JoyStickConfigWidget::onDisconnect(FSBaseEvent event)
 {
-    std::cout<<"Event Type "<<event.getEventType()<<" ID "<<event.getDeviceID()<<" time stamp "<<event.getTimeStamp()<<std::endl;
+    qDebug()<<"Event Type "<<event.getEventType()<<" ID "<<event.getDeviceID()<<" time stamp "<<event.getTimeStamp()<<endl;
     int index = ui->DeviceListBox->findData(event.getDeviceID(),int(Qt::UserRole));
     if(index != -1)
     {

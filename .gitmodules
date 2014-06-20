@@ -1,0 +1,4 @@
+[submodule "src/3rdPary/EELog"]
+	path = src/3rdPary/EELog
+	url = https://alanu@bitbucket.org/AlanU/eelog.git
+	branch = master

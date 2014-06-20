@@ -26,10 +26,10 @@ and must not be misrepresented as being the original software.
 **************************************************************************/
 
 #include "FSBaseManager.h"
-#include <iostream>
 #include <utility>      // std::pair
 #include "../baseClasses/FSBaseEvent.h"
 #include "../FSDeviceInputEvent.h"
+#include "../FreeStickLog.h"
 #include <ctime>
 using namespace freestick;
 
@@ -47,14 +47,14 @@ void FSBaseManager::init( )
 
 FSBaseManager::~FSBaseManager()
 {
-  if( deviceMap.size() !=0)
-  {
-      for( std::map<unsigned int, FSBaseDevice * >::iterator itr = deviceMap.begin() ; itr != deviceMap.end(); itr++)
-      {
-          delete itr->second;
-      }
-  }
-  deviceMap.clear();
+    if( deviceMap.size() !=0)
+    {
+        for( std::map<unsigned int, FSBaseDevice * >::iterator itr = deviceMap.begin() ; itr != deviceMap.end(); itr++)
+        {
+            delete itr->second;
+        }
+    }
+    deviceMap.clear();
 
 }
 
@@ -63,12 +63,12 @@ const FSBaseDevice * FSBaseManager::getDevice(unsigned int deviceID)
     if(deviceMap.find(deviceID) != deviceMap.end())
         return deviceMap[deviceID];
     else
-       return NULL;
+        return NULL;
 }
 
 void FSBaseManager::ListenForJoystickDisconnections(IFSJoystickListener & listener)
 {
-     ListenForAllJoysticksForEventType(FS_JOYSTICK_DISCONNECT_EVENT,listener);
+    ListenForAllJoysticksForEventType(FS_JOYSTICK_DISCONNECT_EVENT,listener);
 }
 
 void FSBaseManager::UnListenForJoystickConnection(IFSJoystickListener & listener)
@@ -76,22 +76,22 @@ void FSBaseManager::UnListenForJoystickConnection(IFSJoystickListener & listener
 
 }
 
- void FSBaseManager::ListenForJoystickConnection(IFSJoystickListener & listener)
- {
-     ListenForAllJoysticksForEventType(FS_JOYSTICK_CONNECTED_EVENT,listener);
- }
- \
- void FSBaseManager::ListenForAllJoysticksForEventType(FreeStickEventType eventType,IFSJoystickListener & listener)
- {
-     _joystickDeviceListeners.insert(std::pair<FreeStickEventType,IFSJoystickListener *>(eventType,&listener));
+void FSBaseManager::ListenForJoystickConnection(IFSJoystickListener & listener)
+{
+    ListenForAllJoysticksForEventType(FS_JOYSTICK_CONNECTED_EVENT,listener);
+}
+\
+void FSBaseManager::ListenForAllJoysticksForEventType(FreeStickEventType eventType,IFSJoystickListener & listener)
+{
+    _joystickDeviceListeners.insert(std::pair<FreeStickEventType,IFSJoystickListener *>(eventType,&listener));
 
- }
- /*const std::vector<IFSJoystickInfo> & FSBaseManager::listOfConnectedJoysticks()
+}
+/*const std::vector<IFSJoystickInfo> & FSBaseManager::listOfConnectedJoysticks()
  {
      std::vector<IFSJoystickInfo> * temp = new std::vector<IFSJoystickInfo>;
      return *temp;
  }*/
- //add event
+//add event
 void FSBaseManager::updateEvent(FSBaseEvent & event)
 {
     std::pair<std::multimap<FreeStickEventType,IFSJoystickListener *>::iterator, std::multimap<FreeStickEventType,IFSJoystickListener *>::iterator> rangedItr;
@@ -102,24 +102,24 @@ void FSBaseManager::updateEvent(FSBaseEvent & event)
         ListenerToCall = (it2)->second;
         switch (event.getEventType())
         {
-            case FS_JOYSTICK_CONNECTED_EVENT:
-                ListenerToCall->onConnect(event);
+        case FS_JOYSTICK_CONNECTED_EVENT:
+            ListenerToCall->onConnect(event);
             break;
-            case FS_JOYSTICK_DISCONNECT_EVENT:
-                ListenerToCall->onDisconnect(event);
+        case FS_JOYSTICK_DISCONNECT_EVENT:
+            ListenerToCall->onDisconnect(event);
             break;
-            case FS_BUTTON_EVENT:
+        case FS_BUTTON_EVENT:
 
-               if (event.getEventAction() == FSInputPressed )
-                     ListenerToCall->onButtonDown(*(FSDeviceInputEvent *)&event);
-               else
-                   ListenerToCall->onButtonUp(*(FSDeviceInputEvent *)&event);
+            if (event.getEventAction() == FSInputPressed )
+                ListenerToCall->onButtonDown(*(FSDeviceInputEvent *)&event);
+            else
+                ListenerToCall->onButtonUp(*(FSDeviceInputEvent *)&event);
             break;
-            case FS_TRIGGER_EVENT:
-            case FS_AXIS_EVENT:
-                ListenerToCall->onStickMove(*(FSDeviceInputEvent *)&event);
+        case FS_TRIGGER_EVENT:
+        case FS_AXIS_EVENT:
+            ListenerToCall->onStickMove(*(FSDeviceInputEvent *)&event);
             break;
-            default:
+        default:
             break;
         }
     }
@@ -130,17 +130,17 @@ void FSBaseManager::updateEvent(FSBaseEvent & event)
         ListenerToCall = (it2)->second;
         switch (event.getEventType())
         {
-            case FS_BUTTON_EVENT:
-               if ( event.getEventAction() == FSInputPressed )
-                     ListenerToCall->onButtonDown(*(FSDeviceInputEvent *)&event);
-               else
-                   ListenerToCall->onButtonUp(*(FSDeviceInputEvent *)&event);
+        case FS_BUTTON_EVENT:
+            if ( event.getEventAction() == FSInputPressed )
+                ListenerToCall->onButtonDown(*(FSDeviceInputEvent *)&event);
+            else
+                ListenerToCall->onButtonUp(*(FSDeviceInputEvent *)&event);
             break;
-            case FS_TRIGGER_EVENT:
-            case FS_AXIS_EVENT:
-                 ListenerToCall->onStickMove(*(FSDeviceInputEvent *)&event);
+        case FS_TRIGGER_EVENT:
+        case FS_AXIS_EVENT:
+            ListenerToCall->onStickMove(*(FSDeviceInputEvent *)&event);
             break;
-            default:
+        default:
             break;
         }
     }
@@ -162,24 +162,24 @@ void FSBaseManager::inputOnDeviceChanged(FreeStickEventType eventType,FSEventAct
     updateEvent(newInputEvent);
 }
 
- void FSBaseManager::addDevice(FSBaseDevice * device)
- {
-     deviceMap[device->getJoystickID()] = device;
-     FSBaseEvent newConnectEvent(FS_JOYSTICK_CONNECTED_EVENT,FSInputChanged,std::time(0),device->getJoystickID());
-     updateEvent(newConnectEvent);
-     std::cout<<"added device with ID "<<device->getJoystickID()<<std::endl;
-     std::cout<<"device map "<<deviceMap.size()<<std::endl;
- }
+void FSBaseManager::addDevice(FSBaseDevice * device)
+{
+    deviceMap[device->getJoystickID()] = device;
+    FSBaseEvent newConnectEvent(FS_JOYSTICK_CONNECTED_EVENT,FSInputChanged,std::time(0),device->getJoystickID());
+    updateEvent(newConnectEvent);
+    EE_DEBUG<<"added device with ID "<<device->getJoystickID()<<std::endl;
+    EE_DEBUG<<"device map "<<deviceMap.size()<<std::endl;
+}
 
- //Note deletes device
+//Note deletes device
 void FSBaseManager::removeDevice(FSBaseDevice * device)
 {
     deviceMap.erase(device->getJoystickID());
     FSBaseEvent newConnectEvent(FS_JOYSTICK_DISCONNECT_EVENT,FSInputChanged,std::time(0),device->getJoystickID());
     updateEvent(newConnectEvent);
     delete device;
-     std::cout<<"removed device with ID "<<device->getJoystickID()<<std::endl;
-    std::cout<<"device map "<<deviceMap.size()<<std::endl;
+    EE_DEBUG<<"removed device with ID "<<device->getJoystickID()<<std::endl;
+    EE_DEBUG<<"device map "<<deviceMap.size()<<std::endl;
 }
 
 unsigned int FSBaseManager::getNextID()
