@@ -338,7 +338,7 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadWasAdded(void* inContext, IOReturn
 void FSUSBMacOSXJoystickDeviceManager::gamepadWasRemoved(void* inContext, IOReturn inResult, void* inSender, IOHIDDeviceRef device) {
     FSUSBMacOSXJoystickDeviceManager * manager = (FSUSBMacOSXJoystickDeviceManager *) inContext;
     manager->removeDevice(device);
-    printf("Gamepad was unplugged\n");
+    EE_DEBUG<<"Gamepad was unplugged"<<std::endl;
 }
 
 void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn inResult, void* inSender, IOHIDValueRef value) {
@@ -364,7 +364,7 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn i
         //  printf("\n");
         return ;
     }
-    printf("Gamepad talked! type of input %i id %i: ",(unsigned int)IOHIDElementGetType(element),elementID);
+    EE_DEBUG<<"Gamepad talked! type of input "<<(unsigned int)IOHIDElementGetType(element)<<"id:"<< elementID<<std::endl;
 
     elementValue=  IOHIDValueGetIntegerValue(value);
     usage =IOHIDElementGetUsage(element);
@@ -375,9 +375,9 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn i
         //CFShow(element);
         //printf("Element: %s \n", element);
 
-        printf("Element value: %i ", elementValue);
+        EE_DEBUG<<"Element value: "<<elementValue<<std::endl;
 
-        printf("Element Usage page %i with Usage %i min %i max %i",usagePage,usage,min,max);
+        EE_DEBUG<<"Element Usage page"<<usagePage<<" with Usage "<<usage<<" min "<<min<<" max "<<max<<std::endl;
     }
     FSUSBMacOSXJoystickDeviceManager * manager = (FSUSBMacOSXJoystickDeviceManager *) inContext;
     unsigned int deviceID = manager->getDeviceIDFromIOHIDevice(device);
@@ -407,7 +407,7 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn i
 
         }
     }
-    printf("\n");
+    EE_DEBUG<<std::endl;
 }
 
 

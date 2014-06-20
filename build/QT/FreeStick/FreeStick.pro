@@ -34,6 +34,12 @@ android {
 }else{
     CONFIG += staticlib
 }
+
+# turns of debug logging in release
+CONFIG(release, debug|release) {
+    DEFINES += "NDEBUG"
+}
+
 SOURCES += \
         ../../../src/baseClasses/FSBaseDevice.cpp \
         ../../../src/baseClasses/FSBaseManager.cpp \
@@ -41,13 +47,13 @@ SOURCES += \
         ../../../src/USB/FSUSBDeviceManager.cpp \
         ../../../src/USB/FSUSBJoystick.cpp \
         ../../../src/USB/FSUSBJoystickDeviceManager.cpp \
-    ../../../src/baseClasses/FSBaseJoystickInfo.cpp \
-    ../../../src/baseClasses/FSBaseEvent.cpp \
-    ../../../src/FSDeviceInputEvent.cpp \
-    ../../../src/USB/FSUSBJoyStickInputElement.cpp \
-    ../../../src/USB/FSUSBJoystickButton.cpp \
-    $$files(../../../src/USB/platform/NULL/*.cpp) \
-    $$files(../../../src/3rdParty/EELog/src/*.cpp)
+        ../../../src/baseClasses/FSBaseJoystickInfo.cpp \
+        ../../../src/baseClasses/FSBaseEvent.cpp \
+        ../../../src/FSDeviceInputEvent.cpp \
+        ../../../src/USB/FSUSBJoyStickInputElement.cpp \
+        ../../../src/USB/FSUSBJoystickButton.cpp \
+        $$files(../../../src/USB/platform/NULL/*.cpp) \
+        $$files(../../../src/3rdParty/EELog/src/*.cpp)
 
 HEADERS += \
         $$files(../../../src/*.h) \
@@ -63,12 +69,12 @@ HEADERS += \
         ../../../src/baseClasses/FSBaseJoystickInfo.h \
         ../../../src/Interfaces/IFSEvent.h \
         ../../../src/baseClasses/FSBaseEvent.h \
-    ../../../src/FSDeviceInputEvent.h \
-    ../../../src/USB/FSUSBJoyStickInputElement.h \
-    ../../../src/USB/FSUSBJoystickButton.h \
-    ../../../src/FreeStickLog.h \
-    $$files(../../../src/USB/platform/NULL/*.h) \
-    $$files(../../../src/3rdParty/EELog/src/*.h)
+        ../../../src/FSDeviceInputEvent.h \
+        ../../../src/USB/FSUSBJoyStickInputElement.h \
+        ../../../src/USB/FSUSBJoystickButton.h \
+        ../../../src/FreeStickLog.h \
+        $$files(../../../src/USB/platform/NULL/*.h) \
+        $$files(../../../src/3rdParty/EELog/src/*.h)
 
 
 unix:!symbian:!android {
@@ -126,22 +132,3 @@ LIBS += -framework IOKit \
         -framework ForceFeedback \
         -framework CoreFoundation \
 }
-
-
-
-
-
-
-
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../../src/3rdParty/EELog/build/Qmake/EELog/release/ -lEELog
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../../src/3rdParty/EELog/build/Qmake/EELog/debug/ -lEELog
-else:unix: LIBS += -L$$OUT_PWD/../../../src/3rdParty/EELog/build/Qmake/EELog/ -lEELog
-
-INCLUDEPATH += $$PWD/../../../src/3rdParty/EELog/build/Qmake/EELog
-DEPENDPATH += $$PWD/../../../src/3rdParty/EELog/build/Qmake/EELog
-
-win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../../../src/3rdParty/EELog/build/Qmake/EELog/release/libEELog.a
-else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../../../src/3rdParty/EELog/build/Qmake/EELog/debug/libEELog.a
-else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../../../src/3rdParty/EELog/build/Qmake/EELog/release/EELog.lib
-else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../../../src/3rdParty/EELog/build/Qmake/EELog/debug/EELog.lib
-else:unix: PRE_TARGETDEPS += $$OUT_PWD/../../../src/3rdParty/EELog/build/Qmake/EELog/libEELog.a
