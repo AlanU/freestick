@@ -56,13 +56,13 @@ and must not be misrepresented as being the original software.
            virtual void onConnect(FSBaseEvent event){};
     };
 
-   void main()
-   {
+    void main()
+    {
        JoystickEventHandler handler;
        FreeStickDeviceManager deviceManager;
        deviceManager.init();
-       deviceManager.ListenForAllJoysticksForEventTypes(FS_JOYSTICK_CONNECTED_EVENT | FS_JOYSTICK_DISCONNECT_EVENT |  FS_BUTTON_EVENT | FS_AXIS_EVENT | FS_TRIGGER_EVENT , deviceManager);
-   }
+       deviceManager.ListenForAllJoysticksForEventTypes(FS_JOYSTICK_CONNECTED_EVENT | FS_JOYSTICK_DISCONNECT_EVENT |  FS_BUTTON_EVENT | FS_AXIS_EVENT | FS_TRIGGER_EVENT , handler);
+    }
    \endcode
   */
 
