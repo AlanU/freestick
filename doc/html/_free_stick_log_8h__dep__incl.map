@@ -1,0 +1,5 @@
+<map id="src/FreeStickLog.h" name="src/FreeStickLog.h">
+<area shape="rect" href="$_f_s_base_manager_8cpp.html" title="src/baseClasses/FSBaseManager.cpp" alt="" coords="5,92,288,119"/>
+<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_8cpp.html" title="src/USB/platform/MacOSX\l/FSUSBMacOSXJoystick.cpp" alt="" coords="312,83,528,128"/>
+<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html" title="src/USB/platform/MacOSX\l/FSUSBMacOSXJoystickDeviceManager.cpp" alt="" coords="552,83,880,128"/>
+</map>

@@ -2,6 +2,7 @@ var searchData=
 [
   ['freestick_2eh',['freestick.h',['../freestick_8h.html',1,'']]],
   ['freestickdevicemanager_2ejava',['FreestickDeviceManager.java',['../_freestick_device_manager_8java.html',1,'']]],
+  ['freesticklog_2eh',['FreeStickLog.h',['../_free_stick_log_8h.html',1,'']]],
   ['fsbasedevice_2ecpp',['FSBaseDevice.cpp',['../_f_s_base_device_8cpp.html',1,'']]],
   ['fsbasedevice_2eh',['FSBaseDevice.h',['../_f_s_base_device_8h.html',1,'']]],
   ['fsbaseevent_2ecpp',['FSBaseEvent.cpp',['../_f_s_base_event_8cpp.html',1,'']]],

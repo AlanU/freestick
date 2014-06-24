@@ -21,9 +21,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">FreeStick
-   &#160;<span id="projectnumber">1</span>
+   &#160;<span id="projectnumber">1.1</span>
    </div>
    <div id="projectbrief">Cross platform Open Sorce Joystick Lib</div>
   </td>
@@ -102,18 +103,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><span class="keywordtype">void</span> main()</div>
 <div class="line">{</div>
 <div class="line">    JoystickEventHandler handler;</div>
-<div class="line">    <a class="code" href="freestick_8h.html#a8ce8995ce6ddd1e4644f2b43e5189e16">JoystickManager</a> deviceManager;</div>
+<div class="line">    <a class="code" href="freestick_8h.html#a59ac807d22dc3d3afca6bf0ff022773e">FreeStickDeviceManager</a> deviceManager;</div>
 <div class="line">    deviceManager.init();</div>
-<div class="line">    deviceManager.ListenForJoystickConnection(handler);</div>
-<div class="line">    deviceManager.ListenForJoystickDisconnections(handler);</div>
-<div class="line">    deviceManager.ListenForAllJoysticksForEventType(<a class="code" href="namespacefreestick.html#a4fc52780a06e02ce6e645aa6651e2db7abe42b004eaea1be7d08f8dea32abd704">FS_BUTTON_EVENT</a>,handler);</div>
-<div class="line">    deviceManager.ListenForAllJoysticksForEventType(<a class="code" href="namespacefreestick.html#a4fc52780a06e02ce6e645aa6651e2db7a25dbbc62af15dac9c3026cf6f67d07d2">FS_AXIS_EVENT</a>,handler);</div>
-<div class="line">    deviceManager.ListenForAllJoysticksForEventType(<a class="code" href="namespacefreestick.html#a4fc52780a06e02ce6e645aa6651e2db7adeeff1e030490e9c356b78b5295fd804">FS_TRIGGER_EVENT</a>,handler);</div>
+<div class="line">    deviceManager.ListenForAllJoysticksForEventTypes(<a class="code" href="namespacefreestick.html#a4fc52780a06e02ce6e645aa6651e2db7a07ebbdcfbfded5b68eb6561d86958500">FS_JOYSTICK_CONNECTED_EVENT</a> | <a class="code" href="namespacefreestick.html#a4fc52780a06e02ce6e645aa6651e2db7accb6e702d38893e9d6f63ca7aac4040b">FS_JOYSTICK_DISCONNECT_EVENT</a> |  <a class="code" href="namespacefreestick.html#a4fc52780a06e02ce6e645aa6651e2db7abe42b004eaea1be7d08f8dea32abd704">FS_BUTTON_EVENT</a> | <a class="code" href="namespacefreestick.html#a4fc52780a06e02ce6e645aa6651e2db7a25dbbc62af15dac9c3026cf6f67d07d2">FS_AXIS_EVENT</a> | <a class="code" href="namespacefreestick.html#a4fc52780a06e02ce6e645aa6651e2db7adeeff1e030490e9c356b78b5295fd804">FS_TRIGGER_EVENT</a> ,handler);</div>
 <div class="line">}</div>
 </div><!-- fragment --> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 19 2014 01:30:43 for FreeStick by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jun 24 2014 11:45:40 for FreeStick by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

@@ -1,4 +1,3 @@
 <map id="freestick::FSBaseManager::ListenForAllJoysticksForEventType" name="freestick::FSBaseManager::ListenForAllJoysticksForEventType">
-<area shape="rect" href="$classfreestick_1_1_f_s_base_manager.html#afec2ae00339d03fcdd6770cb9dee2243" title="freestick::FSBaseManager\l::ListenForJoystickDisconnections" alt="" coords="324,5,580,51"/>
-<area shape="rect" href="$classfreestick_1_1_f_s_base_manager.html#a0257f1ae905557dea6fc5665113ec2d8" title="freestick::FSBaseManager\l::ListenForJoystickConnection" alt="" coords="336,75,568,120"/>
+<area shape="rect" href="$classfreestick_1_1_f_s_base_manager.html#af87170c6c4219af77a1ef3b057746846" title="This is the base manager. " alt="" coords="324,5,599,51"/>
 </map>
