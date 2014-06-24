@@ -37,11 +37,10 @@ JoyStickConfigWidget::JoyStickConfigWidget(QWidget *parent) :
     ui->setupUi(this);
 
     deviceManager.init();
-    deviceManager.ListenForJoystickConnection(*this);
-    deviceManager.ListenForJoystickDisconnections(*this);
-    deviceManager.ListenForAllJoysticksForEventType(FS_BUTTON_EVENT,*this);
-    deviceManager.ListenForAllJoysticksForEventType(FS_AXIS_EVENT,*this);
-    deviceManager.ListenForAllJoysticksForEventType(FS_TRIGGER_EVENT,*this);
+    deviceManager.ListenForAllJoysticksForEventTypes(FS_JOYSTICK_CONNECTED_EVENT |
+                                                     FS_JOYSTICK_DISCONNECT_EVENT |
+                                                     FS_BUTTON_EVENT | FS_AXIS_EVENT
+                                                     | FS_TRIGGER_EVENT,*this);
     ui->DeviceID->hide();
     ui->FoceFeedBack->hide();
     timer= new QTimer(this);

@@ -59,13 +59,9 @@ and must not be misrepresented as being the original software.
    void main()
    {
        JoystickEventHandler handler;
-       JoystickManager deviceManager;
+       FreeStickDeviceManager deviceManager;
        deviceManager.init();
-       deviceManager.ListenForJoystickConnection(handler);
-       deviceManager.ListenForJoystickDisconnections(handler);
-       deviceManager.ListenForAllJoysticksForEventType(FS_BUTTON_EVENT,handler);
-       deviceManager.ListenForAllJoysticksForEventType(FS_AXIS_EVENT,handler);
-       deviceManager.ListenForAllJoysticksForEventType(FS_TRIGGER_EVENT,handler);
+       deviceManager.ListenForAllJoysticksForEventTypes(FS_JOYSTICK_CONNECTED_EVENT | FS_JOYSTICK_DISCONNECT_EVENT |  FS_BUTTON_EVENT | FS_AXIS_EVENT | FS_TRIGGER_EVENT ,handler);
    }
    \endcode
   */
@@ -92,23 +88,14 @@ namespace freestick
           * \param joystickInfo This is what a joystickInfo does.
           */
 
-        void ListenForJoystick(IFSJoystickListener & listener,unsigned int deviceID,FSDeviceInput input){};
+        void ListenForAllJoysticksForEventTypes(unsigned int eventFlags,IFSJoystickListener & listener);
 
-        void UnListenForJoystick(IFSJoystickListener & listener ,unsigned int deviceID,FSDeviceInput input){};
+        void UnListenForAllJoysticksForEventTypes(unsigned int eventFlags,IFSJoystickListener & listener);
 
-        void ListenForAllJoysticks(IFSJoystickListener & listener){ ListenForJoystick(listener,0,AllInputs);}
+      //  void ListenForJoystick(IFSJoystickListener & listener,unsigned int deviceID,FSDeviceInput input){};
 
-        void UnListenForAllJoysticks(IFSJoystickListener & listener){ UnListenForJoystick(listener,0,AllInputs);}
+       // void UnListenForJoystick(IFSJoystickListener & listener ,unsigned int deviceID,FSDeviceInput input){};
 
-        void ListenForJoystickConnection(IFSJoystickListener & listener);
-
-        void ListenForJoystickDisconnections(IFSJoystickListener & listener);
-
-        void UnListenForJoystickConnection(IFSJoystickListener & listener);
-
-        void ListenForAllJoysticksForEventType(FreeStickEventType eventType,IFSJoystickListener & listener);
-
-        void ListenForJoystickEvent(FreeStickEventType eventType,IFSJoystickListener & listener);
 
         inline float convertRawToNormalizedRanger(int value,signed long maxValue,signed long minValue);
       // const std::vector<IFSJoystickInfo> & listOfConnectedJoysticks();
@@ -121,10 +108,19 @@ namespace freestick
 
     private:
         std::multimap<FreeStickEventType,IFSJoystickListener * > _joystickDeviceListeners;
+        typedef std::multimap<FreeStickEventType,IFSJoystickListener * >::iterator joystickDeviceListenersItr;
+
         std::map<unsigned int,std::multimap<FreeStickEventType,IFSJoystickListener * > > _joystickDeviceInputListeners;
         std::vector<IFSJoystickListener *> allJoystickListeners;
         std::map<unsigned int, FSBaseDevice * > deviceMap;
     protected:
+        //void ListenForAllJoysticks(IFSJoystickListener & listener){ ListenForJoystick(listener,0,AllInputs);}
+      //  void UnListenForAllJoysticks(IFSJoystickListener & listener){ UnListenForJoystick(listener,0,AllInputs);}
+        void ListenForAllJoysticksForEventType(FreeStickEventType eventType,IFSJoystickListener & listener);
+        void UnListenForAllJoysticksForEventType(FreeStickEventType eventType,IFSJoystickListener & listener);
+
+        void ListenForJoystickEvent(FreeStickEventType eventType,IFSJoystickListener & listener);
+
         virtual void addDevice(FSBaseDevice * device);
         virtual void removeDevice(FSBaseDevice * device);
         virtual void inputOnDeviceChanged(FreeStickEventType eventType,FSEventAction eventAction,FSDeviceInput inputType,unsigned int deviceID,unsigned int deviceControlID,int newValue,int oldValue,signed long min, signed long max);

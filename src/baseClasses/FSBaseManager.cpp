@@ -66,7 +66,57 @@ const FSBaseDevice * FSBaseManager::getDevice(unsigned int deviceID)
         return NULL;
 }
 
-void FSBaseManager::ListenForJoystickDisconnections(IFSJoystickListener & listener)
+void  FSBaseManager::ListenForAllJoysticksForEventTypes(unsigned int eventFlags,IFSJoystickListener & listener)
+{
+    if(eventFlags & FS_JOYSTICK_CONNECTED_EVENT)
+    {
+        ListenForAllJoysticksForEventType(FS_JOYSTICK_CONNECTED_EVENT,listener);
+    }
+    if(eventFlags & FS_JOYSTICK_DISCONNECT_EVENT)
+    {
+        ListenForAllJoysticksForEventType(FS_JOYSTICK_DISCONNECT_EVENT,listener);
+    }
+    if(eventFlags & FS_BUTTON_EVENT)
+    {
+        ListenForAllJoysticksForEventType(FS_BUTTON_EVENT,listener);
+    }
+    if(eventFlags & FS_AXIS_EVENT)
+    {
+        ListenForAllJoysticksForEventType(FS_AXIS_EVENT,listener);
+    }
+    if(eventFlags & FS_TRIGGER_EVENT)
+    {
+        ListenForAllJoysticksForEventType(FS_AXIS_EVENT,listener);
+    }
+
+}
+void  FSBaseManager::UnListenForAllJoysticksForEventTypes(unsigned int eventFlags,IFSJoystickListener & listener)
+{
+    if(eventFlags & FS_JOYSTICK_CONNECTED_EVENT)
+    {
+        UnListenForAllJoysticksForEventType(FS_JOYSTICK_CONNECTED_EVENT ,listener);
+    }
+    if(eventFlags & FS_JOYSTICK_DISCONNECT_EVENT)
+    {
+        UnListenForAllJoysticksForEventType(FS_JOYSTICK_DISCONNECT_EVENT,listener);
+    }
+    if(eventFlags & FS_BUTTON_EVENT)
+    {
+        UnListenForAllJoysticksForEventType(FS_BUTTON_EVENT,listener);
+    }
+    if(eventFlags & FS_AXIS_EVENT)
+    {
+        UnListenForAllJoysticksForEventType(FS_AXIS_EVENT,listener);
+    }
+    if(eventFlags & FS_TRIGGER_EVENT)
+    {
+        UnListenForAllJoysticksForEventType(FS_AXIS_EVENT,listener);
+    }
+}
+
+
+
+/*void FSBaseManager::ListenForJoystickDisconnections(IFSJoystickListener & listener)
 {
     ListenForAllJoysticksForEventType(FS_JOYSTICK_DISCONNECT_EVENT,listener);
 }
@@ -79,8 +129,20 @@ void FSBaseManager::UnListenForJoystickConnection(IFSJoystickListener & listener
 void FSBaseManager::ListenForJoystickConnection(IFSJoystickListener & listener)
 {
     ListenForAllJoysticksForEventType(FS_JOYSTICK_CONNECTED_EVENT,listener);
+}*/
+void FSBaseManager::UnListenForAllJoysticksForEventType(FreeStickEventType eventType,IFSJoystickListener & listener)
+{
+    std::pair<joystickDeviceListenersItr,joystickDeviceListenersItr> rangeOfListeners;
+   rangeOfListeners =  _joystickDeviceListeners.equal_range(eventType);
+    for(joystickDeviceListenersItr itr = rangeOfListeners.second; itr != rangeOfListeners.first ; itr-- )
+    {
+       if(itr->second == (&listener))
+       {
+           _joystickDeviceListeners.erase(itr);
+       }
+    }
 }
-\
+
 void FSBaseManager::ListenForAllJoysticksForEventType(FreeStickEventType eventType,IFSJoystickListener & listener)
 {
     _joystickDeviceListeners.insert(std::pair<FreeStickEventType,IFSJoystickListener *>(eventType,&listener));
@@ -92,6 +154,7 @@ void FSBaseManager::ListenForAllJoysticksForEventType(FreeStickEventType eventTy
      return *temp;
  }*/
 //add event
+
 void FSBaseManager::updateEvent(FSBaseEvent & event)
 {
     std::pair<std::multimap<FreeStickEventType,IFSJoystickListener *>::iterator, std::multimap<FreeStickEventType,IFSJoystickListener *>::iterator> rangedItr;

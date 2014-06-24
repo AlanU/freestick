@@ -32,12 +32,12 @@ namespace freestick
 {
     typedef enum
     {
-        FS_JOYSTICK_CONNECTED_EVENT,
-        FS_JOYSTICK_DISCONNECT_EVENT,
-        FS_BUTTON_EVENT,
-        FS_AXIS_EVENT,
-        FS_TRIGGER_EVENT,
-        FS_LAST_EVENT
+        FS_JOYSTICK_CONNECTED_EVENT = 1<<1,
+        FS_JOYSTICK_DISCONNECT_EVENT = 1<<2,
+        FS_BUTTON_EVENT = 1<<3,
+        FS_AXIS_EVENT = 1<<4,
+        FS_TRIGGER_EVENT = 1<<5,
+        FS_LAST_EVENT = 1<<6
     }FreeStickEventType;
 
     typedef enum

@@ -58,7 +58,7 @@ private:
     /** \todo
      *put device manager more centrlized
      */
-    JoystickManager deviceManager;
+    FreeStickDeviceManager deviceManager;
     Ui::JoyStickConfigWidget *ui;
     void PopulateDeviceStats(unsigned int id);
     QTimer * timer;

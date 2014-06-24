@@ -50,24 +50,24 @@ and must not be misrepresented as being the original software.
     #include "TargetConditionals.h"
     #if TARGET_OS_IPHONE && TARGET_IPHONE_SIMULATOR
         // define something for simulator
-        typedef freestick::FSUSBNullJoystickDeviceManager JoystickManager;
+        typedef freestick::FSUSBNullJoystickDeviceManager FreeStickDeviceManager;
     #elif TARGET_OS_IPHONE
         // define something for iphone
-        typedef freestick::FSUSBNullJoystickManager JoystickManager;
+        typedef freestick::FSUSBNullJoystickManager FreeStickDeviceManager;
     #else
         #define TARGET_OS_OSX 1
         // define something for OSX
         #include "USB/platform/MacOSX/FSUSBMacOSXJoystickDeviceManager.h"
-        typedef freestick::FSUSBMacOSXJoystickDeviceManager JoystickManager;
+        typedef freestick::FSUSBMacOSXJoystickDeviceManager FreeStickDeviceManager;
     #endif
 #elif __ANDROID__
     //define for android
     #include "USB/platform/Android/FSHIDAndroidJoysickDeviceManager.h"
-typedef freestick::FSHIDAndroidJoysickDeviceManager JoystickManager;
+typedef freestick::FSHIDAndroidJoysickDeviceManager FreeStickDeviceManager;
 
 #else
     #include "USB/platform/NULL/FSUSBNullJoystickDeviceManager.h"
-    typedef freestick::FSUSBNullJoystickManager JoystickManager;
+    typedef freestick::FSUSBNullJoystickManager FreeStickDeviceManager;
 #endif
 
 #endif // FREESTICK_H
