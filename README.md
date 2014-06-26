@@ -19,5 +19,5 @@ The future versions will support iOS, Android, MacOSX, Windows ,and Linux.
 
 We are looking for contributors. Contact AlanU for more information
 
-###License##
+###License###
 FreeStick is licensed under the [Zlib license]( http://opensource.org/licenses/Zlib)
