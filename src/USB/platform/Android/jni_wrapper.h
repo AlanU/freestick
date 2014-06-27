@@ -28,6 +28,9 @@ and must not be misrepresented as being the original software.
 #pragma once
 
 #include <jni.h>
+#include <android/log.h>
+#define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "native-activity", __VA_ARGS__))
+#define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "native-activity", __VA_ARGS__))
 
 #ifdef __cplusplus
 #include <vector>
@@ -48,7 +51,7 @@ class JNIBridge
 {
     public:
        static void registerDeviceWasAdded(IJINICallBack * listener);
-       static void registerDeviceWasRemoved(IJINICallBack * listener){}
+       static void registerDeviceWasRemoved(IJINICallBack * listener);
        static void deregisterDeviceWasAdded(IJINICallBack * listener){}
        static void deregisterDeviceWasRemoved(IJINICallBack * listener){}
        static void update(int hidDeviceID, int type);

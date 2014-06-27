@@ -26,17 +26,21 @@ and must not be misrepresented as being the original software.
 **************************************************************************/
 
 #include "jni_wrapper.h"
+#include <android/input.h>
 std::vector<IJINICallBack*> JNIBridge::_deviceAddedCallback;
 std::vector<IJINICallBack*> JNIBridge::_deviceRemovedCallback;
 JNIEXPORT void JNICALL Java_org_freestick_FreestickDeviceManager_gamepadWasAdded(JNIEnv *env, jobject thisObj,jint HID_ID)
 {
   //  gamepadWasAdded(devicemanager,HID_ID);
+    LOGI("JNI gamePadWasAdded");
     JNIBridge::update(HID_ID,0);
 }
 
 JNIEXPORT void JNICALL Java_org_freestick_FreestickDeviceManager_gamepadWasRemoved(JNIEnv *env, jobject thisObj,jint HID_ID)
 {
    //gamepadWasRemoved(devicemanager,HID_ID);
+    LOGI("JNI gamePadWasRemoved");
+
     JNIBridge::update(HID_ID,1);
 
 }
@@ -47,12 +51,29 @@ void JNIBridge::update(int hidDeviceID, int type)
     switch(type)
     {
         case 0:
+             for(std::vector<IJINICallBack*>::iterator itr = _deviceAddedCallback.begin();itr != _deviceAddedCallback.end();itr++)
+             {
+                 LOGI("Call back from bridge");
+                (*itr)->gamepadWasAddedFromJINBridge(hidDeviceID);
+             }
             //run through the _devieAddedCallback map cand call the correct function
         break;
+        case 1:
+            for(std::vector<IJINICallBack*>::iterator itr = _deviceRemovedCallback.begin();itr != _deviceRemovedCallback.end();itr++)
+            {
+               (*itr)->gamepadWasRemovedFromJINBridge(hidDeviceID);
+            }
+        break;
+
     }
 }
 
 void JNIBridge::registerDeviceWasAdded(IJINICallBack *listener)
 {
     _deviceAddedCallback.push_back(listener);
+}
+
+void JNIBridge::registerDeviceWasRemoved(IJINICallBack *listener)
+{
+    _deviceRemovedCallback.push_back(listener);
 }

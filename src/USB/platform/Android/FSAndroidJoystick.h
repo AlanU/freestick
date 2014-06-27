@@ -1,6 +1,6 @@
 /**************************************************************************
-Created by Alan Uthoff on 10/13/2013
-Copyright (C) 2013
+Created by Alan Uthoff on 10/8/2013
+Copyright (C) 2013.
 
 This Code is free software; you can redistribute it and/or
 modify it under the terms of the zlib/libpng License as published
@@ -25,15 +25,29 @@ and must not be misrepresented as being the original software.
 3. This notice may not be removed or altered from any source distribution.
 **************************************************************************/
 
+
 #pragma once
-#include "../../../USB/FSUSBDevice.h"
+#include "../../FSUSBJoystick.h"
+#include "../../FSUSBJoystickDeviceManager.h"
 namespace freestick
 {
-    class FSUSBNullDevice : public FSUSBDevice
+    class FSAndroidJoystick : public FSUSBJoystick
     {
-    public:
-        FSUSBNullDevice();
-        virtual FSDeviceType getClassType() const {return FSUSBNULLDeviceType;}
+        private:
+            int _androidDeviceID;
+        protected:
+            FSAndroidJoystick();
+        public:
+            FSAndroidJoystick(int androidDeviceID,
+                              unsigned int joyStickID,
+                              unsigned int numberOfButtons,
+                              unsigned int numberOfAnlogSticks,
+                              unsigned int numberOfDigitalSticks,
+                              bool forceFeedBackSupported );
+            unsigned int Init(FSUSBJoystickDeviceManager & usbJoystickManager);
+            virtual ~FSAndroidJoystick(){};
+            int getAndroidID() const {return _androidDeviceID;}
+            virtual FSDeviceType getClassType() const {return FSAndroidJoystickType;}
 
     };
 }

@@ -132,3 +132,6 @@ LIBS += -framework IOKit \
         -framework ForceFeedback \
         -framework CoreFoundation \
 }
+
+
+

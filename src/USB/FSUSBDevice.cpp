@@ -40,10 +40,12 @@ FSUSBDevice::FSUSBDevice(unsigned int id,
     _vendorID = venderID;
     _vendorIDFriendlyName = FSUSBDevice::GetFrendlyVenderNameFromID(productID);
     _productID = productID;
-    _prodcutIDFriendlyName = "unknown";
+    _prodcutIDFriendlyName = FSUSBDevice::GetFrendlyProductNameFromID(_vendorID,_productID);
+    _friendlyName = _vendorIDFriendlyName + " "+ _prodcutIDFriendlyName;
+
 }
 
-std::string  FSUSBDevice::GetFrendlyProductNameFromID(long venderID, long productID)
+std::string FSUSBDevice::GetFrendlyProductNameFromID(long venderID, long productID)
 {
     static std::map<long, std::map<long,std::string > >s_productFriendlyNames;
     s_productFriendlyNames[1133][49686] = "Dual Action";

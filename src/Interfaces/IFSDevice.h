@@ -73,7 +73,9 @@ namespace freestick {
         FSBaseDeviceType,
         FSUSBDeviceType,
         FSUSBJoystickType,
-        FSUSBMACOSXJoystickType
+        FSUSBMACOSXJoystickType,
+        FSAndroidJoystickType,
+        FSUSBNULLDeviceType
 
     } FSDeviceType;
     class IFSDevice

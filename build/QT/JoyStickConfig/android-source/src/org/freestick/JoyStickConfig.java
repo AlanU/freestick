@@ -29,12 +29,15 @@ package org.freestick;
 
 
 import android.hardware.input.InputManager;
+import android.view.InputDevice;
+import android.view.InputDevice.MotionRange;
 import android.util.Log;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.MotionEvent;
 public class JoyStickConfig extends org.qtproject.qt5.android.bindings.QtActivity
 {
-   private InputManager m_inputManager;
+   private static InputManager m_inputManager;
    static FreestickDeviceManager m_deviceManager;
    public JoyStickConfig()
    {
@@ -52,8 +55,16 @@ public class JoyStickConfig extends org.qtproject.qt5.android.bindings.QtActivit
       super.onCreate(savedInstanceState);
   }
 
+   public boolean dispatchGenericMotionEvent(MotionEvent event) {
+
+       Log.w("FreeStick", "dispatchGenericMotionEvent");
+      //  m_deviceManager.onInputDeviceAdded(0);
+        return super.dispatchGenericMotionEvent(event);
+   }
+
   protected void onResume()
   {
+       Log.w("FreeStick", "onResume");
       if(m_inputManager == null)
       {
           Log.w("FreeStick", "m_inputManager was null");
@@ -62,7 +73,17 @@ public class JoyStickConfig extends org.qtproject.qt5.android.bindings.QtActivit
 
       if(m_deviceManager != null)
         {
+             Log.w("FreeStick", "registring device manager");
              m_inputManager.registerInputDeviceListener(m_deviceManager, null);
+             /*int[] ids = m_inputManager.getInputDeviceIds();
+             for (int i = 0; i < ids.length; i++) {
+                 InputDevice currentDevice = m_inputManager.getInputDevice(ids[i]);
+             if((currentDevice.getSources() & InputDevice.SOURCE_GAMEPAD) != 0)
+             {m_deviceManager.onInputDeviceAdded(ids[i]);}
+
+             if((currentDevice.getSources() & InputDevice.SOURCE_JOYSTICK) != 0 )
+                    {m_deviceManager.onInputDeviceAdded(ids[i]);}
+             }*/
         }
 
       super.onResume();

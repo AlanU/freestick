@@ -28,6 +28,8 @@ and must not be misrepresented as being the original software.
 #include "FSHIDAndroidJoysickDeviceManager.h"
 #include "../NULL/FSUSBNullDevice.h"
 #include "./jni_wrapper.h"
+#include <android/log.h>
+#include "FSAndroidJoystick.h"
 using namespace freestick;
 FSHIDAndroidJoysickDeviceManager::FSHIDAndroidJoysickDeviceManager()
 {
@@ -40,19 +42,30 @@ void FSHIDAndroidJoysickDeviceManager::init( )
     FSUSBDeviceManager::init();
 
     JNIBridge::registerDeviceWasAdded(this);
+    JNIBridge::registerDeviceWasRemoved(this);
 }
 
 
 
 void FSHIDAndroidJoysickDeviceManager::gamepadWasAddedFromJINBridge(int deviceID)
 {
-
-   this->addDevice(deviceID);
+    LOGI("From C++ GamePad was added ");
+    _androidIDToIDMap[deviceID] = this->getNextID();
+   this->addDevice(new FSAndroidJoystick(deviceID,this->getNextID(),0,0,0,false));
 }
 
 void FSHIDAndroidJoysickDeviceManager::gamepadWasRemovedFromJINBridge(int deviceID)\
 {
-
+     FSBaseDevice * device = NULL;
+    if(_androidIDToIDMap.find(deviceID) != _androidIDToIDMap.end())
+    {
+        device = (FSBaseDevice *)this->getDevice(_androidIDToIDMap[deviceID]);
+        _androidIDToIDMap.erase(deviceID);
+    }
+    if(device)
+    {
+        this->removeDevice(device);
+    }
 }
 
 
@@ -63,18 +76,7 @@ void FSHIDAndroidJoysickDeviceManager::addDevice(FSBaseDevice * device)
 
 void FSHIDAndroidJoysickDeviceManager::removeDevice(FSBaseDevice * device)
 {
-
+    FSUSBDeviceManager::removeDevice(device);
 }
 
-void FSHIDAndroidJoysickDeviceManager::addDevice(int  hid_deviceID)
-{
-
-    FSUSBNullDevice * newDevice = new FSUSBNullDevice();
-    addDevice(newDevice);
-}
-
-void FSHIDAndroidJoysickDeviceManager::removeDevice(int hid_deviceID)
-{
-
-}
 

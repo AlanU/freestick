@@ -33,7 +33,7 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener{
     static
     {
         System.loadLibrary("gnustl_shared");
-       // System.loadLibrary("FreeStick"); // Load native library at runtime
+        System.loadLibrary("FreeStick"); // Load native library at runtime
      }
      public native void gamepadWasAdded(int deviceid);
 
@@ -41,24 +41,27 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener{
 
      public FreestickDeviceManager()
      {
-        Log.w("FreeStick", "Was Created");
-         gamepadWasAdded(0);
-         Log.w("FreeStick", "gamepadWasAdded");
+        Log.w("FreeStick Device", "Was Created");
      }
 
      public void onInputDeviceAdded(int deviceid)
      {
+         Log.w("FreeStick Device", "gamepadWasAdded");
+
        gamepadWasAdded(deviceid);
      }
 
      public void onInputDeviceRemoved(int deviceId)
      {
+         Log.w("FreeStick Device", "onInputDeviceRemoved");
+
 
        gamepadWasRemoved(deviceId);
      }
 
      public void onInputDeviceChanged(int deviceId)
      {
+         Log.w("FreeStick", "onInputDeviceChanged");
 
      }
 

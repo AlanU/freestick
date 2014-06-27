@@ -25,26 +25,28 @@ and must not be misrepresented as being the original software.
 3. This notice may not be removed or altered from any source distribution.
 **************************************************************************/
 
-#pragma once
+#include "FSAndroidJoystick.h"
+using namespace freestick;
+FSAndroidJoystick::FSAndroidJoystick(int androidDeviceID,
+                                    unsigned int joyStickID,
+                                    unsigned int numberOfButtons,
+                                    unsigned int numberOfAnlogSticks,
+                                    unsigned int numberOfDigitalSticks,
+                                    bool forceFeedBackSupported ):FSUSBJoystick(joyStickID,
+                                                                                numberOfButtons,
+                                                                                numberOfAnlogSticks,
+                                                                                numberOfDigitalSticks,
+                                                                                forceFeedBackSupported,
+                                                                                4152,
+                                                                                5138 )
 
-#include "../../FSUSBJoystickDeviceManager.h"
-#include "jni_wrapper.h"
-namespace freestick
 {
-    class FSHIDAndroidJoysickDeviceManager : public FSUSBJoystickDeviceManager , IJINICallBack
-    {
-    public:
-        FSHIDAndroidJoysickDeviceManager();
-        virtual void init( );
-        virtual void gamepadWasAddedFromJINBridge(int hid_id);
-        virtual void gamepadWasRemovedFromJINBridge(int hid_id);
-    protected:
-        virtual void addDevice(FSBaseDevice * device);
-        virtual void removeDevice(FSBaseDevice * device);
 
-    private:
-        std::map<int,unsigned int> _androidIDToIDMap;
-
-
-    };
+    _androidDeviceID = androidDeviceID;
 }
+
+unsigned int FSAndroidJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickManager)
+{
+    return 0;
+}
+
