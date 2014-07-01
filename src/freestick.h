@@ -47,13 +47,14 @@ and must not be misrepresented as being the original software.
 #include "FSDeviceInputEvent.h"
 
 #ifdef __APPLE__
+    #include "USB/platform/NULL/FSUSBNullJoystickDeviceManager.h"
     #include "TargetConditionals.h"
     #if TARGET_OS_IPHONE && TARGET_IPHONE_SIMULATOR
         // define something for simulator
         typedef freestick::FSUSBNullJoystickDeviceManager FreeStickDeviceManager;
     #elif TARGET_OS_IPHONE
         // define something for iphone
-        typedef freestick::FSUSBNullJoystickManager FreeStickDeviceManager;
+        typedef freestick::FSUSBNullJoystickDeviceManager FreeStickDeviceManager;
     #else
         #define TARGET_OS_OSX 1
         // define something for OSX
