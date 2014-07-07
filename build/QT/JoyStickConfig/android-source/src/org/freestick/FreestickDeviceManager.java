@@ -28,6 +28,10 @@ and must not be misrepresented as being the original software.
 package org.freestick;
 import android.hardware.input.InputManager;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.KeyEvent;
+import android.view.InputDevice;
+
 public class FreestickDeviceManager implements InputManager.InputDeviceListener{
 
     static
@@ -38,6 +42,8 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener{
      public native void gamepadWasAdded(int deviceid);
 
      public native void gamepadWasRemoved(int deviceid);
+
+     public native void gamepadDeviceUpdate(int deviceid,int code,int type,float value,int min,int max);
 
      public FreestickDeviceManager()
      {
@@ -64,6 +70,36 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener{
          Log.w("FreeStick", "onInputDeviceChanged");
 
      }
+
+     public void handelMotionEvent(MotionEvent event)
+     {
+         if(((event.getSource() & InputDevice.SOURCE_CLASS_JOYSTICK) != 0 ) && (event.getAction() == MotionEvent.ACTION_MOVE) )
+         {
+             Log.w("FreeStick", "handelMotionEvent" + event.toString());
+             final int pointerCount = event.getPointerCount();
+             //Log.w("FreeStick","At time :" + event.getEventTime());
+                  for (int p = 0; p < pointerCount; p++) {
+                //      Log.w("FreeStick","  pointer " + event.getPointerId(p) +":"+ "(" + event.getX(p) +"," + event.getY(p) + ")" );
+                  }
+            //gamepadDeviceUpdate(event.getDeviceId(),code,1,value,-1,1);
+         }
+
+
+     }
+
+    public void handelButtonEvent(KeyEvent event)
+    {
+        if(event.getAction() == KeyEvent.ACTION_UP  || event.getAction() == KeyEvent.ACTION_DOWN)
+        {
+            Log.w("FreeStick", "handelButtonEvent" + event.toString());
+
+            float value = (float)event.getAction() ;
+            int code = (int)event.getKeyCode();
+            Log.w("FreeStick","calling gamepadDeviceUpdate");
+            gamepadDeviceUpdate(event.getDeviceId(),code,0,value,0,1);
+            Log.w("FreeStick","Back From calling gamepadDeviceUpdate");
+        }
+    }
 
 
 

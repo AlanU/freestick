@@ -85,9 +85,10 @@ void JoyStickConfigWidget::onStickMove(FSDeviceInputEvent event)
 
 void JoyStickConfigWidget::onButtonDown(FSDeviceInputEvent event)
 {
-    if(!isCurrentDevice(event.getDeviceID()))
-        return;
+   // if(!isCurrentDevice(event.getDeviceID()))
+   //     return;
 
+    qDebug()<<"button down"<<endl;
     QString text;
     if(FS_isDpad(event.getInputType()) )
     {
@@ -109,8 +110,8 @@ void JoyStickConfigWidget::onButtonDown(FSDeviceInputEvent event)
 
  void JoyStickConfigWidget::onButtonUp(FSDeviceInputEvent event)
 {
-     if(!isCurrentDevice(event.getDeviceID()))
-         return;
+     //if(!isCurrentDevice(event.getDeviceID()))
+     //    return;
 
      QString text;
      if(FS_isDpad(event.getInputType()) )

@@ -56,6 +56,7 @@ namespace freestick {
         Trigger1,
         Trigger2,
         LastTrigger,
+        Unknown,
         LastValueUp, //use to return and event of released on the last value for the device controll (used a lot in hatswitch)
         AllInputs,
         LastInput,

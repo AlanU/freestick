@@ -29,6 +29,15 @@ and must not be misrepresented as being the original software.
 #include <android/input.h>
 std::vector<IJINICallBack*> JNIBridge::_deviceAddedCallback;
 std::vector<IJINICallBack*> JNIBridge::_deviceRemovedCallback;
+std::vector<IJINICallBack*> JNIBridge::_deviceUpdateCallback;
+
+JNIEXPORT void JNICALL Java_org_freestick_FreestickDeviceManager_gamepadDeviceUpdate(JNIEnv *env, jobject thisObj,jint deviceid,jint code,jint type,jfloat value,jint min,jint max)
+{
+    LOGI("JNI gamepadDeviceUpdate %i %i %f %i,%i",code,type,value,min,max);
+
+    JNIBridge::updateValue(deviceid, code, type, value,min,max);
+}
+
 JNIEXPORT void JNICALL Java_org_freestick_FreestickDeviceManager_gamepadWasAdded(JNIEnv *env, jobject thisObj,jint HID_ID)
 {
   //  gamepadWasAdded(devicemanager,HID_ID);
@@ -43,6 +52,16 @@ JNIEXPORT void JNICALL Java_org_freestick_FreestickDeviceManager_gamepadWasRemov
 
     JNIBridge::update(HID_ID,1);
 
+}
+
+
+void JNIBridge::updateValue(int deviceid,int code,int type,float value,int min,int max)
+{
+    for(std::vector<IJINICallBack*>::iterator itr = _deviceUpdateCallback.begin();itr != _deviceUpdateCallback.end();itr++)
+    {
+        (*itr)->gamepadWasUpdatedFromJINBridge(deviceid, code, type, value,min,max);
+
+    }
 }
 
 void JNIBridge::update(int hidDeviceID, int type)
@@ -61,6 +80,7 @@ void JNIBridge::update(int hidDeviceID, int type)
         case 1:
             for(std::vector<IJINICallBack*>::iterator itr = _deviceRemovedCallback.begin();itr != _deviceRemovedCallback.end();itr++)
             {
+                LOGI("Call back from bridge for device remove");
                (*itr)->gamepadWasRemovedFromJINBridge(hidDeviceID);
             }
         break;
@@ -75,5 +95,12 @@ void JNIBridge::registerDeviceWasAdded(IJINICallBack *listener)
 
 void JNIBridge::registerDeviceWasRemoved(IJINICallBack *listener)
 {
+    LOGI("Registed for device remove");
     _deviceRemovedCallback.push_back(listener);
 }
+
+void JNIBridge::registerDeviceWasUpdated(IJINICallBack * listener)
+{
+    _deviceUpdateCallback.push_back(listener);
+}
+
