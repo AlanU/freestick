@@ -29,10 +29,24 @@ and must not be misrepresented as being the original software.
 #include "../NULL/FSUSBNullDevice.h"
 #include "./jni_wrapper.h"
 #include <android/log.h>
+#include <android/input.h>
+#include <android/keycodes.h>
 #include "FSAndroidJoystick.h"
 using namespace freestick;
 FSHIDAndroidJoysickDeviceManager::FSHIDAndroidJoysickDeviceManager()
 {
+
+    _androidUsageMapToInputEvent[AKEYCODE_DPAD_UP] = DPadUp;
+    _androidUsageMapToInputEvent[AKEYCODE_DPAD_DOWN] = DPadDown;
+    _androidUsageMapToInputEvent[AKEYCODE_DPAD_LEFT] = DPadLeft;
+    _androidUsageMapToInputEvent[AKEYCODE_DPAD_RIGHT] = DPadRight;
+    _androidUsageMapToInputEvent[AKEYCODE_DPAD_RIGHT] = DPadRight;
+    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_X] = Button1;
+    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_Y] = Button2;
+    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_A] = Button3;
+    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_B] = Button4;
+    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_SELECT] = Button5;
+    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_START] = Button6;
 }
 
 
@@ -43,8 +57,48 @@ void FSHIDAndroidJoysickDeviceManager::init( )
 
     JNIBridge::registerDeviceWasAdded(this);
     JNIBridge::registerDeviceWasRemoved(this);
+    JNIBridge::registerDeviceWasUpdated(this);
 }
 
+void FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int deviceid,int code,int type,float value,int min,int max)
+{
+    LOGI("From C++ GamePad was updated ");
+
+    /*
+      manager->inputOnDeviceChanged(eventType,inputType.getEventMapping(),
+                                            inputType.getDeviceInput(),
+                                          deviceID,elementDevice->getJoystickID(),
+                                          elementDevice->getValue(),0,
+                                          IOHIDElementGetLogicalMin(element),
+                                          IOHIDElementGetLogicalMax(element));*/
+
+    //TODO validate the device exist if not add it
+    if(_androidIDToIDMap.find(deviceid) == _androidIDToIDMap.end())
+    {
+        this->gamepadWasAddedFromJINBridge(deviceid);
+    }
+
+     LOGI("device %i with code %i min %i max %i with value %i",deviceid,code,min,max,value);
+    if(max == 1 && min == 0)
+    {
+        FSEventAction eventAction = FSInputRest;
+        FSDeviceInput inputType = Unknown;
+         if(value = 0)   //down
+           {  eventAction = FSInputPressed; }
+         if(_androidUsageMapToInputEvent.find(code) != _androidUsageMapToInputEvent.end())
+         {
+             inputType = _androidUsageMapToInputEvent[code];
+         }
+         if(inputType == Unknown)
+         {
+               LOGI("Unknow input type for %i ",code);
+         }
+         else
+         LOGI("know input type for %i is %i",code,inputType);
+         this->inputOnDeviceChanged(FS_BUTTON_EVENT,eventAction,inputType,_androidIDToIDMap[deviceid],code,value,0,min,max);
+    }
+
+}
 
 
 void FSHIDAndroidJoysickDeviceManager::gamepadWasAddedFromJINBridge(int deviceID)
@@ -56,6 +110,7 @@ void FSHIDAndroidJoysickDeviceManager::gamepadWasAddedFromJINBridge(int deviceID
 
 void FSHIDAndroidJoysickDeviceManager::gamepadWasRemovedFromJINBridge(int deviceID)\
 {
+      LOGI("From C++ GamePad was removed ");
      FSBaseDevice * device = NULL;
     if(_androidIDToIDMap.find(deviceID) != _androidIDToIDMap.end())
     {
@@ -64,6 +119,7 @@ void FSHIDAndroidJoysickDeviceManager::gamepadWasRemovedFromJINBridge(int device
     }
     if(device)
     {
+        LOGI("From C++ GamePad is going to be removed ");
         this->removeDevice(device);
     }
 }

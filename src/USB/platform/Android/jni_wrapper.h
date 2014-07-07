@@ -38,6 +38,8 @@ extern "C" {
 #endif
     JNIEXPORT void JNICALL Java_org_freestick_FreestickDeviceManager_gamepadWasAdded(JNIEnv *env, jobject thisObj,jint HID_ID);
     JNIEXPORT void JNICALL Java_org_freestick_FreestickDeviceManager_gamepadWasRemoved(JNIEnv *env, jobject thisObj,jint HID_ID);
+    JNIEXPORT void JNICALL Java_org_freestick_FreestickDeviceManager_gamepadDeviceUpdate(JNIEnv *env, jobject thisObj,jint deviceid,jint code,jint type,jfloat value,jint min,jint max);
+
 #ifdef __cplusplus
 }
 class IJINICallBack
@@ -45,18 +47,23 @@ class IJINICallBack
 public:
     virtual void gamepadWasAddedFromJINBridge(int hid_id) = 0;
     virtual void gamepadWasRemovedFromJINBridge(int hid_id) = 0;
+    virtual void gamepadWasUpdatedFromJINBridge(int deviceid,int code,int type,float value,int min,int max) = 0;
 };
 
 class JNIBridge
 {
     public:
+        //TODO use flag to make this all the register call backs two functions
        static void registerDeviceWasAdded(IJINICallBack * listener);
        static void registerDeviceWasRemoved(IJINICallBack * listener);
+       static void registerDeviceWasUpdated(IJINICallBack * listener);
        static void deregisterDeviceWasAdded(IJINICallBack * listener){}
        static void deregisterDeviceWasRemoved(IJINICallBack * listener){}
        static void update(int hidDeviceID, int type);
+       static void updateValue(int deviceid,int code,int type,float value,int min,int max);
     private:
         static std::vector<IJINICallBack*> _deviceAddedCallback;
         static std::vector<IJINICallBack*> _deviceRemovedCallback;
+        static std::vector<IJINICallBack*> _deviceUpdateCallback;
 };
 #endif
