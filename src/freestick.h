@@ -68,7 +68,7 @@ typedef freestick::FSHIDAndroidJoysickDeviceManager FreeStickDeviceManager;
 
 #else
     #include "USB/platform/NULL/FSUSBNullJoystickDeviceManager.h"
-    typedef freestick::FSUSBNullJoystickManager FreeStickDeviceManager;
+    typedef freestick::FSUSBNullJoystickDeviceManager FreeStickDeviceManager;
 #endif
 
 #endif // FREESTICK_H
