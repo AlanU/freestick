@@ -92,7 +92,6 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener{
         if(event.getAction() == KeyEvent.ACTION_UP  || event.getAction() == KeyEvent.ACTION_DOWN)
         {
             Log.w("FreeStick", "handelButtonEvent" + event.toString());
-
             float value = (float)event.getAction() ;
             int code = (int)event.getKeyCode();
             Log.w("FreeStick","calling gamepadDeviceUpdate");

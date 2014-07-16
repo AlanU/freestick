@@ -78,12 +78,12 @@ void FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int device
         this->gamepadWasAddedFromJINBridge(deviceid);
     }
 
-     LOGI("device %i with code %i min %i max %i with value %i",deviceid,code,min,max,value);
+     LOGI("device %i with code %i min %i max %i with value %f",deviceid,code,min,max,value);
     if(max == 1 && min == 0)
     {
         FSEventAction eventAction = FSInputRest;
         FSDeviceInput inputType = Unknown;
-         if(value = 0)   //down
+         if(value == 0)   //down
            {  eventAction = FSInputPressed; }
          if(_androidUsageMapToInputEvent.find(code) != _androidUsageMapToInputEvent.end())
          {
