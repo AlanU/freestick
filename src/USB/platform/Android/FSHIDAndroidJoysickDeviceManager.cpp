@@ -75,7 +75,8 @@ void FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int device
     //TODO validate the device exist if not add it
     if(_androidIDToIDMap.find(deviceid) == _androidIDToIDMap.end())
     {
-        this->gamepadWasAddedFromJINBridge(deviceid);
+        return;
+        //this->gamepadWasAddedFromJINBridge(deviceid);
     }
 
      LOGI("device %i with code %i min %i max %i with value %f",deviceid,code,min,max,value);
@@ -110,29 +111,20 @@ void FSHIDAndroidJoysickDeviceManager::gamepadWasAddedFromJINBridge(int deviceID
 
 void FSHIDAndroidJoysickDeviceManager::gamepadWasRemovedFromJINBridge(int deviceID)\
 {
-      LOGI("From C++ GamePad was removed ");
+      LOGI("From C++ GamePad trying to remove %i",deviceID);
      FSBaseDevice * device = NULL;
     if(_androidIDToIDMap.find(deviceID) != _androidIDToIDMap.end())
     {
+        LOGI("From C++ GamePad was found and is going to be removed ");
         device = (FSBaseDevice *)this->getDevice(_androidIDToIDMap[deviceID]);
+        if(device != NULL)
+        {
+            LOGI("From C++ GamePad is going to be removed ");
+            this->removeDevice(device);
+        }
         _androidIDToIDMap.erase(deviceID);
     }
-    if(device)
-    {
-        LOGI("From C++ GamePad is going to be removed ");
-        this->removeDevice(device);
-    }
-}
 
-
-void FSHIDAndroidJoysickDeviceManager::addDevice(FSBaseDevice * device)
-{
-    FSUSBDeviceManager::addDevice(device);
-}
-
-void FSHIDAndroidJoysickDeviceManager::removeDevice(FSBaseDevice * device)
-{
-    FSUSBDeviceManager::removeDevice(device);
 }
 
 

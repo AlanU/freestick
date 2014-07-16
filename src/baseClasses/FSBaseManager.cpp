@@ -240,9 +240,11 @@ void FSBaseManager::removeDevice(FSBaseDevice * device)
     deviceMap.erase(device->getJoystickID());
     FSBaseEvent newConnectEvent(FS_JOYSTICK_DISCONNECT_EVENT,FSInputChanged,std::time(0),device->getJoystickID());
     updateEvent(newConnectEvent);
-    delete device;
     EE_DEBUG<<"removed device with ID "<<device->getJoystickID()<<std::endl;
+    delete device;
+    device = NULL;
     EE_DEBUG<<"device map "<<deviceMap.size()<<std::endl;
+
 }
 
 unsigned int FSBaseManager::getNextID()

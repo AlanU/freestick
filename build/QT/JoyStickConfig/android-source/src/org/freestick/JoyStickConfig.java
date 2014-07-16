@@ -49,6 +49,7 @@ public class JoyStickConfig extends org.qtproject.qt5.android.bindings.QtActivit
   public void onCreate(Bundle savedInstanceState)
   {
     m_inputManager = (InputManager)getSystemService(Context.INPUT_SERVICE);
+    int[] ids = m_inputManager.getInputDeviceIds();
     m_deviceManager = new FreestickDeviceManager();
     m_inputManager.registerInputDeviceListener(m_deviceManager, null);
 
@@ -81,9 +82,8 @@ public class JoyStickConfig extends org.qtproject.qt5.android.bindings.QtActivit
       if(m_deviceManager != null)
         {
              Log.w("FreeStick", "registring device manager");
-            // m_inputManager.registerInputDeviceListener(m_deviceManager, null);
-             /*int[] ids = m_inputManager.getInputDeviceIds();
-             for (int i = 0; i < ids.length; i++) {
+              m_inputManager.registerInputDeviceListener(m_deviceManager, null);
+             /*for (int i = 0; i < ids.length; i++) {
                  InputDevice currentDevice = m_inputManager.getInputDevice(ids[i]);
              if((currentDevice.getSources() & InputDevice.SOURCE_GAMEPAD) != 0)
              {m_deviceManager.onInputDeviceAdded(ids[i]);}
