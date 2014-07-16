@@ -38,7 +38,7 @@ FSUSBDevice::FSUSBDevice(unsigned int id,
 {
 
     _vendorID = venderID;
-    _vendorIDFriendlyName = FSUSBDevice::GetFrendlyVenderNameFromID(productID);
+    _vendorIDFriendlyName = FSUSBDevice::GetFrendlyVenderNameFromID(venderID);
     _productID = productID;
     _prodcutIDFriendlyName = FSUSBDevice::GetFrendlyProductNameFromID(_vendorID,_productID);
     _friendlyName = _vendorIDFriendlyName + " "+ _prodcutIDFriendlyName;
