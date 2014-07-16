@@ -72,11 +72,9 @@ void FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int device
                                           IOHIDElementGetLogicalMin(element),
                                           IOHIDElementGetLogicalMax(element));*/
 
-    //TODO validate the device exist if not add it
     if(_androidIDToIDMap.find(deviceid) == _androidIDToIDMap.end())
     {
         return;
-        //this->gamepadWasAddedFromJINBridge(deviceid);
     }
 
      LOGI("device %i with code %i min %i max %i with value %f",deviceid,code,min,max,value);
@@ -105,8 +103,9 @@ void FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int device
 void FSHIDAndroidJoysickDeviceManager::gamepadWasAddedFromJINBridge(int deviceID)
 {
     LOGI("From C++ GamePad was added ");
-    _androidIDToIDMap[deviceID] = this->getNextID();
-   this->addDevice(new FSAndroidJoystick(deviceID,this->getNextID(),0,0,0,false));
+    unsigned int newdeviceID = this->getNextID();
+    _androidIDToIDMap[deviceID] = newdeviceID;
+   this->addDevice(new FSAndroidJoystick(deviceID,newdeviceID,0,0,0,false));
 }
 
 void FSHIDAndroidJoysickDeviceManager::gamepadWasRemovedFromJINBridge(int deviceID)\
