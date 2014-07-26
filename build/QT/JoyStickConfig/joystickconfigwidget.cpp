@@ -117,6 +117,15 @@ void JoyStickConfigWidget::onButtonDown(FSDeviceInputEvent event)
      if(FS_isDpad(event.getInputType()) )
      {
           text = tr("DPad ");
+          if(event.getInputType()== DPadLeft)
+          {
+              ui->tabWidget->setCurrentIndex(0);
+          }
+          else if(event.getInputType() == DPadRight)
+          {
+              ui->tabWidget->setCurrentIndex(1);
+          }
+
      }
      else if(FS_isButtion(event.getInputType()))
      {
@@ -128,6 +137,7 @@ void JoyStickConfigWidget::onButtonDown(FSDeviceInputEvent event)
      text += QString::number(event.getControlID());
 
      ui->DebugControl->setText(text);
+
 }
 void JoyStickConfigWidget::onConnect(FSBaseEvent event)
 {
