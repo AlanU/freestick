@@ -85,12 +85,19 @@ public class JoyStickConfig extends org.qtproject.qt5.android.bindings.QtActivit
         {
              Log.w("FreeStick", "registring device manager");
              int[] ids = m_inputManager.getInputDeviceIds();
-             /*for (int i = 0; i < ids.length; i++)
+             for (int i = 0; i < ids.length; i++)
              {
                  InputDevice currentDevice = m_inputManager.getInputDevice(ids[i]);
-                 if( ( (currentDevice.getSources() & InputDevice.SOURCE_GAMEPAD) != 0) || ((currentDevice.getSources() & InputDevice.SOURCE_JOYSTICK) != 0 ) )
-                  {m_deviceManager.onInputDeviceAdded(ids[i]);}
-             }*/
+                 if( ( (currentDevice.getSources() & InputDevice.SOURCE_GAMEPAD) != 0) || ((currentDevice.getSources() & InputDevice.SOURCE_JOYSTICK) != 0 )  )
+                  {
+                      if( (!currentDevice.isVirtual()) && ( ( currentDevice.getSources() & InputDevice.SOURCE_KEYBOARD) == 0 ) )
+                      {
+                      // m_deviceManager.onInputDeviceAdded(ids[i]);
+                         Log.w("FreeStick","device on resume "+currentDevice.toString());
+                      }
+
+                   }
+             }
              m_inputManager.registerInputDeviceListener(m_deviceManager, null);
 
 
