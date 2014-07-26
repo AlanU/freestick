@@ -101,6 +101,27 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener{
     }
 
 
+/*
+c++ for handelButtonEvent
+void ProcessInputEvent(AInputEvent * event)
+{
+    int32_t type = AInputEvent_getType(event);
+    if(type == AINPUT_EVENT_TYPE_KEY)
+    {
+        int32_t action = AKeyEvent_getAction(event);
+        if(action == AKEY_EVENT_ACTION_UP || action == AKEY_EVENT_ACTION_DOWN)
+        {
+            float value = (float) action;
+            int code = AKeyEvent_getKeyCode(event);
+            int32_t deviceID = AInputEvent_getDeviceId(event);
+            JNIBridge::updateValue(deviceID, code, 0, value,0,1);
+
+
+        }
+
+    }
+
+}*/
 
 
 
