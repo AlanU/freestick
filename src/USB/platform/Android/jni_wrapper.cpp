@@ -30,7 +30,6 @@ and must not be misrepresented as being the original software.
 std::vector<IJINICallBack*> JNIBridge::_deviceAddedCallback;
 std::vector<IJINICallBack*> JNIBridge::_deviceRemovedCallback;
 std::vector<IJINICallBack*> JNIBridge::_deviceUpdateCallback;
-
 JNIEXPORT void JNICALL Java_org_freestick_FreestickDeviceManager_gamepadDeviceUpdate(JNIEnv *env, jobject thisObj,jint deviceid,jint code,jint type,jfloat value,jint min,jint max)
 {
     LOGI("JNI gamepadDeviceUpdate %i %i %f %i,%i",code,type,value,min,max);
@@ -90,6 +89,8 @@ void JNIBridge::update(int hidDeviceID, int type)
 
 void JNIBridge::registerDeviceWasAdded(IJINICallBack *listener)
 {
+    LOGI("Registed for device added");
+
     _deviceAddedCallback.push_back(listener);
 }
 
