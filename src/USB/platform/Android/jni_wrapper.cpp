@@ -121,7 +121,7 @@ void  JNIBridge::updateJoysticks(JavaVM * jvm,JNIEnv *env)
 
     jmethodID getDeviceIDsMethodId = env->GetStaticMethodID(inputDevice,"getDeviceIds","()[I");
     jobject deviceIdsObj = env->CallStaticObjectMethod(inputDevice,getDeviceIDsMethodId);
-    jintArray * deviceIdArray = reinterpret_cast<jintArray *>(&deviceIdsObj);
+    jintArray * deviceIdArray = (jintArray *)(&deviceIdsObj);
     int arrayLenght = env->GetArrayLength((*deviceIdArray));
     jint * devicesArray = env->GetIntArrayElements((*deviceIdArray),0);
     for(int i = 0;i<arrayLenght;i++)
