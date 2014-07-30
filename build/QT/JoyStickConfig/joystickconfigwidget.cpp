@@ -29,6 +29,9 @@ and must not be misrepresented as being the original software.
 #include "ui_joystickconfigwidget.h"
 #include <QTimer>
 #include <QDebug>
+#ifdef Q_OS_ANDROID
+#include <QAndroidJniEnvironment>
+#endif
 using namespace freestick;
 JoyStickConfigWidget::JoyStickConfigWidget(QWidget *parent) :
     QWidget(parent),
@@ -37,6 +40,11 @@ JoyStickConfigWidget::JoyStickConfigWidget(QWidget *parent) :
     ui->setupUi(this);
 
     deviceManager.init();
+#ifdef Q_OS_ANDROID
+    QAndroidJniEnvironment qjniEnv;
+    JNIEnv *env = qjniEnv;
+    JNIBridge::updateJoysticks(QAndroidJniEnvironment::javaVM(),env);
+#endif
     deviceManager.ListenForAllJoysticksForEventTypes(FS_JOYSTICK_CONNECTED_EVENT |
                                                      FS_JOYSTICK_DISCONNECT_EVENT |
                                                      FS_BUTTON_EVENT | FS_AXIS_EVENT

@@ -27,9 +27,12 @@ and must not be misrepresented as being the original software.
 
 #include "jni_wrapper.h"
 #include <android/input.h>
+#include <jni.h>
 std::vector<IJINICallBack*> JNIBridge::_deviceAddedCallback;
 std::vector<IJINICallBack*> JNIBridge::_deviceRemovedCallback;
 std::vector<IJINICallBack*> JNIBridge::_deviceUpdateCallback;
+
+
 JNIEXPORT void JNICALL Java_org_freestick_FreestickDeviceManager_gamepadDeviceUpdate(JNIEnv *env, jobject thisObj,jint deviceid,jint code,jint type,jfloat value,jint min,jint max)
 {
     LOGI("JNI gamepadDeviceUpdate %i %i %f %i,%i",code,type,value,min,max);
@@ -39,14 +42,14 @@ JNIEXPORT void JNICALL Java_org_freestick_FreestickDeviceManager_gamepadDeviceUp
 
 JNIEXPORT void JNICALL Java_org_freestick_FreestickDeviceManager_gamepadWasAdded(JNIEnv *env, jobject thisObj,jint HID_ID)
 {
-  //  gamepadWasAdded(devicemanager,HID_ID);
+    //  gamepadWasAdded(devicemanager,HID_ID);
     LOGI("JNI gamePadWasAdded");
     JNIBridge::update(HID_ID,0);
 }
 
 JNIEXPORT void JNICALL Java_org_freestick_FreestickDeviceManager_gamepadWasRemoved(JNIEnv *env, jobject thisObj,jint HID_ID)
 {
-   //gamepadWasRemoved(devicemanager,HID_ID);
+    //gamepadWasRemoved(devicemanager,HID_ID);
     LOGI("JNI gamePadWasRemoved");
 
     JNIBridge::update(HID_ID,1);
@@ -68,20 +71,20 @@ void JNIBridge::update(int hidDeviceID, int type)
     int t=hidDeviceID;
     switch(type)
     {
-        case 0:
-             for(std::vector<IJINICallBack*>::iterator itr = _deviceAddedCallback.begin();itr != _deviceAddedCallback.end();itr++)
-             {
-                 LOGI("Call back from bridge");
-                (*itr)->gamepadWasAddedFromJINBridge(hidDeviceID);
-             }
-            //run through the _devieAddedCallback map cand call the correct function
+    case 0:
+        for(std::vector<IJINICallBack*>::iterator itr = _deviceAddedCallback.begin();itr != _deviceAddedCallback.end();itr++)
+        {
+            LOGI("Call back from bridge");
+            (*itr)->gamepadWasAddedFromJINBridge(hidDeviceID);
+        }
+        //run through the _devieAddedCallback map cand call the correct function
         break;
-        case 1:
-            for(std::vector<IJINICallBack*>::iterator itr = _deviceRemovedCallback.begin();itr != _deviceRemovedCallback.end();itr++)
-            {
-                LOGI("Call back from bridge for device remove");
-               (*itr)->gamepadWasRemovedFromJINBridge(hidDeviceID);
-            }
+    case 1:
+        for(std::vector<IJINICallBack*>::iterator itr = _deviceRemovedCallback.begin();itr != _deviceRemovedCallback.end();itr++)
+        {
+            LOGI("Call back from bridge for device remove");
+            (*itr)->gamepadWasRemovedFromJINBridge(hidDeviceID);
+        }
         break;
 
     }
@@ -105,3 +108,26 @@ void JNIBridge::registerDeviceWasUpdated(IJINICallBack * listener)
     _deviceUpdateCallback.push_back(listener);
 }
 
+void  JNIBridge::updateJoysticks(JavaVM * jvm,JNIEnv *env)
+{
+    //TODO cache jclass and methodID
+    jvm->AttachCurrentThread(&env,NULL);
+    jclass inputDevice = env->FindClass("android/view/InputDevice");
+    if(!inputDevice)
+    {
+        LOGI("call from updateJoysticks class not found");
+        return ;
+    }
+
+    jmethodID getDeviceIDsMethodId = env->GetStaticMethodID(inputDevice,"getDeviceIds","()[I");
+    jobject deviceIdsObj = env->CallStaticObjectMethod(inputDevice,getDeviceIDsMethodId);
+    jintArray * deviceIdArray = reinterpret_cast<jintArray *>(&deviceIdsObj);
+    int arrayLenght = env->GetArrayLength((*deviceIdArray));
+    jint * devicesArray = env->GetIntArrayElements((*deviceIdArray),0);
+    for(int i = 0;i<arrayLenght;i++)
+    {
+        LOGI("Found Device in c++ %i index number %i",devicesArray[i],i);
+        //TODO get device from id and check source
+    }
+
+}
