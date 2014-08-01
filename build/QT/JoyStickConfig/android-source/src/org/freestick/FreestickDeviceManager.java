@@ -100,6 +100,32 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener{
         }
     }
 
+    public void checkForNewJoysticks(InputManager inputManger)
+    {
+        if(inputManger != null)
+        {
+            int[] ids = inputManger.getInputDeviceIds();
+            for (int i = 0; i < ids.length; i++)
+            {
+                 InputDevice currentDevice = inputManger.getInputDevice(ids[i]);
+                 int sources = currentDevice.getSources();
+
+                 if (((sources & InputDevice.SOURCE_GAMEPAD) == InputDevice.SOURCE_GAMEPAD)
+                                || ((sources & InputDevice.SOURCE_JOYSTICK)
+                                == InputDevice.SOURCE_JOYSTICK) || ((sources & InputDevice.SOURCE_DPAD)
+                                == InputDevice.SOURCE_DPAD))
+                 {
+                     if(!currentDevice.isVirtual())
+                     {
+                      this.onInputDeviceAdded(ids[i]);
+                      Log.w("FreeStick","device on resume "+currentDevice.toString());
+                     }
+
+                }
+            }
+        }
+
+    }
 
 /*
 c++ for handelButtonEvent
