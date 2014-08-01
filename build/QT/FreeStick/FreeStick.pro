@@ -101,8 +101,8 @@ android {
 
    HEADERS += $$files(../../../src/USB/platform/Android/*.h)
 
-   INCLUDEPATH +=  $$(JAVA_HOME)/include \
-                   $$(JAVA_HOME)/include/darwin
+   INCLUDEPATH +=  $${JAVA_HOME}/include \
+                   $${JAVA_HOME}/include/darwin
     message("JDK Path")
     message($$INCLUDEPATH)
   #  QT += androidextras
