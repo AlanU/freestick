@@ -105,6 +105,8 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener{
         if(inputManger != null)
         {
             int[] ids = inputManger.getInputDeviceIds();
+            Log.w("FreeStick","checkForNewJoysticks lengthe"+ ids.length);
+
             for (int i = 0; i < ids.length; i++)
             {
                  InputDevice currentDevice = inputManger.getInputDevice(ids[i]);

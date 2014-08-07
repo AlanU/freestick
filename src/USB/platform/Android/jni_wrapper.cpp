@@ -31,7 +31,9 @@ and must not be misrepresented as being the original software.
 std::vector<IJINICallBack*> JNIBridge::_deviceAddedCallback;
 std::vector<IJINICallBack*> JNIBridge::_deviceRemovedCallback;
 std::vector<IJINICallBack*> JNIBridge::_deviceUpdateCallback;
-
+const int  InputDevice_SOURCE_GAMEPAD = 0x00000401;
+const int  InputDevice_SOURCE_JOYSTICK = 0x01000010;
+const int  InputDevice_SOURCE_DPAD = 0x00000201;
 
 JNIEXPORT void JNICALL Java_org_freestick_FreestickDeviceManager_gamepadDeviceUpdate(JNIEnv *env, jobject thisObj,jint deviceid,jint code,jint type,jfloat value,jint min,jint max)
 {
@@ -112,21 +114,47 @@ void  JNIBridge::updateJoysticks(JavaVM * jvm,JNIEnv *env)
 {
     //TODO cache jclass and methodID
     jvm->AttachCurrentThread(&env,NULL);
-    jclass inputDevice = env->FindClass("android/view/InputDevice");
-    if(!inputDevice)
+    jclass inputDeviceClass = env->FindClass("android/view/InputDevice");
+    if(!inputDeviceClass)
     {
         LOGI("call from updateJoysticks class not found");
         return ;
     }
 
-    jmethodID getDeviceIDsMethodId = env->GetStaticMethodID(inputDevice,"getDeviceIds","()[I");
-    jobject deviceIdsObj = env->CallStaticObjectMethod(inputDevice,getDeviceIDsMethodId);
+    jmethodID getDeviceIDsMethodId = env->GetStaticMethodID(inputDeviceClass,"getDeviceIds","()[I");
+    jobject deviceIdsObj = env->CallStaticObjectMethod(inputDeviceClass,getDeviceIDsMethodId);
     jintArray * deviceIdArray = (jintArray *)(&deviceIdsObj);
     int arrayLenght = env->GetArrayLength((*deviceIdArray));
-    jint * devicesArray = env->GetIntArrayElements((*deviceIdArray),0);
+    jint * devicesArray = env->GetIntArrayElements((*deviceIdArray),JNI_FALSE);
+
+
+    jmethodID getDeviceMethodId = env->GetStaticMethodID(inputDeviceClass,"getDevice","(I)Landroid/view/InputDevice");
+    LOGI("looking up deviceSourcesMethodID ");
+   // jmethodID toStringMethodID = env->GetMethodID(inputDeviceClass,"toString","()Ljava/lang/String");
+
+     jmethodID deviceSourcesMethodID = env->GetMethodID(inputDeviceClass,"getSources","()I");
+
     for(int i = 0;i<arrayLenght;i++)
     {
+
         LOGI("Found Device in c++ %i index number %i",devicesArray[i],i);
+        if(devicesArray[i] < 0)
+            continue;
+        jobject  currentInputDevice  = env->CallStaticObjectMethod(inputDeviceClass,getDeviceMethodId,devicesArray[i]);
+        if(currentInputDevice)
+        {
+
+            LOGI("Looking For Vaild Device");
+            int sources = (int) env->CallIntMethod(currentInputDevice,deviceSourcesMethodID);
+            if (((sources & InputDevice_SOURCE_GAMEPAD) == InputDevice_SOURCE_GAMEPAD)
+                           || ((sources & InputDevice_SOURCE_JOYSTICK)
+                           == InputDevice_SOURCE_JOYSTICK) || ((sources & InputDevice_SOURCE_DPAD)
+                           == InputDevice_SOURCE_DPAD))
+            {
+                LOGI("Vaild Device in c++ %i index number %i",devicesArray[i],i);
+
+            }
+        }
         //TODO get device from id and check source
     }
 

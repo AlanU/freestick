@@ -51,7 +51,7 @@ public class JoyStickConfig extends org.qtproject.qt5.android.bindings.QtActivit
     m_inputManager = (InputManager)getSystemService(Context.INPUT_SERVICE);
     int[] ids = m_inputManager.getInputDeviceIds();
     m_deviceManager = new FreestickDeviceManager();
-
+    m_deviceManager.checkForNewJoysticks(m_inputManager);
 
     //m_inputManager.registerInputDeviceListener(m_deviceManager, null);
 
