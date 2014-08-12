@@ -27,6 +27,7 @@ and must not be misrepresented as being the original software.
 
 package org.freestick;
 import android.hardware.input.InputManager;
+import android.view.InputDevice;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.KeyEvent;
@@ -104,12 +105,13 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener{
     {
         if(inputManger != null)
         {
-            int[] ids = inputManger.getInputDeviceIds();
+            int[] ids = InputDevice.getDeviceIds();//inputManger.getInputDeviceIds();
             Log.w("FreeStick","checkForNewJoysticks lengthe"+ ids.length);
 
             for (int i = 0; i < ids.length; i++)
             {
-                 InputDevice currentDevice = inputManger.getInputDevice(ids[i]);
+                Log.w("FreeStick","java found device id "+ids[i]+" at "+i);
+                 InputDevice currentDevice = InputDevice.getDevice(ids[i]); // inputManger.getInputDevice(ids[i]);
                  int sources = currentDevice.getSources();
 
                  if (((sources & InputDevice.SOURCE_GAMEPAD) == InputDevice.SOURCE_GAMEPAD)

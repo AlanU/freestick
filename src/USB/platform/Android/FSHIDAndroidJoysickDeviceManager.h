@@ -29,12 +29,14 @@ and must not be misrepresented as being the original software.
 
 #include "../../FSUSBJoystickDeviceManager.h"
 #include "jni_wrapper.h"
+#include <jni.h>
 namespace freestick
 {
     class FSHIDAndroidJoysickDeviceManager : public FSUSBJoystickDeviceManager , IJINICallBack
     {
     public:
         FSHIDAndroidJoysickDeviceManager();
+        void init(JavaVM * jvm) ;
         virtual void init( );
         virtual void gamepadWasAddedFromJINBridge(int hid_id);
         virtual void gamepadWasRemovedFromJINBridge(int hid_id);
@@ -42,6 +44,8 @@ namespace freestick
     private:
         std::map<int,unsigned int> _androidIDToIDMap;
         std::map<unsigned int,FSDeviceInput > _androidUsageMapToInputEvent;
+        JNIEnv *_jniEvn ;
+        JavaVM * _jvm;
 
 
     };

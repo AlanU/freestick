@@ -36,6 +36,8 @@ QT += androidextras
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android-source
    message("JoyStickConfig Android Package Source")
    message($$ANDROID_PACKAGE_SOURCE_DIR)
+   INCLUDEPATH +=  $$(JAVA_HOME)/include \
+                   $$(JAVA_HOME)/include/darwin
 OTHER_FILES+= $$files(android-source/src/org/freestick/*.java) \
                   $$files(android-source/*.xml)
 #CONFIG += dylib

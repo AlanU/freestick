@@ -50,6 +50,12 @@ FSHIDAndroidJoysickDeviceManager::FSHIDAndroidJoysickDeviceManager()
 }
 
 
+void FSHIDAndroidJoysickDeviceManager::init(JavaVM * jvm)
+{
+    _jvm = jvm;
+    JNIBridge::updateJoysticks(_jvm);
+}
+
 
 void FSHIDAndroidJoysickDeviceManager::init( )
 {

@@ -110,11 +110,13 @@ void JNIBridge::registerDeviceWasUpdated(IJINICallBack * listener)
     _deviceUpdateCallback.push_back(listener);
 }
 
-void  JNIBridge::updateJoysticks(JavaVM * jvm,JNIEnv *env)
+void  JNIBridge::updateJoysticks(JavaVM * jvm)
 {
+    JNIEnv *env;
     //TODO cache jclass and methodID
-    jvm->AttachCurrentThread(&env,NULL);
+    jvm->AttachCurrentThread((void **)&env,NULL);
     jclass inputDeviceClass = env->FindClass("android/view/InputDevice");
+
     if(!inputDeviceClass)
     {
         LOGI("call from updateJoysticks class not found");
@@ -127,23 +129,47 @@ void  JNIBridge::updateJoysticks(JavaVM * jvm,JNIEnv *env)
     int arrayLenght = env->GetArrayLength((*deviceIdArray));
     jint * devicesArray = env->GetIntArrayElements((*deviceIdArray),JNI_FALSE);
 
+    LOGI("looking up device getDevice MethodID ");
 
     jmethodID getDeviceMethodId = env->GetStaticMethodID(inputDeviceClass,"getDevice","(I)Landroid/view/InputDevice");
-    LOGI("looking up deviceSourcesMethodID ");
+    if(getDeviceMethodId)
+    {
+        LOGI("get device MethodID lookup failed");
+        return;
+    }
    // jmethodID toStringMethodID = env->GetMethodID(inputDeviceClass,"toString","()Ljava/lang/String");
 
-     jmethodID deviceSourcesMethodID = env->GetMethodID(inputDeviceClass,"getSources","()I");
 
+     LOGI("arraylenght %i",arrayLenght);
     for(int i = 0;i<arrayLenght;i++)
     {
 
         LOGI("Found Device in c++ %i index number %i",devicesArray[i],i);
-        if(devicesArray[i] < 0)
-            continue;
-        jobject  currentInputDevice  = env->CallStaticObjectMethod(inputDeviceClass,getDeviceMethodId,devicesArray[i]);
+
+        int currentID = devicesArray[i];
+        LOGI("Calling get Device");
+
+        jobject  currentInputDevice ;
+        env->CallStaticObjectMethod(inputDeviceClass,getDeviceMethodId,currentID);
+        continue;
         if(currentInputDevice)
         {
+            LOGI("found  Device");
 
+            jclass deviceInstanceClass = env->GetObjectClass(currentInputDevice);
+            if(deviceInstanceClass)
+            {
+                LOGI("deviceInstanceClass not found");
+                continue;
+            }
+            LOGI("calling getSources");
+            jmethodID deviceSourcesMethodID = env->GetMethodID(deviceInstanceClass,"getSources","()I");
+
+            if(deviceSourcesMethodID)
+            {
+                LOGI("device sources MethodID lookup failed");
+                return;
+            }
             LOGI("Looking For Vaild Device");
             int sources = (int) env->CallIntMethod(currentInputDevice,deviceSourcesMethodID);
             if (((sources & InputDevice_SOURCE_GAMEPAD) == InputDevice_SOURCE_GAMEPAD)
