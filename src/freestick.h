@@ -65,8 +65,7 @@ and must not be misrepresented as being the original software.
     //define for android
     #include "USB/platform/Android/FSHIDAndroidJoysickDeviceManager.h"
     #include "USB/platform/Android/jni_wrapper.h"
-typedef freestick::FSHIDAndroidJoysickDeviceManager FreeStickDeviceManager;
-
+    typedef freestick::FSHIDAndroidJoysickDeviceManager FreeStickDeviceManager;
 #else
     #include "USB/platform/NULL/FSUSBNullJoystickDeviceManager.h"
     typedef freestick::FSUSBNullJoystickDeviceManager FreeStickDeviceManager;

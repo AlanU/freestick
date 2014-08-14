@@ -114,7 +114,7 @@ void  JNIBridge::updateJoysticks(JavaVM * jvm)
 {
     JNIEnv *env;
     //TODO cache jclass and methodID
-    jvm->AttachCurrentThread((void **)&env,NULL);
+    jvm->AttachCurrentThread(&env,NULL);
     jclass inputDeviceClass = env->FindClass("android/view/InputDevice");
 
     if(!inputDeviceClass)
@@ -131,33 +131,31 @@ void  JNIBridge::updateJoysticks(JavaVM * jvm)
 
     LOGI("looking up device getDevice MethodID ");
 
-    jmethodID getDeviceMethodId = env->GetStaticMethodID(inputDeviceClass,"getDevice","(I)Landroid/view/InputDevice");
-    if(getDeviceMethodId)
+    jmethodID getDeviceMethodId = env->GetStaticMethodID(inputDeviceClass,"getDevice","(I)Landroid/view/InputDevice;");
+    if(!getDeviceMethodId)
     {
         LOGI("get device MethodID lookup failed");
         return;
     }
-   // jmethodID toStringMethodID = env->GetMethodID(inputDeviceClass,"toString","()Ljava/lang/String");
+   // jmethodID toStringMethodID = env->GetMethodID(inputDeviceClass,"toString","()Ljava/lang/String;");
 
 
-     LOGI("arraylenght %i",arrayLenght);
+    LOGI("arraylenght %i",arrayLenght);
     for(int i = 0;i<arrayLenght;i++)
     {
-
         LOGI("Found Device in c++ %i index number %i",devicesArray[i],i);
 
         int currentID = devicesArray[i];
-        LOGI("Calling get Device");
+        //LOGI("Calling get Device: %p, %u, %u",env,getDeviceMethodId,currentID);
 
-        jobject  currentInputDevice ;
-        env->CallStaticObjectMethod(inputDeviceClass,getDeviceMethodId,currentID);
-        continue;
+        jobject currentInputDevice=env->CallStaticObjectMethod(inputDeviceClass,getDeviceMethodId,currentID);
+
         if(currentInputDevice)
         {
             LOGI("found  Device");
 
             jclass deviceInstanceClass = env->GetObjectClass(currentInputDevice);
-            if(deviceInstanceClass)
+            if(!deviceInstanceClass)
             {
                 LOGI("deviceInstanceClass not found");
                 continue;
@@ -165,7 +163,7 @@ void  JNIBridge::updateJoysticks(JavaVM * jvm)
             LOGI("calling getSources");
             jmethodID deviceSourcesMethodID = env->GetMethodID(deviceInstanceClass,"getSources","()I");
 
-            if(deviceSourcesMethodID)
+            if(!deviceSourcesMethodID)
             {
                 LOGI("device sources MethodID lookup failed");
                 return;
