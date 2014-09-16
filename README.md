@@ -5,7 +5,7 @@
 C++ compiler
 
 ### Documentation ###
-See the [wiki](https://bitbucket.org/AlanU/freestick/wiki) and [doc](https://bitbucket.org/AlanU/freestick/src/) folder in repo for more documentation.
+See the [wiki](https://bitbucket.org/freestick/freestick/wiki) and [doc](https://bitbucket.org/freestick/freestick/src/) folder in repo for more documentation.
 
 ### Getting started ###
 The easies way to get started is to download [QT](http://qt-project.org/downloads) and open up the FreeStickTestApp.pro
