@@ -53,6 +53,7 @@ FSHIDAndroidJoysickDeviceManager::FSHIDAndroidJoysickDeviceManager()
 void FSHIDAndroidJoysickDeviceManager::init(JavaVM * jvm)
 {
     _jvm = jvm;
+    init();
     JNIBridge::updateJoysticks(_jvm);
 }
 
@@ -133,6 +134,11 @@ void FSHIDAndroidJoysickDeviceManager::gamepadWasRemovedFromJINBridge(int device
         _androidIDToIDMap.erase(deviceID);
     }
 
+}
+
+void FSHIDAndroidJoysickDeviceManager::update()
+{
+    JNIBridge::updateJoysticks(_jvm);
 }
 
 

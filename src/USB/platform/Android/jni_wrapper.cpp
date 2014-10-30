@@ -27,10 +27,12 @@ and must not be misrepresented as being the original software.
 
 #include "jni_wrapper.h"
 #include <android/input.h>
+#include <algorithm>
 #include <jni.h>
 std::vector<IJINICallBack*> JNIBridge::_deviceAddedCallback;
 std::vector<IJINICallBack*> JNIBridge::_deviceRemovedCallback;
 std::vector<IJINICallBack*> JNIBridge::_deviceUpdateCallback;
+
 const int  InputDevice_SOURCE_GAMEPAD = 0x00000401;
 const int  InputDevice_SOURCE_JOYSTICK = 0x01000010;
 const int  InputDevice_SOURCE_DPAD = 0x00000201;
@@ -76,7 +78,7 @@ void JNIBridge::update(int hidDeviceID, int type)
     case 0:
         for(std::vector<IJINICallBack*>::iterator itr = _deviceAddedCallback.begin();itr != _deviceAddedCallback.end();itr++)
         {
-            LOGI("Call back from bridge");
+            LOGI("Call back from bridge added device");
             (*itr)->gamepadWasAddedFromJINBridge(hidDeviceID);
         }
         //run through the _devieAddedCallback map cand call the correct function
@@ -112,6 +114,8 @@ void JNIBridge::registerDeviceWasUpdated(IJINICallBack * listener)
 
 void  JNIBridge::updateJoysticks(JavaVM * jvm)
 {
+    static std::vector<jint> currentAttachedJoysticks;
+    std::vector<jint> foundJoysticks;
     JNIEnv *env;
     //TODO cache jclass and methodID
     jvm->AttachCurrentThread(&env,NULL);
@@ -129,7 +133,8 @@ void  JNIBridge::updateJoysticks(JavaVM * jvm)
     int arrayLenght = env->GetArrayLength((*deviceIdArray));
     jint * devicesArray = env->GetIntArrayElements((*deviceIdArray),JNI_FALSE);
 
-    LOGI("looking up device getDevice MethodID ");
+
+   // LOGI("looking up device getDevice MethodID ");
 
     jmethodID getDeviceMethodId = env->GetStaticMethodID(inputDeviceClass,"getDevice","(I)Landroid/view/InputDevice;");
     if(!getDeviceMethodId)
@@ -143,7 +148,7 @@ void  JNIBridge::updateJoysticks(JavaVM * jvm)
     LOGI("arraylenght %i",arrayLenght);
     for(int i = 0;i<arrayLenght;i++)
     {
-        LOGI("Found Device in c++ %i index number %i",devicesArray[i],i);
+        //LOGI("Found Device in c++ %i index number %i",devicesArray[i],i);
 
         int currentID = devicesArray[i];
         //LOGI("Calling get Device: %p, %u, %u",env,getDeviceMethodId,currentID);
@@ -152,7 +157,7 @@ void  JNIBridge::updateJoysticks(JavaVM * jvm)
 
         if(currentInputDevice)
         {
-            LOGI("found  Device");
+          //  LOGI("found  Device");
 
             jclass deviceInstanceClass = env->GetObjectClass(currentInputDevice);
             if(!deviceInstanceClass)
@@ -160,7 +165,7 @@ void  JNIBridge::updateJoysticks(JavaVM * jvm)
                 LOGI("deviceInstanceClass not found");
                 continue;
             }
-            LOGI("calling getSources");
+          //  LOGI("calling getSources");
             jmethodID deviceSourcesMethodID = env->GetMethodID(deviceInstanceClass,"getSources","()I");
 
             if(!deviceSourcesMethodID)
@@ -168,18 +173,56 @@ void  JNIBridge::updateJoysticks(JavaVM * jvm)
                 LOGI("device sources MethodID lookup failed");
                 return;
             }
-            LOGI("Looking For Vaild Device");
+            jmethodID deviceIsVirtualMethodID = env->GetMethodID(deviceInstanceClass,"isVirtual","()Z");
+
+            if(!deviceIsVirtualMethodID)
+            {
+                LOGI("device isVirtual MethodID lookup failed");
+                return;
+            }
+         //   LOGI("Looking For Vaild Device");
             int sources = (int) env->CallIntMethod(currentInputDevice,deviceSourcesMethodID);
             if (((sources & InputDevice_SOURCE_GAMEPAD) == InputDevice_SOURCE_GAMEPAD)
                            || ((sources & InputDevice_SOURCE_JOYSTICK)
                            == InputDevice_SOURCE_JOYSTICK) || ((sources & InputDevice_SOURCE_DPAD)
                            == InputDevice_SOURCE_DPAD))
             {
-                LOGI("Vaild Device in c++ %i index number %i",devicesArray[i],i);
+                bool isvirtual = (bool) env->CallBooleanMethod(currentInputDevice,deviceIsVirtualMethodID);
+                if(!isvirtual)
+                {
+                   LOGI("Vaild Device in c++ %i index number %i",devicesArray[i],i);
+                   //TODO check for virtual devices
+                   foundJoysticks.push_back(devicesArray[i]);
+                   std::vector<jint>::iterator itr = std::find(currentAttachedJoysticks.begin(),currentAttachedJoysticks.end(),devicesArray[i]);
+                   if(itr != currentAttachedJoysticks.end())
+                   {
+                       LOGI("Found in c++ %i in current joysticks",devicesArray[i]);
 
+                       currentAttachedJoysticks.erase(itr);
+                   }
+                }
             }
+            env->DeleteLocalRef(deviceInstanceClass);
+            env->DeleteLocalRef(currentInputDevice);
         }
-        //TODO get device from id and check source
+        LOGI("currentAttachedJoysticks size %i ",currentAttachedJoysticks.size());
+        for(std::vector<jint>::iterator itr = currentAttachedJoysticks.begin(); itr != currentAttachedJoysticks.end();itr++)
+        {
+            JNIBridge::update(*itr,1);
+        }
+        LOGI("foundJoysticks size %i ",foundJoysticks.size());
+
+        for(std::vector<jint>::iterator itr = foundJoysticks.begin(); itr != foundJoysticks.end();itr++)
+        {
+            JNIBridge::update(*itr,0);
+        }
+        currentAttachedJoysticks.clear();
+        currentAttachedJoysticks = foundJoysticks;
+
+
     }
+env->ReleaseIntArrayElements((jintArray)deviceIdsObj,devicesArray,0);
+env->DeleteLocalRef(deviceIdsObj);
+
 
 }

@@ -55,7 +55,7 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener{
      {
          Log.w("FreeStick Device", "gamepadWasAdded "+deviceid);
 
-       gamepadWasAdded(deviceid);
+      // gamepadWasAdded(deviceid);
      }
 
      public void onInputDeviceRemoved(int deviceId)
@@ -63,7 +63,7 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener{
          Log.w("FreeStick Device", "onInputDeviceRemoved");
 
 
-       gamepadWasRemoved(deviceId);
+      // gamepadWasRemoved(deviceId);
      }
 
      public void onInputDeviceChanged(int deviceId)
