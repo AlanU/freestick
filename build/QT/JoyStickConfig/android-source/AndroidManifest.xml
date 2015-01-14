@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <manifest package="org.freestick" xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.0" android:versionCode="1" android:installLocation="auto">
-    <application android:hardwareAccelerated="true" android:name="org.qtproject.qt5.android.bindings.QtApplication" android:label="@string/app_name" android:icon="@drawable/icon"  android:debuggable="true">
+    <application android:hardwareAccelerated="true" android:name="org.qtproject.qt5.android.bindings.QtApplication" android:label="@string/app_name" android:icon="@drawable/icon" android:debuggable="true">
         <activity android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|locale|fontScale|keyboard|keyboardHidden|navigation" android:name="org.freestick.JoyStickConfig" android:label="@string/app_name" android:screenOrientation="unspecified">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -29,6 +29,9 @@
             <!-- Splash screen -->
             <meta-data android:name="android.app.splash_screen" android:resource="@layout/splash"/>
             <!-- Splash screen -->
+        </activity>
+        <activity android:name="org.freestick.JoystickNatvieActivity" android:label="@string/app_name" android:configChanges="orientation|keyboardHidden">
+            <meta-data android:name="android.app.lib_name" android:value="-- %%INSERT_APP_LIB_NAME%% --"/>
         </activity>
     </application>
     <uses-sdk android:targetSdkVersion="19" android:minSdkVersion="10"/>

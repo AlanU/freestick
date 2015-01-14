@@ -91,18 +91,34 @@ android
 {
   target.path = /libs/armeabi-v7a
   INSTALLS += target
-
+#  message ( system(ndk-build  $$(NDK_ROOT)/sources/android/native_app_glue) )
+message ( system(ndk-build ../../../src/USB/platform/Android))
 }
 
+
+
+
 android {
+
     SOURCES += $$files(../../../src/USB/platform/Android/*.cpp)
 
    SOURCES += $$files(../../../src/USB/platform/Android/*.c)
 
    HEADERS += $$files(../../../src/USB/platform/Android/*.h)
-
+    NDK_ROOT = $$(ANDROID_NDK_ROOT)
+    !exists($$NDK_ROOT) {
+           NDK_ROOT = $$DEFAULT_ANDROID_NDK_ROOT
+    }
    INCLUDEPATH +=  $$(JAVA_HOME)/include \
-                   $$(JAVA_HOME)/include/darwin
+                   $$(JAVA_HOME)/include/darwin \
+                    $$(JAVA_HOME)/include/win32 \
+                    $$(NDK_ROOT)/sources/android \
+
+
+OTHER_FILES += $$files(../../../src/USB/platform/Android/jni/*.mk) \
+
+    message("ndk path")
+    message($$NDK_ROOT))
     message("JDK Path")
     message($$INCLUDEPATH)
   #  QT += androidextras

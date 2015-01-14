@@ -31,6 +31,7 @@ and must not be misrepresented as being the original software.
 #include <android/log.h>
 #include <android/input.h>
 #include <android/keycodes.h>
+#include <native_app_glue/android_native_app_glue.h>
 #include "FSAndroidJoystick.h"
 using namespace freestick;
 FSHIDAndroidJoysickDeviceManager::FSHIDAndroidJoysickDeviceManager()

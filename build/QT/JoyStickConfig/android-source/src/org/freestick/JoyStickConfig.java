@@ -36,6 +36,9 @@ import android.util.Log;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.app.NativeActivity;
+import android.content.Intent;
+
 public class JoyStickConfig extends org.qtproject.qt5.android.bindings.QtActivity
 {
    private static InputManager m_inputManager;
@@ -56,6 +59,9 @@ public class JoyStickConfig extends org.qtproject.qt5.android.bindings.QtActivit
     //m_inputManager.registerInputDeviceListener(m_deviceManager, null);
 
     super.onCreate(savedInstanceState);
+
+    Intent intent = new Intent(JoyStickConfig.this,org.freestick.JoystickNatvieActivity.class);
+    startActivity(intent);
   }
 
    public boolean dispatchGenericMotionEvent(MotionEvent event)
