@@ -1,0 +1,195 @@
+{
+	"workspace": {
+		"name": "TestApp", //Must match the app project name.
+
+    ////////////////
+    // Versioning //
+    ////////////////
+
+    "version": { //For AndroidManifest.xml ignored by rest.
+      "code": 1,
+      "name": "1.0"
+    },
+
+    "usesSDK": { //For AndroidManifest.xml ignored by rest.
+      "min":    10,
+      "target": 10,
+      "max":    19
+    },
+
+    ////////////////////////////////
+    // Build a free stick library //
+    ////////////////////////////////
+
+    "FreeStick": {
+      "kind"  : "static",
+      "rules" : {
+
+        //----------------------------------------------------------------------
+        // The rules for all platforms, will get included regardless of what
+        // uname returns in the cases above.
+        //----------------------------------------------------------------------
+
+        "*": {
+          "outdir": "build",
+          "intdir": "objs",
+
+          //--------------------------------------------------------------------
+          // All non-platform specific defines go here.
+          //--------------------------------------------------------------------
+
+          "defines": {
+            "debug":   [ "_DEBUG" ],
+            "release": [ "NDEBUG" ],
+          },
+
+          //--------------------------------------------------------------------
+          // All static and shared libraries, and application projects.
+          //--------------------------------------------------------------------
+
+          "builds": {
+
+            //------------------------------------------------------------------
+            // Android rules
+            //------------------------------------------------------------------
+
+            "ndk": {
+              "architectures": [
+                "armeabi",
+                "armeabi-v7a",
+              ],
+              "symlinks": { // target : source
+                "jni/BaseClasses":  "../../src/BaseClasses",
+                "jni/USB-common":   "../../src/USB/common",
+                "jni/EELog":        "../../src/3rdParty/EELog",
+                "jni/Platform":     "../../src/USB/platform/Android/jni/src",
+                "jni/inc":          "../../inc",
+                "res":              "../../src/USB/platform/Android/java/res",
+                "src":              "../../src/USB/platform/Android/java/src",
+              },
+              "includedirs": [
+                "jni/include",
+              ],
+              "libdirs": [
+              ],
+              "libs": [
+              ],
+              "exclude": [
+              ],
+              "files": [
+                "src/**.java",
+                "jni/**.cpp",
+              ],
+            },
+
+            //------------------------------------------------------------------
+            // Windows
+            //------------------------------------------------------------------
+
+            "win": {
+              "outdir": "build",
+              "intdir": "objs",
+              "defines": {
+                "debug": [
+                  "_CRT_SECURE_NO_WARNINGS",
+                  "WINDOWS",
+                  "_DEBUG"
+                ],
+                "release": [
+                  "_CRT_SECURE_NO_WARNINGS",
+                  "WINDOWS",
+                  "NDEBUG"
+                ]
+              },
+              "includedirs": [
+              ],
+              "libdirs": [
+              ],
+              "libs": [
+              ],
+              "exclude": [
+              ],
+              "files": [
+              ]
+            },
+
+            //------------------------------------------------------------------
+            // OSX rules
+            //------------------------------------------------------------------
+
+            "osx": {
+              "activeOnly": {
+                "debug": "yes",
+                "release": "no"
+              },
+              "architectures": [ "x86_64", "i386" ],
+              "frameworks": [
+                "OpenGL",
+                "Cocoa",
+                "IOKit",
+              ],
+              "includedirs": [
+              ],
+              "libdirs": [
+              ],
+              "libs": [
+              ],
+              "exclude": [
+              ],
+              "files": [
+              ],
+              "defines": {
+                "debug":   [ "OSX", "_DEBUG" ],
+                "release": [ "OSX", "NDEBUG" ]
+              },
+              "plist": "osx-Info.plist"
+            },
+
+            //------------------------------------------------------------------
+            // iOS rules
+            //------------------------------------------------------------------
+
+            "ios": {
+              "activeOnly": {
+                "debug": "yes",
+                "release": "no"
+              },
+              "architectures": {
+                "debug":   [ "arm7", "i386" ],
+                "release": [ "arm7", "i386" ],
+              },
+              "frameworks": [
+                "Foundation",
+                "CoreGraphics",
+                "CoreMotion",
+                "UIKit",
+                "GLKit",
+                "OpenGLES"
+              ],
+              "includedirs": [
+              ],
+              "libdirs": [
+              ],
+              "libs": [
+              ],
+              "exclude": [
+              ],
+              "files": [
+              ],
+              "files": [
+              ]
+            }
+          }
+        }
+      },
+    },
+
+    /////////////////////////////////////
+    // Build an empty test application //
+    /////////////////////////////////////
+
+    "TestApp": {      //We're making a project called TestApp.
+      "kind": "app",  //The project is an application.
+    }
+	}
+}
