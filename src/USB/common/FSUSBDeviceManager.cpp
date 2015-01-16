@@ -26,8 +26,8 @@ and must not be misrepresented as being the original software.
 **************************************************************************/
 
 #include "FSUSBDeviceManager.h"
-#include "../baseClasses/FSBaseManager.h"
-#include "../USB/FSUSBDevice.h"
+#include "FSBaseManager.h"
+#include "FSUSBDevice.h"
 #include <algorithm>
 using namespace freestick;
 FSUSBDeviceManager::FSUSBDeviceManager()

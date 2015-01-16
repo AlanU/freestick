@@ -1,5 +1,5 @@
 /**************************************************************************
-Created by Alan Uthoff on 11/12/2013
+Created by Alan Uthoff on 10/30/2013
 Copyright (C) 2013
 
 This Code is free software; you can redistribute it and/or
@@ -26,15 +26,29 @@ and must not be misrepresented as being the original software.
 **************************************************************************/
 
 #pragma once
-#include "../../../USB/FSUSBJoystickDeviceManager.h"
-namespace freestick
-{
-    class FSUSBNullJoystickDeviceManager : public FSUSBJoystickDeviceManager
+#include "../baseClasses/FSBaseEvent.h"
+#include "../Interfaces/IFSDevice.h"
+const float MAX_EVENT_VALUE = 1;
+const float MIN_EVENT_VALUE = -1;
+namespace freestick {
+
+    class FSDeviceInputEvent : public FSBaseEvent
     {
+    private:
+        float _oldValue;
+        float _newValue;
+        unsigned int _controlID;
+        FSDeviceInput _inputType;
+
+    protected:
+        FSDeviceInputEvent();
     public:
-        FSUSBNullJoystickDeviceManager();
-        virtual ~FSUSBNullJoystickDeviceManager();
-        virtual void init( );
+        FSDeviceInputEvent(FreeStickEventType eventType,FSEventAction eventAction,unsigned int timeStamp,unsigned int deviceID,unsigned int controlID,float oldValue,float newValue,FSDeviceInput inputType) ;
+        float getOldInputValue(){ return _oldValue;}
+        float getNewInputValue(){ return _newValue;}
+        int getControlID(){ return _controlID;}
+        FSDeviceInput getInputType() { return _inputType;}
     };
 
-}
+};
+

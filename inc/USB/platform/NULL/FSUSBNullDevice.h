@@ -1,6 +1,6 @@
 /**************************************************************************
-Created by Alan Uthoff on 10/8/2013
-Copyright (C) 2013.
+Created by Alan Uthoff on 10/13/2013
+Copyright (C) 2013
 
 This Code is free software; you can redistribute it and/or
 modify it under the terms of the zlib/libpng License as published
@@ -26,28 +26,15 @@ and must not be misrepresented as being the original software.
 **************************************************************************/
 
 #pragma once
-
-#include "../../FSUSBJoystickDeviceManager.h"
-#include "jni_wrapper.h"
-#include <jni.h>
+#include "FSUSBDevice.h"
 namespace freestick
 {
-    class FSHIDAndroidJoysickDeviceManager : public FSUSBJoystickDeviceManager , IJINICallBack
+    class FSUSBNullDevice : public FSUSBDevice
     {
     public:
-        FSHIDAndroidJoysickDeviceManager();
-        void init(JavaVM * jvm);
-        virtual void init();
-        virtual void gamepadWasAddedFromJINBridge(int hid_id);
-        virtual void gamepadWasRemovedFromJINBridge(int hid_id);
-        virtual void gamepadWasUpdatedFromJINBridge(int deviceid,int code,int type,float value,int min,int max);
-        void update();
-    private:
-        std::map<int,unsigned int> _androidIDToIDMap;
-        std::map<unsigned int,FSDeviceInput > _androidUsageMapToInputEvent;
-        JNIEnv *_jniEvn ;
-        JavaVM * _jvm;
-
+        FSUSBNullDevice();
+        virtual FSDeviceType getClassType() const {return FSUSBNULLDeviceType;}
 
     };
 }
+

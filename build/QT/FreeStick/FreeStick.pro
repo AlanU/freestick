@@ -41,41 +41,34 @@ CONFIG(release, debug|release) {
 }
 
 SOURCES += \
-        ../../../src/baseClasses/FSBaseDevice.cpp \
-        ../../../src/baseClasses/FSBaseManager.cpp \
-        ../../../src/USB/FSUSBDevice.cpp \
-        ../../../src/USB/FSUSBDeviceManager.cpp \
-        ../../../src/USB/FSUSBJoystick.cpp \
-        ../../../src/USB/FSUSBJoystickDeviceManager.cpp \
-        ../../../src/baseClasses/FSBaseJoystickInfo.cpp \
-        ../../../src/baseClasses/FSBaseEvent.cpp \
-        ../../../src/FSDeviceInputEvent.cpp \
-        ../../../src/USB/FSUSBJoyStickInputElement.cpp \
-        ../../../src/USB/FSUSBJoystickButton.cpp \
+        $$files(../../../src/baseClasses/*.cpp) \
+        $$files(../../../src/USB/common/*.cpp) \
         $$files(../../../src/USB/platform/NULL/*.cpp) \
-        $$files(../../../src/3rdParty/EELog/src/*.cpp)
+        $$files(../../../src/3rdParty/EELog/src/*.cpp) \
+        ../../../src/FSDeviceInputEvent.cpp \
+
 
 HEADERS += \
-        $$files(../../../src/*.h) \
-        ../../../src/Interfaces/IFSDevice.h \
-        ../../../src/Interfaces/IFSJoystickInfo.h \
-         ../../../src/Interfaces/IFSJoystickListener.h \
-        ../../../src/baseClasses/FSBaseDevice.h \
-        ../../../src/baseClasses/FSBaseManager.h \
-        ../../../src/USB/FSUSBDevice.h \
-        ../../../src/USB/FSUSBDeviceManager.h \
-        ../../../src/USB/FSUSBJoystick.h \
-        ../../../src/USB/FSUSBJoystickDeviceManager.h \
-        ../../../src/baseClasses/FSBaseJoystickInfo.h \
-        ../../../src/Interfaces/IFSEvent.h \
-        ../../../src/baseClasses/FSBaseEvent.h \
-        ../../../src/FSDeviceInputEvent.h \
-        ../../../src/USB/FSUSBJoyStickInputElement.h \
-        ../../../src/USB/FSUSBJoystickButton.h \
-        ../../../src/FreeStickLog.h \
-        $$files(../../../src/USB/platform/NULL/*.h) \
+        $$files(../../../inc/*.h) \
+        $$files(../../../inc/Interfaces/*.h) \
+        $$files(../../../inc/baseClasses/*.h) \
+        $$files(../../../inc/USB/common/*.h) \
+        $$files(../../../inc/USB/*.h) \
+        $$files(../../../inc/common/*.h) \
+        $$files(../../../inc/USB/platform/NULL/*.h) \
         $$files(../../../src/3rdParty/EELog/src/*.h)
 
+INCLUDEPATH += ../../../inc/USB/common \
+               ../../../inc/Interfaces \
+               ../../../inc/baseClasses \
+               ../../../inc/USB/common \
+               ../../../inc/USB \
+               ../../../src/3rdParty/EELog/src \
+               ../../../inc/USB/platform/NULL \
+                ../../../inc/common \
+                ../../../inc/USB/common \
+
+INCLUDEPATH +=
 
 unix:!symbian:!android {
     maemo5 {
@@ -100,11 +93,11 @@ message ( system(ndk-build ../../../src/USB/platform/Android))
 
 android {
 
-    SOURCES += $$files(../../../src/USB/platform/Android/*.cpp)
+    SOURCES += $$files(../../../src/USB/platform/Android/jni/src/*.cpp)
 
-   SOURCES += $$files(../../../src/USB/platform/Android/*.c)
+  # SOURCES += $$files(../../../src/USB/platform/Android/jni/*.c)
 
-   HEADERS += $$files(../../../src/USB/platform/Android/*.h)
+   HEADERS += $$files(../../../inc/USB/platform/Android/jni/src/*.h)
     NDK_ROOT = $$(ANDROID_NDK_ROOT)
     !exists($$NDK_ROOT) {
            NDK_ROOT = $$DEFAULT_ANDROID_NDK_ROOT
@@ -112,13 +105,15 @@ android {
    INCLUDEPATH +=  $$(JAVA_HOME)/include \
                    $$(JAVA_HOME)/include/darwin \
                     $$(JAVA_HOME)/include/win32 \
-                    $$(NDK_ROOT)/sources/android \
+                    $$NDK_ROOT/sources/android \
+                    ../../../inc/USB/platform/Android/jni/src \
+                    .
 
 
 OTHER_FILES += $$files(../../../src/USB/platform/Android/jni/*.mk) \
 
     message("ndk path")
-    message($$NDK_ROOT))
+    message($$NDK_ROOT)
     message("JDK Path")
     message($$INCLUDEPATH)
   #  QT += androidextras

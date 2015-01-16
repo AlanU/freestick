@@ -31,7 +31,7 @@ and must not be misrepresented as being the original software.
 #include <QWidget>
 #include <QTimer>
 
-#include "../../../src/FreeStick.h"
+#include "freestick.h"
 namespace Ui {
 class JoyStickConfigWidget;
 }

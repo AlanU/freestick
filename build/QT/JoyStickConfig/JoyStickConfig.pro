@@ -50,7 +50,7 @@ OTHER_FILES+= $$files(android-source/src/org/freestick/*.java) \
 }
 
 TEMPLATE = app
-PRECOMPILED_HEADER = $$PWD/../../../src/FreeStick.h
+PRECOMPILED_HEADER = $$PWD/../../../inc/freestick.h
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -73,7 +73,7 @@ win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../FreeStick/release/ 
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../FreeStick/debug/ -lFreeStick
 else:unix: LIBS += -L$$OUT_PWD/../FreeStick/ -lFreeStick
 
-INCLUDEPATH += $$PWD/../FreeStick
+INCLUDEPATH += $$PWD/../../../inc \
 DEPENDPATH += $$PWD/../FreeStick
 
 

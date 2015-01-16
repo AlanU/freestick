@@ -1,6 +1,6 @@
 /**************************************************************************
-Created by Alan Uthoff on 10/30/2013
-Copyright (C) 2013
+Created by Alan Uthoff on 10/8/2013
+Copyright (C) 2013.
 
 This Code is free software; you can redistribute it and/or
 modify it under the terms of the zlib/libpng License as published
@@ -25,30 +25,30 @@ and must not be misrepresented as being the original software.
 3. This notice may not be removed or altered from any source distribution.
 **************************************************************************/
 
+
 #pragma once
-#include "baseClasses/FSBaseEvent.h"
-#include "Interfaces/IFSDevice.h"
-const float MAX_EVENT_VALUE = 1;
-const float MIN_EVENT_VALUE = -1;
-namespace freestick {
-
-    class FSDeviceInputEvent : public FSBaseEvent
+#include "FSUSBJoystick.h"
+#include "FSUSBJoystickDeviceManager.h"
+namespace freestick
+{
+    class FSAndroidJoystick : public FSUSBJoystick
     {
-    private:
-        float _oldValue;
-        float _newValue;
-        unsigned int _controlID;
-        FSDeviceInput _inputType;
+        private:
+            int _androidDeviceID;
+        protected:
+            FSAndroidJoystick();
+        public:
+            FSAndroidJoystick(int androidDeviceID,
+                              unsigned int joyStickID,
+                              unsigned int numberOfButtons,
+                              unsigned int numberOfAnlogSticks,
+                              unsigned int numberOfDigitalSticks,
+                              bool forceFeedBackSupported );
+            unsigned int Init(FSUSBJoystickDeviceManager & usbJoystickManager);
+            virtual ~FSAndroidJoystick(){};
+            int getAndroidID() const {return _androidDeviceID;}
+            virtual FSDeviceType getClassType() const {return FSAndroidJoystickType;}
 
-    protected:
-        FSDeviceInputEvent();
-    public:
-        FSDeviceInputEvent(FreeStickEventType eventType,FSEventAction eventAction,unsigned int timeStamp,unsigned int deviceID,unsigned int controlID,float oldValue,float newValue,FSDeviceInput inputType) ;
-        float getOldInputValue(){ return _oldValue;}
-        float getNewInputValue(){ return _newValue;}
-        int getControlID(){ return _controlID;}
-        FSDeviceInput getInputType() { return _inputType;}
     };
-
-};
+}
 

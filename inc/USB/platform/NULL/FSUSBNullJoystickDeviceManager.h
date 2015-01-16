@@ -1,5 +1,5 @@
 /**************************************************************************
-Created by Alan Uthoff on 10/13/2013
+Created by Alan Uthoff on 11/12/2013
 Copyright (C) 2013
 
 This Code is free software; you can redistribute it and/or
@@ -26,15 +26,15 @@ and must not be misrepresented as being the original software.
 **************************************************************************/
 
 #pragma once
-#include "../../../USB/FSUSBDevice.h"
+#include "FSUSBJoystickDeviceManager.h"
 namespace freestick
 {
-    class FSUSBNullDevice : public FSUSBDevice
+    class FSUSBNullJoystickDeviceManager : public FSUSBJoystickDeviceManager
     {
     public:
-        FSUSBNullDevice();
-        virtual FSDeviceType getClassType() const {return FSUSBNULLDeviceType;}
-
+        FSUSBNullJoystickDeviceManager();
+        virtual ~FSUSBNullJoystickDeviceManager();
+        virtual void init( );
     };
-}
 
+}

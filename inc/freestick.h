@@ -28,23 +28,23 @@ and must not be misrepresented as being the original software.
 #ifndef FREESTICK_H
 #define FREESTICK_H
 
-#include "Interfaces/IFSJoystickListener.h"
-#include "Interfaces/IFSDevice.h"
-#include "Interfaces/IFSEvent.h"
-#include "Interfaces/IFSJoystickInfo.h" //May remove this header
-
 #include "baseClasses/FSBaseDevice.h"
 #include "baseClasses/FSBaseEvent.h"
 #include "baseClasses/FSBaseJoystickInfo.h" //May remove this header
 #include "baseClasses/FSBaseManager.h"
 
-#include "USB/FSUSBDevice.h"
-#include "USB/FSUSBDeviceManager.h"
-#include "USB/FSUSBJoystickButton.h"
-#include "USB/FSUSBJoystick.h"
-#include "USB/FSUSBJoyStickInputElement.h"
+#include "Interfaces/IFSJoystickListener.h"
+#include "Interfaces/IFSDevice.h"
+#include "Interfaces/IFSEvent.h"
+#include "Interfaces/IFSJoystickInfo.h" //May remove this header
 
-#include "FSDeviceInputEvent.h"
+#include "USB/common/FSUSBDevice.h"
+#include "USB/common/FSUSBDeviceManager.h"
+#include "USB/common/FSUSBJoystickButton.h"
+#include "USB/common/FSUSBJoystick.h"
+#include "USB/common/FSUSBJoyStickInputElement.h"
+
+#include "common/FSDeviceInputEvent.h"
 
 #ifdef __APPLE__
     #include "USB/platform/NULL/FSUSBNullJoystickDeviceManager.h"
@@ -63,8 +63,8 @@ and must not be misrepresented as being the original software.
     #endif
 #elif __ANDROID__
     //define for android
-    #include "USB/platform/Android/FSHIDAndroidJoysickDeviceManager.h"
-    #include "USB/platform/Android/jni_wrapper.h"
+    #include "../inc/USB/platform/Android/jni/src/FSHIDAndroidJoysickDeviceManager.h"
+    #include "../inc/USB/platform/Android/jni/src/jni_wrapper.h"
     typedef freestick::FSHIDAndroidJoysickDeviceManager FreeStickDeviceManager;
 #else
     #include "USB/platform/NULL/FSUSBNullJoystickDeviceManager.h"

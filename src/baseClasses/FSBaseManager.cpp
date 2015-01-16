@@ -27,9 +27,9 @@ and must not be misrepresented as being the original software.
 
 #include "FSBaseManager.h"
 #include <utility>      // std::pair
-#include "../baseClasses/FSBaseEvent.h"
-#include "../FSDeviceInputEvent.h"
-#include "../FreeStickLog.h"
+#include "FSBaseEvent.h"
+#include "FSDeviceInputEvent.h"
+#include "FreeStickLog.h"
 #include <ctime>
 using namespace freestick;
 

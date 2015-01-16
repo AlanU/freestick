@@ -26,9 +26,10 @@ and must not be misrepresented as being the original software.
 **************************************************************************/
 
 #pragma once
-#include "../baseClasses/FSBaseManager.h"
+
+#include "../../baseClasses/FSBaseManager.h"
 #include <map>
-#include "../Interfaces/IFSDevice.h"
+#include "../../Interfaces/IFSDevice.h"
 #include <string>
 
 namespace freestick

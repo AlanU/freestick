@@ -28,7 +28,7 @@ and must not be misrepresented as being the original software.
 #pragma once
 #include "IFSEvent.h"
 #include "../baseClasses/FSBaseEvent.h"
-#include "../FSDeviceInputEvent.h"
+#include "../common/FSDeviceInputEvent.h"
 namespace freestick
 {
     class IFSJoystickListener

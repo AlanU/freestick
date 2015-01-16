@@ -25,30 +25,28 @@ and must not be misrepresented as being the original software.
 3. This notice may not be removed or altered from any source distribution.
 **************************************************************************/
 
-
 #pragma once
-#include "../../FSUSBJoystick.h"
-#include "../../FSUSBJoystickDeviceManager.h"
+#include "../../../inc/USB/common/FSUSBJoystickDeviceManager.h"
+#include "jni_wrapper.h"
+#include <jni.h>
 namespace freestick
 {
-    class FSAndroidJoystick : public FSUSBJoystick
+    class FSHIDAndroidJoysickDeviceManager : public FSUSBJoystickDeviceManager , IJINICallBack
     {
-        private:
-            int _androidDeviceID;
-        protected:
-            FSAndroidJoystick();
-        public:
-            FSAndroidJoystick(int androidDeviceID,
-                              unsigned int joyStickID,
-                              unsigned int numberOfButtons,
-                              unsigned int numberOfAnlogSticks,
-                              unsigned int numberOfDigitalSticks,
-                              bool forceFeedBackSupported );
-            unsigned int Init(FSUSBJoystickDeviceManager & usbJoystickManager);
-            virtual ~FSAndroidJoystick(){};
-            int getAndroidID() const {return _androidDeviceID;}
-            virtual FSDeviceType getClassType() const {return FSAndroidJoystickType;}
+    public:
+        FSHIDAndroidJoysickDeviceManager();
+        void init(JavaVM * jvm);
+        virtual void init();
+        virtual void gamepadWasAddedFromJINBridge(int hid_id);
+        virtual void gamepadWasRemovedFromJINBridge(int hid_id);
+        virtual void gamepadWasUpdatedFromJINBridge(int deviceid,int code,int type,float value,int min,int max);
+        void update();
+    private:
+        std::map<int,unsigned int> _androidIDToIDMap;
+        std::map<unsigned int,FSDeviceInput > _androidUsageMapToInputEvent;
+        JNIEnv *_jniEvn ;
+        JavaVM * _jvm;
+
 
     };
 }
-

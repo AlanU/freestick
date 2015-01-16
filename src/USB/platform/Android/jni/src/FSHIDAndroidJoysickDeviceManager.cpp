@@ -26,8 +26,8 @@ and must not be misrepresented as being the original software.
 **************************************************************************/
 
 #include "FSHIDAndroidJoysickDeviceManager.h"
-#include "../NULL/FSUSBNullDevice.h"
-#include "./jni_wrapper.h"
+#include "FSUSBNullDevice.h"
+#include "jni_wrapper.h"
 #include <android/log.h>
 #include <android/input.h>
 #include <android/keycodes.h>
