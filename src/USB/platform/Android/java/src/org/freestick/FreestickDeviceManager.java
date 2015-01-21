@@ -23,107 +23,97 @@ in the product documentation would be appreciated but is not required.
 and must not be misrepresented as being the original software.
 
 3. This notice may not be removed or altered from any source distribution.
-**************************************************************************/
+ **************************************************************************/
 
 package org.freestick;
+
 import android.hardware.input.InputManager;
-import android.view.InputDevice;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.KeyEvent;
 import android.view.InputDevice;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 
-public class FreestickDeviceManager implements InputManager.InputDeviceListener{
+public class FreestickDeviceManager implements InputManager.InputDeviceListener {
 
-    static
-    {
-        System.loadLibrary("gnustl_shared");
-        System.loadLibrary("FreeStick"); // Load native library at runtime
-     }
-     public native void gamepadWasAdded(int deviceid);
+    static {
+        // System.loadLibrary("gnustl_shared");
+        // System.loadLibrary("FreeStick"); // Load native library at runtime
+    }
 
-     public native void gamepadWasRemoved(int deviceid);
+    public native void gamepadWasAdded(int deviceid);
 
-     public native void gamepadDeviceUpdate(int deviceid,int code,int type,float value,int min,int max);
+    public native void gamepadWasRemoved(int deviceid);
 
-     public FreestickDeviceManager()
-     {
+    public native void gamepadDeviceUpdate(int deviceid, int code, int type, float value, int min,
+            int max);
+
+    public FreestickDeviceManager() {
         Log.w("FreeStick Device", "Was Created");
-     }
+    }
 
-     public void onInputDeviceAdded(int deviceid)
-     {
-         Log.w("FreeStick Device", "gamepadWasAdded "+deviceid);
+    @Override
+    public void onInputDeviceAdded(int deviceid) {
+        Log.w("FreeStick Device", "gamepadWasAdded " + deviceid);
 
-      // gamepadWasAdded(deviceid);
-     }
+        gamepadWasAdded(deviceid);
+    }
 
-     public void onInputDeviceRemoved(int deviceId)
-     {
-         Log.w("FreeStick Device", "onInputDeviceRemoved");
+    @Override
+    public void onInputDeviceRemoved(int deviceId) {
+        Log.w("FreeStick Device", "onInputDeviceRemoved");
 
+        gamepadWasRemoved(deviceId);
+    }
 
-      // gamepadWasRemoved(deviceId);
-     }
+    @Override
+    public void onInputDeviceChanged(int deviceId) {
+        Log.w("FreeStick", "onInputDeviceChanged");
 
-     public void onInputDeviceChanged(int deviceId)
-     {
-         Log.w("FreeStick", "onInputDeviceChanged");
+    }
 
-     }
+    public void handelMotionEvent(MotionEvent event) {
+        if (((event.getSource() & InputDevice.SOURCE_CLASS_JOYSTICK) != 0)
+                && (event.getAction() == MotionEvent.ACTION_MOVE)) {
+            Log.w("FreeStick", "handelMotionEvent" + event.toString());
+            final int pointerCount = event.getPointerCount();
+            // Log.w("FreeStick","At time :" + event.getEventTime());
+            for (int p = 0; p < pointerCount; p++) {
+                // Log.w("FreeStick","  pointer " + event.getPointerId(p) +":"+
+                // "(" + event.getX(p) +"," + event.getY(p) + ")" );
+            }
+            // gamepadDeviceUpdate(event.getDeviceId(),code,1,value,-1,1);
+        }
 
-     public void handelMotionEvent(MotionEvent event)
-     {
-         if(((event.getSource() & InputDevice.SOURCE_CLASS_JOYSTICK) != 0 ) && (event.getAction() == MotionEvent.ACTION_MOVE) )
-         {
-             Log.w("FreeStick", "handelMotionEvent" + event.toString());
-             final int pointerCount = event.getPointerCount();
-             //Log.w("FreeStick","At time :" + event.getEventTime());
-                  for (int p = 0; p < pointerCount; p++) {
-                //      Log.w("FreeStick","  pointer " + event.getPointerId(p) +":"+ "(" + event.getX(p) +"," + event.getY(p) + ")" );
-                  }
-            //gamepadDeviceUpdate(event.getDeviceId(),code,1,value,-1,1);
-         }
+    }
 
-
-     }
-
-    public void handelButtonEvent(KeyEvent event)
-    {
-        if(event.getAction() == KeyEvent.ACTION_UP  || event.getAction() == KeyEvent.ACTION_DOWN)
-        {
+    public void handelButtonEvent(KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_UP || event.getAction() == KeyEvent.ACTION_DOWN) {
             Log.w("FreeStick", "handelButtonEvent" + event.toString());
-            float value = (float)event.getAction() ;
-            int code = (int)event.getKeyCode();
-            Log.w("FreeStick","calling gamepadDeviceUpdate");
-            gamepadDeviceUpdate(event.getDeviceId(),code,0,value,0,1);
-            Log.w("FreeStick","Back From calling gamepadDeviceUpdate");
+            float value = event.getAction();
+            int code = event.getKeyCode();
+            Log.w("FreeStick", "calling gamepadDeviceUpdate");
+            gamepadDeviceUpdate(event.getDeviceId(), code, 0, value, 0, 1);
+            Log.w("FreeStick", "Back From calling gamepadDeviceUpdate");
         }
     }
 
-    public void checkForNewJoysticks(InputManager inputManger)
-    {
-        if(inputManger != null)
-        {
-            int[] ids = InputDevice.getDeviceIds();//inputManger.getInputDeviceIds();
-            Log.w("FreeStick","checkForNewJoysticks lengthe"+ ids.length);
+    public void checkForNewJoysticks(InputManager inputManger) {
+        if (inputManger != null) {
+            int[] ids = InputDevice.getDeviceIds();// inputManger.getInputDeviceIds();
+            Log.w("FreeStick", "checkForNewJoysticks lengthe" + ids.length);
 
-            for (int i = 0; i < ids.length; i++)
-            {
-                Log.w("FreeStick","java found device id "+ids[i]+" at "+i);
-                 InputDevice currentDevice = InputDevice.getDevice(ids[i]); // inputManger.getInputDevice(ids[i]);
-                 int sources = currentDevice.getSources();
+            for (int i = 0; i < ids.length; i++) {
+                Log.w("FreeStick", "java found device id " + ids[i] + " at " + i);
+                InputDevice currentDevice = InputDevice.getDevice(ids[i]); // inputManger.getInputDevice(ids[i]);
+                int sources = currentDevice.getSources();
 
-                 if (((sources & InputDevice.SOURCE_GAMEPAD) == InputDevice.SOURCE_GAMEPAD)
-                                || ((sources & InputDevice.SOURCE_JOYSTICK)
-                                == InputDevice.SOURCE_JOYSTICK) || ((sources & InputDevice.SOURCE_DPAD)
-                                == InputDevice.SOURCE_DPAD))
-                 {
-                     if(!currentDevice.isVirtual())
-                     {
-                      this.onInputDeviceAdded(ids[i]);
-                      Log.w("FreeStick","device on resume "+currentDevice.toString());
-                     }
+                if (((sources & InputDevice.SOURCE_GAMEPAD) == InputDevice.SOURCE_GAMEPAD)
+                        || ((sources & InputDevice.SOURCE_JOYSTICK) == InputDevice.SOURCE_JOYSTICK)
+                        || ((sources & InputDevice.SOURCE_DPAD) == InputDevice.SOURCE_DPAD)) {
+                    if (!currentDevice.isVirtual()) {
+                        this.onInputDeviceAdded(ids[i]);
+                        Log.w("FreeStick", "device on resume " + currentDevice.toString());
+                    }
 
                 }
             }
@@ -131,28 +121,14 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener{
 
     }
 
-/*
-c++ for handelButtonEvent
-void ProcessInputEvent(AInputEvent * event)
-{
-    int32_t type = AInputEvent_getType(event);
-    if(type == AINPUT_EVENT_TYPE_KEY)
-    {
-        int32_t action = AKeyEvent_getAction(event);
-        if(action == AKEY_EVENT_ACTION_UP || action == AKEY_EVENT_ACTION_DOWN)
-        {
-            float value = (float) action;
-            int code = AKeyEvent_getKeyCode(event);
-            int32_t deviceID = AInputEvent_getDeviceId(event);
-            JNIBridge::updateValue(deviceID, code, 0, value,0,1);
-
-
-        }
-
-    }
-
-}*/
-
-
+    /*
+     * c++ for handelButtonEvent void ProcessInputEvent(AInputEvent * event) {
+     * int32_t type = AInputEvent_getType(event); if(type ==
+     * AINPUT_EVENT_TYPE_KEY) { int32_t action = AKeyEvent_getAction(event);
+     * if(action == AKEY_EVENT_ACTION_UP || action == AKEY_EVENT_ACTION_DOWN) {
+     * float value = (float) action; int code = AKeyEvent_getKeyCode(event);
+     * int32_t deviceID = AInputEvent_getDeviceId(event);
+     * JNIBridge::updateValue(deviceID, code, 0, value,0,1); } } }
+     */
 
 }

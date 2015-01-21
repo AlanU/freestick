@@ -63,8 +63,8 @@ and must not be misrepresented as being the original software.
     #endif
 #elif __ANDROID__
     //define for android
-    #include "../inc/USB/platform/Android/jni/src/FSHIDAndroidJoysickDeviceManager.h"
-    #include "../inc/USB/platform/Android/jni/src/FSJNI_Wrapper.h"
+    #include "USB/platform/Android/jni/src/FSHIDAndroidJoysickDeviceManager.h"
+    #include "USB/platform/Android/jni/src/FSJNI_Wrapper.h"
     typedef freestick::FSHIDAndroidJoysickDeviceManager FreeStickDeviceManager;
 #else
     #include "USB/platform/NULL/FSUSBNullJoystickDeviceManager.h"
