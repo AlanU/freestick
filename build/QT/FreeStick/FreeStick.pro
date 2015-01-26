@@ -58,15 +58,10 @@ HEADERS += \
         $$files(../../../inc/USB/platform/NULL/*.h) \
         $$files(../../../src/3rdParty/EELog/src/*.h)
 
-INCLUDEPATH += ../../../inc/USB/common \
-               ../../../inc/Interfaces \
-               ../../../inc/baseClasses \
-               ../../../inc/USB/common \
-               ../../../inc/USB \
+INCLUDEPATH += ../../../inc \
                ../../../src/3rdParty/EELog/src \
-               ../../../inc/USB/platform/NULL \
-                ../../../inc/common \
-                ../../../inc/USB/common \
+
+
 
 INCLUDEPATH +=
 
@@ -108,9 +103,11 @@ android {
                     $$NDK_ROOT/sources/android \
                     ../../../inc/USB/platform/Android/jni/src \
                     .
+ANDROID_PACKAGE_SOURCE_DIR += $$PWD/../../../src/USB/platform/Android/java
 
 
 OTHER_FILES += $$files(../../../src/USB/platform/Android/jni/*.mk) \
+ $$files(../../../src/USB/platform/Android/java/src/org/freestick/*.java) \
 
     message("ndk path")
     message($$NDK_ROOT)

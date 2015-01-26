@@ -25,8 +25,8 @@ and must not be misrepresented as being the original software.
 3. This notice may not be removed or altered from any source distribution.
 **************************************************************************/
 
-#include "FSUSBJoystickDeviceManager.h"
-#include "FSUSBDeviceManager.h"
+#include "USB/common/FSUSBJoystickDeviceManager.h"
+#include "USB/common/FSUSBDeviceManager.h"
 using namespace freestick;
 FSUSBJoystickDeviceManager::FSUSBJoystickDeviceManager()
 {

@@ -26,7 +26,7 @@ and must not be misrepresented as being the original software.
 **************************************************************************/
 
 #pragma once
-#include "FSUSBDevice.h"
+#include "USB/common/FSUSBDevice.h"
 namespace freestick
 {
     class FSUSBNullDevice : public FSUSBDevice

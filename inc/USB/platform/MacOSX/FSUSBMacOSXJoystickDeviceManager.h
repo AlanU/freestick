@@ -26,7 +26,7 @@ and must not be misrepresented as being the original software.
 **************************************************************************/
 
 #pragma once
-#include "../../FSUSBJoystickDeviceManager.h"
+#include "USB/common/FSUSBJoystickDeviceManager.h"
 #include <IOKit/hid/IOHIDLib.h>
 namespace freestick
 {

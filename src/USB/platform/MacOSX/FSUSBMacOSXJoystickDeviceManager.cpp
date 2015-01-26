@@ -25,16 +25,16 @@ and must not be misrepresented as being the original software.
 3. This notice may not be removed or altered from any source distribution.
 **************************************************************************/
 
-#include "FSUSBMacOSXJoystickDeviceManager.h"
-#include "../../FSUSBJoystickDeviceManager.h"
+#include "USB/platform/MacOSX/FSUSBMacOSXJoystickDeviceManager.h"
+#include "USB/common/FSUSBJoystickDeviceManager.h"
 #include <CoreFoundation/CoreFoundation.h>
 #include <IOKit/hid/IOHIDLib.h>
 #include <IOKit/IOKitLib.h>
 #include <ForceFeedback/ForceFeedback.h>
-#include "FSUSBMacOSXJoystick.h"
+#include "USB/platform/MacOSX/FSUSBMacOSXJoystick.h"
 #include "stdio.h"
 #include "../../../3rdParty/Mac/IOHID/IOHIDDevice_.h"
-#include "../../../FreeStickLog.h"
+#include "common/FreeStickLog.h"
 
 using namespace freestick;
 

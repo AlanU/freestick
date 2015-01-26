@@ -25,9 +25,9 @@ and must not be misrepresented as being the original software.
 3. This notice may not be removed or altered from any source distribution.
 **************************************************************************/
 
-#include "FSUSBDeviceManager.h"
-#include "FSBaseManager.h"
-#include "FSUSBDevice.h"
+#include "USB/common/FSUSBDeviceManager.h"
+#include "baseClasses/FSBaseManager.h"
+#include "USB/common/FSUSBDevice.h"
 #include <algorithm>
 using namespace freestick;
 FSUSBDeviceManager::FSUSBDeviceManager()

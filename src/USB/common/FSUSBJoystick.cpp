@@ -25,7 +25,7 @@ and must not be misrepresented as being the original software.
 3. This notice may not be removed or altered from any source distribution.
 **************************************************************************/
 
-#include "FSUSBJoystick.h"
+#include "USB/common/FSUSBJoystick.h"
 using namespace freestick;
 FSUSBJoystick::FSUSBJoystick()
 {

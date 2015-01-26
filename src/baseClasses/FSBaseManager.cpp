@@ -25,11 +25,11 @@ and must not be misrepresented as being the original software.
 3. This notice may not be removed or altered from any source distribution.
 **************************************************************************/
 
-#include "FSBaseManager.h"
+#include "baseClasses/FSBaseManager.h"
 #include <utility>      // std::pair
-#include "FSBaseEvent.h"
-#include "FSDeviceInputEvent.h"
-#include "FreeStickLog.h"
+#include "baseClasses/FSBaseEvent.h"
+#include "common/FSDeviceInputEvent.h"
+#include "common/FreeStickLog.h"
 #include <ctime>
 using namespace freestick;
 

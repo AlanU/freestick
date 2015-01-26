@@ -34,6 +34,7 @@ TARGET = JoyStickConfig
 android {
 QT += androidextras
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android-source
+
    message("JoyStickConfig Android Package Source")
    message($$ANDROID_PACKAGE_SOURCE_DIR)
    INCLUDEPATH +=  $$(JAVA_HOME)/include \

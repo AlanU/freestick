@@ -26,9 +26,9 @@ and must not be misrepresented as being the original software.
 **************************************************************************/
 
 #pragma once
-#include "../../FSUSBJoystick.h"
+#include "USB/common/FSUSBJoystick.h"
 #include <IOKit/hid/IOHIDLib.h>
-#include "../../FSUSBJoystickDeviceManager.h"
+#include "USB/common/FSUSBJoystickDeviceManager.h"
 namespace freestick
 {
     class FSUSBMacOSXJoystick : public FSUSBJoystick
