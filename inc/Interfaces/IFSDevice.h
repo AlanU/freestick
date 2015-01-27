@@ -40,12 +40,18 @@ namespace freestick {
         DPadLeft,
         DPadRight,
         LastDPad,
-        Button1,
-        Button2,
-        Button3,
-        Button4,
-        Button5,
-        Button6,
+        Button1,//X
+        ButtonX = Button1,
+        Button2,//Y
+        ButtonY = Button2,
+        Button3,//A
+        ButtonA = Button3,
+        Button4,//B
+        ButtonB = Button4,
+        Button5,//Start
+        ButtonStart = Button5,
+        Button6,//Select
+        ButtonSelect = Button6,
         Button7,
         Button8,
         Button9,
