@@ -105,7 +105,7 @@ bool FreeFFDevice(io_service_t FFDevice)
 }
 
 bool isForceFeedBackSupported(IOHIDDeviceRef device)
-{\
+{
     io_service_t FFDevice;
     FFCAPABILITIES FFDeviceAblities;
     FFDeviceObjectReference FFDeviceRef;
@@ -411,7 +411,7 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn i
 }
 
 
-void setupIOHDIManager(IOHIDManagerRef  hidManager,int device,void * thisptr )
+void setupIOHDIManager(IOHIDManagerRef & hidManager,int device,void * thisptr )
 {
     hidManager = IOHIDManagerCreate( kCFAllocatorDefault, kIOHIDOptionsTypeNone);
     CFStringRef keys[2];
@@ -432,9 +432,14 @@ void setupIOHDIManager(IOHIDManagerRef  hidManager,int device,void * thisptr )
     IOHIDManagerOpen(hidManager, kIOHIDOptionsTypeSeizeDevice);
     IOHIDManagerRegisterInputValueCallback(hidManager,  FSUSBMacOSXJoystickDeviceManager::gamepadAction, thisptr);
     //IOHIDManagerRegisterInputReportCallback( hidManager,foo,thisptr);
-
+    CFRelease(criterion);
+    CFRelease(keys[0]);
+    CFRelease(keys[1]);
+    CFRelease(values[0]);
+    CFRelease(values[1]);
 
 }
+
 
 void FSUSBMacOSXJoystickDeviceManager::init()
 {
@@ -459,20 +464,15 @@ void FSUSBMacOSXJoystickDeviceManager::update()
 
 FSUSBMacOSXJoystickDeviceManager::~FSUSBMacOSXJoystickDeviceManager()
 {
-    /** /todo
-     *See if this needs to be closed
-     *fix crash with releasing manager
-      */
-    // IOHIDManagerClose(hidManagerGamePad,0);
-    //IOHIDManagerClose(hidManagerJoyStick,0);
-    //if(CFGetRetainCount(hidManagerGamePad) != 0)
-    //{
-    // CFRelease(hidManagerGamePad);
-    //}
-    //if(CFGetRetainCount(hidManagerJoyStick) != 0)
-    //{
-    //CFRelease(hidManagerJoyStick);
-    //}
+    
+    IOHIDManagerUnscheduleFromRunLoop(hidManagerGamePad, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
+    IOHIDManagerUnscheduleFromRunLoop(hidManagerJoyStick, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
+
+    IOReturn  retunValue = IOHIDManagerClose(hidManagerGamePad,0);
+    CFRelease(hidManagerGamePad);
+
+    retunValue = IOHIDManagerClose(hidManagerJoyStick,0);
+    CFRelease(hidManagerJoyStick);
 }
 
 void FSUSBMacOSXJoystickDeviceManager::addDevice(IOHIDDeviceRef  device)
