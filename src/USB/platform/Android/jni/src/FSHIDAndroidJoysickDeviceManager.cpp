@@ -41,12 +41,15 @@ FSHIDAndroidJoysickDeviceManager::FSHIDAndroidJoysickDeviceManager()
     _androidUsageMapToInputEvent[AKEYCODE_DPAD_LEFT] = DPadLeft;
     _androidUsageMapToInputEvent[AKEYCODE_DPAD_RIGHT] = DPadRight;
     _androidUsageMapToInputEvent[AKEYCODE_DPAD_RIGHT] = DPadRight;
-    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_X] = Button1;
-    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_Y] = Button2;
-    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_A] = Button3;
-    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_B] = Button4;
-    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_SELECT] = Button5;
-    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_START] = Button6;
+    _androidUsageMapToInputEvent[AKEYCODE_DPAD_CENTER] = ButtonX;
+    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_X] = ButtonX;
+    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_Y] = ButtonY;
+    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_A] = ButtonA;
+    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_B] = ButtonB;
+    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_L1 ] = LeftShoulder;
+    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_R1 ] = RightShoulder;
+    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_SELECT] = ButtonStart;
+    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_START] = ButtonSelect;
 }
 
 

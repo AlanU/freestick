@@ -48,14 +48,16 @@ namespace freestick {
         ButtonA = Button3,
         Button4,//B
         ButtonB = Button4,
-        Button5,//Start
-        ButtonStart = Button5,
-        Button6,//Select
-        ButtonSelect = Button6,
+        Button5,
+        LeftShoulder = Button5,
+        Button6,
+        RightShoulder = Button6,
         Button7,
         Button8,
-        Button9,
-        Button10,
+        Button9,//Select
+        ButtonSelect = Button9,
+        Button10,//Start
+        ButtonStart = Button10,
         Button11,
         Button12,
         LastButton,

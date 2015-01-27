@@ -78,8 +78,8 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputEvent[LogitchVenderID][LogitchDualActionID][5] = Button2;
     _usageMapToInputEvent[LogitchVenderID][LogitchDualActionID][6] = Button3;
     _usageMapToInputEvent[LogitchVenderID][LogitchDualActionID][7] = Button4;
-    _usageMapToInputEvent[LogitchVenderID][LogitchDualActionID][8]= Button5;
-    _usageMapToInputEvent[LogitchVenderID][LogitchDualActionID][9] = Button6;
+    _usageMapToInputEvent[LogitchVenderID][LogitchDualActionID][8]= LeftShoulder;
+    _usageMapToInputEvent[LogitchVenderID][LogitchDualActionID][9] = RightShoulder;
     _usageMapToInputEvent[LogitchVenderID][LogitchDualActionID][10] = Button7;
     _usageMapToInputEvent[LogitchVenderID][LogitchDualActionID][11] = Button8;
     _usageMapToInputEvent[LogitchVenderID][LogitchDualActionID][12] = Button9;
