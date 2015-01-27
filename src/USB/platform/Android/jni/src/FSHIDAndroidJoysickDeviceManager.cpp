@@ -25,13 +25,13 @@ and must not be misrepresented as being the original software.
 3. This notice may not be removed or altered from any source distribution.
 **************************************************************************/
 
-#include "FSHIDAndroidJoysickDeviceManager.h"
+#include "USB/platform/Android/jni/src/FSHIDAndroidJoysickDeviceManager.h"
 #include "USB/platform/NULL/FSUSBNullDevice.h"
-#include "FSJNI_Wrapper.h"
+#include "USB/platform/Android/jni/src/FSJNI_Wrapper.h"
 #include <android/log.h>
 #include <android/input.h>
 #include <android/keycodes.h>
-#include "FSAndroidJoystick.h"
+#include "USB/platform/Android/jni/src/FSAndroidJoystick.h"
 using namespace freestick;
 FSHIDAndroidJoysickDeviceManager::FSHIDAndroidJoysickDeviceManager()
 {

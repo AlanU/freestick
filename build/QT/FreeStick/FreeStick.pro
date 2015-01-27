@@ -59,7 +59,6 @@ HEADERS += \
         $$files(../../../src/3rdParty/EELog/src/*.h)
 
 INCLUDEPATH += ../../../inc \
-               ../../../src/3rdParty/EELog/src \
 
 
 
@@ -101,8 +100,8 @@ android {
                    $$(JAVA_HOME)/include/darwin \
                     $$(JAVA_HOME)/include/win32 \
                     $$NDK_ROOT/sources/android \
-                    ../../../inc/USB/platform/Android/jni/src \
-                    .
+                    #../../../inc/USB/platform/Android/jni/src \
+
 ANDROID_PACKAGE_SOURCE_DIR += $$PWD/../../../src/USB/platform/Android/java
 
 

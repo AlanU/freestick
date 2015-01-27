@@ -25,7 +25,7 @@ and must not be misrepresented as being the original software.
 3. This notice may not be removed or altered from any source distribution.
 **************************************************************************/
 
-#include "FSAndroidJoystick.h"
+#include "USB/platform/Android/jni/src/FSAndroidJoystick.h"
 using namespace freestick;
 FSAndroidJoystick::FSAndroidJoystick(int androidDeviceID,
                                     unsigned int joyStickID,

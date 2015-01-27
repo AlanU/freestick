@@ -25,7 +25,7 @@ and must not be misrepresented as being the original software.
 3. This notice may not be removed or altered from any source distribution.
 **************************************************************************/
 
-#include "FSJNI_Wrapper.h"
+#include "USB/platform/Android/jni/src/FSJNI_Wrapper.h"
 #include <android/input.h>
 #include <algorithm>
 #include <jni.h>
