@@ -134,13 +134,21 @@ void FSBaseManager::UnListenForAllJoysticksForEventType(FreeStickEventType event
 {
     std::pair<joystickDeviceListenersItr,joystickDeviceListenersItr> rangeOfListeners;
    rangeOfListeners =  _joystickDeviceListeners.equal_range(eventType);
-    for(joystickDeviceListenersItr itr = rangeOfListeners.second; itr != rangeOfListeners.first ; itr-- )
+    joystickDeviceListenersItr itr = rangeOfListeners.first;
+    while(itr != rangeOfListeners.second )
     {
-       if(itr->second == (&listener))
-       {
-           _joystickDeviceListeners.erase(itr);
-       }
+        if(itr->second == (&listener))
+        {
+            joystickDeviceListenersItr toErase = itr;
+            ++itr;
+            _joystickDeviceListeners.erase(toErase);
+        }
+        else
+        {
+            ++itr;
+        }
     }
+  
 }
 
 void FSBaseManager::ListenForAllJoysticksForEventType(FreeStickEventType eventType,IFSJoystickListener & listener)
