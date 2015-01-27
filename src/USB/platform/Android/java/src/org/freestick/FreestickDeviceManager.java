@@ -86,7 +86,7 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener 
 
     }
 
-    public void handelButtonEvent(KeyEvent event) {
+    public boolean handelButtonEvent(KeyEvent event) {
         if (event.getAction() == KeyEvent.ACTION_UP || event.getAction() == KeyEvent.ACTION_DOWN) {
             Log.w("FreeStick", "handelButtonEvent" + event.toString());
             float value = event.getAction();
@@ -94,7 +94,12 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener 
             Log.w("FreeStick", "calling gamepadDeviceUpdate");
             gamepadDeviceUpdate(event.getDeviceId(), code, 0, value, 0, 1);
             Log.w("FreeStick", "Back From calling gamepadDeviceUpdate");
+            if (code != KeyEvent.KEYCODE_BACK) {
+                return true;
+            }
+
         }
+        return false;
     }
 
     public void checkForNewJoysticks(InputManager inputManger) {
