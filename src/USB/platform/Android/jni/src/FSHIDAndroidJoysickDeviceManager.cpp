@@ -50,8 +50,8 @@ FSHIDAndroidJoysickDeviceManager::FSHIDAndroidJoysickDeviceManager()
     _androidUsageMapToInputEvent[AKEYCODE_BUTTON_R1 ] = RightShoulder;
     _androidUsageMapToInputEvent[AKEYCODE_BUTTON_SELECT] = ButtonStart;
     _androidUsageMapToInputEvent[AKEYCODE_BUTTON_START] = ButtonSelect;
-    _androidUsageMapToInputEvent[KEYCODE_BUTTON_THUMBL] = Axis1Button;
-    _androidUsageMapToInputEvent[KEYCODE_BUTTON_THUMBR] = Axis2Button;
+    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_THUMBL] = Axis1Button;
+    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_THUMBR] = Axis2Button;
 
 }
 
