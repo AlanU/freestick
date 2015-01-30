@@ -56,7 +56,7 @@ namespace freestick
         virtual FSEventAction getEventAction() = 0;
         static FreeStickEventType getEventFromInputType(FSDeviceInput inputType)
         {
-            if(Button1 <= inputType && inputType < LastButton  )
+            if(Button0 <= inputType && inputType < LastButton  )
             {
                 return FS_BUTTON_EVENT;
             }
