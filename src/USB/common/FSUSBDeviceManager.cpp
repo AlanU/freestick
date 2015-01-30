@@ -35,7 +35,56 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     /** \todo
     * populate map _usageMapToInputEvent
     */
-    
+
+
+    const unsigned int AmazonVenderID = 6473;
+    const unsigned int AmazonFireGameControllerID = 1026 ;
+
+    _usageMapToInputEvent[AmazonVenderID][AmazonFireGameControllerID][9] = ButtonX;
+    _usageMapToInputEvent[AmazonVenderID][AmazonFireGameControllerID][10] = ButtonY;
+    _usageMapToInputEvent[AmazonVenderID][AmazonFireGameControllerID][6] = ButtonA;
+    _usageMapToInputEvent[AmazonVenderID][AmazonFireGameControllerID][7] = ButtonB;
+
+
+    _usageMapToInputEvent[AmazonVenderID][AmazonFireGameControllerID][16] = ButtonSelect;
+    _usageMapToInputEvent[AmazonVenderID][AmazonFireGameControllerID][17] = ButtonStart;
+    _usageMapToInputEvent[AmazonVenderID][AmazonFireGameControllerID][13] = RightShoulder;
+    _usageMapToInputEvent[AmazonVenderID][AmazonFireGameControllerID][12] = LeftShoulder;
+    _usageMapToInputEvent[AmazonVenderID][AmazonFireGameControllerID][19] = Axis1Button;//L3
+    _usageMapToInputEvent[AmazonVenderID][AmazonFireGameControllerID][20] = Axis2Button;//R3
+    _usageMapToInputEvent[AmazonVenderID][AmazonFireGameControllerID][18] = ButtonCenter;//GameCircle
+
+    _usageMapToInputEvent[AmazonVenderID][AmazonFireGameControllerID][25] = ButtonHome;//HomeButton
+
+    _usageMapToInputEvent[AmazonVenderID][AmazonFireGameControllerID][17] = Button18;//Menu button
+    _usageMapToInputEvent[AmazonVenderID][AmazonFireGameControllerID][23] = Button19;//Rewind button
+    _usageMapToInputEvent[AmazonVenderID][AmazonFireGameControllerID][24] = Button20;//Play Pause button
+    _usageMapToInputEvent[AmazonVenderID][AmazonFireGameControllerID][22] = Button21;//Fast Forward button
+
+    _usageMapToInputRangeEvent[AmazonVenderID][AmazonFireGameControllerID][34].push_back(FSUSBElementInfoMap(-1,0,Trigger1,FSInputChanged));//L2 trigger
+    _usageMapToInputRangeEvent[AmazonVenderID][AmazonFireGameControllerID][35].push_back(FSUSBElementInfoMap(-1,0,Trigger2,FSInputChanged));//R2 trigger
+
+
+    _usageMapToInputRangeEvent[AmazonVenderID][AmazonFireGameControllerID][36].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[AmazonVenderID][AmazonFireGameControllerID][36].push_back(FSUSBElementInfoMap(2,2,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[AmazonVenderID][AmazonFireGameControllerID][36].push_back(FSUSBElementInfoMap(3,3,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[AmazonVenderID][AmazonFireGameControllerID][36].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[AmazonVenderID][AmazonFireGameControllerID][36].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[AmazonVenderID][AmazonFireGameControllerID][36].push_back(FSUSBElementInfoMap(6,6,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[AmazonVenderID][AmazonFireGameControllerID][36].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[AmazonVenderID][AmazonFireGameControllerID][36].push_back(FSUSBElementInfoMap(8,8,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[AmazonVenderID][AmazonFireGameControllerID][36].push_back(FSUSBElementInfoMap(0,0,LastValueUp,FSInputRest));
+
+     //TODO new mapping system for fire tv controller anolog stick and trigger min and max of -1 to 0 is a lie
+    //_usageMapToInputRangeEvent[AmazonVenderID][AmazonFireGameControllerID][31].push_back(FSUSBElementInfoMap(-1,0,YAxis,FSInputChanged));
+    //_usageMapToInputRangeEvent[AmazonVenderID][AmazonFireGameControllerID][30].push_back(FSUSBElementInfoMap(-1,0,XAxis,FSInputChanged));
+
+    //_usageMapToInputRangeEvent[AmazonVenderID][AmazonFireGameControllerID][33].push_back(FSUSBElementInfoMap(-1,0,YAxis2,FSInputChanged));
+   // _usageMapToInputRangeEvent[AmazonVenderID][AmazonFireGameControllerID][32].push_back(FSUSBElementInfoMap(-1,0,XAxis2,FSInputChanged));
+
+
+
+
     const unsigned int GameElementsVenderID = 3888;
     const unsigned int GameElementRecoilID = 263;
     

@@ -49,11 +49,12 @@ std::string FSUSBDevice::GetFrendlyProductNameFromID(long venderID, long product
 {
     static std::map<long, std::map<long,std::string > >s_productFriendlyNames;
     s_productFriendlyNames[1133][49686] = "Dual Action";
-    s_productFriendlyNames[1356][616] = "PlayStation 3 DualShock 3 Controller";
+    s_productFriendlyNames[1356][616] = "DualShock 3 Controller";
     s_productFriendlyNames[1118][654] = "Xbox 360 Controller";
     s_productFriendlyNames[2064][1] ="HVG2 Twin PS2";
-    s_productFriendlyNames[4152][5138] = "SteelSeries Free";
     s_productFriendlyNames[1356][1476] = "DualShock 4 Controller";
+    s_productFriendlyNames[3888][263] = "GGE908";
+
     if(s_productFriendlyNames.find(venderID) != s_productFriendlyNames.end())
     {
         if(s_productFriendlyNames[venderID].find(productID) != s_productFriendlyNames[venderID].end())
@@ -71,6 +72,8 @@ std::string FSUSBDevice::GetFrendlyProductNameFromID(long venderID, long product
     /** \todo
      *make this const
      */
+
+     //
     s_venderFriendlyNames[1356] = "Sony";
     s_venderFriendlyNames[1118] = "Microsoft";
     s_venderFriendlyNames[1133] = "Logitech";
@@ -81,6 +84,9 @@ std::string FSUSBDevice::GetFrendlyProductNameFromID(long venderID, long product
     s_venderFriendlyNames[8738] = "Macally";
     s_venderFriendlyNames[1848] = "Mad Catz, Inc.";
     s_venderFriendlyNames[4152] = "SteelSeries";
+    s_venderFriendlyNames[6473] = "Amazon";
+    s_venderFriendlyNames[3888] = "Game Elements";
+
     if(s_venderFriendlyNames.find(venderID) != s_venderFriendlyNames.end())
         return s_venderFriendlyNames[venderID];
     else
