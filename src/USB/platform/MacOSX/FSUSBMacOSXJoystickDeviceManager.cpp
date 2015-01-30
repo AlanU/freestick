@@ -364,7 +364,8 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn i
         //  printf("\n");
         return ;
     }
-    EE_DEBUG<<"Gamepad talked! type of input "<<(unsigned int)IOHIDElementGetType(element)<<"id:"<< elementID<<std::endl;
+
+    EE_DEBUG<<"Gamepad talked! type of input "<<(unsigned int)IOHIDElementGetType(element)<<" id: "<< elementID<<std::endl;
 
     elementValue=  IOHIDValueGetIntegerValue(value);
     usage =IOHIDElementGetUsage(element);
@@ -392,10 +393,11 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn i
         //  FSUSBElementInfoMap inputType = manager->lookUpDeviceInputFromID(deviceID,(unsigned int)IOHIDElementGetCookie(element),IOHIDElementGetLogicalMin(element),IOHIDElementGetLogicalMax(element),elementValue);
         // FreeStickEventType eventType =  IFSEvent::getEventFromInputType(inputType.getDeviceInput());
         FSUSBElementInfoMap inputType = elementDevice->getMapping(elementValue);
+        bool isValueVaild = elementDevice->isValueInDeadZone(elementValue);
         FreeStickEventType eventType =  IFSEvent::getEventFromInputType(inputType.getDeviceInput());
 
         //pass in FSEventMaping so we can map release vs press
-        if( eventType != FS_LAST_EVENT && inputType.getDeviceInput() != LastInput )
+        if( eventType != FS_LAST_EVENT && inputType.getDeviceInput() != LastInput && isValueVaild)
         {
 
 
