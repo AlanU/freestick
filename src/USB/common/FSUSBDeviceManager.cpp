@@ -145,12 +145,12 @@ FSUSBDeviceManager::FSUSBDeviceManager()
 
     _usageMapToInputRangeEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][19].push_back(FSUSBElementInfoMap(15,15,LastValueUp,FSInputRest));
 
-    _usageMapToInputEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][6] = Button1;
-    _usageMapToInputEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][7] = Button2;
-    _usageMapToInputEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][4] = Button3;
-    _usageMapToInputEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][3] = Button4;
-    _usageMapToInputEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][15] = ButtonA;//a
-    _usageMapToInputEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][14] = ButtonB;//b
+    _usageMapToInputEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][6] = ButtonX;
+    _usageMapToInputEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][7] = ButtonY;
+    _usageMapToInputEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][4] = ButtonB;
+    _usageMapToInputEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][3] = ButtonA;
+    _usageMapToInputEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][15] = ButtonSelect;//a
+    _usageMapToInputEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][14] = ButtonStart;//b
     _usageMapToInputEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][9] = LeftShoulder;//left trigger
     _usageMapToInputEvent[SteelSeriesVenderID][SteelSeriesFreeControllerID][10] = RightShoulder;//right trigger
 
