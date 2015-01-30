@@ -85,7 +85,7 @@ namespace freestick {
     } FSDeviceInput;
 
     #define FS_isInputBetween(inputType,min,max)  inputType >= min && inputType < max ? true : false
-    #define FS_isButtion(inputType) FS_isInputBetween(inputType,Button1,LastButton)
+    #define FS_isButtion(inputType) FS_isInputBetween(inputType,Button0,LastButton)
     #define FS_isDpad(inputType)  FS_isInputBetween(inputType,DPadUp,LastDPad)
     #define FS_isAxis(inputType)  FS_isInputBetween(inputType,XAxis,LastAxis)
     #define FS_isTrigger(inputType)  FS_isInputBetween(inputType,Trigger1,LastTrigger)
