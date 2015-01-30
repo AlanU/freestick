@@ -110,6 +110,71 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     const unsigned int SonyVenderID = 1356;
     const unsigned int Playstation3ControllerID = 616;
 
+    _usageMapToInputEvent[SonyVenderID][Playstation3ControllerID][11] = DPadUp;
+    _usageMapToInputEvent[SonyVenderID][Playstation3ControllerID][13] = DPadDown;
+    _usageMapToInputEvent[SonyVenderID][Playstation3ControllerID][14] = DPadLeft;
+    _usageMapToInputEvent[SonyVenderID][Playstation3ControllerID][12] = DPadRight;
+
+    _usageMapToInputEvent[SonyVenderID][Playstation3ControllerID][19] = ButtonY;
+    _usageMapToInputEvent[SonyVenderID][Playstation3ControllerID][22] = ButtonX;
+    _usageMapToInputEvent[SonyVenderID][Playstation3ControllerID][21] = ButtonA;
+    _usageMapToInputEvent[SonyVenderID][Playstation3ControllerID][20] = ButtonB;
+
+    _usageMapToInputEvent[SonyVenderID][Playstation3ControllerID][10] = ButtonStart;
+    _usageMapToInputEvent[SonyVenderID][Playstation3ControllerID][7] = ButtonSelect;
+    _usageMapToInputEvent[SonyVenderID][Playstation3ControllerID][23] = ButtonCenter;
+
+    _usageMapToInputEvent[SonyVenderID][Playstation3ControllerID][17] = LeftShoulder;
+    _usageMapToInputEvent[SonyVenderID][Playstation3ControllerID][18] = RightShoulder;
+
+    _usageMapToInputEvent[SonyVenderID][Playstation3ControllerID][8] = Axis1Button;
+    _usageMapToInputEvent[SonyVenderID][Playstation3ControllerID][9] = Axis2Button;
+
+
+    _usageMapToInputRangeEvent[SonyVenderID][Playstation3ControllerID][39].push_back(FSUSBElementInfoMap(0,255,Trigger1,FSInputChanged));//L2 trigger
+    _usageMapToInputRangeEvent[SonyVenderID][Playstation3ControllerID][40].push_back(FSUSBElementInfoMap(0,255,Trigger2,FSInputChanged));//R2 trigger
+
+    _usageMapToInputRangeEvent[SonyVenderID][Playstation3ControllerID][27].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));
+    _usageMapToInputRangeEvent[SonyVenderID][Playstation3ControllerID][26].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));
+
+    _usageMapToInputRangeEvent[SonyVenderID][Playstation3ControllerID][28].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));
+    _usageMapToInputRangeEvent[SonyVenderID][Playstation3ControllerID][29].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));//LYaxis stick trigger
+
+    const unsigned int Playstation4ControllerID = 1476;
+
+    _usageMapToInputEvent[SonyVenderID][Playstation4ControllerID][5] = ButtonY;
+    _usageMapToInputEvent[SonyVenderID][Playstation4ControllerID][2] = ButtonX;
+    _usageMapToInputEvent[SonyVenderID][Playstation4ControllerID][3] = ButtonA;
+    _usageMapToInputEvent[SonyVenderID][Playstation4ControllerID][4] = ButtonB;
+
+    _usageMapToInputEvent[SonyVenderID][Playstation4ControllerID][7] = RightShoulder;
+    _usageMapToInputEvent[SonyVenderID][Playstation4ControllerID][6] = LeftShoulder;
+    _usageMapToInputEvent[SonyVenderID][Playstation4ControllerID][8] = LeftShoulder2;
+    _usageMapToInputEvent[SonyVenderID][Playstation4ControllerID][9] = RightShoulder2;
+
+    _usageMapToInputEvent[SonyVenderID][Playstation4ControllerID][10] = ButtonSelect;
+    _usageMapToInputEvent[SonyVenderID][Playstation4ControllerID][11] = ButtonStart;
+    _usageMapToInputEvent[SonyVenderID][Playstation4ControllerID][14] = ButtonCenter;
+
+    _usageMapToInputRangeEvent[SonyVenderID][Playstation4ControllerID][21].push_back(FSUSBElementInfoMap(0,255,Trigger1,FSInputChanged));//L2 trigger
+    _usageMapToInputRangeEvent[SonyVenderID][Playstation4ControllerID][22].push_back(FSUSBElementInfoMap(0,255,Trigger2,FSInputChanged));//R2 trigger
+
+    _usageMapToInputRangeEvent[SonyVenderID][Playstation4ControllerID][20].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[SonyVenderID][Playstation4ControllerID][20].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[SonyVenderID][Playstation4ControllerID][20].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[SonyVenderID][Playstation4ControllerID][20].push_back(FSUSBElementInfoMap(3,3,DPadDown,FSInputPressed));
+
+    _usageMapToInputRangeEvent[SonyVenderID][Playstation4ControllerID][20].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[SonyVenderID][Playstation4ControllerID][20].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSInputPressed));
+
+    _usageMapToInputRangeEvent[SonyVenderID][Playstation4ControllerID][20].push_back(FSUSBElementInfoMap(8,8,LastValueUp,FSInputRest));
+
+
+    _usageMapToInputRangeEvent[SonyVenderID][Playstation4ControllerID][16].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));//LXaxis stick trigger
+    _usageMapToInputRangeEvent[SonyVenderID][Playstation4ControllerID][17].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));//LYaxis stick trigger
+
+    _usageMapToInputRangeEvent[SonyVenderID][Playstation4ControllerID][19].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));//LXaxis stick trigger
+    _usageMapToInputRangeEvent[SonyVenderID][Playstation4ControllerID][18].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));//LYaxis stick trigger
 
     // "Logitech Dual Action"
     const unsigned int LogitchVenderID = 1133;
@@ -170,7 +235,7 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputRangeEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][30].push_back(FSUSBElementInfoMap(-32768,32767,YAxis2,FSInputChanged));//LYaxis stick trigger
 
     _usageMapToInputEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][18] = LeftShoulder;//L1 sholder button
-    _usageMapToInputEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][19] = RightShoulder2;//R2 sholder button
+    _usageMapToInputEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][19] = RightShoulder;//R2 sholder button
     _usageMapToInputEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][10] = DPadUp;
     _usageMapToInputEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][11] = DPadDown;
     _usageMapToInputEvent[MicrosoftVentderID][MictrosftXbox360WindowsControllerID][12] = DPadLeft;

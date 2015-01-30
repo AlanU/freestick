@@ -50,9 +50,10 @@ std::string FSUSBDevice::GetFrendlyProductNameFromID(long venderID, long product
     static std::map<long, std::map<long,std::string > >s_productFriendlyNames;
     s_productFriendlyNames[1133][49686] = "Dual Action";
     s_productFriendlyNames[1356][616] = "PlayStation 3 DualShock 3 Controller";
-     s_productFriendlyNames[1118][654] = "Xbox 360 Controller";
-     s_productFriendlyNames[2064][1] ="HVG2 Twin PS2";
-      s_productFriendlyNames[4152][5138] = "SteelSeries Free";
+    s_productFriendlyNames[1118][654] = "Xbox 360 Controller";
+    s_productFriendlyNames[2064][1] ="HVG2 Twin PS2";
+    s_productFriendlyNames[4152][5138] = "SteelSeries Free";
+    s_productFriendlyNames[1356][1476] = "DualShock 4 Controller";
     if(s_productFriendlyNames.find(venderID) != s_productFriendlyNames.end())
     {
         if(s_productFriendlyNames[venderID].find(productID) != s_productFriendlyNames[venderID].end())
