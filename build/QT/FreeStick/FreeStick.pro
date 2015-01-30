@@ -89,18 +89,15 @@ android {
 
     SOURCES += $$files(../../../src/USB/platform/Android/jni/src/*.cpp)
 
-  # SOURCES += $$files(../../../src/USB/platform/Android/jni/*.c)
-
-   HEADERS += $$files(../../../inc/USB/platform/Android/jni/src/*.h)
+    HEADERS += $$files(../../../inc/USB/platform/Android/jni/src/*.h)
     NDK_ROOT = $$(ANDROID_NDK_ROOT)
     !exists($$NDK_ROOT) {
            NDK_ROOT = $$DEFAULT_ANDROID_NDK_ROOT
     }
-   INCLUDEPATH +=  $$(JAVA_HOME)/include \
+    INCLUDEPATH +=  $$(JAVA_HOME)/include \
                    $$(JAVA_HOME)/include/darwin \
                     $$(JAVA_HOME)/include/win32 \
                     $$NDK_ROOT/sources/android \
-                    #../../../inc/USB/platform/Android/jni/src \
 
 ANDROID_PACKAGE_SOURCE_DIR += $$PWD/../../../src/USB/platform/Android/java
 
@@ -112,14 +109,6 @@ OTHER_FILES += $$files(../../../src/USB/platform/Android/jni/*.mk) \
     message($$NDK_ROOT)
     message("JDK Path")
     message($$INCLUDEPATH)
-  #  QT += androidextras
-   # ANDROID_PACKAGE_SOURCE_DIR = $$PWD/src/USB/platform/Android/Java
-    #message("Freestick Android Package Source")
-   # message($$ANDROID_PACKAGE_SOURCE_DIR)
-
-   # OTHER_FILES+= $$files(../../../src/USB/platform/Android/Java/*.java) \
-          #        $$files(../../../src/USB/platform/Android/Java/*.xml)
-
 }
 
 macx {
@@ -132,8 +121,8 @@ SOURCES += \
 
 HEADERS += \
         ../../../src/3rdParty/Mac/IOHID/*.h \
-        ../../../src/USB/platform/MacOSX/FSUSBMacOSXJoystick.h \
-        ../../../src/USB/platform/MacOSX/FSUSBMacOSXJoystickDeviceManager.h \
+        ../../../inc/USB/platform/MacOSX/FSUSBMacOSXJoystick.h \
+        ../../../inc/USB/platform/MacOSX/FSUSBMacOSXJoystickDeviceManager.h \
 
 LIBS += -framework IOKit \
         -framework ForceFeedback \
