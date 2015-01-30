@@ -46,11 +46,7 @@ unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickM
     //std::map<IOHIDElementCookie,int> idMap;
     CFIndex min = 0;
     CFIndex max  = 0;
-    CFStringRef Devicename = IOHIDDevice_GetProduct(_macIOHIDDeviceRef);
 
-    char foo[256] = {'\0'};
-    CFStringGetCString(Devicename,foo,CFStringGetLength(Devicename)+1,kCFStringEncodingMacRoman);
-    //_prodcutIDFriendlyName = foo;
     assert( IOHIDDeviceGetTypeID() == CFGetTypeID(_macIOHIDDeviceRef) );
 
     deviceElements = IOHIDDeviceCopyMatchingElements(_macIOHIDDeviceRef, NULL, kIOHIDOptionsTypeNone);
@@ -159,7 +155,27 @@ FSUSBMacOSXJoystick::FSUSBMacOSXJoystick(IOHIDDeviceRef device,
     _vendorID = IOHIDDevice_GetVendorID(device);
     _productID = IOHIDDevice_GetProductID(device);
     _vendorIDFriendlyName = FSUSBDevice::GetFrendlyVenderNameFromID(_vendorID);
+    if(_vendorIDFriendlyName == "unknown")
+    {
+        CFStringRef manufactureStringRef = IOHIDDevice_GetManufacturer(device);
+       std::string temp = CFStringRefToString(manufactureStringRef);
+       if(!temp.empty())
+       {
+           _vendorIDFriendlyName = temp;
+       }
+       CFRelease(manufactureStringRef);
+    }
     _prodcutIDFriendlyName = FSUSBDevice::GetFrendlyProductNameFromID(_vendorID,_productID);
+    if(_prodcutIDFriendlyName == "unknown")
+    {
+       CFStringRef manufactureStringRef = IOHIDDevice_GetProduct(device);
+       std::string temp = CFStringRefToString(manufactureStringRef);
+       if(!temp.empty())
+       {
+           _prodcutIDFriendlyName = temp;
+       }
+       CFRelease(manufactureStringRef);
+    }
     _friendlyName = _vendorIDFriendlyName + " "+ _prodcutIDFriendlyName;
 
     _macIOHIDDeviceRef = device;
@@ -167,5 +183,24 @@ FSUSBMacOSXJoystick::FSUSBMacOSXJoystick(IOHIDDeviceRef device,
 }
 
 
+std::string FSUSBMacOSXJoystick::CFStringRefToString(CFStringRef refString)
+{
 
+   const char * CStringstringPtr;
+    if( ( CStringstringPtr = CFStringGetCStringPtr(refString,kCFStringEncodingUTF8) ) )
+    {
+            return std::string(CStringstringPtr);
+    }
+
+    //bad convrsion
+    if(CFStringGetLength(refString) == 0)
+    {
+        return std::string();
+    }
+
+
+    return std::string();
+
+
+}
 

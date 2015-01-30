@@ -355,6 +355,7 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn i
     uint32_t elementID = IOHIDElementGetCookie(element);
     CFIndex min = IOHIDElementGetLogicalMin(element);
     CFIndex max = IOHIDElementGetLogicalMax(element);
+
     //if(min+1 != max)
     //  return;
 
@@ -368,6 +369,7 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn i
     EE_DEBUG<<"Gamepad talked! type of input "<<(unsigned int)IOHIDElementGetType(element)<<" id: "<< elementID<<std::endl;
 
     elementValue=  IOHIDValueGetIntegerValue(value);
+    double_t elementScaleValue = IOHIDValueGetScaledValue(value,kIOHIDValueScaleTypeCalibrated);
     usage =IOHIDElementGetUsage(element);
     usagePage = IOHIDElementGetUsagePage(element);
     if(type == kIOHIDElementTypeInput_Button || type == kIOHIDElementTypeInput_Misc )
@@ -376,7 +378,7 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn i
         //CFShow(element);
         //printf("Element: %s \n", element);
 
-        EE_DEBUG<<"Element value: "<<elementValue<<std::endl;
+        EE_DEBUG<<"Element value: "<<elementValue<<" element scaled value "<<elementScaleValue<<std::endl;
 
         EE_DEBUG<<"Element Usage page"<<usagePage<<" with Usage "<<usage<<" min "<<min<<" max "<<max<<std::endl;
     }

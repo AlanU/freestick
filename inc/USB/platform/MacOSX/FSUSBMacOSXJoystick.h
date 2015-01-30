@@ -48,6 +48,7 @@ namespace freestick
         virtual ~FSUSBMacOSXJoystick();
         IOHIDDeviceRef GetIOHIDDeviceRef() const {return _macIOHIDDeviceRef;}
         virtual FSDeviceType getClassType() const {return FSUSBMACOSXJoystickType;}
+        static std::string CFStringRefToString(CFStringRef refString);
 
 
     };
