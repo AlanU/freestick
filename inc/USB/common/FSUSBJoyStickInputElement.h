@@ -43,6 +43,10 @@ typedef signed long  MinMaxNumber;
         MinMaxNumber _elementMax;
         MinMaxNumber _oldValue;
         MinMaxNumber _value;
+        MinMaxNumber _deadZoneMin;
+        MinMaxNumber _deadZoneMax;
+        bool _needsDeadZone;
+        bool _calibrated;
         bool _intialized;
         FSUSBDeviceManager * _usbDeviceManager;
     protected:
@@ -55,6 +59,7 @@ typedef signed long  MinMaxNumber;
         FSUSBElementInfoMap getMapping(int inputValue) ;
         inline MinMaxNumber getValue() {return _value;}
         void setValue(MinMaxNumber newValue);
+        bool isValueInDeadZone(MinMaxNumber value);
 
     };
 }

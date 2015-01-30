@@ -44,8 +44,55 @@ FSUSBElementInfoMap FSUSBJoyStickInputElement::getMapping(int inputValue)
    return map;
 }
 
+bool FSUSBJoyStickInputElement::isValueInDeadZone(MinMaxNumber value)
+{
+    if(_calibrated && _needsDeadZone)
+    {
+        if (value <= _deadZoneMax && value >= _deadZoneMin)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
 void FSUSBJoyStickInputElement::setValue(MinMaxNumber newValue)
 {
+    static unsigned int sample = 0;
+    if(_needsDeadZone && !_calibrated)
+    {
+        if(_intialized == false)
+        {
+            _deadZoneMax = newValue;
+            _deadZoneMin = newValue;
+        }
+        else
+        {
+            if(_deadZoneMax < newValue)
+            {
+                _deadZoneMax = newValue;
+            }
+            if(_deadZoneMin > newValue)
+            {
+                _deadZoneMin = newValue;
+            }
+        }
+        ++sample;
+    }
+
+    if(sample > 4)
+    {
+        _deadZoneMax++;
+        _calibrated = true;
+        _deadZoneMin--;
+    }
+    if(_calibrated)
+    {
+        if (newValue <= _deadZoneMax && newValue >= _deadZoneMin)
+        {
+            return;
+        }
+    }
     if (_intialized == false)
     {
         _oldValue = newValue;
@@ -68,4 +115,10 @@ FSUSBJoyStickInputElement::FSUSBJoyStickInputElement(unsigned int id, MinMaxNumb
     _value = -2;
     _intialized =false;
     _usbDeviceManager = &_manager;
+
+    _needsDeadZone = false;
+    _calibrated =false;
+    //TODO calibrated needs to be called over a time interval not number of times
+    //if(!((_elementMax - _elementMin == 1) || ( _elementMax - _elementMin == 0)) )
+      //  _needsDeadZone = true;
 }
