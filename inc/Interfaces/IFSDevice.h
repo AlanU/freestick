@@ -30,36 +30,50 @@ namespace freestick {
 
     typedef enum
     {
-        XAxis,
-        YAxis,
-        XAxis2,
-        YAxis2,
+        XAxis,//Left
+        YAxis,//Left
+        XAxis2,//Right
+        YAxis2,//Right
         LastAxis,
         DPadUp,
         DPadDown,
         DPadLeft,
         DPadRight,
         LastDPad,
-        Button1,//X
-        ButtonX = Button1,
-        Button2,//Y
-        ButtonY = Button2,
-        Button3,//A
-        ButtonA = Button3,
-        Button4,//B
-        ButtonB = Button4,
+        //use the HTML standard https://dvcs.w3.org/hg/gamepad/raw-file/default/gamepad.html excpet for button  12-15
+        Button0,//A
+        ButtonA = Button0,
+        Button1,//B
+        ButtonB = Button1,
+        Button2,//X
+        ButtonX = Button2,
+        Button3,//Y
+        ButtonY = Button3,
+        Button4,
+        LeftShoulder = Button4,
         Button5,
-        LeftShoulder = Button5,
-        Button6,
-        RightShoulder = Button6,
-        Button7,
-        Button8,
-        Button9,//Select
-        ButtonSelect = Button9,
-        Button10,//Start
-        ButtonStart = Button10,
-        Button11,
+        RightShoulder = Button5,
+        Button6,//Left digital shoulder button L2
+        LeftShoulder2 = Button6,
+        Button7,//Right digital sholder button R
+        RightShoulder2 = Button7,
+        Button8,//Select/back
+        ButtonSelect = Button8,
+        Button9,//Start
+        ButtonStart = Button9,
+        Button10,//L3
+        Axis1Button = Button10,
+        Button11,//R3
+        Axis2Button = Button11,
         Button12,
+        Button13,
+        Button14,
+        Button15,
+        Button16,
+        ButtonCenter,//example xbox button
+        Button18,
+        Button19,
+        Button20,
         LastButton,
         Trigger1,
         Trigger2,
@@ -68,7 +82,6 @@ namespace freestick {
         LastValueUp, //use to return and event of released on the last value for the device controll (used a lot in hatswitch)
         AllInputs,
         LastInput,
-
     } FSDeviceInput;
 
     #define FS_isInputBetween(inputType,min,max)  inputType >= min && inputType < max ? true : false

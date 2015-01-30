@@ -114,7 +114,8 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener 
 
                 if (((sources & InputDevice.SOURCE_GAMEPAD) == InputDevice.SOURCE_GAMEPAD)
                         || ((sources & InputDevice.SOURCE_JOYSTICK) == InputDevice.SOURCE_JOYSTICK)
-                        || ((sources & InputDevice.SOURCE_DPAD) == InputDevice.SOURCE_DPAD)) {
+                        || ((sources & InputDevice.SOURCE_DPAD) == InputDevice.SOURCE_DPAD)
+                        && !((sources & InputDevice.SOURCE_KEYBOARD) == InputDevice.SOURCE_KEYBOARD)) {
                     if (!currentDevice.isVirtual()) {
                         this.onInputDeviceAdded(ids[i]);
                         Log.w("FreeStick", "device on resume " + currentDevice.toString());
