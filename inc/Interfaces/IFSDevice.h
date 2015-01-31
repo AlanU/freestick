@@ -34,6 +34,8 @@ namespace freestick {
         YAxis,//Left
         XAxis2,//Right
         YAxis2,//Right
+        XAxis3,
+        YAxis3,
         LastAxis,
         DPadUp,
         DPadDown,
