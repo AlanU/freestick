@@ -48,7 +48,9 @@ JNIEXPORT void JNICALL Java_org_freestick_FreestickDeviceManager_gamepadWasAdded
 {
     //  gamepadWasAdded(devicemanager,HID_ID);
     LOGI("JNI gamePadWasAdded");
-    JNIBridge::update(HID_ID,0);
+    JavaVM * jvm;
+    env->GetJavaVM(&jvm);
+    JNIBridge::update(HID_ID,0,jvm);
 }
 
 JNIEXPORT void JNICALL Java_org_freestick_FreestickDeviceManager_gamepadWasRemoved(JNIEnv *env, jobject thisObj,jint HID_ID)
@@ -69,8 +71,11 @@ void JNIBridge::updateValue(int deviceid,int code,int type,float value,int min,i
 
     }
 }
-
 void JNIBridge::update(int hidDeviceID, int type)
+{
+	JNIBridge::update(hidDeviceID,type,NULL);
+}
+void JNIBridge::update(int hidDeviceID, int type,JavaVM * jvm)
 {
     int t=hidDeviceID;
     switch(type)
@@ -79,7 +84,7 @@ void JNIBridge::update(int hidDeviceID, int type)
         for(std::vector<IJINICallBack*>::iterator itr = _deviceAddedCallback.begin();itr != _deviceAddedCallback.end();itr++)
         {
             LOGI("Call back from bridge added device");
-            (*itr)->gamepadWasAddedFromJINBridge(hidDeviceID);
+            (*itr)->gamepadWasAddedFromJINBridge(hidDeviceID,jvm);
         }
         //run through the _devieAddedCallback map cand call the correct function
         break;

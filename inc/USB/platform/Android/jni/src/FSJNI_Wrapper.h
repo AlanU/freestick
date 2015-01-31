@@ -45,7 +45,7 @@ extern "C" {
 class IJINICallBack
 {
 public:
-    virtual void gamepadWasAddedFromJINBridge(int hid_id) = 0;
+    virtual void gamepadWasAddedFromJINBridge(int hid_id,JavaVM * jvm) = 0;
     virtual void gamepadWasRemovedFromJINBridge(int hid_id) = 0;
     virtual void gamepadWasUpdatedFromJINBridge(int deviceid,int code,int type,float value,int min,int max) = 0;
 };
@@ -60,6 +60,7 @@ class JNIBridge
        static void deregisterDeviceWasAdded(IJINICallBack * listener){}
        static void deregisterDeviceWasRemoved(IJINICallBack * listener){}
        static void update(int hidDeviceID, int type);
+       static void update(int hidDeviceID, int type,JavaVM * jvm);
        static void updateValue(int deviceid,int code,int type,float value,int min,int max);
        static void updateJoysticks(JavaVM * jvm);
     private:

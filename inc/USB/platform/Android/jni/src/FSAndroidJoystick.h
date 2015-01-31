@@ -29,6 +29,7 @@ and must not be misrepresented as being the original software.
 #pragma once
 #include "USB/common/FSUSBJoystick.h"
 #include "USB/common/FSUSBJoystickDeviceManager.h"
+#include <jni.h>
 namespace freestick
 {
     class FSAndroidJoystick : public FSUSBJoystick
@@ -43,7 +44,8 @@ namespace freestick
                               unsigned int numberOfButtons,
                               unsigned int numberOfAnlogSticks,
                               unsigned int numberOfDigitalSticks,
-                              bool forceFeedBackSupported );
+                              bool forceFeedBackSupported ,
+                              JavaVM * jvm);
             unsigned int Init(FSUSBJoystickDeviceManager & usbJoystickManager);
             virtual ~FSAndroidJoystick(){};
             int getAndroidID() const {return _androidDeviceID;}

@@ -26,23 +26,111 @@ and must not be misrepresented as being the original software.
 **************************************************************************/
 
 #include "USB/platform/Android/jni/src/FSAndroidJoystick.h"
+#include <android/log.h>
+#include <android/input.h>
+#define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "freestick", __VA_ARGS__))
+#define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "freestick", __VA_ARGS__))
+
+#include <jni.h>
 using namespace freestick;
 FSAndroidJoystick::FSAndroidJoystick(int androidDeviceID,
                                     unsigned int joyStickID,
                                     unsigned int numberOfButtons,
                                     unsigned int numberOfAnlogSticks,
                                     unsigned int numberOfDigitalSticks,
-                                    bool forceFeedBackSupported ):FSUSBJoystick(joyStickID,
+                                    bool forceFeedBackSupported,JavaVM * jvm ):FSUSBJoystick(joyStickID,
                                                                                 numberOfButtons,
                                                                                 numberOfAnlogSticks,
                                                                                 numberOfDigitalSticks,
                                                                                 forceFeedBackSupported,
-                                                                                4152,
-                                                                                5138 )
+                                                                                -1,
+                                                                                -1 )
 
 {
 
     _androidDeviceID = androidDeviceID;
+	JNIEnv *env;
+	//TODO cache jclass and methodID
+	jvm->AttachCurrentThread(&env,NULL);
+	jclass inputDeviceClass = env->FindClass("android/view/InputDevice");
+	bool error = false;
+	if(!inputDeviceClass)
+	{
+		LOGI("call from updateJoysticks class not found");
+		error = true;
+	}
+
+	jmethodID getDeviceMethodId = env->GetStaticMethodID(inputDeviceClass,"getDevice","(I)Landroid/view/InputDevice;");
+	if(!getDeviceMethodId)
+	{
+		LOGI("get device MethodID lookup failed");
+		error = true;
+	}
+	jobject currentInputDevice=env->CallStaticObjectMethod(inputDeviceClass,getDeviceMethodId,androidDeviceID);
+
+	if(currentInputDevice)
+	{
+		jclass deviceInstanceClass = env->GetObjectClass(currentInputDevice);
+		if(!deviceInstanceClass)
+		{
+			LOGI("deviceInstanceClass not found");
+			error = true;
+		}
+
+		jmethodID deviceNameMethodID = env->GetMethodID(deviceInstanceClass,"getName","()Ljava/lang/String;");
+
+		if(!deviceNameMethodID)
+		{
+				LOGI("device sources getName lookup failed");
+				error = true;
+
+		}
+		 jstring nameString = (jstring) env->CallObjectMethod(currentInputDevice,deviceNameMethodID);
+		 const char * str = env->GetStringUTFChars(nameString, NULL);
+		 _prodcutIDFriendlyName = str;
+		 LOGI("Found name of controller %s",str);
+		 env->ReleaseStringUTFChars(nameString, str);
+
+		 /*Requires sdk 19 or greater
+		  * try
+		 {
+			jmethodID deviceVendorIdMethodID = env->GetMethodID(deviceInstanceClass,"getVendorId","()I");
+
+			if(!deviceVendorIdMethodID)
+			{
+					LOGI("device vendor id lookup failed");
+					error = true;
+
+			}
+			else
+			{
+				_vendorID = (long) env->CallIntMethod(currentInputDevice,deviceVendorIdMethodID);
+			}
+		}
+		catch(int e){}
+		try
+		{
+			jmethodID deviceProductIdMethodID = env->GetMethodID(deviceInstanceClass,"getProductId ","()I");
+
+			if(!deviceProductIdMethodID)
+			{
+					LOGI("device product ID lookup failed");
+					error = true;
+
+			}
+			else
+			{
+				_productID = (long) env->CallIntMethod(currentInputDevice,deviceProductIdMethodID);
+			}
+		}
+		catch(int e){}*/
+
+
+		 env->DeleteLocalRef(deviceInstanceClass);
+		 env->DeleteLocalRef(currentInputDevice);
+	}
+
+
 }
 
 unsigned int FSAndroidJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickManager)

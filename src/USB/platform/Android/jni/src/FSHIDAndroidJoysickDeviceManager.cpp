@@ -41,7 +41,7 @@ FSHIDAndroidJoysickDeviceManager::FSHIDAndroidJoysickDeviceManager()
     _androidUsageMapToInputEvent[AKEYCODE_DPAD_LEFT] = DPadLeft;
     _androidUsageMapToInputEvent[AKEYCODE_DPAD_RIGHT] = DPadRight;
     _androidUsageMapToInputEvent[AKEYCODE_DPAD_RIGHT] = DPadRight;
-    _androidUsageMapToInputEvent[AKEYCODE_DPAD_CENTER] = ButtonX;
+    _androidUsageMapToInputEvent[AKEYCODE_DPAD_CENTER] = ButtonA;
     _androidUsageMapToInputEvent[AKEYCODE_BUTTON_X] = ButtonX;
     _androidUsageMapToInputEvent[AKEYCODE_BUTTON_Y] = ButtonY;
     _androidUsageMapToInputEvent[AKEYCODE_BUTTON_A] = ButtonA;
@@ -116,14 +116,14 @@ void FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int device
 }
 
 
-void FSHIDAndroidJoysickDeviceManager::gamepadWasAddedFromJINBridge(int deviceID)
+void FSHIDAndroidJoysickDeviceManager::gamepadWasAddedFromJINBridge(int deviceID,JavaVM * jvm)
 {
     LOGI("From C++ GamePad was added ");
     if(_androidIDToIDMap.find(deviceID) == _androidIDToIDMap.end())
     {
         unsigned int newdeviceID = this->getNextID();
         _androidIDToIDMap[deviceID] = newdeviceID;
-       this->addDevice(new FSAndroidJoystick(deviceID,newdeviceID,0,0,0,false));
+       this->addDevice(new FSAndroidJoystick(deviceID,newdeviceID,0,0,0,false,jvm));
     }
 }
 

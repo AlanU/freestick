@@ -37,7 +37,7 @@ namespace freestick
         FSHIDAndroidJoysickDeviceManager();
         void init(JavaVM * jvm);
         virtual void init();
-        virtual void gamepadWasAddedFromJINBridge(int hid_id);
+        virtual void gamepadWasAddedFromJINBridge(int hid_id,JavaVM * jvm);
         virtual void gamepadWasRemovedFromJINBridge(int hid_id);
         virtual void gamepadWasUpdatedFromJINBridge(int deviceid,int code,int type,float value,int min,int max);
         void update();

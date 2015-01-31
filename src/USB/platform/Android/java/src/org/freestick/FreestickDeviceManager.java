@@ -106,17 +106,21 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener 
         if (inputManger != null) {
             int[] ids = InputDevice.getDeviceIds();// inputManger.getInputDeviceIds();
             Log.w("FreeStick", "checkForNewJoysticks lengthe" + ids.length);
+            int keybordtype;
 
             for (int i = 0; i < ids.length; i++) {
                 Log.w("FreeStick", "java found device id " + ids[i] + " at " + i);
                 InputDevice currentDevice = InputDevice.getDevice(ids[i]); // inputManger.getInputDevice(ids[i]);
                 int sources = currentDevice.getSources();
-
+                String name = currentDevice.getName();
                 if (((sources & InputDevice.SOURCE_GAMEPAD) == InputDevice.SOURCE_GAMEPAD)
                         || ((sources & InputDevice.SOURCE_JOYSTICK) == InputDevice.SOURCE_JOYSTICK)
-                        || ((sources & InputDevice.SOURCE_DPAD) == InputDevice.SOURCE_DPAD)
-                        && !((sources & InputDevice.SOURCE_KEYBOARD) == InputDevice.SOURCE_KEYBOARD)) {
-                    if (!currentDevice.isVirtual()) {
+                        || ((sources & InputDevice.SOURCE_DPAD) == InputDevice.SOURCE_DPAD)) {
+                    // This is the only way to not have HDMI deck deives added
+                    // with sdk 13
+                    // This could be fixed with amazon's fire tv GamController
+                    // class that would handel players
+                    if (!currentDevice.isVirtual() && !name.contains("HDMI")) {
                         this.onInputDeviceAdded(ids[i]);
                         Log.w("FreeStick", "device on resume " + currentDevice.toString());
                     }
