@@ -36,6 +36,52 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     * populate map _usageMapToInputEvent
     */
 
+     const unsigned int DragonRiseID = 121;
+     const unsigned int SteelSeries3GCControllerID = 6;
+
+     _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][7] = ButtonX;
+     _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][4] = ButtonY;
+     _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][6] = ButtonA;
+     _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][5] = ButtonB;
+
+     //Dpad in green led mode
+     _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][36].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
+     _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][36].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
+     _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][36].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
+     _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][36].push_back(FSUSBElementInfoMap(3,3,DPadRight,FSInputPressed));
+     _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][36].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
+     _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][36].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
+     _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][36].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
+     _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][36].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSInputPressed));
+     _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][36].push_back(FSUSBElementInfoMap(15,15,LastValueUp,FSInputRest));
+
+     //Dpad in red led mode
+      _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][22].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
+      _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][22].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
+      _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][22].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
+      _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][22].push_back(FSUSBElementInfoMap(3,3,DPadRight,FSInputPressed));
+      _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][22].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
+      _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][22].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
+      _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][22].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
+      _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][22].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSInputPressed));
+      _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][22].push_back(FSUSBElementInfoMap(15,15,LastValueUp,FSInputRest));
+
+     _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][17].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));
+     _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][18].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));
+
+     _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][19].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));
+     _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][20].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));
+
+   //  _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][19].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));
+     //_usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][20].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));
+
+     _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][12] = ButtonSelect;
+     _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][13] = ButtonStart;
+     _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][10] = LeftShoulder;
+     _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][11] = RightShoulder;
+
+     _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][8] = LeftShoulder2;
+     _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][9] = RightShoulder2;
 
     const unsigned int AmazonVenderID = 6473;
     const unsigned int AmazonFireGameControllerID = 1026 ;

@@ -54,6 +54,8 @@ std::string FSUSBDevice::GetFrendlyProductNameFromID(long venderID, long product
     s_productFriendlyNames[2064][1] ="HVG2 Twin PS2";
     s_productFriendlyNames[1356][1476] = "DualShock 4 Controller";
     s_productFriendlyNames[3888][263] = "GGE908";
+    s_productFriendlyNames[121][6] = "3GC Controller";
+
 
     if(s_productFriendlyNames.find(venderID) != s_productFriendlyNames.end())
     {
@@ -84,6 +86,7 @@ std::string FSUSBDevice::GetFrendlyProductNameFromID(long venderID, long product
     s_venderFriendlyNames[8738] = "Macally";
     s_venderFriendlyNames[1848] = "Mad Catz, Inc.";
     s_venderFriendlyNames[4152] = "SteelSeries";
+    s_venderFriendlyNames[121] =  s_venderFriendlyNames[4152];
     s_venderFriendlyNames[6473] = "Amazon";
     s_venderFriendlyNames[3888] = "Game Elements";
 
