@@ -163,18 +163,16 @@ FSUSBMacOSXJoystick::FSUSBMacOSXJoystick(IOHIDDeviceRef device,
        {
            _vendorIDFriendlyName = temp;
        }
-       CFRelease(manufactureStringRef);
     }
     _prodcutIDFriendlyName = FSUSBDevice::GetFrendlyProductNameFromID(_vendorID,_productID);
     if(_prodcutIDFriendlyName == "unknown")
     {
-       CFStringRef manufactureStringRef = IOHIDDevice_GetProduct(device);
-       std::string temp = CFStringRefToString(manufactureStringRef);
+       CFStringRef productStringRef = IOHIDDevice_GetProduct(device);
+       std::string temp = CFStringRefToString(productStringRef);
        if(!temp.empty())
        {
            _prodcutIDFriendlyName = temp;
        }
-       CFRelease(manufactureStringRef);
     }
     _friendlyName = _vendorIDFriendlyName + " "+ _prodcutIDFriendlyName;
 

@@ -437,8 +437,6 @@ void setupIOHDIManager(IOHIDManagerRef & hidManager,int device,void * thisptr )
     IOHIDManagerRegisterInputValueCallback(hidManager,  FSUSBMacOSXJoystickDeviceManager::gamepadAction, thisptr);
     //IOHIDManagerRegisterInputReportCallback( hidManager,foo,thisptr);
     CFRelease(criterion);
-    CFRelease(keys[0]);
-    CFRelease(keys[1]);
     CFRelease(values[0]);
     CFRelease(values[1]);
 
