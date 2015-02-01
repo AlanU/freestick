@@ -26,6 +26,7 @@ and must not be misrepresented as being the original software.
 **************************************************************************/
 
 #include "USB/common/FSUSBJoyStickInputElement.h"
+#include <time.h>
 using namespace freestick;
 FSUSBJoyStickInputElement::FSUSBJoyStickInputElement()
 {
@@ -58,7 +59,9 @@ bool FSUSBJoyStickInputElement::isValueInDeadZone(MinMaxNumber value)
 
 void FSUSBJoyStickInputElement::setValue(MinMaxNumber newValue)
 {
-    static unsigned int sample = 0;
+    static time_t firstTime = time(NULL);
+
+
     if(_needsDeadZone && !_calibrated)
     {
         if(_intialized == false)
@@ -77,20 +80,28 @@ void FSUSBJoyStickInputElement::setValue(MinMaxNumber newValue)
                 _deadZoneMin = newValue;
             }
         }
-        ++sample;
     }
 
-    if(sample > 4)
+    double diffranceInTime = difftime(time(NULL),firstTime);
+    if( diffranceInTime>0.3 && (!_calibrated && _needsDeadZone))
     {
-        _deadZoneMax++;
+        if(_deadZoneMax != _deadZoneMin && (diffranceInTime <1.5))
+        {
+            _deadZoneMax++;
+            _deadZoneMin--;
+        }
+        else
+        {
+            _needsDeadZone = false;
+        }
         _calibrated = true;
-        _deadZoneMin--;
+
     }
-    if(_calibrated)
+    if(_calibrated && _needsDeadZone)
     {
         if (newValue <= _deadZoneMax && newValue >= _deadZoneMin)
         {
-            return;
+            newValue = (_elementMax/2);
         }
     }
     if (_intialized == false)
@@ -119,6 +130,6 @@ FSUSBJoyStickInputElement::FSUSBJoyStickInputElement(unsigned int id, MinMaxNumb
     _needsDeadZone = false;
     _calibrated =false;
     //TODO calibrated needs to be called over a time interval not number of times
-    //if(!((_elementMax - _elementMin == 1) || ( _elementMax - _elementMin == 0)) )
-      //  _needsDeadZone = true;
+    if(!((_elementMax - _elementMin == 1) || ( _elementMax - _elementMin == 0)) )
+        _needsDeadZone = true;
 }
