@@ -82,8 +82,8 @@ namespace freestick {
         Button24,
         ButtonHome,
         LastButton,
-        Trigger1,
-        Trigger2,
+        Trigger1,//Left
+        Trigger2,//Right
         LastTrigger,
         Unknown,
         LastValueUp, //use to return and event of released on the last value for the device controll (used a lot in hatswitch)

@@ -86,7 +86,7 @@ void  FSBaseManager::ListenForAllJoysticksForEventTypes(unsigned int eventFlags,
     }
     if(eventFlags & FS_TRIGGER_EVENT)
     {
-        ListenForAllJoysticksForEventType(FS_AXIS_EVENT,listener);
+        ListenForAllJoysticksForEventType(FS_TRIGGER_EVENT,listener);
     }
 
 }
@@ -110,7 +110,7 @@ void  FSBaseManager::UnListenForAllJoysticksForEventTypes(unsigned int eventFlag
     }
     if(eventFlags & FS_TRIGGER_EVENT)
     {
-        UnListenForAllJoysticksForEventType(FS_AXIS_EVENT,listener);
+        UnListenForAllJoysticksForEventType(FS_TRIGGER_EVENT,listener);
     }
 }
 
