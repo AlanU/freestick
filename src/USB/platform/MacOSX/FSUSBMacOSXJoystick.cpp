@@ -154,6 +154,8 @@ FSUSBMacOSXJoystick::FSUSBMacOSXJoystick(IOHIDDeviceRef device,
 {
     _vendorID = IOHIDDevice_GetVendorID(device);
     _productID = IOHIDDevice_GetProductID(device);
+
+    EE_DEBUG<<"device with venderID "<<_vendorID<<" and productID "<<_productID<<std::endl;
     _vendorIDFriendlyName = FSUSBDevice::GetFrendlyVenderNameFromID(_vendorID);
     if(_vendorIDFriendlyName == "unknown")
     {

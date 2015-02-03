@@ -246,6 +246,8 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputEvent[SonyVenderID][Playstation4ControllerID][6] = LeftShoulder;
     _usageMapToInputEvent[SonyVenderID][Playstation4ControllerID][8] = LeftShoulder2;
     _usageMapToInputEvent[SonyVenderID][Playstation4ControllerID][9] = RightShoulder2;
+    _usageMapToInputEvent[SonyVenderID][Playstation4ControllerID][12] = Axis1Button;
+    _usageMapToInputEvent[SonyVenderID][Playstation4ControllerID][13] = Axis2Button;
 
     _usageMapToInputEvent[SonyVenderID][Playstation4ControllerID][10] = ButtonSelect;
     _usageMapToInputEvent[SonyVenderID][Playstation4ControllerID][11] = ButtonStart;
@@ -289,6 +291,7 @@ FSUSBDeviceManager::FSUSBDeviceManager()
 
 
     _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][20].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][20].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
     _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][20].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
     _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][20].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
     _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][20].push_back(FSUSBElementInfoMap(3,3,DPadDown,FSInputPressed));
@@ -296,12 +299,85 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][20].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
     _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][20].push_back(FSUSBElementInfoMap(8,8,LastValueUp,FSInputRest));
 
+    // Actually for DirectInput mode of Logitech Gamepad F310
+    _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][21].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][21].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][21].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][21].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][21].push_back(FSUSBElementInfoMap(3,3,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][21].push_back(FSUSBElementInfoMap(7,7,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][21].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][21].push_back(FSUSBElementInfoMap(8,8,LastValueUp,FSInputRest));
+
     _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][16].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));//LXaxis stick trigger
     _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][17].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));//LYaxis stick trigger
 
     _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][19].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));//LXaxis stick trigger
     _usageMapToInputRangeEvent[LogitchVenderID][LogitchDualActionID][18].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));//LYaxis stick trigger
 
+
+    // Logitech Gamepad F310
+    const unsigned int LogitechGamepadF310 = 49693;
+    _usageMapToInputEvent[LogitchVenderID][LogitechGamepadF310][23] = ButtonX;
+    _usageMapToInputEvent[LogitchVenderID][LogitechGamepadF310][24] = ButtonY;
+    _usageMapToInputEvent[LogitchVenderID][LogitechGamepadF310][22] = ButtonB;
+    _usageMapToInputEvent[LogitchVenderID][LogitechGamepadF310][21] = ButtonA;
+
+    _usageMapToInputEvent[LogitchVenderID][LogitechGamepadF310][16] = Axis1Button;
+    _usageMapToInputEvent[LogitchVenderID][LogitechGamepadF310][17] = Axis2Button;
+
+    _usageMapToInputEvent[LogitchVenderID][LogitechGamepadF310][15] = ButtonSelect;
+    _usageMapToInputEvent[LogitchVenderID][LogitechGamepadF310][20] = ButtonCenter;
+    _usageMapToInputEvent[LogitchVenderID][LogitechGamepadF310][14] = ButtonStart;
+
+    _usageMapToInputEvent[LogitchVenderID][LogitechGamepadF310][18] = LeftShoulder;
+    _usageMapToInputEvent[LogitchVenderID][LogitechGamepadF310][19] = RightShoulder;
+
+    _usageMapToInputEvent[LogitchVenderID][LogitechGamepadF310][10] = DPadUp;
+    _usageMapToInputEvent[LogitchVenderID][LogitechGamepadF310][13] = DPadRight;
+    _usageMapToInputEvent[LogitchVenderID][LogitechGamepadF310][11] = DPadDown;
+    _usageMapToInputEvent[LogitchVenderID][LogitechGamepadF310][12] = DPadLeft;
+
+    _usageMapToInputRangeEvent[LogitchVenderID][LogitechGamepadF310][25].push_back(FSUSBElementInfoMap(0,255,Trigger1,FSInputChanged));
+    _usageMapToInputRangeEvent[LogitchVenderID][LogitechGamepadF310][26].push_back(FSUSBElementInfoMap(0,255,Trigger2,FSInputChanged));
+
+    _usageMapToInputRangeEvent[LogitchVenderID][LogitechGamepadF310][27].push_back(FSUSBElementInfoMap(-32768,32767,XAxis,FSInputChanged));
+    _usageMapToInputRangeEvent[LogitchVenderID][LogitechGamepadF310][28].push_back(FSUSBElementInfoMap(-32768,32767,YAxis,FSInputChanged));
+
+    _usageMapToInputRangeEvent[LogitchVenderID][LogitechGamepadF310][29].push_back(FSUSBElementInfoMap(-32768,32767,XAxis2,FSInputChanged));
+    _usageMapToInputRangeEvent[LogitchVenderID][LogitechGamepadF310][30].push_back(FSUSBElementInfoMap(-32768,32767,YAxis2,FSInputChanged));
+
+    // OUYA controller
+    const unsigned int OUYAVendorID = 10294;
+    const unsigned int OUYAControllerID = 1; // heh.
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][16] = ButtonX;
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][17] = ButtonY;
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][18] = ButtonB;
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][15] = ButtonA;
+
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][21] = Axis1Button;
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][22] = Axis2Button;
+
+    // No SELECT and START buttons for OUYA!
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][29] = ButtonCenter;
+
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][19] = LeftShoulder;
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][20] = RightShoulder;
+
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][23] = DPadUp;
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][26] = DPadRight;
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][24] = DPadDown;
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][25] = DPadLeft;
+
+    // TODO: OUYA triggers not mappable yet.
+    // _usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][38].push_back(FSUSBElementInfoMap(-32768,32767,Trigger1,FSInputChanged));
+    // _usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][39].push_back(FSUSBElementInfoMap(-32768,32767,Trigger2,FSInputChanged));
+
+    _usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][34].push_back(FSUSBElementInfoMap(-32768,32767,XAxis,FSInputChanged));
+    _usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][35].push_back(FSUSBElementInfoMap(-32768,32767,YAxis,FSInputChanged));
+
+    _usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][36].push_back(FSUSBElementInfoMap(-32768,32767,XAxis2,FSInputChanged));
+    _usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][37].push_back(FSUSBElementInfoMap(-32768,32767,YAxis2,FSInputChanged));
 
     const unsigned int MicrosoftVentderID = 1118;
     const unsigned int MictrosftXbox360WindowsControllerID = 654;
