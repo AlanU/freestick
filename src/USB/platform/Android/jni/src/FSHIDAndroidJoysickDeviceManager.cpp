@@ -151,6 +151,8 @@ void FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int device
             LOGI("inputOnDeviceChanged %f ",value);
 
             this->inputOnDeviceChanged(eventType,eventAction,inputType,_androidIDToIDMap[deviceid],code,value,0,min,max);
+            LOGI("inputOnDeviceChanged returned %f ",value);
+
         }
         else
         {

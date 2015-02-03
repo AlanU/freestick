@@ -131,6 +131,9 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener 
                 handed = handed || this.processAxisEvent(event, hIndex, MotionEvent.AXIS_LTRIGGER);
                 handed = handed || this.processAxisEvent(event, hIndex, MotionEvent.AXIS_BRAKE);
 
+                handed = handed || this.processAxisEvent(event, hIndex, MotionEvent.AXIS_HAT_X);
+                handed = handed || this.processAxisEvent(event, hIndex, MotionEvent.AXIS_HAT_Y);
+
             }
 
             handed = handed || this.processAxisEvent(event, -1, MotionEvent.AXIS_X);
@@ -144,6 +147,9 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener 
 
             handed = handed || this.processAxisEvent(event, -1, MotionEvent.AXIS_LTRIGGER);
             handed = handed || this.processAxisEvent(event, -1, MotionEvent.AXIS_BRAKE);
+
+            handed = handed || this.processAxisEvent(event, -1, MotionEvent.AXIS_HAT_X);
+            handed = handed || this.processAxisEvent(event, -1, MotionEvent.AXIS_HAT_Y);
 
         }
         return handed;

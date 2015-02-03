@@ -242,7 +242,7 @@ void FSBaseManager::inputOnDeviceChangedWithNormilzedValues(FreeStickEventType e
 
 void FSBaseManager::inputOnDeviceChanged(FreeStickEventType eventType,FSEventAction eventAction,FSDeviceInput inputType,unsigned int deviceID,unsigned int deviceControlID,int newValue,int oldValue,signed long min, signed long max)
 {
-    inputOnDeviceChanged(eventType,eventAction,inputType,deviceID,deviceControlID, convertRawToNormalizedRanger(newValue,max,min), convertRawToNormalizedRanger(oldValue,max,min),min,max);
+    inputOnDeviceChangedWithNormilzedValues(eventType,eventAction,inputType,deviceID,deviceControlID, convertRawToNormalizedRanger(newValue,max,min), convertRawToNormalizedRanger(oldValue,max,min),min,max);
 }
 
 void FSBaseManager::addDevice(FSBaseDevice * device)
