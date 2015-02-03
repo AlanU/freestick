@@ -95,6 +95,8 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener 
     }
 
     private boolean processAxisEvent(MotionEvent event, int hIndex, int motion_axis) {
+        Log.w("FreeStick", "processAxisEvent" + motion_axis);
+
         InputDevice eventDevice = event.getDevice();
         float axis = FreestickDeviceManager
                 .getCenteredAxis(event, eventDevice, motion_axis, hIndex);
@@ -118,38 +120,37 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener 
             final int historySize = event.getHistorySize();
             final int pointerCount = event.getPointerCount();
             for (int hIndex = 0; hIndex < historySize; hIndex++) {
+                handed = this.processAxisEvent(event, hIndex, MotionEvent.AXIS_X) || handed;
+                handed = this.processAxisEvent(event, hIndex, MotionEvent.AXIS_Z) || handed;
+                handed = this.processAxisEvent(event, hIndex, MotionEvent.AXIS_RZ) || handed;
+                handed = this.processAxisEvent(event, hIndex, MotionEvent.AXIS_Y) || handed;
 
-                handed = handed || this.processAxisEvent(event, hIndex, MotionEvent.AXIS_X);
-                handed = handed || this.processAxisEvent(event, hIndex, MotionEvent.AXIS_Z);
-                handed = handed || this.processAxisEvent(event, hIndex, MotionEvent.AXIS_RZ);
-                handed = handed || this.processAxisEvent(event, hIndex, MotionEvent.AXIS_Y);
+                handed = this.processAxisEvent(event, hIndex, MotionEvent.AXIS_RTRIGGER) || handed;
+                handed = this.processAxisEvent(event, hIndex, MotionEvent.AXIS_THROTTLE) || handed;
+                handed = this.processAxisEvent(event, hIndex, MotionEvent.AXIS_GAS) || handed;
 
-                handed = handed || this.processAxisEvent(event, hIndex, MotionEvent.AXIS_RTRIGGER);
-                handed = handed || this.processAxisEvent(event, hIndex, MotionEvent.AXIS_THROTTLE);
-                handed = handed || this.processAxisEvent(event, hIndex, MotionEvent.AXIS_GAS);
+                handed = this.processAxisEvent(event, hIndex, MotionEvent.AXIS_LTRIGGER) || handed;
+                handed = this.processAxisEvent(event, hIndex, MotionEvent.AXIS_BRAKE) || handed;
 
-                handed = handed || this.processAxisEvent(event, hIndex, MotionEvent.AXIS_LTRIGGER);
-                handed = handed || this.processAxisEvent(event, hIndex, MotionEvent.AXIS_BRAKE);
-
-                handed = handed || this.processAxisEvent(event, hIndex, MotionEvent.AXIS_HAT_X);
-                handed = handed || this.processAxisEvent(event, hIndex, MotionEvent.AXIS_HAT_Y);
+                handed = this.processAxisEvent(event, hIndex, MotionEvent.AXIS_HAT_X) || handed;
+                handed = this.processAxisEvent(event, hIndex, MotionEvent.AXIS_HAT_Y) || handed;
 
             }
 
-            handed = handed || this.processAxisEvent(event, -1, MotionEvent.AXIS_X);
-            handed = handed || this.processAxisEvent(event, -1, MotionEvent.AXIS_Z);
-            handed = handed || this.processAxisEvent(event, -1, MotionEvent.AXIS_RZ);
-            handed = handed || this.processAxisEvent(event, -1, MotionEvent.AXIS_Y);
+            handed = this.processAxisEvent(event, -1, MotionEvent.AXIS_X) || handed;
+            handed = this.processAxisEvent(event, -1, MotionEvent.AXIS_Z) || handed;
+            handed = this.processAxisEvent(event, -1, MotionEvent.AXIS_RZ) || handed;
+            handed = this.processAxisEvent(event, -1, MotionEvent.AXIS_Y) || handed;
 
-            handed = handed || this.processAxisEvent(event, -1, MotionEvent.AXIS_RTRIGGER);
-            handed = handed || this.processAxisEvent(event, -1, MotionEvent.AXIS_THROTTLE);
-            handed = handed || this.processAxisEvent(event, -1, MotionEvent.AXIS_GAS);
+            handed = this.processAxisEvent(event, -1, MotionEvent.AXIS_RTRIGGER) || handed;
+            handed = this.processAxisEvent(event, -1, MotionEvent.AXIS_THROTTLE) || handed;
+            handed = this.processAxisEvent(event, -1, MotionEvent.AXIS_GAS) || handed;
 
-            handed = handed || this.processAxisEvent(event, -1, MotionEvent.AXIS_LTRIGGER);
-            handed = handed || this.processAxisEvent(event, -1, MotionEvent.AXIS_BRAKE);
+            handed = this.processAxisEvent(event, -1, MotionEvent.AXIS_LTRIGGER) || handed;
+            handed = this.processAxisEvent(event, -1, MotionEvent.AXIS_BRAKE) || handed;
 
-            handed = handed || this.processAxisEvent(event, -1, MotionEvent.AXIS_HAT_X);
-            handed = handed || this.processAxisEvent(event, -1, MotionEvent.AXIS_HAT_Y);
+            handed = this.processAxisEvent(event, -1, MotionEvent.AXIS_HAT_X) || handed;
+            handed = this.processAxisEvent(event, -1, MotionEvent.AXIS_HAT_Y) || handed;
 
         }
         return handed;
