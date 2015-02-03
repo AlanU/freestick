@@ -33,6 +33,18 @@ and must not be misrepresented as being the original software.
 #include <android/keycodes.h>
 #include "USB/platform/Android/jni/src/FSAndroidJoystick.h"
 using namespace freestick;
+#define ANDROID_AXIS_X 0x00000000
+#define ANDROID_AXIS_Y 0x00000001
+#define ANDROID_AXIS_Z 0x0000000b
+#define ANDROID_AXIS_RZ 0x0000000e
+//standard for right trigger on android
+#define ANDROID_AXIS_RTRIGGER 0x00000012
+#define ANDROID_AXIS_THROTTLE 0x00000013
+#define ANDROID_AXIS_GAS 0x00000016
+//standard for left trigger on android
+#define ANDROID_AXIS_LTRIGGER 0x00000011
+#define ANDROID_AXIS_BRAKE 0x00000017
+
 FSHIDAndroidJoysickDeviceManager::FSHIDAndroidJoysickDeviceManager()
 {
 
@@ -54,6 +66,22 @@ FSHIDAndroidJoysickDeviceManager::FSHIDAndroidJoysickDeviceManager()
     _androidUsageMapToInputEvent[AKEYCODE_BUTTON_START] = ButtonSelect;
     _androidUsageMapToInputEvent[AKEYCODE_BUTTON_THUMBL] = Axis1Button;
     _androidUsageMapToInputEvent[AKEYCODE_BUTTON_THUMBR] = Axis2Button;
+
+    _androidUsageMapToInputEvent[ANDROID_AXIS_X] = XAxis;
+    _androidUsageMapToInputEvent[ANDROID_AXIS_Y] = YAxis;
+
+    _androidUsageMapToInputEvent[ANDROID_AXIS_Z] = XAxis2;
+    _androidUsageMapToInputEvent[ANDROID_AXIS_RZ] = YAxis2;
+
+    _androidUsageMapToInputEvent[ANDROID_AXIS_RTRIGGER] = Trigger1;
+    _androidUsageMapToInputEvent[ANDROID_AXIS_THROTTLE] = Trigger1;
+    _androidUsageMapToInputEvent[ANDROID_AXIS_GAS] = Trigger1;
+
+    _androidUsageMapToInputEvent[ANDROID_AXIS_LTRIGGER] = Trigger2;
+    _androidUsageMapToInputEvent[ANDROID_AXIS_BRAKE] = Trigger2;
+
+
+
 
 }
 
@@ -79,39 +107,61 @@ void FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int device
 {
     LOGI("From C++ GamePad was updated ");
 
-    /*
-      manager->inputOnDeviceChanged(eventType,inputType.getEventMapping(),
-                                            inputType.getDeviceInput(),
-                                          deviceID,elementDevice->getJoystickID(),
-                                          elementDevice->getValue(),0,
-                                          IOHIDElementGetLogicalMin(element),
-                                          IOHIDElementGetLogicalMax(element));*/
-
     if(_androidIDToIDMap.find(deviceid) == _androidIDToIDMap.end())
     {
-    	LOGI("Could not find device %i",deviceid);
+        LOGI("Could not find device %i",deviceid);
         return;
     }
 
-     LOGI("device %i with code %i min %i max %i with value %f",deviceid,code,min,max,value);
-    if(max == 1 && min == 0)
+    LOGI("device %i with code %i min %i max %i with value %f",deviceid,code,min,max,value);
+    FSEventAction eventAction = FSInputRest;
+    FSDeviceInput inputType = Unknown;
+    bool isDigital = (max == 1 && min == 0) ? true : false;
+    FreeStickEventType eventType;
+    if(isDigital)
     {
-        FSEventAction eventAction = FSInputRest;
-        FSDeviceInput inputType = Unknown;
-         if(value == 0)   //down
-           {  eventAction = FSInputPressed; }
-         if(_androidUsageMapToInputEvent.find(code) != _androidUsageMapToInputEvent.end())
-         {
-             inputType = _androidUsageMapToInputEvent[code];
-         }
-         if(inputType == Unknown)
-         {
-               LOGI("Unknow input type for %i ",code);
-         }
-         else
-         LOGI("know input type for %i is %i",code,inputType);
-         this->inputOnDeviceChanged(FS_BUTTON_EVENT,eventAction,inputType,_androidIDToIDMap[deviceid],code,value,0,min,max);
+        eventType = FS_BUTTON_EVENT;
+        if(value == 0)   //down
+        {  eventAction = FSInputPressed; }
     }
+    else
+    {
+        eventType = FS_AXIS_EVENT;
+    }
+
+    if(_androidUsageMapToInputEvent.find(code) != _androidUsageMapToInputEvent.end())
+    {
+        inputType = _androidUsageMapToInputEvent[code];
+    }
+
+    if(inputType == Unknown)
+    {
+        LOGI("Unknow input type for %i ",code);
+    }
+    else if (inputType == Trigger1 || inputType == Trigger2)
+    {
+        eventType = FS_TRIGGER_EVENT;
+    }
+
+    else
+    {
+        LOGI("know input type for %i is %i",code,inputType);
+        if(isDigital)
+        {
+            LOGI("inputOnDeviceChanged %f ",value);
+
+            this->inputOnDeviceChanged(eventType,eventAction,inputType,_androidIDToIDMap[deviceid],code,value,0,min,max);
+        }
+        else
+        {
+            LOGI("inputOnDeviceChangedWithNormilzedValues %f ",value);
+
+            this->inputOnDeviceChangedWithNormilzedValues(eventType,eventAction,inputType,_androidIDToIDMap[deviceid],code,value,0,min,max);
+
+        }
+    }
+
+
 
 }
 

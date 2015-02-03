@@ -223,14 +223,26 @@ float FSBaseManager::convertRawToNormalizedRanger(int value,signed long maxValue
     newNormilzedValue = (newNormilzedValue) * 2.0f-1.0f;
     return newNormilzedValue;
 }
+void FSBaseManager::inputOnDeviceChangedWithNormilzedValues(FreeStickEventType eventType,
+                                         FSEventAction eventAction,
+                                         FSDeviceInput inputType,
+                                         unsigned int deviceID,
+                                         unsigned int deviceControlID,
+                                         float newValue,
+                                         float oldValue,
+                                         signed long min,
+                                         signed long max)
+{
+    FSDeviceInputEvent newInputEvent(eventType,eventAction,std::time(0),deviceID,deviceControlID,
+                                     oldValue,
+                                     newValue,
+                                     inputType);
+    updateEvent(newInputEvent);
+}
 
 void FSBaseManager::inputOnDeviceChanged(FreeStickEventType eventType,FSEventAction eventAction,FSDeviceInput inputType,unsigned int deviceID,unsigned int deviceControlID,int newValue,int oldValue,signed long min, signed long max)
 {
-    FSDeviceInputEvent newInputEvent(eventType,eventAction,std::time(0),deviceID,deviceControlID,
-                                     convertRawToNormalizedRanger(oldValue,max,min),
-                                     convertRawToNormalizedRanger(newValue,max,min) ,
-                                     inputType);
-    updateEvent(newInputEvent);
+    inputOnDeviceChanged(eventType,eventAction,inputType,deviceID,deviceControlID, convertRawToNormalizedRanger(newValue,max,min), convertRawToNormalizedRanger(oldValue,max,min),min,max);
 }
 
 void FSBaseManager::addDevice(FSBaseDevice * device)

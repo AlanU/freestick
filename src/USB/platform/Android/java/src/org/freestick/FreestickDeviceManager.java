@@ -71,18 +71,82 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener 
 
     }
 
-    public void handelMotionEvent(MotionEvent event) {
-        if (((event.getSource() & InputDevice.SOURCE_CLASS_JOYSTICK) != 0)
-                && (event.getAction() == MotionEvent.ACTION_MOVE)) {
-            Log.w("FreeStick", "handelMotionEvent" + event.toString());
-            final int pointerCount = event.getPointerCount();
-            // Log.w("FreeStick","At time :" + event.getEventTime());
-            for (int p = 0; p < pointerCount; p++) {
-                // Log.w("FreeStick","  pointer " + event.getPointerId(p) +":"+
-                // "(" + event.getX(p) +"," + event.getY(p) + ")" );
+    // taken from google's example
+    // http://developer.android.com/training/game-controllers/controller-input.html
+    private static float getCenteredAxis(MotionEvent event, InputDevice device, int axis,
+            int historyPos) {
+        final InputDevice.MotionRange range = device.getMotionRange(axis, event.getSource());
+
+        // A joystick at rest does not always report an absolute position of
+        // (0,0). Use the getFlat() method to determine the range of values
+        // bounding the joystick axis center.
+        if (range != null) {
+            final float flat = range.getFlat();
+            final float value = historyPos < 0 ? event.getAxisValue(axis) : event
+                    .getHistoricalAxisValue(axis, historyPos);
+
+            // Ignore axis values that are within the 'flat' region of the
+            // joystick axis center.
+            if (Math.abs(value) > flat) {
+                return value;
             }
-            // gamepadDeviceUpdate(event.getDeviceId(),code,1,value,-1,1);
         }
+        return 0;
+    }
+
+    private boolean processAxisEvent(MotionEvent event, int hIndex, int motion_axis) {
+        InputDevice eventDevice = event.getDevice();
+        float axis = FreestickDeviceManager
+                .getCenteredAxis(event, eventDevice, motion_axis, hIndex);
+        if (axis != 0) {
+            gamepadDeviceUpdate(event.getDeviceId(), motion_axis, 1, axis, -1, 1);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean handelMotionEvent(MotionEvent event) {
+        boolean handed = false;
+        if (((event.getSource() & InputDevice.SOURCE_GAMEPAD) == InputDevice.SOURCE_GAMEPAD)
+                || ((event.getSource() & InputDevice.SOURCE_JOYSTICK) == InputDevice.SOURCE_JOYSTICK)
+                || ((event.getSource() & InputDevice.SOURCE_DPAD) == InputDevice.SOURCE_DPAD)
+                && (event.getAction() == MotionEvent.ACTION_MOVE))
+        // if (((event.getSource() & InputDevice.SOURCE_CLASS_JOYSTICK) != 0)
+        {
+            Log.w("FreeStick", "handelMotionEvent" + event.toString());
+            InputDevice eventDevice = event.getDevice();
+            final int historySize = event.getHistorySize();
+            final int pointerCount = event.getPointerCount();
+            for (int hIndex = 0; hIndex < historySize; hIndex++) {
+
+                handed = handed || this.processAxisEvent(event, hIndex, MotionEvent.AXIS_X);
+                handed = handed || this.processAxisEvent(event, hIndex, MotionEvent.AXIS_Z);
+                handed = handed || this.processAxisEvent(event, hIndex, MotionEvent.AXIS_RZ);
+                handed = handed || this.processAxisEvent(event, hIndex, MotionEvent.AXIS_Y);
+
+                handed = handed || this.processAxisEvent(event, hIndex, MotionEvent.AXIS_RTRIGGER);
+                handed = handed || this.processAxisEvent(event, hIndex, MotionEvent.AXIS_THROTTLE);
+                handed = handed || this.processAxisEvent(event, hIndex, MotionEvent.AXIS_GAS);
+
+                handed = handed || this.processAxisEvent(event, hIndex, MotionEvent.AXIS_LTRIGGER);
+                handed = handed || this.processAxisEvent(event, hIndex, MotionEvent.AXIS_BRAKE);
+
+            }
+
+            handed = handed || this.processAxisEvent(event, -1, MotionEvent.AXIS_X);
+            handed = handed || this.processAxisEvent(event, -1, MotionEvent.AXIS_Z);
+            handed = handed || this.processAxisEvent(event, -1, MotionEvent.AXIS_RZ);
+            handed = handed || this.processAxisEvent(event, -1, MotionEvent.AXIS_Y);
+
+            handed = handed || this.processAxisEvent(event, -1, MotionEvent.AXIS_RTRIGGER);
+            handed = handed || this.processAxisEvent(event, -1, MotionEvent.AXIS_THROTTLE);
+            handed = handed || this.processAxisEvent(event, -1, MotionEvent.AXIS_GAS);
+
+            handed = handed || this.processAxisEvent(event, -1, MotionEvent.AXIS_LTRIGGER);
+            handed = handed || this.processAxisEvent(event, -1, MotionEvent.AXIS_BRAKE);
+
+        }
+        return handed;
 
     }
 
@@ -122,7 +186,8 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener 
                     // class that would handel players
                     if (!currentDevice.isVirtual() && !name.contains("HDMI")) {
                         this.onInputDeviceAdded(ids[i]);
-                        Log.w("FreeStick", "device on resume " + currentDevice.toString());
+                        Log.w("FreeStick", "device on resume " + currentDevice.toString()
+                                + " with id " + currentDevice.getId());
                     }
 
                 }

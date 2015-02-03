@@ -102,10 +102,6 @@ namespace freestick
        virtual void init() ;
 #pragma mark -Advance API
        const FSBaseDevice * getDevice(unsigned int deviceID);
-       //these need to be protected
-
-
-
     private:
         std::multimap<FreeStickEventType,IFSJoystickListener * > _joystickDeviceListeners;
         typedef std::multimap<FreeStickEventType,IFSJoystickListener * >::iterator joystickDeviceListenersItr;
@@ -124,6 +120,7 @@ namespace freestick
         virtual void addDevice(FSBaseDevice * device);
         virtual void removeDevice(FSBaseDevice * device);
         virtual void inputOnDeviceChanged(FreeStickEventType eventType,FSEventAction eventAction,FSDeviceInput inputType,unsigned int deviceID,unsigned int deviceControlID,int newValue,int oldValue,signed long min, signed long max);
+        virtual void inputOnDeviceChangedWithNormilzedValues(FreeStickEventType eventType,FSEventAction eventAction,FSDeviceInput inputType, unsigned int deviceID, unsigned int deviceControlID,float newValue,float oldValue, signed long min, signed long max);
         virtual unsigned int getNextID();
         void updateEvent(FSBaseEvent & event);
 
