@@ -40,6 +40,8 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     const unsigned int DragonRiseID = 121;
     const unsigned int SteelSeries3GCControllerID = 6;
 
+    _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][6] = ButtonA;
+    _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][5] = ButtonB;
     _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][7] = ButtonX;
     _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][4] = ButtonY;
 
