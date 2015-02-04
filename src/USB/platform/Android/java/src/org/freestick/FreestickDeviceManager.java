@@ -98,11 +98,21 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener 
         Log.w("FreeStick", "processAxisEvent" + motion_axis);
 
         InputDevice eventDevice = event.getDevice();
-        float axis = FreestickDeviceManager
-                .getCenteredAxis(event, eventDevice, motion_axis, hIndex);
-        if (axis != 0) {
-            gamepadDeviceUpdate(event.getDeviceId(), motion_axis, 1, axis, -1, 1);
+        if (motion_axis == MotionEvent.AXIS_X || motion_axis == MotionEvent.AXIS_Y
+                || motion_axis == MotionEvent.AXIS_Z || motion_axis == MotionEvent.AXIS_RZ) {
+            float axis = FreestickDeviceManager.getCenteredAxis(event, eventDevice, motion_axis,
+                    hIndex);
+            if (axis != 0) {
+                gamepadDeviceUpdate(event.getDeviceId(), motion_axis, 1, axis, -1, 1);
+                return true;
+            }
+        } else {
+            final float value = hIndex < 0 ? event.getAxisValue(motion_axis) : event
+                    .getHistoricalAxisValue(motion_axis, hIndex);
+
+            gamepadDeviceUpdate(event.getDeviceId(), motion_axis, 1, value, -1, 1);
             return true;
+
         }
         return false;
     }

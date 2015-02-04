@@ -33,17 +33,20 @@ and must not be misrepresented as being the original software.
 #include <android/keycodes.h>
 #include "USB/platform/Android/jni/src/FSAndroidJoystick.h"
 using namespace freestick;
-#define ANDROID_AXIS_X 0x00000000
-#define ANDROID_AXIS_Y 0x00000001
-#define ANDROID_AXIS_Z 0x0000000b
-#define ANDROID_AXIS_RZ 0x0000000e
+#define ANDROID_AXIS_X 0
+#define ANDROID_AXIS_Y 1
+#define ANDROID_AXIS_Z 11
+#define ANDROID_AXIS_RZ 14
 //standard for right trigger on android
-#define ANDROID_AXIS_RTRIGGER 0x00000012
-#define ANDROID_AXIS_THROTTLE 0x00000013
-#define ANDROID_AXIS_GAS 0x00000016
+#define ANDROID_AXIS_RTRIGGER 18
+#define ANDROID_AXIS_THROTTLE 19
+#define ANDROID_AXIS_GAS 22
 //standard for left trigger on android
-#define ANDROID_AXIS_LTRIGGER 0x00000011
-#define ANDROID_AXIS_BRAKE 0x00000017
+#define ANDROID_AXIS_LTRIGGER 17
+#define ANDROID_AXIS_BRAKE 23
+//dpad when reporing as a hat stick
+#define ANDROID_AXIS_HAT_X 15
+#define ANDROID_AXIS_HAT_Y 16
 
 FSHIDAndroidJoysickDeviceManager::FSHIDAndroidJoysickDeviceManager()
 {
@@ -81,8 +84,6 @@ FSHIDAndroidJoysickDeviceManager::FSHIDAndroidJoysickDeviceManager()
     _androidUsageMapToInputEvent[ANDROID_AXIS_BRAKE] = Trigger2;
 
 
-
-
 }
 
 
@@ -118,6 +119,8 @@ void FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int device
     FSDeviceInput inputType = Unknown;
     bool isDigital = (max == 1 && min == 0) ? true : false;
     FreeStickEventType eventType;
+
+
     if(isDigital)
     {
         eventType = FS_BUTTON_EVENT;
@@ -129,20 +132,57 @@ void FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int device
         eventType = FS_AXIS_EVENT;
     }
 
+
     if(_androidUsageMapToInputEvent.find(code) != _androidUsageMapToInputEvent.end())
     {
         inputType = _androidUsageMapToInputEvent[code];
     }
 
+     if (inputType == Trigger1 || inputType == Trigger2)
+     {
+           eventType = FS_TRIGGER_EVENT;
+     }
+     if(code == ANDROID_AXIS_HAT_X || code == ANDROID_AXIS_HAT_Y)
+     {
+        eventType = FS_BUTTON_EVENT;
+
+        static  FSDeviceInput lastDpadDown = Unknown;
+         eventAction = FSInputPressed;
+         isDigital = true;
+         if(value == 0)
+         {
+             eventAction = FSInputRest;
+             if(lastDpadDown != Unknown)
+             {
+                inputType = lastDpadDown;
+                lastDpadDown = Unknown;
+
+             }
+         }
+         else
+         {
+             switch(code)
+             {
+                 case ANDROID_AXIS_HAT_X:
+                 {
+                     inputType =  value>0 ? DPadRight : DPadLeft;
+                     lastDpadDown = inputType;
+                 }
+                 break;
+                case ANDROID_AXIS_HAT_Y:
+                {
+                    inputType =  value>0 ? DPadDown : DPadUp;
+                    lastDpadDown = inputType;
+                }
+             }
+             value = 1;
+        }
+
+     }
     if(inputType == Unknown)
     {
         LOGI("Unknow input type for %i ",code);
     }
-    else if (inputType == Trigger1 || inputType == Trigger2)
-    {
-        eventType = FS_TRIGGER_EVENT;
-    }
-
     else
     {
         LOGI("know input type for %i is %i",code,inputType);
