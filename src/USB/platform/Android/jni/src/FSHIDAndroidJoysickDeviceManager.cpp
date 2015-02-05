@@ -31,6 +31,7 @@ and must not be misrepresented as being the original software.
 #include <android/log.h>
 #include <android/input.h>
 #include <android/keycodes.h>
+#include <stack>
 #include "USB/platform/Android/jni/src/FSAndroidJoystick.h"
 using namespace freestick;
 #define ANDROID_AXIS_X 0
@@ -51,37 +52,37 @@ using namespace freestick;
 FSHIDAndroidJoysickDeviceManager::FSHIDAndroidJoysickDeviceManager()
 {
 
-    _androidUsageMapToInputEvent[AKEYCODE_DPAD_UP] = DPadUp;
-    _androidUsageMapToInputEvent[AKEYCODE_DPAD_DOWN] = DPadDown;
-    _androidUsageMapToInputEvent[AKEYCODE_DPAD_LEFT] = DPadLeft;
-    _androidUsageMapToInputEvent[AKEYCODE_DPAD_RIGHT] = DPadRight;
-    _androidUsageMapToInputEvent[AKEYCODE_DPAD_RIGHT] = DPadRight;
-    _androidUsageMapToInputEvent[AKEYCODE_DPAD_CENTER] = ButtonA;
-    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_X] = ButtonX;
-    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_Y] = ButtonY;
-    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_A] = ButtonA;
-    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_B] = ButtonB;
-    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_L1 ] = LeftShoulder;
-    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_R1 ] = RightShoulder;
-    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_L2 ] = LeftShoulder2;
-    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_R2 ] = RightShoulder2;
-    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_SELECT] = ButtonSelect;
-    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_START] = ButtonStart;
-    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_THUMBL] = Axis1Button;
-    _androidUsageMapToInputEvent[AKEYCODE_BUTTON_THUMBR] = Axis2Button;
+    _androidButtonUsageMapToInputEvent[AKEYCODE_DPAD_UP] = DPadUp;
+    _androidButtonUsageMapToInputEvent[AKEYCODE_DPAD_DOWN] = DPadDown;
+    _androidButtonUsageMapToInputEvent[AKEYCODE_DPAD_LEFT] = DPadLeft;
+    _androidButtonUsageMapToInputEvent[AKEYCODE_DPAD_RIGHT] = DPadRight;
+    _androidButtonUsageMapToInputEvent[AKEYCODE_DPAD_RIGHT] = DPadRight;
+    _androidButtonUsageMapToInputEvent[AKEYCODE_DPAD_CENTER] = ButtonA;
+    _androidButtonUsageMapToInputEvent[AKEYCODE_BUTTON_X] = ButtonX;
+    _androidButtonUsageMapToInputEvent[AKEYCODE_BUTTON_Y] = ButtonY;
+    _androidButtonUsageMapToInputEvent[AKEYCODE_BUTTON_A] = ButtonA;
+    _androidButtonUsageMapToInputEvent[AKEYCODE_BUTTON_B] = ButtonB;
+    _androidButtonUsageMapToInputEvent[AKEYCODE_BUTTON_L1 ] = LeftShoulder;
+    _androidButtonUsageMapToInputEvent[AKEYCODE_BUTTON_R1 ] = RightShoulder;
+    _androidButtonUsageMapToInputEvent[AKEYCODE_BUTTON_L2 ] = LeftShoulder2;
+    _androidButtonUsageMapToInputEvent[AKEYCODE_BUTTON_R2 ] = RightShoulder2;
+    _androidButtonUsageMapToInputEvent[AKEYCODE_BUTTON_SELECT] = ButtonSelect;
+    _androidButtonUsageMapToInputEvent[AKEYCODE_BUTTON_START] = ButtonStart;
+    _androidButtonUsageMapToInputEvent[AKEYCODE_BUTTON_THUMBL] = Axis1Button;
+    _androidButtonUsageMapToInputEvent[AKEYCODE_BUTTON_THUMBR] = Axis2Button;
 
-    _androidUsageMapToInputEvent[ANDROID_AXIS_X] = XAxis;
-    _androidUsageMapToInputEvent[ANDROID_AXIS_Y] = YAxis;
+    _androidAxisnUsageMapToInputEvent[ANDROID_AXIS_X] = XAxis;
+    _androidAxisnUsageMapToInputEvent[ANDROID_AXIS_Y] = YAxis;
 
-    _androidUsageMapToInputEvent[ANDROID_AXIS_Z] = XAxis2;
-    _androidUsageMapToInputEvent[ANDROID_AXIS_RZ] = YAxis2;
+    _androidAxisnUsageMapToInputEvent[ANDROID_AXIS_Z] = XAxis2;
+    _androidAxisnUsageMapToInputEvent[ANDROID_AXIS_RZ] = YAxis2;
 
-    _androidUsageMapToInputEvent[ANDROID_AXIS_RTRIGGER] = Trigger1;
-    _androidUsageMapToInputEvent[ANDROID_AXIS_THROTTLE] = Trigger1;
-    _androidUsageMapToInputEvent[ANDROID_AXIS_GAS] = Trigger1;
+    _androidAxisnUsageMapToInputEvent[ANDROID_AXIS_RTRIGGER] = Trigger1;
+    _androidAxisnUsageMapToInputEvent[ANDROID_AXIS_THROTTLE] = Trigger1;
+    _androidAxisnUsageMapToInputEvent[ANDROID_AXIS_GAS] = Trigger1;
 
-    _androidUsageMapToInputEvent[ANDROID_AXIS_LTRIGGER] = Trigger2;
-    _androidUsageMapToInputEvent[ANDROID_AXIS_BRAKE] = Trigger2;
+    _androidAxisnUsageMapToInputEvent[ANDROID_AXIS_LTRIGGER] = Trigger2;
+    _androidAxisnUsageMapToInputEvent[ANDROID_AXIS_BRAKE] = Trigger2;
 
 
 }
@@ -104,14 +105,26 @@ void FSHIDAndroidJoysickDeviceManager::init( )
     JNIBridge::registerDeviceWasUpdated(this);
 }
 
-void FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int deviceid,int code,int type,float value,int min,int max)
+void FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int deviceid,int code,JNICallBackType type,float value,int min,int max)
 {
-    LOGI("From C++ GamePad was updated ");
+    static std::stack<FSDeviceInput> lastDpadDownX;
+    static std::stack<FSDeviceInput> lastDpadDownY;
+    std::map<unsigned int,FSDeviceInput > * _androidUsageMapToInputEvent;
+    LOGI("From C++ GamePad was updated with type %u",type);
 
     if(_androidIDToIDMap.find(deviceid) == _androidIDToIDMap.end())
     {
         LOGI("Could not find device %i",deviceid);
         return;
+    }
+
+    if(type == MotionEvent)
+    {
+        _androidUsageMapToInputEvent = & _androidAxisnUsageMapToInputEvent;
+    }
+    else
+    {
+        _androidUsageMapToInputEvent = & _androidButtonUsageMapToInputEvent;
     }
 
     LOGI("device %i with code %i min %i max %i with value %f",deviceid,code,min,max,value);
@@ -124,7 +137,7 @@ void FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int device
     if(isDigital)
     {
         eventType = FS_BUTTON_EVENT;
-        if(value == 0)   //down
+        if(value == 0)   //down in android
         {  eventAction = FSInputPressed; }
     }
     else
@@ -133,55 +146,61 @@ void FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int device
     }
 
 
-    if(_androidUsageMapToInputEvent.find(code) != _androidUsageMapToInputEvent.end())
+    if(_androidUsageMapToInputEvent->find(code) != _androidUsageMapToInputEvent->end())
     {
-        inputType = _androidUsageMapToInputEvent[code];
+        inputType = (*_androidUsageMapToInputEvent)[code];
     }
 
-     if (inputType == Trigger1 || inputType == Trigger2)
-     {
-           eventType = FS_TRIGGER_EVENT;
-     }
-     if(code == ANDROID_AXIS_HAT_X || code == ANDROID_AXIS_HAT_Y)
-     {
+    if (inputType == Trigger1 || inputType == Trigger2)
+    {
+        eventType = FS_TRIGGER_EVENT;
+
+        //float newNormilzedValue = (value/(float)min);
+        value = (value) * 2.0f-1.0f;
+    }
+    if(code == ANDROID_AXIS_HAT_X || code == ANDROID_AXIS_HAT_Y)
+    {
+         std::stack<FSDeviceInput> * lastDpadDown = &lastDpadDownY;
+        if(code ==ANDROID_AXIS_HAT_X)
+            lastDpadDown = &lastDpadDownX;
+
         eventType = FS_BUTTON_EVENT;
 
-        static  FSDeviceInput lastDpadDown = Unknown;
-         eventAction = FSInputPressed;
-         isDigital = true;
-         if(value == 0)
-         {
-             eventAction = FSInputRest;
-             if(lastDpadDown != Unknown)
-             {
-                inputType = lastDpadDown;
-                lastDpadDown = Unknown;
+        eventAction = FSInputPressed;
+        isDigital = true;
+        if(value == 0)
+        {
+            while(!lastDpadDown->empty())
+            {
+                FSDeviceInput lastInput = lastDpadDown->top();
+                lastDpadDown->pop();
+                inputOnDeviceChanged(FS_BUTTON_EVENT,FSInputRest,lastInput,_androidIDToIDMap[deviceid],code,value,0,min,max);
+            }
+            LOGI("returning from last button press");
 
-             }
-         }
-         else
-         {
-             switch(code)
-             {
-                 case ANDROID_AXIS_HAT_X:
-                 {
-                     inputType =  value>0 ? DPadRight : DPadLeft;
-                     lastDpadDown = inputType;
-                 }
-                 break;
-                case ANDROID_AXIS_HAT_Y:
-                {
-                    inputType =  value>0 ? DPadDown : DPadUp;
-                    lastDpadDown = inputType;
-                }
-             }
-             value = 1;
+            return ;
         }
+        else
+        {
+            switch(code)
+            {
+            case ANDROID_AXIS_HAT_X:
+                inputType =  value>0 ? DPadRight : DPadLeft;
+                lastDpadDownX.push(inputType);
+                break;
+            case ANDROID_AXIS_HAT_Y:
+                inputType =  value>0 ? DPadDown : DPadUp;
+                lastDpadDownY.push(inputType);
+                break;
+            }
 
-     }
+            value = 1;
+    }
+
+    }
     if(inputType == Unknown)
     {
-        LOGI("Unknow input type for %i ",code);
+        LOGI("Unknown input type for %i ",code);
     }
     else
     {
@@ -190,7 +209,7 @@ void FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int device
         {
             LOGI("inputOnDeviceChanged %f ",value);
 
-            this->inputOnDeviceChanged(eventType,eventAction,inputType,_androidIDToIDMap[deviceid],code,value,0,min,max);
+            inputOnDeviceChanged(eventType,eventAction,inputType,_androidIDToIDMap[deviceid],code,value,0,min,max);
             LOGI("inputOnDeviceChanged returned %f ",value);
 
         }
@@ -198,12 +217,10 @@ void FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int device
         {
             LOGI("inputOnDeviceChangedWithNormilzedValues %f ",value);
 
-            this->inputOnDeviceChangedWithNormilzedValues(eventType,eventAction,inputType,_androidIDToIDMap[deviceid],code,value,0,min,max);
+            inputOnDeviceChangedWithNormilzedValues(eventType,eventAction,inputType,_androidIDToIDMap[deviceid],code,value,0,min,max);
 
         }
     }
-
-
 
 }
 

@@ -31,7 +31,13 @@ and must not be misrepresented as being the original software.
 #include <android/log.h>
 #define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "native-activity", __VA_ARGS__))
 #define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "native-activity", __VA_ARGS__))
-
+typedef enum
+{
+    JoystickAdded = 0,
+    JoystickRemoved =1,
+    KeyEvent = 2,
+    MotionEvent = 3
+}JNICallBackType;
 #ifdef __cplusplus
 #include <vector>
 extern "C" {
@@ -47,7 +53,7 @@ class IJINICallBack
 public:
     virtual void gamepadWasAddedFromJINBridge(int hid_id,JavaVM * jvm) = 0;
     virtual void gamepadWasRemovedFromJINBridge(int hid_id) = 0;
-    virtual void gamepadWasUpdatedFromJINBridge(int deviceid,int code,int type,float value,int min,int max) = 0;
+    virtual void gamepadWasUpdatedFromJINBridge(int deviceid,int code,JNICallBackType type,float value,int min,int max) = 0;
 };
 
 class JNIBridge
@@ -61,7 +67,7 @@ class JNIBridge
        static void deregisterDeviceWasRemoved(IJINICallBack * listener){}
        static void update(int hidDeviceID, int type);
        static void update(int hidDeviceID, int type,JavaVM * jvm);
-       static void updateValue(int deviceid,int code,int type,float value,int min,int max);
+       static void updateValue(int deviceid,int code,JNICallBackType type,float value,int min,int max);
        static void updateJoysticks(JavaVM * jvm);
     private:
         static std::vector<IJINICallBack*> _deviceAddedCallback;

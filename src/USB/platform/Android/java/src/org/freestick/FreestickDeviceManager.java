@@ -102,19 +102,17 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener 
                 || motion_axis == MotionEvent.AXIS_Z || motion_axis == MotionEvent.AXIS_RZ) {
             float axis = FreestickDeviceManager.getCenteredAxis(event, eventDevice, motion_axis,
                     hIndex);
-            if (axis != 0) {
-                gamepadDeviceUpdate(event.getDeviceId(), motion_axis, 1, axis, -1, 1);
-                return true;
-            }
+            // if (axis != 0) {
+            gamepadDeviceUpdate(event.getDeviceId(), motion_axis, 3, axis, -1, 1);
+            // }
         } else {
             final float value = hIndex < 0 ? event.getAxisValue(motion_axis) : event
                     .getHistoricalAxisValue(motion_axis, hIndex);
 
-            gamepadDeviceUpdate(event.getDeviceId(), motion_axis, 1, value, -1, 1);
-            return true;
+            gamepadDeviceUpdate(event.getDeviceId(), motion_axis, 3, value, -1, 1);
 
         }
-        return false;
+        return true;
     }
 
     public boolean handelMotionEvent(MotionEvent event) {
@@ -173,7 +171,7 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener 
             float value = event.getAction();
             int code = event.getKeyCode();
             Log.w("FreeStick", "calling gamepadDeviceUpdate");
-            gamepadDeviceUpdate(event.getDeviceId(), code, 0, value, 0, 1);
+            gamepadDeviceUpdate(event.getDeviceId(), code, 2, value, 0, 1);
             Log.w("FreeStick", "Back From calling gamepadDeviceUpdate");
             if (code != KeyEvent.KEYCODE_BACK) {
                 return true;

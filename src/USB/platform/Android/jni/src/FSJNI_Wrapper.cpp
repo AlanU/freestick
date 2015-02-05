@@ -41,7 +41,7 @@ JNIEXPORT void JNICALL Java_org_freestick_FreestickDeviceManager_gamepadDeviceUp
 {
     LOGI("JNI gamepadDeviceUpdate %i %i %f %i,%i",code,type,value,min,max);
 
-    JNIBridge::updateValue(deviceid, code, type, value,min,max);
+    JNIBridge::updateValue(deviceid, code,static_cast<JNICallBackType> (type), value,min,max);
 }
 
 JNIEXPORT void JNICALL Java_org_freestick_FreestickDeviceManager_gamepadWasAdded(JNIEnv *env, jobject thisObj,jint HID_ID)
@@ -50,7 +50,7 @@ JNIEXPORT void JNICALL Java_org_freestick_FreestickDeviceManager_gamepadWasAdded
     LOGI("JNI gamePadWasAdded");
     JavaVM * jvm;
     env->GetJavaVM(&jvm);
-    JNIBridge::update(HID_ID,0,jvm);
+    JNIBridge::update(HID_ID,JoystickAdded,jvm);
 }
 
 JNIEXPORT void JNICALL Java_org_freestick_FreestickDeviceManager_gamepadWasRemoved(JNIEnv *env, jobject thisObj,jint HID_ID)
@@ -58,12 +58,12 @@ JNIEXPORT void JNICALL Java_org_freestick_FreestickDeviceManager_gamepadWasRemov
     //gamepadWasRemoved(devicemanager,HID_ID);
     LOGI("JNI gamePadWasRemoved");
 
-    JNIBridge::update(HID_ID,1);
+    JNIBridge::update(HID_ID,JoystickRemoved);
 
 }
 
 
-void JNIBridge::updateValue(int deviceid,int code,int type,float value,int min,int max)
+void JNIBridge::updateValue(int deviceid,int code,JNICallBackType type,float value,int min,int max)
 {
     for(std::vector<IJINICallBack*>::iterator itr = _deviceUpdateCallback.begin();itr != _deviceUpdateCallback.end();itr++)
     {
@@ -213,13 +213,13 @@ void  JNIBridge::updateJoysticks(JavaVM * jvm)
         LOGI("currentAttachedJoysticks size %i ",currentAttachedJoysticks.size());
         for(std::vector<jint>::iterator itr = currentAttachedJoysticks.begin(); itr != currentAttachedJoysticks.end();itr++)
         {
-            JNIBridge::update(*itr,1);
+            JNIBridge::update(*itr,JoystickRemoved);
         }
         LOGI("foundJoysticks size %i ",foundJoysticks.size());
 
         for(std::vector<jint>::iterator itr = foundJoysticks.begin(); itr != foundJoysticks.end();itr++)
         {
-            JNIBridge::update(*itr,0);
+            JNIBridge::update(*itr,JoystickAdded);
         }
         currentAttachedJoysticks.clear();
         currentAttachedJoysticks = foundJoysticks;
