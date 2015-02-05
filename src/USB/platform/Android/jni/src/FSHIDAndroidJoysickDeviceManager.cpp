@@ -62,10 +62,10 @@ FSHIDAndroidJoysickDeviceManager::FSHIDAndroidJoysickDeviceManager()
     _androidButtonUsageMapToInputEvent[AKEYCODE_BUTTON_Y] = ButtonY;
     _androidButtonUsageMapToInputEvent[AKEYCODE_BUTTON_A] = ButtonA;
     _androidButtonUsageMapToInputEvent[AKEYCODE_BUTTON_B] = ButtonB;
-    _androidButtonUsageMapToInputEvent[AKEYCODE_BUTTON_L1 ] = LeftShoulder;
-    _androidButtonUsageMapToInputEvent[AKEYCODE_BUTTON_R1 ] = RightShoulder;
-    _androidButtonUsageMapToInputEvent[AKEYCODE_BUTTON_L2 ] = LeftShoulder2;
-    _androidButtonUsageMapToInputEvent[AKEYCODE_BUTTON_R2 ] = RightShoulder2;
+    _androidButtonUsageMapToInputEvent[AKEYCODE_BUTTON_L1] = LeftShoulder;
+    _androidButtonUsageMapToInputEvent[AKEYCODE_BUTTON_R1] = RightShoulder;
+    _androidButtonUsageMapToInputEvent[AKEYCODE_BUTTON_L2] = LeftShoulder2;
+    _androidButtonUsageMapToInputEvent[AKEYCODE_BUTTON_R2] = RightShoulder2;
     _androidButtonUsageMapToInputEvent[AKEYCODE_BUTTON_SELECT] = ButtonSelect;
     _androidButtonUsageMapToInputEvent[AKEYCODE_BUTTON_START] = ButtonStart;
     _androidButtonUsageMapToInputEvent[AKEYCODE_BUTTON_THUMBL] = Axis1Button;
@@ -77,12 +77,12 @@ FSHIDAndroidJoysickDeviceManager::FSHIDAndroidJoysickDeviceManager()
     _androidAxisnUsageMapToInputEvent[ANDROID_AXIS_Z] = XAxis2;
     _androidAxisnUsageMapToInputEvent[ANDROID_AXIS_RZ] = YAxis2;
 
-    _androidAxisnUsageMapToInputEvent[ANDROID_AXIS_RTRIGGER] = Trigger1;
-    _androidAxisnUsageMapToInputEvent[ANDROID_AXIS_THROTTLE] = Trigger1;
-    _androidAxisnUsageMapToInputEvent[ANDROID_AXIS_GAS] = Trigger1;
+    _androidAxisnUsageMapToInputEvent[ANDROID_AXIS_LTRIGGER] = Trigger1;
+    _androidAxisnUsageMapToInputEvent[ANDROID_AXIS_BRAKE] = Trigger1;
 
-    _androidAxisnUsageMapToInputEvent[ANDROID_AXIS_LTRIGGER] = Trigger2;
-    _androidAxisnUsageMapToInputEvent[ANDROID_AXIS_BRAKE] = Trigger2;
+    _androidAxisnUsageMapToInputEvent[ANDROID_AXIS_RTRIGGER] = Trigger2;
+    _androidAxisnUsageMapToInputEvent[ANDROID_AXIS_THROTTLE] = Trigger2;
+    _androidAxisnUsageMapToInputEvent[ANDROID_AXIS_GAS] = Trigger2;
 
 
 }
