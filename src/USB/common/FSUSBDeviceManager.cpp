@@ -225,10 +225,10 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputEvent[SonyVendorID][Playstation3ControllerID][13] = DPadDown;
     _usageMapToInputEvent[SonyVendorID][Playstation3ControllerID][14] = DPadLeft;
 
-    _usageMapToInputRangeEvent[SonyVendorID][Playstation3ControllerID][27].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));
-    _usageMapToInputRangeEvent[SonyVendorID][Playstation3ControllerID][26].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));
-    _usageMapToInputRangeEvent[SonyVendorID][Playstation3ControllerID][28].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));
-    _usageMapToInputRangeEvent[SonyVendorID][Playstation3ControllerID][29].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));
+    _usageMapToInputRangeEvent[SonyVendorID][Playstation3ControllerID][27].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));
+    _usageMapToInputRangeEvent[SonyVendorID][Playstation3ControllerID][26].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));
+    _usageMapToInputRangeEvent[SonyVendorID][Playstation3ControllerID][28].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));
+    _usageMapToInputRangeEvent[SonyVendorID][Playstation3ControllerID][29].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));
 
     // DualShock 4 Controller
     const unsigned int Playstation4ControllerID = 1476;
@@ -263,10 +263,10 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][20].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSInputPressed));
     _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][20].push_back(FSUSBElementInfoMap(8,8,LastValueUp,FSInputRest));
 
-    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][16].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));//LXaxis stick
-    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][17].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));//LYaxis stick
-    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][19].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));//RXaxis stick
-    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][18].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));//RYaxis stick
+    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][16].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));//LXaxis stick
+    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][17].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));//LYaxis stick
+    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][19].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));//RXaxis stick
+    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][18].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));//RYaxis stick
 
     // Logitech Dual Action
     const unsigned int LogitechVendorID = 1133;
