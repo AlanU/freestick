@@ -199,7 +199,8 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener 
                     // with sdk 13
                     // This could be fixed with amazon's fire tv GamController
                     // class that would handel players
-                    if (!currentDevice.isVirtual() && !name.contains("HDMI")) {
+                    if (!currentDevice.isVirtual() && !name.contains("HDMI")
+                            && !name.contains("amazon-cec")) {
                         this.onInputDeviceAdded(ids[i]);
                         Log.w("FreeStick", "device on resume " + currentDevice.toString()
                                 + " with id " + currentDevice.getId());
