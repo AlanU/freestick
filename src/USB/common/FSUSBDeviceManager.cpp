@@ -358,10 +358,11 @@ FSUSBDeviceManager::FSUSBDeviceManager()
 
     _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][19] = LeftShoulder;
     _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][20] = RightShoulder;
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][27] = LeftShoulder2;
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][28] = RightShoulder2;
 
-    //TODO: OUYA triggers not mappable yet.
-    // _usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][38].push_back(FSUSBElementInfoMap(-32768,32767,Trigger1,FSInputChanged));
-    // _usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][39].push_back(FSUSBElementInfoMap(-32768,32767,Trigger2,FSInputChanged));
+    _usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][38].push_back(FSUSBElementInfoMap(-1,0,Trigger1,FSInputChanged));
+    _usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][39].push_back(FSUSBElementInfoMap(-1,0,Trigger2,FSInputChanged));
 
     _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][21] = Axis1Button;
     _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][22] = Axis2Button;
@@ -375,11 +376,11 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][24] = DPadDown;
     _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][25] = DPadLeft;
 
-    _usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][34].push_back(FSUSBElementInfoMap(-32768,32767,XAxis,FSInputChanged));
-    _usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][35].push_back(FSUSBElementInfoMap(-32768,32767,YAxis,FSInputChanged));
+    _usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][34].push_back(FSUSBElementInfoMap(-1,0,XAxis,FSInputChanged));
+    _usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][35].push_back(FSUSBElementInfoMap(-1,0,YAxis,FSInputChanged));
 
-    _usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][36].push_back(FSUSBElementInfoMap(-32768,32767,XAxis2,FSInputChanged));
-    _usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][37].push_back(FSUSBElementInfoMap(-32768,32767,YAxis2,FSInputChanged));
+    _usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][36].push_back(FSUSBElementInfoMap(-1,0,XAxis2,FSInputChanged));
+    _usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][37].push_back(FSUSBElementInfoMap(-1,0,YAxis2,FSInputChanged));
 
     // Microsoft Xbox 360 Windows controller
     const unsigned int MicrosoftVendorID = 1118;
