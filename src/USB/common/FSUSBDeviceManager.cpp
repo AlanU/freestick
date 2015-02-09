@@ -37,6 +37,10 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     */
 
     // SteelSeries ("DragonRise") 3GC controller
+    // Has a very "noisy" analog axis ID 19. This ID gives signals
+    // when the left stick X-axis is moved, and when the right stick
+    // Y-axis is moved. This does not seem useful, not sure what its
+    // purpose is, so this ID is left unmapped.
     const unsigned int DragonRiseID = 121;
     const unsigned int SteelSeries3GCControllerID = 6;
 
@@ -51,24 +55,14 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][8] = LeftShoulder2;
     _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][9] = RightShoulder2;
 
-    // No stick buttons
+    _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][14] = Axis1Button;
+    _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][15] = Axis2Button;
 
     _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][12] = ButtonSelect;
     // No center button
     _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][13] = ButtonStart;
 
-    //Dpad in green led mode
-    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][36].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][36].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][36].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][36].push_back(FSUSBElementInfoMap(3,3,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][36].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][36].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][36].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][36].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][36].push_back(FSUSBElementInfoMap(15,15,LastValueUp,FSInputRest));
-
-    //Dpad in red led mode
+    //D-pad in red LED mode. In green LED mode, D-pad mimicks left stick axes.
     _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][22].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
     _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][22].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
     _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][22].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
@@ -79,11 +73,16 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][22].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSInputPressed));
     _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][22].push_back(FSUSBElementInfoMap(15,15,LastValueUp,FSInputRest));
 
-    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][17].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));
-    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][18].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));
+    //Left analog stick in red LED mode. In green LED mode, stick
+    //mimicks digital signals & send only 0, 127, 255.
+    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][17].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));
+    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][18].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));
 
-    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][19].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));
+    //Right analog stick in red LED mode. In green LED mode, stick
+    //mimicks 1, 2, 3, & 4 buttons (Y, B, A, & X, respectively),
+    //sending their IDs at up, down, left, and right.
     _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][20].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));
+    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][21].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));
 
     // Amazon Fire Game Controller
     const unsigned int AmazonVendorID = 6473;
