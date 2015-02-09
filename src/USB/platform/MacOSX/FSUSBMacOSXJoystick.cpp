@@ -34,6 +34,8 @@ and must not be misrepresented as being the original software.
 #include "common/FreeStickLog.h"
 using namespace freestick;
 
+
+
 unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickManager)
 {
     CFArrayRef  deviceElements;
@@ -68,7 +70,7 @@ unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickM
             usagePage = IOHIDElementGetUsagePage(elemnet);
             CFIndex value = 0;
             IOHIDValueRef   tIOHIDValueRef;
-            /*  if ( kIOReturnSuccess == IOHIDDeviceGetValue(device, elemnet, &tIOHIDValueRef) )
+              if ( kIOReturnSuccess == IOHIDDeviceGetValue(_macIOHIDDeviceRef, elemnet, &tIOHIDValueRef) )
                  {
                       if(CFGetTypeID(tIOHIDValueRef) == IOHIDValueGetTypeID())
                       {
@@ -78,7 +80,8 @@ unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickM
 
                          }
                       }
-                 }*/
+                 }
+            
             // FSUSBElementInfoMap  map = usbJoystickManager->lookUpDeviceInputFromUSBID(_vendorID,_productID,elementID,min,max,min);
 
             if(type == kIOHIDElementTypeInput_Axis || type == kIOHIDElementTypeInput_Button || type == kIOHIDElementTypeInput_Misc || type == kIOHIDElementTypeInput_ScanCodes)
@@ -104,7 +107,7 @@ unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickM
                 {
                     numberOfAnalogButtons++;
                 }
-                FSUSBJoyStickInputElement temp(elemnetID, min, max, _vendorID,_productID,usbJoystickManager);
+                FSUSBJoyStickInputElement temp(elemnetID, min, max, _vendorID,_productID,usbJoystickManager,value);
                 this->addInputElement(temp);
 
             }

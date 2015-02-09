@@ -32,6 +32,7 @@ and must not be misrepresented as being the original software.
 namespace freestick
 {
 typedef signed long  MinMaxNumber;
+typedef signed long PhysicalValueNumber;
     class FSUSBJoyStickInputElement : public FSUSBDevice
     {
     private:
@@ -49,17 +50,16 @@ typedef signed long  MinMaxNumber;
         bool _calibrated;
         bool _intialized;
         FSUSBDeviceManager * _usbDeviceManager;
+        time_t firstTime;
     protected:
 
     public:
         //FSUSBJoyStickInputElement(const & FSUSBJoyStickInputElement copy){}
                  FSUSBJoyStickInputElement();
-        FSUSBJoyStickInputElement(unsigned int id, MinMaxNumber elementMin, MinMaxNumber elementMax, long venderID,
-                                  long productID,FSUSBDeviceManager & _manager);
+        FSUSBJoyStickInputElement(unsigned int id, MinMaxNumber elementMin, MinMaxNumber elementMax, long venderID,long productID,FSUSBDeviceManager & _manager,PhysicalValueNumber currentValue);
         FSUSBElementInfoMap getMapping(int inputValue) ;
         inline MinMaxNumber getValue() {return _value;}
         void setValue(MinMaxNumber newValue);
         bool isValueInDeadZone(MinMaxNumber value);
-
     };
 }

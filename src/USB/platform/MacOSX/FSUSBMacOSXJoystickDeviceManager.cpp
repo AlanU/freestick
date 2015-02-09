@@ -356,6 +356,7 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn i
     CFIndex min = IOHIDElementGetLogicalMin(element);
     CFIndex max = IOHIDElementGetLogicalMax(element);
 
+
     //if(min+1 != max)
     //  return;
 
@@ -395,19 +396,30 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn i
         //  FSUSBElementInfoMap inputType = manager->lookUpDeviceInputFromID(deviceID,(unsigned int)IOHIDElementGetCookie(element),IOHIDElementGetLogicalMin(element),IOHIDElementGetLogicalMax(element),elementValue);
         // FreeStickEventType eventType =  IFSEvent::getEventFromInputType(inputType.getDeviceInput());
         FSUSBElementInfoMap inputType = elementDevice->getMapping(elementValue);
-        bool isValueVaild = elementDevice->isValueInDeadZone(elementValue);
+       bool isValueVaild = elementDevice->isValueInDeadZone(elementValue);
         FreeStickEventType eventType =  IFSEvent::getEventFromInputType(inputType.getDeviceInput());
 
         //pass in FSEventMaping so we can map release vs press
-        if( eventType != FS_LAST_EVENT && inputType.getDeviceInput() != LastInput && isValueVaild)
+        if( eventType != FS_LAST_EVENT && inputType.getDeviceInput() != LastInput)
         {
 
-
-            manager->inputOnDeviceChanged(eventType,inputType.getEventMapping(),inputType.getDeviceInput(),
-                                          deviceID,elementDevice->getJoystickID(),
-                                          elementDevice->getValue(),0,
-                                          IOHIDElementGetLogicalMin(element),
-                                          IOHIDElementGetLogicalMax(element));
+            if(!isValueVaild)
+            {
+                manager->inputOnDeviceChangedWithNormilzedValues(eventType,inputType.getEventMapping(),inputType.getDeviceInput(),
+                                                                 deviceID,elementDevice->getJoystickID(),
+                                                                 0,0,
+                                                                -1,
+                                                                 1);
+            }
+            else
+            {
+                manager->inputOnDeviceChanged(eventType,inputType.getEventMapping(),inputType.getDeviceInput(),
+                                              deviceID,elementDevice->getJoystickID(),
+                                              elementDevice->getValue(),0,
+                                              IOHIDElementGetLogicalMin(element),
+                                              IOHIDElementGetLogicalMax(element));
+            }
+     
 
         }
     }

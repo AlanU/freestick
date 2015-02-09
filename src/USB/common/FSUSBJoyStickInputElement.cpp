@@ -26,7 +26,10 @@ and must not be misrepresented as being the original software.
 **************************************************************************/
 
 #include "USB/common/FSUSBJoyStickInputElement.h"
+#include "USB/common/FSUSBJoystick.h"
 #include <time.h>
+#include <cstdlib>
+
 using namespace freestick;
 FSUSBJoyStickInputElement::FSUSBJoyStickInputElement()
 {
@@ -59,51 +62,47 @@ bool FSUSBJoyStickInputElement::isValueInDeadZone(MinMaxNumber value)
 
 void FSUSBJoyStickInputElement::setValue(MinMaxNumber newValue)
 {
-    static time_t firstTime = time(NULL);
+    double diffranceInTime = difftime(time(NULL),firstTime);
 
-
-    if(_needsDeadZone && !_calibrated)
+    if(_needsDeadZone && !_calibrated  && (diffranceInTime <1.5))
     {
-        if(_intialized == false)
+   
+        if(_deadZoneMax < newValue)
         {
             _deadZoneMax = newValue;
+        }
+        if(_deadZoneMin > newValue)
+        {
             _deadZoneMin = newValue;
         }
-        else
-        {
-            if(_deadZoneMax < newValue)
-            {
-                _deadZoneMax = newValue;
-            }
-            if(_deadZoneMin > newValue)
-            {
-                _deadZoneMin = newValue;
-            }
-        }
+        
     }
 
-    double diffranceInTime = difftime(time(NULL),firstTime);
+
     if( diffranceInTime>0.3 && (!_calibrated && _needsDeadZone))
     {
         if(_deadZoneMax != _deadZoneMin && (diffranceInTime <1.5))
         {
-            _deadZoneMax++;
-            _deadZoneMin--;
+           // MinMaxNumber precent =((float)_elementMax)*0.07f;
+           // _deadZoneMax= _elementMax < _deadZoneMax+precent ?  _deadZoneMax :_deadZoneMax + precent ;
+           // _deadZoneMin = _elementMin > _deadZoneMin-precent ? _deadZoneMin : _deadZoneMin - precent;
         }
         else
         {
-            _needsDeadZone = false;
+            
+           // _needsDeadZone = false;
         }
         _calibrated = true;
 
     }
-    if(_calibrated && _needsDeadZone)
+   /* if(_calibrated && _needsDeadZone)
     {
         if (newValue <= _deadZoneMax && newValue >= _deadZoneMin)
         {
-            newValue = (_elementMax/2);
+            
+            newValue = 0;
         }
-    }
+    }*/
     if (_intialized == false)
     {
         _oldValue = newValue;
@@ -117,9 +116,9 @@ void FSUSBJoyStickInputElement::setValue(MinMaxNumber newValue)
     }
 }
 
-FSUSBJoyStickInputElement::FSUSBJoyStickInputElement(unsigned int id, MinMaxNumber elementMin, MinMaxNumber elementMax ,long venderID,
-                                                     long productID,FSUSBDeviceManager & _manager):FSUSBDevice(id,venderID,productID)
+FSUSBJoyStickInputElement::FSUSBJoyStickInputElement(unsigned int id, MinMaxNumber elementMin, MinMaxNumber elementMax ,long venderID,long productID,FSUSBDeviceManager & _manager,PhysicalValueNumber currentValue):FSUSBDevice(id,venderID,productID)
 {
+    
      _elementMin = elementMin;
      _elementMax = elementMax;
      _oldValue = -1;
@@ -129,7 +128,27 @@ FSUSBJoyStickInputElement::FSUSBJoyStickInputElement(unsigned int id, MinMaxNumb
 
     _needsDeadZone = false;
     _calibrated =false;
+
+    
+   FSDeviceInput deviceType = getMapping(currentValue).getDeviceInput();
+
     //TODO calibrated needs to be called over a time interval not number of times
-    if(!((_elementMax - _elementMin == 1) || ( _elementMax - _elementMin == 0)) )
+    if(FS_isAxis(deviceType) )
+    {
+        _deadZoneMax =  (currentValue < _elementMax) ?    currentValue :  _elementMax;
+        _deadZoneMin =  (currentValue > _elementMin) ?    currentValue :  _elementMin;
+        
+        MinMaxNumber precent =( (float)(_elementMax + abs(_elementMin) ) )*0.07f;
+        _deadZoneMax= _elementMax < _deadZoneMax+precent ?  _deadZoneMax :_deadZoneMax + precent ;
+        _deadZoneMin = _elementMin > _deadZoneMin-precent ? _deadZoneMin : _deadZoneMin - precent;
+        if(_deadZoneMin > _deadZoneMax)
+        {
+            MinMaxNumber temp = _deadZoneMax;
+            _deadZoneMax = _deadZoneMin ;
+            _deadZoneMin = temp;
+        }
         _needsDeadZone = true;
+    }
+    firstTime = time(NULL);
+
 }
