@@ -81,7 +81,10 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener 
         // (0,0). Use the getFlat() method to determine the range of values
         // bounding the joystick axis center.
         if (range != null) {
-            final float flat = range.getFlat();
+            float flat = range.getFlat();
+            if (flat == 0.0f) {
+                flat = 0.004f;
+            }
             final float value = historyPos < 0 ? event.getAxisValue(axis) : event
                     .getHistoricalAxisValue(axis, historyPos);
 
