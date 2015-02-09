@@ -78,31 +78,13 @@ void FSUSBJoyStickInputElement::setValue(MinMaxNumber newValue)
         
     }
 
-
     if( diffranceInTime>0.3 && (!_calibrated && _needsDeadZone))
     {
-        if(_deadZoneMax != _deadZoneMin && (diffranceInTime <1.5))
-        {
-           // MinMaxNumber precent =((float)_elementMax)*0.07f;
-           // _deadZoneMax= _elementMax < _deadZoneMax+precent ?  _deadZoneMax :_deadZoneMax + precent ;
-           // _deadZoneMin = _elementMin > _deadZoneMin-precent ? _deadZoneMin : _deadZoneMin - precent;
-        }
-        else
-        {
-            
-           // _needsDeadZone = false;
-        }
+        
         _calibrated = true;
 
     }
-   /* if(_calibrated && _needsDeadZone)
-    {
-        if (newValue <= _deadZoneMax && newValue >= _deadZoneMin)
-        {
-            
-            newValue = 0;
-        }
-    }*/
+   
     if (_intialized == false)
     {
         _oldValue = newValue;
@@ -138,15 +120,18 @@ FSUSBJoyStickInputElement::FSUSBJoyStickInputElement(unsigned int id, MinMaxNumb
         _deadZoneMax =  (currentValue < _elementMax) ?    currentValue :  _elementMax;
         _deadZoneMin =  (currentValue > _elementMin) ?    currentValue :  _elementMin;
         
-        MinMaxNumber precent =( (float)(_elementMax + abs(_elementMin) ) )*0.07f;
-        _deadZoneMax= _elementMax < _deadZoneMax+precent ?  _deadZoneMax :_deadZoneMax + precent ;
-        _deadZoneMin = _elementMin > _deadZoneMin-precent ? _deadZoneMin : _deadZoneMin - precent;
         if(_deadZoneMin > _deadZoneMax)
         {
             MinMaxNumber temp = _deadZoneMax;
             _deadZoneMax = _deadZoneMin ;
             _deadZoneMin = temp;
         }
+        
+        MinMaxNumber precent =( (float)(_elementMax + abs(_elementMin) ) )*0.06f;
+        
+        _deadZoneMax= _elementMax < _deadZoneMax+precent ?  _deadZoneMax :_deadZoneMax + precent ;
+        _deadZoneMin = _elementMin > _deadZoneMin-precent ? _deadZoneMin : _deadZoneMin - precent;
+        
         _needsDeadZone = true;
     }
     firstTime = time(NULL);
