@@ -136,6 +136,7 @@ unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickM
 FSUSBMacOSXJoystick::~FSUSBMacOSXJoystick()
 {
 
+   // CFRelease(_macIOHIDDeviceRef);
 }
 
 FSUSBMacOSXJoystick::FSUSBMacOSXJoystick()
@@ -182,6 +183,7 @@ FSUSBMacOSXJoystick::FSUSBMacOSXJoystick(IOHIDDeviceRef device,
     _friendlyName = _vendorIDFriendlyName + " "+ _prodcutIDFriendlyName;
 
     _macIOHIDDeviceRef = device;
+    CFRetain(_macIOHIDDeviceRef);
 
 }
 
