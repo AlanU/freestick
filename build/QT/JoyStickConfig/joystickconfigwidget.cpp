@@ -39,7 +39,7 @@ JoyStickConfigWidget::JoyStickConfigWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
-
+    ui->tab_3->setWindowTitle("Virtual Control");
 #ifdef Q_OS_ANDROID
     QAndroidJniEnvironment qjniEnv;
     JavaVM * jvm = QAndroidJniEnvironment::javaVM();
@@ -84,6 +84,7 @@ void JoyStickConfigWidget::onStickMove(FSDeviceInputEvent event)
     else if(FS_isTrigger(event.getInputType()))
     {
          text = tr("Trigger ");
+
     }
     text += tr("Changed for device ");
     text += QString::number(event.getDeviceID());
@@ -92,6 +93,95 @@ void JoyStickConfigWidget::onStickMove(FSDeviceInputEvent event)
     text += tr(" with Value of ");
     text += QString::number(event.getNewInputValue());
     ui->AnologDebugControl->setText(text);
+    updateVirtualAnalogGamePad(event.getInputType(),event.getEventAction(),event.getNewInputValue() );
+
+}
+
+void JoyStickConfigWidget::updateVirtualButton(QWidget * button,FSEventAction action )
+{
+    QPalette buttonPressed(palette());
+    buttonPressed.setColor(QPalette::Background,Qt::red);
+    if(action == FSInputPressed)
+    {
+       button->setAutoFillBackground(true);
+        button->setPalette(buttonPressed);
+    }
+    else
+    {
+        button->setAutoFillBackground(false);
+
+    }
+}
+
+void JoyStickConfigWidget::updateVirtualAnalogGamePad(FSDeviceInput input,FSEventAction action,float value )
+{
+    switch (input)
+    {
+        case Trigger1:
+            ui->LeftTrigger->setValue(value);
+        break;
+        case Trigger2:
+            ui->RightTrigger->setValue(value);
+        break;
+        default:
+        break;
+
+    }
+}
+void JoyStickConfigWidget::updateVirtualDigitalGamePad(FSDeviceInput input,FSEventAction action )
+{
+
+    switch (input)
+    {
+        case DPadDown:
+           updateVirtualButton(ui->dpadDown,action);
+        break;
+        case DPadUp:
+            updateVirtualButton(ui->dpadUp,action);
+        break;
+        case DPadLeft:
+            updateVirtualButton(ui->dpadLeft,action);
+        break;
+        case DPadRight:
+            updateVirtualButton(ui->dpadRight,action);
+        break;
+        case ButtonX:
+            updateVirtualButton(ui->ButtonX,action);
+        break;
+        case ButtonY:
+            updateVirtualButton(ui->ButtonY,action);
+        break;
+        case ButtonA:
+            updateVirtualButton(ui->ButtonA,action);
+        break;
+        case ButtonB:
+            updateVirtualButton(ui->ButtonB,action);
+        break;
+        case ButtonSelect:
+            updateVirtualButton(ui->SelectButton,action);
+        break;
+        case ButtonStart:
+            updateVirtualButton(ui->StartButton,action);
+        break;
+        case LeftShoulder:
+            updateVirtualButton(ui->L1,action);
+        break;
+        case RightShoulder:
+            updateVirtualButton(ui->R1,action);
+        break;
+        case LeftShoulder2:
+            updateVirtualButton(ui->L2,action);
+        break;
+        case RightShoulder2:
+            updateVirtualButton(ui->R2,action);
+        break;
+        case ButtonCenter:
+            updateVirtualButton(ui->CenterButton,action);
+        break;
+
+        default:
+            break;
+    }
 }
 
 void JoyStickConfigWidget::onButtonDown(FSDeviceInputEvent event)
@@ -117,6 +207,8 @@ void JoyStickConfigWidget::onButtonDown(FSDeviceInputEvent event)
     text += QString::number(event.getNewInputValue());
 
     ui->DebugControl->setText(text);
+    updateVirtualDigitalGamePad(event.getInputType(),event.getEventAction());
+
 }
 
  void JoyStickConfigWidget::onButtonUp(FSDeviceInputEvent event)
@@ -148,6 +240,8 @@ void JoyStickConfigWidget::onButtonDown(FSDeviceInputEvent event)
      text += QString::number(event.getControlID());
 
      ui->DebugControl->setText(text);
+     updateVirtualDigitalGamePad(event.getInputType(),event.getEventAction());
+
 
 }
 void JoyStickConfigWidget::onConnect(FSBaseEvent event)

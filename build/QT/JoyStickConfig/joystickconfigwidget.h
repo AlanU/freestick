@@ -62,6 +62,11 @@ private:
     Ui::JoyStickConfigWidget *ui;
     void PopulateDeviceStats(unsigned int id);
     QTimer * timer;
+    void updateVirtualDigitalGamePad(freestick::FSDeviceInput input,freestick::FSEventAction action );
+    void updateVirtualAnalogGamePad(freestick::FSDeviceInput input,freestick::FSEventAction action,float value );
+    void updateVirtualButton(QWidget * button,freestick::FSEventAction action );
+
+
 };
 
 #endif // JOYSTICKCONFIGWIDGET_H
