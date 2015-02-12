@@ -502,3 +502,36 @@ FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromUSBID( unsigned in
 
     return FSUSBElementInfoMap(0,1,LastInput,FSInputChanged);
  }
+
+bool FSUSBDeviceManager::doesDevieHaveDeviceInput(unsigned int deviceID,FSDeviceInput inputToLookFor)
+{
+  /*  const FSUSBDevice * usbDeice = (const FSUSBDevice *)getDevice(deviceID);
+    if(usbDeice != NULL)
+    {
+        unsigned int vendorUSBID = usbDeice->getVenderID();
+        unsigned int productUSBID = usbDeice->getProductID();
+
+
+        if(FS_isAxis(inputToLookFor) || FS_isDpad(inputToLookFor) || FS_isDpad(inputToLookFor) || inputToLookFor == LastValueUp)
+        {
+            std::map<unsigned int,std::vector<FSUSBElementInfoMap> >::iterator itRange = _usageMapToInputRangeEvent[vendorUSBID][productUSBID].begin();
+            for(itRange;itRange != _usageMapToInputRangeEvent[vendorUSBID][productUSBID].end();itRange++)
+            {
+               std::vector<FSUSBElementInfoMap>::iterator vItr = itRange.second().begin();
+               for(vItr;vItr != itRange.begin(); vItr++)
+               {
+                  FSUSBElementInfoMap infoMapToLookThrough = vItr;
+                  if(infoMapToLookThrough.getDeviceInput() == inputToLookFor)
+                      return true;
+               }
+            }
+        }
+        if(FS_isButtion(inputToLookFor) || FS_isDpad(inputToLookFor))
+        {
+            //look throught other
+        }
+
+    }*/
+
+    return false;
+}
