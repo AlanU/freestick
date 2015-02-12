@@ -118,10 +118,10 @@ void JoyStickConfigWidget::updateVirtualAnalogGamePad(FSDeviceInput input,FSEven
     switch (input)
     {
         case Trigger1:
-            ui->LeftTrigger->setValue(value);
+            ui->LeftTrigger->setValue(value*100);
         break;
         case Trigger2:
-            ui->RightTrigger->setValue(value);
+            ui->RightTrigger->setValue(value*100);
         break;
         default:
         break;
