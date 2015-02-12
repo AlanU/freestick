@@ -457,6 +457,8 @@ void setupIOHDIManager(IOHIDManagerRef & hidManager,int device,void * thisptr )
 
 void FSUSBMacOSXJoystickDeviceManager::init()
 {
+    EE_INFO<<"Init Mac Joystick DeviceManager "<<std::endl;
+
     FSUSBJoystickDeviceManager::init();
     setupIOHDIManager(hidManagerGamePad, kHIDUsage_GD_GamePad,this);
     setupIOHDIManager(hidManagerJoyStick, kHIDUsage_GD_Joystick,this);
@@ -478,7 +480,8 @@ void FSUSBMacOSXJoystickDeviceManager::update()
 
 FSUSBMacOSXJoystickDeviceManager::~FSUSBMacOSXJoystickDeviceManager()
 {
-    
+    EE_INFO<<"Using Mac Joystick DeviceManager "<<std::endl;
+
     IOHIDManagerUnscheduleFromRunLoop(hidManagerGamePad, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
     IOHIDManagerUnscheduleFromRunLoop(hidManagerJoyStick, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
 

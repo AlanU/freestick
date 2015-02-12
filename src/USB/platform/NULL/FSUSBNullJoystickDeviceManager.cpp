@@ -26,10 +26,11 @@ and must not be misrepresented as being the original software.
 **************************************************************************/
 
 #include "USB/platform/NULL/FSUSBNullJoystickDeviceManager.h"
+#include "../src/3rdParty/EELog/src/EELog.h"
 using namespace freestick;
 FSUSBNullJoystickDeviceManager::FSUSBNullJoystickDeviceManager()
 {
-
+    EE_INFO<<"Using Null Joystick DeviceManager Joysticks will not work"<<std::endl;
 }
 
 FSUSBNullJoystickDeviceManager::~FSUSBNullJoystickDeviceManager()
