@@ -219,9 +219,17 @@ void FSBaseManager::updateEvent(FSBaseEvent & event)
 
 float FSBaseManager::convertRawToNormalizedRanger(int value,signed long maxValue,signed long minValue)
 {
-    float newNormilzedValue = (value/(float)maxValue);
-    newNormilzedValue = (newNormilzedValue) * 2.0f-1.0f;
-    return newNormilzedValue;
+
+    double joystickRange = (double)maxValue - (double)minValue;
+
+    if(joystickRange == 0)
+        return -1;
+    
+    double libRange = 2;
+    
+    float newNormilzedValue =  ( (( (double)value - (double) minValue) * libRange)/joystickRange ) + -1.0 ;
+    return  newNormilzedValue;
+    
 }
 void FSBaseManager::inputOnDeviceChangedWithNormilzedValues(FreeStickEventType eventType,
                                          FSEventAction eventAction,
