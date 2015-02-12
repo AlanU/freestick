@@ -35,17 +35,28 @@ FSUSBJoyStickInputElement::FSUSBJoyStickInputElement()
 {
 }
 
-FSUSBElementInfoMap FSUSBJoyStickInputElement::getMapping(int inputValue)
+void FSUSBJoyStickInputElement::getMapping(int inputValue ,std::stack<FSUSBElementInfoMap> & infoMapsToReturn)
 {
+
     //asset(_usbDeviceManager != NULL);
    FSUSBElementInfoMap map = _usbDeviceManager->lookUpDeviceInputFromUSBID(_vendorID,_productID,getJoystickID(),_elementMin,_elementMax,inputValue);
    if(map.getDeviceInput() == LastValueUp)
    {
-         FSUSBElementInfoMap LastValueMap =  _usbDeviceManager->lookUpDeviceInputFromUSBID(_vendorID,_productID,getJoystickID(),_elementMin,_elementMax,_value);
+       while(!_lastValueStack.empty())
+       {
+         MinMaxNumber stackValue = _lastValueStack.top();
+         FSUSBElementInfoMap LastValueMap =  _usbDeviceManager->lookUpDeviceInputFromUSBID(_vendorID,_productID,getJoystickID(),_elementMin,_elementMax,stackValue);
          map = FSUSBElementInfoMap(LastValueMap.getMin(),LastValueMap.getMax(),LastValueMap.getDeviceInput(),FSInputRest);
+         infoMapsToReturn.push(map);
+         _lastValueStack.pop();
+       }
+   }
+   else
+   {
+      infoMapsToReturn.push(map);
    }
    this->setValue(inputValue);
-   return map;
+
 }
 
 bool FSUSBJoyStickInputElement::isValueInDeadZone(MinMaxNumber value)
@@ -95,6 +106,8 @@ void FSUSBJoyStickInputElement::setValue(MinMaxNumber newValue)
     {
         _oldValue = _value;
         _value = newValue;
+        if(_useLastValueStack ) {_lastValueStack.push(_value);}
+
     }
 }
 
@@ -111,9 +124,13 @@ FSUSBJoyStickInputElement::FSUSBJoyStickInputElement(unsigned int id, MinMaxNumb
     _needsDeadZone = false;
     _calibrated =false;
 
-    
-   FSDeviceInput deviceType = getMapping(currentValue).getDeviceInput();
+    FSDeviceInput deviceType = _usbDeviceManager->lookUpDeviceInputFromUSBID(venderID,productID,id,_elementMin,_elementMax,currentValue).getDeviceInput();
+    _useLastValueStack = false;
 
+   if(deviceType == LastValueUp)
+   {
+       _useLastValueStack = true;
+   }
     //TODO calibrated needs to be called over a time interval not number of times
     if(FS_isAxis(deviceType) )
     {
@@ -135,5 +152,7 @@ FSUSBJoyStickInputElement::FSUSBJoyStickInputElement(unsigned int id, MinMaxNumb
         _needsDeadZone = true;
     }
     firstTime = time(NULL);
+
+
 
 }

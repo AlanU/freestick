@@ -342,6 +342,7 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadWasRemoved(void* inContext, IORetu
 }
 
 void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn inResult, void* inSender, IOHIDValueRef value) {
+    static std::stack<FSUSBElementInfoMap> inputTypes;
     IOHIDElementRef element = IOHIDValueGetElement(value);
     IOHIDElementType type = IOHIDElementGetType(element);
     if(!(type == kIOHIDElementTypeInput_Axis || type == kIOHIDElementTypeInput_Button || type == kIOHIDElementTypeInput_Misc || type == kIOHIDElementTypeInput_ScanCodes))
@@ -395,8 +396,13 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn i
     {
         //  FSUSBElementInfoMap inputType = manager->lookUpDeviceInputFromID(deviceID,(unsigned int)IOHIDElementGetCookie(element),IOHIDElementGetLogicalMin(element),IOHIDElementGetLogicalMax(element),elementValue);
         // FreeStickEventType eventType =  IFSEvent::getEventFromInputType(inputType.getDeviceInput());
-        FSUSBElementInfoMap inputType = elementDevice->getMapping(elementValue);
+       elementDevice->getMapping(elementValue,inputTypes);
        bool isValueVaild = elementDevice->isValueInDeadZone(elementValue);
+
+      while(!inputTypes.empty())
+      {
+        FSUSBElementInfoMap inputType = inputTypes.top();
+
         FreeStickEventType eventType =  IFSEvent::getEventFromInputType(inputType.getDeviceInput());
 
         //pass in FSEventMaping so we can map release vs press
@@ -419,9 +425,9 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn i
                                               IOHIDElementGetLogicalMin(element),
                                               IOHIDElementGetLogicalMax(element));
             }
-     
-
         }
+        inputTypes.pop();
+      }
     }
     EE_DEBUG<<std::endl;
 }

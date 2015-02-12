@@ -68,6 +68,7 @@ namespace freestick
         FSUSBElementInfoMap lookUpDeviceInputFromID(unsigned int deviceID, unsigned int controlID, signed long min, signed long max,int value);
         FSUSBElementInfoMap lookUpDeviceInputFromUSBID( unsigned int vendorUSBID, unsigned int productUSBID , unsigned int controlID,signed long min,signed long max,int value);
 
+        bool doesDevieHaveDeviceInput(unsigned int deviceID,FSDeviceInput inputToLookFor);
         FSUSBDeviceManager();
         virtual void init( );
         virtual ~FSUSBDeviceManager();
