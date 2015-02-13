@@ -54,8 +54,9 @@ void FSUSBJoyStickInputElement::getMapping(int inputValue ,std::stack<FSUSBEleme
    else
    {
       infoMapsToReturn.push(map);
+      this->setValue(inputValue);
+
    }
-   this->setValue(inputValue);
 
 }
 
