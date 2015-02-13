@@ -54,12 +54,13 @@ typedef signed long PhysicalValueNumber;
         time_t firstTime;
         std::stack<MinMaxNumber> _lastValueStack;
         bool _useLastValueStack;
+        unsigned int _parentID;
     protected:
 
     public:
         //FSUSBJoyStickInputElement(const & FSUSBJoyStickInputElement copy){}
                  FSUSBJoyStickInputElement();
-        FSUSBJoyStickInputElement(unsigned int id, MinMaxNumber elementMin, MinMaxNumber elementMax, long venderID,long productID,FSUSBDeviceManager & _manager,PhysicalValueNumber currentValue);
+        FSUSBJoyStickInputElement(unsigned int id, unsigned int parentID, MinMaxNumber elementMin, MinMaxNumber elementMax, long venderID,long productID,FSUSBDeviceManager & _manager,PhysicalValueNumber currentValue);
         void getMapping(int inputValue,std::stack<FSUSBElementInfoMap> & infoMapsToReturn) ;
         inline MinMaxNumber getValue() {return _value;}
         void setValue(MinMaxNumber newValue);

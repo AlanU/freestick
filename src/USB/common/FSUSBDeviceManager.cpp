@@ -503,35 +503,117 @@ FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromUSBID( unsigned in
     return FSUSBElementInfoMap(0,1,LastInput,FSInputChanged);
  }
 
-bool FSUSBDeviceManager::doesDevieHaveDeviceInput(unsigned int deviceID,FSDeviceInput inputToLookFor)
+
+bool FSUSBDeviceManager::doesElementHaveDeviceInputForValue(unsigned int vendorUSBID, unsigned int productUSBID ,unsigned int elementID,FSDeviceInput inputToLookFor )
 {
-  /*  const FSUSBDevice * usbDeice = (const FSUSBDevice *)getDevice(deviceID);
+   std::vector<FSUSBElementInfoMap> ::iterator itr =  _usageMapToInputRangeEvent[vendorUSBID][productUSBID][elementID].begin();
+   for(itr;itr !=  _usageMapToInputRangeEvent[vendorUSBID][productUSBID][elementID].end(); itr++)
+   {
+      FSUSBElementInfoMap infoMapToLookThrough = *itr;
+      if(infoMapToLookThrough.getDeviceInput() == inputToLookFor)
+      {
+          return true;
+      }
+   }
+      return false;
+}
+
+
+
+bool FSUSBDeviceManager::doesDeviceHaveDeviceInputForValue(unsigned int deviceID,FSDeviceInput inputToLookFor,  int value )
+{
+    const FSUSBDevice * usbDeice = (const FSUSBDevice *)getDevice(deviceID);
     if(usbDeice != NULL)
     {
         unsigned int vendorUSBID = usbDeice->getVenderID();
         unsigned int productUSBID = usbDeice->getProductID();
+        doesDeviceHaveDeviceInputForValue(vendorUSBID,productUSBID,inputToLookFor,value);
+    }
+}
 
 
-        if(FS_isAxis(inputToLookFor) || FS_isDpad(inputToLookFor) || FS_isDpad(inputToLookFor) || inputToLookFor == LastValueUp)
+bool FSUSBDeviceManager::doesDeviceHaveDeviceInputForValue(unsigned int vendorUSBID, unsigned int productUSBID ,FSDeviceInput inputToLookFor,  int value )
+{
+    std::map<unsigned int,std::vector<FSUSBElementInfoMap> >::iterator itRange = _usageMapToInputRangeEvent[vendorUSBID][productUSBID].begin();
+    for(itRange;itRange != _usageMapToInputRangeEvent[vendorUSBID][productUSBID].end();itRange++)
+    {
+       std::vector<FSUSBElementInfoMap>::iterator vItr = itRange->second.begin();
+       for(vItr;vItr !=  itRange->second.end(); vItr++)
+       {
+          FSUSBElementInfoMap infoMapToLookThrough = *vItr;
+          if(infoMapToLookThrough.getDeviceInput() == inputToLookFor && value >= infoMapToLookThrough.getMin() && value <= infoMapToLookThrough.getMax())
+          {
+              return true;
+          }
+       }
+    }
+    return false;
+}
+
+
+bool FSUSBDeviceManager::doesDeviceHaveDeviceInput(unsigned int deviceID,FSDeviceInput inputToLookFor)
+{
+    const FSUSBDevice * usbDeice = (const FSUSBDevice *)getDevice(deviceID);
+    if(usbDeice != NULL)
+    {
+        unsigned int vendorUSBID = usbDeice->getVenderID();
+        unsigned int productUSBID = usbDeice->getProductID();
+      return  doesDeviceHaveDeviceInput(vendorUSBID,productUSBID,inputToLookFor);
+    }
+    return false;
+}
+
+
+
+bool FSUSBDeviceManager::doesDeviceHaveDeviceInput(unsigned int vendorUSBID, unsigned int productUSBID ,FSDeviceInput inputToLookFor)
+{
+
+    static unsigned int  lastVendorUSBID = -1;
+    static unsigned int  lastProductUSBID = -1;
+    static FSDeviceInput lastInputToLookFor = Unknown;
+    static bool lastResult = false;
+
+    if(lastVendorUSBID == vendorUSBID && lastProductUSBID == productUSBID && lastInputToLookFor == inputToLookFor)
+    {
+        return lastResult;
+    }
+
+    lastVendorUSBID = vendorUSBID;
+    lastProductUSBID = productUSBID;
+    lastInputToLookFor = inputToLookFor;
+    if(FS_isAxis(inputToLookFor) || FS_isDpad(inputToLookFor) || FS_isDpad(inputToLookFor) || inputToLookFor == LastValueUp)
+    {
+        std::map<unsigned int,std::vector<FSUSBElementInfoMap> >::iterator itRange = _usageMapToInputRangeEvent[vendorUSBID][productUSBID].begin();
+        for(itRange;itRange != _usageMapToInputRangeEvent[vendorUSBID][productUSBID].end();itRange++)
         {
-            std::map<unsigned int,std::vector<FSUSBElementInfoMap> >::iterator itRange = _usageMapToInputRangeEvent[vendorUSBID][productUSBID].begin();
-            for(itRange;itRange != _usageMapToInputRangeEvent[vendorUSBID][productUSBID].end();itRange++)
+           std::vector<FSUSBElementInfoMap>::iterator vItr = itRange->second.begin();
+           for(vItr;vItr !=  itRange->second.end(); vItr++)
+           {
+              FSUSBElementInfoMap infoMapToLookThrough = *vItr;
+              if(infoMapToLookThrough.getDeviceInput() == inputToLookFor)
+              {
+                  lastResult = true;
+                  return true;
+              }
+           }
+        }
+    }
+    //TODO add this however right now there are no digital devices that use
+    if(FS_isButtion(inputToLookFor) || FS_isDpad(inputToLookFor))
+    {
+
+        std::map<unsigned int,FSDeviceInput>::iterator itDigital = _usageMapToInputEvent[vendorUSBID][productUSBID].begin();
+        for(itDigital; itDigital != _usageMapToInputEvent[vendorUSBID][productUSBID].end() ; itDigital)
+        {
+            FSDeviceInput deviceInputFound = itDigital->second;
+            if(deviceInputFound == inputToLookFor)
             {
-               std::vector<FSUSBElementInfoMap>::iterator vItr = itRange.second().begin();
-               for(vItr;vItr != itRange.begin(); vItr++)
-               {
-                  FSUSBElementInfoMap infoMapToLookThrough = vItr;
-                  if(infoMapToLookThrough.getDeviceInput() == inputToLookFor)
-                      return true;
-               }
+                lastResult = true;
+                return true;
             }
         }
-        if(FS_isButtion(inputToLookFor) || FS_isDpad(inputToLookFor))
-        {
-            //look throught other
-        }
-
-    }*/
-
+        //look throught other
+    }
+    lastResult = false;
     return false;
 }

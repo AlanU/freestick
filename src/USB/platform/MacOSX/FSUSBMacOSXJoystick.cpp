@@ -107,7 +107,7 @@ unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickM
                 {
                     numberOfAnalogButtons++;
                 }
-                FSUSBJoyStickInputElement temp(elemnetID, min, max, _vendorID,_productID,usbJoystickManager,value);
+                FSUSBJoyStickInputElement temp(elemnetID, getJoystickID() ,min, max, _vendorID,_productID,usbJoystickManager,value);
                 this->addInputElement(temp);
 
             }

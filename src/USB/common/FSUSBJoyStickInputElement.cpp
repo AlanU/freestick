@@ -112,7 +112,7 @@ void FSUSBJoyStickInputElement::setValue(MinMaxNumber newValue)
     if(_useLastValueStack ) {_lastValueStack.push(_value);}
 }
 
-FSUSBJoyStickInputElement::FSUSBJoyStickInputElement(unsigned int id, MinMaxNumber elementMin, MinMaxNumber elementMax ,long venderID,long productID,FSUSBDeviceManager & _manager,PhysicalValueNumber currentValue):FSUSBDevice(id,venderID,productID)
+FSUSBJoyStickInputElement::FSUSBJoyStickInputElement(unsigned int id,  unsigned int parentID, MinMaxNumber elementMin, MinMaxNumber elementMax ,long venderID,long productID,FSUSBDeviceManager & _manager,PhysicalValueNumber currentValue):FSUSBDevice(id,venderID,productID)
 {
     
      _elementMin = elementMin;
@@ -128,10 +128,15 @@ FSUSBJoyStickInputElement::FSUSBJoyStickInputElement(unsigned int id, MinMaxNumb
     FSDeviceInput deviceType = _usbDeviceManager->lookUpDeviceInputFromUSBID(venderID,productID,id,_elementMin,_elementMax,currentValue).getDeviceInput();
     _useLastValueStack = false;
 
-   if(deviceType == LastValueUp)
-   {
-       _useLastValueStack = true;
-   }
+    _parentID = parentID;
+
+
+     _useLastValueStack =  _manager.doesElementHaveDeviceInputForValue( venderID, productID ,id,LastValueUp);
+
+   //if(deviceType == LastValueUp)
+   //{
+  //     _useLastValueStack = true;
+  // }
     //TODO calibrated needs to be called over a time interval not number of times
     if(FS_isAxis(deviceType) )
     {
