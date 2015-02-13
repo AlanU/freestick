@@ -106,9 +106,9 @@ void FSUSBJoyStickInputElement::setValue(MinMaxNumber newValue)
     {
         _oldValue = _value;
         _value = newValue;
-        if(_useLastValueStack ) {_lastValueStack.push(_value);}
 
     }
+    if(_useLastValueStack ) {_lastValueStack.push(_value);}
 }
 
 FSUSBJoyStickInputElement::FSUSBJoyStickInputElement(unsigned int id, MinMaxNumber elementMin, MinMaxNumber elementMax ,long venderID,long productID,FSUSBDeviceManager & _manager,PhysicalValueNumber currentValue):FSUSBDevice(id,venderID,productID)
