@@ -70,6 +70,18 @@ void  FSBaseManager::ListenForAllJoysticksForEventTypes(unsigned int eventFlags,
 {
     if(eventFlags & FS_JOYSTICK_CONNECTED_EVENT)
     {
+        if(!deviceMap.empty())
+        {
+            std::map<unsigned int, FSBaseDevice * >::iterator itr;
+            for(itr = deviceMap.begin(); itr != deviceMap.end(); itr++)
+            {
+                FSBaseDevice * device = itr->second;
+                FSBaseEvent newConnectEvent(FS_JOYSTICK_CONNECTED_EVENT,FSInputChanged,std::time(0),device->getJoystickID());
+                
+                listener.onConnect(newConnectEvent);
+            }
+            
+        }
         ListenForAllJoysticksForEventType(FS_JOYSTICK_CONNECTED_EVENT,listener);
     }
     if(eventFlags & FS_JOYSTICK_DISCONNECT_EVENT)
