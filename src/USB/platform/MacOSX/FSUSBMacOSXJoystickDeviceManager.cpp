@@ -451,7 +451,7 @@ void setupIOHDIManager(IOHIDManagerRef & hidManager,int device,void * thisptr )
     IOHIDManagerScheduleWithRunLoop(hidManager, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
 
     //IOReturn tIOReturn =
-    IOHIDManagerOpen(hidManager, kIOHIDOptionsTypeSeizeDevice);
+    IOHIDManagerOpen(hidManager, kIOHIDOptionsTypeNone);
     IOHIDManagerRegisterInputValueCallback(hidManager,  FSUSBMacOSXJoystickDeviceManager::gamepadAction, thisptr);
     //IOHIDManagerRegisterInputReportCallback( hidManager,foo,thisptr);
     CFRelease(criterion);
