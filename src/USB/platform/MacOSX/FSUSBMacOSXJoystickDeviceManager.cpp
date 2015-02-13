@@ -500,11 +500,14 @@ FSUSBMacOSXJoystickDeviceManager::~FSUSBMacOSXJoystickDeviceManager()
 
 void FSUSBMacOSXJoystickDeviceManager::addDevice(IOHIDDeviceRef  device)
 {
-    FSUSBMacOSXJoystick * temp = new FSUSBMacOSXJoystick(device, this->getNextID(),numberOfButtons(device),numberOfAnalogSticks(device),0,isForceFeedBackSupported(device));
-    temp->Init(*this);
-    this->addDevice(temp);
-    findDpad(device);
-    EE_DEBUG<<"Gamepad was plugged in with "<<temp->getNumberOfButtons()<<" buttons and "<<temp->getNumberOfAnlogSticks()<<" sticks"<<std::endl;
+    if(IOHIDDeviceToIDMap.find(device) == IOHIDDeviceToIDMap.end())
+    {
+        FSUSBMacOSXJoystick * temp = new FSUSBMacOSXJoystick(device, this->getNextID(),numberOfButtons(device),numberOfAnalogSticks(device),0,isForceFeedBackSupported(device));
+        temp->Init(*this);
+        this->addDevice(temp);
+        findDpad(device);
+        EE_DEBUG<<"Gamepad was plugged in with "<<temp->getNumberOfButtons()<<" buttons and "<<temp->getNumberOfAnlogSticks()<<" sticks"<<std::endl;
+    }
 
 }
 
