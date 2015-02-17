@@ -45,6 +45,7 @@ unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickM
     IOHIDElementCookie elemnetID = 0;
     uint32_t usage = 0;
     uint32_t usagePage = 0;
+    CFIndex uniqueElementID  = 0;
     //std::map<IOHIDElementCookie,int> idMap;
     CFIndex min = 0;
     CFIndex max  = 0;
@@ -71,6 +72,7 @@ unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickM
             elemnetID =IOHIDElementGetCookie(elemnet);
             usage =IOHIDElementGetUsage(elemnet);
             usagePage = IOHIDElementGetUsagePage(elemnet);
+            uniqueElementID = (usagePage << 16) | usage;
             CFIndex value = 0;
             IOHIDValueRef   tIOHIDValueRef;
             //Checking the value of some elements of the ps3 controller cause blue tooth erros and IOHIDDeviceGetValue will never return
@@ -104,7 +106,7 @@ unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickM
                 }
                 if(min != max)
                 {
-                    EE_DEBUG<<"("<<min<<","<<max<<")"<<" ID: "<<elemnetID<<" Usage page" <<usagePage<< " Usage "<<usage<<" Value "<<value<<std::endl;
+                    EE_DEBUG<<"("<<min<<","<<max<<")"<<" ID: "<<elemnetID<<" unique id "<< uniqueElementID<<" Usage page" <<usagePage<< " Usage "<<usage<<" Value "<<value<<std::endl;
                 }
                 if (min == 0 && max == 1)
                 {
@@ -118,7 +120,7 @@ unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickM
                 {
                     numberOfAnalogButtons++;
                 }
-                FSUSBJoyStickInputElement temp(elemnetID, getJoystickID() ,min, max, _vendorID,_productID,usbJoystickManager,value);
+                FSUSBJoyStickInputElement temp(uniqueElementID, getJoystickID() ,min, max, _vendorID,_productID,usbJoystickManager,value,elemnetID);
                 this->addInputElement(temp);
 
             }

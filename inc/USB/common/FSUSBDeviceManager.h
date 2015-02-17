@@ -79,8 +79,8 @@ const unsigned int HVG2TwinPS2 = 1 ;
         /** \todo
          * replace std:map with boost::unordered_map for speed
          */
-        std::map<unsigned int,std::map<unsigned int,std::map<unsigned int,FSDeviceInput> > > _usageMapToInputEvent; //can only have a value of 1 or 0 where 1 is pressed and 0 is not
-        std::map<unsigned int,std::map<unsigned int,std::map<unsigned int,std::vector<FSUSBElementInfoMap> > > > _usageMapToInputRangeEvent;
+        std::map<unsigned int,std::map<unsigned int,std::map<IDNumber,FSDeviceInput> > > _usageMapToInputEvent; //can only have a value of 1 or 0 where 1 is pressed and 0 is not
+        std::map<unsigned int,std::map<unsigned int,std::map<IDNumber,std::vector<FSUSBElementInfoMap> > > > _usageMapToInputRangeEvent;
     public:
        //add or replace mapping
         void addMappingForButton(unsigned int vendorUSBID,unsigned int productUSBID,unsigned int controlUSBID,FSDeviceInput deviceInput);

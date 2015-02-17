@@ -34,6 +34,7 @@ namespace freestick
 {
 typedef signed long  MinMaxNumber;
 typedef signed long PhysicalValueNumber;
+
     class FSUSBJoyStickInputElement : public FSUSBDevice
     {
     private:
@@ -55,12 +56,13 @@ typedef signed long PhysicalValueNumber;
         std::stack<MinMaxNumber> _lastValueStack;
         bool _useLastValueStack;
         unsigned int _parentID;
+        MinMaxNumber _buttonNumber;
     protected:
 
     public:
         //FSUSBJoyStickInputElement(const & FSUSBJoyStickInputElement copy){}
                  FSUSBJoyStickInputElement();
-        FSUSBJoyStickInputElement(unsigned int id, unsigned int parentID, MinMaxNumber elementMin, MinMaxNumber elementMax, long venderID,long productID,FSUSBDeviceManager & _manager,PhysicalValueNumber currentValue);
+        FSUSBJoyStickInputElement(unsigned int id, unsigned int parentID, MinMaxNumber elementMin, MinMaxNumber elementMax, long venderID,long productID,FSUSBDeviceManager & _manager,PhysicalValueNumber currentValue,MinMaxNumber buttonNumber);
         void getMapping(int inputValue,std::stack<FSUSBElementInfoMap> & infoMapsToReturn) ;
         inline MinMaxNumber getValue() const {return _value;}
         void setValue(MinMaxNumber newValue);
@@ -69,6 +71,7 @@ typedef signed long PhysicalValueNumber;
         inline MinMaxNumber getMinValue() const {return _elementMin;}
         inline MinMaxNumber getDeadZoneMin() const {return _deadZoneMin;}
         inline MinMaxNumber getDeadZoneMax() const {return _deadZoneMax;}
+        inline MinMaxNumber getButtonNumber() const {return _buttonNumber;}
 
     };
 }

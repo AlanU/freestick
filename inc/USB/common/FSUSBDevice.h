@@ -43,7 +43,7 @@ namespace freestick
          long _productID;
          std::string _prodcutIDFriendlyName;
     public:
-       FSUSBDevice(unsigned int id,
+       FSUSBDevice(IDNumber id,
                    long venderID,
                    long productID);
        virtual FSDeviceType getClassType() const {return FSUSBDeviceType;}

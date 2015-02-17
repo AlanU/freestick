@@ -31,19 +31,20 @@ and must not be misrepresented as being the original software.
 #include <map>
 namespace  freestick
 {
+
     class FSBaseDevice : public IFSDevice
     {
     private:
-        unsigned int _id;
+        IDNumber _id;
         std::map<FSDeviceInput,std::string> _controlInputToFriendlyName;
     protected:
         FSBaseDevice();
         std::string _friendlyName;
     public:
-        virtual unsigned int getJoystickID() const;
+        virtual IDNumber getJoystickID() const;
         virtual FSDeviceType getClassType() const {return FSBaseDeviceType;}
            const std::string & GetFrendlyName() const {return _friendlyName;}
-        FSBaseDevice(unsigned int id);
+        FSBaseDevice(IDNumber id);
         virtual ~FSBaseDevice();
 
     };

@@ -33,7 +33,7 @@ int ControllerMappingTableModel::rowCount(const QModelIndex & /*parent*/) const
 
  int ControllerMappingTableModel::columnCount(const QModelIndex & /*parent*/) const
  {
-     return 5;
+     return 6;
  }
 
 
@@ -58,6 +58,9 @@ int ControllerMappingTableModel::rowCount(const QModelIndex & /*parent*/) const
                   case 4:
                     return tr("Mapped");
                   break;
+                  case 5:
+                    return tr("Element Cookie");
+                  break;
                   default:
                     break;
              }
@@ -76,7 +79,7 @@ int ControllerMappingTableModel::rowCount(const QModelIndex & /*parent*/) const
         switch(index.column())
         {
         case 0:
-            return _elemntIDList[index.row()];
+            return static_cast<quint32>(_elemntIDList[index.row()]);
         break;
         case 1:
             return static_cast<qlonglong>(element.getMinValue());
@@ -90,6 +93,8 @@ int ControllerMappingTableModel::rowCount(const QModelIndex & /*parent*/) const
         case 4:
             return _elemnetMapped[index.row()];
          break;
+        case 5:
+            return static_cast<qlonglong>(element.getButtonNumber());
         default:
             break;
         }

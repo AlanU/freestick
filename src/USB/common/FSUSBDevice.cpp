@@ -32,7 +32,7 @@ FSUSBDevice::FSUSBDevice()
 {
 }
 
-FSUSBDevice::FSUSBDevice(unsigned int id,
+FSUSBDevice::FSUSBDevice(IDNumber id,
                          long venderID,
                          long productID)
                          :FSBaseDevice(id)

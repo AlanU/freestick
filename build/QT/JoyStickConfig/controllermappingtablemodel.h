@@ -24,7 +24,7 @@ private:
     FreeStickDeviceManager * _manager;
     int _joystickId;
     JoyStickElementMap _JoyStickElementMap;
-    std::vector<unsigned int> _elemntIDList;
+    std::vector<IDNumber> _elemntIDList;
     void modelChanged(int joystickiD);
     void elementChanged(unsigned int elementID);
     std::vector<bool> _elemnetMapped;

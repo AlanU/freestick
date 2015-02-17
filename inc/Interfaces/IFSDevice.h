@@ -27,7 +27,7 @@ and must not be misrepresented as being the original software.
 
 #pragma once
 namespace freestick {
-
+typedef unsigned long int IDNumber; //Needs to be at lest 32bits
     typedef enum
     {
         XAxis,//Left
@@ -115,7 +115,7 @@ namespace freestick {
     private:
 
     public:
-        virtual unsigned int getJoystickID() const= 0;
+        virtual IDNumber getJoystickID() const= 0;
         virtual FSDeviceType getClassType() const = 0;
     };
 }
