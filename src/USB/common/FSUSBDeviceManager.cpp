@@ -450,66 +450,72 @@ FSUSBDeviceManager::FSUSBDeviceManager()
 
     // Microsoft Xbox 360 Windows controller
 
-    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][21] = ButtonA;
-    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][22] = ButtonB;
-    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][23] = ButtonX;
-    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][24] = ButtonY;
+    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][589825] = ButtonA;
+    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][589826] = ButtonB;
+    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][589827] = ButtonX;
+    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][589828] = ButtonY;
 
-    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][18] = LeftShoulder;//L1 sholder button
-    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][19] = RightShoulder;//R2 sholder button
+    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][589829] = LeftShoulder;//L1 sholder button
+    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][589830] = RightShoulder;//R2 sholder button
 
-    _usageMapToInputRangeEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][25].push_back(FSUSBElementInfoMap(0,255,Trigger1,FSInputChanged));//L2 trigger
-    _usageMapToInputRangeEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][26].push_back(FSUSBElementInfoMap(0,255,Trigger2,FSInputChanged));//R2 trigger
+    _usageMapToInputRangeEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][65586].push_back(FSUSBElementInfoMap(0,255,Trigger1,FSInputChanged));//L2 trigger
+    _usageMapToInputRangeEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][65589].push_back(FSUSBElementInfoMap(0,255,Trigger2,FSInputChanged));//R2 trigger
 
-    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][16] = Axis1Button;//L3 left thumb down
-    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][17] = Axis2Button;//R3 right thumb down
+    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][589831] = Axis1Button;//L3 left thumb down
+    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][589832] = Axis2Button;//R3 right thumb down
 
-    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][15] = ButtonSelect;//back
-    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][20] = ButtonCenter;//Microsoft xbox button
-    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][14] = ButtonStart;//start
+    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][589834] = ButtonSelect;//back
+    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][589835] = ButtonCenter;//Microsoft xbox button
+    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][589840] = ButtonCenter;//Microsoft xbox one button
 
-    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][10] = DPadUp;
-    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][11] = DPadDown;
-    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][12] = DPadLeft;
-    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][13] = DPadRight;
+    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][589833] = ButtonStart;//start
 
-    _usageMapToInputRangeEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][27].push_back(FSUSBElementInfoMap(-32768,32767,XAxis,FSInputChanged));//LXaxis stick trigger
-    _usageMapToInputRangeEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][28].push_back(FSUSBElementInfoMap(-32768,32767,YAxis,FSInputChanged));//LYaxis stick trigger
+    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][589836] = DPadUp;
+    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][589837] = DPadDown;
+    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][589838] = DPadLeft;
+    _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][589839] = DPadRight;
 
-    _usageMapToInputRangeEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][29].push_back(FSUSBElementInfoMap(-32768,32767,XAxis2,FSInputChanged));//RXaxis stick trigger
-    _usageMapToInputRangeEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][30].push_back(FSUSBElementInfoMap(-32768,32767,YAxis2,FSInputChanged));//RYaxis stick trigger
+    _usageMapToInputRangeEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][65584].push_back(FSUSBElementInfoMap(-32768,32767,XAxis,FSInputChanged));//LXaxis stick trigger
+    _usageMapToInputRangeEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][65585].push_back(FSUSBElementInfoMap(-32768,32767,YAxis,FSInputChanged));//LYaxis stick trigger
+
+    _usageMapToInputRangeEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][65587].push_back(FSUSBElementInfoMap(-32768,32767,XAxis2,FSInputChanged));//RXaxis stick trigger
+    _usageMapToInputRangeEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][65588].push_back(FSUSBElementInfoMap(-32768,32767,YAxis2,FSInputChanged));//RYaxis stick trigger
 
 
-    //Rock candy xbox360 controller
+     //Rock candy xbox360 controller
 
-    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][21] = ButtonA;
-    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][22] = ButtonB;
-    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][23] = ButtonX;
-    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][24] = ButtonY;
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][589825] = ButtonA;
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][589826] = ButtonB;
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][589827] = ButtonX;
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][589828] = ButtonY;
 
-    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][18] = LeftShoulder;//L1 sholder button
-    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][19] = RightShoulder;//R2 sholder button
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][589829] = LeftShoulder;//L1 sholder button
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][589830] = RightShoulder;//R2 sholder button
 
-    _usageMapToInputRangeEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][25].push_back(FSUSBElementInfoMap(0,255,Trigger1,FSInputChanged));//L2 trigger
-    _usageMapToInputRangeEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][26].push_back(FSUSBElementInfoMap(0,255,Trigger2,FSInputChanged));//R2 trigger
+    _usageMapToInputRangeEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][65586].push_back(FSUSBElementInfoMap(0,255,Trigger1,FSInputChanged));//L2 trigger
+    _usageMapToInputRangeEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][65589].push_back(FSUSBElementInfoMap(0,255,Trigger2,FSInputChanged));//R2 trigger
 
-    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][16] = Axis1Button;//L3 left thumb down
-    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][17] = Axis2Button;//R3 right thumb down
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][589831] = Axis1Button;//L3 left thumb down
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][589832] = Axis2Button;//R3 right thumb down
 
-    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][15] = ButtonSelect;//back
-    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][20] = ButtonCenter;//Microsoft xbox button
-    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][14] = ButtonStart;//start
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][589834] = ButtonSelect;//back
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][589835] = ButtonCenter;//Microsoft xbox button
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][589840] = ButtonCenter;//Microsoft xbox one button
 
-    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][10] = DPadUp;
-    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][11] = DPadDown;
-    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][12] = DPadLeft;
-    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][13] = DPadRight;
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][589833] = ButtonStart;//start
 
-    _usageMapToInputRangeEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][27].push_back(FSUSBElementInfoMap(-32768,32767,XAxis,FSInputChanged));//LXaxis stick trigger
-    _usageMapToInputRangeEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][28].push_back(FSUSBElementInfoMap(-32768,32767,YAxis,FSInputChanged));//LYaxis stick trigger
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][589836] = DPadUp;
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][589837] = DPadDown;
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][589838] = DPadLeft;
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][589839] = DPadRight;
 
-    _usageMapToInputRangeEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][29].push_back(FSUSBElementInfoMap(-32768,32767,XAxis2,FSInputChanged));//RXaxis stick trigger
-    _usageMapToInputRangeEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][30].push_back(FSUSBElementInfoMap(-32768,32767,YAxis2,FSInputChanged));//RYaxis stick trigger
+    _usageMapToInputRangeEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][65584].push_back(FSUSBElementInfoMap(-32768,32767,XAxis,FSInputChanged));//LXaxis stick trigger
+    _usageMapToInputRangeEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][65585].push_back(FSUSBElementInfoMap(-32768,32767,YAxis,FSInputChanged));//LYaxis stick trigger
+
+    _usageMapToInputRangeEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][65587].push_back(FSUSBElementInfoMap(-32768,32767,XAxis2,FSInputChanged));//RXaxis stick trigger
+    _usageMapToInputRangeEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][65588].push_back(FSUSBElementInfoMap(-32768,32767,YAxis2,FSInputChanged));//RYaxis stick trigger
+
+
 
 }
 
