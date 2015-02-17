@@ -413,40 +413,40 @@ FSUSBDeviceManager::FSUSBDeviceManager()
 
     // OUYA controller
 
-    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][15] = ButtonA;
-    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][18] = ButtonB;
-    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][16] = ButtonX;
-    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][17] = ButtonY;
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][589825] = ButtonA;
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][589828] = ButtonB;
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][589826] = ButtonX;
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][589827] = ButtonY;
 
-    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][19] = LeftShoulder;
-    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][20] = RightShoulder;
-    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][27] = LeftShoulder2;
-    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][28] = RightShoulder2;
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][589829] = LeftShoulder;
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][589830] = RightShoulder;
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][589837] = LeftShoulder2;
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][589838] = RightShoulder2;
 
-    _usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][38].push_back(FSUSBElementInfoMap(-1,0,Trigger1,FSInputChanged));
-    _usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][39].push_back(FSUSBElementInfoMap(-1,0,Trigger2,FSInputChanged));
+    //_usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][65586].push_back(FSUSBElementInfoMap(-1,0,Trigger1,FSInputChanged));
+   // _usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][65589].push_back(FSUSBElementInfoMap(-1,0,Trigger2,FSInputChanged));
 
-    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][21] = Axis1Button;
-    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][22] = Axis2Button;
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][589831] = Axis1Button;
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][589832] = Axis2Button;
 
     // No SELECT button
-    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][29] = ButtonCenter;
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][589839] = ButtonCenter;
     // No START button
 
-    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][23] = DPadUp;
-    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][26] = DPadRight;
-    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][24] = DPadDown;
-    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][25] = DPadLeft;
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][589833] = DPadUp;
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][589836] = DPadRight;
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][589834] = DPadDown;
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][589835] = DPadLeft;
 
-    _usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][34].push_back(FSUSBElementInfoMap(-1,0,XAxis,FSInputChanged));
-    _usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][35].push_back(FSUSBElementInfoMap(-1,0,YAxis,FSInputChanged));
+    //_usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][65584].push_back(FSUSBElementInfoMap(-1,0,XAxis,FSInputChanged));
+    //_usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][65585].push_back(FSUSBElementInfoMap(-1,0,YAxis,FSInputChanged));
 
-    _usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][36].push_back(FSUSBElementInfoMap(-1,0,XAxis2,FSInputChanged));
-    _usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][37].push_back(FSUSBElementInfoMap(-1,0,YAxis2,FSInputChanged));
+    //_usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][65587].push_back(FSUSBElementInfoMap(-1,0,XAxis2,FSInputChanged));
+    //_usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][65588].push_back(FSUSBElementInfoMap(-1,0,YAxis2,FSInputChanged));
 
     //gives back deltas instead of values
-    //_usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][31].push_back(FSUSBElementInfoMap(-127,127,XAxis3,FSInputChanged));
-   // _usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][32].push_back(FSUSBElementInfoMap(-127,127,YAxis3,FSInputChanged));
+    //_usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][65584].push_back(FSUSBElementInfoMap(-127,127,XAxis3,FSInputChanged));
+   // _usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][65585].push_back(FSUSBElementInfoMap(-127,127,YAxis3,FSInputChanged));
 
     // Microsoft Xbox 360 Windows controller
 
