@@ -32,6 +32,8 @@ and must not be misrepresented as being the original software.
 #ifdef Q_OS_ANDROID
 #include <QAndroidJniEnvironment>
 #endif
+
+#include "controllermappingtablemodel.h"
 using namespace freestick;
 JoyStickConfigWidget::JoyStickConfigWidget(QWidget *parent) :
     QWidget(parent),
@@ -57,6 +59,21 @@ JoyStickConfigWidget::JoyStickConfigWidget(QWidget *parent) :
     timer= new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(update()));
     timer->start(1000);
+
+    QPalette buttonPressed(palette());
+    buttonPressed.setColor(QPalette::Background,Qt::black);
+    ui->RightStickPoint->setAutoFillBackground(true);
+    ui->RightStickPoint->setPalette(buttonPressed);
+    ui->LeftStickPoint->setAutoFillBackground(true);
+    ui->LeftStickPoint->setPalette(buttonPressed);
+
+    QPalette axisBackgroud(palette());
+    axisBackgroud.setColor(QPalette::Background,Qt::white);
+    ui->RightStick->setAutoFillBackground(true);
+    ui->RightStick->setPalette(axisBackgroud);
+
+    ui->LeftStick->setAutoFillBackground(true);
+    ui->LeftStick->setPalette(axisBackgroud);
 }
 
 JoyStickConfigWidget::~JoyStickConfigWidget()
@@ -96,21 +113,44 @@ void JoyStickConfigWidget::onStickMove(FSDeviceInputEvent event)
     updateVirtualAnalogGamePad(event.getInputType(),event.getEventAction(),event.getNewInputValue() );
 
 }
+void JoyStickConfigWidget::updateVirtualButton(QWidget * button,freestick::FSEventAction action )
+{
+    updateVirtualButton(button,action,Qt::red,Qt::transparent);
+}
 
-void JoyStickConfigWidget::updateVirtualButton(QWidget * button,FSEventAction action )
+void JoyStickConfigWidget::updateVirtualButton(QWidget * button,FSEventAction action ,QColor buttonColor,QColor releaseButtonColor )
 {
     QPalette buttonPressed(palette());
-    buttonPressed.setColor(QPalette::Background,Qt::red);
+    buttonPressed.setColor(QPalette::Background,buttonColor);
     if(action == FSInputPressed)
     {
        button->setAutoFillBackground(true);
         button->setPalette(buttonPressed);
+    }
+    else if(releaseButtonColor != Qt::transparent)
+    {
+        QPalette buttonRelease(palette());
+        buttonRelease.setColor(QPalette::Background,releaseButtonColor);
+        button->setAutoFillBackground(true);
+         button->setPalette(buttonRelease);
     }
     else
     {
         button->setAutoFillBackground(false);
 
     }
+}
+
+void JoyStickConfigWidget::setAxisWidgetFromValue(QWidget * widgetToSet,float value,bool setX)
+{
+    int max = setX ? widgetToSet->parentWidget()->width() : widgetToSet->parentWidget()->height();
+    float valueForPoint = convertNormalizedRangerToAxisPoint(value,widgetToSet->parentWidget()->width(),0);
+
+    if(setX)
+        widgetToSet->setGeometry(valueForPoint-widgetToSet->width()/2,widgetToSet->y(),widgetToSet->width(),widgetToSet->height());
+    else
+        widgetToSet->setGeometry(widgetToSet->x(), valueForPoint-(widgetToSet->height()/2),widgetToSet->width(),widgetToSet->height());
+
 }
 
 void JoyStickConfigWidget::updateVirtualAnalogGamePad(FSDeviceInput input,FSEventAction action,float value )
@@ -122,6 +162,18 @@ void JoyStickConfigWidget::updateVirtualAnalogGamePad(FSDeviceInput input,FSEven
         break;
         case Trigger2:
             ui->RightTrigger->setValue(value*100);
+        break;
+        case XAxis:
+           setAxisWidgetFromValue(ui->RightStickPoint,value,true);
+        break;
+        case YAxis:
+            setAxisWidgetFromValue(ui->RightStickPoint,value,false);
+        break;
+        case XAxis2:
+          setAxisWidgetFromValue(ui->LeftStickPoint,value,true);
+        break;
+        case YAxis2:
+            setAxisWidgetFromValue(ui->LeftStickPoint,value,false);
         break;
         default:
         break;
@@ -175,10 +227,15 @@ void JoyStickConfigWidget::updateVirtualDigitalGamePad(FSDeviceInput input,FSEve
         case RightShoulder2:
             updateVirtualButton(ui->R2,action);
         break;
+        case Button10:
+            updateVirtualButton(ui->RightStickPoint,action,Qt::red,Qt::black);
+        break;
+        case Button11:
+            updateVirtualButton(ui->LeftStickPoint,action,Qt::red,Qt::black);
+        break;
         case ButtonCenter:
             updateVirtualButton(ui->CenterButton,action);
         break;
-
         default:
             break;
     }
@@ -222,11 +279,11 @@ void JoyStickConfigWidget::onButtonDown(FSDeviceInputEvent event)
           text = tr("DPad ");
           if(event.getInputType()== DPadLeft)
           {
-              ui->tabWidget->setCurrentIndex(0);
+            //  ui->tabWidget->setCurrentIndex(0);
           }
           else if(event.getInputType() == DPadRight)
           {
-              ui->tabWidget->setCurrentIndex(1);
+             // ui->tabWidget->setCurrentIndex(1);
           }
 
      }
@@ -250,7 +307,12 @@ void JoyStickConfigWidget::onConnect(FSBaseEvent event)
     const FSBaseDevice * device = deviceManager.getDevice(event.getDeviceID());
     QString deviceBoxName = tr(device->GetFrendlyName().c_str());
     ui->DeviceListBox->addItem(deviceBoxName,event.getDeviceID());
+    _joystickModelMap[event.getDeviceID()] =(new ControllerMappingTableModel(deviceManager,event.getDeviceID()));
     PopulateDeviceStats(ui->DeviceListBox->itemData(ui->DeviceListBox->currentIndex()).toUInt());
+   if(ui->DeviceListBox->count() == 1)
+   {
+    ui->Elements->setModel(  _joystickModelMap[event.getDeviceID()]);
+   }
 
 }
 
@@ -270,7 +332,12 @@ void JoyStickConfigWidget::onDisconnect(FSBaseEvent event)
     {
         ui->DeviceListBox->removeItem(index);
     }
-
+    if(_joystickModelMap.find(event.getDeviceID()) !=  _joystickModelMap.end())
+    {
+        ControllerMappingTableModel * modelToDelete = _joystickModelMap.find(event.getDeviceID())->second;
+       _joystickModelMap.erase(_joystickModelMap.find(event.getDeviceID()));
+        delete modelToDelete;
+    }
 
 }
 
@@ -305,11 +372,33 @@ void JoyStickConfigWidget::PopulateDeviceStats(unsigned int id)
 
     }
      ui->FoceFeedBack->setChecked(FFBackSupport);
+
+     ui->R2->setEnabled(deviceManager.doesDeviceHaveDeviceInput(id,LeftShoulder2));
+     ui->L2->setEnabled(deviceManager.doesDeviceHaveDeviceInput(id,RightShoulder2));
+
+
+     ui->LeftTriggerBox->setEnabled(deviceManager.doesDeviceHaveDeviceInput(id,Trigger1));
+     ui->RightTriggerBox->setEnabled(deviceManager.doesDeviceHaveDeviceInput(id,Trigger2));
+
      ui->DeviceID->setText(DeviceInfo);
      ui->DeviceID->show();
      ui->FoceFeedBack->show();
 }
 
+float JoyStickConfigWidget::convertNormalizedRangerToAxisPoint(float value,int maxValue,int minValue)
+{
+//taken from http://stackoverflow.com/questions/929103/convert-a-number-range-to-another-range-maintaining-ratio
+    double joystickRange =  2;
+
+
+
+    double libRange = (double)maxValue - (double)minValue;
+
+
+    float newNormilzedValue =  ( (( (double)value - -1) * libRange)/joystickRange ) + minValue ;
+    return  newNormilzedValue;
+
+}
 void JoyStickConfigWidget::on_DeviceListBox_currentIndexChanged(int index)
 {
     if(ui->DeviceListBox->count() == 0)
@@ -320,4 +409,11 @@ void JoyStickConfigWidget::on_DeviceListBox_currentIndexChanged(int index)
     {
         PopulateDeviceStats(ui->DeviceListBox->itemData(index).toUInt());
     }
+
+    if(_joystickModelMap.find(ui->DeviceListBox->itemData(index).toUInt()) != _joystickModelMap.end())
+    {
+        ControllerMappingTableModel * modelToSet = _joystickModelMap[ui->DeviceListBox->itemData(index).toUInt()] ;
+        ui->Elements->setModel(modelToSet);
+    }
+
 }

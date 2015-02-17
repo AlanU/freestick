@@ -56,10 +56,14 @@ PRECOMPILED_HEADER = $$PWD/../../../inc/freestick.h
 SOURCES += main.cpp\
         mainwindow.cpp \
         joystickconfigwidget.cpp \
+    analogaxiswidget.cpp \
+    controllermappingtablemodel.cpp
 
 
 HEADERS  += mainwindow.h \
-    joystickconfigwidget.h
+    joystickconfigwidget.h \
+    analogaxiswidget.h \
+    controllermappingtablemodel.h
 
 FORMS    += mainwindow.ui \
     joystickconfigwidget.ui
