@@ -432,6 +432,8 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     // No SELECT button
     _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][589839] = ButtonCenter;
     // No START button
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][589831] = Axis1Button;//L3 left thumb down
+    _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][589832] = Axis2Button;//R3 right thumb down
 
     _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][589833] = DPadUp;
     _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][589836] = DPadRight;
