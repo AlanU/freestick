@@ -394,7 +394,7 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn i
     FSUSBJoyStickInputElement * elementDevice = NULL;
     if(fsDevice)
     {
-        elementDevice =  (FSUSBJoyStickInputElement * )fsDevice->findInputElement(elementID);
+        elementDevice =  (FSUSBJoyStickInputElement * )fsDevice->findInputElement(uniqueElementID);
     }
     if(elementDevice)
     {
