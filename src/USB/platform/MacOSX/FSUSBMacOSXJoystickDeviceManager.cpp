@@ -45,10 +45,10 @@ FSUSBMacOSXJoystickDeviceManager::FSUSBMacOSXJoystickDeviceManager()
 
 unsigned int FSUSBMacOSXJoystickDeviceManager::getDeviceIDFromIOHIDevice(IOHIDDeviceRef deviceRef)
 {
-    /** \todo
-     * check to see if deive ref exist and return error if not
-     */
-    return IOHIDDeviceToIDMap[deviceRef];
+    if(IOHIDDeviceToIDMap.find(deviceRef) != IOHIDDeviceToIDMap.end())
+       return IOHIDDeviceToIDMap[deviceRef];
+    else
+      return 0;
 }
 
 

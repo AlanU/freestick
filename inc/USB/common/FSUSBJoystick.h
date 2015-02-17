@@ -31,6 +31,7 @@ and must not be misrepresented as being the original software.
 #include "FSUSBJoyStickInputElement.h"
 namespace freestick
 {
+typedef std::map<unsigned int,FSUSBJoyStickInputElement > JoyStickElementMap ;
     class FSUSBJoystick : public FSUSBDevice
     {
     private:
@@ -57,6 +58,8 @@ namespace freestick
         bool getForceFeedbackSupport() const {return _forceFeedBackSupported;}
         virtual FSDeviceType getClassType() const {return FSUSBJoystickType;}
         void addInputElement(FSUSBJoyStickInputElement & element);
+        JoyStickElementMap getElements() const  { return _inputElementMap; }
+        std::vector<unsigned int> getElementIds() const;
         const FSUSBJoyStickInputElement * findInputElement(unsigned int id) const;
 
     };

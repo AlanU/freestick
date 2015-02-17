@@ -97,7 +97,7 @@ namespace freestick
        // void UnListenForJoystick(IFSJoystickListener & listener ,unsigned int deviceID,FSDeviceInput input){};
 
 
-        inline float convertRawToNormalizedRanger(int value,signed long maxValue,signed long minValue);
+        inline float convertRawToNormalizedRanger(double value,signed long maxValue,signed long minValue);
       // const std::vector<IFSJoystickInfo> & listOfConnectedJoysticks();
        virtual void init() ;
 #pragma mark -Advance API

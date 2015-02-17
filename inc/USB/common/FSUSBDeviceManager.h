@@ -34,6 +34,28 @@ and must not be misrepresented as being the original software.
 
 namespace freestick
 {
+const unsigned int DragonRiseID = 121;
+const unsigned int SteelSeries3GCControllerID = 6;
+const unsigned int AmazonVendorID = 6473;
+const unsigned int AmazonFireGameControllerID = 1026 ;
+const unsigned int GameElementsVendorID = 3888;
+const unsigned int GameElementsRecoilID = 263;
+const unsigned int SteelSeriesVendorID = 4152;
+const unsigned int SteelSeriesFreeControllerID = 5138;
+const unsigned int SonyVendorID = 1356;
+const unsigned int Playstation3ControllerID = 616;
+const unsigned int Playstation4ControllerID = 1476;
+const unsigned int LogitechVendorID = 1133;
+const unsigned int LogitechDualActionID = 49686;
+const unsigned int LogitechGamepadF310 = 49693;
+const unsigned int OUYAVendorID = 10294;
+const unsigned int OUYAControllerID = 1;
+const unsigned int MicrosoftVendorID = 1118;
+const unsigned int MicrosoftXbox360WindowsControllerID = 654;
+const unsigned int RockCandyVenderID = 3695;
+const unsigned int RockCandyXbox360ControlllerID = 3695;
+const unsigned int HVG2VenderID = 2064;
+const unsigned int HVG2TwinPS2 = 1 ;
 
 
     class FSUSBElementInfoMap

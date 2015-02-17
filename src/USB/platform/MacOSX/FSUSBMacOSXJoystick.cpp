@@ -62,6 +62,9 @@ unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickM
             if(!elemnet)
                 continue;
 
+            if(IOHIDElementIsVirtual(elemnet))
+                continue;
+
             IOHIDElementType type = IOHIDElementGetType(elemnet);
             min = IOHIDElementGetLogicalMin(elemnet);
             max = IOHIDElementGetLogicalMax(elemnet);
@@ -70,7 +73,14 @@ unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickM
             usagePage = IOHIDElementGetUsagePage(elemnet);
             CFIndex value = 0;
             IOHIDValueRef   tIOHIDValueRef;
-              if ( kIOReturnSuccess == IOHIDDeviceGetValue(_macIOHIDDeviceRef, elemnet, &tIOHIDValueRef) )
+            //Checking the value of some elements of the ps3 controller cause blue tooth erros and IOHIDDeviceGetValue will never return
+            if((_vendorID == SonyVendorID && _productID == Playstation3ControllerID))
+            {
+                value = min+max/2;
+            }
+            else
+            {
+                if ( kIOReturnSuccess == IOHIDDeviceGetValue(_macIOHIDDeviceRef, elemnet, &tIOHIDValueRef) )
                  {
                       if(CFGetTypeID(tIOHIDValueRef) == IOHIDValueGetTypeID())
                       {
@@ -81,6 +91,7 @@ unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickM
                          }
                       }
                  }
+            }
             
             // FSUSBElementInfoMap  map = usbJoystickManager->lookUpDeviceInputFromUSBID(_vendorID,_productID,elementID,min,max,min);
 
@@ -198,7 +209,7 @@ std::string FSUSBMacOSXJoystick::CFStringRefToString(CFStringRef refString)
     }
 
     //bad convrsion
-    if(CFStringGetLength(refString) == 0)
+    if(!refString || CFStringGetLength(refString) == 0)
     {
         return std::string();
     }

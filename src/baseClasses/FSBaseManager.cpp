@@ -229,7 +229,7 @@ void FSBaseManager::updateEvent(FSBaseEvent & event)
     }
 }
 
-float FSBaseManager::convertRawToNormalizedRanger(int value,signed long maxValue,signed long minValue)
+float FSBaseManager::convertRawToNormalizedRanger(double value,signed long maxValue,signed long minValue)
 {
 
     double joystickRange = (double)maxValue - (double)minValue;
@@ -239,7 +239,7 @@ float FSBaseManager::convertRawToNormalizedRanger(int value,signed long maxValue
     
     double libRange = 2;
     
-    float newNormilzedValue =  ( (( (double)value - (double) minValue) * libRange)/joystickRange ) + -1.0 ;
+    float newNormilzedValue =  ( (( value - (double) minValue) * libRange)/joystickRange ) + -1.0 ;
     return  newNormilzedValue;
     
 }
@@ -259,6 +259,7 @@ void FSBaseManager::inputOnDeviceChangedWithNormilzedValues(FreeStickEventType e
                                      inputType);
     updateEvent(newInputEvent);
 }
+
 
 void FSBaseManager::inputOnDeviceChanged(FreeStickEventType eventType,FSEventAction eventAction,FSDeviceInput inputType,unsigned int deviceID,unsigned int deviceControlID,int newValue,int oldValue,signed long min, signed long max)
 {
@@ -289,7 +290,7 @@ void FSBaseManager::removeDevice(FSBaseDevice * device)
 
 unsigned int FSBaseManager::getNextID()
 {
-    static unsigned int ID = 0;
+    static unsigned int ID = 1;//0 is reserved for errors
     return (ID++);
 }
 

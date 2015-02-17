@@ -36,13 +36,89 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     * populate map _usageMapToInputEvent
     */
 
+
+
+    //First ps2 port
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][22] =  ButtonA;
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][21] =  ButtonB;
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][20] =  ButtonY;
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][23] =  ButtonX;
+
+
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][27] =  RightShoulder;
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][26] =  LeftShoulder;
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][24] =  LeftShoulder2;
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][25] =  RightShoulder2;
+
+
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][29] =  ButtonStart;
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][28] =  ButtonSelect;
+
+
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][42].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][42].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][42].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][42].push_back(FSUSBElementInfoMap(3,3,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][42].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][42].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][42].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][42].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][42].push_back(FSUSBElementInfoMap(15,15,LastValueUp,FSInputRest));
+
+
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][41].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][40].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));
+
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][39].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][38].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));
+
+
+    //Second ps2 port
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][9] =  ButtonA;
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][8] =  ButtonB;
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][7] =  ButtonY;
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][10] =  ButtonX;
+
+
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][14] =  RightShoulder;
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][13] =  LeftShoulder;
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][11] =  LeftShoulder2;
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][12] =  RightShoulder2;
+
+
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][16] =  ButtonStart;
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][15] =  ButtonSelect;
+
+
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][37].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][37].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][37].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][37].push_back(FSUSBElementInfoMap(3,3,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][37].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][37].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][37].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][37].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][37].push_back(FSUSBElementInfoMap(15,15,LastValueUp,FSInputRest));
+
+
+
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][36].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][35].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));
+
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][34].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][33].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));
+
+
+
+
+
+    _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][6] = ButtonA;
+
     // SteelSeries ("DragonRise") 3GC controller
     // Has a very "noisy" analog axis ID 19. This ID gives signals
     // when the left stick X-axis is moved, and when the right stick
     // Y-axis is moved. This does not seem useful, not sure what its
     // purpose is, so this ID is left unmapped.
-    const unsigned int DragonRiseID = 121;
-    const unsigned int SteelSeries3GCControllerID = 6;
 
     _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][6] = ButtonA;
     _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][5] = ButtonB;
@@ -85,8 +161,6 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][21].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));
 
     // Amazon Fire Game Controller
-    const unsigned int AmazonVendorID = 6473;
-    const unsigned int AmazonFireGameControllerID = 1026 ;
 
     _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][6] = ButtonA;
     _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][7] = ButtonB;
@@ -129,9 +203,7 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     // _usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][32].push_back(FSUSBElementInfoMap(-1,0,XAxis2,FSInputChanged));
 
     // Game Elements Recoil controller
-    const unsigned int GameElementsVendorID = 3888;
-    const unsigned int GameElementsRecoilID = 263;
-    
+
     _usageMapToInputEvent[GameElementsVendorID][GameElementsRecoilID][5] = ButtonA;
     _usageMapToInputEvent[GameElementsVendorID][GameElementsRecoilID][4] = ButtonB;
     _usageMapToInputEvent[GameElementsVendorID][GameElementsRecoilID][6] = ButtonX;
@@ -166,8 +238,6 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][18].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));
 
     // SteelSeries Free controller
-    const unsigned int SteelSeriesVendorID = 4152;
-    const unsigned int SteelSeriesFreeControllerID = 5138;
 
     _usageMapToInputEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][4] = ButtonB;
     _usageMapToInputEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][3] = ButtonA;
@@ -198,8 +268,6 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputRangeEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][23].push_back(FSUSBElementInfoMap(-128,127,YAxis2,FSInputChanged));
 
     // DualShock 3 Controller
-    const unsigned int SonyVendorID = 1356;
-    const unsigned int Playstation3ControllerID = 616;
 
     _usageMapToInputEvent[SonyVendorID][Playstation3ControllerID][21] = ButtonA;
     _usageMapToInputEvent[SonyVendorID][Playstation3ControllerID][20] = ButtonB;
@@ -230,7 +298,6 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputRangeEvent[SonyVendorID][Playstation3ControllerID][29].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));
 
     // DualShock 4 Controller
-    const unsigned int Playstation4ControllerID = 1476;
 
     _usageMapToInputEvent[SonyVendorID][Playstation4ControllerID][3] = ButtonA;
     _usageMapToInputEvent[SonyVendorID][Playstation4ControllerID][4] = ButtonB;
@@ -268,8 +335,6 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][18].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));//RYaxis stick
 
     // Logitech Dual Action
-    const unsigned int LogitechVendorID = 1133;
-    const unsigned int LogitechDualActionID = 49686;
 
     _usageMapToInputEvent[LogitechVendorID][LogitechDualActionID][5] = ButtonA;
     _usageMapToInputEvent[LogitechVendorID][LogitechDualActionID][6] = ButtonB;
@@ -315,7 +380,6 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputRangeEvent[LogitechVendorID][LogitechDualActionID][18].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));//RYaxis stick
 
     // Logitech Gamepad F310
-    const unsigned int LogitechGamepadF310 = 49693;
 
     _usageMapToInputEvent[LogitechVendorID][LogitechGamepadF310][21] = ButtonA;
     _usageMapToInputEvent[LogitechVendorID][LogitechGamepadF310][22] = ButtonB;
@@ -347,8 +411,6 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputRangeEvent[LogitechVendorID][LogitechGamepadF310][30].push_back(FSUSBElementInfoMap(-32768,32767,YAxis2,FSInputChanged));
 
     // OUYA controller
-    const unsigned int OUYAVendorID = 10294;
-    const unsigned int OUYAControllerID = 1; // heh.
 
     _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][15] = ButtonA;
     _usageMapToInputEvent[OUYAVendorID][OUYAControllerID][18] = ButtonB;
@@ -382,8 +444,6 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputRangeEvent[OUYAVendorID][OUYAControllerID][37].push_back(FSUSBElementInfoMap(-1,0,YAxis2,FSInputChanged));
 
     // Microsoft Xbox 360 Windows controller
-    const unsigned int MicrosoftVendorID = 1118;
-    const unsigned int MicrosoftXbox360WindowsControllerID = 654;
 
     _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][21] = ButtonA;
     _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][22] = ButtonB;
@@ -413,6 +473,39 @@ FSUSBDeviceManager::FSUSBDeviceManager()
 
     _usageMapToInputRangeEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][29].push_back(FSUSBElementInfoMap(-32768,32767,XAxis2,FSInputChanged));//RXaxis stick trigger
     _usageMapToInputRangeEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][30].push_back(FSUSBElementInfoMap(-32768,32767,YAxis2,FSInputChanged));//RYaxis stick trigger
+
+
+    //Rock candy xbox360 controller
+
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][21] = ButtonA;
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][22] = ButtonB;
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][23] = ButtonX;
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][24] = ButtonY;
+
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][18] = LeftShoulder;//L1 sholder button
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][19] = RightShoulder;//R2 sholder button
+
+    _usageMapToInputRangeEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][25].push_back(FSUSBElementInfoMap(0,255,Trigger1,FSInputChanged));//L2 trigger
+    _usageMapToInputRangeEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][26].push_back(FSUSBElementInfoMap(0,255,Trigger2,FSInputChanged));//R2 trigger
+
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][16] = Axis1Button;//L3 left thumb down
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][17] = Axis2Button;//R3 right thumb down
+
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][15] = ButtonSelect;//back
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][20] = ButtonCenter;//Microsoft xbox button
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][14] = ButtonStart;//start
+
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][10] = DPadUp;
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][11] = DPadDown;
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][12] = DPadLeft;
+    _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][13] = DPadRight;
+
+    _usageMapToInputRangeEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][27].push_back(FSUSBElementInfoMap(-32768,32767,XAxis,FSInputChanged));//LXaxis stick trigger
+    _usageMapToInputRangeEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][28].push_back(FSUSBElementInfoMap(-32768,32767,YAxis,FSInputChanged));//LYaxis stick trigger
+
+    _usageMapToInputRangeEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][29].push_back(FSUSBElementInfoMap(-32768,32767,XAxis2,FSInputChanged));//RXaxis stick trigger
+    _usageMapToInputRangeEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][30].push_back(FSUSBElementInfoMap(-32768,32767,YAxis2,FSInputChanged));//RYaxis stick trigger
+
 }
 
 void FSUSBDeviceManager::init( )
@@ -581,7 +674,23 @@ bool FSUSBDeviceManager::doesDeviceHaveDeviceInput(unsigned int vendorUSBID, uns
     lastVendorUSBID = vendorUSBID;
     lastProductUSBID = productUSBID;
     lastInputToLookFor = inputToLookFor;
-    if(FS_isAxis(inputToLookFor) || FS_isDpad(inputToLookFor) || FS_isDpad(inputToLookFor) || inputToLookFor == LastValueUp)
+    //TODO add this however right now there are no digital devices that use
+    if(FS_isButtion(inputToLookFor) || FS_isDpad(inputToLookFor))
+    {
+
+        std::map<unsigned int,FSDeviceInput>::iterator itDigital = _usageMapToInputEvent[vendorUSBID][productUSBID].begin();
+        for(itDigital; itDigital != _usageMapToInputEvent[vendorUSBID][productUSBID].end() ; itDigital++)
+        {
+            FSDeviceInput deviceInputFound = itDigital->second;
+            if(deviceInputFound == inputToLookFor)
+            {
+                lastResult = true;
+                return true;
+            }
+        }
+        //look throught other
+    }
+    else
     {
         std::map<unsigned int,std::vector<FSUSBElementInfoMap> >::iterator itRange = _usageMapToInputRangeEvent[vendorUSBID][productUSBID].begin();
         for(itRange;itRange != _usageMapToInputRangeEvent[vendorUSBID][productUSBID].end();itRange++)
@@ -598,22 +707,7 @@ bool FSUSBDeviceManager::doesDeviceHaveDeviceInput(unsigned int vendorUSBID, uns
            }
         }
     }
-    //TODO add this however right now there are no digital devices that use
-    if(FS_isButtion(inputToLookFor) || FS_isDpad(inputToLookFor))
-    {
 
-        std::map<unsigned int,FSDeviceInput>::iterator itDigital = _usageMapToInputEvent[vendorUSBID][productUSBID].begin();
-        for(itDigital; itDigital != _usageMapToInputEvent[vendorUSBID][productUSBID].end() ; itDigital)
-        {
-            FSDeviceInput deviceInputFound = itDigital->second;
-            if(deviceInputFound == inputToLookFor)
-            {
-                lastResult = true;
-                return true;
-            }
-        }
-        //look throught other
-    }
     lastResult = false;
     return false;
 }

@@ -26,6 +26,7 @@ and must not be misrepresented as being the original software.
 **************************************************************************/
 
 #include "USB/common/FSUSBDevice.h"
+#include "USB/common/FSUSBDeviceManager.h"
 using namespace freestick;
 FSUSBDevice::FSUSBDevice()
 {
@@ -48,13 +49,12 @@ FSUSBDevice::FSUSBDevice(unsigned int id,
 std::string FSUSBDevice::GetFrendlyProductNameFromID(long venderID, long productID)
 {
     static std::map<long, std::map<long,std::string > >s_productFriendlyNames;
-    s_productFriendlyNames[1133][49686] = "Dual Action";
-    s_productFriendlyNames[1356][616] = "DualShock 3 Controller";
-    s_productFriendlyNames[1118][654] = "Xbox 360 Controller";
-    s_productFriendlyNames[2064][1] ="HVG2 Twin PS2";
-    s_productFriendlyNames[1356][1476] = "DualShock 4 Controller";
-    s_productFriendlyNames[3888][263] = "GGE908";
-    s_productFriendlyNames[121][6] = "3GC Controller";
+    s_productFriendlyNames[LogitechVendorID][LogitechDualActionID] = "Dual Action";
+    s_productFriendlyNames[SonyVendorID][Playstation3ControllerID] = "DualShock 3 Controller";
+    s_productFriendlyNames[HVG2VenderID][HVG2TwinPS2] ="Twin DualShock 2";
+    s_productFriendlyNames[SonyVendorID][Playstation4ControllerID] = "DualShock 4 Controller";
+    s_productFriendlyNames[GameElementsVendorID][GameElementsRecoilID] = "GGE908";
+    s_productFriendlyNames[DragonRiseID][SteelSeries3GCControllerID] = "3GC Controller";
 
 
     if(s_productFriendlyNames.find(venderID) != s_productFriendlyNames.end())
@@ -76,19 +76,19 @@ std::string FSUSBDevice::GetFrendlyProductNameFromID(long venderID, long product
      */
 
      //
-    s_venderFriendlyNames[1356] = "Sony";
-    s_venderFriendlyNames[1118] = "Microsoft";
-    s_venderFriendlyNames[1133] = "Logitech";
+    s_venderFriendlyNames[SonyVendorID] = "Sony";
+    s_venderFriendlyNames[MicrosoftVendorID] = "Microsoft";
+    s_venderFriendlyNames[LogitechVendorID] = "Logitech";
     s_venderFriendlyNames[1149] = "Kensington";
     s_venderFriendlyNames[1452] = "Fujitsu Takamisawa Component";
     s_venderFriendlyNames[1635] = "Macsense";
-    s_venderFriendlyNames[2064] = "HVG2";
+    s_venderFriendlyNames[HVG2VenderID] = "HVG2";
     s_venderFriendlyNames[8738] = "Macally";
     s_venderFriendlyNames[1848] = "Mad Catz, Inc.";
-    s_venderFriendlyNames[4152] = "SteelSeries";
-    s_venderFriendlyNames[121] =  s_venderFriendlyNames[4152];
-    s_venderFriendlyNames[6473] = "Amazon";
-    s_venderFriendlyNames[3888] = "Game Elements";
+    s_venderFriendlyNames[SteelSeriesVendorID] = "SteelSeries";
+    s_venderFriendlyNames[DragonRiseID] =  s_venderFriendlyNames[SteelSeriesVendorID];
+    s_venderFriendlyNames[AmazonVendorID] = "Amazon";
+    s_venderFriendlyNames[GameElementsVendorID] = "Game Elements";
 
     if(s_venderFriendlyNames.find(venderID) != s_venderFriendlyNames.end())
         return s_venderFriendlyNames[venderID];

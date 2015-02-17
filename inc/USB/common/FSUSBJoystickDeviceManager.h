@@ -28,6 +28,7 @@ and must not be misrepresented as being the original software.
 #pragma once
 #include "FSUSBDeviceManager.h"
 #include "FSUSBJoystick.h"
+
 namespace freestick
 {
     class FSUSBJoystickDeviceManager : public FSUSBDeviceManager

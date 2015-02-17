@@ -70,3 +70,15 @@ const FSUSBJoyStickInputElement * FSUSBJoystick::findInputElement(unsigned int i
     else
        return NULL;
 }
+
+std::vector<unsigned int> FSUSBJoystick::getElementIds() const
+{
+    std::vector<unsigned int > elementKeys;
+    std::map<unsigned int,FSUSBJoyStickInputElement >::const_iterator itr = _inputElementMap.begin();
+    while(itr != _inputElementMap.end())
+    {
+        elementKeys.push_back(itr->first);
+        itr++;
+    }
+    return elementKeys;
+}

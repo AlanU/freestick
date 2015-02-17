@@ -62,8 +62,13 @@ typedef signed long PhysicalValueNumber;
                  FSUSBJoyStickInputElement();
         FSUSBJoyStickInputElement(unsigned int id, unsigned int parentID, MinMaxNumber elementMin, MinMaxNumber elementMax, long venderID,long productID,FSUSBDeviceManager & _manager,PhysicalValueNumber currentValue);
         void getMapping(int inputValue,std::stack<FSUSBElementInfoMap> & infoMapsToReturn) ;
-        inline MinMaxNumber getValue() {return _value;}
+        inline MinMaxNumber getValue() const {return _value;}
         void setValue(MinMaxNumber newValue);
         bool isValueInDeadZone(MinMaxNumber value);
+        inline MinMaxNumber getMaxValue() const {return _elementMax;}
+        inline MinMaxNumber getMinValue() const {return _elementMin;}
+        inline MinMaxNumber getDeadZoneMin() const {return _deadZoneMin;}
+        inline MinMaxNumber getDeadZoneMax() const {return _deadZoneMax;}
+
     };
 }
