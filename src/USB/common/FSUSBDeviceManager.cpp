@@ -300,40 +300,42 @@ FSUSBDeviceManager::FSUSBDeviceManager()
 
     // DualShock 4 Controller
 
-    _usageMapToInputEvent[SonyVendorID][Playstation4ControllerID][3] = ButtonA;
-    _usageMapToInputEvent[SonyVendorID][Playstation4ControllerID][4] = ButtonB;
-    _usageMapToInputEvent[SonyVendorID][Playstation4ControllerID][5] = ButtonY;
-    _usageMapToInputEvent[SonyVendorID][Playstation4ControllerID][2] = ButtonX;
+    _usageMapToInputEvent[SonyVendorID][Playstation4ControllerID][589826] = ButtonA;
+    _usageMapToInputEvent[SonyVendorID][Playstation4ControllerID][589827] = ButtonB;
+    _usageMapToInputEvent[SonyVendorID][Playstation4ControllerID][589828] = ButtonY;
+    _usageMapToInputEvent[SonyVendorID][Playstation4ControllerID][589825] = ButtonX;
 
-    _usageMapToInputEvent[SonyVendorID][Playstation4ControllerID][6] = LeftShoulder;
-    _usageMapToInputEvent[SonyVendorID][Playstation4ControllerID][7] = RightShoulder;
-    _usageMapToInputEvent[SonyVendorID][Playstation4ControllerID][8] = LeftShoulder2;
-    _usageMapToInputEvent[SonyVendorID][Playstation4ControllerID][9] = RightShoulder2;
+    _usageMapToInputEvent[SonyVendorID][Playstation4ControllerID][589829] = LeftShoulder;
+    _usageMapToInputEvent[SonyVendorID][Playstation4ControllerID][589830] = RightShoulder;
+    _usageMapToInputEvent[SonyVendorID][Playstation4ControllerID][589831] = LeftShoulder2;
+    _usageMapToInputEvent[SonyVendorID][Playstation4ControllerID][589832] = RightShoulder2;
 
-    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][21].push_back(FSUSBElementInfoMap(0,255,Trigger1,FSInputChanged));//L2 trigger
-    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][22].push_back(FSUSBElementInfoMap(0,255,Trigger2,FSInputChanged));//R2 trigger
+    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][65587].push_back(FSUSBElementInfoMap(0,255,Trigger1,FSInputChanged));//L2 trigger
+    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][65588].push_back(FSUSBElementInfoMap(0,255,Trigger2,FSInputChanged));//R2 trigger
 
-    _usageMapToInputEvent[SonyVendorID][Playstation4ControllerID][12] = Axis1Button;
-    _usageMapToInputEvent[SonyVendorID][Playstation4ControllerID][13] = Axis2Button;
+    _usageMapToInputEvent[SonyVendorID][Playstation4ControllerID][589835] = Axis1Button;
+    _usageMapToInputEvent[SonyVendorID][Playstation4ControllerID][589836] = Axis2Button;
 
-    _usageMapToInputEvent[SonyVendorID][Playstation4ControllerID][10] = ButtonSelect;
-    _usageMapToInputEvent[SonyVendorID][Playstation4ControllerID][14] = ButtonCenter;
-    _usageMapToInputEvent[SonyVendorID][Playstation4ControllerID][11] = ButtonStart;
+    _usageMapToInputEvent[SonyVendorID][Playstation4ControllerID][589833] = ButtonSelect;
+    _usageMapToInputEvent[SonyVendorID][Playstation4ControllerID][589837] = ButtonCenter;
+    _usageMapToInputEvent[SonyVendorID][Playstation4ControllerID][589838] = ButtonCenter;//button under touch pad
 
-    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][20].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][20].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][20].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][20].push_back(FSUSBElementInfoMap(3,3,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][20].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][20].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][20].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][20].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][20].push_back(FSUSBElementInfoMap(8,8,LastValueUp,FSInputRest));
+    _usageMapToInputEvent[SonyVendorID][Playstation4ControllerID][589834] = ButtonStart;
 
-    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][16].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));//LXaxis stick
-    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][17].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));//LYaxis stick
-    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][19].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));//RXaxis stick
-    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][18].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));//RYaxis stick
+    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][65593].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][65593].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][65593].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][65593].push_back(FSUSBElementInfoMap(3,3,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][65593].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][65593].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][65593].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][65593].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][65593].push_back(FSUSBElementInfoMap(8,8,LastValueUp,FSInputRest));
+
+    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][65584].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));//LXaxis stick
+    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][65585].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));//LYaxis stick
+    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][65589].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));//RXaxis stick
+    _usageMapToInputRangeEvent[SonyVendorID][Playstation4ControllerID][65586].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));//RYaxis stick
 
     // Logitech Dual Action
 
@@ -364,16 +366,6 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputRangeEvent[LogitechVendorID][LogitechDualActionID][65593].push_back(FSUSBElementInfoMap(7,7,DPadUp,FSInputPressed));
     _usageMapToInputRangeEvent[LogitechVendorID][LogitechDualActionID][65593].push_back(FSUSBElementInfoMap(8,8,LastValueUp,FSInputRest));
 
-    // Actually for DirectInput mode of Logitech Gamepad F310
-    /*_usageMapToInputRangeEvent[LogitechVendorID][LogitechDualActionID][21].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[LogitechVendorID][LogitechDualActionID][21].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[LogitechVendorID][LogitechDualActionID][21].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[LogitechVendorID][LogitechDualActionID][21].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[LogitechVendorID][LogitechDualActionID][21].push_back(FSUSBElementInfoMap(3,3,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[LogitechVendorID][LogitechDualActionID][21].push_back(FSUSBElementInfoMap(7,7,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[LogitechVendorID][LogitechDualActionID][21].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[LogitechVendorID][LogitechDualActionID][21].push_back(FSUSBElementInfoMap(8,8,LastValueUp,FSInputRest));
-*/
     _usageMapToInputRangeEvent[LogitechVendorID][LogitechDualActionID][65584].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));//LXaxis stick
     _usageMapToInputRangeEvent[LogitechVendorID][LogitechDualActionID][65585].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));//LYaxis stick
 
