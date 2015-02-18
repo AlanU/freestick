@@ -67,7 +67,7 @@ void FSUSBMacOSXJoystickDeviceManager::addDevice(FSBaseDevice * device)
 void  FSUSBMacOSXJoystickDeviceManager::removeDevice(FSBaseDevice * device)
 {
 
-    if(device->getClassType() == FSUSBMACOSXJoystickType)
+    if(device && device->getClassType() == FSUSBMACOSXJoystickType)
     {
         FSUSBMacOSXJoystick * macDevice = (FSUSBMacOSXJoystick *) device;
         IOHIDDeviceToIDMap.erase(macDevice->GetIOHIDDeviceRef());
@@ -392,7 +392,9 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn i
     FSUSBMacOSXJoystickDeviceManager * manager = (FSUSBMacOSXJoystickDeviceManager *) inContext;
     unsigned int deviceID = manager->getDeviceIDFromIOHIDevice(device);
     const FSUSBJoystick * fsDevice = manager->getUSBJoystickDevice(deviceID);
-    uniqueElementID = FSUSBMacOSXJoystickDeviceManager::createIdForElement(usage,usagePage,elementID,fsDevice->getVenderID(),fsDevice->getProductID());
+    if(fsDevice) {
+        uniqueElementID = FSUSBMacOSXJoystickDeviceManager::createIdForElement(usage,usagePage,elementID,fsDevice->getVenderID(),fsDevice->getProductID());
+    }
     EE_DEBUG<<"Gamepad talked! type of input "<<(unsigned int)IOHIDElementGetType(element)<<" id: "<<uniqueElementID<<" old id: "<< elementID<<std::endl;
 
     if(type == kIOHIDElementTypeInput_Button || type == kIOHIDElementTypeInput_Misc )
