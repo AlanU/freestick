@@ -328,6 +328,20 @@ void FSUSBMacOSXJoystickDeviceManager::findDpad(IOHIDDeviceRef device)
 
 }
 
+uint32_t FSUSBMacOSXJoystickDeviceManager::createIdForElement(uint32_t usage, uint32_t usagePage, uint32_t elementCookie, long venderID, long productID )
+{
+    if(venderID == SonyVendorID && productID == Playstation3ControllerID)
+    {
+       return  elementCookie;
+    }
+    else
+    {
+      return (usagePage << 16) | usage;
+
+    }
+
+}
+
 void FSUSBMacOSXJoystickDeviceManager::gamepadWasAdded(void* inContext, IOReturn inResult, void* inSender, IOHIDDeviceRef device) {
     FSUSBMacOSXJoystickDeviceManager * manager = (FSUSBMacOSXJoystickDeviceManager *) inContext;
     manager->addDevice(device);
@@ -374,8 +388,11 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn i
     double_t elementScaleValue = IOHIDValueGetScaledValue(value,kIOHIDValueScaleTypeCalibrated);
     usage =IOHIDElementGetUsage(element);
     usagePage = IOHIDElementGetUsagePage(element);
-    uniqueElementID = (usagePage << 16) | usage;
 
+    FSUSBMacOSXJoystickDeviceManager * manager = (FSUSBMacOSXJoystickDeviceManager *) inContext;
+    unsigned int deviceID = manager->getDeviceIDFromIOHIDevice(device);
+    const FSUSBJoystick * fsDevice = manager->getUSBJoystickDevice(deviceID);
+    uniqueElementID = FSUSBMacOSXJoystickDeviceManager::createIdForElement(usage,usagePage,elementID,fsDevice->getVenderID(),fsDevice->getProductID());
     EE_DEBUG<<"Gamepad talked! type of input "<<(unsigned int)IOHIDElementGetType(element)<<" id: "<<uniqueElementID<<" old id: "<< elementID<<std::endl;
 
     if(type == kIOHIDElementTypeInput_Button || type == kIOHIDElementTypeInput_Misc )
@@ -388,9 +405,6 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn i
 
         EE_DEBUG<<"Element Usage page"<<usagePage<<" with Usage "<<usage<<" min "<<min<<" max "<<max<<std::endl;
     }
-    FSUSBMacOSXJoystickDeviceManager * manager = (FSUSBMacOSXJoystickDeviceManager *) inContext;
-    unsigned int deviceID = manager->getDeviceIDFromIOHIDevice(device);
-    const FSUSBJoystick * fsDevice = manager->getUSBJoystickDevice(deviceID);
     FSUSBJoyStickInputElement * elementDevice = NULL;
     if(fsDevice)
     {

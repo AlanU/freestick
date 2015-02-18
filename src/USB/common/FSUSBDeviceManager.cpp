@@ -452,8 +452,9 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][589829] = LeftShoulder;//L1 sholder button
     _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][589830] = RightShoulder;//R2 sholder button
 
-    _usageMapToInputRangeEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][65586].push_back(FSUSBElementInfoMap(0,255,Trigger1,FSInputChanged));//L2 trigger
-    _usageMapToInputRangeEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][65589].push_back(FSUSBElementInfoMap(0,255,Trigger2,FSInputChanged));//R2 trigger
+    //xbox 360 is for 0 - 255 but xbox one is for 0 - 1023 and the xbox one driver pretends it is a xbox 360 with the 1023 value
+    _usageMapToInputRangeEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][65586].push_back(FSUSBElementInfoMap(0,1023,Trigger1,FSInputChanged));//L2 trigger
+    _usageMapToInputRangeEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][65589].push_back(FSUSBElementInfoMap(0,1023,Trigger2,FSInputChanged));//R2 trigger
 
     _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][589831] = Axis1Button;//L3 left thumb down
     _usageMapToInputEvent[MicrosoftVendorID][MicrosoftXbox360WindowsControllerID][589832] = Axis2Button;//R3 right thumb down
@@ -485,9 +486,9 @@ FSUSBDeviceManager::FSUSBDeviceManager()
 
     _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][589829] = LeftShoulder;//L1 sholder button
     _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][589830] = RightShoulder;//R2 sholder button
-
-    _usageMapToInputRangeEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][65586].push_back(FSUSBElementInfoMap(0,255,Trigger1,FSInputChanged));//L2 trigger
-    _usageMapToInputRangeEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][65589].push_back(FSUSBElementInfoMap(0,255,Trigger2,FSInputChanged));//R2 trigger
+   //xbox 360 is for 0 - 255 but xbox one is for 0 - 1023 and the xbox one driver pretends it is a xbox 360 with the 1023 value
+    _usageMapToInputRangeEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][65586].push_back(FSUSBElementInfoMap(0,1023,Trigger1,FSInputChanged));//L2 trigger
+    _usageMapToInputRangeEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][65589].push_back(FSUSBElementInfoMap(0,1023,Trigger2,FSInputChanged));//R2 trigger
 
     _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][589831] = Axis1Button;//L3 left thumb down
     _usageMapToInputEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][589832] = Axis2Button;//R3 right thumb down

@@ -32,6 +32,7 @@ and must not be misrepresented as being the original software.
 #include "USB/common/FSUSBJoystickDeviceManager.h"
 #include <CoreFoundation/CoreFoundation.h>
 #include "common/FreeStickLog.h"
+#include "USB/platform/MacOSX/FSUSBMacOSXJoystickDeviceManager.h"
 using namespace freestick;
 
 
@@ -72,7 +73,8 @@ unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickM
             elemnetID =IOHIDElementGetCookie(elemnet);
             usage =IOHIDElementGetUsage(elemnet);
             usagePage = IOHIDElementGetUsagePage(elemnet);
-            uniqueElementID = (usagePage << 16) | usage;
+            uniqueElementID =  FSUSBMacOSXJoystickDeviceManager::createIdForElement(usage,usagePage,elemnetID,_vendorID,_productID);
+
             CFIndex value = 0;
             IOHIDValueRef   tIOHIDValueRef;
             //Checking the value of some elements of the ps3 controller cause blue tooth erros and IOHIDDeviceGetValue will never return
