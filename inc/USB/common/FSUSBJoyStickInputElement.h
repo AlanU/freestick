@@ -58,7 +58,7 @@ typedef signed long PhysicalValueNumber;
         unsigned int _parentID;
         MinMaxNumber _buttonNumber;
     protected:
-        void calibrate(PhysicalValueNumber currentValue, MinMaxNumber elementMin, MinMaxNumber elementMax );
+
     public:
         //FSUSBJoyStickInputElement(const & FSUSBJoyStickInputElement copy){}
                  FSUSBJoyStickInputElement();
@@ -72,7 +72,6 @@ typedef signed long PhysicalValueNumber;
         inline MinMaxNumber getDeadZoneMin() const {return _deadZoneMin;}
         inline MinMaxNumber getDeadZoneMax() const {return _deadZoneMax;}
         inline MinMaxNumber getButtonNumber() const {return _buttonNumber;}
-        void recalibrate(PhysicalValueNumber currentValue, MinMaxNumber elementMin, MinMaxNumber elementMax );
 
     };
 }

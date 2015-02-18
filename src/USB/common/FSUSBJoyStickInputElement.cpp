@@ -133,45 +133,33 @@ FSUSBJoyStickInputElement::FSUSBJoyStickInputElement(unsigned int id,  unsigned 
 
 
      _useLastValueStack =  _manager.doesElementHaveDeviceInputForValue( venderID, productID ,id,LastValueUp);
-     calibrate(currentValue,elementMin,elementMax);
 
-     firstTime = time(NULL);
-
-
-
-}
-
-void FSUSBJoyStickInputElement::calibrate(PhysicalValueNumber currentValue, MinMaxNumber elementMin, MinMaxNumber elementMax )
-{
-    _needsDeadZone = false;
-    _calibrated =false;
-
-    _elementMin = elementMin;
-    _elementMax = elementMax;
-    FSDeviceInput deviceType = _usbDeviceManager->lookUpDeviceInputFromUSBID(_vendorID,_productID,getJoystickID(),_elementMin,_elementMax,currentValue).getDeviceInput();
-
+   //if(deviceType == LastValueUp)
+   //{
+  //     _useLastValueStack = true;
+  // }
+    //TODO calibrated needs to be called over a time interval not number of times
     if(FS_isAxis(deviceType) )
-   {
-       _deadZoneMax =  (currentValue < _elementMax) ?    currentValue :  _elementMax;
-       _deadZoneMin =  (currentValue > _elementMin) ?    currentValue :  _elementMin;
+    {
+        _deadZoneMax =  (currentValue < _elementMax) ?    currentValue :  _elementMax;
+        _deadZoneMin =  (currentValue > _elementMin) ?    currentValue :  _elementMin;
+        
+        if(_deadZoneMin > _deadZoneMax)
+        {
+            MinMaxNumber temp = _deadZoneMax;
+            _deadZoneMax = _deadZoneMin ;
+            _deadZoneMin = temp;
+        }
+        
+        MinMaxNumber precent =( (float)(_elementMax + abs(_elementMin) ) )*0.05f;
+        
+        _deadZoneMax= _elementMax < _deadZoneMax+precent ?  _deadZoneMax :_deadZoneMax + precent ;
+        _deadZoneMin = _elementMin > _deadZoneMin-precent ? _deadZoneMin : _deadZoneMin - precent;
+        
+        _needsDeadZone = true;
+    }
+    firstTime = time(NULL);
 
-       if(_deadZoneMin > _deadZoneMax)
-       {
-           MinMaxNumber temp = _deadZoneMax;
-           _deadZoneMax = _deadZoneMin ;
-           _deadZoneMin = temp;
-       }
 
-       MinMaxNumber precent =( (float)(_elementMax + abs(_elementMin) ) )*0.05f;
 
-       _deadZoneMax= _elementMax < _deadZoneMax+precent ?  _deadZoneMax :_deadZoneMax + precent ;
-       _deadZoneMin = _elementMin > _deadZoneMin-precent ? _deadZoneMin : _deadZoneMin - precent;
-
-       _needsDeadZone = true;
-   }
-}
-
-void FSUSBJoyStickInputElement::recalibrate(PhysicalValueNumber currentValue, MinMaxNumber elementMin, MinMaxNumber elementMax )
-{
-    calibrate(currentValue,elementMin,elementMax);
 }
