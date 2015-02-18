@@ -37,236 +37,192 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     * populate map _usageMapToInputEvent
     */
 
-
-
     //First ps2 port
-    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][22] =  ButtonA;
-    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][21] =  ButtonB;
-    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][20] =  ButtonY;
-    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][23] =  ButtonX;
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][589827] =  ButtonA;
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][589826] =  ButtonB;
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][589828] =  ButtonY;
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][589825] =  ButtonX;
 
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][589831] =  LeftShoulder;
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][589832] =  RightShoulder;
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][589829] =  LeftShoulder2;
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][589830] =  RightShoulder2;
 
-    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][27] =  RightShoulder;
-    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][26] =  LeftShoulder;
-    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][24] =  LeftShoulder2;
-    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][25] =  RightShoulder2;
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][589835] = Axis1Button;
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][589836] = Axis2Button;
 
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][589833] =  ButtonSelect;
+    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][589834] =  ButtonStart;
 
-    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][29] =  ButtonStart;
-    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][28] =  ButtonSelect;
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][65593].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][65593].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][65593].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][65593].push_back(FSUSBElementInfoMap(3,3,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][65593].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][65593].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][65593].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][65593].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][65593].push_back(FSUSBElementInfoMap(15,15,LastValueUp,FSInputRest));
 
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][65584].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][65585].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));
 
-    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][42].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][42].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][42].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][42].push_back(FSUSBElementInfoMap(3,3,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][42].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][42].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][42].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][42].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][42].push_back(FSUSBElementInfoMap(15,15,LastValueUp,FSInputRest));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][65589].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));
+    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][65586].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));
 
-
-    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][41].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));
-    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][40].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));
-
-    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][39].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));
-    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][38].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));
-
-
-    //Second ps2 port
-    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][9] =  ButtonA;
-    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][8] =  ButtonB;
-    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][7] =  ButtonY;
-    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][10] =  ButtonX;
-
-
-    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][14] =  RightShoulder;
-    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][13] =  LeftShoulder;
-    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][11] =  LeftShoulder2;
-    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][12] =  RightShoulder2;
-
-
-    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][16] =  ButtonStart;
-    _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][15] =  ButtonSelect;
-
-
-    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][37].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][37].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][37].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][37].push_back(FSUSBElementInfoMap(3,3,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][37].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][37].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][37].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][37].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][37].push_back(FSUSBElementInfoMap(15,15,LastValueUp,FSInputRest));
-
-
-
-    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][36].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));
-    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][35].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));
-
-    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][34].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));
-    _usageMapToInputRangeEvent[HVG2VenderID][HVG2TwinPS2][33].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));
-
-
-
-
-
-    _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][6] = ButtonA;
 
     // SteelSeries ("DragonRise") 3GC controller
-    // Has a very "noisy" analog axis ID 19. This ID gives signals
-    // when the left stick X-axis is moved, and when the right stick
-    // Y-axis is moved. This does not seem useful, not sure what its
-    // purpose is, so this ID is left unmapped.
+    // Has a very "noisy" analog axis ID 65586.
 
-    _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][6] = ButtonA;
-    _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][5] = ButtonB;
-    _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][7] = ButtonX;
-    _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][4] = ButtonY;
+    _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][589827] = ButtonA;
+    _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][589826] = ButtonB;
+    _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][589828] = ButtonX;
+    _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][589825] = ButtonY;
 
-    _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][10] = LeftShoulder;
-    _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][11] = RightShoulder;
+    _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][589831] = LeftShoulder;
+    _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][589832] = RightShoulder;
+    _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][589829] = LeftShoulder2;
+    _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][589830] = RightShoulder2;
 
-    _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][8] = LeftShoulder2;
-    _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][9] = RightShoulder2;
+    _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][589835] = Axis1Button;
+    _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][589836] = Axis2Button;
 
-    _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][14] = Axis1Button;
-    _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][15] = Axis2Button;
-
-    _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][12] = ButtonSelect;
+    _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][589833] = ButtonSelect;
     // No center button
-    _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][13] = ButtonStart;
+    _usageMapToInputEvent[DragonRiseID][SteelSeries3GCControllerID][589834] = ButtonStart;
 
     //D-pad in red LED mode. In green LED mode, D-pad mimicks left stick axes.
-    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][22].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][22].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][22].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][22].push_back(FSUSBElementInfoMap(3,3,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][22].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][22].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][22].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][22].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][22].push_back(FSUSBElementInfoMap(15,15,LastValueUp,FSInputRest));
+    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][65593].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][65593].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][65593].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][65593].push_back(FSUSBElementInfoMap(3,3,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][65593].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][65593].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][65593].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][65593].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][65593].push_back(FSUSBElementInfoMap(15,15,LastValueUp,FSInputRest));
 
     //Left analog stick in red LED mode. In green LED mode, stick
     //mimicks digital signals & send only 0, 127, 255.
-    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][17].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));
-    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][18].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));
+    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][65584].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));
+    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][65585].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));
 
     //Right analog stick in red LED mode. In green LED mode, stick
     //mimicks 1, 2, 3, & 4 buttons (Y, B, A, & X, respectively),
     //sending their IDs at up, down, left, and right.
-    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][20].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));
-    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][21].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));
+    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][65586].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));
+    _usageMapToInputRangeEvent[DragonRiseID][SteelSeries3GCControllerID][65589].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));
+
 
     // Amazon Fire Game Controller
 
-    _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][6] = ButtonA;
-    _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][7] = ButtonB;
-    _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][9] = ButtonX;
-    _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][10] = ButtonY;
+    _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][589825] = ButtonA;
+    _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][589826] = ButtonB;
+    _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][589828] = ButtonX;
+    _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][589829] = ButtonY;
 
-    _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][13] = RightShoulder;
-    _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][12] = LeftShoulder;
+    _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][589832] = LeftShoulder;
+    _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][589831] = RightShoulder;
+ 
+    _usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][131269].push_back(FSUSBElementInfoMap(-1,0,Trigger1,FSInputChanged));//L2 trigger
+    _usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][131268].push_back(FSUSBElementInfoMap(-1,0,Trigger2,FSInputChanged));//R2 trigger
 
-    _usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][34].push_back(FSUSBElementInfoMap(-1,0,Trigger1,FSInputChanged));//L2 trigger
-    _usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][35].push_back(FSUSBElementInfoMap(-1,0,Trigger2,FSInputChanged));//R2 trigger
+    _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][589838] = Axis1Button;//L3
+    _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][589839] = Axis2Button;//R3
 
-    _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][19] = Axis1Button;//L3
-    _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][20] = Axis2Button;//R3
+    _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][589835] = ButtonSelect;//Android Back Button
+    _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][589837] = ButtonCenter;//GameCircle
+    _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][786979] = ButtonHome;//HomeButton
+    _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][589836] = ButtonStart;//Android Menu Button
 
-    _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][16] = ButtonSelect;
-    _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][18] = ButtonCenter;//GameCircle
-    _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][25] = ButtonHome;//HomeButton
-    _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][17] = ButtonStart;
+    _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][786612] = Button19;//Rewind button
+    _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][786637] = Button20;//Play Pause button
+    _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][786611] = Button21;//Fast Forward button
 
-    _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][23] = Button19;//Rewind button
-    _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][24] = Button20;//Play Pause button
-    _usageMapToInputEvent[AmazonVendorID][AmazonFireGameControllerID][22] = Button21;//Fast Forward button
+    _usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][65593].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][65593].push_back(FSUSBElementInfoMap(2,2,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][65593].push_back(FSUSBElementInfoMap(3,3,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][65593].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][65593].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][65593].push_back(FSUSBElementInfoMap(6,6,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][65593].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][65593].push_back(FSUSBElementInfoMap(8,8,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][65593].push_back(FSUSBElementInfoMap(0,0,LastValueUp,FSInputRest));
 
-    _usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][36].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][36].push_back(FSUSBElementInfoMap(2,2,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][36].push_back(FSUSBElementInfoMap(3,3,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][36].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][36].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][36].push_back(FSUSBElementInfoMap(6,6,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][36].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][36].push_back(FSUSBElementInfoMap(8,8,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][36].push_back(FSUSBElementInfoMap(0,0,LastValueUp,FSInputRest));
+    // TODO: New mapping system for Fire TV controller anolog stick and trigger min and max of -1 to 0 is a lie.
+    //_usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][65584].push_back(FSUSBElementInfoMap(-1,0,XAxis,FSInputChanged));
+    //_usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][65585].push_back(FSUSBElementInfoMap(-1,0,YAxis,FSInputChanged));
 
-    //TODO: New mapping system for Fire TV controller anolog stick and trigger min and max of -1 to 0 is a lie.
-    //_usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][31].push_back(FSUSBElementInfoMap(-1,0,YAxis,FSInputChanged));
-    //_usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][30].push_back(FSUSBElementInfoMap(-1,0,XAxis,FSInputChanged));
+    //_usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][65586].push_back(FSUSBElementInfoMap(-1,0,XAxis2,FSInputChanged));
+    //_usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][65589].push_back(FSUSBElementInfoMap(-1,0,YAxis2,FSInputChanged));
 
-    //_usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][33].push_back(FSUSBElementInfoMap(-1,0,YAxis2,FSInputChanged));
-    // _usageMapToInputRangeEvent[AmazonVendorID][AmazonFireGameControllerID][32].push_back(FSUSBElementInfoMap(-1,0,XAxis2,FSInputChanged));
 
     // Game Elements Recoil controller
 
-    _usageMapToInputEvent[GameElementsVendorID][GameElementsRecoilID][5] = ButtonA;
-    _usageMapToInputEvent[GameElementsVendorID][GameElementsRecoilID][4] = ButtonB;
-    _usageMapToInputEvent[GameElementsVendorID][GameElementsRecoilID][6] = ButtonX;
-    _usageMapToInputEvent[GameElementsVendorID][GameElementsRecoilID][3] = ButtonY;
+    _usageMapToInputEvent[GameElementsVendorID][GameElementsRecoilID][589827] = ButtonA;
+    _usageMapToInputEvent[GameElementsVendorID][GameElementsRecoilID][589826] = ButtonB;
+    _usageMapToInputEvent[GameElementsVendorID][GameElementsRecoilID][589828] = ButtonX;
+    _usageMapToInputEvent[GameElementsVendorID][GameElementsRecoilID][589825] = ButtonY;
 
-    _usageMapToInputEvent[GameElementsVendorID][GameElementsRecoilID][7] = LeftShoulder;
-    _usageMapToInputEvent[GameElementsVendorID][GameElementsRecoilID][8] = RightShoulder;
-    _usageMapToInputEvent[GameElementsVendorID][GameElementsRecoilID][9] = LeftShoulder2;
-    _usageMapToInputEvent[GameElementsVendorID][GameElementsRecoilID][10] = RightShoulder2;
+    _usageMapToInputEvent[GameElementsVendorID][GameElementsRecoilID][589829] = LeftShoulder;
+    _usageMapToInputEvent[GameElementsVendorID][GameElementsRecoilID][589830] = RightShoulder;
+    _usageMapToInputEvent[GameElementsVendorID][GameElementsRecoilID][589831] = LeftShoulder2;
+    _usageMapToInputEvent[GameElementsVendorID][GameElementsRecoilID][589832] = RightShoulder2;
 
-    _usageMapToInputEvent[GameElementsVendorID][GameElementsRecoilID][13] = Axis1Button;//L3
-    _usageMapToInputEvent[GameElementsVendorID][GameElementsRecoilID][14] = Axis2Button;//R3
+    _usageMapToInputEvent[GameElementsVendorID][GameElementsRecoilID][589835] = Axis1Button;
+    _usageMapToInputEvent[GameElementsVendorID][GameElementsRecoilID][589836] = Axis2Button;
 
-    _usageMapToInputEvent[GameElementsVendorID][GameElementsRecoilID][11] = ButtonSelect;
+    _usageMapToInputEvent[GameElementsVendorID][GameElementsRecoilID][589833] = ButtonSelect;
     // No center button
-    _usageMapToInputEvent[GameElementsVendorID][GameElementsRecoilID][12] = ButtonStart;
-    
-    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][19].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][19].push_back(FSUSBElementInfoMap(2,2,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][19].push_back(FSUSBElementInfoMap(3,3,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][19].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][19].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][19].push_back(FSUSBElementInfoMap(6,6,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][19].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][19].push_back(FSUSBElementInfoMap(8,8,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][19].push_back(FSUSBElementInfoMap(0,0,LastValueUp,FSInputRest));
-    
-    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][16].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));
-    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][15].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));
-    
-    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][17].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));
-    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][18].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));
+    _usageMapToInputEvent[GameElementsVendorID][GameElementsRecoilID][589834] = ButtonStart;
+
+    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][65593].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][65593].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][65593].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][65593].push_back(FSUSBElementInfoMap(3,3,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][65593].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][65593].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][65593].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][65593].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][65593].push_back(FSUSBElementInfoMap(15,15,LastValueUp,FSInputRest));
+
+    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][65584].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));
+    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][65585].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));
+
+    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][65586].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));
+    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][65589].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));
+
 
     // SteelSeries Free controller
 
-    _usageMapToInputEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][4] = ButtonB;
-    _usageMapToInputEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][3] = ButtonA;
-    _usageMapToInputEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][6] = ButtonX;
-    _usageMapToInputEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][7] = ButtonY;
+    _usageMapToInputEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][589825] = ButtonA;
+    _usageMapToInputEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][589826] = ButtonB;
+    _usageMapToInputEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][589828] = ButtonX;
+    _usageMapToInputEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][589829] = ButtonY;
 
-    _usageMapToInputEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][9] = LeftShoulder;
-    _usageMapToInputEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][10] = RightShoulder;
+    _usageMapToInputEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][589831] = LeftShoulder;
+    _usageMapToInputEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][589832] = RightShoulder;
 
-    _usageMapToInputEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][15] = ButtonSelect;//Labeled as "a"
+    _usageMapToInputEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][589837] = ButtonSelect;//Labeled as "a"
     // No center button
-    _usageMapToInputEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][14] = ButtonStart;//Labeled as "b"
+    _usageMapToInputEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][589836] = ButtonStart;//Labeled as "b"
 
-    _usageMapToInputRangeEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][19].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][19].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][19].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][19].push_back(FSUSBElementInfoMap(3,3,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][19].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][19].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][19].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][19].push_back(FSUSBElementInfoMap(7,7,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][19].push_back(FSUSBElementInfoMap(15,15,LastValueUp,FSInputRest));
+    _usageMapToInputRangeEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][65593].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][65593].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][65593].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][65593].push_back(FSUSBElementInfoMap(3,3,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][65593].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][65593].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][65593].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][65593].push_back(FSUSBElementInfoMap(7,7,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][65593].push_back(FSUSBElementInfoMap(15,15,LastValueUp,FSInputRest));
 
-    _usageMapToInputRangeEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][20].push_back(FSUSBElementInfoMap(-128,127,XAxis,FSInputChanged));
-    _usageMapToInputRangeEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][21].push_back(FSUSBElementInfoMap(-128,127,YAxis,FSInputChanged));
+    _usageMapToInputRangeEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][65584].push_back(FSUSBElementInfoMap(-128,127,XAxis,FSInputChanged));
+    _usageMapToInputRangeEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][65585].push_back(FSUSBElementInfoMap(-128,127,YAxis,FSInputChanged));
 
-    _usageMapToInputRangeEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][22].push_back(FSUSBElementInfoMap(-128,127,XAxis2,FSInputChanged));
-    _usageMapToInputRangeEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][23].push_back(FSUSBElementInfoMap(-128,127,YAxis2,FSInputChanged));
+    _usageMapToInputRangeEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][65586].push_back(FSUSBElementInfoMap(-128,127,XAxis2,FSInputChanged));
+    _usageMapToInputRangeEvent[SteelSeriesVendorID][SteelSeriesFreeControllerID][65589].push_back(FSUSBElementInfoMap(-128,127,YAxis2,FSInputChanged));
+
 
     // DualShock 3 Controller
 
