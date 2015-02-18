@@ -206,10 +206,22 @@ FSUSBMacOSXJoystick::FSUSBMacOSXJoystick(IOHIDDeviceRef device,
 std::string FSUSBMacOSXJoystick::CFStringRefToString(CFStringRef refString)
 {
 
-   const char * CStringstringPtr;
+    const char * CStringstringPtr;
     if( ( CStringstringPtr = CFStringGetCStringPtr(refString,kCFStringEncodingUTF8) ) )
     {
-            return std::string(CStringstringPtr);
+        return std::string(CStringstringPtr);
+    }
+    else
+    {
+        CFIndex length = CFStringGetLength(refString);
+        CFIndex maxSize = CFStringGetMaximumSizeForEncoding(length, kCFStringEncodingUTF8);
+        char * buffer = (char* )malloc(maxSize);
+        if(CFStringGetCString(refString, buffer, maxSize, kCFStringEncodingUTF8))
+        {
+            std::string temp = buffer;
+            free(buffer);
+            return temp;
+        }
     }
 
     //bad convrsion
