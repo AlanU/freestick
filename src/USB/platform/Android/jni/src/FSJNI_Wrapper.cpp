@@ -37,7 +37,7 @@ const int  InputDevice_SOURCE_GAMEPAD = 0x00000401;
 const int  InputDevice_SOURCE_JOYSTICK = 0x01000010;
 const int  InputDevice_SOURCE_DPAD = 0x00000201;
 
-JNIEXPORT void JNICALL Java_org_freestick_FreestickDeviceManager_gamepadDeviceUpdate(JNIEnv *env, jobject thisObj,jint deviceid,jint code,jint type,jfloat value,jint min,jint max)
+JNIEXPORT bool JNICALL Java_org_freestick_FreestickDeviceManager_gamepadDeviceUpdate(JNIEnv *env, jobject thisObj,jint deviceid,jint code,jint type,jfloat value,jint min,jint max)
 {
     LOGI("JNI gamepadDeviceUpdate %i %i %f %i,%i",code,type,value,min,max);
 

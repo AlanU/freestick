@@ -106,7 +106,7 @@ void FSHIDAndroidJoysickDeviceManager::init( )
     JNIBridge::registerDeviceWasUpdated(this);
 }
 
-void FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int deviceid,int code,JNICallBackType type,float value,int min,int max)
+bool FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int deviceid,int code,JNICallBackType type,float value,int min,int max)
 {
     static std::stack<FSDeviceInput> lastDpadDownX;
     static std::stack<FSDeviceInput> lastDpadDownY;
@@ -116,7 +116,7 @@ void FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int device
     if(_androidIDToIDMap.find(deviceid) == _androidIDToIDMap.end())
     {
         LOGI("Could not find device %i",deviceid);
-        return;
+        return false;
     }
 
     if(type == MotionEvent)
@@ -179,7 +179,7 @@ void FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int device
             }
             LOGI("returning from last button press");
 
-            return ;
+            return true;
         }
         else
         {
@@ -202,6 +202,7 @@ void FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int device
     if(inputType == Unknown)
     {
         LOGI("Unknown input type for %i ",code);
+        return false;
     }
     else
     {
@@ -221,6 +222,7 @@ void FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int device
             inputOnDeviceChangedWithNormilzedValues(eventType,eventAction,inputType,_androidIDToIDMap[deviceid],code,value,0,min,max);
 
         }
+        return true;
     }
 
 }
