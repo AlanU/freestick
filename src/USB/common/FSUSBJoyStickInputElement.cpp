@@ -152,22 +152,29 @@ void FSUSBJoyStickInputElement::calibrate(PhysicalValueNumber currentValue, MinM
 
     if(FS_isAxis(deviceType) )
    {
-       _deadZoneMax =  (currentValue < _elementMax) ?    currentValue :  _elementMax;
-       _deadZoneMin =  (currentValue > _elementMin) ?    currentValue :  _elementMin;
-
-       if(_deadZoneMin > _deadZoneMax)
-       {
+        if(! (currentValue == _elementMin || currentValue == _elementMax))
+        {
+           _deadZoneMax =  (currentValue < _elementMax) ?    currentValue :  _elementMax;
+           _deadZoneMin =  (currentValue > _elementMin) ?    currentValue :  _elementMin;
+        }
+        else
+        {
+                _deadZoneMax =_elementMin+_elementMax/2;
+                _deadZoneMin =_deadZoneMax;
+        }
+        if(_deadZoneMin > _deadZoneMax)
+        {
            MinMaxNumber temp = _deadZoneMax;
            _deadZoneMax = _deadZoneMin ;
            _deadZoneMin = temp;
-       }
+        }
 
-       MinMaxNumber precent =( (float)(_elementMax + abs(_elementMin) ) )*0.05f;
+        MinMaxNumber precent =( (float)(_elementMax + abs(_elementMin) ) )*0.05f;
 
-       _deadZoneMax= _elementMax < _deadZoneMax+precent ?  _deadZoneMax :_deadZoneMax + precent ;
-       _deadZoneMin = _elementMin > _deadZoneMin-precent ? _deadZoneMin : _deadZoneMin - precent;
+        _deadZoneMax= _elementMax < _deadZoneMax+precent ?  _deadZoneMax :_deadZoneMax + precent ;
+        _deadZoneMin = _elementMin > _deadZoneMin-precent ? _deadZoneMin : _deadZoneMin - precent;
 
-       _needsDeadZone = true;
+        _needsDeadZone = true;
    }
 }
 
