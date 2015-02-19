@@ -41,7 +41,7 @@ JNIEXPORT bool JNICALL Java_org_freestick_FreestickDeviceManager_gamepadDeviceUp
 {
     LOGI("JNI gamepadDeviceUpdate %i %i %f %i,%i",code,type,value,min,max);
 
-    JNIBridge::updateValue(deviceid, code,static_cast<JNICallBackType> (type), value,min,max);
+    return JNIBridge::updateValue(deviceid, code,static_cast<JNICallBackType> (type), value,min,max);
 }
 
 JNIEXPORT void JNICALL Java_org_freestick_FreestickDeviceManager_gamepadWasAdded(JNIEnv *env, jobject thisObj,jint HID_ID)
@@ -63,13 +63,15 @@ JNIEXPORT void JNICALL Java_org_freestick_FreestickDeviceManager_gamepadWasRemov
 }
 
 
-void JNIBridge::updateValue(int deviceid,int code,JNICallBackType type,float value,int min,int max)
+bool JNIBridge::updateValue(int deviceid,int code,JNICallBackType type,float value,int min,int max)
 {
+    bool returnValue = false;
     for(std::vector<IJINICallBack*>::iterator itr = _deviceUpdateCallback.begin();itr != _deviceUpdateCallback.end();itr++)
     {
-        (*itr)->gamepadWasUpdatedFromJINBridge(deviceid, code, type, value,min,max);
+        returnValue = returnValue || (*itr)->gamepadWasUpdatedFromJINBridge(deviceid, code, type, value,min,max);
 
     }
+    return returnValue;
 }
 void JNIBridge::update(int hidDeviceID, int type)
 {

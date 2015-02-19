@@ -67,7 +67,7 @@ class JNIBridge
        static void deregisterDeviceWasRemoved(IJINICallBack * listener){}
        static void update(int hidDeviceID, int type);
        static void update(int hidDeviceID, int type,JavaVM * jvm);
-       static void updateValue(int deviceid,int code,JNICallBackType type,float value,int min,int max);
+       static bool updateValue(int deviceid,int code,JNICallBackType type,float value,int min,int max);
        static void updateJoysticks(JavaVM * jvm);
     private:
         static std::vector<IJINICallBack*> _deviceAddedCallback;
