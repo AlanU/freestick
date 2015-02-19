@@ -331,9 +331,9 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     // Logitech Gamepad F310 in x mode
 
     _usageMapToInputEvent[LogitechVendorID][LogitechGamepadF310][589825] = ButtonA;
-    _usageMapToInputEvent[LogitechVendorID][LogitechGamepadF310][589828] = ButtonB;
-    _usageMapToInputEvent[LogitechVendorID][LogitechGamepadF310][589826] = ButtonX;
-    _usageMapToInputEvent[LogitechVendorID][LogitechGamepadF310][589827] = ButtonY;
+    _usageMapToInputEvent[LogitechVendorID][LogitechGamepadF310][589826] = ButtonB;
+    _usageMapToInputEvent[LogitechVendorID][LogitechGamepadF310][589827] = ButtonX;
+    _usageMapToInputEvent[LogitechVendorID][LogitechGamepadF310][589828] = ButtonY;
 
     _usageMapToInputEvent[LogitechVendorID][LogitechGamepadF310][589829] = LeftShoulder;
     _usageMapToInputEvent[LogitechVendorID][LogitechGamepadF310][589830] = RightShoulder;
