@@ -33,7 +33,7 @@ int ControllerMappingTableModel::rowCount(const QModelIndex & /*parent*/) const
 
  int ControllerMappingTableModel::columnCount(const QModelIndex & /*parent*/) const
  {
-     return 6;
+     return 9;
  }
 
 
@@ -53,12 +53,21 @@ int ControllerMappingTableModel::rowCount(const QModelIndex & /*parent*/) const
                     return tr("Max Value Range");
                   break;
                   case 3:
-                    return tr("Value");
+                    return tr("Raw Value");
                   break;
                   case 4:
-                    return tr("Mapped");
+                    return tr("Value");
                   break;
                   case 5:
+                    return tr("Dead Min");
+                   break;
+                  case 6:
+                    return tr("Dead Max");
+                   break;
+                  case 7:
+                    return tr("Mapped");
+                  break;
+                  case 8:
                     return tr("Element Cookie");
                   break;
                   default:
@@ -91,9 +100,18 @@ int ControllerMappingTableModel::rowCount(const QModelIndex & /*parent*/) const
             return static_cast<qlonglong>(element.getValue());
         break;
         case 4:
-            return _elemnetMapped[index.row()];
+            return _elementValuelist[index.row()];
          break;
         case 5:
+            return static_cast<qlonglong>(element.getDeadZoneMin());
+        break;
+        case 6:
+            return static_cast<qlonglong>(element.getDeadZoneMax());
+         break;
+        case 7:
+            return _elemnetMapped[index.row()];
+         break;
+        case 8:
             return static_cast<qlonglong>(element.getButtonNumber());
         default:
             break;
@@ -115,13 +133,14 @@ void ControllerMappingTableModel::modelChanged(int joystickID)
     for(int index = 0; index < _elemntIDList.size(); index++)
     {
         _elemnetMapped.push_back(false);
+        _elementValuelist.push_back(0);
     }
     endResetModel();
 
 
 }
 
-void ControllerMappingTableModel::elementChanged(unsigned int elementID)
+void ControllerMappingTableModel::elementChanged(unsigned int elementID,float newValue)
 {
     const FSUSBJoystick *  joystick = static_cast<const FSUSBJoystick *>(_manager->getDevice(_joystickId));
 
@@ -137,6 +156,7 @@ elementCopy->setValue(element->getValue());
         {
 
               _elemnetMapped[index] = true;
+              _elementValuelist[index]=newValue;
               QModelIndex topLeft = createIndex(index,0);
                 QModelIndex bottom = createIndex(index,4);
                dataChanged(topLeft,bottom);
@@ -152,7 +172,7 @@ void ControllerMappingTableModel::onButtonDown(FSDeviceInputEvent event)
     if(event.getDeviceID() != _joystickId)
          return ;
 
-    elementChanged(event.getControlID());
+    elementChanged(event.getControlID(),event.getNewInputValue());
 
 }
 
@@ -161,7 +181,7 @@ void ControllerMappingTableModel::onButtonUp(FSDeviceInputEvent event)
     if(event.getDeviceID() != _joystickId)
          return ;
 
-    elementChanged(event.getControlID());
+    elementChanged(event.getControlID(),event.getNewInputValue());
 
 }
 
@@ -170,7 +190,8 @@ void ControllerMappingTableModel::onStickMove(FSDeviceInputEvent event)
     if(event.getDeviceID() != _joystickId)
          return ;
 
-    elementChanged(event.getControlID());
+    elementChanged(event.getControlID(),event.getNewInputValue());
+
 
 }
 void ControllerMappingTableModel::onDisconnect(FSBaseEvent event)

@@ -26,8 +26,9 @@ private:
     JoyStickElementMap _JoyStickElementMap;
     std::vector<IDNumber> _elemntIDList;
     void modelChanged(int joystickiD);
-    void elementChanged(unsigned int elementID);
+    void elementChanged(unsigned int elementID,float newValue);
     std::vector<bool> _elemnetMapped;
+    std::vector<float> _elementValuelist;
 
 };
 

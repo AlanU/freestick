@@ -165,15 +165,19 @@ void JoyStickConfigWidget::updateVirtualAnalogGamePad(FSDeviceInput input,FSEven
         break;
         case XAxis:
            setAxisWidgetFromValue(ui->RightStickPoint,value,true);
+           ui->LeftStickXBar->setValue(value*100);
         break;
         case YAxis:
             setAxisWidgetFromValue(ui->RightStickPoint,value,false);
+            ui->LeftStickYBar->setValue(value*100);
         break;
         case XAxis2:
           setAxisWidgetFromValue(ui->LeftStickPoint,value,true);
+          ui->RightStickXBar->setValue(value*100);
         break;
         case YAxis2:
             setAxisWidgetFromValue(ui->LeftStickPoint,value,false);
+            ui->RightStickYBar->setValue(value*100);
         break;
         default:
         break;
