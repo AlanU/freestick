@@ -176,7 +176,7 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     // No center button
     _usageMapToInputEvent[GameElementsVendorID][GameElementsRecoilID][589834] = ButtonStart;
 
-    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][65593].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][65593].push_back(FSUSBElementInfoMap(0,0,LastValueUp,FSInputPressed));
     _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][65593].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
     _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][65593].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
     _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][65593].push_back(FSUSBElementInfoMap(3,3,DPadRight,FSInputPressed));
@@ -184,13 +184,13 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][65593].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
     _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][65593].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
     _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][65593].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][65593].push_back(FSUSBElementInfoMap(15,15,LastValueUp,FSInputRest));
+    //_usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][65593].push_back(FSUSBElementInfoMap(15,15,LastValueUp,FSInputRest));
 
     _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][65584].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));
     _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][65585].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));
 
-    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][65586].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));
-    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][65589].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));
+    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][65586].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));
+    _usageMapToInputRangeEvent[GameElementsVendorID][GameElementsRecoilID][65589].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));
 
 
     // SteelSeries Free controller
