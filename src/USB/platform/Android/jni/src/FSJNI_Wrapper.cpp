@@ -37,11 +37,11 @@ const int  InputDevice_SOURCE_GAMEPAD = 0x00000401;
 const int  InputDevice_SOURCE_JOYSTICK = 0x01000010;
 const int  InputDevice_SOURCE_DPAD = 0x00000201;
 
-JNIEXPORT void JNICALL Java_org_freestick_FreestickDeviceManager_gamepadDeviceUpdate(JNIEnv *env, jobject thisObj,jint deviceid,jint code,jint type,jfloat value,jint min,jint max)
+JNIEXPORT bool JNICALL Java_org_freestick_FreestickDeviceManager_gamepadDeviceUpdate(JNIEnv *env, jobject thisObj,jint deviceid,jint code,jint type,jfloat value,jint min,jint max)
 {
     LOGI("JNI gamepadDeviceUpdate %i %i %f %i,%i",code,type,value,min,max);
 
-    JNIBridge::updateValue(deviceid, code,static_cast<JNICallBackType> (type), value,min,max);
+    return JNIBridge::updateValue(deviceid, code,static_cast<JNICallBackType> (type), value,min,max);
 }
 
 JNIEXPORT void JNICALL Java_org_freestick_FreestickDeviceManager_gamepadWasAdded(JNIEnv *env, jobject thisObj,jint HID_ID)
@@ -63,13 +63,15 @@ JNIEXPORT void JNICALL Java_org_freestick_FreestickDeviceManager_gamepadWasRemov
 }
 
 
-void JNIBridge::updateValue(int deviceid,int code,JNICallBackType type,float value,int min,int max)
+bool JNIBridge::updateValue(int deviceid,int code,JNICallBackType type,float value,int min,int max)
 {
+    bool returnValue = false;
     for(std::vector<IJINICallBack*>::iterator itr = _deviceUpdateCallback.begin();itr != _deviceUpdateCallback.end();itr++)
     {
-        (*itr)->gamepadWasUpdatedFromJINBridge(deviceid, code, type, value,min,max);
+        returnValue = returnValue || (*itr)->gamepadWasUpdatedFromJINBridge(deviceid, code, type, value,min,max);
 
     }
+    return returnValue;
 }
 void JNIBridge::update(int hidDeviceID, int type)
 {

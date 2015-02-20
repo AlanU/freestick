@@ -44,7 +44,7 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener 
 
     public native void gamepadWasRemoved(int deviceid);
 
-    public native void gamepadDeviceUpdate(int deviceid, int code, int type, float value, int min,
+    public native boolean gamepadDeviceUpdate(int deviceid, int code, int type, float value, int min,
             int max);
 
     public FreestickDeviceManager() {
@@ -126,7 +126,7 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener 
                 && (event.getAction() == MotionEvent.ACTION_MOVE))
         // if (((event.getSource() & InputDevice.SOURCE_CLASS_JOYSTICK) != 0)
         {
-            Log.w("FreeStick", "handelMotionEvent" + event.toString());
+            Log.w("FreeStick", "handelMotionEvent : " + event.toString());
             InputDevice eventDevice = event.getDevice();
             final int historySize = event.getHistorySize();
             final int pointerCount = event.getPointerCount();
@@ -170,13 +170,13 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener 
 
     public boolean handelButtonEvent(KeyEvent event) {
         if (event.getAction() == KeyEvent.ACTION_UP || event.getAction() == KeyEvent.ACTION_DOWN) {
-            Log.w("FreeStick", "handelButtonEvent" + event.toString());
+            Log.w("FreeStick", "handelButtonEvent : " + event.toString());
             float value = event.getAction();
             int code = event.getKeyCode();
             Log.w("FreeStick", "calling gamepadDeviceUpdate");
-            gamepadDeviceUpdate(event.getDeviceId(), code, 2, value, 0, 1);
+            boolean handled = gamepadDeviceUpdate(event.getDeviceId(), code, 2, value, 0, 1);
             Log.w("FreeStick", "Back From calling gamepadDeviceUpdate");
-            if (code != KeyEvent.KEYCODE_BACK) {
+            if (handled) {
                 return true;
             }
 
