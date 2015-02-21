@@ -35,6 +35,19 @@ FSUSBJoyStickInputElement::FSUSBJoyStickInputElement()
 {
 }
 
+void FSUSBJoyStickInputElement::EmptyQue(std::stack<FSUSBElementInfoMap> & infoMapsToReturn,unsigned int sizeToleft)
+{
+
+    while(_lastValueStack.size() >sizeToleft)
+    {
+      MinMaxNumber stackValue = _lastValueStack.front();
+      FSUSBElementInfoMap LastValueMap =  _usbDeviceManager->lookUpDeviceInputFromUSBID(_vendorID,_productID,getJoystickID(),_elementMin,_elementMax,stackValue);
+      FSUSBElementInfoMap map = FSUSBElementInfoMap(LastValueMap.getMin(),LastValueMap.getMax(),LastValueMap.getDeviceInput(),FSInputRest);
+      infoMapsToReturn.push(map);
+      _lastValueStack.pop();
+    }
+}
+
 void FSUSBJoyStickInputElement::getMapping(int inputValue ,std::stack<FSUSBElementInfoMap> & infoMapsToReturn)
 {
 
@@ -42,17 +55,17 @@ void FSUSBJoyStickInputElement::getMapping(int inputValue ,std::stack<FSUSBEleme
    FSUSBElementInfoMap map = _usbDeviceManager->lookUpDeviceInputFromUSBID(_vendorID,_productID,getJoystickID(),_elementMin,_elementMax,inputValue);
    if(map.getDeviceInput() == LastValueUp)
    {
-       while(!_lastValueStack.empty())
-       {
-         MinMaxNumber stackValue = _lastValueStack.top();
-         FSUSBElementInfoMap LastValueMap =  _usbDeviceManager->lookUpDeviceInputFromUSBID(_vendorID,_productID,getJoystickID(),_elementMin,_elementMax,stackValue);
-         map = FSUSBElementInfoMap(LastValueMap.getMin(),LastValueMap.getMax(),LastValueMap.getDeviceInput(),FSInputRest);
-         infoMapsToReturn.push(map);
-         _lastValueStack.pop();
-       }
+       EmptyQue(infoMapsToReturn,0);
    }
    else
    {
+
+       if (_useLastValueStack && _lastValueStack.size() >2)
+       {
+            EmptyQue(infoMapsToReturn,_lastValueStack.size()-1);
+       }
+
+
       infoMapsToReturn.push(map);
       this->setValue(inputValue);
 
@@ -114,7 +127,6 @@ void FSUSBJoyStickInputElement::setValue(MinMaxNumber newValue)
 
 FSUSBJoyStickInputElement::FSUSBJoyStickInputElement(unsigned int id,  unsigned int parentID, MinMaxNumber elementMin, MinMaxNumber elementMax ,long venderID,long productID,FSUSBDeviceManager & _manager,PhysicalValueNumber currentValue,MinMaxNumber buttonNumber):FSUSBDevice(id,venderID,productID)
 {
-
     _buttonNumber = buttonNumber;
      _elementMin = elementMin;
      _elementMax = elementMax;
@@ -131,14 +143,13 @@ FSUSBJoyStickInputElement::FSUSBJoyStickInputElement(unsigned int id,  unsigned 
 
     _parentID = parentID;
 
+    if(_elementMax<9)
+    {
+        _useLastValueStack =  _manager.doesElementHaveDeviceInputForValue( venderID, productID ,id,LastValueUp);
+    }
+    calibrate(currentValue,elementMin,elementMax);
 
-     _useLastValueStack =  _manager.doesElementHaveDeviceInputForValue( venderID, productID ,id,LastValueUp);
-     calibrate(currentValue,elementMin,elementMax);
-
-     firstTime = time(NULL);
-
-
-
+    firstTime = time(NULL);
 }
 
 void FSUSBJoyStickInputElement::calibrate(PhysicalValueNumber currentValue, MinMaxNumber elementMin, MinMaxNumber elementMax )
