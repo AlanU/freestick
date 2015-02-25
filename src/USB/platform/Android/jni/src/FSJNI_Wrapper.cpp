@@ -130,12 +130,12 @@ void JNIBridge::registerDeviceWasUpdated(IJINICallBack * listener)
 
 void  JNIBridge::updateJoysticks(JavaVM * jvm)
 {
-    static std::vector<jint> currentAttachedJoysticks;
+    std::vector<jint> currentAttachedJoysticks;
     std::vector<jint> foundJoysticks;
     JNIEnv *env;
     //TODO cache jclass and methodID
     jvm->AttachCurrentThread(&env,NULL);
-    static jclass inputDeviceClass = env->FindClass("android/view/InputDevice");
+    jclass inputDeviceClass = env->FindClass("android/view/InputDevice");
 
     if(!inputDeviceClass)
     {
@@ -143,7 +143,7 @@ void  JNIBridge::updateJoysticks(JavaVM * jvm)
         return ;
     }
 
-    static jmethodID getDeviceIDsMethodId = env->GetStaticMethodID(inputDeviceClass,"getDeviceIds","()[I");
+    jmethodID getDeviceIDsMethodId = env->GetStaticMethodID(inputDeviceClass,"getDeviceIds","()[I");
     jobject deviceIdsObj = env->CallStaticObjectMethod(inputDeviceClass,getDeviceIDsMethodId);
     jintArray * deviceIdArray = (jintArray *)(&deviceIdsObj);
     int arrayLenght = env->GetArrayLength((*deviceIdArray));
@@ -152,7 +152,7 @@ void  JNIBridge::updateJoysticks(JavaVM * jvm)
 
    // LOGI("looking up device getDevice MethodID ");
 
-    static jmethodID getDeviceMethodId = env->GetStaticMethodID(inputDeviceClass,"getDevice","(I)Landroid/view/InputDevice;");
+    jmethodID getDeviceMethodId = env->GetStaticMethodID(inputDeviceClass,"getDevice","(I)Landroid/view/InputDevice;");
     if(!getDeviceMethodId)
     {
         LOGI("get device MethodID lookup failed");
