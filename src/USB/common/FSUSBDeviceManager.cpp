@@ -582,8 +582,9 @@ bool FSUSBDeviceManager::doesDeviceHaveDeviceInputForValue(unsigned int deviceID
     {
         unsigned int vendorUSBID = usbDeice->getVenderID();
         unsigned int productUSBID = usbDeice->getProductID();
-        doesDeviceHaveDeviceInputForValue(vendorUSBID,productUSBID,inputToLookFor,value);
+        return  doesDeviceHaveDeviceInputForValue(vendorUSBID,productUSBID,inputToLookFor,value);
     }
+    return false;
 }
 
 
