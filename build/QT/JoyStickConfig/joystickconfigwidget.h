@@ -31,7 +31,8 @@ and must not be misrepresented as being the original software.
 #include <QWidget>
 #include <QTimer>
 
-#include "../../../src/FreeStick.h"
+#include "freestick.h"
+#include "controllermappingtablemodel.h"
 namespace Ui {
 class JoyStickConfigWidget;
 }
@@ -62,6 +63,15 @@ private:
     Ui::JoyStickConfigWidget *ui;
     void PopulateDeviceStats(unsigned int id);
     QTimer * timer;
+    void updateVirtualDigitalGamePad(freestick::FSDeviceInput input,freestick::FSEventAction action );
+    void updateVirtualAnalogGamePad(freestick::FSDeviceInput input,freestick::FSEventAction action,float value );
+    void updateVirtualButton(QWidget * button,freestick::FSEventAction action );
+    void updateVirtualButton(QWidget * button,freestick::FSEventAction action,QColor buttonColor,QColor releaseButtonColor );
+    float convertNormalizedRangerToAxisPoint(float value,int maxValue,int minValue);
+    void setAxisWidgetFromValue(QWidget * widgetToSet,float value,bool setX);
+    std::map<unsigned int ,ControllerMappingTableModel *> _joystickModelMap;
+
+
 };
 
 #endif // JOYSTICKCONFIGWIDGET_H

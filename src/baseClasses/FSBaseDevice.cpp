@@ -25,19 +25,19 @@ and must not be misrepresented as being the original software.
 3. This notice may not be removed or altered from any source distribution.
 **************************************************************************/
 
-#include "FSBaseDevice.h"
+#include "baseClasses/FSBaseDevice.h"
 using namespace freestick;
 FSBaseDevice::FSBaseDevice()
 {
 }
 
-FSBaseDevice::FSBaseDevice(unsigned int id)
+FSBaseDevice::FSBaseDevice(IDNumber id)
 {
     _id = id;
     _friendlyName = "unknown";
 }
 
-unsigned int FSBaseDevice::getJoystickID() const
+IDNumber FSBaseDevice::getJoystickID() const
 {
     return _id;
 }

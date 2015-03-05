@@ -25,7 +25,7 @@ and must not be misrepresented as being the original software.
 3. This notice may not be removed or altered from any source distribution.
 **************************************************************************/
 
-#include "FSBaseEvent.h"
+#include "baseClasses/FSBaseEvent.h"
 using namespace freestick;
 FSBaseEvent::FSBaseEvent(FreeStickEventType eventType,FSEventAction eventAction,unsigned int timeStamp,unsigned int deviceID)
 {

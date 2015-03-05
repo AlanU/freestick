@@ -16,3 +16,4 @@ build/QT/JoyStickConfig/moc_joystickconfigwidget.cpp
 build/QT/JoyStickConfig/moc_mainwindow.cpp
 build/QT/JoyStickConfig/ui_joystickconfigwidget.h
 build/QT/JoyStickConfig/ui_mainwindow.h
+build/QT/JoyStickConfig/moc_analogaxiswidget.cpp

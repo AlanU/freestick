@@ -28,6 +28,11 @@ and must not be misrepresented as being the original software.
 #include "mainwindow.h"
 #include <QApplication>
 
+#ifdef Q_OS_ANDROID
+
+#include <native_app_glue/android_native_app_glue.h>
+
+#endif
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -36,3 +41,24 @@ int main(int argc, char *argv[])
 
     return a.exec();
 }
+
+#ifdef Q_OS_ANDROID
+
+void android_main(struct android_app* app)
+{
+    static struct android_app* app2;
+    app_dummy();
+
+    printf("Android main started");
+    fflush(stdout);
+    while(1)
+    {
+        // Check if we are exiting.
+        if (app->destroyRequested != 0) {
+           // engine_term_display(&engine);
+            return;
+        }
+    }
+
+}
+#endif

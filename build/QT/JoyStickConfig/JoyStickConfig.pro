@@ -27,29 +27,43 @@
 
 QT       += core gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets svg
 
 TARGET = JoyStickConfig
 
 android {
 QT += androidextras
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android-source
+
    message("JoyStickConfig Android Package Source")
    message($$ANDROID_PACKAGE_SOURCE_DIR)
+   INCLUDEPATH +=  $$(JAVA_HOME)/include \
+                   $$(JAVA_HOME)/include/darwin \
+                    $$(JAVA_HOME)/include/win32 \
+                    $$NDK_ROOT/sources/android \
+
+
+
+
 OTHER_FILES+= $$files(android-source/src/org/freestick/*.java) \
                   $$files(android-source/*.xml)
 #CONFIG += dylib
 }
 
 TEMPLATE = app
-PRECOMPILED_HEADER = $$PWD/../../../src/FreeStick.h
+PRECOMPILED_HEADER = $$PWD/../../../inc/freestick.h
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    joystickconfigwidget.cpp
+        joystickconfigwidget.cpp \
+    analogaxiswidget.cpp \
+    controllermappingtablemodel.cpp
+
 
 HEADERS  += mainwindow.h \
-    joystickconfigwidget.h
+    joystickconfigwidget.h \
+    analogaxiswidget.h \
+    controllermappingtablemodel.h
 
 FORMS    += mainwindow.ui \
     joystickconfigwidget.ui
@@ -64,6 +78,7 @@ win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../FreeStick/release/ 
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../FreeStick/debug/ -lFreeStick
 else:unix: LIBS += -L$$OUT_PWD/../FreeStick/ -lFreeStick
 
-INCLUDEPATH += $$PWD/../FreeStick
+INCLUDEPATH += $$PWD/../../../inc \
 DEPENDPATH += $$PWD/../FreeStick
+
 
