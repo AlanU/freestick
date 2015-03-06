@@ -104,6 +104,7 @@ typedef unsigned long int IDNumber; //Needs to be at lest 32bits
         FSUSBJoystickType,
         FSUSBMACOSXJoystickType,
         FSAndroidJoystickType,
+        FSDirectInputJoystickType,
         FSUSBNULLDeviceType
 
     } FSDeviceType;

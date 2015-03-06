@@ -129,5 +129,11 @@ LIBS += -framework IOKit \
         -framework CoreFoundation \
 }
 
+win32 {
+
+SOURCES += $$files(../../../src/USB/platform/Windows/*.cpp)
+
+HEADERS += $$files(../../../inc/USB/platform/Windows/*.h)
+}
 
 
