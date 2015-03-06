@@ -17,3 +17,13 @@ build/QT/JoyStickConfig/moc_mainwindow.cpp
 build/QT/JoyStickConfig/ui_joystickconfigwidget.h
 build/QT/JoyStickConfig/ui_mainwindow.h
 build/QT/JoyStickConfig/moc_analogaxiswidget.cpp
+build/QT/FreeStick/Makefile.Debug
+build/QT/FreeStick/Makefile.Release
+build/QT/JoyStickConfig/Makefile.Debug
+build/QT/JoyStickConfig/Makefile.Release
+build/QT/JoyStickConfig/debug/JoyStickConfig.exe.embed.manifest
+build/QT/JoyStickConfig/debug/JoyStickConfig.exe_manifest.rc
+build/QT/JoyStickConfig/debug/JoyStickConfig.exe_manifest.res
+build/QT/JoyStickConfig/debug/moc_analogaxiswidget.cpp
+build/QT/JoyStickConfig/debug/moc_joystickconfigwidget.cpp
+build/QT/JoyStickConfig/debug/moc_mainwindow.cpp
