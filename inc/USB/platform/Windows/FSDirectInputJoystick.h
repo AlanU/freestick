@@ -35,6 +35,8 @@ namespace freestick {
     public:
         FSDirectInputJoystick();
         virtual FSDeviceType getClassType() const {return FSDirectInputJoystickType;}
+    private:
+       // LPDIRECTINPUTDEVICE8    _Joystick;
 
     };
 }

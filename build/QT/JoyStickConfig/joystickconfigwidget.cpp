@@ -322,7 +322,7 @@ void JoyStickConfigWidget::onConnect(FSBaseEvent event)
 
 void JoyStickConfigWidget::update()
 {
-#ifdef Q_OS_ANDROID
+#if defined( Q_OS_ANDROID) || defined(Q_OS_WIN)
 
     deviceManager.update();
 #endif

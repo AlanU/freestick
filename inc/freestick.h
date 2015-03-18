@@ -70,7 +70,7 @@ and must not be misrepresented as being the original software.
     #include "USB/platform/Windows/FSDirectInputJoystick.h"
     #include "USB/platform/Windows/FSDirectInputJoystickManager.h"
     #include "USB/platform/NULL/FSUSBNullJoystickDeviceManager.h"
-    typedef freestick::FSUSBNullJoystickDeviceManager FreeStickDeviceManager;
+    typedef freestick::FSDirectInputJoystickManager FreeStickDeviceManager;
 #else
     #include "USB/platform/NULL/FSUSBNullJoystickDeviceManager.h"
     typedef freestick::FSUSBNullJoystickDeviceManager FreeStickDeviceManager;

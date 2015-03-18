@@ -27,14 +27,48 @@ and must not be misrepresented as being the original software.
 
 #pragma once
 #include"USB/common/FSUSBJoystickDeviceManager.h"
+#define DIRECTINPUT_VERSION 0x0800
+#include <Windows.h>
+#include <dinput.h>
+#include <dinputd.h>
+#include <wbemidl.h>
+#include <oleauto.h>
+
+#define SAFE_DELETE(p)  { if(p) { delete (p);     (p)=nullptr; } }
+#define SAFE_RELEASE(p) { if(p) { (p)->Release(); (p)=nullptr; } }
 namespace freestick {
+class FSDirectInputJoystickManager;
+struct DirectInput_Enum_Contex
+{
+    DIJOYCONFIG * joystickConfig;
+    bool isVaild;
+    freestick::FSDirectInputJoystickManager * manager;
+};
 
     class FSDirectInputJoystickManager : public FSUSBJoystickDeviceManager
     {
     public:
         FSDirectInputJoystickManager();
         virtual void init( );
+        virtual void update();
         virtual ~FSDirectInputJoystickManager();
+        static bool IsXInputDevice( const GUID* pGuidProductFromDirectInput );
+        //Windows BOOL is type def for int
+        static BOOL CALLBACK EnumJoysticksCallback( const DIDEVICEINSTANCE* pdidInstance,void* pContext );
+    private:
+
+        LPDIRECTINPUT8          _directInput8;
+
+        std::map<LPDIRECTINPUTDEVICE8,unsigned int> _directInputToDeviceIDMap;
+        DIJOYCONFIG PreferredJoyCfg;
+        DirectInput_Enum_Contex enumContext;
+    protected:
+        virtual void addDevice(FSBaseDevice * device);
+        virtual void removeDevice(FSBaseDevice * device);
+        virtual void addDevice(GUID guidDeviceInstance);
+        virtual void removeDevice(GUID guidDeviceInstance);
+        //unsigned int getDeviceIDFromIOHIDevice(LPDIRECTINPUTDEVICE8 inputDevice );
     };
+
 
 }
