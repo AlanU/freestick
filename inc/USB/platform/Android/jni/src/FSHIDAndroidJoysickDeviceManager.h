@@ -40,6 +40,7 @@ namespace freestick
         virtual void gamepadWasAddedFromJINBridge(int hid_id,JavaVM * jvm);
         virtual void gamepadWasRemovedFromJINBridge(int hid_id);
         virtual bool gamepadWasUpdatedFromJINBridge(int deviceid,int code,JNICallBackType type,float value,int min,int max);
+        void addAndroidMapping(unsigned int androidEventType,FSDeviceInput deviceInput);
         void update();
     private:
         std::map<int,unsigned int> _androidIDToIDMap;
