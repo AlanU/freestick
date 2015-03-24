@@ -49,6 +49,18 @@ using namespace freestick;
 #define ANDROID_AXIS_HAT_X 15
 #define ANDROID_AXIS_HAT_Y 16
 
+void FSHIDAndroidJoysickDeviceManager::addAndroidMapping(unsigned int androidEventType,FSDeviceInput deviceInput)
+{
+    if(FS_isAxis(deviceInput) || FS_isTrigger(deviceInput))
+    {
+        _androidAxisnUsageMapToInputEvent[androidEventType] = deviceInput;
+    }
+    else
+    {
+        _androidButtonUsageMapToInputEvent[androidEventType] = deviceInput;
+    }
+}
+
 FSHIDAndroidJoysickDeviceManager::FSHIDAndroidJoysickDeviceManager()
 {
 
