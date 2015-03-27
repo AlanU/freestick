@@ -43,6 +43,29 @@ FSDirectInputJoystick::FSDirectInputJoystick(LPDIRECTINPUTDEVICE8  LPDIDJoystick
               long productID):FSUSBJoystick(joyStickID,numberOfButtons,numberOfAnlogSticks,numberOfDigitalSticks ,forceFeedBackSupported,venderID,productID)
 {
     _LPDIDJoystick = LPDIDJoystick;
+
+    DIPROPDWORD dipdw;
+    dipdw.diph.dwSize = sizeof(DIPROPDWORD);
+
+    dipdw.diph.dwHeaderSize = sizeof(DIPROPHEADER);
+    dipdw.diph.dwObj =0;
+    dipdw.diph.dwHow = DIPH_DEVICE;
+   HRESULT hr = _LPDIDJoystick->GetProperty(DIPROP_VIDPID,&dipdw.diph);
+    if(SUCCEEDED(hr))
+    {
+
+      WORD  vendorIDW = LOWORD(dipdw.dwData);
+      WORD  productIDW = HIWORD(dipdw.dwData);
+      _vendorID = vendorIDW;
+      _productID = productIDW;
+      _vendorIDFriendlyName = FSUSBDevice::GetFrendlyVenderNameFromID(_vendorID);
+      _prodcutIDFriendlyName = FSUSBDevice::GetFrendlyProductNameFromID(_vendorID,_productID);
+      _friendlyName = _vendorIDFriendlyName + " "+ _prodcutIDFriendlyName;
+
+    }
+
+
+
 }
 
 FSDirectInputJoystick::~FSDirectInputJoystick()
