@@ -36,6 +36,11 @@ and must not be misrepresented as being the original software.
 
 #define SAFE_DELETE(p)  { if(p) { delete (p);     (p)=nullptr; } }
 #define SAFE_RELEASE(p) { if(p) { (p)->Release(); (p)=nullptr; } }
+inline bool operator<( const GUID & lhs, const GUID & rhs )
+{
+        return  memcmp(&lhs, &rhs, sizeof(GUID) )< 0;
+}
+
 namespace freestick {
 class FSDirectInputJoystickManager;
 struct DirectInput_Enum_Contex
@@ -59,7 +64,7 @@ struct DirectInput_Enum_Contex
 
         LPDIRECTINPUT8          _directInput8;
 
-        std::map<LPDIRECTINPUTDEVICE8,unsigned int> _directInputToDeviceIDMap;
+        std::map<GUID,unsigned int> _directInputToDeviceIDMap;
         DIJOYCONFIG PreferredJoyCfg;
         DirectInput_Enum_Contex enumContext;
     protected:

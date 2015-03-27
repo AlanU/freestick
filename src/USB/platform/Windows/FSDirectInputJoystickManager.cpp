@@ -26,7 +26,7 @@ and must not be misrepresented as being the original software.
 **************************************************************************/
 
 #include "USB/platform/Windows/FSDirectInputJoystickManager.h"
-
+#include "USB/platform/Windows/FSDirectInputJoystick.h"
 
 using namespace freestick;
 
@@ -105,28 +105,37 @@ return DIENUM_CONTINUE;
 
 void  FSDirectInputJoystickManager::addDevice(FSBaseDevice * device)
 {
-
+    FSUSBJoystickDeviceManager::addDevice(device);
 }
 
 void  FSDirectInputJoystickManager::removeDevice(FSBaseDevice * device)
 {
-
+    FSUSBJoystickDeviceManager::removeDevice(device);
 }
 
 void  FSDirectInputJoystickManager::addDevice(GUID guidDeviceInstance)
 {
-    LPDIRECTINPUTDEVICE8    _Joystick = NULL;
-
-    _directInput8->CreateDevice(guidDeviceInstance,&_Joystick,NULL);
-    if(_Joystick)
+    if(_directInputToDeviceIDMap.find(guidDeviceInstance) == _directInputToDeviceIDMap.end())
     {
-        _Joystick->Unacquire();
+        LPDIRECTINPUTDEVICE8    _Joystick = NULL;
+
+        _directInput8->CreateDevice(guidDeviceInstance,&_Joystick,NULL);
+        unsigned int newID = this->getNextID();
+        FSDirectInputJoystick * newJoystick = new FSDirectInputJoystick(_Joystick,newID,0,0,0,false,-1,-1);
+        this->addDevice(newJoystick);
+        _directInputToDeviceIDMap[guidDeviceInstance] = newID;
     }
 }
 
 void  FSDirectInputJoystickManager::removeDevice(GUID guidDeviceInstance)
 {
-
+    if(_directInputToDeviceIDMap.find(guidDeviceInstance) != _directInputToDeviceIDMap.end())
+    {
+     unsigned int id = _directInputToDeviceIDMap[guidDeviceInstance];
+    const FSBaseDevice * joystickToDelete = this->getDevice(id);
+     this->removeDevice((FSBaseDevice*)joystickToDelete);
+    // _directInputToDeviceIDMap.erase(guidDeviceInstance);
+    }
 }
 
 //-----------------------------------------------------------------------------

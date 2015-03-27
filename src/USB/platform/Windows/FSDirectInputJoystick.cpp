@@ -31,3 +31,24 @@ using namespace freestick;
 FSDirectInputJoystick::FSDirectInputJoystick()
 {
 }
+
+
+FSDirectInputJoystick::FSDirectInputJoystick(LPDIRECTINPUTDEVICE8  LPDIDJoystick,
+              unsigned int joyStickID,
+              unsigned int numberOfButtons,
+              unsigned int numberOfAnlogSticks,
+              unsigned int numberOfDigitalSticks,
+              bool  forceFeedBackSupported,
+              long venderID,
+              long productID):FSUSBJoystick(joyStickID,numberOfButtons,numberOfAnlogSticks,numberOfDigitalSticks ,forceFeedBackSupported,venderID,productID)
+{
+    _LPDIDJoystick = LPDIDJoystick;
+}
+
+FSDirectInputJoystick::~FSDirectInputJoystick()
+{
+    if(_LPDIDJoystick)
+    {
+        _LPDIDJoystick->Unacquire();
+    }
+}

@@ -26,6 +26,9 @@ and must not be misrepresented as being the original software.
 **************************************************************************/
 
 #pragma once
+#define DIRECTINPUT_VERSION 0x0800
+#include <Windows.h>
+#include <dinput.h>
 
 #include "USB/common/FSUSBJoystick.h"
 namespace freestick {
@@ -34,9 +37,18 @@ namespace freestick {
     {
     public:
         FSDirectInputJoystick();
+        FSDirectInputJoystick(LPDIRECTINPUTDEVICE8 LPDIDJoystick,
+                      unsigned int joyStickID,
+                      unsigned int numberOfButtons,
+                      unsigned int numberOfAnlogSticks,
+                      unsigned int numberOfDigitalSticks,
+                      bool  forceFeedBackSupported,
+                      long venderID,
+                      long productID);
+        virtual ~FSDirectInputJoystick();
         virtual FSDeviceType getClassType() const {return FSDirectInputJoystickType;}
     private:
-       // LPDIRECTINPUTDEVICE8    _Joystick;
+        LPDIRECTINPUTDEVICE8    _LPDIDJoystick;
 
     };
 }
