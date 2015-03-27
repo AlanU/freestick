@@ -48,6 +48,8 @@ struct DirectInput_Enum_Contex
     DIJOYCONFIG * joystickConfig;
     bool isVaild;
     freestick::FSDirectInputJoystickManager * manager;
+    std::vector<GUID> connectedLastUpdateJoysticks;
+    std::vector<GUID> joysticksConnectedThisUpdate;
 };
 
     class FSDirectInputJoystickManager : public FSUSBJoystickDeviceManager
@@ -73,6 +75,9 @@ struct DirectInput_Enum_Contex
         virtual void addDevice(GUID guidDeviceInstance);
         virtual void removeDevice(GUID guidDeviceInstance);
         //unsigned int getDeviceIDFromIOHIDevice(LPDIRECTINPUTDEVICE8 inputDevice );
+    private:
+        void updateConnectJoysticks();
+
     };
 
 

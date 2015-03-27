@@ -31,7 +31,6 @@ and must not be misrepresented as being the original software.
 using namespace freestick;
 
 
-
 FSDirectInputJoystickManager::FSDirectInputJoystickManager()
 {
     _directInput8 = NULL;
@@ -59,24 +58,72 @@ void FSDirectInputJoystickManager::init( )
         enumContext.isVaild = true;
     SAFE_RELEASE(joyConfig);
 
-    if(FAILED( hr = _directInput8->EnumDevices(DI8DEVCLASS_GAMECTRL,
+   /* if(FAILED( hr = _directInput8->EnumDevices(DI8DEVCLASS_GAMECTRL,
                                                FSDirectInputJoystickManager::EnumJoysticksCallback,
                                                &enumContext,
                                                DIEDFL_ATTACHEDONLY)))
-        return;
+        return;*/
+    update();
 
+}
+
+void FSDirectInputJoystickManager::updateConnectJoysticks()
+{
+    HRESULT hr ;
+
+     std::vector<GUID> newThisUpdate;
+     std::vector<GUID> foundThisUpdate;
+    if(SUCCEEDED( hr = _directInput8->EnumDevices(DI8DEVCLASS_GAMECTRL,
+                                               FSDirectInputJoystickManager::EnumJoysticksCallback,
+                                                &enumContext,
+                                               DIEDFL_ATTACHEDONLY)))
+    {
+        std::vector<GUID>::iterator itr ;
+        for(itr =  enumContext.joysticksConnectedThisUpdate.begin();itr != enumContext.joysticksConnectedThisUpdate.end();itr++)
+        {
+            GUID foundJoystick = *itr;
+            std::vector<GUID>::iterator itr = std::find(enumContext.connectedLastUpdateJoysticks.begin(),
+                                                        enumContext.connectedLastUpdateJoysticks.end(),
+                                                      foundJoystick);
+            if(itr != enumContext.connectedLastUpdateJoysticks.end())
+            {
+                enumContext.connectedLastUpdateJoysticks.erase(itr);
+
+            }
+            else
+            {
+                newThisUpdate.push_back(foundJoystick);
+            }
+            foundThisUpdate.push_back(foundJoystick);
+
+        }
+       // enumContext.joysticksConnectedThisUpdate.clear();
+          std::vector<GUID>::iterator itrDelete ;
+          for (itrDelete = enumContext.connectedLastUpdateJoysticks.begin(); itrDelete != enumContext.connectedLastUpdateJoysticks.end();itrDelete++ )
+          {
+              this->removeDevice(*itrDelete);
+          }
+          std::vector<GUID>::iterator itrAdd ;
+          for (itrAdd = newThisUpdate.begin(); itrAdd != newThisUpdate.end();itrAdd++ )
+          {
+              this->addDevice(*itrAdd);
+          }
+
+        //delete every joystick in connectedLastUpdateJoysticks
+        //add all in newThisUpdate
+
+        enumContext.connectedLastUpdateJoysticks = foundThisUpdate;
+         enumContext.joysticksConnectedThisUpdate.clear();
+
+    }
 }
 
 void FSDirectInputJoystickManager::update()
 {
-    //TODO loop through connected joysticks and update there data
-    HRESULT hr ;
-
-    if(FAILED( hr = _directInput8->EnumDevices(DI8DEVCLASS_GAMECTRL,
-                                               FSDirectInputJoystickManager::EnumJoysticksCallback,
-                                               &enumContext,
-                                               DIEDFL_ATTACHEDONLY)))
-        return;
+    updateConnectJoysticks();
+   //TODO
+    //Update buttons
+    //Update Analog sticks
 }
 
 FSDirectInputJoystickManager::~FSDirectInputJoystickManager()
@@ -97,7 +144,10 @@ FSDirectInputJoystickManager::~FSDirectInputJoystickManager()
      if( enumContext->isVaild && !IsEqualGUID( pdidInstance->guidInstance, enumContext->joystickConfig->guidInstance ) )
          return DIENUM_CONTINUE;
 
-     enumContext->manager->addDevice(pdidInstance->guidInstance);
+     //enumContext->manager->addDevice(pdidInstance->guidInstance);
+    // enumContext->connectedJoysticks.push_back(pdidInstance);
+
+     enumContext->joysticksConnectedThisUpdate.push_back(pdidInstance->guidInstance);
 
 
 return DIENUM_CONTINUE;
@@ -118,12 +168,15 @@ void  FSDirectInputJoystickManager::addDevice(GUID guidDeviceInstance)
     if(_directInputToDeviceIDMap.find(guidDeviceInstance) == _directInputToDeviceIDMap.end())
     {
         LPDIRECTINPUTDEVICE8    _Joystick = NULL;
-
-        _directInput8->CreateDevice(guidDeviceInstance,&_Joystick,NULL);
-        unsigned int newID = this->getNextID();
-        FSDirectInputJoystick * newJoystick = new FSDirectInputJoystick(_Joystick,newID,0,0,0,false,-1,-1);
-        this->addDevice(newJoystick);
-        _directInputToDeviceIDMap[guidDeviceInstance] = newID;
+        HRESULT  result;
+        result = _directInput8->CreateDevice(guidDeviceInstance,&_Joystick,NULL);
+        if(SUCCEEDED(result))
+        {
+            unsigned int newID = this->getNextID();
+            FSDirectInputJoystick * newJoystick = new FSDirectInputJoystick(_Joystick,newID,0,0,0,false,-1,-1);
+            this->addDevice(newJoystick);
+            _directInputToDeviceIDMap[guidDeviceInstance] = newID;
+        }
     }
 }
 
@@ -134,7 +187,7 @@ void  FSDirectInputJoystickManager::removeDevice(GUID guidDeviceInstance)
      unsigned int id = _directInputToDeviceIDMap[guidDeviceInstance];
     const FSBaseDevice * joystickToDelete = this->getDevice(id);
      this->removeDevice((FSBaseDevice*)joystickToDelete);
-    // _directInputToDeviceIDMap.erase(guidDeviceInstance);
+     _directInputToDeviceIDMap.erase(guidDeviceInstance);
     }
 }
 
