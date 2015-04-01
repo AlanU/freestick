@@ -92,6 +92,7 @@ io_service_t AllocForceFeedBackDeviceFromIOHIDDevice(IOHIDDeviceRef device)
                 FFDevice =  IOServiceGetMatchingService(kIOMasterPortDefault, matchDict);
 
             }
+            CFRelease(matchDict);
         }
     }
     return FFDevice;
@@ -251,6 +252,8 @@ unsigned int numberOfDeviecType(IOHIDDeviceRef device,int * TotalNumberOfButtons
             }
 
         }
+        CFRelease(deviceElements);
+        
     }
     if(TotalNumberOfButtons)
     {

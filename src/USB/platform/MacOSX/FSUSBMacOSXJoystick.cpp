@@ -101,11 +101,6 @@ unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickM
 
             if(type == kIOHIDElementTypeInput_Axis || type == kIOHIDElementTypeInput_Button || type == kIOHIDElementTypeInput_Misc || type == kIOHIDElementTypeInput_ScanCodes)
             {
-                if(value != 0)
-                {
-                    int t=0;
-
-                }
                 if(min != max)
                 {
                     EE_DEBUG<<"("<<min<<","<<max<<")"<<" ID: "<<elemnetID<<" unique id "<< uniqueElementID<<" Usage page" <<usagePage<< " Usage "<<usage<<" Value "<<value<<std::endl;
@@ -130,6 +125,8 @@ unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickM
         }
 
     }
+    CFRelease(deviceElements);
+    
 
     /* if(TotalNumberOfButtons)
     {
@@ -221,6 +218,9 @@ std::string FSUSBMacOSXJoystick::CFStringRefToString(CFStringRef refString)
             std::string temp = buffer;
             free(buffer);
             return temp;
+        }
+        else{
+            free(buffer);
         }
     }
 
