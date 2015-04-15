@@ -121,6 +121,7 @@ void FSDirectInputJoystickManager::updateConnectJoysticks()
 void FSDirectInputJoystickManager::update()
 {
     updateConnectJoysticks();
+
    //TODO
     //Update buttons
     //Update Analog sticks
@@ -172,6 +173,7 @@ void  FSDirectInputJoystickManager::addDevice(GUID guidDeviceInstance)
         result = _directInput8->CreateDevice(guidDeviceInstance,&_Joystick,NULL);
         if(SUCCEEDED(result))
         {
+            //TODO set up event with SetEventNotification , CreateEvent , and WaitForSingleObject
             unsigned int newID = this->getNextID();
             FSDirectInputJoystick * newJoystick = new FSDirectInputJoystick(_Joystick,newID,0,0,0,false,-1,-1);
             this->addDevice(newJoystick);
