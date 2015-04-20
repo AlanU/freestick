@@ -148,7 +148,7 @@ unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickM
 FSUSBMacOSXJoystick::~FSUSBMacOSXJoystick()
 {
 
-   // CFRelease(_macIOHIDDeviceRef);
+    CFRelease(_macIOHIDDeviceRef);
 }
 
 FSUSBMacOSXJoystick::FSUSBMacOSXJoystick()
@@ -176,20 +176,27 @@ FSUSBMacOSXJoystick::FSUSBMacOSXJoystick(IOHIDDeviceRef device,
     if(_vendorIDFriendlyName == "unknown")
     {
         CFStringRef manufactureStringRef = IOHIDDevice_GetManufacturer(device);
-       std::string temp = CFStringRefToString(manufactureStringRef);
-       if(!temp.empty())
-       {
-           _vendorIDFriendlyName = temp;
-       }
+        if(manufactureStringRef)
+        {
+           std::string temp = CFStringRefToString(manufactureStringRef);
+           if(!temp.empty())
+           {
+               _vendorIDFriendlyName = temp;
+           }
+        }
     }
     _prodcutIDFriendlyName = FSUSBDevice::GetFrendlyProductNameFromID(_vendorID,_productID);
     if(_prodcutIDFriendlyName == "unknown")
     {
        CFStringRef productStringRef = IOHIDDevice_GetProduct(device);
-       std::string temp = CFStringRefToString(productStringRef);
-       if(!temp.empty())
+       if(productStringRef)
        {
-           _prodcutIDFriendlyName = temp;
+           std::string temp = CFStringRefToString(productStringRef);
+
+           if(!temp.empty())
+           {
+               _prodcutIDFriendlyName = temp;
+           }
        }
     }
     _friendlyName = _vendorIDFriendlyName + " "+ _prodcutIDFriendlyName;
