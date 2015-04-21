@@ -143,10 +143,9 @@ FSUSBJoyStickInputElement::FSUSBJoyStickInputElement(unsigned int id,  unsigned 
 
     _parentID = parentID;
 
-    if(_elementMax<9)
-    {
-        _useLastValueStack =  _manager.doesElementHaveDeviceInputForValue( venderID, productID ,id,LastValueUp);
-    }
+
+   _useLastValueStack = _usbDeviceManager->doesElementHaveDeviceInputForValue(venderID,productID,id,LastValueUp);
+
     calibrate(currentValue,elementMin,elementMax);
 
     firstTime = time(NULL);
