@@ -107,6 +107,7 @@ void FSDirectInputJoystickManager::updateConnectJoysticks()
           for (itrAdd = newThisUpdate.begin(); itrAdd != newThisUpdate.end();itrAdd++ )
           {
               this->addDevice(*itrAdd);
+
           }
 
         //delete every joystick in connectedLastUpdateJoysticks
@@ -131,6 +132,26 @@ FSDirectInputJoystickManager::~FSDirectInputJoystickManager()
 {
 
 }
+
+/*BOOL CALLBACK  FSDirectInputJoystickManager::EnumInputObjectsCallback( const DIDEVICEOBJECTINSTANCE* pdidoi,
+                                   VOID* pContext )
+{
+    static int povCount = 0;
+    static int buttonCount = 0;
+    if( pdidoi->guidType == GUID_POV )
+    {
+       povCount++;
+    }
+    else if(pdidoi->guidType == GUID_Button)
+    {
+        buttonCount++;
+    }
+    else
+    {
+
+    }
+return DIENUM_CONTINUE;
+}*/
 
  BOOL CALLBACK FSDirectInputJoystickManager::EnumJoysticksCallback( const DIDEVICEINSTANCE* pdidInstance,void* pContext )
 {

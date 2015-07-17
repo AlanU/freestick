@@ -41,3 +41,9 @@ FSUSBJoystickDeviceManager::~FSUSBJoystickDeviceManager()
 {
 
 }
+
+
+long int FSUSBJoystickDeviceManager::createIdForElement(long int usage, long int usagePage )
+{
+    return (usagePage << 16) | usage;
+}

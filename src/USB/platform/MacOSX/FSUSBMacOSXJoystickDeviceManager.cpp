@@ -336,7 +336,7 @@ uint32_t FSUSBMacOSXJoystickDeviceManager::createIdForElement(uint32_t usage, ui
     }
     else
     {
-      return (usagePage << 16) | usage;
+      return FSUSBJoystickDeviceManager::createIdForElement(usage,usagePage);
 
     }
 

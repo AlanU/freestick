@@ -62,6 +62,8 @@ struct DirectInput_Enum_Contex
         static bool IsXInputDevice( const GUID* pGuidProductFromDirectInput );
         //Windows BOOL is type def for int
         static BOOL CALLBACK EnumJoysticksCallback( const DIDEVICEINSTANCE* pdidInstance,void* pContext );
+        static BOOL CALLBACK EnumInputObjectsCallback( const DIDEVICEOBJECTINSTANCE* pdidoi,VOID* pContext );
+
     private:
 
         LPDIRECTINPUT8          _directInput8;

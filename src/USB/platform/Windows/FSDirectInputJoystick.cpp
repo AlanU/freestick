@@ -26,7 +26,8 @@ and must not be misrepresented as being the original software.
 **************************************************************************/
 
 #include "USB/platform/Windows/FSDirectInputJoystick.h"
-
+#include "USB/common/FSUSBJoyStickInputElement.h"
+#include "USB/common/FSUSBJoystickDeviceManager.h"
 using namespace freestick;
 FSDirectInputJoystick::FSDirectInputJoystick()
 {
@@ -64,8 +65,41 @@ FSDirectInputJoystick::FSDirectInputJoystick(LPDIRECTINPUTDEVICE8  LPDIDJoystick
 
     }
 
+     hr = _LPDIDJoystick->EnumObjects( FSDirectInputJoystick::EnumInputObjectsCallback,
+                                               ( VOID* )this, DIDFT_ALL ) ;
 
 
+
+
+}
+void FSDirectInputJoystick::addButtonElement(long int usage, long int usagePage,MinMaxNumber elementId)
+{
+    int value = 0;
+    //TODO finsh this
+    //FSUSBJoyStickInputElement temp(FSUSBJoystickDeviceManager::createIdForElement(usage,usagePage),getJoystickID() ,0, 1, _vendorID,_productID,manager,value,elementId);
+  //  this->addInputElement(temp);
+}
+
+BOOL CALLBACK  FSDirectInputJoystick::EnumInputObjectsCallback( const DIDEVICEOBJECTINSTANCE* pdidoi,
+                                   VOID* pContext )
+{
+    FSDirectInputJoystick * joystick = static_cast<FSDirectInputJoystick*>(pContext);
+    static int povCount = 0;
+    static int buttonCount = 0;
+    if( pdidoi->guidType == GUID_POV )
+    {
+       povCount++;
+    }
+    else if(pdidoi->guidType == GUID_Button)
+    {
+        buttonCount++;
+        joystick->addButtonElement(pdidoi->wUsage,pdidoi->wUsagePage,buttonCount);
+    }
+    else
+    {
+
+    }
+return DIENUM_CONTINUE;
 }
 
 FSDirectInputJoystick::~FSDirectInputJoystick()

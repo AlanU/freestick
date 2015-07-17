@@ -45,10 +45,14 @@ namespace freestick {
                       bool  forceFeedBackSupported,
                       long venderID,
                       long productID);
+       // LPDIRECTINPUTDEVICE8 getDirectInputPtr(){return _LPDIDJoystick;}
         virtual ~FSDirectInputJoystick();
+
         virtual FSDeviceType getClassType() const {return FSDirectInputJoystickType;}
     private:
         LPDIRECTINPUTDEVICE8    _LPDIDJoystick;
-
+        static BOOL CALLBACK EnumInputObjectsCallback( const DIDEVICEOBJECTINSTANCE* pdidoi,
+                                           VOID* pContext );
+        void addButtonElement(long int usage, long int usagePage,MinMaxNumber elementId);
     };
 }

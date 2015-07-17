@@ -38,6 +38,7 @@ namespace freestick
         virtual ~FSUSBJoystickDeviceManager();
         virtual void init( );
         const FSUSBJoystick * getUSBJoystickDevice(unsigned int deviceID){return (const FSUSBJoystick *)FSUSBDeviceManager::getDevice(deviceID);}
+        static long int createIdForElement(long int usage, long int usagePage);
 
     };
 }
