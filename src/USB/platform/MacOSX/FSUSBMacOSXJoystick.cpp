@@ -101,11 +101,6 @@ unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickM
 
             if(type == kIOHIDElementTypeInput_Axis || type == kIOHIDElementTypeInput_Button || type == kIOHIDElementTypeInput_Misc || type == kIOHIDElementTypeInput_ScanCodes)
             {
-                if(value != 0)
-                {
-                    int t=0;
-
-                }
                 if(min != max)
                 {
                     EE_DEBUG<<"("<<min<<","<<max<<")"<<" ID: "<<elemnetID<<" unique id "<< uniqueElementID<<" Usage page" <<usagePage<< " Usage "<<usage<<" Value "<<value<<std::endl;
@@ -130,6 +125,8 @@ unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickM
         }
 
     }
+    CFRelease(deviceElements);
+    
 
     /* if(TotalNumberOfButtons)
     {
@@ -151,7 +148,7 @@ unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickM
 FSUSBMacOSXJoystick::~FSUSBMacOSXJoystick()
 {
 
-   // CFRelease(_macIOHIDDeviceRef);
+    CFRelease(_macIOHIDDeviceRef);
 }
 
 FSUSBMacOSXJoystick::FSUSBMacOSXJoystick()
@@ -179,20 +176,27 @@ FSUSBMacOSXJoystick::FSUSBMacOSXJoystick(IOHIDDeviceRef device,
     if(_vendorIDFriendlyName == "unknown")
     {
         CFStringRef manufactureStringRef = IOHIDDevice_GetManufacturer(device);
-       std::string temp = CFStringRefToString(manufactureStringRef);
-       if(!temp.empty())
-       {
-           _vendorIDFriendlyName = temp;
-       }
+        if(manufactureStringRef)
+        {
+           std::string temp = CFStringRefToString(manufactureStringRef);
+           if(!temp.empty())
+           {
+               _vendorIDFriendlyName = temp;
+           }
+        }
     }
     _prodcutIDFriendlyName = FSUSBDevice::GetFrendlyProductNameFromID(_vendorID,_productID);
     if(_prodcutIDFriendlyName == "unknown")
     {
        CFStringRef productStringRef = IOHIDDevice_GetProduct(device);
-       std::string temp = CFStringRefToString(productStringRef);
-       if(!temp.empty())
+       if(productStringRef)
        {
-           _prodcutIDFriendlyName = temp;
+           std::string temp = CFStringRefToString(productStringRef);
+
+           if(!temp.empty())
+           {
+               _prodcutIDFriendlyName = temp;
+           }
        }
     }
     _friendlyName = _vendorIDFriendlyName + " "+ _prodcutIDFriendlyName;
@@ -221,6 +225,9 @@ std::string FSUSBMacOSXJoystick::CFStringRefToString(CFStringRef refString)
             std::string temp = buffer;
             free(buffer);
             return temp;
+        }
+        else{
+            free(buffer);
         }
     }
 

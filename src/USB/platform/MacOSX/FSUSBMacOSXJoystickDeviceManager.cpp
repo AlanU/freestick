@@ -79,7 +79,7 @@ void  FSUSBMacOSXJoystickDeviceManager::removeDevice(FSBaseDevice * device)
 
 io_service_t AllocForceFeedBackDeviceFromIOHIDDevice(IOHIDDeviceRef device)
 {
-    io_service_t FFDevice = 0L;
+    io_service_t FFDevice = IO_OBJECT_NULL;
     if(device)
     {
         CFMutableDictionaryRef matchDict = IOServiceMatching(kIOHIDDeviceKey);
@@ -91,6 +91,10 @@ io_service_t AllocForceFeedBackDeviceFromIOHIDDevice(IOHIDDeviceRef device)
                 CFDictionaryAddValue(matchDict, CFSTR(kIOHIDLocationIDKey), typeRef);
                 FFDevice =  IOServiceGetMatchingService(kIOMasterPortDefault, matchDict);
 
+            }
+            else
+            {
+                 CFRelease(matchDict);
             }
         }
     }
@@ -111,7 +115,11 @@ bool isForceFeedBackSupported(IOHIDDeviceRef device)
     FFDeviceObjectReference FFDeviceRef;
     bool returnValue = false;
     FFDevice = AllocForceFeedBackDeviceFromIOHIDDevice(device);
-    if(FFIsForceFeedback(FFDevice)== FF_OK)
+    if(FFDevice == IO_OBJECT_NULL)
+        return false;
+
+    HRESULT result = FFIsForceFeedback(FFDevice);
+    if(result == FF_OK)
     {
         if(FFCreateDevice(FFDevice, &FFDeviceRef) == FF_OK)
         {
@@ -122,7 +130,11 @@ bool isForceFeedBackSupported(IOHIDDeviceRef device)
 
         }
     }
-    FreeFFDevice(FFDevice);
+
+    if(result != FFERR_INVALIDPARAM )
+    {
+        FreeFFDevice(FFDevice);
+    }
     return returnValue;
 }
 
@@ -251,6 +263,8 @@ unsigned int numberOfDeviecType(IOHIDDeviceRef device,int * TotalNumberOfButtons
             }
 
         }
+        CFRelease(deviceElements);
+        
     }
     if(TotalNumberOfButtons)
     {

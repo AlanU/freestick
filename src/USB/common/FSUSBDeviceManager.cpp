@@ -37,6 +37,27 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     * populate map _usageMapToInputEvent
     */
 
+
+    // SteelSeries ("Gtron") Gtron Retro Classic FC SNES Controller
+    //has the same vender id as DragonRise
+    _usageMapToInputEvent[Gtron][GtronRetroSNES][589826] = ButtonA;
+    _usageMapToInputEvent[Gtron][GtronRetroSNES][589827] = ButtonB;
+    _usageMapToInputEvent[Gtron][GtronRetroSNES][589825] = ButtonX;
+    _usageMapToInputEvent[Gtron][GtronRetroSNES][589828] = ButtonY;
+
+
+    _usageMapToInputEvent[Gtron][GtronRetroSNES][589830] = RightShoulder;
+    _usageMapToInputEvent[Gtron][GtronRetroSNES][589829] = LeftShoulder;
+
+    _usageMapToInputRangeEvent[Gtron][GtronRetroSNES][65585].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[Gtron][GtronRetroSNES][65585].push_back(FSUSBElementInfoMap(255,255,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[Gtron][GtronRetroSNES][65585].push_back(FSUSBElementInfoMap(127,127,LastValueUp,FSInputRest));
+
+    _usageMapToInputRangeEvent[Gtron][GtronRetroSNES][65584].push_back(FSUSBElementInfoMap(0,0,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[Gtron][GtronRetroSNES][65584].push_back(FSUSBElementInfoMap(255,255,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[Gtron][GtronRetroSNES][65584].push_back(FSUSBElementInfoMap(127,127,LastValueUp,FSInputRest));
+
+
     //First ps2 port
     _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][589827] =  ButtonA;
     _usageMapToInputEvent[HVG2VenderID][HVG2TwinPS2][589826] =  ButtonB;
@@ -565,7 +586,8 @@ bool FSUSBDeviceManager::doesElementHaveDeviceInputForValue(unsigned int vendorU
    for(itr;itr !=  _usageMapToInputRangeEvent[vendorUSBID][productUSBID][elementID].end(); itr++)
    {
       FSUSBElementInfoMap infoMapToLookThrough = *itr;
-      if(infoMapToLookThrough.getDeviceInput() == inputToLookFor)
+      FSDeviceInput deviceInput = infoMapToLookThrough.getDeviceInput();
+      if(deviceInput == inputToLookFor)
       {
           return true;
       }

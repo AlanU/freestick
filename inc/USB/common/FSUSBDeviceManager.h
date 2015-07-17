@@ -35,6 +35,7 @@ and must not be misrepresented as being the original software.
 namespace freestick
 {
 const unsigned int DragonRiseID = 121;
+const unsigned int Gtron = DragonRiseID;
 const unsigned int SteelSeries3GCControllerID = 6;
 const unsigned int AmazonVendorID = 6473;
 const unsigned int AmazonFireGameControllerID = 1026 ;
@@ -56,6 +57,7 @@ const unsigned int RockCandyVenderID = 3695;
 const unsigned int RockCandyXbox360ControlllerID = 3695;
 const unsigned int HVG2VenderID = 2064;
 const unsigned int HVG2TwinPS2 = 1 ;
+const unsigned int GtronRetroSNES = 17;
 
 
     class FSUSBElementInfoMap

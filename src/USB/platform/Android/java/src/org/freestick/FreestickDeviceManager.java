@@ -77,6 +77,9 @@ public class FreestickDeviceManager implements InputManager.InputDeviceListener 
     // http://developer.android.com/training/game-controllers/controller-input.html
     private static float getCenteredAxis(MotionEvent event, InputDevice device, int axis,
             int historyPos) {
+        if (device == null) {
+            return 0;
+        }
         final InputDevice.MotionRange range = device.getMotionRange(axis, event.getSource());
 
         // A joystick at rest does not always report an absolute position of
