@@ -193,18 +193,27 @@ void FSDirectInputJoystickManager::updateJoysticks()
                    // we don't have any special reset that needs to be done. We
                    // just re-acquire and try again.
                    hr = directInputJoystick->Acquire();
-                   if(hr == DIERR_INVALIDPARAM)
-                    {
-                       int t=0;
-                   }
+
 
                    while( hr == DIERR_INPUTLOST )
                        hr = directInputJoystick->Acquire();
 
-                   // hr may be DIERR_OTHERAPPHASPRIO or other errors.  This
-                   // may occur when the app is minimized or in the process of
-                   // switching, so just try again later
-                   continue ;
+                   if(hr == DI_OK || hr == S_FALSE  )
+                   {
+                       hr = directInputJoystick->Poll();
+                       if( FAILED( hr ) )
+                       {
+                           continue;
+                       }
+                   }
+                   else
+                   {
+                       // hr may be DIERR_OTHERAPPHASPRIO or other errors.  This
+                       // may occur when the app is minimized or in the process of
+                       // switching, so just try again later
+                       continue ;
+                   }
+
                }
 
                // Get the input's device state

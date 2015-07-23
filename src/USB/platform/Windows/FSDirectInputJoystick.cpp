@@ -66,12 +66,6 @@ FSDirectInputJoystick::FSDirectInputJoystick(LPDIRECTINPUTDEVICE8  LPDIDJoystick
 
     }
 
-    // Set the data format to "simple joystick" - a predefined data format
-     //
-     // A data format specifies which controls on a device we are interested in,
-     // and how they should be reported. This tells DInput that we will be
-     // passing a DIJOYSTATE2 structure to IDirectInputDevice::GetDeviceState().
-     if( FAILED( hr = _LPDIDJoystick->SetDataFormat( &c_dfDIJoystick2 ) ) )
 
      // Set the cooperative level to let DInput know how this device should
      // interact with the system and with other DInput applications.
@@ -80,7 +74,12 @@ FSDirectInputJoystick::FSDirectInputJoystick(LPDIRECTINPUTDEVICE8  LPDIDJoystick
      hr = _LPDIDJoystick->EnumObjects( FSDirectInputJoystick::EnumInputObjectsCallback,
                                                ( VOID* )this, DIDFT_ALL ) ;
 
-
+     // Set the data format to "simple joystick" - a predefined data format
+      //
+      // A data format specifies which controls on a device we are interested in,
+      // and how they should be reported. This tells DInput that we will be
+      // passing a DIJOYSTATE2 structure to IDirectInputDevice::GetDeviceState().
+       hr = _LPDIDJoystick->SetDataFormat( &c_dfDIJoystick2 );
 
 
 }
@@ -100,10 +99,27 @@ BOOL CALLBACK  FSDirectInputJoystick::EnumInputObjectsCallback( const DIDEVICEOB
     FSDirectInputJoystick * joystick = static_cast<FSDirectInputJoystick*>(pContext);
     static int povCount = 0;
     static int buttonCount = 0;
+    static int axisCount = 0;
 
     if( pdidoi->guidType == GUID_POV )
     {
        povCount++;
+    }
+    else if (pdidoi->guidType ==GUID_XAxis)
+    {
+       axisCount++;
+    }
+    else if (pdidoi->guidType ==GUID_YAxis)
+    {
+       axisCount++;
+    }
+    else if (pdidoi->guidType ==GUID_ZAxis)
+    {
+        axisCount++;
+    }
+    else if (pdidoi->guidType ==GUID_RxAxis)
+    {
+        axisCount++;
     }
     else if(pdidoi->guidType == GUID_Button)
     {

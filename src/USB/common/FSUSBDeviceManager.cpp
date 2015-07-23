@@ -40,6 +40,7 @@ FSUSBDeviceManager::FSUSBDeviceManager()
 
     // SteelSeries ("Gtron") Gtron Retro Classic FC SNES Controller
     //has the same vender id as DragonRise
+    //TODO add in start and select
     _usageMapToInputEvent[Gtron][GtronRetroSNES][589826] = ButtonA;
     _usageMapToInputEvent[Gtron][GtronRetroSNES][589827] = ButtonB;
     _usageMapToInputEvent[Gtron][GtronRetroSNES][589825] = ButtonX;
