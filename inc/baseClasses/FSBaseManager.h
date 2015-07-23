@@ -108,8 +108,8 @@ namespace freestick
 
         std::map<unsigned int,std::multimap<FreeStickEventType,IFSJoystickListener * > > _joystickDeviceInputListeners;
         std::vector<IFSJoystickListener *> allJoystickListeners;
-        std::map<unsigned int, FSBaseDevice * > deviceMap;
     protected:
+        std::map<unsigned int, FSBaseDevice * > deviceMap;
         //void ListenForAllJoysticks(IFSJoystickListener & listener){ ListenForJoystick(listener,0,AllInputs);}
       //  void UnListenForAllJoysticks(IFSJoystickListener & listener){ UnListenForJoystick(listener,0,AllInputs);}
         void ListenForAllJoysticksForEventType(FreeStickEventType eventType,IFSJoystickListener & listener);

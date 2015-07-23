@@ -122,10 +122,113 @@ void FSDirectInputJoystickManager::updateConnectJoysticks()
 void FSDirectInputJoystickManager::update()
 {
     updateConnectJoysticks();
-
+    updateJoysticks();
    //TODO
-    //Update buttons
-    //Update Analog sticks
+    //updateJoysticks
+         //Update buttons
+         //Update Analog sticks
+}
+
+void FSDirectInputJoystickManager::updateEvents(unsigned int joystickDeviceID,FSUSBJoyStickInputElement * elementDevice,long elementValue)
+{
+    static std::stack<FSUSBElementInfoMap> inputTypes;
+
+
+    if(elementDevice)
+    {
+      elementDevice->getMapping(elementValue,inputTypes);
+       bool isValueVaild = elementDevice->isValueInDeadZone(elementValue);
+
+      while(!inputTypes.empty())
+      {
+        FSUSBElementInfoMap inputType = inputTypes.top();
+
+        FreeStickEventType eventType =  IFSEvent::getEventFromInputType(inputType.getDeviceInput());
+
+        //pass in FSEventMaping so we can map release vs press
+        if( eventType != FS_LAST_EVENT && inputType.getDeviceInput() != LastInput)
+        {
+
+            if(!isValueVaild)
+            {
+                inputOnDeviceChangedWithNormilzedValues(eventType,inputType.getEventMapping(),inputType.getDeviceInput(),
+                                                                 joystickDeviceID,elementDevice->getJoystickID(),
+                                                                 0,0,
+                                                                -1,
+                                                                 1);
+            }
+            else
+            {
+               inputOnDeviceChanged(eventType,inputType.getEventMapping(),inputType.getDeviceInput(),
+                                              joystickDeviceID,elementDevice->getJoystickID(),
+                                              elementDevice->getValue(),0,
+                                              elementDevice->getMinValue(),
+                                              elementDevice->getMaxValue());
+            }
+        }
+        inputTypes.pop();
+      }
+    }
+}
+
+void FSDirectInputJoystickManager::updateJoysticks()
+{
+             // DInput joystick state
+    if(!deviceMap.empty())
+    {
+        std::map<unsigned int, FSBaseDevice * >::iterator itr;
+        for(itr = deviceMap.begin(); itr != deviceMap.end(); itr++)
+        {
+            FSDirectInputJoystick * device = static_cast<FSDirectInputJoystick *>(itr->second);
+
+            LPDIRECTINPUTDEVICE8  directInputJoystick = device->getDirectInputPtr();
+            HRESULT hr;
+            DIJOYSTATE2 js;
+            // Poll the device to read the current state
+               hr = directInputJoystick->Poll();
+               if( FAILED( hr ) )
+               {
+                    // DInput is telling us that the input stream has been
+                   // interrupted. We aren't tracking any state between polls, so
+                   // we don't have any special reset that needs to be done. We
+                   // just re-acquire and try again.
+                   hr = directInputJoystick->Acquire();
+                   if(hr == DIERR_INVALIDPARAM)
+                    {
+                       int t=0;
+                   }
+
+                   while( hr == DIERR_INPUTLOST )
+                       hr = directInputJoystick->Acquire();
+
+                   // hr may be DIERR_OTHERAPPHASPRIO or other errors.  This
+                   // may occur when the app is minimized or in the process of
+                   // switching, so just try again later
+                   continue ;
+               }
+
+               // Get the input's device state
+               if( FAILED( hr = directInputJoystick->GetDeviceState( sizeof( DIJOYSTATE2 ), &js ) ) )
+                   continue ; // The device should have been acquired during the Poll()
+
+               //update buttons
+               std::vector<IDNumber> elements = device->getElementIds();
+               for( int i = 0; i < elements.size(); i++ )
+               {
+                  long value = ( js.rgbButtons[i] & 0x80 ) ? 1 : 0;
+                  FSUSBJoyStickInputElement * element = (FSUSBJoyStickInputElement *)device->findInputElement(elements[i]);
+
+                  //TODO fix compare to not lose precision
+                  if(element->getValue() != value)
+                  {
+                      updateEvents(device->getJoystickID(),element,value);
+                  }
+
+               }
+        }
+
+    }
+
 }
 
 FSDirectInputJoystickManager::~FSDirectInputJoystickManager()
@@ -133,25 +236,6 @@ FSDirectInputJoystickManager::~FSDirectInputJoystickManager()
 
 }
 
-/*BOOL CALLBACK  FSDirectInputJoystickManager::EnumInputObjectsCallback( const DIDEVICEOBJECTINSTANCE* pdidoi,
-                                   VOID* pContext )
-{
-    static int povCount = 0;
-    static int buttonCount = 0;
-    if( pdidoi->guidType == GUID_POV )
-    {
-       povCount++;
-    }
-    else if(pdidoi->guidType == GUID_Button)
-    {
-        buttonCount++;
-    }
-    else
-    {
-
-    }
-return DIENUM_CONTINUE;
-}*/
 
  BOOL CALLBACK FSDirectInputJoystickManager::EnumJoysticksCallback( const DIDEVICEINSTANCE* pdidInstance,void* pContext )
 {
@@ -196,7 +280,7 @@ void  FSDirectInputJoystickManager::addDevice(GUID guidDeviceInstance)
         {
             //TODO set up event with SetEventNotification , CreateEvent , and WaitForSingleObject
             unsigned int newID = this->getNextID();
-            FSDirectInputJoystick * newJoystick = new FSDirectInputJoystick(_Joystick,newID,0,0,0,false,-1,-1);
+            FSDirectInputJoystick * newJoystick = new FSDirectInputJoystick(_Joystick,newID,0,0,0,false,-1,-1,*this);
             this->addDevice(newJoystick);
             _directInputToDeviceIDMap[guidDeviceInstance] = newID;
         }

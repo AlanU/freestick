@@ -48,6 +48,8 @@ void FSUSBJoyStickInputElement::EmptyQue(std::stack<FSUSBElementInfoMap> & infoM
     }
 }
 
+
+//TODO change inputValue to a long for windows
 void FSUSBJoyStickInputElement::getMapping(int inputValue ,std::stack<FSUSBElementInfoMap> & infoMapsToReturn)
 {
 

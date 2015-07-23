@@ -28,11 +28,11 @@ and must not be misrepresented as being the original software.
 #include "USB/platform/Windows/FSDirectInputJoystick.h"
 #include "USB/common/FSUSBJoyStickInputElement.h"
 #include "USB/common/FSUSBJoystickDeviceManager.h"
+
 using namespace freestick;
 FSDirectInputJoystick::FSDirectInputJoystick()
 {
 }
-
 
 FSDirectInputJoystick::FSDirectInputJoystick(LPDIRECTINPUTDEVICE8  LPDIDJoystick,
               unsigned int joyStickID,
@@ -41,10 +41,11 @@ FSDirectInputJoystick::FSDirectInputJoystick(LPDIRECTINPUTDEVICE8  LPDIDJoystick
               unsigned int numberOfDigitalSticks,
               bool  forceFeedBackSupported,
               long venderID,
-              long productID):FSUSBJoystick(joyStickID,numberOfButtons,numberOfAnlogSticks,numberOfDigitalSticks ,forceFeedBackSupported,venderID,productID)
+              long productID,
+              FSUSBJoystickDeviceManager & usbJoystickManager):FSUSBJoystick(joyStickID,numberOfButtons,numberOfAnlogSticks,numberOfDigitalSticks ,forceFeedBackSupported,venderID,productID)
 {
     _LPDIDJoystick = LPDIDJoystick;
-
+    _usbJoystickManager = &usbJoystickManager;
     DIPROPDWORD dipdw;
     dipdw.diph.dwSize = sizeof(DIPROPDWORD);
 
@@ -65,6 +66,17 @@ FSDirectInputJoystick::FSDirectInputJoystick(LPDIRECTINPUTDEVICE8  LPDIDJoystick
 
     }
 
+    // Set the data format to "simple joystick" - a predefined data format
+     //
+     // A data format specifies which controls on a device we are interested in,
+     // and how they should be reported. This tells DInput that we will be
+     // passing a DIJOYSTATE2 structure to IDirectInputDevice::GetDeviceState().
+     if( FAILED( hr = _LPDIDJoystick->SetDataFormat( &c_dfDIJoystick2 ) ) )
+
+     // Set the cooperative level to let DInput know how this device should
+     // interact with the system and with other DInput applications.
+    // if( FAILED( hr = _LPDIDJoystick->SetCooperativeLevel( hDlg, DISCL_EXCLUSIVE |DISCL_FOREGROUND ) ) )
+
      hr = _LPDIDJoystick->EnumObjects( FSDirectInputJoystick::EnumInputObjectsCallback,
                                                ( VOID* )this, DIDFT_ALL ) ;
 
@@ -74,18 +86,21 @@ FSDirectInputJoystick::FSDirectInputJoystick(LPDIRECTINPUTDEVICE8  LPDIDJoystick
 }
 void FSDirectInputJoystick::addButtonElement(long int usage, long int usagePage,MinMaxNumber elementId)
 {
+
     int value = 0;
     //TODO finsh this
-    //FSUSBJoyStickInputElement temp(FSUSBJoystickDeviceManager::createIdForElement(usage,usagePage),getJoystickID() ,0, 1, _vendorID,_productID,manager,value,elementId);
-  //  this->addInputElement(temp);
+   FSUSBJoyStickInputElement temp(FSUSBJoystickDeviceManager::createIdForElement(usage,usagePage),getJoystickID() ,0, 1, _vendorID,_productID,*_usbJoystickManager,value,elementId);
+    this->addInputElement(temp);
 }
 
 BOOL CALLBACK  FSDirectInputJoystick::EnumInputObjectsCallback( const DIDEVICEOBJECTINSTANCE* pdidoi,
                                    VOID* pContext )
 {
+    DIJOYSTATE2 joystickState;
     FSDirectInputJoystick * joystick = static_cast<FSDirectInputJoystick*>(pContext);
     static int povCount = 0;
     static int buttonCount = 0;
+
     if( pdidoi->guidType == GUID_POV )
     {
        povCount++;

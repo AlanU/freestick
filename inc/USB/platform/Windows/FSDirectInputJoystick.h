@@ -31,6 +31,7 @@ and must not be misrepresented as being the original software.
 #include <dinput.h>
 
 #include "USB/common/FSUSBJoystick.h"
+#include "USB/common/FSUSBJoystickDeviceManager.h"
 namespace freestick {
 
     class FSDirectInputJoystick : public FSUSBJoystick
@@ -44,13 +45,14 @@ namespace freestick {
                       unsigned int numberOfDigitalSticks,
                       bool  forceFeedBackSupported,
                       long venderID,
-                      long productID);
-       // LPDIRECTINPUTDEVICE8 getDirectInputPtr(){return _LPDIDJoystick;}
+                      long productID,
+                      FSUSBJoystickDeviceManager & usbJoystickManager);
+        LPDIRECTINPUTDEVICE8 getDirectInputPtr(){return _LPDIDJoystick;}
         virtual ~FSDirectInputJoystick();
-
         virtual FSDeviceType getClassType() const {return FSDirectInputJoystickType;}
     private:
         LPDIRECTINPUTDEVICE8    _LPDIDJoystick;
+        FSUSBJoystickDeviceManager * _usbJoystickManager;
         static BOOL CALLBACK EnumInputObjectsCallback( const DIDEVICEOBJECTINSTANCE* pdidoi,
                                            VOID* pContext );
         void addButtonElement(long int usage, long int usagePage,MinMaxNumber elementId);

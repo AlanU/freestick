@@ -76,6 +76,9 @@ struct DirectInput_Enum_Contex
         virtual void removeDevice(FSBaseDevice * device);
         virtual void addDevice(GUID guidDeviceInstance);
         virtual void removeDevice(GUID guidDeviceInstance);
+        void updateEvents(unsigned int joystickDeviceID, FSUSBJoyStickInputElement * elementDevice,long elementValue);
+        void updateJoysticks();
+
         //unsigned int getDeviceIDFromIOHIDevice(LPDIRECTINPUTDEVICE8 inputDevice );
     private:
         void updateConnectJoysticks();
