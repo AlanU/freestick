@@ -27,7 +27,7 @@ and must not be misrepresented as being the original software.
 
 #include "USB/platform/Windows/FSDirectInputJoystickManager.h"
 #include "USB/platform/Windows/FSDirectInputJoystick.h"
-
+#include <hidusage.h>
 using namespace freestick;
 
 
@@ -171,8 +171,29 @@ void FSDirectInputJoystickManager::updateEvents(unsigned int joystickDeviceID,FS
     }
 }
 
+
+void FSDirectInputJoystickManager::updateJoysticksAxis(FSDirectInputJoystick * device,LONG axisValue, long int idForXAxis,bool calibrate)
+{
+    FSUSBJoyStickInputElement * element = (FSUSBJoyStickInputElement *)device->findInputElement(idForXAxis);
+    if(element)
+    {
+        if(calibrate)
+        {
+            element->recalibrate(axisValue,element->getMinValue(),element->getMaxValue());
+           return;
+        }
+        if(element->getValue() != axisValue)
+        {
+            updateEvents(device->getJoystickID(),element,axisValue);
+        }
+    }
+
+}
+
 void FSDirectInputJoystickManager::updateJoysticks()
 {
+    static bool firstTime(true);
+
              // DInput joystick state
     if(!deviceMap.empty())
     {
@@ -220,22 +241,63 @@ void FSDirectInputJoystickManager::updateJoysticks()
                if( FAILED( hr = directInputJoystick->GetDeviceState( sizeof( DIJOYSTATE2 ), &js ) ) )
                    continue ; // The device should have been acquired during the Poll()
 
+
+              //X-axis
+              long int idForAxis =  FSUSBJoystickDeviceManager::createIdForElement(HID_USAGE_GENERIC_X,HID_USAGE_PAGE_GENERIC);
+
+              updateJoysticksAxis(device,js.lX,idForAxis,firstTime);
+             //Yaxis
+              idForAxis =  FSUSBJoystickDeviceManager::createIdForElement(HID_USAGE_GENERIC_Y,HID_USAGE_PAGE_GENERIC);
+              updateJoysticksAxis(device,js.lY,idForAxis,firstTime);
+
+              //zaxis
+              idForAxis =  FSUSBJoystickDeviceManager::createIdForElement(HID_USAGE_GENERIC_Z,HID_USAGE_PAGE_GENERIC);
+              updateJoysticksAxis(device,js.lZ,idForAxis,firstTime);
+
+              //rxaxis
+              idForAxis =  FSUSBJoystickDeviceManager::createIdForElement(HID_USAGE_GENERIC_RX,HID_USAGE_PAGE_GENERIC);
+              updateJoysticksAxis(device,js.lRx,idForAxis,firstTime);
+
+              //ryaxis
+              idForAxis =  FSUSBJoystickDeviceManager::createIdForElement(HID_USAGE_GENERIC_RY,HID_USAGE_PAGE_GENERIC);
+              updateJoysticksAxis(device,js.lRy,idForAxis,firstTime);
+
+              //rzaxis
+              idForAxis =  FSUSBJoystickDeviceManager::createIdForElement(HID_USAGE_GENERIC_RZ,HID_USAGE_PAGE_GENERIC);
+              updateJoysticksAxis(device,js.lRz,idForAxis,firstTime);
+
+              //slider
+              idForAxis =  FSUSBJoystickDeviceManager::createIdForElement(HID_USAGE_GENERIC_RZ,HID_USAGE_PAGE_GENERIC);
+              updateJoysticksAxis(device,js.lRz,idForAxis,firstTime);
+
+
                //update buttons
                std::vector<IDNumber> elements = device->getElementIds();
+               int buttonNumber = 0;
                for( int i = 0; i < elements.size(); i++ )
                {
-                  long value = ( js.rgbButtons[i] & 0x80 ) ? 1 : 0;
                   FSUSBJoyStickInputElement * element = (FSUSBJoyStickInputElement *)device->findInputElement(elements[i]);
 
-                  //TODO fix compare to not lose precision
-                  if(element->getValue() != value)
+                  if(element->getMinValue() == 0 && element->getMaxValue() == 1)
                   {
-                      updateEvents(device->getJoystickID(),element,value);
+                      long value = ( js.rgbButtons[buttonNumber] & 0x80 ) ? 1 : 0;
+
+                      //TODO fix compare to not lose precision
+                      if(element->getValue() != value)
+                      {
+                          updateEvents(device->getJoystickID(),element,value);
+                      }
+                       buttonNumber++;
                   }
 
                }
         }
 
+    }
+
+    if(firstTime)
+    {
+        firstTime = false;
     }
 
 }

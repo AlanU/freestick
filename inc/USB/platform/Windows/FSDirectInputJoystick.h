@@ -55,6 +55,10 @@ namespace freestick {
         FSUSBJoystickDeviceManager * _usbJoystickManager;
         static BOOL CALLBACK EnumInputObjectsCallback( const DIDEVICEOBJECTINSTANCE* pdidoi,
                                            VOID* pContext );
+        long int getCurrentValue(FSDirectInputJoystick * device,const DIDEVICEOBJECTINSTANCE* pdidoi);
+
         void addButtonElement(long int usage, long int usagePage,MinMaxNumber elementId);
+        void addElement(long int usage, long int usagePage,MinMaxNumber elementId,MinMaxNumber min,MinMaxNumber max,long int value);
+
     };
 }

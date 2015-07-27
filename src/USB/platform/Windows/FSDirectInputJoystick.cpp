@@ -52,7 +52,7 @@ FSDirectInputJoystick::FSDirectInputJoystick(LPDIRECTINPUTDEVICE8  LPDIDJoystick
     dipdw.diph.dwHeaderSize = sizeof(DIPROPHEADER);
     dipdw.diph.dwObj =0;
     dipdw.diph.dwHow = DIPH_DEVICE;
-   HRESULT hr = _LPDIDJoystick->GetProperty(DIPROP_VIDPID,&dipdw.diph);
+    HRESULT hr = _LPDIDJoystick->GetProperty(DIPROP_VIDPID,&dipdw.diph);
     if(SUCCEEDED(hr))
     {
 
@@ -79,18 +79,27 @@ FSDirectInputJoystick::FSDirectInputJoystick(LPDIRECTINPUTDEVICE8  LPDIDJoystick
       // A data format specifies which controls on a device we are interested in,
       // and how they should be reported. This tells DInput that we will be
       // passing a DIJOYSTATE2 structure to IDirectInputDevice::GetDeviceState().
-       hr = _LPDIDJoystick->SetDataFormat( &c_dfDIJoystick2 );
+      hr = _LPDIDJoystick->SetDataFormat( &c_dfDIJoystick2 );
 
 
 }
 void FSDirectInputJoystick::addButtonElement(long int usage, long int usagePage,MinMaxNumber elementId)
 {
 
-    int value = 0;
-    //TODO finsh this
-   FSUSBJoyStickInputElement temp(FSUSBJoystickDeviceManager::createIdForElement(usage,usagePage),getJoystickID() ,0, 1, _vendorID,_productID,*_usbJoystickManager,value,elementId);
+ //  int value = 0;
+   //TODO finsh this
+   //FSUSBJoyStickInputElement temp(FSUSBJoystickDeviceManager::createIdForElement(usage,usagePage),getJoystickID() ,0, 1, _vendorID,_productID,*_usbJoystickManager,value,elementId);
+    //this->addInputElement(temp);
+}
+
+void FSDirectInputJoystick::addElement(long int usage, long int usagePage,
+                                       MinMaxNumber elementId,MinMaxNumber min, MinMaxNumber max,long int value)
+{
+    FSUSBJoyStickInputElement temp(FSUSBJoystickDeviceManager::createIdForElement(usage,usagePage),getJoystickID() ,
+                                   min,max, _vendorID,_productID,*_usbJoystickManager,value,elementId);
     this->addInputElement(temp);
 }
+
 
 BOOL CALLBACK  FSDirectInputJoystick::EnumInputObjectsCallback( const DIDEVICEOBJECTINSTANCE* pdidoi,
                                    VOID* pContext )
@@ -105,26 +114,49 @@ BOOL CALLBACK  FSDirectInputJoystick::EnumInputObjectsCallback( const DIDEVICEOB
     {
        povCount++;
     }
-    else if (pdidoi->guidType ==GUID_XAxis)
+    if( (pdidoi->guidType == GUID_XAxis) ||
+        (pdidoi->guidType == GUID_YAxis) ||
+        (pdidoi->guidType == GUID_ZAxis) ||
+        (pdidoi->guidType == GUID_RxAxis)||
+        (pdidoi->guidType == GUID_RyAxis)||
+        (pdidoi->guidType == GUID_RzAxis))
     {
+
+
+
+        DIPROPRANGE range;
+        range.diph.dwSize = sizeof(DIPROPRANGE);
+        range.diph.dwHeaderSize = sizeof(DIPROPHEADER);
+        range.diph.dwHow = DIPH_BYID;
+        range.diph.dwObj = pdidoi->dwType;
+        MinMaxNumber min = 0;
+        MinMaxNumber max = 0;
+
+        if ( joystick->getDirectInputPtr()->GetProperty(DIPROP_LOGICALRANGE, &range.diph) == DI_OK)
+        {
+           min  = range.lMin;
+           max  = range.lMax;
+           long int value = max/2;
+           DIPROPRANGE diprg;
+           diprg.diph.dwSize=sizeof( DIPROPRANGE );
+           diprg.diph.dwHeaderSize=sizeof( DIPROPHEADER );
+           diprg.diph.dwHow=DIPH_BYID;
+           diprg.diph.dwObj= pdidoi->dwType;
+           diprg.lMin=min;
+           diprg.lMax=max;
+           if(  joystick->getDirectInputPtr()->SetProperty( DIPROP_RANGE, &diprg.diph )== DI_OK)
+           {
+             joystick->addElement(pdidoi->wUsage,pdidoi->wUsagePage,buttonCount,min,max,value);
+           }
+        }
+
+
        axisCount++;
-    }
-    else if (pdidoi->guidType ==GUID_YAxis)
-    {
-       axisCount++;
-    }
-    else if (pdidoi->guidType ==GUID_ZAxis)
-    {
-        axisCount++;
-    }
-    else if (pdidoi->guidType ==GUID_RxAxis)
-    {
-        axisCount++;
     }
     else if(pdidoi->guidType == GUID_Button)
     {
         buttonCount++;
-        joystick->addButtonElement(pdidoi->wUsage,pdidoi->wUsagePage,buttonCount);
+        joystick->addElement(pdidoi->wUsage,pdidoi->wUsagePage,buttonCount,0,1,0);
     }
     else
     {

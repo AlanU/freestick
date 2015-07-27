@@ -26,7 +26,8 @@ and must not be misrepresented as being the original software.
 **************************************************************************/
 
 #pragma once
-#include"USB/common/FSUSBJoystickDeviceManager.h"
+#include "USB/common/FSUSBJoystickDeviceManager.h"
+#include "USB/platform/Windows/FSDirectInputJoystick.h"
 #define DIRECTINPUT_VERSION 0x0800
 #include <Windows.h>
 #include <dinput.h>
@@ -77,6 +78,8 @@ struct DirectInput_Enum_Contex
         virtual void addDevice(GUID guidDeviceInstance);
         virtual void removeDevice(GUID guidDeviceInstance);
         void updateEvents(unsigned int joystickDeviceID, FSUSBJoyStickInputElement * elementDevice,long elementValue);
+        void updateJoysticksAxis(FSDirectInputJoystick * device,LONG axisValue, long int idForXAxis,bool calibrate = false);
+
         void updateJoysticks();
 
         //unsigned int getDeviceIDFromIOHIDevice(LPDIRECTINPUTDEVICE8 inputDevice );
