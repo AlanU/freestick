@@ -58,8 +58,11 @@ JoyStickConfigWidget::JoyStickConfigWidget(QWidget *parent) :
     ui->FoceFeedBack->hide();
     timer= new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(update()));
+#ifdef Q_OS_WIN32
+    timer->start(10);
+#else
     timer->start(1000);
-
+#endif
     QPalette buttonPressed(palette());
     buttonPressed.setColor(QPalette::Background,Qt::black);
     ui->RightStickPoint->setAutoFillBackground(true);
@@ -143,7 +146,6 @@ void JoyStickConfigWidget::updateVirtualButton(QWidget * button,FSEventAction ac
 
 void JoyStickConfigWidget::setAxisWidgetFromValue(QWidget * widgetToSet,float value,bool setX)
 {
-    int max = setX ? widgetToSet->parentWidget()->width() : widgetToSet->parentWidget()->height();
     float valueForPoint = convertNormalizedRangerToAxisPoint(value,widgetToSet->parentWidget()->width(),0);
 
     if(setX)
