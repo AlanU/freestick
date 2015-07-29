@@ -63,7 +63,7 @@ void FSDirectInputJoystickManager::init( )
                                                &enumContext,
                                                DIEDFL_ATTACHEDONLY)))
         return;*/
-    update();
+   update();
 
 }
 
@@ -123,10 +123,6 @@ void FSDirectInputJoystickManager::update()
 {
     updateConnectJoysticks();
     updateJoysticks();
-   //TODO
-    //updateJoysticks
-         //Update buttons
-         //Update Analog sticks
 }
 
 void FSDirectInputJoystickManager::updateEvents(unsigned int joystickDeviceID,FSUSBJoyStickInputElement * elementDevice,long elementValue)
@@ -171,7 +167,48 @@ void FSDirectInputJoystickManager::updateEvents(unsigned int joystickDeviceID,FS
     }
 }
 
+void FSDirectInputJoystickManager::updateJoysticksPOV(FSDirectInputJoystick * device,LONG axisValue, long int idForXAxis)
+{
+    FSDeviceInput povInput = LastInput;
 
+    if(axisValue == -1)
+    {
+        povInput = LastValueUp;
+
+    }
+    else if(axisValue == 102 )
+    {
+        povInput = DPadRight;
+
+    }
+    else if(axisValue == 308 )
+    {
+        povInput = DPadLeft;
+
+    }
+    else if((axisValue >= 0 && axisValue <102) || axisValue > 308)
+    {
+        povInput = DPadUp;
+    }
+    else
+    {
+        povInput = DPadDown;
+
+    }
+
+
+  FSUSBElementInfoMap temp =  this->infoMapForInputType(device->getVenderID(),device->getProductID(),povInput);
+  if(temp.getDeviceInput() != LastInput && temp.getEventMapping() != FSLastEventAction )
+  {
+      FSUSBJoyStickInputElement * element = (FSUSBJoyStickInputElement *)device->findInputElement(idForXAxis);
+      axisValue = temp.getMin();
+      if(element->getValue() != axisValue)
+      {
+        updateEvents(device->getJoystickID(),element,axisValue);
+      }
+  }
+
+}
 void FSDirectInputJoystickManager::updateJoysticksAxis(FSDirectInputJoystick * device,LONG axisValue, long int idForXAxis,bool calibrate)
 {
     FSUSBJoyStickInputElement * element = (FSUSBJoyStickInputElement *)device->findInputElement(idForXAxis);
@@ -272,8 +309,18 @@ void FSDirectInputJoystickManager::updateJoysticks()
 
 
               //TODO map POV to DPadUp DPadDown DPadLeft DPadRight
-              //idForAxis = FSUSBJoystickDeviceManager::createIdForElement(HID_USAGE_GENERIC_HATSWITCH,HID_USAGE_PAGE_GENERIC);
-              //updateJoysticksAxis(device,js.rgdwPOV[0],idForAxis,false);
+              idForAxis = FSUSBJoystickDeviceManager::createIdForElement(HID_USAGE_GENERIC_HATSWITCH,HID_USAGE_PAGE_GENERIC);
+              long angleValue = -1;
+              //convert to an angle 0 - 360 to fit into a long
+              if(js.rgdwPOV[0] != -1)
+              {
+                  double leftSpan = 31500;
+                  double rightSpan = 360;
+
+                  double valueScaled = ((double )js.rgdwPOV[0])/double(leftSpan);
+                  angleValue =(valueScaled * rightSpan);
+              }
+              updateJoysticksPOV(device,angleValue,idForAxis);
 
                //update buttons
                std::vector<IDNumber> elements = device->getElementIds();
@@ -315,18 +362,15 @@ FSDirectInputJoystickManager::~FSDirectInputJoystickManager()
  BOOL CALLBACK FSDirectInputJoystickManager::EnumJoysticksCallback( const DIDEVICEINSTANCE* pdidInstance,void* pContext )
 {
      DirectInput_Enum_Contex * enumContext = reinterpret_cast<DirectInput_Enum_Contex *>(pContext);
-    // HRESULT hr;
 
-     if(IsXInputDevice(&pdidInstance->guidProduct))
-         return DIENUM_CONTINUE;
+     //IsXInputDevice is really expinsivce to call
+     //if(IsXInputDevice(&pdidInstance->guidProduct))
+       //  return DIENUM_CONTINUE;
 
      // Skip anything other than the perferred joystick device as defined by the control panel.
      // Instead you could store all the enumerated joysticks and let the user pick.
      if( enumContext->isVaild && !IsEqualGUID( pdidInstance->guidInstance, enumContext->joystickConfig->guidInstance ) )
          return DIENUM_CONTINUE;
-
-     //enumContext->manager->addDevice(pdidInstance->guidInstance);
-    // enumContext->connectedJoysticks.push_back(pdidInstance);
 
      enumContext->joysticksConnectedThisUpdate.push_back(pdidInstance->guidInstance);
 

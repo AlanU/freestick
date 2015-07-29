@@ -79,6 +79,7 @@ struct DirectInput_Enum_Contex
         virtual void removeDevice(GUID guidDeviceInstance);
         void updateEvents(unsigned int joystickDeviceID, FSUSBJoyStickInputElement * elementDevice,long elementValue);
         void updateJoysticksAxis(FSDirectInputJoystick * device,LONG axisValue, long int idForXAxis,bool calibrate = false);
+        void updateJoysticksPOV(FSDirectInputJoystick * device,LONG axisValue, long int idForXAxis);
 
         void updateJoysticks();
 
