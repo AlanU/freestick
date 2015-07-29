@@ -110,16 +110,13 @@ BOOL CALLBACK  FSDirectInputJoystick::EnumInputObjectsCallback( const DIDEVICEOB
     static int buttonCount = 0;
     static int axisCount = 0;
 
-    if( pdidoi->guidType == GUID_POV )
-    {
-       povCount++;
-    }
     if( (pdidoi->guidType == GUID_XAxis) ||
         (pdidoi->guidType == GUID_YAxis) ||
         (pdidoi->guidType == GUID_ZAxis) ||
         (pdidoi->guidType == GUID_RxAxis)||
         (pdidoi->guidType == GUID_RyAxis)||
-        (pdidoi->guidType == GUID_RzAxis))
+        (pdidoi->guidType == GUID_RzAxis) ||
+        (pdidoi->guidType == GUID_POV) )
     {
 
 
@@ -136,15 +133,25 @@ BOOL CALLBACK  FSDirectInputJoystick::EnumInputObjectsCallback( const DIDEVICEOB
         {
            min  = range.lMin;
            max  = range.lMax;
+           bool didRangeSetOK = false;
            long int value = max/2;
-           DIPROPRANGE diprg;
-           diprg.diph.dwSize=sizeof( DIPROPRANGE );
-           diprg.diph.dwHeaderSize=sizeof( DIPROPHEADER );
-           diprg.diph.dwHow=DIPH_BYID;
-           diprg.diph.dwObj= pdidoi->dwType;
-           diprg.lMin=min;
-           diprg.lMax=max;
-           if(  joystick->getDirectInputPtr()->SetProperty( DIPROP_RANGE, &diprg.diph )== DI_OK)
+          if(pdidoi->guidType == GUID_POV)
+           {
+               value = 0;
+               didRangeSetOK = true;
+           }
+           else
+           {
+               DIPROPRANGE diprg;
+               diprg.diph.dwSize=sizeof( DIPROPRANGE );
+               diprg.diph.dwHeaderSize=sizeof( DIPROPHEADER );
+               diprg.diph.dwHow=DIPH_BYID;
+               diprg.diph.dwObj= pdidoi->dwType;
+               diprg.lMin=min;
+               diprg.lMax=max;
+               didRangeSetOK = (joystick->getDirectInputPtr()->SetProperty( DIPROP_RANGE, &diprg.diph )== DI_OK);
+           }
+           if(didRangeSetOK)
            {
              joystick->addElement(pdidoi->wUsage,pdidoi->wUsagePage,buttonCount,min,max,value);
            }
