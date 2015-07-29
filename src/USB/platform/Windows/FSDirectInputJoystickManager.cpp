@@ -98,10 +98,10 @@ void FSDirectInputJoystickManager::updateConnectJoysticks()
 
         }
        // enumContext.joysticksConnectedThisUpdate.clear();
-          std::vector<GUID>::iterator itrDelete ;
-          for (itrDelete = enumContext.connectedLastUpdateJoysticks.begin(); itrDelete != enumContext.connectedLastUpdateJoysticks.end();itrDelete++ )
+          for (int index = enumContext.connectedLastUpdateJoysticks.size()-1 ; index >= 0;index--)
           {
-              this->removeDevice(*itrDelete);
+              GUID deviceToDelete = enumContext.connectedLastUpdateJoysticks[index];
+              this->removeDevice(deviceToDelete );
           }
           std::vector<GUID>::iterator itrAdd ;
           for (itrAdd = newThisUpdate.begin(); itrAdd != newThisUpdate.end();itrAdd++ )
@@ -270,6 +270,10 @@ void FSDirectInputJoystickManager::updateJoysticks()
               idForAxis =  FSUSBJoystickDeviceManager::createIdForElement(HID_USAGE_GENERIC_RZ,HID_USAGE_PAGE_GENERIC);
               updateJoysticksAxis(device,js.lRz,idForAxis,firstTime);
 
+
+              //TODO map POV to DPadUp DPadDown DPadLeft DPadRight
+              //idForAxis = FSUSBJoystickDeviceManager::createIdForElement(HID_USAGE_GENERIC_HATSWITCH,HID_USAGE_PAGE_GENERIC);
+              //updateJoysticksAxis(device,js.rgdwPOV[0],idForAxis,false);
 
                //update buttons
                std::vector<IDNumber> elements = device->getElementIds();
