@@ -59,7 +59,7 @@ JoyStickConfigWidget::JoyStickConfigWidget(QWidget *parent) :
     timer= new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(update()));
 #ifdef Q_OS_WIN32
-    timer->start(10);
+    timer->start(30);
 #else
     timer->start(1000);
 #endif
@@ -321,6 +321,7 @@ void JoyStickConfigWidget::onConnect(FSBaseEvent event)
    }
 
 }
+
 
 void JoyStickConfigWidget::update()
 {
