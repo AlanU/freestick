@@ -44,7 +44,8 @@ namespace freestick
     {
         FSInputRest = 0,
         FSInputPressed = 1,
-        FSInputChanged = 2
+        FSInputChanged = 2,
+        FSLastEventAction = 3
 
     } FSEventAction;
 
