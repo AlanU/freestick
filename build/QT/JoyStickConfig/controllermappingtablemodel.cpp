@@ -100,7 +100,7 @@ int ControllerMappingTableModel::rowCount(const QModelIndex & /*parent*/) const
             return static_cast<qlonglong>(element.getValue());
         break;
         case 4:
-            return _elementValuelist[index.row()];
+            return static_cast<QVariant>(_elementValuelist[index.row()]);
          break;
         case 5:
             return static_cast<qlonglong>(element.getDeadZoneMin());
@@ -109,7 +109,7 @@ int ControllerMappingTableModel::rowCount(const QModelIndex & /*parent*/) const
             return static_cast<qlonglong>(element.getDeadZoneMax());
          break;
         case 7:
-            return _elemnetMapped[index.row()];
+            return static_cast<QVariant>(_elemnetMapped[index.row()]);
          break;
         case 8:
             return static_cast<qlonglong>(element.getButtonNumber());
