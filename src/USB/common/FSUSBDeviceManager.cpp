@@ -37,7 +37,6 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     * populate map _usageMapToInputEvent
     */
 
-
     // SteelSeries ("Gtron") Gtron Retro Classic FC SNES Controller
     //has the same vender id as DragonRise
     //TODO add in start and select
@@ -492,6 +491,29 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputRangeEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][65587].push_back(FSUSBElementInfoMap(-32768,32767,XAxis2,FSInputChanged));//RXaxis stick trigger
     _usageMapToInputRangeEvent[RockCandyVenderID][RockCandyXbox360ControlllerID][65588].push_back(FSUSBElementInfoMap(-32768,32767,YAxis2,FSInputChanged));//RYaxis stick trigger
 
+    //Gravis GamePad Pro
+
+    _usageMapToInputEvent[GravisVendorID][GamePadProID][589826] = ButtonA;
+    _usageMapToInputEvent[GravisVendorID][GamePadProID][589827] = ButtonB ;
+    _usageMapToInputEvent[GravisVendorID][GamePadProID][589825] = ButtonX;
+    _usageMapToInputEvent[GravisVendorID][GamePadProID][589828] = ButtonY;
+
+    _usageMapToInputEvent[GravisVendorID][GamePadProID][589829] = LeftShoulder;
+    _usageMapToInputEvent[GravisVendorID][GamePadProID][589830] = RightShoulder;
+
+    _usageMapToInputEvent[GravisVendorID][GamePadProID][589831] = LeftShoulder2;
+    _usageMapToInputEvent[GravisVendorID][GamePadProID][589832] = RightShoulder2;
+
+    _usageMapToInputEvent[GravisVendorID][GamePadProID][589833] = ButtonSelect;
+    _usageMapToInputEvent[GravisVendorID][GamePadProID][589834] = ButtonStart;
+
+    _usageMapToInputRangeEvent[GravisVendorID][GamePadProID][65585].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[GravisVendorID][GamePadProID][65585].push_back(FSUSBElementInfoMap(255,255,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[GravisVendorID][GamePadProID][65585].push_back(FSUSBElementInfoMap(127,127,LastValueUp,FSInputRest));
+
+    _usageMapToInputRangeEvent[GravisVendorID][GamePadProID][65584].push_back(FSUSBElementInfoMap(0,0,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[GravisVendorID][GamePadProID][65584].push_back(FSUSBElementInfoMap(255,255,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[GravisVendorID][GamePadProID][65584].push_back(FSUSBElementInfoMap(127,127,LastValueUp,FSInputRest));
 
 
 }
