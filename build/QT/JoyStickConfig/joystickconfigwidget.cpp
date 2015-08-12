@@ -366,16 +366,22 @@ void JoyStickConfigWidget::PopulateDeviceStats(unsigned int id)
     {
       const  FSUSBJoystick * usbDevice = (const FSUSBJoystick *) device;
 
-      DeviceInfo += " Number of Buttons: ";
-      DeviceInfo += QString::number(usbDevice->getNumberOfButtons());
+        DeviceInfo += " Vender ID: ";
+        DeviceInfo += QString::number(usbDevice->getVenderID());
 
-      DeviceInfo += " Number of Anolg Sticks: ";
-      DeviceInfo += QString::number(usbDevice->getNumberOfAnlogSticks());
+        DeviceInfo +=  " Product ID: ";
+        DeviceInfo += QString::number(usbDevice->getProductID());
 
-      DeviceInfo += " Number of Digital Sticks: ";
-      DeviceInfo += QString::number(usbDevice->getNumberOfDigitalSticks());
+
+    //  DeviceInfo += " Number of Buttons: ";
+   //   DeviceInfo += QString::number(usbDevice->getNumberOfButtons());
+
+     // DeviceInfo += " Number of Anolg Sticks: ";
+      //DeviceInfo += QString::number(usbDevice->getNumberOfAnlogSticks());
+
+      //DeviceInfo += " Number of Digital Sticks: ";
+     // DeviceInfo += QString::number(usbDevice->getNumberOfDigitalSticks());
       FFBackSupport = usbDevice->getForceFeedbackSupport();
-      \
 
     }
      ui->FoceFeedBack->setChecked(FFBackSupport);
