@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>734</width>
-    <height>475</height>
+    <height>464</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -173,8 +173,8 @@
              <widget class="QLabel" name="label_15">
               <property name="geometry">
                <rect>
-                <x>40</x>
-                <y>10</y>
+                <x>20</x>
+                <y>0</y>
                 <width>91</width>
                 <height>16</height>
                </rect>
@@ -239,8 +239,8 @@
              <widget class="QLabel" name="label_17">
               <property name="geometry">
                <rect>
-                <x>40</x>
-                <y>10</y>
+                <x>20</x>
+                <y>0</y>
                 <width>91</width>
                 <height>16</height>
                </rect>
@@ -272,6 +272,12 @@
                 <width>151</width>
                 <height>23</height>
                </rect>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777211</width>
+                <height>16777215</height>
+               </size>
               </property>
               <property name="minimum">
                <number>-100</number>
