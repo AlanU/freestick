@@ -1,5 +1,5 @@
 <map id="freestick::FSUSBNullDevice" name="freestick::FSUSBNullDevice">
-<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_device.html" title="freestick::FSUSBDevice" alt="" coords="19,161,205,188"/>
-<area shape="rect" href="$classfreestick_1_1_f_s_base_device.html" title="freestick::FSBaseDevice" alt="" coords="16,84,208,111"/>
-<area shape="rect" href="$classfreestick_1_1_i_f_s_device.html" title="freestick::IFSDevice" alt="" coords="32,7,192,33"/>
+<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_u_s_b_device.html" title="freestick::FSUSBDevice" alt="" coords="15,155,176,181"/>
+<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_base_device.html" title="freestick::FSBaseDevice" alt="" coords="14,80,177,107"/>
+<area shape="rect" id="node4" href="$classfreestick_1_1_i_f_s_device.html" title="freestick::IFSDevice" alt="" coords="27,5,164,32"/>
 </map>

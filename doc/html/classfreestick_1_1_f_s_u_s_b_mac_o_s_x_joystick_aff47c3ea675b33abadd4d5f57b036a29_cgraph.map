@@ -1,6 +1,9 @@
 <map id="freestick::FSUSBMacOSXJoystick::FSUSBMacOSXJoystick" name="freestick::FSUSBMacOSXJoystick::FSUSBMacOSXJoystick">
-<area shape="rect" href="$_i_o_h_i_d_device___8c.html#a61b48a7723380a69eafe6e56124185b1" title="IOHIDDevice_GetVendorID" alt="" coords="328,5,539,32"/>
-<area shape="rect" href="$_i_o_h_i_d_device___8c.html#a00820aafcaa01e19b5c20754223bdca1" title="IOHIDDevice_GetProductID" alt="" coords="327,56,540,83"/>
-<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_device.html#a278b535459c3dabb521e3e84442a320c" title="freestick::FSUSBDevice\l::GetFrendlyVenderNameFromID" alt="" coords="305,107,561,152"/>
-<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_device.html#aa55be87c7e7afc05148a3a642f2eb65d" title="freestick::FSUSBDevice\l::GetFrendlyProductNameFromID" alt="" coords="304,176,563,221"/>
+<area shape="rect" id="node2" href="$_i_o_h_i_d_device___8c.html#a61b48a7723380a69eafe6e56124185b1" title="IOHIDDevice_GetVendorID" alt="" coords="302,5,477,32"/>
+<area shape="rect" id="node3" href="$_i_o_h_i_d_device___8c.html#a00820aafcaa01e19b5c20754223bdca1" title="IOHIDDevice_GetProductID" alt="" coords="300,56,479,83"/>
+<area shape="rect" id="node4" href="$classfreestick_1_1_f_s_u_s_b_device.html#a278b535459c3dabb521e3e84442a320c" title="freestick::FSUSBDevice\l::GetFrendlyVenderNameFromID" alt="" coords="284,107,495,149"/>
+<area shape="rect" id="node5" href="$_i_o_h_i_d_device___8c.html#af3b0e9d0d9f77c6da3162321363c7320" title="IOHIDDevice_GetManufacturer" alt="" coords="291,173,488,200"/>
+<area shape="rect" id="node6" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick.html#a7672a283b9d051b8f780b0e655b34abd" title="freestick::FSUSBMacOSXJoystick\l::CFStringRefToString" alt="" coords="278,225,501,266"/>
+<area shape="rect" id="node7" href="$classfreestick_1_1_f_s_u_s_b_device.html#aa55be87c7e7afc05148a3a642f2eb65d" title="freestick::FSUSBDevice\l::GetFrendlyProductNameFromID" alt="" coords="282,290,497,331"/>
+<area shape="rect" id="node8" href="$_i_o_h_i_d_device___8c.html#acc66d1c9f4e4c5d7b5d21702152a9cad" title="IOHIDDevice_GetProduct" alt="" coords="306,356,473,383"/>
 </map>

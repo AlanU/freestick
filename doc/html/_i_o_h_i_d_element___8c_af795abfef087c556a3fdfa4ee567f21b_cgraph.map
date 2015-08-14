@@ -1,4 +1,4 @@
 <map id="IOHIDElement_GetCalibrationDeadZoneMax" name="IOHIDElement_GetCalibrationDeadZoneMax">
-<area shape="rect" href="$_i_o_h_i_d_element___8c.html#a0e822987b2eef3b79e8844b9cb9fb861" title="IOHIDElement_GetDoubleProperty" alt="" coords="288,5,555,32"/>
-<area shape="rect" href="$_i_o_h_i_d_element___8c.html#a0d5f4d32f80634a150d095dee06cc1c0" title="IOHIDElement_SetDoubleProperty" alt="" coords="289,56,553,83"/>
+<area shape="rect" id="node2" href="$_i_o_h_i_d_element___8c.html#a0e822987b2eef3b79e8844b9cb9fb861" title="IOHIDElement_GetDoubleProperty" alt="" coords="248,5,469,32"/>
+<area shape="rect" id="node3" href="$_i_o_h_i_d_element___8c.html#a0d5f4d32f80634a150d095dee06cc1c0" title="IOHIDElement_SetDoubleProperty" alt="" coords="249,56,469,83"/>
 </map>

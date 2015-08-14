@@ -1,7 +1,8 @@
 <map id="freestick::FSBaseManager::init" name="freestick::FSBaseManager::init">
-<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_device_manager.html#a634bc01536ebc6c6177ea1abdb8014d4" title="freestick::FSUSBDeviceManager\l::init" alt="" coords="261,75,512,120"/>
-<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html#a2051a89a2e6073ff1dbc8849ab10553e" title="freestick::FSUSBJoystick\lDeviceManager::init" alt="" coords="584,5,773,51"/>
-<area shape="rect" href="$classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#a6d47d77f5ce23d8ddf620149b2cc0a6b" title="freestick::FSHIDAndroidJoysick\lDeviceManager::init" alt="" coords="560,75,797,120"/>
-<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_null_joystick_device_manager.html#a30bff31a1f79ba09e8bc51a35db08708" title="freestick::FSUSBNullJoystick\lDeviceManager::init" alt="" coords="569,144,788,189"/>
-<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::init" alt="" coords="845,5,1096,51"/>
+<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_u_s_b_device_manager.html#a634bc01536ebc6c6177ea1abdb8014d4" title="freestick::FSUSBDeviceManager\l::init" alt="" coords="229,70,440,111"/>
+<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html#a2051a89a2e6073ff1dbc8849ab10553e" title="freestick::FSUSBJoystick\lDeviceManager::init" alt="" coords="505,5,676,46"/>
+<area shape="rect" id="node5" href="$classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#a6d47d77f5ce23d8ddf620149b2cc0a6b" title="freestick::FSHIDAndroidJoysick\lDeviceManager::init" alt="" coords="488,70,693,111"/>
+<area shape="rect" id="node7" href="$classfreestick_1_1_f_s_u_s_b_null_joystick_device_manager.html#a30bff31a1f79ba09e8bc51a35db08708" title="freestick::FSUSBNullJoystick\lDeviceManager::init" alt="" coords="494,135,687,177"/>
+<area shape="rect" id="node4" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::init" alt="" coords="742,5,965,46"/>
+<area shape="rect" id="node6" href="$classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#a46c06a9488db23ea6ed2496c882947a0" title="freestick::FSHIDAndroidJoysick\lDeviceManager::init" alt="" coords="751,70,956,111"/>
 </map>

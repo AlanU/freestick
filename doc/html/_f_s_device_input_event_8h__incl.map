@@ -1,5 +1,5 @@
-<map id="src/FSDeviceInputEvent.h" name="src/FSDeviceInputEvent.h">
-<area shape="rect" href="$_f_s_base_event_8h.html" title="baseClasses/FSBaseEvent.h" alt="" coords="5,84,224,111"/>
-<area shape="rect" href="$_i_f_s_device_8h.html" title="IFSDevice.h" alt="" coords="197,239,301,265"/>
-<area shape="rect" href="$_i_f_s_event_8h.html" title="../Interfaces/IFSEvent.h" alt="" coords="31,161,215,188"/>
+<map id="inc/common/FSDeviceInputEvent.h" name="inc/common/FSDeviceInputEvent.h">
+<area shape="rect" id="node2" href="$_f_s_base_event_8h.html" title="../baseClasses/FSBaseEvent.h" alt="" coords="5,96,208,123"/>
+<area shape="rect" id="node4" href="$_i_f_s_device_8h.html" title="IFSDevice.h" alt="" coords="188,245,279,272"/>
+<area shape="rect" id="node3" href="$_i_f_s_event_8h.html" title="../Interfaces/IFSEvent.h" alt="" coords="39,171,196,197"/>
 </map>

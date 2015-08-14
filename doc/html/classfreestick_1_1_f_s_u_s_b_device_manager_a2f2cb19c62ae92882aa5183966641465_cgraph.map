@@ -1,0 +1,5 @@
+<map id="freestick::FSUSBDeviceManager::doesDeviceHaveDeviceInputForValue" name="freestick::FSUSBDeviceManager::doesDeviceHaveDeviceInputForValue">
+<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_u_s_b_element_info_map.html#a4568ce86fa99f9920a804fc150df8cf9" title="freestick::FSUSBElementInfo\lMap::getDeviceInput" alt="" coords="297,5,487,46"/>
+<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_u_s_b_element_info_map.html#a1747566bc099e25a0e83065facbf4178" title="freestick::FSUSBElementInfo\lMap::getMin" alt="" coords="297,70,487,111"/>
+<area shape="rect" id="node4" href="$classfreestick_1_1_f_s_u_s_b_element_info_map.html#a33d8fe8e64af4f28fa4bb89a9378e5b9" title="freestick::FSUSBElementInfo\lMap::getMax" alt="" coords="297,135,487,177"/>
+</map>

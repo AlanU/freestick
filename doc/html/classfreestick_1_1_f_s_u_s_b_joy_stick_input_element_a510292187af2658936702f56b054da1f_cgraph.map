@@ -1,0 +1,9 @@
+<map id="freestick::FSUSBJoyStickInputElement::FSUSBJoyStickInputElement" name="freestick::FSUSBJoyStickInputElement::FSUSBJoyStickInputElement">
+<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_u_s_b_device_manager.html#aa3d988ae4e3aa02aa3fd91c818545015" title="freestick::FSUSBDeviceManager\l::lookUpDeviceInputFromUSBID" alt="" coords="584,38,795,79"/>
+<area shape="rect" id="node5" href="$classfreestick_1_1_f_s_u_s_b_element_info_map.html#a4568ce86fa99f9920a804fc150df8cf9" title="freestick::FSUSBElementInfo\lMap::getDeviceInput" alt="" coords="594,169,785,210"/>
+<area shape="rect" id="node6" href="$classfreestick_1_1_f_s_u_s_b_device_manager.html#a22a41f57efa039913dc6a9a936fd87ad" title="freestick::FSUSBDeviceManager\l::doesElementHaveDeviceInputForValue" alt="" coords="283,218,535,259"/>
+<area shape="rect" id="node7" href="$classfreestick_1_1_f_s_u_s_b_joy_stick_input_element.html#ad5ca277b1b9b203c19495c2f0a9490cc" title="freestick::FSUSBJoyStick\lInputElement::calibrate" alt="" coords="323,101,496,142"/>
+<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_u_s_b_element_info_map.html#a1747566bc099e25a0e83065facbf4178" title="freestick::FSUSBElementInfo\lMap::getMin" alt="" coords="843,5,1034,46"/>
+<area shape="rect" id="node4" href="$classfreestick_1_1_f_s_u_s_b_element_info_map.html#a33d8fe8e64af4f28fa4bb89a9378e5b9" title="freestick::FSUSBElementInfo\lMap::getMax" alt="" coords="843,70,1034,111"/>
+<area shape="rect" id="node8" href="$classfreestick_1_1_f_s_base_device.html#a1c9d1eba2c56d8f4a28886bce262b7f5" title="freestick::FSBaseDevice\l::getJoystickID" alt="" coords="607,103,771,145"/>
+</map>

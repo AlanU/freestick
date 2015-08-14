@@ -1,4 +1,4 @@
 <map id="freestick::FSUSBDevice" name="freestick::FSUSBDevice">
-<area shape="rect" href="$classfreestick_1_1_f_s_base_device.html" title="freestick::FSBaseDevice" alt="" coords="5,84,197,111"/>
-<area shape="rect" href="$classfreestick_1_1_i_f_s_device.html" title="freestick::IFSDevice" alt="" coords="21,7,181,33"/>
+<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_base_device.html" title="freestick::FSBaseDevice" alt="" coords="5,80,168,107"/>
+<area shape="rect" id="node3" href="$classfreestick_1_1_i_f_s_device.html" title="freestick::IFSDevice" alt="" coords="18,5,155,32"/>
 </map>
