@@ -29,6 +29,7 @@ and must not be misrepresented as being the original software.
 #include "USB/common/FSUSBJoystickDeviceManager.h"
 #include "USB/platform/Windows/FSDirectInputJoystick.h"
 #define DIRECTINPUT_VERSION 0x0800
+#define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 #include <dinput.h>
 #include <dinputd.h>

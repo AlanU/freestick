@@ -84,4 +84,5 @@ DEPENDPATH += $$PWD/../FreeStick
 
 
 
-win32: LIBS += -ldinput8 -ldxguid -lcomctl32 -lOle32 -lOleAut32
+win32: LIBS += -ldinput8 -ldxguid -lcomctl32 -lOle32 -lOleAut32 -lXinput9_1_0
+

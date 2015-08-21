@@ -134,6 +134,8 @@ win32 {
 SOURCES += $$files(../../../src/USB/platform/Windows/*.cpp)
 
 HEADERS += $$files(../../../inc/USB/platform/Windows/*.h)
+
+LIBS += -lXinput9_1_0
 }
 
 
