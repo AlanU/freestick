@@ -140,11 +140,9 @@ FSUSBJoyStickInputElement::FSUSBJoyStickInputElement(unsigned int id,  unsigned 
     _needsDeadZone = false;
     _calibrated =false;
 
-    FSDeviceInput deviceType = _usbDeviceManager->lookUpDeviceInputFromUSBID(venderID,productID,id,_elementMin,_elementMax,currentValue).getDeviceInput();
     _useLastValueStack = false;
 
     _parentID = parentID;
-
 
    _useLastValueStack = _usbDeviceManager->doesElementHaveDeviceInputForValue(venderID,productID,id,LastValueUp);
 
@@ -181,7 +179,7 @@ void FSUSBJoyStickInputElement::calibrate(PhysicalValueNumber currentValue, MinM
            _deadZoneMin = temp;
         }
 
-        MinMaxNumber precent =( (float)(_elementMax + abs(_elementMin) ) )*0.05f;
+        MinMaxNumber precent = static_cast<MinMaxNumber>(( (float)(_elementMax + abs(_elementMin) ) )*0.05f);
 
         _deadZoneMax= _elementMax < _deadZoneMax+precent ?  _deadZoneMax :_deadZoneMax + precent ;
         _deadZoneMin = _elementMin > _deadZoneMin-precent ? _deadZoneMin : _deadZoneMin - precent;

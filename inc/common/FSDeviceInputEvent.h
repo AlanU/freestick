@@ -44,10 +44,10 @@ namespace freestick {
         FSDeviceInputEvent();
     public:
         FSDeviceInputEvent(FreeStickEventType eventType,FSEventAction eventAction,unsigned int timeStamp,unsigned int deviceID,unsigned int controlID,float oldValue,float newValue,FSDeviceInput inputType) ;
-        float getOldInputValue(){ return _oldValue;}
-        float getNewInputValue(){ return _newValue;}
-        int getControlID(){ return _controlID;}
-        FSDeviceInput getInputType() { return _inputType;}
+        float getOldInputValue()const { return _oldValue;}
+        float getNewInputValue()const { return _newValue;}
+        int getControlID()const { return _controlID;}
+        FSDeviceInput getInputType() const { return _inputType;}
     };
 
 };

@@ -70,10 +70,10 @@ const unsigned int GtronRetroSNES = 17;
          FSDeviceInput _inputMapping;
          FSEventAction _typeMapping; // is the value down or up on the
     public:
-         inline signed long getMax(){return _max;}
-         inline signed long getMin(){return _min;}
-         inline FSDeviceInput getDeviceInput(){return _inputMapping;}
-         inline FSEventAction getEventMapping(){return _typeMapping;}
+         inline signed long getMax()const {return _max;}
+         inline signed long getMin()const {return _min;}
+         inline FSDeviceInput getDeviceInput()const {return _inputMapping;}
+         inline FSEventAction getEventMapping()const {return _typeMapping;}
         FSUSBElementInfoMap(signed long  min,signed long max,FSDeviceInput inputMapping,FSEventAction typeMapping):_min(min),_max(max),_inputMapping(inputMapping),_typeMapping(typeMapping){}
     };
 

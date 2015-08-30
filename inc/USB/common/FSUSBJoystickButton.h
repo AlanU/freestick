@@ -37,7 +37,7 @@ namespace freestick
          FSUSBJoystickButton();
     public:
         FSUSBJoystickButton(FSDeviceInput inputMapping);
-        virtual FSDeviceInput getMapping(int inputValue){return _buttonMapping;}
+        virtual FSDeviceInput getMapping(){return _buttonMapping;}
     };
 
 }

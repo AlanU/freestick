@@ -364,7 +364,7 @@ void JoyStickConfigWidget::PopulateDeviceStats(unsigned int id)
 
     if(device != NULL && device->getClassType() >= FSUSBJoystickType)
     {
-      const  FSUSBJoystick * usbDevice = (const FSUSBJoystick *) device;
+      const  FSUSBJoystick * usbDevice = static_cast<const FSUSBJoystick *>(device);
 
         DeviceInfo += " Vender ID: ";
         DeviceInfo += QString::number(usbDevice->getVenderID());
