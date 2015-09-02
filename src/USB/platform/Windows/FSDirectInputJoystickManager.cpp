@@ -129,9 +129,7 @@ void FSDirectInputJoystickManager::updateEvents(unsigned int joystickDeviceID, F
                 if (!isValueVaild) {
                     inputOnDeviceChangedWithNormilzedValues(eventType, inputType.getEventMapping(), inputType.getDeviceInput(),
                                         joystickDeviceID, elementDevice->getJoystickID(),
-                                        0, 0,
-                                        -1,
-                                        1);
+                                        0, 0);
                 }else  {
                     inputOnDeviceChanged(eventType, inputType.getEventMapping(), inputType.getDeviceInput(),
                                  joystickDeviceID, elementDevice->getJoystickID(),
@@ -282,7 +280,7 @@ void FSDirectInputJoystickManager::updateJoysticks()
             //update buttons
             std::vector<IDNumber> elements = device->getElementIds();
             int buttonNumber = 0;
-            for ( int i = 0; i < elements.size(); i++ ) {
+            for ( unsigned int i = 0; i < elements.size(); i++ ) {
                 FSUSBJoyStickInputElement * element = (FSUSBJoyStickInputElement*)device->findInputElement(elements[i]);
 
                 if (element->getMinValue() == 0 && element->getMaxValue() == 1) {

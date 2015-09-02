@@ -26,6 +26,7 @@
 */
 
 #include "USB/platform/Windows/FSXInputJoystickDeviceManager.h"
+#include "USB/platform/Windows/FSXInputJoystick.h"
 #include <Windows.h>
 #include <XInput.h>
 #include "../../../3rdParty/EELog/src/EELog.h"
@@ -57,11 +58,11 @@ std::vector<DWORD> foundThisUpdate;
             if(result == ERROR_SUCCESS )
             {
                 DWORD foundJoystick = index;
-                std::vector<DWORD>::iterator itr2 = std::find(connectedLastUpdateJoysticks.begin(),
-                                                              connectedLastUpdateJoysticks.end(),
+                std::vector<DWORD>::iterator itr2 = std::find(_connectedLastUpdateJoysticks.begin(),
+                                                              _connectedLastUpdateJoysticks.end(),
                                                                foundJoystick);
-                if (itr2 != connectedLastUpdateJoysticks.end()) {
-                    connectedLastUpdateJoysticks.erase(itr2);
+                if (itr2 != _connectedLastUpdateJoysticks.end()) {
+                    _connectedLastUpdateJoysticks.erase(itr2);
 
                 }else  {
                     newThisUpdate.push_back(foundJoystick);
@@ -69,26 +70,44 @@ std::vector<DWORD> foundThisUpdate;
                 foundThisUpdate.push_back(foundJoystick);
             }
     }
-    for (int index = connectedLastUpdateJoysticks.size() - 1; index >= 0; index--) {
-        DWORD deviceToDelete = connectedLastUpdateJoysticks[index];
-        this->removeDevice(deviceToDelete );
+    for (int index = _connectedLastUpdateJoysticks.size() - 1; index >= 0; index--) {
+        DWORD deviceToDelete = _connectedLastUpdateJoysticks[index];
+        this->removeXInputDevice(deviceToDelete );
     }
     std::vector<DWORD>::iterator itrAdd;
     for (itrAdd = newThisUpdate.begin(); itrAdd != newThisUpdate.end(); itrAdd++ ) {
-        this->addDevice(*itrAdd);
+        this->addXInputDevice(*itrAdd);
 
     }
 
-    connectedLastUpdateJoysticks = foundThisUpdate;
+    _connectedLastUpdateJoysticks = foundThisUpdate;
 }
 
-void FSXInputJoystickDeviceManager::removeDevice(DWORD device)
+void FSXInputJoystickDeviceManager::removeXInputDevice(DWORD device)
 {
+    if(_wordToIDControllerMap.find(device) != _wordToIDControllerMap.end())
+    {
+        unsigned int id = _wordToIDControllerMap[device];
+        const FSBaseDevice * joystickToDelete = getDevice(id);
+        removeDevice((FSBaseDevice*)joystickToDelete);
+        _wordToIDControllerMap.erase(device);
+    }
     EE_DEBUG<<"Removed Device"<<std::endl;
 }
 
-void FSXInputJoystickDeviceManager::addDevice(DWORD device)
+void FSXInputJoystickDeviceManager::addXInputDevice(DWORD device)
 {
-    EE_DEBUG<<"Added Device"<<std::endl;
+    if(_wordToIDControllerMap.find(device) == _wordToIDControllerMap.end())
+    {
+       unsigned int newId = getNextID();
+       _wordToIDControllerMap[device] = newId;
+
+      //XBox Controller
+       FSXInputJoystick * newJoystick = new FSXInputJoystick(device,newId,13,2,1,true,MicrosoftVendorID,MicrosoftXbox360WindowsControllerID);
+       addDevice(newJoystick);
+    }
+
+    EE_DEBUG<<"Added XInput Device"<<std::endl;
+
 
 }

@@ -26,10 +26,32 @@
 */
 
 #include "USB/platform/Windows/FSXInputJoystick.h"
+#include <sstream>
 
 using namespace freestick;
-FSXInputJoystick::FSXInputJoystick()
+FSXInputJoystick::FSXInputJoystick(DWORD id,
+                                   unsigned int joyStickID,
+                                   unsigned int numberOfButtons,
+                                   unsigned int numberOfAnlogSticks,
+                                   unsigned int numberOfDigitalSticks,
+                                   bool  forceFeedBackSupported,
+                                   long venderID,
+                                   long productID
+                                   ):FSUSBJoystick( joyStickID,
+                                                    numberOfButtons,
+                                                    numberOfAnlogSticks,
+                                                    numberOfDigitalSticks,
+                                                    forceFeedBackSupported,
+                                                    venderID,
+                                                    productID)
 {
+
+    std::stringstream playerNumber;
+    playerNumber << id+1;
+
+    _vendorIDFriendlyName = "XIputController";
+    _prodcutIDFriendlyName = "Player " + playerNumber.str();
+    _friendlyName = _vendorIDFriendlyName + " "+ _prodcutIDFriendlyName;
 
 }
 

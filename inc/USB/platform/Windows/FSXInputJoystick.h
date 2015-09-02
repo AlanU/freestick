@@ -27,11 +27,18 @@
 
 #pragma once
 #include "USB/common/FSUSBJoystick.h"
+#include <Windows.h>
 namespace  freestick {
     class FSXInputJoystick : public FSUSBJoystick
     {
+        DWORD id;
     public:
-        FSXInputJoystick();
-
+        FSXInputJoystick(DWORD id, unsigned int joyStickID,
+                         unsigned int numberOfButtons,
+                         unsigned int numberOfAnlogSticks,
+                         unsigned int numberOfDigitalSticks,
+                         bool  forceFeedBackSupported,
+                         long venderID,
+                         long productID);
     };
 }

@@ -41,9 +41,10 @@ namespace freestick
         void update();
         void updateConnectJoysticks();
     private:
-        std::vector<DWORD> connectedLastUpdateJoysticks;
-        void removeDevice(DWORD device);
-        void addDevice(DWORD device);
+        std::vector<DWORD> _connectedLastUpdateJoysticks;
+        std::map<DWORD,unsigned int> _wordToIDControllerMap;
+        void removeXInputDevice(DWORD device);
+        void addXInputDevice(DWORD device);
     };
 }
 
