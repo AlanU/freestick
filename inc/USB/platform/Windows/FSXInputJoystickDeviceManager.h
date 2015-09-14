@@ -45,6 +45,10 @@ namespace freestick
         std::map<DWORD,unsigned int> _wordToIDControllerMap;
         void removeXInputDevice(DWORD device);
         void addXInputDevice(DWORD device);
+        void updateEvents(unsigned int joystickDeviceID,FSUSBJoyStickInputElement * elementDevice, long elementValue);
+        void updateJoysticks();
+
+
     };
 }
 

@@ -111,8 +111,9 @@ void FSDirectInputJoystickManager::update()
 
 void FSDirectInputJoystickManager::updateEvents(unsigned int joystickDeviceID, FSUSBJoyStickInputElement * elementDevice, long elementValue)
 {
-    static std::stack<FSUSBElementInfoMap> inputTypes;
+    //TODO put this in a shared location maybe a base clase
 
+    static std::stack<FSUSBElementInfoMap> inputTypes;
 
     if (elementDevice) {
         elementDevice->getMapping(elementValue, inputTypes);

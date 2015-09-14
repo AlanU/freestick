@@ -40,8 +40,84 @@ FSXInputJoystickDeviceManager::FSXInputJoystickDeviceManager()
 void FSXInputJoystickDeviceManager::update()
 {
     updateConnectJoysticks();
-   // updateJoysticks();
+    updateJoysticks();
 }
+
+
+void FSXInputJoystickDeviceManager::updateEvents(unsigned int joystickDeviceID,FSUSBJoyStickInputElement * elementDevice, long elementValue)
+{
+    //TODO put this in a shared location maybe a base clase
+    static std::stack<FSUSBElementInfoMap> inputTypes;
+
+    if (elementDevice) {
+        elementDevice->getMapping(elementValue, inputTypes);
+        bool isValueVaild = elementDevice->isValueInDeadZone(elementValue);
+
+        while (!inputTypes.empty()) {
+            FSUSBElementInfoMap inputType = inputTypes.top();
+
+            FreeStickEventType eventType =  IFSEvent::getEventFromInputType(inputType.getDeviceInput());
+
+            //pass in FSEventMaping so we can map release vs press
+            if ( eventType != FS_LAST_EVENT && inputType.getDeviceInput() != LastInput) {
+
+                if (!isValueVaild) {
+                    inputOnDeviceChangedWithNormilzedValues(eventType, inputType.getEventMapping(), inputType.getDeviceInput(),
+                                        joystickDeviceID, elementDevice->getJoystickID(),
+                                        0, 0);
+                }else  {
+                    inputOnDeviceChanged(eventType, inputType.getEventMapping(), inputType.getDeviceInput(),
+                                 joystickDeviceID, elementDevice->getJoystickID(),
+                                 elementDevice->getValue(), 0,
+                                 elementDevice->getMinValue(),
+                                 elementDevice->getMaxValue());
+                }
+            }
+            inputTypes.pop();
+        }
+    }
+}
+
+void FSXInputJoystickDeviceManager::updateJoysticks()
+{
+    static DWORD lastState[XUSER_MAX_COUNT]= {0,0,0,0};
+
+    for (DWORD index = 0; index < XUSER_MAX_COUNT; index++)
+    {
+        DWORD result;
+        //TODO do not do this twice
+        XINPUT_STATE xState;
+        ZeroMemory(&xState, sizeof(XINPUT_STATE));
+        result = XInputGetState(index,&xState);
+        if(result == ERROR_SUCCESS  && lastState[index] != xState.dwPacketNumber)
+        {
+           if(_wordToIDControllerMap.find(index) != _wordToIDControllerMap.end())
+           {
+               unsigned int joyID = _wordToIDControllerMap[index];
+              const FSXInputJoystick * xinputJoystick = static_cast<const FSXInputJoystick*>(getDevice(joyID));
+
+               bool Value = ((xState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_UP)!= 0 );
+               FSUSBJoyStickInputElement * pad = (FSUSBJoyStickInputElement*) xinputJoystick->findInputElement(UP_DPAD_XINPUT_EID) ;
+               updateEvents(joyID,pad,Value ? 1 : 0);
+
+               Value = ((xState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_DOWN) != 0) ;
+               pad = (FSUSBJoyStickInputElement*) xinputJoystick->findInputElement(DOWN_DPAD_XINPUT_EID) ;
+               updateEvents(joyID,pad,Value ? 1 : 0);
+
+               Value = ((xState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_RIGHT) != 0) ;
+               pad = (FSUSBJoyStickInputElement*) xinputJoystick->findInputElement(RIGHT_DPAD_XINPUT_EID) ;
+               updateEvents(joyID,pad,Value ? 1 : 0);
+
+               Value = ((xState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_LEFT) != 0) ;
+               pad = (FSUSBJoyStickInputElement*) xinputJoystick->findInputElement(LEFT_DPAD_XINPUT_EID) ;
+               updateEvents(joyID,pad,Value ? 1 : 0);
+
+               lastState[index]= xState.dwPacketNumber;
+           }
+        }
+    }
+}
+
 
 void FSXInputJoystickDeviceManager::updateConnectJoysticks()
 {
@@ -103,7 +179,7 @@ void FSXInputJoystickDeviceManager::addXInputDevice(DWORD device)
        _wordToIDControllerMap[device] = newId;
 
       //XBox Controller
-       FSXInputJoystick * newJoystick = new FSXInputJoystick(device,newId,13,2,1,true,MicrosoftVendorID,MicrosoftXbox360WindowsControllerID);
+       FSXInputJoystick * newJoystick = new FSXInputJoystick(device,newId,13,2,1,true,MicrosoftVendorID,MicrosoftXbox360WindowsControllerID,static_cast<FSUSBJoystickDeviceManager &>(*this));
        addDevice(newJoystick);
     }
 

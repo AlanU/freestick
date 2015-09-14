@@ -28,10 +28,17 @@
 #pragma once
 #include "USB/common/FSUSBJoystick.h"
 #include <Windows.h>
+#include "USB/common/FSUSBJoystickDeviceManager.h"
+#define UP_DPAD_XINPUT_EID    589836
+#define DOWN_DPAD_XINPUT_EID  589837
+#define LEFT_DPAD_XINPUT_EID  589838
+#define RIGHT_DPAD_XINPUT_EID 589839
+
 namespace  freestick {
     class FSXInputJoystick : public FSUSBJoystick
     {
         DWORD id;
+        FSUSBJoystickDeviceManager * _usbJoystickManager;
     public:
         FSXInputJoystick(DWORD id, unsigned int joyStickID,
                          unsigned int numberOfButtons,
@@ -39,6 +46,9 @@ namespace  freestick {
                          unsigned int numberOfDigitalSticks,
                          bool  forceFeedBackSupported,
                          long venderID,
-                         long productID);
+                         long productID,
+                         FSUSBJoystickDeviceManager & usbJoystickManager);
+        void addXinputElements();
+
     };
 }

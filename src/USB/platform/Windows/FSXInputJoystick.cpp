@@ -28,6 +28,7 @@
 #include "USB/platform/Windows/FSXInputJoystick.h"
 #include <sstream>
 
+
 using namespace freestick;
 FSXInputJoystick::FSXInputJoystick(DWORD id,
                                    unsigned int joyStickID,
@@ -36,7 +37,8 @@ FSXInputJoystick::FSXInputJoystick(DWORD id,
                                    unsigned int numberOfDigitalSticks,
                                    bool  forceFeedBackSupported,
                                    long venderID,
-                                   long productID
+                                   long productID,
+                                   FSUSBJoystickDeviceManager & usbJoystickManager
                                    ):FSUSBJoystick( joyStickID,
                                                     numberOfButtons,
                                                     numberOfAnlogSticks,
@@ -52,6 +54,27 @@ FSXInputJoystick::FSXInputJoystick(DWORD id,
     _vendorIDFriendlyName = "XIputController";
     _prodcutIDFriendlyName = "Player " + playerNumber.str();
     _friendlyName = _vendorIDFriendlyName + " "+ _prodcutIDFriendlyName;
+    _usbJoystickManager = &usbJoystickManager;
+    addXinputElements();
 
 }
 
+void FSXInputJoystick::addXinputElements()
+{
+    FSUSBJoyStickInputElement upDpad(UP_DPAD_XINPUT_EID,getJoystickID() ,
+                                   0,1, MicrosoftVendorID,MicrosoftXbox360WindowsControllerID,*_usbJoystickManager,0,0);
+    this->addInputElement(upDpad);
+
+    FSUSBJoyStickInputElement downDpad(DOWN_DPAD_XINPUT_EID,getJoystickID() ,
+                                   0,1, MicrosoftVendorID,MicrosoftXbox360WindowsControllerID,*_usbJoystickManager,0,1);
+    this->addInputElement(downDpad);
+
+    FSUSBJoyStickInputElement leftDpad(LEFT_DPAD_XINPUT_EID,getJoystickID() ,
+                                   0,1, MicrosoftVendorID,MicrosoftXbox360WindowsControllerID,*_usbJoystickManager,0,2);
+    this->addInputElement(leftDpad);
+
+    FSUSBJoyStickInputElement rightDpad(RIGHT_DPAD_XINPUT_EID,getJoystickID() ,
+                                   0,1, MicrosoftVendorID,MicrosoftXbox360WindowsControllerID,*_usbJoystickManager,0,3);
+    this->addInputElement(rightDpad);
+
+}
