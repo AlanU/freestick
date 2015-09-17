@@ -47,3 +47,37 @@ long int FSUSBJoystickDeviceManager::createIdForElement(long int usage, long int
 {
     return (usagePage << 16) | usage;
 }
+
+
+void FSUSBJoystickDeviceManager::updateEvents(unsigned int joystickDeviceID,FSUSBJoyStickInputElement * elementDevice, PhysicalValueNumber elementValue)
+{
+    static std::stack<FSUSBElementInfoMap> inputTypes;
+
+    if (elementDevice) {
+        elementDevice->getMapping(elementValue, inputTypes);
+        bool isValueVaild = elementDevice->isValueInDeadZone(elementValue);
+
+        while (!inputTypes.empty()) {
+            FSUSBElementInfoMap inputType = inputTypes.top();
+
+            FreeStickEventType eventType =  IFSEvent::getEventFromInputType(inputType.getDeviceInput());
+
+            //pass in FSEventMaping so we can map release vs press
+            if ( eventType != FS_LAST_EVENT && inputType.getDeviceInput() != LastInput) {
+
+                if (!isValueVaild) {
+                    inputOnDeviceChangedWithNormilzedValues(eventType, inputType.getEventMapping(), inputType.getDeviceInput(),
+                                        joystickDeviceID, elementDevice->getJoystickID(),
+                                        0, 0);
+                }else  {
+                    inputOnDeviceChanged(eventType, inputType.getEventMapping(), inputType.getDeviceInput(),
+                                 joystickDeviceID, elementDevice->getJoystickID(),
+                                 elementDevice->getValue(), 0,
+                                 elementDevice->getMinValue(),
+                                 elementDevice->getMaxValue());
+                }
+            }
+            inputTypes.pop();
+        }
+    }
+}
