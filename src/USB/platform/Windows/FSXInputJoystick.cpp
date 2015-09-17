@@ -30,7 +30,8 @@
 
 
 using namespace freestick;
-FSXInputJoystick::FSXInputJoystick(DWORD id,
+FSXInputJoystick::FSXInputJoystick(XINPUT_STATE & state,
+                                   DWORD id,
                                    unsigned int joyStickID,
                                    unsigned int numberOfButtons,
                                    unsigned int numberOfAnlogSticks,
@@ -56,18 +57,22 @@ FSXInputJoystick::FSXInputJoystick(DWORD id,
     _friendlyName = _vendorIDFriendlyName + " "+ _prodcutIDFriendlyName;
     _usbJoystickManager = &usbJoystickManager;
     _totalButtonNumber = 0;
-    addXinputElements();
+    addXinputElements(state);
 
 }
 
 void FSXInputJoystick::addButtonElement(unsigned int buttonID)
 {
-    FSUSBJoyStickInputElement upDpad(buttonID,getJoystickID() ,
-                                   0,1, MicrosoftVendorID,MicrosoftXbox360WindowsControllerID,*_usbJoystickManager,0,++_totalButtonNumber);
-    this->addInputElement(upDpad);
+    addElement(buttonID,0,1,0);
 }
 
-void FSXInputJoystick::addXinputElements()
+void FSXInputJoystick::addElement(unsigned int buttonID,MinMaxNumber min,MinMaxNumber max,PhysicalValueNumber currentValue)
+{
+    FSUSBJoyStickInputElement newElement (buttonID,getJoystickID() ,
+                                   min,max, MicrosoftVendorID,MicrosoftXbox360WindowsControllerID,*_usbJoystickManager,currentValue,++_totalButtonNumber);
+    this->addInputElement(newElement);
+}
+void FSXInputJoystick::addXinputElements(XINPUT_STATE & state)
 {
 
     addButtonElement(UP_DPAD_XINPUT_EID);
@@ -90,6 +95,15 @@ void FSXInputJoystick::addXinputElements()
 
     addButtonElement(LEFT_AXIS_BUTTON_XINPUT_EID);
     addButtonElement(RIGHT_AXIS_BUTTON_XINPUT_EID);
+
+    addElement(XAXIS_XINPUT_EID,-32768,32767,state.Gamepad.sThumbLX);
+    addElement(YAXIS_XINPUT_EID,-32768,32767,state.Gamepad.sThumbLY);
+
+    addElement(XAXIS2_XINPUT_EID,-32768,32767,state.Gamepad.sThumbRX);
+    addElement(YAXIS2_XINPUT_EID,-32768,32767,state.Gamepad.sThumbRY);
+
+    addElement(LTRIGGER_XINPUT_EID,0,255,state.Gamepad.bLeftTrigger);
+    addElement(RTRIGGER_XINPUT_EID,0,255,state.Gamepad.bRightTrigger);
 
 
 }

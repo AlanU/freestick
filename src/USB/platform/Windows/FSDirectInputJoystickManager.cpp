@@ -36,7 +36,6 @@ FSDirectInputJoystickManager::FSDirectInputJoystickManager()
     _directInput8 = NULL;
 }
 
-
 void FSDirectInputJoystickManager::init( )
 {
     HRESULT hr;
@@ -84,7 +83,7 @@ void FSDirectInputJoystickManager::updateConnectJoysticks()
             foundThisUpdate.push_back(foundJoystick);
 
         }
-        for (int index = enumContext.connectedLastUpdateJoysticks.size() - 1; index >= 0; index--) {
+        for (int index =(int) enumContext.connectedLastUpdateJoysticks.size() - 1; index >= 0; index--) {
             GUID deviceToDelete = enumContext.connectedLastUpdateJoysticks[index];
             this->removeDevice(deviceToDelete );
         }
@@ -107,41 +106,6 @@ void FSDirectInputJoystickManager::update()
 {
     updateConnectJoysticks();
     updateJoysticks();
-}
-
-void FSDirectInputJoystickManager::updateEvents(unsigned int joystickDeviceID, FSUSBJoyStickInputElement * elementDevice, long elementValue)
-{
-    //TODO put this in a shared location maybe a base clase
-
-    static std::stack<FSUSBElementInfoMap> inputTypes;
-
-    if (elementDevice) {
-        elementDevice->getMapping(elementValue, inputTypes);
-        bool isValueVaild = elementDevice->isValueInDeadZone(elementValue);
-
-        while (!inputTypes.empty()) {
-            FSUSBElementInfoMap inputType = inputTypes.top();
-
-            FreeStickEventType eventType =  IFSEvent::getEventFromInputType(inputType.getDeviceInput());
-
-            //pass in FSEventMaping so we can map release vs press
-            if ( eventType != FS_LAST_EVENT && inputType.getDeviceInput() != LastInput) {
-
-                if (!isValueVaild) {
-                    inputOnDeviceChangedWithNormilzedValues(eventType, inputType.getEventMapping(), inputType.getDeviceInput(),
-                                        joystickDeviceID, elementDevice->getJoystickID(),
-                                        0, 0);
-                }else  {
-                    inputOnDeviceChanged(eventType, inputType.getEventMapping(), inputType.getDeviceInput(),
-                                 joystickDeviceID, elementDevice->getJoystickID(),
-                                 elementDevice->getValue(), 0,
-                                 elementDevice->getMinValue(),
-                                 elementDevice->getMaxValue());
-                }
-            }
-            inputTypes.pop();
-        }
-    }
 }
 
 void FSDirectInputJoystickManager::updateJoysticksPOV(FSDirectInputJoystick * device, LONG axisValue, long int idForXAxis)
@@ -274,7 +238,7 @@ void FSDirectInputJoystickManager::updateJoysticks()
                 double rightSpan = 360;
 
                 double valueScaled = ((double )js.rgdwPOV[0]) / double(leftSpan);
-                angleValue = (valueScaled * rightSpan);
+                angleValue = (long)(valueScaled * rightSpan);
             }
             updateJoysticksPOV(device, angleValue, idForAxis);
 
@@ -443,10 +407,10 @@ bool FSDirectInputJoystickManager::IsXInputDevice( const GUID* pGuidProductFromD
                     // If it does, then get the VID/PID from var.bstrVal
                     DWORD dwPid = 0, dwVid = 0;
                     WCHAR* strVid = wcsstr( var.bstrVal, L"VID_" );
-                    if ( strVid && swscanf( strVid, L"VID_%4X", &dwVid ) != 1 )
+                    if ( strVid && swscanf_s( strVid, L"VID_%4X", &dwVid ) != 1 )
                         dwVid = 0;
                     WCHAR* strPid = wcsstr( var.bstrVal, L"PID_" );
-                    if ( strPid && swscanf( strPid, L"PID_%4X", &dwPid ) != 1 )
+                    if ( strPid && swscanf_s( strPid, L"PID_%4X", &dwPid ) != 1 )
                         dwPid = 0;
 
                     // Compare the VID/PID to the DInput device

@@ -39,26 +39,22 @@ namespace freestick {
     public:
         FSDirectInputJoystick();
         FSDirectInputJoystick(LPDIRECTINPUTDEVICE8 LPDIDJoystick,
-                      unsigned int joyStickID,
-                      unsigned int numberOfButtons,
-                      unsigned int numberOfAnlogSticks,
-                      unsigned int numberOfDigitalSticks,
-                      bool  forceFeedBackSupported,
-                      long venderID,
-                      long productID,
-                      FSUSBJoystickDeviceManager & usbJoystickManager);
+                              unsigned int joyStickID,
+                              unsigned int numberOfButtons,
+                              unsigned int numberOfAnlogSticks,
+                              unsigned int numberOfDigitalSticks,
+                              bool  forceFeedBackSupported,
+                              long venderID,
+                              long productID,
+                              FSUSBJoystickDeviceManager & usbJoystickManager);
         LPDIRECTINPUTDEVICE8 getDirectInputPtr(){return _LPDIDJoystick;}
         virtual ~FSDirectInputJoystick();
         virtual FSDeviceType getClassType() const {return FSDirectInputJoystickType;}
     private:
         LPDIRECTINPUTDEVICE8    _LPDIDJoystick;
         FSUSBJoystickDeviceManager * _usbJoystickManager;
-        static BOOL CALLBACK EnumInputObjectsCallback( const DIDEVICEOBJECTINSTANCE* pdidoi,
-                                           VOID* pContext );
+        static BOOL CALLBACK EnumInputObjectsCallback( const DIDEVICEOBJECTINSTANCE* pdidoi,VOID* pContext );
         long int getCurrentValue(FSDirectInputJoystick * device,const DIDEVICEOBJECTINSTANCE* pdidoi);
-
-        void addButtonElement(long int usage, long int usagePage,MinMaxNumber elementId);
         void addElement(long int usage, long int usagePage,MinMaxNumber elementId,MinMaxNumber min,MinMaxNumber max,long int value);
-
     };
 }

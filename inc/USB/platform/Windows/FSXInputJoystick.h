@@ -28,7 +28,9 @@
 #pragma once
 #include "USB/common/FSUSBJoystick.h"
 #include <Windows.h>
+#include <Xinput.h>
 #include "USB/common/FSUSBJoystickDeviceManager.h"
+
 #define UP_DPAD_XINPUT_EID    589836
 #define DOWN_DPAD_XINPUT_EID  589837
 #define LEFT_DPAD_XINPUT_EID  589838
@@ -49,6 +51,15 @@
 #define LEFT_AXIS_BUTTON_XINPUT_EID 589831
 #define RIGHT_AXIS_BUTTON_XINPUT_EID 589832
 
+#define XAXIS_XINPUT_EID 65584
+#define YAXIS_XINPUT_EID 65585
+
+#define XAXIS2_XINPUT_EID 65587
+#define YAXIS2_XINPUT_EID 65588
+
+#define LTRIGGER_XINPUT_EID 65586
+#define RTRIGGER_XINPUT_EID 65589
+
 namespace  freestick {
     class FSXInputJoystick : public FSUSBJoystick
     {
@@ -57,7 +68,8 @@ namespace  freestick {
         unsigned int _totalButtonNumber;
 
     public:
-        FSXInputJoystick(DWORD id, unsigned int joyStickID,
+        FSXInputJoystick(XINPUT_STATE & state,
+                         DWORD id, unsigned int joyStickID,
                          unsigned int numberOfButtons,
                          unsigned int numberOfAnlogSticks,
                          unsigned int numberOfDigitalSticks,
@@ -65,8 +77,10 @@ namespace  freestick {
                          long venderID,
                          long productID,
                          FSUSBJoystickDeviceManager & usbJoystickManager);
-        void addXinputElements();
+        void addXinputElements(XINPUT_STATE & state);
         void addButtonElement(unsigned int buttonID);
+        void addElement(unsigned int buttonID,MinMaxNumber min,MinMaxNumber max,PhysicalValueNumber currentValue);
+
 
 
     };

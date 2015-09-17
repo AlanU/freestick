@@ -40,17 +40,16 @@ namespace freestick
     public:
         FSXInputJoystickDeviceManager();
         void update();
-        void updateConnectJoysticks();
     private:
         std::vector<DWORD> _connectedLastUpdateJoysticks;
         std::map<DWORD,unsigned int> _wordToIDControllerMap;
         void removeXInputDevice(DWORD device);
-        void addXInputDevice(DWORD device);
-        void updateEvents(unsigned int joystickDeviceID,FSUSBJoyStickInputElement * elementDevice, long elementValue);
+        void addXInputDevice(DWORD device,XINPUT_STATE & xState);
         void updateButton(WORD  buttons,WORD xButtonToLookFor,unsigned int buttonToLookFor , const FSXInputJoystick * xinputJoystick , unsigned int controllerID  );
+        void updateAnalog(unsigned int axisToLookFor , const FSXInputJoystick * xinputJoystick , unsigned int controllerID ,PhysicalValueNumber value );
+        //called by update
+        void updateConnectJoysticks();
         void updateJoysticks();
-
-
     };
 }
 

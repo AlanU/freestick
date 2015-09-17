@@ -83,14 +83,6 @@ FSDirectInputJoystick::FSDirectInputJoystick(LPDIRECTINPUTDEVICE8  LPDIDJoystick
 
 
 }
-void FSDirectInputJoystick::addButtonElement(long int usage, long int usagePage,MinMaxNumber elementId)
-{
-
- //  int value = 0;
-   //TODO finsh this
-   //FSUSBJoyStickInputElement temp(FSUSBJoystickDeviceManager::createIdForElement(usage,usagePage),getJoystickID() ,0, 1, _vendorID,_productID,*_usbJoystickManager,value,elementId);
-    //this->addInputElement(temp);
-}
 
 void FSDirectInputJoystick::addElement(long int usage, long int usagePage,
                                        MinMaxNumber elementId,MinMaxNumber min, MinMaxNumber max,long int value)
@@ -104,7 +96,6 @@ void FSDirectInputJoystick::addElement(long int usage, long int usagePage,
 BOOL CALLBACK  FSDirectInputJoystick::EnumInputObjectsCallback( const DIDEVICEOBJECTINSTANCE* pdidoi,
                                    VOID* pContext )
 {
-    DIJOYSTATE2 joystickState;
     FSDirectInputJoystick * joystick = static_cast<FSDirectInputJoystick*>(pContext);
     static int povCount = 0;
     static int buttonCount = 0;

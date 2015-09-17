@@ -36,48 +36,17 @@ FSXInputJoystickDeviceManager::FSXInputJoystickDeviceManager()
 
 }
 
-
 void FSXInputJoystickDeviceManager::update()
 {
     updateConnectJoysticks();
     updateJoysticks();
 }
 
-
-void FSXInputJoystickDeviceManager::updateEvents(unsigned int joystickDeviceID,FSUSBJoyStickInputElement * elementDevice, long elementValue)
+void  FSXInputJoystickDeviceManager::updateAnalog(unsigned int axisToLookFor , const FSXInputJoystick * xinputJoystick , unsigned int controllerID ,PhysicalValueNumber value )
 {
-    //TODO put this in a shared location maybe a base clase
-    static std::stack<FSUSBElementInfoMap> inputTypes;
-
-    if (elementDevice) {
-        elementDevice->getMapping(elementValue, inputTypes);
-        bool isValueVaild = elementDevice->isValueInDeadZone(elementValue);
-
-        while (!inputTypes.empty()) {
-            FSUSBElementInfoMap inputType = inputTypes.top();
-
-            FreeStickEventType eventType =  IFSEvent::getEventFromInputType(inputType.getDeviceInput());
-
-            //pass in FSEventMaping so we can map release vs press
-            if ( eventType != FS_LAST_EVENT && inputType.getDeviceInput() != LastInput) {
-
-                if (!isValueVaild) {
-                    inputOnDeviceChangedWithNormilzedValues(eventType, inputType.getEventMapping(), inputType.getDeviceInput(),
-                                        joystickDeviceID, elementDevice->getJoystickID(),
-                                        0, 0);
-                }else  {
-                    inputOnDeviceChanged(eventType, inputType.getEventMapping(), inputType.getDeviceInput(),
-                                 joystickDeviceID, elementDevice->getJoystickID(),
-                                 elementDevice->getValue(), 0,
-                                 elementDevice->getMinValue(),
-                                 elementDevice->getMaxValue());
-                }
-            }
-            inputTypes.pop();
-        }
-    }
+    FSUSBJoyStickInputElement * element = (FSUSBJoyStickInputElement*) xinputJoystick->findInputElement(axisToLookFor) ;
+    updateEvents(controllerID,element,value);
 }
-
 
 void  FSXInputJoystickDeviceManager::updateButton(WORD buttons,WORD xButtonToLookFor,unsigned int buttonToLookFor , const FSXInputJoystick * xinputJoystick , unsigned int controllerID )
 {
@@ -110,39 +79,25 @@ void FSXInputJoystickDeviceManager::updateJoysticks()
                updateButton(xState.Gamepad.wButtons,XINPUT_GAMEPAD_DPAD_LEFT,LEFT_DPAD_XINPUT_EID,xinputJoystick,joyID);
                updateButton(xState.Gamepad.wButtons,XINPUT_GAMEPAD_DPAD_RIGHT,RIGHT_DPAD_XINPUT_EID,xinputJoystick,joyID);
 
-
                updateButton(xState.Gamepad.wButtons,XINPUT_GAMEPAD_A,A_BUTTON_XINPUT_EID,xinputJoystick,joyID);
                updateButton(xState.Gamepad.wButtons,XINPUT_GAMEPAD_B,B_BUTTON_XINPUT_EID,xinputJoystick,joyID);
                updateButton(xState.Gamepad.wButtons,XINPUT_GAMEPAD_X,X_BUTTON_XINPUT_EID,xinputJoystick,joyID);
                updateButton(xState.Gamepad.wButtons,XINPUT_GAMEPAD_Y,Y_BUTTON_XINPUT_EID,xinputJoystick,joyID);
-
-
                updateButton(xState.Gamepad.wButtons,XINPUT_GAMEPAD_START,START_BUTTON_XINPUT_EID,xinputJoystick,joyID);
                updateButton(xState.Gamepad.wButtons,XINPUT_GAMEPAD_BACK,BACK_BUTTON_XINPUT_EID,xinputJoystick,joyID);
-
-
                updateButton(xState.Gamepad.wButtons,XINPUT_GAMEPAD_LEFT_THUMB,LEFT_AXIS_BUTTON_XINPUT_EID,xinputJoystick,joyID);
                updateButton(xState.Gamepad.wButtons,XINPUT_GAMEPAD_RIGHT_THUMB,RIGHT_AXIS_BUTTON_XINPUT_EID,xinputJoystick,joyID);
-
                updateButton(xState.Gamepad.wButtons,XINPUT_GAMEPAD_LEFT_SHOULDER,LEFT_SHOULDER_BUTTON_XINPUT_EID,xinputJoystick,joyID);
                updateButton(xState.Gamepad.wButtons,XINPUT_GAMEPAD_RIGHT_SHOULDER,RIGHT_SHOULDER_BUTTON_XINPUT_EID,xinputJoystick,joyID);
 
+               updateAnalog(XAXIS_XINPUT_EID,xinputJoystick,joyID,xState.Gamepad.sThumbLX);
+               updateAnalog(YAXIS_XINPUT_EID,xinputJoystick,joyID,((PhysicalValueNumber) xState.Gamepad.sThumbLY)*-1);
+               updateAnalog(XAXIS2_XINPUT_EID,xinputJoystick,joyID,xState.Gamepad.sThumbRX);
+               updateAnalog(YAXIS2_XINPUT_EID,xinputJoystick,joyID,((PhysicalValueNumber) xState.Gamepad.sThumbRY)*-1);
 
-             /*  bool Value = ((xState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_UP)!= 0 );
-               FSUSBJoyStickInputElement * pad = (FSUSBJoyStickInputElement*) xinputJoystick->findInputElement(UP_DPAD_XINPUT_EID) ;
-               updateEvents(joyID,pad,Value ? 1 : 0);
+               updateAnalog(LTRIGGER_XINPUT_EID,xinputJoystick,joyID,xState.Gamepad.bLeftTrigger);
+               updateAnalog(RTRIGGER_XINPUT_EID,xinputJoystick,joyID,xState.Gamepad.bRightTrigger);
 
-               bool  Value = ((xState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_DOWN) != 0) ;
-               FSUSBJoyStickInputElement * pad = (FSUSBJoyStickInputElement*) xinputJoystick->findInputElement(DOWN_DPAD_XINPUT_EID) ;
-               updateEvents(joyID,pad,Value ? 1 : 0);
-
-               Value = ((xState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_RIGHT) != 0) ;
-               pad = (FSUSBJoyStickInputElement*) xinputJoystick->findInputElement(RIGHT_DPAD_XINPUT_EID) ;
-               updateEvents(joyID,pad,Value ? 1 : 0);
-
-               Value = ((xState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_LEFT) != 0) ;
-               pad = (FSUSBJoyStickInputElement*) xinputJoystick->findInputElement(LEFT_DPAD_XINPUT_EID) ;
-               updateEvents(joyID,pad,Value ? 1 : 0);*/
 
                lastState[index]= xState.dwPacketNumber;
            }
@@ -157,14 +112,17 @@ void FSXInputJoystickDeviceManager::updateConnectJoysticks()
 std::vector<DWORD> newThisUpdate;
 std::vector<DWORD> foundThisUpdate;
 
+XINPUT_STATE lastState[XUSER_MAX_COUNT];
     for (DWORD index = 0; index < XUSER_MAX_COUNT; index++)
     {
             DWORD result;
             XINPUT_STATE xState;
             ZeroMemory(&xState, sizeof(XINPUT_STATE));
+            ZeroMemory(&lastState[index],sizeof(XINPUT_STATE));
             result = XInputGetState(index,&xState);
             if(result == ERROR_SUCCESS )
             {
+                lastState[index] = xState;
                 DWORD foundJoystick = index;
                 std::vector<DWORD>::iterator itr2 = std::find(_connectedLastUpdateJoysticks.begin(),
                                                               _connectedLastUpdateJoysticks.end(),
@@ -178,13 +136,13 @@ std::vector<DWORD> foundThisUpdate;
                 foundThisUpdate.push_back(foundJoystick);
             }
     }
-    for (int index = _connectedLastUpdateJoysticks.size() - 1; index >= 0; index--) {
+    for (int index =(int) _connectedLastUpdateJoysticks.size() - 1; index >= 0; index--) {
         DWORD deviceToDelete = _connectedLastUpdateJoysticks[index];
         this->removeXInputDevice(deviceToDelete );
     }
     std::vector<DWORD>::iterator itrAdd;
     for (itrAdd = newThisUpdate.begin(); itrAdd != newThisUpdate.end(); itrAdd++ ) {
-        this->addXInputDevice(*itrAdd);
+        this->addXInputDevice(*itrAdd,lastState[*itrAdd]);
 
     }
 
@@ -203,7 +161,7 @@ void FSXInputJoystickDeviceManager::removeXInputDevice(DWORD device)
     EE_DEBUG<<"Removed Device"<<std::endl;
 }
 
-void FSXInputJoystickDeviceManager::addXInputDevice(DWORD device)
+void FSXInputJoystickDeviceManager::addXInputDevice(DWORD device, XINPUT_STATE & xState)
 {
     if(_wordToIDControllerMap.find(device) == _wordToIDControllerMap.end())
     {
@@ -211,7 +169,7 @@ void FSXInputJoystickDeviceManager::addXInputDevice(DWORD device)
        _wordToIDControllerMap[device] = newId;
 
       //XBox Controller
-       FSXInputJoystick * newJoystick = new FSXInputJoystick(device,newId,13,2,1,true,MicrosoftVendorID,MicrosoftXbox360WindowsControllerID,static_cast<FSUSBJoystickDeviceManager &>(*this));
+       FSXInputJoystick * newJoystick = new FSXInputJoystick(xState,device,newId,13,2,1,true,MicrosoftVendorID,MicrosoftXbox360WindowsControllerID,static_cast<FSUSBJoystickDeviceManager &>(*this));
        addDevice(newJoystick);
     }
 
