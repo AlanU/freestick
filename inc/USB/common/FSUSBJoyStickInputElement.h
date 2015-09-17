@@ -33,8 +33,7 @@ and must not be misrepresented as being the original software.
 #include <queue>
 namespace freestick
 {
-typedef signed long  MinMaxNumber;
-typedef signed long PhysicalValueNumber;
+
 
     class FSUSBJoyStickInputElement : public FSUSBDevice
     {

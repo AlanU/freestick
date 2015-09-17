@@ -554,7 +554,7 @@ void FSUSBDeviceManager::addMapping(unsigned int vendorUSBID,unsigned int produc
 }*/
 
 
-FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromID(unsigned int deviceID, unsigned int controlID,signed long min,signed long max,int value)
+FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromID(unsigned int deviceID, unsigned int controlID,MinMaxNumber min,MinMaxNumber max,int value)
 {
     const FSUSBDevice * usbDeice = (const FSUSBDevice *)getDevice(deviceID);
     if(usbDeice != NULL)
@@ -572,7 +572,7 @@ FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromID(unsigned int de
     return FSUSBElementInfoMap(0,1,LastInput,FSInputChanged);
 }
 
-FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromUSBID( unsigned int vendorUSBID, unsigned int productUSBID , unsigned int controlID,signed long min,signed long max,int value)
+FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromUSBID( unsigned int vendorUSBID, unsigned int productUSBID , unsigned int controlID,MinMaxNumber min,MinMaxNumber max,int value)
  {
      if(min==0 && max == 1)
      {

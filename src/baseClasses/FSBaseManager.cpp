@@ -229,7 +229,7 @@ void FSBaseManager::updateEvent(FSBaseEvent & event)
     }
 }
 
-float FSBaseManager::convertRawToNormalizedRanger(double value,signed long maxValue,signed long minValue)
+float FSBaseManager::convertRawToNormalizedRanger(double value,MinMaxNumber maxValue,MinMaxNumber minValue)
 {
 
     double joystickRange = (double)maxValue - (double)minValue;
@@ -259,7 +259,7 @@ void FSBaseManager::inputOnDeviceChangedWithNormilzedValues(FreeStickEventType e
 }
 
 
-void FSBaseManager::inputOnDeviceChanged(FreeStickEventType eventType,FSEventAction eventAction,FSDeviceInput inputType,unsigned int deviceID,unsigned int deviceControlID,int newValue,int oldValue,signed long min, signed long max)
+void FSBaseManager::inputOnDeviceChanged(FreeStickEventType eventType,FSEventAction eventAction,FSDeviceInput inputType,unsigned int deviceID,unsigned int deviceControlID,int newValue,int oldValue,MinMaxNumber min, MinMaxNumber max)
 {
     inputOnDeviceChangedWithNormilzedValues(eventType,eventAction,inputType,deviceID,deviceControlID, convertRawToNormalizedRanger(newValue,max,min), convertRawToNormalizedRanger(oldValue,max,min));
 }

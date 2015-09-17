@@ -64,7 +64,7 @@ void FSUSBJoyStickInputElement::getMapping(int inputValue ,std::stack<FSUSBEleme
 
        if (_useLastValueStack && _lastValueStack.size() >2)
        {
-            EmptyQue(infoMapsToReturn,_lastValueStack.size()-1);
+            EmptyQue(infoMapsToReturn,(unsigned int)_lastValueStack.size()-1);
        }
 
 

@@ -25,9 +25,11 @@ and must not be misrepresented as being the original software.
 3. This notice may not be removed or altered from any source distribution.
 **************************************************************************/
 
-#ifndef FREESTICKLOG_H
-#define FREESTICKLOG_H
+#pragma once
+namespace freestick {
 
-#include "../src/3rdParty/EELog/src/EELog.h"
+    typedef unsigned long int IDNumber; //Needs to be at lest 32bits and unsigned
+    typedef signed long int  MinMaxNumber; //Needs to be at lest 32bits and signed
+    typedef signed long int PhysicalValueNumber; //Needs to be at lest 32bits and signed
 
-#endif // FREESTICKLOG_H
+}

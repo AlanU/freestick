@@ -26,8 +26,8 @@ and must not be misrepresented as being the original software.
 **************************************************************************/
 
 #pragma once
+#include "common/FSTypes.h"
 namespace freestick {
-typedef unsigned long int IDNumber; //Needs to be at lest 32bits
     typedef enum
     {
         XAxis,//Left

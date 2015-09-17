@@ -97,7 +97,7 @@ namespace freestick
        // void UnListenForJoystick(IFSJoystickListener & listener ,unsigned int deviceID,FSDeviceInput input){};
 
 
-        inline float convertRawToNormalizedRanger(double value,signed long maxValue,signed long minValue);
+        inline float convertRawToNormalizedRanger(double value,MinMaxNumber maxValue,MinMaxNumber minValue);
       // const std::vector<IFSJoystickInfo> & listOfConnectedJoysticks();
        virtual void init() ;
 #ifdef __APPLE__
@@ -121,7 +121,7 @@ namespace freestick
 
         virtual void addDevice(FSBaseDevice * device);
         virtual void removeDevice(FSBaseDevice * device);
-        virtual void inputOnDeviceChanged(FreeStickEventType eventType,FSEventAction eventAction,FSDeviceInput inputType,unsigned int deviceID,unsigned int deviceControlID,int newValue,int oldValue,signed long min, signed long max);
+        virtual void inputOnDeviceChanged(FreeStickEventType eventType,FSEventAction eventAction,FSDeviceInput inputType,unsigned int deviceID,unsigned int deviceControlID,int newValue,int oldValue,MinMaxNumber min,MinMaxNumber max);
         virtual void inputOnDeviceChangedWithNormilzedValues(FreeStickEventType eventType, FSEventAction eventAction, FSDeviceInput inputType, unsigned int deviceID, unsigned int deviceControlID, float newValue, float oldValue);
         virtual unsigned int getNextID();
         void updateEvent(FSBaseEvent & event);

@@ -28,9 +28,10 @@ and must not be misrepresented as being the original software.
 #pragma once
 
 #include "../../baseClasses/FSBaseManager.h"
-#include <map>
 #include "../../Interfaces/IFSDevice.h"
+#include "common/FSTypes.h"
 #include <string>
+#include <map>
 
 namespace freestick
 {
@@ -65,16 +66,16 @@ const unsigned int GtronRetroSNES = 17;
 
     class FSUSBElementInfoMap
     {
-         signed  long _min;
-         signed long _max;
+         MinMaxNumber _min;
+         MinMaxNumber _max;
          FSDeviceInput _inputMapping;
          FSEventAction _typeMapping; // is the value down or up on the
     public:
-         inline signed long getMax()const {return _max;}
-         inline signed long getMin()const {return _min;}
+         inline MinMaxNumber getMax()const {return _max;}
+         inline MinMaxNumber getMin()const {return _min;}
          inline FSDeviceInput getDeviceInput()const {return _inputMapping;}
          inline FSEventAction getEventMapping()const {return _typeMapping;}
-        FSUSBElementInfoMap(signed long  min,signed long max,FSDeviceInput inputMapping,FSEventAction typeMapping):_min(min),_max(max),_inputMapping(inputMapping),_typeMapping(typeMapping){}
+        FSUSBElementInfoMap(MinMaxNumber min,MinMaxNumber max,FSDeviceInput inputMapping,FSEventAction typeMapping):_min(min),_max(max),_inputMapping(inputMapping),_typeMapping(typeMapping){}
     };
 
     class FSUSBDeviceManager : public FSBaseManager
@@ -92,8 +93,8 @@ const unsigned int GtronRetroSNES = 17;
         void addMapping(unsigned int vendorUSBID,unsigned int productUSBID,unsigned int controlUSBID,FSDeviceInput deviceInput);
         void addMapping(unsigned int deviceID,unsigned int controlID,FSDeviceInput deviceInput);
         //FSUSBElementInfoMap lookUpDeviceInputFromID(unsigned int deviceID, unsigned int controlID);
-        FSUSBElementInfoMap lookUpDeviceInputFromID(unsigned int deviceID, unsigned int controlID, signed long min, signed long max,int value);
-        FSUSBElementInfoMap lookUpDeviceInputFromUSBID( unsigned int vendorUSBID, unsigned int productUSBID , unsigned int controlID,signed long min,signed long max,int value);
+        FSUSBElementInfoMap lookUpDeviceInputFromID(unsigned int deviceID, unsigned int controlID, MinMaxNumber min, MinMaxNumber max,int value);
+        FSUSBElementInfoMap lookUpDeviceInputFromUSBID( unsigned int vendorUSBID, unsigned int productUSBID , unsigned int controlID,MinMaxNumber min,MinMaxNumber max,int value);
         FSUSBElementInfoMap infoMapForInputType(unsigned int vendorUSBID, unsigned int productUSBID ,FSDeviceInput inputToLookFor );
 
 

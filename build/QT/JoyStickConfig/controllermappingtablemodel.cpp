@@ -28,7 +28,7 @@ ControllerMappingTableModel::~ControllerMappingTableModel()
 int ControllerMappingTableModel::rowCount(const QModelIndex & /*parent*/) const
  {
 
-    return _elemntIDList.size() ;
+    return (int)_elemntIDList.size() ;
  }
 
  int ControllerMappingTableModel::columnCount(const QModelIndex & /*parent*/) const
@@ -196,10 +196,10 @@ void ControllerMappingTableModel::onStickMove(FSDeviceInputEvent event)
 }
 void ControllerMappingTableModel::onDisconnect(FSBaseEvent event)
 {
-
+    event;//To remove warning
 }
 
  void ControllerMappingTableModel::onConnect(FSBaseEvent event)
 {
-
+    event;//To remove warning
 }
