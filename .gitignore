@@ -27,3 +27,10 @@ build/QT/JoyStickConfig/debug/JoyStickConfig.exe_manifest.res
 build/QT/JoyStickConfig/debug/moc_analogaxiswidget.cpp
 build/QT/JoyStickConfig/debug/moc_joystickconfigwidget.cpp
 build/QT/JoyStickConfig/debug/moc_mainwindow.cpp
+*.obj
+build/QT/JoyStickConfig/debug/JoyStickConfig.exe
+build/QT/JoyStickConfig/debug/JoyStickConfig.ilk
+build/QT/JoyStickConfig/debug/joystickconfig.pdb
+build/QT/JoyStickConfig/debug/JoyStickConfig_pch.pch
+build/QT/FreeStick/debug/freestick.pdb
+build/QT/FreeStick/debug/FreeStick.lib
