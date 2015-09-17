@@ -34,11 +34,28 @@
 #define LEFT_DPAD_XINPUT_EID  589838
 #define RIGHT_DPAD_XINPUT_EID 589839
 
+#define A_BUTTON_XINPUT_EID 589825
+#define B_BUTTON_XINPUT_EID 589826
+#define X_BUTTON_XINPUT_EID 589827
+#define Y_BUTTON_XINPUT_EID 589828
+
+#define BACK_BUTTON_XINPUT_EID 589834
+#define START_BUTTON_XINPUT_EID 589833
+#define CENTER_BUTTON_XINPUT_EID 589835
+
+#define LEFT_SHOULDER_BUTTON_XINPUT_EID 589829
+#define RIGHT_SHOULDER_BUTTON_XINPUT_EID 589830
+
+#define LEFT_AXIS_BUTTON_XINPUT_EID 589831
+#define RIGHT_AXIS_BUTTON_XINPUT_EID 589832
+
 namespace  freestick {
     class FSXInputJoystick : public FSUSBJoystick
     {
         DWORD id;
         FSUSBJoystickDeviceManager * _usbJoystickManager;
+        unsigned int _totalButtonNumber;
+
     public:
         FSXInputJoystick(DWORD id, unsigned int joyStickID,
                          unsigned int numberOfButtons,
@@ -49,6 +66,8 @@ namespace  freestick {
                          long productID,
                          FSUSBJoystickDeviceManager & usbJoystickManager);
         void addXinputElements();
+        void addButtonElement(unsigned int buttonID);
+
 
     };
 }

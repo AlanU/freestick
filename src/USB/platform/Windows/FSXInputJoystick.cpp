@@ -55,26 +55,41 @@ FSXInputJoystick::FSXInputJoystick(DWORD id,
     _prodcutIDFriendlyName = "Player " + playerNumber.str();
     _friendlyName = _vendorIDFriendlyName + " "+ _prodcutIDFriendlyName;
     _usbJoystickManager = &usbJoystickManager;
+    _totalButtonNumber = 0;
     addXinputElements();
 
 }
 
+void FSXInputJoystick::addButtonElement(unsigned int buttonID)
+{
+    FSUSBJoyStickInputElement upDpad(buttonID,getJoystickID() ,
+                                   0,1, MicrosoftVendorID,MicrosoftXbox360WindowsControllerID,*_usbJoystickManager,0,++_totalButtonNumber);
+    this->addInputElement(upDpad);
+}
+
 void FSXInputJoystick::addXinputElements()
 {
-    FSUSBJoyStickInputElement upDpad(UP_DPAD_XINPUT_EID,getJoystickID() ,
-                                   0,1, MicrosoftVendorID,MicrosoftXbox360WindowsControllerID,*_usbJoystickManager,0,0);
-    this->addInputElement(upDpad);
 
-    FSUSBJoyStickInputElement downDpad(DOWN_DPAD_XINPUT_EID,getJoystickID() ,
-                                   0,1, MicrosoftVendorID,MicrosoftXbox360WindowsControllerID,*_usbJoystickManager,0,1);
-    this->addInputElement(downDpad);
+    addButtonElement(UP_DPAD_XINPUT_EID);
+    addButtonElement(DOWN_DPAD_XINPUT_EID);
+    addButtonElement(LEFT_DPAD_XINPUT_EID);
+    addButtonElement(RIGHT_DPAD_XINPUT_EID);
 
-    FSUSBJoyStickInputElement leftDpad(LEFT_DPAD_XINPUT_EID,getJoystickID() ,
-                                   0,1, MicrosoftVendorID,MicrosoftXbox360WindowsControllerID,*_usbJoystickManager,0,2);
-    this->addInputElement(leftDpad);
+    addButtonElement(A_BUTTON_XINPUT_EID);
+    addButtonElement(B_BUTTON_XINPUT_EID);
+    addButtonElement(X_BUTTON_XINPUT_EID);
+    addButtonElement(Y_BUTTON_XINPUT_EID);
 
-    FSUSBJoyStickInputElement rightDpad(RIGHT_DPAD_XINPUT_EID,getJoystickID() ,
-                                   0,1, MicrosoftVendorID,MicrosoftXbox360WindowsControllerID,*_usbJoystickManager,0,3);
-    this->addInputElement(rightDpad);
+    addButtonElement(START_BUTTON_XINPUT_EID);
+    addButtonElement(BACK_BUTTON_XINPUT_EID);
+    addButtonElement(CENTER_BUTTON_XINPUT_EID);
+
+    addButtonElement(LEFT_SHOULDER_BUTTON_XINPUT_EID);
+    addButtonElement(RIGHT_SHOULDER_BUTTON_XINPUT_EID);
+
+
+    addButtonElement(LEFT_AXIS_BUTTON_XINPUT_EID);
+    addButtonElement(RIGHT_AXIS_BUTTON_XINPUT_EID);
+
 
 }

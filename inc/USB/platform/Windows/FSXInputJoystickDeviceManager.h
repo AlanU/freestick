@@ -32,6 +32,7 @@
 #include "USB/common/FSUSBJoystickDeviceManager.h"
 #include <Windows.h>
 #include <Xinput.h>
+#include "USB/platform/Windows/FSXInputJoystick.h"
 namespace freestick
 {
     class FSXInputJoystickDeviceManager : public FSUSBJoystickDeviceManager
@@ -46,6 +47,7 @@ namespace freestick
         void removeXInputDevice(DWORD device);
         void addXInputDevice(DWORD device);
         void updateEvents(unsigned int joystickDeviceID,FSUSBJoyStickInputElement * elementDevice, long elementValue);
+        void updateButton(WORD  buttons,WORD xButtonToLookFor,unsigned int buttonToLookFor , const FSXInputJoystick * xinputJoystick , unsigned int controllerID  );
         void updateJoysticks();
 
 

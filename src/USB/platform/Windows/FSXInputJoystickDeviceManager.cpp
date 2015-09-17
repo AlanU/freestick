@@ -78,6 +78,14 @@ void FSXInputJoystickDeviceManager::updateEvents(unsigned int joystickDeviceID,F
     }
 }
 
+
+void  FSXInputJoystickDeviceManager::updateButton(WORD buttons,WORD xButtonToLookFor,unsigned int buttonToLookFor , const FSXInputJoystick * xinputJoystick , unsigned int controllerID )
+{
+    bool value = ((buttons & xButtonToLookFor)!= 0 );
+    FSUSBJoyStickInputElement * pad = (FSUSBJoyStickInputElement*) xinputJoystick->findInputElement(buttonToLookFor) ;
+    updateEvents(controllerID,pad,value ? 1 : 0);
+}
+
 void FSXInputJoystickDeviceManager::updateJoysticks()
 {
     static DWORD lastState[XUSER_MAX_COUNT]= {0,0,0,0};
@@ -96,12 +104,36 @@ void FSXInputJoystickDeviceManager::updateJoysticks()
                unsigned int joyID = _wordToIDControllerMap[index];
               const FSXInputJoystick * xinputJoystick = static_cast<const FSXInputJoystick*>(getDevice(joyID));
 
-               bool Value = ((xState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_UP)!= 0 );
+
+               updateButton(xState.Gamepad.wButtons,XINPUT_GAMEPAD_DPAD_UP,UP_DPAD_XINPUT_EID,xinputJoystick,joyID);
+               updateButton(xState.Gamepad.wButtons,XINPUT_GAMEPAD_DPAD_DOWN,DOWN_DPAD_XINPUT_EID,xinputJoystick,joyID);
+               updateButton(xState.Gamepad.wButtons,XINPUT_GAMEPAD_DPAD_LEFT,LEFT_DPAD_XINPUT_EID,xinputJoystick,joyID);
+               updateButton(xState.Gamepad.wButtons,XINPUT_GAMEPAD_DPAD_RIGHT,RIGHT_DPAD_XINPUT_EID,xinputJoystick,joyID);
+
+
+               updateButton(xState.Gamepad.wButtons,XINPUT_GAMEPAD_A,A_BUTTON_XINPUT_EID,xinputJoystick,joyID);
+               updateButton(xState.Gamepad.wButtons,XINPUT_GAMEPAD_B,B_BUTTON_XINPUT_EID,xinputJoystick,joyID);
+               updateButton(xState.Gamepad.wButtons,XINPUT_GAMEPAD_X,X_BUTTON_XINPUT_EID,xinputJoystick,joyID);
+               updateButton(xState.Gamepad.wButtons,XINPUT_GAMEPAD_Y,Y_BUTTON_XINPUT_EID,xinputJoystick,joyID);
+
+
+               updateButton(xState.Gamepad.wButtons,XINPUT_GAMEPAD_START,START_BUTTON_XINPUT_EID,xinputJoystick,joyID);
+               updateButton(xState.Gamepad.wButtons,XINPUT_GAMEPAD_BACK,BACK_BUTTON_XINPUT_EID,xinputJoystick,joyID);
+
+
+               updateButton(xState.Gamepad.wButtons,XINPUT_GAMEPAD_LEFT_THUMB,LEFT_AXIS_BUTTON_XINPUT_EID,xinputJoystick,joyID);
+               updateButton(xState.Gamepad.wButtons,XINPUT_GAMEPAD_RIGHT_THUMB,RIGHT_AXIS_BUTTON_XINPUT_EID,xinputJoystick,joyID);
+
+               updateButton(xState.Gamepad.wButtons,XINPUT_GAMEPAD_LEFT_SHOULDER,LEFT_SHOULDER_BUTTON_XINPUT_EID,xinputJoystick,joyID);
+               updateButton(xState.Gamepad.wButtons,XINPUT_GAMEPAD_RIGHT_SHOULDER,RIGHT_SHOULDER_BUTTON_XINPUT_EID,xinputJoystick,joyID);
+
+
+             /*  bool Value = ((xState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_UP)!= 0 );
                FSUSBJoyStickInputElement * pad = (FSUSBJoyStickInputElement*) xinputJoystick->findInputElement(UP_DPAD_XINPUT_EID) ;
                updateEvents(joyID,pad,Value ? 1 : 0);
 
-               Value = ((xState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_DOWN) != 0) ;
-               pad = (FSUSBJoyStickInputElement*) xinputJoystick->findInputElement(DOWN_DPAD_XINPUT_EID) ;
+               bool  Value = ((xState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_DOWN) != 0) ;
+               FSUSBJoyStickInputElement * pad = (FSUSBJoyStickInputElement*) xinputJoystick->findInputElement(DOWN_DPAD_XINPUT_EID) ;
                updateEvents(joyID,pad,Value ? 1 : 0);
 
                Value = ((xState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_RIGHT) != 0) ;
@@ -110,7 +142,7 @@ void FSXInputJoystickDeviceManager::updateJoysticks()
 
                Value = ((xState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_LEFT) != 0) ;
                pad = (FSUSBJoyStickInputElement*) xinputJoystick->findInputElement(LEFT_DPAD_XINPUT_EID) ;
-               updateEvents(joyID,pad,Value ? 1 : 0);
+               updateEvents(joyID,pad,Value ? 1 : 0);*/
 
                lastState[index]= xState.dwPacketNumber;
            }
