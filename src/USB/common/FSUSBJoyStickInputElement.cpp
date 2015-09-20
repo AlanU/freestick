@@ -179,7 +179,7 @@ void FSUSBJoyStickInputElement::calibrate(PhysicalValueNumber currentValue, MinM
            _deadZoneMin = temp;
         }
 
-        MinMaxNumber precent =( (float)(_elementMax + abs(_elementMin) ) )*0.05f;
+        MinMaxNumber precent =( (float)(_elementMax + std::abs(_elementMin) ) )*0.05f;
 
         _deadZoneMax= _elementMax < _deadZoneMax+precent ?  _deadZoneMax :_deadZoneMax + precent ;
         _deadZoneMin = _elementMin > _deadZoneMin-precent ? _deadZoneMin : _deadZoneMin - precent;
