@@ -82,7 +82,6 @@ std::string FSUSBDevice::GetFrendlyProductNameFromID(long venderID, long product
     s_venderFriendlyNames[1149] = "Kensington";
     s_venderFriendlyNames[1452] = "Fujitsu Takamisawa Component";
     s_venderFriendlyNames[1635] = "Macsense";
-    s_venderFriendlyNames[HVG2VenderID] = "HVG2";
     s_venderFriendlyNames[8738] = "Macally";
     s_venderFriendlyNames[1848] = "Mad Catz, Inc.";
     s_venderFriendlyNames[SteelSeriesVendorID] = "SteelSeries";
