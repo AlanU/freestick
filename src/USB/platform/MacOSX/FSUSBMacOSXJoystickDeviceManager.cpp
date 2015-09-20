@@ -520,8 +520,6 @@ void FSUSBMacOSXJoystickDeviceManager::update()
 
 FSUSBMacOSXJoystickDeviceManager::~FSUSBMacOSXJoystickDeviceManager()
 {
-    EE_INFO<<"Using Mac Joystick DeviceManager "<<std::endl;
-
     IOHIDManagerUnscheduleFromRunLoop(hidManagerGamePad, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
     IOHIDManagerUnscheduleFromRunLoop(hidManagerJoyStick, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
 
