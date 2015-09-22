@@ -82,6 +82,10 @@ bool FSUSBJoyStickInputElement::isValueInDeadZone(MinMaxNumber value)
             return false;
         }
     }
+    else if(_needsDeadZone && !_calibrated )
+    {
+        return false;
+    }
     return true;
 }
 
