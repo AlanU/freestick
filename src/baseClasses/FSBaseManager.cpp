@@ -188,7 +188,7 @@ void FSBaseManager::updateEvent(FSBaseEvent & event)
     std::pair<std::multimap<FreeStickEventType,IFSJoystickListener *>::iterator, std::multimap<FreeStickEventType,IFSJoystickListener *>::iterator> rangedItr;
     rangedItr = _joystickDeviceListeners.equal_range(event.getEventType());
     IFSJoystickListener * ListenerToCall = NULL;
-    for (std::multimap< FreeStickEventType,IFSJoystickListener *>::iterator it2 = rangedItr.first;it2 != rangedItr.second;it2++)
+    for (std::multimap< FreeStickEventType,IFSJoystickListener *>::iterator it2 = rangedItr.first;it2 != rangedItr.second;++it2)
     {
         ListenerToCall = (it2)->second;
         switch (event.getEventType())
