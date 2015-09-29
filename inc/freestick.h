@@ -74,9 +74,13 @@ and must not be misrepresented as being the original software.
     #include "USB/platform/NULL/FSUSBNullJoystickDeviceManager.h"
 
     //Xinput
-    #include "USB/platform/Windows/FSXInputJoystickDeviceManager.h"
-    #include "USB/platform/Windows/FSXInputJoystick.h"
-    typedef freestick::FSXInputJoystickDeviceManager FreeStickDeviceManager;
+   // #include "USB/platform/Windows/FSXInputJoystickDeviceManager.h"
+    //#include "USB/platform/Windows/FSXInputJoystick.h"
+    //typedef freestick::FSXInputJoystickDeviceManager FreeStickDeviceManager;
+
+    //Windows
+    #include "USB/platform/Windows/FSWindowsJoystickDeviceManager.h"
+    typedef freestick::FSWindowsJoystickDeviceManager FreeStickDeviceManager;
 #else
     #include "USB/platform/NULL/FSUSBNullJoystickDeviceManager.h"
     typedef freestick::FSUSBNullJoystickDeviceManager FreeStickDeviceManager;
