@@ -35,7 +35,7 @@ using namespace freestick;
 
 FSBaseManager::FSBaseManager()
 {
-
+    _devicIDCreator = NULL;
 }
 
 void FSBaseManager::init( )
@@ -45,11 +45,19 @@ void FSBaseManager::init( )
     deviceMap.clear();
 }
 
+
+void FSBaseManager::init(IFSDeviceIDCreator * idCreator)
+{
+    _devicIDCreator = idCreator;
+    init();
+}
+
+
 FSBaseManager::~FSBaseManager()
 {
     if( deviceMap.size() !=0)
     {
-        for( std::map<unsigned int, FSBaseDevice * >::iterator itr = deviceMap.begin() ; itr != deviceMap.end(); itr++)
+        for( std::map<unsigned int, FSBaseDevice * >::iterator itr = deviceMap.begin() ; itr != deviceMap.end(); ++itr)
         {
             delete itr->second;
         }
@@ -58,7 +66,7 @@ FSBaseManager::~FSBaseManager()
 
 }
 
-const FSBaseDevice * FSBaseManager::getDevice(unsigned int deviceID)
+const FSBaseDevice * FSBaseManager::getDevice(DeviceID deviceID)
 {
     if(deviceMap.find(deviceID) != deviceMap.end())
         return deviceMap[deviceID];
@@ -73,7 +81,7 @@ void  FSBaseManager::ListenForAllJoysticksForEventTypes(unsigned int eventFlags,
         if(!deviceMap.empty())
         {
             std::map<unsigned int, FSBaseDevice * >::iterator itr;
-            for(itr = deviceMap.begin(); itr != deviceMap.end(); itr++)
+            for(itr = deviceMap.begin(); itr != deviceMap.end(); ++itr)
             {
                 FSBaseDevice * device = itr->second;
                 FSBaseEvent newConnectEvent(FS_JOYSTICK_CONNECTED_EVENT,FSInputChanged,std::time(0),device->getJoystickID());
@@ -289,9 +297,13 @@ void FSBaseManager::removeDevice(FSBaseDevice * device)
 
 }
 
-unsigned int FSBaseManager::getNextID()
+DeviceID FSBaseManager::getNextID()
 {
     static unsigned int ID = 1;//0 is reserved for errors
-    return (ID++);
+    if(_devicIDCreator != NULL)
+        return (ID++);
+    else
+        return _devicIDCreator->getNextID();
+
 }
 
