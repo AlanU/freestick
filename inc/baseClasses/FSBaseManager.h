@@ -33,6 +33,7 @@ and must not be misrepresented as being the original software.
 #include "../Interfaces/IFSDevice.h"
 #include "../baseClasses/FSBaseDevice.h"
 #include "../baseClasses/FSBaseEvent.h"
+#include "../Interfaces/IFSDeviceIDCreator.h"
 #include <stdlib.h>
 #include <new>
 #include <limits>
@@ -88,9 +89,9 @@ namespace freestick
           * \param joystickInfo This is what a joystickInfo does.
           */
 
-        void ListenForAllJoysticksForEventTypes(unsigned int eventFlags,IFSJoystickListener & listener);
+        virtual void ListenForAllJoysticksForEventTypes(unsigned int eventFlags,IFSJoystickListener & listener);
 
-        void UnListenForAllJoysticksForEventTypes(unsigned int eventFlags,IFSJoystickListener & listener);
+        virtual void UnListenForAllJoysticksForEventTypes(unsigned int eventFlags,IFSJoystickListener & listener);
 
       //  void ListenForJoystick(IFSJoystickListener & listener,unsigned int deviceID,FSDeviceInput input){};
 
@@ -100,16 +101,18 @@ namespace freestick
         inline float convertRawToNormalizedRanger(double value,MinMaxNumber maxValue,MinMaxNumber minValue);
       // const std::vector<IFSJoystickInfo> & listOfConnectedJoysticks();
        virtual void init() ;
+       virtual void init(IFSDeviceIDCreator * idCreator);
 #ifdef __APPLE__
 #pragma mark -Advance API
 #endif
-       const FSBaseDevice * getDevice(unsigned int deviceID);
+       virtual const FSBaseDevice * getDevice(DeviceID deviceID);
     private:
         std::multimap<FreeStickEventType,IFSJoystickListener * > _joystickDeviceListeners;
         typedef std::multimap<FreeStickEventType,IFSJoystickListener * >::iterator joystickDeviceListenersItr;
 
         std::map<unsigned int,std::multimap<FreeStickEventType,IFSJoystickListener * > > _joystickDeviceInputListeners;
         std::vector<IFSJoystickListener *> allJoystickListeners;
+        IFSDeviceIDCreator * _devicIDCreator; //if not null called to get next decice id from
     protected:
         std::map<unsigned int, FSBaseDevice * > deviceMap;
         //void ListenForAllJoysticks(IFSJoystickListener & listener){ ListenForJoystick(listener,0,AllInputs);}
@@ -123,7 +126,7 @@ namespace freestick
         virtual void removeDevice(FSBaseDevice * device);
         virtual void inputOnDeviceChanged(FreeStickEventType eventType,FSEventAction eventAction,FSDeviceInput inputType,unsigned int deviceID,unsigned int deviceControlID,int newValue,int oldValue,MinMaxNumber min,MinMaxNumber max);
         virtual void inputOnDeviceChangedWithNormilzedValues(FreeStickEventType eventType, FSEventAction eventAction, FSDeviceInput inputType, unsigned int deviceID, unsigned int deviceControlID, float newValue, float oldValue);
-        virtual unsigned int getNextID();
+        virtual DeviceID getNextID();
         void updateEvent(FSBaseEvent & event);
 
     };
