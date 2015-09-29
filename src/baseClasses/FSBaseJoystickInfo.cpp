@@ -29,5 +29,5 @@ and must not be misrepresented as being the original software.
 using namespace freestick;
 FSBaseJoystickInfo::FSBaseJoystickInfo():IFSJoystickInfo()
 {
-
+    _id = 0;
 }

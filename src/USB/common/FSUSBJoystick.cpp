@@ -78,7 +78,7 @@ std::vector<IDNumber> FSUSBJoystick::getElementIds() const
     while(itr != _inputElementMap.end())
     {
         elementKeys.push_back(itr->first);
-        itr++;
+        ++itr;
     }
     return elementKeys;
 }

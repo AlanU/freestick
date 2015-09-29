@@ -75,7 +75,7 @@ JNIEXPORT void JNICALL Java_org_freestick_FreestickDeviceManager_gamepadWasRemov
 bool JNIBridge::updateValue(int deviceid,int code,JNICallBackType type,float value,int min,int max)
 {
     bool returnValue = false;
-    for(std::vector<IJINICallBack*>::iterator itr = _deviceUpdateCallback.begin();itr != _deviceUpdateCallback.end();itr++)
+    for(std::vector<IJINICallBack*>::iterator itr = _deviceUpdateCallback.begin();itr != _deviceUpdateCallback.end();++itr)
     {
         returnValue = returnValue || (*itr)->gamepadWasUpdatedFromJINBridge(deviceid, code, type, value,min,max);
 
@@ -92,7 +92,7 @@ void JNIBridge::update(int hidDeviceID, int type,JavaVM * jvm)
     switch(type)
     {
     case 0:
-        for(std::vector<IJINICallBack*>::iterator itr = _deviceAddedCallback.begin();itr != _deviceAddedCallback.end();itr++)
+        for(std::vector<IJINICallBack*>::iterator itr = _deviceAddedCallback.begin();itr != _deviceAddedCallback.end();++itr)
         {
             LOGI("Call back from bridge added device");
             (*itr)->gamepadWasAddedFromJINBridge(hidDeviceID,jvm);
@@ -100,7 +100,7 @@ void JNIBridge::update(int hidDeviceID, int type,JavaVM * jvm)
         //run through the _devieAddedCallback map cand call the correct function
         break;
     case 1:
-        for(std::vector<IJINICallBack*>::iterator itr = _deviceRemovedCallback.begin();itr != _deviceRemovedCallback.end();itr++)
+        for(std::vector<IJINICallBack*>::iterator itr = _deviceRemovedCallback.begin();itr != _deviceRemovedCallback.end();++itr)
         {
             LOGI("Call back from bridge for device remove");
             (*itr)->gamepadWasRemovedFromJINBridge(hidDeviceID);
@@ -235,13 +235,13 @@ void  JNIBridge::updateJoysticks(JavaVM * jvm)
             env->DeleteLocalRef(currentInputDevice);
         }
         LOGI("currentAttachedJoysticks size %i ",currentAttachedJoysticks.size());
-        for(std::vector<jint>::iterator itr = currentAttachedJoysticks.begin(); itr != currentAttachedJoysticks.end();itr++)
+        for(std::vector<jint>::iterator itr = currentAttachedJoysticks.begin(); itr != currentAttachedJoysticks.end();++itr)
         {
             JNIBridge::update(*itr,JoystickRemoved,jvm);
         }
         LOGI("foundJoysticks size %i ",foundJoysticks.size());
 
-        for(std::vector<jint>::iterator itr = foundJoysticks.begin(); itr != foundJoysticks.end();itr++)
+        for(std::vector<jint>::iterator itr = foundJoysticks.begin(); itr != foundJoysticks.end();++itr)
         {
             JNIBridge::update(*itr,JoystickAdded,jvm);
         }

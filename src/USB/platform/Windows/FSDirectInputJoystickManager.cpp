@@ -69,7 +69,7 @@ void FSDirectInputJoystickManager::updateConnectJoysticks()
                                FSDirectInputJoystickManager::EnumJoysticksCallback,
                                &enumContext,
                                DIEDFL_ATTACHEDONLY))) {
-        for ( std::vector<GUID>::iterator itr =  enumContext.joysticksConnectedThisUpdate.begin(); itr != enumContext.joysticksConnectedThisUpdate.end(); itr++) {
+        for ( std::vector<GUID>::iterator itr =  enumContext.joysticksConnectedThisUpdate.begin(); itr != enumContext.joysticksConnectedThisUpdate.end(); ++itr) {
             GUID foundJoystick = *itr;
             std::vector<GUID>::iterator itr2 = std::find(enumContext.connectedLastUpdateJoysticks.begin(),
                                     enumContext.connectedLastUpdateJoysticks.end(),
@@ -88,7 +88,7 @@ void FSDirectInputJoystickManager::updateConnectJoysticks()
             this->removeDevice(deviceToDelete );
         }
         std::vector<GUID>::iterator itrAdd;
-        for (itrAdd = newThisUpdate.begin(); itrAdd != newThisUpdate.end(); itrAdd++ ) {
+        for (itrAdd = newThisUpdate.begin(); itrAdd != newThisUpdate.end(); ++itrAdd ) {
             this->addDevice(*itrAdd);
 
         }
@@ -162,7 +162,7 @@ void FSDirectInputJoystickManager::updateJoysticks()
     // DInput joystick state
     if (!deviceMap.empty()) {
         std::map<unsigned int, FSBaseDevice * >::iterator itr;
-        for (itr = deviceMap.begin(); itr != deviceMap.end(); itr++) {
+        for (itr = deviceMap.begin(); itr != deviceMap.end(); ++itr) {
             FSDirectInputJoystick * device = static_cast<FSDirectInputJoystick *>(itr->second);
 
             LPDIRECTINPUTDEVICE8 directInputJoystick = device->getDirectInputPtr();
@@ -312,7 +312,7 @@ void FSDirectInputJoystickManager::addDevice(GUID guidDeviceInstance)
         result = _directInput8->CreateDevice(guidDeviceInstance, &_Joystick, NULL);
         if (SUCCEEDED(result)) {
             //TODO set up event with SetEventNotification , CreateEvent , and WaitForSingleObject
-            unsigned int newID = this->getNextID();
+            DeviceID newID = this->getNextID();
             FSDirectInputJoystick * newJoystick = new FSDirectInputJoystick(_Joystick, newID, 0, 0, 0, false, -1, -1, *this);
             this->addDevice(newJoystick);
             _directInputToDeviceIDMap[guidDeviceInstance] = newID;

@@ -141,9 +141,8 @@ XINPUT_STATE lastState[XUSER_MAX_COUNT];
         this->removeXInputDevice(deviceToDelete );
     }
     std::vector<DWORD>::iterator itrAdd;
-    for (itrAdd = newThisUpdate.begin(); itrAdd != newThisUpdate.end(); itrAdd++ ) {
+    for (itrAdd = newThisUpdate.begin(); itrAdd != newThisUpdate.end(); ++itrAdd) {
         this->addXInputDevice(*itrAdd,lastState[*itrAdd]);
-
     }
 
     _connectedLastUpdateJoysticks = foundThisUpdate;
