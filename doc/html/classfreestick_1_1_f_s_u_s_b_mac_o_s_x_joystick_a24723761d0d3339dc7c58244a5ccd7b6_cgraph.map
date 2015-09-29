@@ -1,8 +1,8 @@
 <map id="freestick::FSUSBMacOSXJoystick::Init" name="freestick::FSUSBMacOSXJoystick::Init">
-<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a04cf217a240ee978334285d671c2dbc9" title="numberOfButtons" alt="" coords="329,5,479,32"/>
-<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a3680ae0a81ef04740edb194eb90db4ff" title="numberOfAnalogSticks" alt="" coords="793,5,980,32"/>
-<area shape="rect" href="$_i_o_h_i_d_device___8c.html#acc66d1c9f4e4c5d7b5d21702152a9cad" title="IOHIDDevice_GetProduct" alt="" coords="305,107,503,133"/>
-<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_joystick.html#af4ed509ede9239b99ea9d21351184dcb" title="freestick::FSUSBJoystick\l::addInputElement" alt="" coords="309,157,499,203"/>
-<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#af30a94f398959e7b216e2e11c064566f" title="numberOfDeviecType" alt="" coords="559,5,737,32"/>
-<area shape="rect" href="$classfreestick_1_1_f_s_base_device.html#a4060a6ffa96acffccaf76ff7adfe128b" title="freestick::FSBaseDevice\l::getJoystickID" alt="" coords="552,157,744,203"/>
+<area shape="rect" id="node2" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a04cf217a240ee978334285d671c2dbc9" title="numberOfButtons" alt="" coords="332,5,455,32"/>
+<area shape="rect" id="node4" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a3680ae0a81ef04740edb194eb90db4ff" title="numberOfAnalogSticks" alt="" coords="771,5,925,32"/>
+<area shape="rect" id="node5" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2a1f939bba6c43f29abc54124a68ef89" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::createIdForElement" alt="" coords="278,107,509,149"/>
+<area shape="rect" id="node6" href="$classfreestick_1_1_f_s_base_device.html#a1c9d1eba2c56d8f4a28886bce262b7f5" title="freestick::FSBaseDevice\l::getJoystickID" alt="" coords="558,195,722,237"/>
+<area shape="rect" id="node7" href="$classfreestick_1_1_f_s_u_s_b_joystick.html#af4ed509ede9239b99ea9d21351184dcb" title="freestick::FSUSBJoystick\l::addInputElement" alt="" coords="308,225,479,266"/>
+<area shape="rect" id="node3" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#af30a94f398959e7b216e2e11c064566f" title="numberOfDeviecType" alt="" coords="568,5,712,32"/>
 </map>

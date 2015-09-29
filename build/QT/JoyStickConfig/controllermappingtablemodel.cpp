@@ -148,7 +148,7 @@ void ControllerMappingTableModel::elementChanged(unsigned int elementID,float ne
 
 
     FSUSBJoyStickInputElement *  elementCopy = &_JoyStickElementMap[elementID];
-elementCopy->setValue(element->getValue());
+    elementCopy->setValue(element->getValue());
 
     for(unsigned int index = 0 ; index < _elemntIDList.size(); index++)
     {

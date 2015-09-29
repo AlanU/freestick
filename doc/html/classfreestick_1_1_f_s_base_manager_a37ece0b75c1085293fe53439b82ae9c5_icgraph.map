@@ -1,5 +1,6 @@
 <map id="freestick::FSBaseManager::inputOnDeviceChanged" name="freestick::FSBaseManager::inputOnDeviceChanged">
-<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2a9e26628802fdafd65935996ebc9e8d" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadAction" alt="" coords="261,5,520,51"/>
-<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#ab43b8668f25a1f144bb6806bb7ea3c5d" title="setupIOHDIManager" alt="" coords="569,15,735,41"/>
-<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::init" alt="" coords="784,5,1035,51"/>
+<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#ad1dadcd770d1daa68363d6952c93f89a" title="freestick::FSHIDAndroidJoysick\lDeviceManager::gamepadWasUpdated\lFromJINBridge" alt="" coords="230,5,477,61"/>
+<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2a9e26628802fdafd65935996ebc9e8d" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadAction" alt="" coords="242,86,465,127"/>
+<area shape="rect" id="node4" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a9c389b27da91df71189be1b7a6daf743" title="setupIOHDIManager" alt="" coords="525,93,664,120"/>
+<area shape="rect" id="node5" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::init" alt="" coords="713,86,935,127"/>
 </map>

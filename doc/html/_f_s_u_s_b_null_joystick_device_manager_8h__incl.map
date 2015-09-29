@@ -1,15 +1,15 @@
-<map id="src/USB/platform/NULL/FSUSBNullJoystickDeviceManager.h" name="src/USB/platform/NULL/FSUSBNullJoystickDeviceManager.h">
-<area shape="rect" href="$_f_s_u_s_b_joystick_device_manager_8h.html" title="../../../USB/FSUSBJoystick\lDeviceManager.h" alt="" coords="1080,99,1269,144"/>
-<area shape="rect" href="$_f_s_u_s_b_device_manager_8h.html" title="FSUSBDeviceManager.h" alt="" coords="971,348,1165,375"/>
-<area shape="rect" href="$_f_s_u_s_b_joystick_8h.html" title="FSUSBJoystick.h" alt="" coords="1224,193,1357,220"/>
-<area shape="rect" href="$_f_s_base_manager_8h.html" title="../baseClasses/FSBaseManager.h" alt="" coords="620,425,873,452"/>
-<area shape="rect" href="$_i_f_s_device_8h.html" title="IFSDevice.h" alt="" coords="432,828,536,855"/>
-<area shape="rect" href="$_i_f_s_joystick_listener_8h.html" title="../Interfaces/IFSJoystick\lListener.h" alt="" coords="5,501,189,547"/>
-<area shape="rect" href="$_f_s_base_event_8h.html" title="../baseClasses/FSBaseEvent.h" alt="" coords="135,673,364,700"/>
-<area shape="rect" href="$_i_f_s_joystick_info_8h.html" title="../Interfaces/IFSJoystick\lInfo.h" alt="" coords="417,501,601,547"/>
-<area shape="rect" href="$_f_s_base_device_8h.html" title="../baseClasses/FSBaseDevice.h" alt="" coords="1223,511,1463,537"/>
-<area shape="rect" href="$_i_f_s_event_8h.html" title="IFSEvent.h" alt="" coords="201,751,297,777"/>
-<area shape="rect" href="$_f_s_device_input_event_8h.html" title="../FSDeviceInputEvent.h" alt="" coords="257,596,447,623"/>
-<area shape="rect" href="$_f_s_u_s_b_device_8h.html" title="FSUSBDevice.h" alt="" coords="1277,425,1408,452"/>
-<area shape="rect" href="$_f_s_u_s_b_joy_stick_input_element_8h.html" title="FSUSBJoyStickInputElement.h" alt="" coords="1096,271,1331,297"/>
+<map id="inc/USB/platform/NULL/FSUSBNullJoystickDeviceManager.h" name="inc/USB/platform/NULL/FSUSBNullJoystickDeviceManager.h">
+<area shape="rect" id="node2" href="$_f_s_u_s_b_joystick_device_manager_8h.html" title="USB/common/FSUSBJoystick\lDeviceManager.h" alt="" coords="1005,97,1203,138"/>
+<area shape="rect" id="node3" href="$_f_s_u_s_b_device_manager_8h.html" title="FSUSBDeviceManager.h" alt="" coords="843,336,1008,363"/>
+<area shape="rect" id="node19" href="$_f_s_u_s_b_joystick_8h.html" title="FSUSBJoystick.h" alt="" coords="1168,187,1293,213"/>
+<area shape="rect" id="node4" href="$_f_s_base_manager_8h.html" title="../../baseClasses/FSBase\lManager.h" alt="" coords="622,411,793,453"/>
+<area shape="rect" id="node9" href="$_i_f_s_device_8h.html" title="IFSDevice.h" alt="" coords="447,816,537,843"/>
+<area shape="rect" id="node7" href="$_i_f_s_joystick_listener_8h.html" title="../Interfaces/IFSJoystick\lListener.h" alt="" coords="5,502,168,543"/>
+<area shape="rect" id="node11" href="$_f_s_base_event_8h.html" title="../baseClasses/FSBaseEvent.h" alt="" coords="124,667,327,693"/>
+<area shape="rect" id="node13" href="$_i_f_s_joystick_info_8h.html" title="../Interfaces/IFSJoystick\lInfo.h" alt="" coords="411,502,573,543"/>
+<area shape="rect" id="node14" href="$_f_s_base_device_8h.html" title="../baseClasses/FSBaseDevice.h" alt="" coords="1166,509,1375,536"/>
+<area shape="rect" id="node8" href="$_i_f_s_event_8h.html" title="IFSEvent.h" alt="" coords="183,741,268,768"/>
+<area shape="rect" id="node12" href="$_f_s_device_input_event_8h.html" title="../common/FSDeviceInputEvent.h" alt="" coords="239,592,453,619"/>
+<area shape="rect" id="node20" href="$_f_s_u_s_b_device_8h.html" title="FSUSBDevice.h" alt="" coords="1244,419,1359,445"/>
+<area shape="rect" id="node21" href="$_f_s_u_s_b_joy_stick_input_element_8h.html" title="FSUSBJoyStickInputElement.h" alt="" coords="1053,261,1256,288"/>
 </map>

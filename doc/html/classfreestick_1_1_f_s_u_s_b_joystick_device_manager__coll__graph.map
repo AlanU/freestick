@@ -1,4 +1,4 @@
 <map id="freestick::FSUSBJoystickDeviceManager" name="freestick::FSUSBJoystickDeviceManager">
-<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_device_manager.html" title="freestick::FSUSBDeviceManager" alt="" coords="5,84,256,111"/>
-<area shape="rect" href="$classfreestick_1_1_f_s_base_manager.html" title="This is the base manager. " alt="" coords="28,7,233,33"/>
+<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_u_s_b_device_manager.html" title="freestick::FSUSBDeviceManager" alt="" coords="5,80,216,107"/>
+<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_base_manager.html" title="This is the base manager. " alt="" coords="23,5,199,32"/>
 </map>

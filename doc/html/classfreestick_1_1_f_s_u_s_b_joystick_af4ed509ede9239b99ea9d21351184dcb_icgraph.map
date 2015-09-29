@@ -1,4 +1,4 @@
 <map id="freestick::FSUSBJoystick::addInputElement" name="freestick::FSUSBJoystick::addInputElement">
-<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick.html#a24723761d0d3339dc7c58244a5ccd7b6" title="freestick::FSUSBMacOSXJoystick\l::Init" alt="" coords="245,5,496,51"/>
-<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a37672c3beb149385bfba1bb0119efd43" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::addDevice" alt="" coords="544,5,795,51"/>
+<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick.html#a24723761d0d3339dc7c58244a5ccd7b6" title="freestick::FSUSBMacOSXJoystick\l::Init" alt="" coords="225,5,447,46"/>
+<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a37672c3beb149385bfba1bb0119efd43" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::addDevice" alt="" coords="497,5,719,46"/>
 </map>

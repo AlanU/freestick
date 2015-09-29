@@ -1,5 +1,5 @@
 <map id="FreeFFDevice" name="FreeFFDevice">
-<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a6196710ce82f6627447cc9e73ac3b400" title="isForceFeedBackSupported" alt="" coords="173,15,392,41"/>
-<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a3d8617f4206d7442328a05bbdc8fab85" title="vibrateJoystick" alt="" coords="220,65,345,92"/>
-<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a37672c3beb149385bfba1bb0119efd43" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::addDevice" alt="" coords="440,5,691,51"/>
+<area shape="rect" id="node2" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a6196710ce82f6627447cc9e73ac3b400" title="isForceFeedBackSupported" alt="" coords="158,12,341,39"/>
+<area shape="rect" id="node4" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a3d8617f4206d7442328a05bbdc8fab85" title="vibrateJoystick" alt="" coords="196,63,303,89"/>
+<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a37672c3beb149385bfba1bb0119efd43" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::addDevice" alt="" coords="390,5,613,46"/>
 </map>

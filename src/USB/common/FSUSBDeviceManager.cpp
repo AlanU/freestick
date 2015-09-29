@@ -37,6 +37,45 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     * populate map _usageMapToInputEvent
     */
 
+    _usageMapToInputEvent[PCUSBSNESVenderID][PCUSBSNESID][589826] = ButtonB;
+    _usageMapToInputEvent[PCUSBSNESVenderID][PCUSBSNESID][589827] = ButtonA;
+    _usageMapToInputEvent[PCUSBSNESVenderID][PCUSBSNESID][589825] = ButtonY;
+    _usageMapToInputEvent[PCUSBSNESVenderID][PCUSBSNESID][589828] = ButtonX;
+
+
+    _usageMapToInputEvent[PCUSBSNESVenderID][PCUSBSNESID][589832] = RightShoulder;
+    _usageMapToInputEvent[PCUSBSNESVenderID][PCUSBSNESID][589831] = LeftShoulder;
+
+
+    _usageMapToInputEvent[PCUSBSNESVenderID][PCUSBSNESID][589833] = ButtonSelect;
+    _usageMapToInputEvent[PCUSBSNESVenderID][PCUSBSNESID][589834] = ButtonStart;
+
+
+    _usageMapToInputRangeEvent[PCUSBSNESVenderID][PCUSBSNESID][65585].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[PCUSBSNESVenderID][PCUSBSNESID][65585].push_back(FSUSBElementInfoMap(255,255,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[PCUSBSNESVenderID][PCUSBSNESID][65585].push_back(FSUSBElementInfoMap(128,128,LastValueUp,FSInputRest));
+
+    _usageMapToInputRangeEvent[PCUSBSNESVenderID][PCUSBSNESID][65584].push_back(FSUSBElementInfoMap(0,0,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[PCUSBSNESVenderID][PCUSBSNESID][65584].push_back(FSUSBElementInfoMap(255,255,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[PCUSBSNESVenderID][PCUSBSNESID][65584].push_back(FSUSBElementInfoMap(128,128,LastValueUp,FSInputRest));
+
+
+
+    _usageMapToInputEvent[TomeeVenderID][TomeeNesUSBID][589825] = ButtonB;
+    _usageMapToInputEvent[TomeeVenderID][TomeeNesUSBID][589826] = ButtonA;
+
+    _usageMapToInputEvent[TomeeVenderID][TomeeNesUSBID][589827] = ButtonSelect;
+    _usageMapToInputEvent[TomeeVenderID][TomeeNesUSBID][589828] = ButtonStart;
+
+
+    _usageMapToInputRangeEvent[TomeeVenderID][TomeeNesUSBID][65585].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[TomeeVenderID][TomeeNesUSBID][65585].push_back(FSUSBElementInfoMap(255,255,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[TomeeVenderID][TomeeNesUSBID][65585].push_back(FSUSBElementInfoMap(127,127,LastValueUp,FSInputRest));
+
+    _usageMapToInputRangeEvent[TomeeVenderID][TomeeNesUSBID][65584].push_back(FSUSBElementInfoMap(0,0,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[TomeeVenderID][TomeeNesUSBID][65584].push_back(FSUSBElementInfoMap(255,255,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[TomeeVenderID][TomeeNesUSBID][65584].push_back(FSUSBElementInfoMap(127,127,LastValueUp,FSInputRest));
+
     // SteelSeries ("Gtron") Gtron Retro Classic FC SNES Controller
     //has the same vender id as DragonRise
     //TODO add in start and select
@@ -591,8 +630,8 @@ FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromUSBID( unsigned in
                   _usageMapToInputRangeEvent[vendorUSBID].find(productUSBID) != _usageMapToInputRangeEvent[vendorUSBID].end() &&
                  _usageMapToInputRangeEvent[vendorUSBID][productUSBID].find(controlID) != _usageMapToInputRangeEvent[vendorUSBID][productUSBID].end())
         {
-             std::vector<FSUSBElementInfoMap>::iterator rangeUsageList = _usageMapToInputRangeEvent[vendorUSBID][productUSBID][controlID].begin();
-             for(rangeUsageList; rangeUsageList != _usageMapToInputRangeEvent[vendorUSBID][productUSBID][controlID].end();++rangeUsageList)
+          //   std::vector<FSUSBElementInfoMap>::iterator rangeUsageList = _usageMapToInputRangeEvent[vendorUSBID][productUSBID][controlID].begin();
+             for(std::vector<FSUSBElementInfoMap>::iterator rangeUsageList = _usageMapToInputRangeEvent[vendorUSBID][productUSBID][controlID].begin(); rangeUsageList != _usageMapToInputRangeEvent[vendorUSBID][productUSBID][controlID].end();++rangeUsageList)
              {
                  FSUSBElementInfoMap * item  = &(*rangeUsageList);
                  if(value >= item->getMin()  && value <= item->getMax())

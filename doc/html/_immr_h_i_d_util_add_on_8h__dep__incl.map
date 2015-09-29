@@ -1,10 +1,10 @@
 <map id="src/3rdParty/Mac/IOHID/ImmrHIDUtilAddOn.h" name="src/3rdParty/Mac/IOHID/ImmrHIDUtilAddOn.h">
-<area shape="rect" href="$_immr_h_i_d_util_add_on_8c.html" title="src/3rdParty/Mac/IOHID\l/ImmrHIDUtilAddOn.c" alt="" coords="273,99,457,144"/>
-<area shape="rect" href="$_i_o_h_i_d_lib___8h.html" title="src/3rdParty/Mac/IOHID\l/IOHIDLib_.h" alt="" coords="481,99,665,144"/>
-<area shape="rect" href="$_i_o_h_i_d_device___8h.html" title="src/3rdParty/Mac/IOHID\l/IOHIDDevice_.h" alt="" coords="377,192,561,237"/>
-<area shape="rect" href="$_i_o_h_i_d_element___8h.html" title="src/3rdParty/Mac/IOHID\l/IOHIDElement_.h" alt="" coords="585,192,769,237"/>
-<area shape="rect" href="$_i_o_h_i_d_device___8c.html" title="src/3rdParty/Mac/IOHID\l/IOHIDDevice_.c" alt="" coords="5,285,189,331"/>
-<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_8cpp.html" title="src/USB/platform/MacOSX\l/FSUSBMacOSXJoystick.cpp" alt="" coords="213,285,429,331"/>
-<area shape="rect" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html" title="src/USB/platform/MacOSX\l/FSUSBMacOSXJoystickDeviceManager.cpp" alt="" coords="453,285,781,331"/>
-<area shape="rect" href="$_i_o_h_i_d_element___8c.html" title="src/3rdParty/Mac/IOHID\l/IOHIDElement_.c" alt="" coords="805,285,989,331"/>
+<area shape="rect" id="node2" href="$_immr_h_i_d_util_add_on_8c.html" title="src/3rdParty/Mac/IOHID\l/ImmrHIDUtilAddOn.c" alt="" coords="245,97,405,138"/>
+<area shape="rect" id="node3" href="$_i_o_h_i_d_lib___8h.html" title="src/3rdParty/Mac/IOHID\l/IOHIDLib_.h" alt="" coords="429,97,589,138"/>
+<area shape="rect" id="node4" href="$_i_o_h_i_d_device___8h.html" title="src/3rdParty/Mac/IOHID\l/IOHIDDevice_.h" alt="" coords="337,187,497,229"/>
+<area shape="rect" id="node8" href="$_i_o_h_i_d_element___8h.html" title="src/3rdParty/Mac/IOHID\l/IOHIDElement_.h" alt="" coords="521,187,681,229"/>
+<area shape="rect" id="node5" href="$_i_o_h_i_d_device___8c.html" title="src/3rdParty/Mac/IOHID\l/IOHIDDevice_.c" alt="" coords="5,278,165,319"/>
+<area shape="rect" id="node6" href="$_f_s_u_s_b_mac_o_s_x_joystick_8cpp.html" title="src/USB/platform/MacOSX\l/FSUSBMacOSXJoystick.cpp" alt="" coords="189,278,384,319"/>
+<area shape="rect" id="node7" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html" title="src/USB/platform/MacOSX\l/FSUSBMacOSXJoystickDeviceManager.cpp" alt="" coords="408,278,691,319"/>
+<area shape="rect" id="node9" href="$_i_o_h_i_d_element___8c.html" title="src/3rdParty/Mac/IOHID\l/IOHIDElement_.c" alt="" coords="715,278,875,319"/>
 </map>

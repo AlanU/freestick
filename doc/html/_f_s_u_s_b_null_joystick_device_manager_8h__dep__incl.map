@@ -1,4 +1,4 @@
-<map id="src/USB/platform/NULL/FSUSBNullJoystickDeviceManager.h" name="src/USB/platform/NULL/FSUSBNullJoystickDeviceManager.h">
-<area shape="rect" href="$freestick_8h.html" title="src/freestick.h" alt="" coords="5,108,125,135"/>
-<area shape="rect" href="$_f_s_u_s_b_null_joystick_device_manager_8cpp.html" title="src/USB/platform/NULL\l/FSUSBNullJoystickDeviceManager.cpp" alt="" coords="149,99,445,144"/>
+<map id="inc/USB/platform/NULL/FSUSBNullJoystickDeviceManager.h" name="inc/USB/platform/NULL/FSUSBNullJoystickDeviceManager.h">
+<area shape="rect" id="node2" href="$_f_s_u_s_b_null_joystick_device_manager_8cpp.html" title="src/USB/platform/NULL\l/FSUSBNullJoystickDeviceManager.cpp" alt="" coords="5,97,259,138"/>
+<area shape="rect" id="node3" href="$freestick_8h.html" title="inc/freestick.h" alt="" coords="283,104,385,131"/>
 </map>

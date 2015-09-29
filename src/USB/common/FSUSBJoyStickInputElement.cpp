@@ -84,6 +84,10 @@ bool FSUSBJoyStickInputElement::isValueInDeadZone(MinMaxNumber value)
             return false;
         }
     }
+    else if(_needsDeadZone && !_calibrated )
+    {
+        return false;
+    }
     return true;
 }
 
@@ -179,7 +183,7 @@ void FSUSBJoyStickInputElement::calibrate(PhysicalValueNumber currentValue, MinM
            _deadZoneMin = temp;
         }
 
-        MinMaxNumber precent = static_cast<MinMaxNumber>(( (float)(_elementMax + abs(_elementMin) ) )*0.05f);
+        MinMaxNumber precent = static_cast<MinMaxNumber>(( (float)(_elementMax + std::abs(_elementMin) ) )*0.05f);
 
         _deadZoneMax= _elementMax < _deadZoneMax+precent ?  _deadZoneMax :_deadZoneMax + precent ;
         _deadZoneMin = _elementMin > _deadZoneMin-precent ? _deadZoneMin : _deadZoneMin - precent;

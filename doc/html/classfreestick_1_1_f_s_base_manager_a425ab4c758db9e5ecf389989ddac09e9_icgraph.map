@@ -1,3 +1,4 @@
 <map id="freestick::FSBaseManager::getNextID" name="freestick::FSBaseManager::getNextID">
-<area shape="rect" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a37672c3beb149385bfba1bb0119efd43" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::addDevice" alt="" coords="261,5,512,51"/>
+<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#ae1bb22c2e080717f4183e717277999e1" title="freestick::FSHIDAndroidJoysick\lDeviceManager::gamepadWasAddedFrom\lJINBridge" alt="" coords="230,5,495,61"/>
+<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a37672c3beb149385bfba1bb0119efd43" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::addDevice" alt="" coords="251,86,474,127"/>
 </map>

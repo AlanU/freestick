@@ -62,6 +62,10 @@ const unsigned int RockCandyXbox360ControlllerID = 3695;
 const unsigned int HVG2VenderID = 2064;
 const unsigned int HVG2TwinPS2 = 1 ;
 const unsigned int GtronRetroSNES = 17;
+const unsigned int TomeeVenderID = 7511;
+const unsigned int TomeeNesUSBID = 33;
+const unsigned int PCUSBSNESVenderID = 3727;
+const unsigned int PCUSBSNESID = 12307;
 
 
     class FSUSBElementInfoMap
