@@ -39,7 +39,7 @@ namespace freestick {
     public:
         FSDirectInputJoystick();
         FSDirectInputJoystick(LPDIRECTINPUTDEVICE8 LPDIDJoystick,
-                              unsigned int joyStickID,
+                              DeviceID joyStickID,
                               unsigned int numberOfButtons,
                               unsigned int numberOfAnlogSticks,
                               unsigned int numberOfDigitalSticks,
