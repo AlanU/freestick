@@ -133,7 +133,7 @@ void FSDirectInputJoystickManager::updateJoysticksPOV(FSDirectInputJoystick * de
     if (temp.getDeviceInput() != LastInput && temp.getEventMapping() != FSLastEventAction ) {
         FSUSBJoyStickInputElement * element = (FSUSBJoyStickInputElement*)device->findInputElement(idForXAxis);
         axisValue = temp.getMin();
-        if (element->getValue() != axisValue) {
+        if (element!= NULL && element->getValue() != axisValue) {
             updateEvents(device->getJoystickID(), element, axisValue);
         }
     }
