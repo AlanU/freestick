@@ -28,8 +28,10 @@ and must not be misrepresented as being the original software.
 #pragma once
 namespace freestick {
 
+    /* TODO: rename type to lower case*/
     typedef unsigned long int IDNumber; //Needs to be at lest 32bits and unsigned
     typedef signed long int  MinMaxNumber; //Needs to be at lest 32bits and signed
     typedef signed long int PhysicalValueNumber; //Needs to be at lest 32bits and signed
+    typedef unsigned int DeviceID;
 
 }
