@@ -31,7 +31,6 @@ and must not be misrepresented as being the original software.
 #include "../../Interfaces/IFSDevice.h"
 #include "common/FSTypes.h"
 #include <string>
-#include <map>
 #include<unordered_map>
 namespace freestick
 {
