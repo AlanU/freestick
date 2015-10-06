@@ -26,7 +26,7 @@ and must not be misrepresented as being the original software.
 **************************************************************************/
 
 #pragma once
-#include "USB/common/FSUSBJoystickDeviceManager.h"
+#include "USB/common/FSUpdatableJoystickDeviceManager.h"
 #include "USB/platform/Windows/FSDirectInputJoystick.h"
 #define DIRECTINPUT_VERSION 0x0800
 #define WIN32_LEAN_AND_MEAN
@@ -54,7 +54,7 @@ struct DirectInput_Enum_Contex
     std::vector<GUID> joysticksConnectedThisUpdate;
 };
 
-    class FSDirectInputJoystickManager : public FSUSBJoystickDeviceManager
+    class FSDirectInputJoystickManager : public FSUpdatableJoystickDeviceManager
     {
     public:
         FSDirectInputJoystickManager();

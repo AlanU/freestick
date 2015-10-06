@@ -29,17 +29,17 @@
 
 #pragma once
 
-#include "USB/common/FSUSBJoystickDeviceManager.h"
+#include "USB/common/FSUpdatableJoystickDeviceManager.h"
 #include <Windows.h>
 #include <Xinput.h>
 #include "USB/platform/Windows/FSXInputJoystick.h"
 namespace freestick
 {
-    class FSXInputJoystickDeviceManager : public FSUSBJoystickDeviceManager
+    class FSXInputJoystickDeviceManager : public FSUpdatableJoystickDeviceManager
     {
     public:
         FSXInputJoystickDeviceManager();
-        void update();
+        virtual void update();
     private:
         std::vector<DWORD> _connectedLastUpdateJoysticks;
         std::map<DWORD,unsigned int> _wordToIDControllerMap;
