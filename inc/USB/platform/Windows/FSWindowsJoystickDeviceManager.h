@@ -34,35 +34,47 @@
 #include "USB/platform/Windows/FSXInputJoystick.h"
 
 #include "Interfaces/IFSDeviceIDCreator.h"
-enum ManagerType
-{
-    DIRECT_INPUT = 0,
-    XINPUT
-}typedef MangerType;
+#include "USB/common/FSUpdatableJoystickDeviceManager.h"
+#include "common/FSTypes.h"
+#include <memory>
+
+typedef freestick::FSUpdatableJoystickDeviceManager managerType;
+typedef std::unique_ptr<managerType> unique_ptr_of_managers;
 
 namespace freestick {
 
-    class FSWindowsJoystickDeviceManager : public FSUSBJoystickDeviceManager , public IFSDeviceIDCreator, public IFSJoystickListener
+    class FSWindowsJoystickDeviceManager : public IFSDeviceIDCreator
     {
     public:
         FSWindowsJoystickDeviceManager();
-        virtual void update();
-        virtual void init( );
-        virtual DeviceID getNextID();
-        virtual const FSBaseDevice * getDevice(DeviceID deviceID);
-        virtual void ListenForAllJoysticksForEventTypes(unsigned int eventFlags,IFSJoystickListener & listener);
+        virtual ~FSWindowsJoystickDeviceManager();
+        void update();
+        void init( );
+        DeviceID getNextID();
+        const FSBaseDevice * getDevice(DeviceID deviceID);
+        void ListenForAllJoysticksForEventTypes(unsigned int eventFlags,IFSJoystickListener & listener);
+        void UnListenForAllJoysticksForEventTypes(unsigned int eventFlags,IFSJoystickListener & listener);
 
+        //add or replace mapping
+         //void addMappingForButton(unsigned int vendorUSBID,unsigned int productUSBID,unsigned int controlUSBID,FSDeviceInput deviceInput);
+         void addMapping(unsigned int vendorUSBID,unsigned int productUSBID,unsigned int controlUSBID,FSDeviceInput deviceInput);
+         void addMapping(unsigned int deviceID,unsigned int controlID,FSDeviceInput deviceInput);
+         //FSUSBElementInfoMap lookUpDeviceInputFromID(unsigned int deviceID, unsigned int controlID);
+         FSUSBElementInfoMap lookUpDeviceInputFromID(unsigned int deviceID, unsigned int controlID, MinMaxNumber min, MinMaxNumber max,int value);
+         FSUSBElementInfoMap lookUpDeviceInputFromUSBID( unsigned int vendorUSBID, unsigned int productUSBID , unsigned int controlID,MinMaxNumber min,MinMaxNumber max,int value);
+         FSUSBElementInfoMap infoMapForInputType(unsigned int vendorUSBID, unsigned int productUSBID ,FSDeviceInput inputToLookFor );
 
-        virtual void onButtonDown(FSDeviceInputEvent event);
-        virtual void onButtonUp(FSDeviceInputEvent event);
-        virtual void onStickMove(FSDeviceInputEvent event);
-        virtual void onDisconnect(FSBaseEvent event) ;
-        virtual void onConnect(FSBaseEvent event) ;
+         bool doesDeviceHaveDeviceInput(unsigned int deviceID,FSDeviceInput inputToLookFor);
+         bool doesElementHaveDeviceInputForValue(unsigned int vendorUSBID, unsigned int productUSBID ,unsigned int elementID,FSDeviceInput inputToLookFor );
+         bool doesDeviceHaveDeviceInput(unsigned int vendorUSBID, unsigned int productUSBID ,FSDeviceInput inputToLookFor);
+         bool doesDeviceHaveDeviceInputForValue(unsigned int vendorUSBID, unsigned int productUSBID ,FSDeviceInput inputToLookFor,int value );
+         bool doesDeviceHaveDeviceInputForValue(unsigned int deviceID,FSDeviceInput inputToLookFor,  int value );
+
+         managerType * findManagerForDevice(DeviceID deviceID);
 
     private:
-         freestick::FSDirectInputJoystickManager _directInputDeviceManager;
-         freestick::FSXInputJoystickDeviceManager _xInputDeviceManger;
          bool _listeningForEvents;
+         std::vector<unique_ptr_of_managers> managers;
 
     };
 
