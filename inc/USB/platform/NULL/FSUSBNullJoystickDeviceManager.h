@@ -35,6 +35,7 @@ namespace freestick
         FSUSBNullJoystickDeviceManager();
         virtual ~FSUSBNullJoystickDeviceManager();
         virtual void init( );
+        virtual void update();
     };
 
 }
