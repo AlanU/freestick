@@ -93,7 +93,8 @@ const unsigned int PCUSBSNESID = 12307;
         std::map<unsigned int,std::map<unsigned int,std::map<IDNumber,std::vector<FSUSBElementInfoMap> > > > _usageMapToInputRangeEvent;
     public:
        //add or replace mapping
-        void addMappingForButton(unsigned int vendorUSBID,unsigned int productUSBID,unsigned int controlUSBID,FSDeviceInput deviceInput);
+        //TODO add addMappingForButton
+        //void addMappingForButton(unsigned int vendorUSBID,unsigned int productUSBID,unsigned int controlUSBID,FSDeviceInput deviceInput);
         void addMapping(unsigned int vendorUSBID,unsigned int productUSBID,unsigned int controlUSBID,FSDeviceInput deviceInput);
         void addMapping(unsigned int deviceID,unsigned int controlID,FSDeviceInput deviceInput);
         //FSUSBElementInfoMap lookUpDeviceInputFromID(unsigned int deviceID, unsigned int controlID);
