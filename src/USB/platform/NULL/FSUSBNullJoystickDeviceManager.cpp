@@ -42,3 +42,9 @@ void FSUSBNullJoystickDeviceManager::init( )
 {
     FSUSBDeviceManager::init();
 }
+
+
+void FSUSBNullJoystickDeviceManager::update()
+{
+
+}
