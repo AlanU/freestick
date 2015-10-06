@@ -34,6 +34,7 @@ android {
 }else{
     CONFIG += staticlib
 }
+CONFIG += c++11
 
 # turns of debug logging in release
 CONFIG(release, debug|release) {

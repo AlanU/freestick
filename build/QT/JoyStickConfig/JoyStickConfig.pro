@@ -26,10 +26,10 @@
 #**************************************************************************/
 
 QT       += core gui
-
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets svg
 
 TARGET = JoyStickConfig
+CONFIG += c++11
 
 android {
 QT += androidextras
