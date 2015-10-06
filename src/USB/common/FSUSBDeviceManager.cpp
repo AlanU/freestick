@@ -678,7 +678,7 @@ bool FSUSBDeviceManager::doesDeviceHaveDeviceInputForValue(unsigned int deviceID
 
 FSUSBElementInfoMap FSUSBDeviceManager::infoMapForInputType(unsigned int vendorUSBID, unsigned int productUSBID ,FSDeviceInput inputToLookFor )
 {
-    std::map<IDNumber,std::vector<FSUSBElementInfoMap> >::iterator itRange = _usageMapToInputRangeEvent[vendorUSBID][productUSBID].begin();
+    std::unordered_map<IDNumber,std::vector<FSUSBElementInfoMap> >::iterator itRange = _usageMapToInputRangeEvent[vendorUSBID][productUSBID].begin();
     for(itRange;itRange != _usageMapToInputRangeEvent[vendorUSBID][productUSBID].end();++itRange)
     {
        std::vector<FSUSBElementInfoMap>::iterator vItr = itRange->second.begin();
@@ -697,7 +697,7 @@ FSUSBElementInfoMap FSUSBDeviceManager::infoMapForInputType(unsigned int vendorU
 
 bool FSUSBDeviceManager::doesDeviceHaveDeviceInputForValue(unsigned int vendorUSBID, unsigned int productUSBID ,FSDeviceInput inputToLookFor,  int value )
 {
-    std::map<IDNumber,std::vector<FSUSBElementInfoMap> >::iterator itRange = _usageMapToInputRangeEvent[vendorUSBID][productUSBID].begin();
+    std::unordered_map<IDNumber,std::vector<FSUSBElementInfoMap> >::iterator itRange = _usageMapToInputRangeEvent[vendorUSBID][productUSBID].begin();
     for(itRange;itRange != _usageMapToInputRangeEvent[vendorUSBID][productUSBID].end();++itRange)
     {
        std::vector<FSUSBElementInfoMap>::iterator vItr = itRange->second.begin();
@@ -748,7 +748,7 @@ bool FSUSBDeviceManager::doesDeviceHaveDeviceInput(unsigned int vendorUSBID, uns
     if(FS_isButtion(inputToLookFor) || FS_isDpad(inputToLookFor))
     {
 
-        std::map<IDNumber,FSDeviceInput>::iterator itDigital = _usageMapToInputEvent[vendorUSBID][productUSBID].begin();
+        std::unordered_map<IDNumber,FSDeviceInput>::iterator itDigital = _usageMapToInputEvent[vendorUSBID][productUSBID].begin();
         for(itDigital; itDigital != _usageMapToInputEvent[vendorUSBID][productUSBID].end() ; ++itDigital)
         {
             FSDeviceInput deviceInputFound = itDigital->second;
@@ -762,7 +762,7 @@ bool FSUSBDeviceManager::doesDeviceHaveDeviceInput(unsigned int vendorUSBID, uns
     }
     else
     {
-        std::map<IDNumber,std::vector<FSUSBElementInfoMap> >::iterator itRange = _usageMapToInputRangeEvent[vendorUSBID][productUSBID].begin();
+        std::unordered_map<IDNumber,std::vector<FSUSBElementInfoMap> >::iterator itRange = _usageMapToInputRangeEvent[vendorUSBID][productUSBID].begin();
         for(itRange;itRange != _usageMapToInputRangeEvent[vendorUSBID][productUSBID].end();++itRange)
         {
            std::vector<FSUSBElementInfoMap>::iterator vItr = itRange->second.begin();

@@ -32,7 +32,7 @@ and must not be misrepresented as being the original software.
 #include "common/FSTypes.h"
 #include <string>
 #include <map>
-
+#include<unordered_map>
 namespace freestick
 {
 
@@ -87,10 +87,10 @@ const unsigned int PCUSBSNESID = 12307;
     private:
         // vender with map of products conatins a map of elemnets with a map of input devices with a map string key which it the min-max-inputMapping(pressed, rest ,move)
         /** \todo
-         * replace std:map with boost::unordered_map for speed
+         * combind vender and product ID in to on 64bit key to cut down the size of this type
          */
-        std::map<unsigned int,std::map<unsigned int,std::map<IDNumber,FSDeviceInput> > > _usageMapToInputEvent; //can only have a value of 1 or 0 where 1 is pressed and 0 is not
-        std::map<unsigned int,std::map<unsigned int,std::map<IDNumber,std::vector<FSUSBElementInfoMap> > > > _usageMapToInputRangeEvent;
+        std::unordered_map<unsigned int,std::unordered_map<unsigned int,std::unordered_map<IDNumber,FSDeviceInput> > > _usageMapToInputEvent; //can only have a value of 1 or 0 where 1 is pressed and 0 is not
+        std::unordered_map<unsigned int,std::unordered_map<unsigned int,std::unordered_map<IDNumber,std::vector<FSUSBElementInfoMap> > > > _usageMapToInputRangeEvent;
     public:
        //add or replace mapping
         //TODO add addMappingForButton
