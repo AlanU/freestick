@@ -301,9 +301,9 @@ DeviceID FSBaseManager::getNextID()
 {
     static unsigned int ID = 1;//0 is reserved for errors
     if(_devicIDCreator != NULL)
-        return (ID++);
-    else
         return _devicIDCreator->getNextID();
+    else
+        return (ID++);
 
 }
 
