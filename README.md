@@ -34,8 +34,7 @@ Derive your class that is going to proceess joystick events from IFSJoystickList
 
 Then register your class with the Device Manager for the call back you are intrested in
 
-```
-#!c++
+```c++
 #include "freestick.h"
     class JoystickEventHandler: public IFSJoystickListener
     {
