@@ -25,3 +25,35 @@ FreeStick is licensed under the [Zlib license]( http://opensource.org/licenses/Z
   
 ###Other Mirrors###
 [GitHub mirror](https://github.com/AlanU/freestick)
+
+
+###Example###
+Create a device manager and call init.
+
+Derive your class that is going to proceess joystick events from IFSJoystickListener and implement the interface funtions
+
+Then register your class with the Device Manager for the call back you are intrested in
+
+```
+#!c++
+#include "freestick.h"
+    class JoystickEventHandler: public IFSJoystickListener
+    {
+       public:
+           JoystickEventHandler();
+           ~JoystickEventHandler();
+           virtual void onButtonDown(freestick::FSDeviceInputEvent event) {}
+           virtual void onButtonUp(freestick::FSDeviceInputEvent event) {}
+           virtual void onStickMove(freestick::FSDeviceInputEvent event) {}
+           virtual void onDisconnect(freestick::FSBaseEvent event){};
+           virtual void onConnect(freestick::FSBaseEvent event){};
+    };
+
+   void main()
+   {
+        JoystickEventHandler handler;
+        FreeStickDeviceManager deviceManager;
+        deviceManager.init();
+        deviceManager.ListenForAllJoysticksForEventTypes(FS_JOYSTICK_CONNECTED_EVENT | FS_JOYSTICK_DISCONNECT_EVENT |  FS_BUTTON_EVENT | FS_AXIS_EVENT | FS_TRIGGER_EVENT , handler);
+   }
+```
