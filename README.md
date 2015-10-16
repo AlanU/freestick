@@ -22,5 +22,6 @@ We are looking for contributors. Contact AlanU for more information
 
 ###License###
 FreeStick is licensed under the [Zlib license]( http://opensource.org/licenses/Zlib)
-
+  
+###Other Mirrors###
 [GitHub mirror](https://github.com/AlanU/freestick)
