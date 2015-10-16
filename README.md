@@ -1,4 +1,4 @@
-# FreeStick is a Cross Platform Joystick and Gamepad Library written in C++ 11. #
+# FreeStick is a Cross Platform Joystick and Gamepad Library written in C++ 11 #
 
 ### Requirements ###
 [Qmake](http://qt-project.org) - build system (The QT framework is NOT a requirement and is NOT used in this Lib)
