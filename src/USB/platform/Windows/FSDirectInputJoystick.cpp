@@ -117,13 +117,12 @@ BOOL CALLBACK  FSDirectInputJoystick::EnumInputObjectsCallback( const DIDEVICEOB
         range.diph.dwHeaderSize = sizeof(DIPROPHEADER);
         range.diph.dwHow = DIPH_BYID;
         range.diph.dwObj = pdidoi->dwType;
-        MinMaxNumber min = 0;
-        MinMaxNumber max = 0;
+
 
         if ( joystick->getDirectInputPtr()->GetProperty(DIPROP_LOGICALRANGE, &range.diph) == DI_OK)
         {
-           min  = range.lMin;
-           max  = range.lMax;
+           MinMaxNumber min  = range.lMin;
+           MinMaxNumber max  = range.lMax;
            bool didRangeSetOK = false;
            long int value = max/2;
           if(pdidoi->guidType == GUID_POV)
