@@ -161,7 +161,7 @@ void FSDirectInputJoystickManager::updateJoysticks()
 
     // DInput joystick state
     if (!deviceMap.empty()) {
-        std::map<unsigned int, FSBaseDevice * >::iterator itr;
+        std::unordered_map<unsigned int, FSBaseDevice * >::iterator itr;
         for (itr = deviceMap.begin(); itr != deviceMap.end(); ++itr) {
             FSDirectInputJoystick * device = static_cast<FSDirectInputJoystick *>(itr->second);
 

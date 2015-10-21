@@ -27,7 +27,7 @@ and must not be misrepresented as being the original software.
 
 #pragma once
 #include <vector>
-#include <map>
+#include <unordered_map>
 #include "../Interfaces/IFSJoystickListener.h"
 #include "../Interfaces/IFSJoystickInfo.h"
 #include "../Interfaces/IFSDevice.h"
@@ -107,14 +107,14 @@ namespace freestick
 #endif
        virtual const FSBaseDevice * getDevice(ElementID deviceID);
     private:
-        std::multimap<FreeStickEventType,IFSJoystickListener * > _joystickDeviceListeners;
-        typedef std::multimap<FreeStickEventType,IFSJoystickListener * >::iterator joystickDeviceListenersItr;
+        std::unordered_multimap<FreeStickEventType,IFSJoystickListener * > _joystickDeviceListeners;
+        typedef std::unordered_multimap<FreeStickEventType,IFSJoystickListener * >::iterator joystickDeviceListenersItr;
 
-        std::map<unsigned int,std::multimap<FreeStickEventType,IFSJoystickListener * > > _joystickDeviceInputListeners;
+        std::unordered_map<unsigned int,std::multimap<FreeStickEventType,IFSJoystickListener * > > _joystickDeviceInputListeners;
         std::vector<IFSJoystickListener *> allJoystickListeners;
         IFSDeviceIDCreator * _devicIDCreator; //if not null called to get next decice id from
     protected:
-        std::map<unsigned int, FSBaseDevice * > deviceMap;
+        std::unordered_map<unsigned int, FSBaseDevice * > deviceMap;
         //void ListenForAllJoysticks(IFSJoystickListener & listener){ ListenForJoystick(listener,0,AllInputs);}
       //  void UnListenForAllJoysticks(IFSJoystickListener & listener){ UnListenForJoystick(listener,0,AllInputs);}
         void ListenForAllJoysticksForEventType(FreeStickEventType eventType,IFSJoystickListener & listener);
