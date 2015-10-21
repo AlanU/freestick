@@ -130,7 +130,7 @@ void ControllerMappingTableModel::modelChanged(int joystickID)
 
     _JoyStickElementMap = joystick->getElements();
     _elemntIDList = joystick->getElementIds();
-    for(int index = 0; index < _elemntIDList.size(); index++)
+    for(unsigned int index = 0; index < _elemntIDList.size(); index++)
     {
         _elemnetMapped.push_back(false);
         _elementValuelist.push_back(0);
