@@ -4,6 +4,6 @@ namespace freestick {
     class IFSDeviceIDCreator
     {
     public:
-        virtual DeviceID getNextID() = 0;
+        virtual ElementID getNextID() = 0;
     };
 }

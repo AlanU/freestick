@@ -31,40 +31,42 @@ and must not be misrepresented as being the original software.
 #include "../../Interfaces/IFSDevice.h"
 #include "common/FSTypes.h"
 #include <string>
-#include<unordered_map>
+#include <unordered_map>
+#include <cstdint>
+
 namespace freestick
 {
 
-const unsigned int GravisVendorID = 1064;
-const unsigned int GamePadProID = 16385;
-const unsigned int DragonRiseID = 121;
-const unsigned int Gtron = DragonRiseID;
-const unsigned int SteelSeries3GCControllerID = 6;
-const unsigned int AmazonVendorID = 6473;
-const unsigned int AmazonFireGameControllerID = 1026 ;
-const unsigned int GameElementsVendorID = 3888;
-const unsigned int GameElementsRecoilID = 263;
-const unsigned int SteelSeriesVendorID = 4152;
-const unsigned int SteelSeriesFreeControllerID = 5138;
-const unsigned int SonyVendorID = 1356;
-const unsigned int Playstation3ControllerID = 616;
-const unsigned int Playstation4ControllerID = 1476;
-const unsigned int LogitechVendorID = 1133;
-const unsigned int LogitechDualActionID = 49686;
-const unsigned int LogitechGamepadF310 = 49693;
-const unsigned int OUYAVendorID = 10294;
-const unsigned int OUYAControllerID = 1;
-const unsigned int MicrosoftVendorID = 1118;
-const unsigned int MicrosoftXbox360WindowsControllerID = 654;
-const unsigned int RockCandyVenderID = 3695;
-const unsigned int RockCandyXbox360ControlllerID = 3695;
-const unsigned int HVG2VenderID = 2064;
-const unsigned int HVG2TwinPS2 = 1 ;
-const unsigned int GtronRetroSNES = 17;
-const unsigned int TomeeVenderID = 7511;
-const unsigned int TomeeNesUSBID = 33;
-const unsigned int PCUSBSNESVenderID = 3727;
-const unsigned int PCUSBSNESID = 12307;
+const uint32_t GravisVendorID = 1064;
+const uint32_t GamePadProID = 16385;
+const uint32_t DragonRiseID = 121;
+const uint32_t Gtron = DragonRiseID;
+const uint32_t SteelSeries3GCControllerID = 6;
+const uint32_t AmazonVendorID = 6473;
+const uint32_t AmazonFireGameControllerID = 1026 ;
+const uint32_t GameElementsVendorID = 3888;
+const uint32_t GameElementsRecoilID = 263;
+const uint32_t SteelSeriesVendorID = 4152;
+const uint32_t SteelSeriesFreeControllerID = 5138;
+const uint32_t SonyVendorID = 1356;
+const uint32_t Playstation3ControllerID = 616;
+const uint32_t Playstation4ControllerID = 1476;
+const uint32_t LogitechVendorID = 1133;
+const uint32_t LogitechDualActionID = 49686;
+const uint32_t LogitechGamepadF310 = 49693;
+const uint32_t OUYAVendorID = 10294;
+const uint32_t OUYAControllerID = 1;
+const uint32_t MicrosoftVendorID = 1118;
+const uint32_t MicrosoftXbox360WindowsControllerID = 654;
+const uint32_t RockCandyVenderID = 3695;
+const uint32_t RockCandyXbox360ControlllerID = 3695;
+const uint32_t HVG2VenderID = 2064;
+const uint32_t HVG2TwinPS2 = 1 ;
+const uint32_t GtronRetroSNES = 17;
+const uint32_t TomeeVenderID = 7511;
+const uint32_t TomeeNesUSBID = 33;
+const uint32_t PCUSBSNESVenderID = 3727;
+const uint32_t PCUSBSNESID = 12307;
 
 
     class FSUSBElementInfoMap
@@ -88,9 +90,10 @@ const unsigned int PCUSBSNESID = 12307;
         /** \todo
          * combind vender and product ID in to on 64bit key to cut down the size of this type
          */
-        std::unordered_map<unsigned int,std::unordered_map<unsigned int,std::unordered_map<IDNumber,FSDeviceInput> > > _usageMapToInputEvent; //can only have a value of 1 or 0 where 1 is pressed and 0 is not
-        std::unordered_map<unsigned int,std::unordered_map<unsigned int,std::unordered_map<IDNumber,std::vector<FSUSBElementInfoMap> > > > _usageMapToInputRangeEvent;
+        std::unordered_map<DeviceID,std::unordered_map<IDNumber,FSDeviceInput> > _usageMapToInputEvent; //can only have a value of 1 or 0 where 1 is pressed and 0 is not
+        std::unordered_map<DeviceID,std::unordered_map<IDNumber,std::vector<FSUSBElementInfoMap> > > _usageMapToInputRangeEvent;
     public:
+
        //add or replace mapping
         //TODO add addMappingForButton
         //void addMappingForButton(unsigned int vendorUSBID,unsigned int productUSBID,unsigned int controlUSBID,FSDeviceInput deviceInput);

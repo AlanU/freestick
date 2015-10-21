@@ -245,7 +245,7 @@ void FSHIDAndroidJoysickDeviceManager::gamepadWasAddedFromJINBridge(int deviceID
     LOGI("From C++ GamePad was added ");
     if(_androidIDToIDMap.find(deviceID) == _androidIDToIDMap.end())
     {
-        DeviceID newdeviceID = this->getNextID();
+        ElementID newdeviceID = this->getNextID();
         _androidIDToIDMap[deviceID] = newdeviceID;
        this->addDevice(new FSAndroidJoystick(deviceID,newdeviceID,0,0,0,false,jvm));
     }

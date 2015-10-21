@@ -43,7 +43,7 @@ namespace freestick
         void addAndroidMapping(unsigned int androidEventType,FSDeviceInput deviceInput);
         void update();
     private:
-        std::map<int,DeviceID> _androidIDToIDMap;
+        std::map<int,ElementID> _androidIDToIDMap;
         //Requires two maps since motion events and key events defines collide
         std::map<unsigned int,FSDeviceInput > _androidButtonUsageMapToInputEvent;//KeyEvents
         std::map<unsigned int,FSDeviceInput > _androidAxisnUsageMapToInputEvent;//MotionEvents

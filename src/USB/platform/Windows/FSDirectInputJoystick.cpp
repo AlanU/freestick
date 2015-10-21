@@ -35,7 +35,7 @@ FSDirectInputJoystick::FSDirectInputJoystick()
 }
 
 FSDirectInputJoystick::FSDirectInputJoystick(LPDIRECTINPUTDEVICE8  LPDIDJoystick,
-              DeviceID joyStickID,
+              ElementID joyStickID,
               unsigned int numberOfButtons,
               unsigned int numberOfAnlogSticks,
               unsigned int numberOfDigitalSticks,

@@ -26,12 +26,14 @@ and must not be misrepresented as being the original software.
 **************************************************************************/
 
 #pragma once
+#include <cstdint>
 namespace freestick {
 
     /* TODO: rename type to lower case*/
-    typedef unsigned long int IDNumber; //Needs to be at lest 32bits and unsigned
-    typedef signed long int  MinMaxNumber; //Needs to be at lest 32bits and signed
-    typedef signed long int PhysicalValueNumber; //Needs to be at lest 32bits and signed
-    typedef unsigned int DeviceID;
+    typedef uint32_t IDNumber; //Needs to be at lest 32bits and unsigned
+    typedef int32_t  MinMaxNumber; //Needs to be at lest 32bits and signed
+    typedef int32_t PhysicalValueNumber; //Needs to be at lest 32bits and signed
+    typedef unsigned int ElementID;
+    typedef uint64_t DeviceID; //Needs to be 64 bits
 
 }

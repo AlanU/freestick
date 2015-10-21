@@ -66,7 +66,7 @@ FSBaseManager::~FSBaseManager()
 
 }
 
-const FSBaseDevice * FSBaseManager::getDevice(DeviceID deviceID)
+const FSBaseDevice * FSBaseManager::getDevice(ElementID deviceID)
 {
     if(deviceMap.find(deviceID) != deviceMap.end())
         return deviceMap[deviceID];
@@ -297,7 +297,7 @@ void FSBaseManager::removeDevice(FSBaseDevice * device)
 
 }
 
-DeviceID FSBaseManager::getNextID()
+ElementID FSBaseManager::getNextID()
 {
     static unsigned int ID = 1;//0 is reserved for errors
     if(_devicIDCreator != NULL)

@@ -40,7 +40,7 @@ void FSWindowsJoystickDeviceManager::update()
     LOOP_OVER_MANAGERS_WITH_FUNCTION(update())
 }
 
-const FSBaseDevice * FSWindowsJoystickDeviceManager::getDevice(DeviceID deviceID)
+const FSBaseDevice * FSWindowsJoystickDeviceManager::getDevice(ElementID deviceID)
 {
     //This is still faster then calling findManagerForDevice until the std::maps are changer to unordered_map
      const FSBaseDevice * device = nullptr;
@@ -55,7 +55,7 @@ const FSBaseDevice * FSWindowsJoystickDeviceManager::getDevice(DeviceID deviceID
     return device;
 }
 
-managerType * FSWindowsJoystickDeviceManager::findManagerForDevice(DeviceID deviceID)
+managerType * FSWindowsJoystickDeviceManager::findManagerForDevice(ElementID deviceID)
 {
     managerType * resultManger = nullptr;
     for(unique_ptr_of_managers & manager : managers)
@@ -70,7 +70,7 @@ managerType * FSWindowsJoystickDeviceManager::findManagerForDevice(DeviceID devi
    return resultManger;
 }
 
-DeviceID FSWindowsJoystickDeviceManager::getNextID()
+ElementID FSWindowsJoystickDeviceManager::getNextID()
 {
     static unsigned int ID = 1;//0 is reserved for errors
     return (ID++);

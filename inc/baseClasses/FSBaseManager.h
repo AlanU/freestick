@@ -105,7 +105,7 @@ namespace freestick
 #ifdef __APPLE__
 #pragma mark -Advance API
 #endif
-       virtual const FSBaseDevice * getDevice(DeviceID deviceID);
+       virtual const FSBaseDevice * getDevice(ElementID deviceID);
     private:
         std::multimap<FreeStickEventType,IFSJoystickListener * > _joystickDeviceListeners;
         typedef std::multimap<FreeStickEventType,IFSJoystickListener * >::iterator joystickDeviceListenersItr;
@@ -126,7 +126,7 @@ namespace freestick
         virtual void removeDevice(FSBaseDevice * device);
         virtual void inputOnDeviceChanged(FreeStickEventType eventType,FSEventAction eventAction,FSDeviceInput inputType,unsigned int deviceID,unsigned int deviceControlID,int newValue,int oldValue,MinMaxNumber min,MinMaxNumber max);
         virtual void inputOnDeviceChangedWithNormilzedValues(FreeStickEventType eventType, FSEventAction eventAction, FSDeviceInput inputType, unsigned int deviceID, unsigned int deviceControlID, float newValue, float oldValue);
-        virtual DeviceID getNextID();
+        virtual ElementID getNextID();
         void updateEvent(FSBaseEvent & event);
 
     };

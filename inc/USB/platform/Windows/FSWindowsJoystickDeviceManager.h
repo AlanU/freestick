@@ -50,8 +50,8 @@ namespace freestick {
         virtual ~FSWindowsJoystickDeviceManager();
         void update();
         void init( );
-        DeviceID getNextID();
-        const FSBaseDevice * getDevice(DeviceID deviceID);
+        ElementID getNextID();
+        const FSBaseDevice * getDevice(ElementID deviceID);
         void ListenForAllJoysticksForEventTypes(unsigned int eventFlags,IFSJoystickListener & listener);
         void UnListenForAllJoysticksForEventTypes(unsigned int eventFlags,IFSJoystickListener & listener);
 
@@ -70,7 +70,7 @@ namespace freestick {
          bool doesDeviceHaveDeviceInputForValue(unsigned int vendorUSBID, unsigned int productUSBID ,FSDeviceInput inputToLookFor,int value );
          bool doesDeviceHaveDeviceInputForValue(unsigned int deviceID,FSDeviceInput inputToLookFor,  int value );
 
-         managerType * findManagerForDevice(DeviceID deviceID);
+         managerType * findManagerForDevice(ElementID deviceID);
 
     private:
          bool _listeningForEvents;
