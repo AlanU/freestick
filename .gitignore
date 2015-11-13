@@ -34,3 +34,4 @@ build/QT/JoyStickConfig/debug/joystickconfig.pdb
 build/QT/JoyStickConfig/debug/JoyStickConfig_pch.pch
 build/QT/FreeStick/debug/freestick.pdb
 build/QT/FreeStick/debug/FreeStick.lib
+build/QT/JoyStickConfig/release/
