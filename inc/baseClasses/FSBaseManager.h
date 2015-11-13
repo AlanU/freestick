@@ -107,12 +107,13 @@ namespace freestick
 #endif
        virtual const FSBaseDevice * getDevice(ElementID deviceID);
     private:
-        std::unordered_multimap<FreeStickEventType,IFSJoystickListener * > _joystickDeviceListeners;
-        typedef std::unordered_multimap<FreeStickEventType,IFSJoystickListener * >::iterator joystickDeviceListenersItr;
+        std::unordered_multimap<FreeStickEventType,std::pair<IFSJoystickListener *,bool> > _joystickDeviceListeners;
+        typedef std::unordered_multimap<FreeStickEventType,std::pair<IFSJoystickListener *,bool> >::iterator joystickDeviceListenersItr;
 
         std::unordered_map<unsigned int,std::multimap<FreeStickEventType,IFSJoystickListener * > > _joystickDeviceInputListeners;
         std::vector<IFSJoystickListener *> allJoystickListeners;
         IFSDeviceIDCreator * _devicIDCreator; //if not null called to get next decice id from
+        std::vector<std::pair<FreeStickEventType,IFSJoystickListener * > > _listenersToCleanUp;
     protected:
         std::unordered_map<unsigned int, FSBaseDevice * > deviceMap;
         //void ListenForAllJoysticks(IFSJoystickListener & listener){ ListenForJoystick(listener,0,AllInputs);}
@@ -121,7 +122,7 @@ namespace freestick
         void UnListenForAllJoysticksForEventType(FreeStickEventType eventType,IFSJoystickListener & listener);
 
         void ListenForJoystickEvent(FreeStickEventType eventType,IFSJoystickListener & listener);
-
+        void RemoveListenerForEventType(FreeStickEventType eventType,IFSJoystickListener & listener);
         virtual void addDevice(FSBaseDevice * device);
         virtual void removeDevice(FSBaseDevice * device);
         virtual void inputOnDeviceChanged(FreeStickEventType eventType,FSEventAction eventAction,FSDeviceInput inputType,unsigned int deviceID,unsigned int deviceControlID,int newValue,int oldValue,MinMaxNumber min,MinMaxNumber max);

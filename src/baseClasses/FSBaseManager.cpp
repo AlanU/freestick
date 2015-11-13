@@ -157,7 +157,29 @@ void FSBaseManager::UnListenForAllJoysticksForEventType(FreeStickEventType event
     joystickDeviceListenersItr itr = rangeOfListeners.first;
     while(itr != rangeOfListeners.second )
     {
-        if(itr->second == (&listener))
+        if(itr->second.first == (&listener))
+        {
+            itr->second.second = false;
+            ++itr;
+            _listenersToCleanUp.push_back(std::make_pair(eventType,&listener));
+        }
+        else
+        {
+            ++itr;
+        }
+    }
+  
+}
+
+
+void FSBaseManager::RemoveListenerForEventType(FreeStickEventType eventType,IFSJoystickListener & listener)
+{
+    std::pair<joystickDeviceListenersItr,joystickDeviceListenersItr> rangeOfListeners;
+   rangeOfListeners =  _joystickDeviceListeners.equal_range(eventType);
+    joystickDeviceListenersItr itr = rangeOfListeners.first;
+    while(itr != rangeOfListeners.second )
+    {
+        if(itr->second.first == (&listener))
         {
             joystickDeviceListenersItr toErase = itr;
             ++itr;
@@ -168,12 +190,13 @@ void FSBaseManager::UnListenForAllJoysticksForEventType(FreeStickEventType event
             ++itr;
         }
     }
-  
+
 }
 
 void FSBaseManager::ListenForAllJoysticksForEventType(FreeStickEventType eventType,IFSJoystickListener & listener)
 {
-    _joystickDeviceListeners.insert(std::pair<FreeStickEventType,IFSJoystickListener *>(eventType,&listener));
+    std::pair<IFSJoystickListener *,bool> foo(&listener,true);
+    _joystickDeviceListeners.insert(std::pair<FreeStickEventType,std::pair<IFSJoystickListener *,bool> >(eventType,foo));
 
 }
 /*const std::vector<IFSJoystickInfo> & FSBaseManager::listOfConnectedJoysticks()
@@ -185,37 +208,40 @@ void FSBaseManager::ListenForAllJoysticksForEventType(FreeStickEventType eventTy
 
 void FSBaseManager::updateEvent(FSBaseEvent & event)
 {
-    std::pair<std::unordered_multimap<FreeStickEventType,IFSJoystickListener *>::iterator, std::unordered_multimap<FreeStickEventType,IFSJoystickListener *>::iterator> rangedItr;
+    std::pair<std::unordered_multimap<FreeStickEventType,std::pair<IFSJoystickListener *,bool> >::iterator, std::unordered_multimap<FreeStickEventType,std::pair<IFSJoystickListener *,bool> >::iterator> rangedItr;
     rangedItr = _joystickDeviceListeners.equal_range(event.getEventType());
     IFSJoystickListener * ListenerToCall = NULL;
     while (rangedItr.first != rangedItr.second)
     {
-        ListenerToCall = rangedItr.first->second;
-        switch (event.getEventType())
+        if(rangedItr.first->second.second)
         {
-        case FS_JOYSTICK_CONNECTED_EVENT:
-            ListenerToCall->onConnect(event);
-            break;
-        case FS_JOYSTICK_DISCONNECT_EVENT:
-            ListenerToCall->onDisconnect(event);
-            break;
-        case FS_BUTTON_EVENT:
+            ListenerToCall = rangedItr.first->second.first;
+            switch (event.getEventType())
+            {
+            case FS_JOYSTICK_CONNECTED_EVENT:
+                ListenerToCall->onConnect(event);
+                break;
+            case FS_JOYSTICK_DISCONNECT_EVENT:
+                ListenerToCall->onDisconnect(event);
+                break;
+            case FS_BUTTON_EVENT:
 
-            if (event.getEventAction() == FSInputPressed )
-                ListenerToCall->onButtonDown(*(FSDeviceInputEvent *)&event);
-            else
-                ListenerToCall->onButtonUp(*(FSDeviceInputEvent *)&event);
-            break;
-        case FS_TRIGGER_EVENT:
-        case FS_AXIS_EVENT:
-            ListenerToCall->onStickMove(*(FSDeviceInputEvent *)&event);
-            break;
-        default:
-            break;
+                if (event.getEventAction() == FSInputPressed )
+                    ListenerToCall->onButtonDown(*(FSDeviceInputEvent *)&event);
+                else
+                    ListenerToCall->onButtonUp(*(FSDeviceInputEvent *)&event);
+                break;
+            case FS_TRIGGER_EVENT:
+            case FS_AXIS_EVENT:
+                ListenerToCall->onStickMove(*(FSDeviceInputEvent *)&event);
+                break;
+            default:
+                break;
+            }
         }
-
         ++rangedItr.first;
     }
+
 
     auto rangedItrDevice = _joystickDeviceInputListeners[( (FSDeviceInputEvent *)&event)->getDeviceID()].equal_range(event.getEventType());
     while (rangedItrDevice.first != rangedItrDevice.second)
@@ -238,6 +264,18 @@ void FSBaseManager::updateEvent(FSBaseEvent & event)
         }
         ++rangedItrDevice.first;
     }
+
+    while (!_listenersToCleanUp.empty())
+    {
+        std::pair<FreeStickEventType,IFSJoystickListener * >  * toDelete = & _listenersToCleanUp[0];
+
+        if(toDelete != nullptr && toDelete->second != nullptr)
+        {
+            RemoveListenerForEventType(toDelete->first,*(toDelete->second));
+        }
+       _listenersToCleanUp.erase(_listenersToCleanUp.begin());
+    }
+
 }
 
 float FSBaseManager::convertRawToNormalizedRanger(double value,MinMaxNumber maxValue,MinMaxNumber minValue)
