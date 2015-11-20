@@ -447,9 +447,7 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn i
             {
                 manager->inputOnDeviceChangedWithNormilzedValues(eventType,inputType.getEventMapping(),inputType.getDeviceInput(),
                                                                  deviceID,elementDevice->getJoystickID(),
-                                                                 0,0,
-                                                                -1,
-                                                                 1);
+                                                                 0,0);
             }
             else
             {
