@@ -28,6 +28,9 @@ and must not be misrepresented as being the original software.
 #pragma once
 #include "IFSDevice.h"
 #include <assert.h>
+#include <functional>
+
+
 namespace freestick 
 {
     typedef enum
@@ -78,4 +81,22 @@ namespace freestick
         }
     };
 
+}
+
+
+namespace  std
+{
+    template<>
+    struct hash<freestick::FreeStickEventType>{
+        std::size_t operator()(const freestick::FreeStickEventType &pt) const {
+             return static_cast<unsigned int>(pt);
+        }
+    };
+
+    template<>
+    struct hash<freestick::FSEventAction>{
+        std::size_t operator()(const freestick::FSEventAction &pt) const {
+             return static_cast<unsigned int>(pt);
+        }
+    };
 }
