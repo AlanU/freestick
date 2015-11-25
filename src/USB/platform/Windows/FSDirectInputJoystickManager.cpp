@@ -128,15 +128,18 @@ void FSDirectInputJoystickManager::updateJoysticksPOV(FSDirectInputJoystick * de
 
     }
 
-
-    FSUSBElementInfoMap temp =  this->infoMapForInputType(device->getVenderID(), device->getProductID(), povInput);
-    if (temp.getDeviceInput() != LastInput && temp.getEventMapping() != FSLastEventAction ) {
-        FSUSBJoyStickInputElement * element = (FSUSBJoyStickInputElement*)device->findInputElement(idForXAxis);
-        axisValue = temp.getMin();
-        if (element!= NULL && element->getValue() != axisValue) {
-            updateEvents(device->getJoystickID(), element, axisValue);
+    if(lastPOVValue[device->getJoystickID()] != axisValue)
+    {
+        FSUSBElementInfoMap temp =  this->infoMapForInputType(device->getVenderID(), device->getProductID(), povInput);
+        if (temp.getDeviceInput() != LastInput && temp.getEventMapping() != FSLastEventAction ) {
+            FSUSBJoyStickInputElement * element = (FSUSBJoyStickInputElement*)device->findInputElement(idForXAxis);
+            axisValue = temp.getMin();
+            if (element!= NULL) {
+                updateEvents(device->getJoystickID(), element, axisValue);
+            }
         }
     }
+   lastPOVValue[device->getJoystickID()] = axisValue;
 
 }
 void FSDirectInputJoystickManager::updateJoysticksAxis(FSDirectInputJoystick * device, LONG axisValue, long int idForXAxis, bool calibrate)
@@ -297,11 +300,14 @@ BOOL CALLBACK FSDirectInputJoystickManager::EnumJoysticksCallback( const DIDEVIC
 void FSDirectInputJoystickManager::addDevice(FSBaseDevice * device)
 {
     FSUSBJoystickDeviceManager::addDevice(device);
+    lastPOVValue[device->getJoystickID()] = -1;
 }
 
 void FSDirectInputJoystickManager::removeDevice(FSBaseDevice * device)
 {
+    lastPOVValue.erase(device->getJoystickID());
     FSUSBJoystickDeviceManager::removeDevice(device);
+
 }
 
 void FSDirectInputJoystickManager::addDevice(GUID guidDeviceInstance)

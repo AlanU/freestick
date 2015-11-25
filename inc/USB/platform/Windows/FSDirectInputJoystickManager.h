@@ -85,6 +85,7 @@ struct DirectInput_Enum_Contex
 
         //unsigned int getDeviceIDFromIOHIDevice(LPDIRECTINPUTDEVICE8 inputDevice );
     private:
+        std::unordered_map<IDNumber,LONG> lastPOVValue;
         void updateConnectJoysticks();
 
     };
