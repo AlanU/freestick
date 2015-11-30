@@ -123,11 +123,11 @@ bool FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int device
     static std::stack<FSDeviceInput> lastDpadDownX;
     static std::stack<FSDeviceInput> lastDpadDownY;
     std::map<unsigned int,FSDeviceInput > * _androidUsageMapToInputEvent;
-    LOGI("From C++ GamePad was updated with type %u",type);
+    FS_LOGI("From C++ GamePad was updated with type %u",type);
 
     if(_androidIDToIDMap.find(deviceid) == _androidIDToIDMap.end())
     {
-        LOGI("Could not find device %i",deviceid);
+        FS_LOGI("Could not find device %i",deviceid);
         return false;
     }
 
@@ -140,7 +140,7 @@ bool FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int device
         _androidUsageMapToInputEvent = & _androidButtonUsageMapToInputEvent;
     }
 
-    LOGI("device %i with code %i min %i max %i with value %f",deviceid,code,min,max,value);
+    FS_LOGI("device %i with code %i min %i max %i with value %f",deviceid,code,min,max,value);
     FSEventAction eventAction = FSInputRest;
     FSDeviceInput inputType = Unknown;
     bool isDigital = (max == 1 && min == 0) ? true : false;
@@ -189,7 +189,7 @@ bool FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int device
                 lastDpadDown->pop();
                 inputOnDeviceChanged(FS_BUTTON_EVENT,FSInputRest,lastInput,_androidIDToIDMap[deviceid],code,value,0,min,max);
             }
-            LOGI("returning from last button press");
+            FS_LOGI("returning from last button press");
 
             return true;
         }
@@ -213,25 +213,25 @@ bool FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int device
     }
     if(inputType == Unknown)
     {
-        LOGI("Unknown input type for %i ",code);
+        FS_LOGI("Unknown input type for %i ",code);
         return false;
     }
     else
     {
-        LOGI("know input type for %i is %i",code,inputType);
+        FS_LOGI("know input type for %i is %i",code,inputType);
         if(isDigital)
         {
-            LOGI("inputOnDeviceChanged %f ",value);
+            FS_LOGI("inputOnDeviceChanged %f ",value);
 
             inputOnDeviceChanged(eventType,eventAction,inputType,_androidIDToIDMap[deviceid],code,value,0,min,max);
-            LOGI("inputOnDeviceChanged returned %f ",value);
+            FS_LOGI("inputOnDeviceChanged returned %f ",value);
 
         }
         else
         {
-            LOGI("inputOnDeviceChangedWithNormilzedValues %f ",value);
+            FS_LOGI("inputOnDeviceChangedWithNormilzedValues %f ",value);
 
-            inputOnDeviceChangedWithNormilzedValues(eventType,eventAction,inputType,_androidIDToIDMap[deviceid],code,value,0,min,max);
+            inputOnDeviceChangedWithNormilzedValues(eventType,eventAction,inputType,_androidIDToIDMap[deviceid],code,value,0);
 
         }
         return true;
@@ -242,7 +242,7 @@ bool FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int device
 
 void FSHIDAndroidJoysickDeviceManager::gamepadWasAddedFromJINBridge(int deviceID,JavaVM * jvm)
 {
-    LOGI("From C++ GamePad was added ");
+    FS_LOGI("From C++ GamePad was added ");
     if(_androidIDToIDMap.find(deviceID) == _androidIDToIDMap.end())
     {
         ElementID newdeviceID = this->getNextID();
@@ -253,15 +253,15 @@ void FSHIDAndroidJoysickDeviceManager::gamepadWasAddedFromJINBridge(int deviceID
 
 void FSHIDAndroidJoysickDeviceManager::gamepadWasRemovedFromJINBridge(int deviceID)\
 {
-      LOGI("From C++ GamePad trying to remove %i",deviceID);
+      FS_LOGI("From C++ GamePad trying to remove %i",deviceID);
      FSBaseDevice * device = NULL;
     if(_androidIDToIDMap.find(deviceID) != _androidIDToIDMap.end())
     {
-        LOGI("From C++ GamePad was found and is going to be removed ");
+        FS_LOGI("From C++ GamePad was found and is going to be removed ");
         device = (FSBaseDevice *)this->getDevice(_androidIDToIDMap[deviceID]);
         if(device != NULL)
         {
-            LOGI("From C++ GamePad is going to be removed ");
+            FS_LOGI("From C++ GamePad is going to be removed ");
             this->removeDevice(device);
         }
         _androidIDToIDMap.erase(deviceID);

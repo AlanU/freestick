@@ -28,8 +28,8 @@ and must not be misrepresented as being the original software.
 #include "USB/platform/Android/jni/src/FSAndroidJoystick.h"
 #include <android/log.h>
 #include <android/input.h>
-#define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "freestick", __VA_ARGS__))
-#define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "freestick", __VA_ARGS__))
+#define FS_LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "freestick", __VA_ARGS__))
+#define FS_LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "freestick", __VA_ARGS__))
 
 #include <jni.h>
 using namespace freestick;
@@ -56,14 +56,14 @@ FSAndroidJoystick::FSAndroidJoystick(int androidDeviceID,
 	bool error = false;
 	if(!inputDeviceClass)
 	{
-		LOGI("call from updateJoysticks class not found");
+        FS_LOGI("call from updateJoysticks class not found");
 		error = true;
 	}
 
 	jmethodID getDeviceMethodId = env->GetStaticMethodID(inputDeviceClass,"getDevice","(I)Landroid/view/InputDevice;");
 	if(!getDeviceMethodId)
 	{
-		LOGI("get device MethodID lookup failed");
+        FS_LOGI("get device MethodID lookup failed");
 		error = true;
 	}
 	jobject currentInputDevice=env->CallStaticObjectMethod(inputDeviceClass,getDeviceMethodId,androidDeviceID);
@@ -73,7 +73,7 @@ FSAndroidJoystick::FSAndroidJoystick(int androidDeviceID,
 		jclass deviceInstanceClass = env->GetObjectClass(currentInputDevice);
 		if(!deviceInstanceClass)
 		{
-			LOGI("deviceInstanceClass not found");
+            FS_LOGI("deviceInstanceClass not found");
 			error = true;
 		}
 
@@ -81,14 +81,14 @@ FSAndroidJoystick::FSAndroidJoystick(int androidDeviceID,
 
 		if(!deviceNameMethodID)
 		{
-				LOGI("device sources getName lookup failed");
+                FS_LOGI("device sources getName lookup failed");
 				error = true;
 
 		}
 		 jstring nameString = (jstring) env->CallObjectMethod(currentInputDevice,deviceNameMethodID);
 		 const char * str = env->GetStringUTFChars(nameString, NULL);
 		 _prodcutIDFriendlyName = str;
-		 LOGI("Found name of controller %s",str);
+         FS_LOGI("Found name of controller %s",str);
 		 env->ReleaseStringUTFChars(nameString, str);
 
 		 /*Requires sdk 19 or greater
@@ -98,7 +98,7 @@ FSAndroidJoystick::FSAndroidJoystick(int androidDeviceID,
 
 			if(!deviceVendorIdMethodID)
 			{
-					LOGI("device vendor id lookup failed");
+                    FS_LOGI("device vendor id lookup failed");
 					error = true;
 
 			}
@@ -114,7 +114,7 @@ FSAndroidJoystick::FSAndroidJoystick(int androidDeviceID,
 
 			if(!deviceProductIdMethodID)
 			{
-					LOGI("device product ID lookup failed");
+                    FS_LOGI("device product ID lookup failed");
 					error = true;
 
 			}
