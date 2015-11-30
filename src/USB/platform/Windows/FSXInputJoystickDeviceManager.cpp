@@ -91,9 +91,9 @@ void FSXInputJoystickDeviceManager::updateJoysticks()
                updateButton(xState.Gamepad.wButtons,XINPUT_GAMEPAD_RIGHT_SHOULDER,RIGHT_SHOULDER_BUTTON_XINPUT_EID,xinputJoystick,joyID);
 
                updateAnalog(XAXIS_XINPUT_EID,xinputJoystick,joyID,xState.Gamepad.sThumbLX);
-               updateAnalog(YAXIS_XINPUT_EID,xinputJoystick,joyID,((PhysicalValueNumber) xState.Gamepad.sThumbLY)*-1);
+               updateAnalog(YAXIS_XINPUT_EID,xinputJoystick,joyID,((int64_t)xState.Gamepad.sThumbLY*(int64_t)-1)-1);
                updateAnalog(XAXIS2_XINPUT_EID,xinputJoystick,joyID,xState.Gamepad.sThumbRX);
-               updateAnalog(YAXIS2_XINPUT_EID,xinputJoystick,joyID,((PhysicalValueNumber) xState.Gamepad.sThumbRY)*-1);
+               updateAnalog(YAXIS2_XINPUT_EID,xinputJoystick,joyID,((int64_t)xState.Gamepad.sThumbRY*(int64_t)-1)-1);
 
                updateAnalog(LTRIGGER_XINPUT_EID,xinputJoystick,joyID,xState.Gamepad.bLeftTrigger);
                updateAnalog(RTRIGGER_XINPUT_EID,xinputJoystick,joyID,xState.Gamepad.bRightTrigger);
