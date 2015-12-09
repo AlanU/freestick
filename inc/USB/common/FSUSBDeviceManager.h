@@ -101,7 +101,7 @@ const uint32_t PCUSBSNESID = 12307;
         void addMapping(unsigned int deviceID,unsigned int controlID,FSDeviceInput deviceInput);
         //FSUSBElementInfoMap lookUpDeviceInputFromID(unsigned int deviceID, unsigned int controlID);
         FSUSBElementInfoMap lookUpDeviceInputFromID(unsigned int deviceID, unsigned int controlID, MinMaxNumber min, MinMaxNumber max,int value);
-        FSUSBElementInfoMap lookUpDeviceInputFromUSBID( unsigned int vendorUSBID, unsigned int productUSBID , unsigned int controlID,MinMaxNumber min,MinMaxNumber max,int value);
+        FSUSBElementInfoMap lookUpDeviceInputFromUSBID( VenderIDType vendorUSBID, ProductIDType productUSBID , unsigned int controlID,MinMaxNumber min,MinMaxNumber max,int value);
         FSUSBElementInfoMap infoMapForInputType(unsigned int vendorUSBID, unsigned int productUSBID ,FSDeviceInput inputToLookFor );
 
 

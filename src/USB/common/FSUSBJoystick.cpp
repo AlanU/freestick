@@ -41,8 +41,8 @@ FSUSBJoystick::FSUSBJoystick(unsigned int joyStickID,
                              unsigned int numberOfAnlogSticks,
                              unsigned int numberOfDigitalSticks,
                              bool  forceFeedBackSupported,
-                             long venderID,
-                             long productID):FSUSBDevice(joyStickID,
+                             VenderIDType venderID,
+                             ProductIDType productID):FSUSBDevice(joyStickID,
                                                          venderID,
                                                          productID)
 {

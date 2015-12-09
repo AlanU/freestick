@@ -576,8 +576,8 @@ void FSUSBDeviceManager::addMapping(unsigned int deviceID,unsigned int controlID
     const FSUSBDevice * usbDeice = (const FSUSBDevice *)getDevice(deviceID);
     if(usbDeice != NULL)
     {
-        unsigned int vendorUSBID = usbDeice->getVenderID();
-        unsigned int productUSBID = usbDeice->getProductID();
+        VenderIDType vendorUSBID = static_cast<VenderIDType>(usbDeice->getVenderID());
+        ProductIDType productUSBID = static_cast<ProductIDType>(usbDeice->getProductID());
         addMapping(vendorUSBID,productUSBID,controlID,deviceInput);
     }
 }
@@ -602,8 +602,8 @@ FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromID(unsigned int de
     const FSUSBDevice * usbDeice = static_cast<const FSUSBDevice *>(getDevice(deviceID));
     if(usbDeice != NULL)
     {
-        unsigned int vendorUSBID = usbDeice->getVenderID();
-        unsigned int productUSBID = usbDeice->getProductID();
+        VenderIDType vendorUSBID = static_cast<VenderIDType>(usbDeice->getVenderID());
+        ProductIDType productUSBID =static_cast<ProductIDType>(usbDeice->getProductID());
         return lookUpDeviceInputFromUSBID(vendorUSBID,
                                 productUSBID ,
                                 controlID,
@@ -615,7 +615,7 @@ FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromID(unsigned int de
     return FSUSBElementInfoMap(0,1,LastInput,FSInputChanged);
 }
 
-FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromUSBID( unsigned int vendorUSBID, unsigned int productUSBID , unsigned int controlID,MinMaxNumber min,MinMaxNumber max,int value)
+FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromUSBID( VenderIDType vendorUSBID, ProductIDType productUSBID , unsigned int controlID,MinMaxNumber min,MinMaxNumber max,int value)
  {
     DeviceID venderProductID = createVPId(vendorUSBID,productUSBID);
      if(min==0 && max == 1)
@@ -672,8 +672,8 @@ bool FSUSBDeviceManager::doesDeviceHaveDeviceInputForValue(unsigned int deviceID
     const FSUSBDevice * usbDeice = (const FSUSBDevice *)getDevice(deviceID);
     if(usbDeice != NULL)
     {
-        unsigned int vendorUSBID = usbDeice->getVenderID();
-        unsigned int productUSBID = usbDeice->getProductID();
+        VenderIDType vendorUSBID =static_cast<VenderIDType>(usbDeice->getVenderID());
+        ProductIDType productUSBID = static_cast<ProductIDType>(usbDeice->getProductID());
         return  doesDeviceHaveDeviceInputForValue(vendorUSBID,productUSBID,inputToLookFor,value);
     }
     return false;
@@ -725,8 +725,8 @@ bool FSUSBDeviceManager::doesDeviceHaveDeviceInput(unsigned int deviceID,FSDevic
     const FSUSBDevice * usbDeice = (const FSUSBDevice *)getDevice(deviceID);
     if(usbDeice != NULL)
     {
-        unsigned int vendorUSBID = usbDeice->getVenderID();
-        unsigned int productUSBID = usbDeice->getProductID();
+        VenderIDType vendorUSBID = static_cast<VenderIDType>(usbDeice->getVenderID());
+        ProductIDType productUSBID = static_cast<ProductIDType>(usbDeice->getProductID());
       return  doesDeviceHaveDeviceInput(vendorUSBID,productUSBID,inputToLookFor);
     }
     return false;

@@ -49,13 +49,13 @@ SOURCES += \
         ../../../src/FSDeviceInputEvent.cpp \
 
 
+
 HEADERS += \
         $$files(../../../inc/*.h) \
+        $$files(../../../inc/common/*.h) \
         $$files(../../../inc/Interfaces/*.h) \
-        $$files(../../../inc/baseClasses/*.h) \
         $$files(../../../inc/USB/common/*.h) \
         $$files(../../../inc/USB/*.h) \
-        $$files(../../../inc/common/*.h) \
         $$files(../../../inc/USB/platform/NULL/*.h) \
         $$files(../../../src/3rdParty/EELog/src/*.h)
 
@@ -113,15 +113,15 @@ OTHER_FILES += $$files(../../../src/USB/platform/Android/jni/*.mk) \
 }
 
 macx {
-
+QMAKE_CXXFLAGS_WARN_ON= -Wall -Wno-unused-parameter -Wsign-compare
 SOURCES += \
-         ../../../src/3rdParty/Mac/IOHID/*.c \
+         $$files(../../../src/3rdParty/Mac/IOHID/*.c) \
         ../../../src/USB/platform/MacOSX/FSUSBMacOSXJoystick.cpp \
         ../../../src/USB/platform/MacOSX/FSUSBMacOSXJoystickDeviceManager.cpp \
 
 
 HEADERS += \
-        ../../../src/3rdParty/Mac/IOHID/*.h \
+        $$files(../../../src/3rdParty/Mac/IOHID/*.h) \
         ../../../inc/USB/platform/MacOSX/FSUSBMacOSXJoystick.h \
         ../../../inc/USB/platform/MacOSX/FSUSBMacOSXJoystickDeviceManager.h \
 

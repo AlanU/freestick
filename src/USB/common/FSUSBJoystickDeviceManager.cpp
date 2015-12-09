@@ -43,7 +43,7 @@ FSUSBJoystickDeviceManager::~FSUSBJoystickDeviceManager()
 }
 
 
-long int FSUSBJoystickDeviceManager::createIdForElement(long int usage, long int usagePage )
+uint32_t FSUSBJoystickDeviceManager::createIdForElement(uint32_t usage,uint32_t usagePage )
 {
     return (usagePage << 16) | usage;
 }

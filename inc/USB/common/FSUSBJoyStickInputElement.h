@@ -63,7 +63,7 @@ namespace freestick
     public:
         //FSUSBJoyStickInputElement(const & FSUSBJoyStickInputElement copy){}
                  FSUSBJoyStickInputElement();
-        FSUSBJoyStickInputElement(unsigned int id, unsigned int parentID, MinMaxNumber elementMin, MinMaxNumber elementMax, long venderID,long productID,FSUSBDeviceManager & _manager,PhysicalValueNumber currentValue,MinMaxNumber buttonNumber);
+        FSUSBJoyStickInputElement(unsigned int id, unsigned int parentID, MinMaxNumber elementMin, MinMaxNumber elementMax, VenderIDType venderID,ProductIDType productID,FSUSBDeviceManager & _manager,PhysicalValueNumber currentValue,MinMaxNumber buttonNumber);
         void getMapping(int inputValue,std::stack<FSUSBElementInfoMap> & infoMapsToReturn) ;
         inline MinMaxNumber getValue() const {return _value;}
         void setValue(MinMaxNumber newValue);

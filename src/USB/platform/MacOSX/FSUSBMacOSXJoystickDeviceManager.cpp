@@ -158,7 +158,7 @@ void vibrateJoystick(IOHIDDeviceRef device)
     FFEffectObjectReference 	pEffectReference;
 
     HRESULT reslut;
-    CFUUIDRef uuidRef = kFFEffectType_ConstantForce_ID;
+    kFFEffectType_ConstantForce_ID;
 
     FFDevice = AllocForceFeedBackDeviceFromIOHIDDevice(device);
     if(FFIsForceFeedback(FFDevice)== FF_OK)
@@ -221,7 +221,7 @@ unsigned int numberOfDeviecType(IOHIDDeviceRef device,int * TotalNumberOfButtons
                 CFStringRef name = IOHIDElementGetName(elemnet);
                 const char * nameChar = CFStringGetCStringPtr(name,kCFStringEncodingASCII);
                 CFIndex value = 0;
-                IOHIDValueRef   tIOHIDValueRef;
+                //IOHIDValueRef   tIOHIDValueRef;
                 /*  if ( kIOReturnSuccess == IOHIDDeviceGetValue(device, elemnet, &tIOHIDValueRef) )
                  {
                       if(CFGetTypeID(tIOHIDValueRef) == IOHIDValueGetTypeID())
@@ -235,11 +235,6 @@ unsigned int numberOfDeviecType(IOHIDDeviceRef device,int * TotalNumberOfButtons
                  }*/
                 if(type == kIOHIDElementTypeInput_Axis || type == kIOHIDElementTypeInput_Button )// type == kIOHIDElementTypeInput_Misc || type == kIOHIDElementTypeInput_ScanCodes)
                 {
-                    if(value != 0)
-                    {
-                        int t=0;
-
-                    }
                     if(min != max)
                     {
 
@@ -391,14 +386,14 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn i
     //  return;
 
     int elementValue = 0;
-    if(IOHIDValueGetLength(value) > sizeof(CFIndex))
+    if(IOHIDValueGetLength(value) > static_cast<CFIndex>(sizeof(CFIndex)))
     {
         //  printf("\n");
         return ;
     }
 
 
-    elementValue=  IOHIDValueGetIntegerValue(value);
+    elementValue=  static_cast<int>(IOHIDValueGetIntegerValue(value));
     double_t elementScaleValue = IOHIDValueGetScaledValue(value,kIOHIDValueScaleTypeCalibrated);
     usage =IOHIDElementGetUsage(element);
     usagePage = IOHIDElementGetUsagePage(element);
@@ -454,8 +449,8 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn i
                 manager->inputOnDeviceChanged(eventType,inputType.getEventMapping(),inputType.getDeviceInput(),
                                               deviceID,elementDevice->getJoystickID(),
                                               elementDevice->getValue(),0,
-                                              IOHIDElementGetLogicalMin(element),
-                                              IOHIDElementGetLogicalMax(element));
+                                              static_cast<MinMaxNumber>(IOHIDElementGetLogicalMin(element)),
+                                              static_cast<MinMaxNumber>(IOHIDElementGetLogicalMax(element)));
             }
         }
         inputTypes.pop();

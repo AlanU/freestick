@@ -35,5 +35,7 @@ namespace freestick {
     typedef int32_t PhysicalValueNumber; //Needs to be at lest 32bits and signed
     typedef unsigned int ElementID;
     typedef uint64_t DeviceID; //Needs to be 64 bits
+    typedef uint32_t VenderIDType;//Needs to be at lest 32bits
+    typedef uint32_t ProductIDType;//Needs to be at lest 32bits
 
 }

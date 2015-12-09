@@ -88,7 +88,7 @@ unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickM
                  {
                       if(CFGetTypeID(tIOHIDValueRef) == IOHIDValueGetTypeID())
                       {
-                         if(IOHIDValueGetLength(tIOHIDValueRef) <= sizeof(CFIndex))
+                         if(IOHIDValueGetLength(tIOHIDValueRef) <= static_cast<CFIndex>(sizeof(CFIndex)))
                          {
                              value =  IOHIDValueGetIntegerValue(tIOHIDValueRef);
 
@@ -117,7 +117,7 @@ unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickM
                 {
                     numberOfAnalogButtons++;
                 }
-                FSUSBJoyStickInputElement temp(uniqueElementID, getJoystickID() ,min, max, _vendorID,_productID,usbJoystickManager,value,elemnetID);
+                FSUSBJoyStickInputElement temp(static_cast<unsigned int>(uniqueElementID), getJoystickID() ,static_cast<MinMaxNumber>(min), static_cast<MinMaxNumber>(max), _vendorID,_productID,usbJoystickManager,static_cast<PhysicalValueNumber> (value),elemnetID);
                 this->addInputElement(temp);
 
             }
@@ -168,8 +168,8 @@ FSUSBMacOSXJoystick::FSUSBMacOSXJoystick(IOHIDDeviceRef device,
                                                                                      0,
                                                                                      0 )
 {
-    _vendorID = IOHIDDevice_GetVendorID(device);
-    _productID = IOHIDDevice_GetProductID(device);
+    _vendorID = static_cast<VenderIDType>(IOHIDDevice_GetVendorID(device));
+    _productID = static_cast<ProductIDType>( IOHIDDevice_GetProductID(device));
 
     EE_DEBUG<<"device with venderID "<<_vendorID<<" and productID "<<_productID<<std::endl;
     _vendorIDFriendlyName = FSUSBDevice::GetFrendlyVenderNameFromID(_vendorID);

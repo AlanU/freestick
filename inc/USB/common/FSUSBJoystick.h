@@ -50,8 +50,8 @@ typedef std::map<IDNumber,FSUSBJoyStickInputElement > JoyStickElementMap ;
                       unsigned int numberOfAnlogSticks,
                       unsigned int numberOfDigitalSticks,
                       bool  forceFeedBackSupported,
-                      long venderID,
-                      long productID);
+                      VenderIDType venderID,
+                      ProductIDType productID);
         unsigned int getNumberOfButtons() const {return _numberOfButtons;}
         unsigned int getNumberOfAnlogSticks()const {return _numberOfAnlogSticks;}
         unsigned int getNumberOfDigitalSticks() const {return _numberOfDigitalSticks;}

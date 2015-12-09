@@ -30,7 +30,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets svg
 
 TARGET = JoyStickConfig
 CONFIG += c++11
-
 android {
 QT += androidextras
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android-source
@@ -68,6 +67,8 @@ HEADERS  += mainwindow.h \
 FORMS    += mainwindow.ui \
     joystickconfigwidget.ui
 macx{
+QMAKE_CXXFLAGS_WARN_ON= -Wall -Wunused-prameter -Wno-inconsistent-missing-override
+
 LIBS += -framework IOKit \
         -framework ForceFeedback \
         -framework CoreFoundation
