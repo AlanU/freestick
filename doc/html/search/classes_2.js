@@ -1,7 +1,28 @@
 var searchData=
 [
-  ['ifsdevice',['IFSDevice',['../classfreestick_1_1_i_f_s_device.html',1,'freestick']]],
-  ['ifsevent',['IFSEvent',['../classfreestick_1_1_i_f_s_event.html',1,'freestick']]],
-  ['ifsjoystickinfo',['IFSJoystickInfo',['../classfreestick_1_1_i_f_s_joystick_info.html',1,'freestick']]],
-  ['ifsjoysticklistener',['IFSJoystickListener',['../classfreestick_1_1_i_f_s_joystick_listener.html',1,'freestick']]]
+  ['freestickdevicemanager',['FreestickDeviceManager',['../classorg_1_1freestick_1_1_freestick_device_manager.html',1,'org::freestick']]],
+  ['fsandroidjoystick',['FSAndroidJoystick',['../classfreestick_1_1_f_s_android_joystick.html',1,'freestick']]],
+  ['fsbasedevice',['FSBaseDevice',['../classfreestick_1_1_f_s_base_device.html',1,'freestick']]],
+  ['fsbaseevent',['FSBaseEvent',['../classfreestick_1_1_f_s_base_event.html',1,'freestick']]],
+  ['fsbasejoystickinfo',['FSBaseJoystickInfo',['../classfreestick_1_1_f_s_base_joystick_info.html',1,'freestick']]],
+  ['fsbasemanager',['FSBaseManager',['../classfreestick_1_1_f_s_base_manager.html',1,'freestick']]],
+  ['fsdeviceinputevent',['FSDeviceInputEvent',['../classfreestick_1_1_f_s_device_input_event.html',1,'freestick']]],
+  ['fsdirectinputjoystick',['FSDirectInputJoystick',['../classfreestick_1_1_f_s_direct_input_joystick.html',1,'freestick']]],
+  ['fsdirectinputjoystickmanager',['FSDirectInputJoystickManager',['../classfreestick_1_1_f_s_direct_input_joystick_manager.html',1,'freestick']]],
+  ['fshidandroidjoysickdevicemanager',['FSHIDAndroidJoysickDeviceManager',['../classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html',1,'freestick']]],
+  ['fsupdatablejoystickdevicemanager',['FSUpdatableJoystickDeviceManager',['../classfreestick_1_1_f_s_updatable_joystick_device_manager.html',1,'freestick']]],
+  ['fsusbdevice',['FSUSBDevice',['../classfreestick_1_1_f_s_u_s_b_device.html',1,'freestick']]],
+  ['fsusbdevicemanager',['FSUSBDeviceManager',['../classfreestick_1_1_f_s_u_s_b_device_manager.html',1,'freestick']]],
+  ['fsusbelementinfomap',['FSUSBElementInfoMap',['../classfreestick_1_1_f_s_u_s_b_element_info_map.html',1,'freestick']]],
+  ['fsusbjoystick',['FSUSBJoystick',['../classfreestick_1_1_f_s_u_s_b_joystick.html',1,'freestick']]],
+  ['fsusbjoystickbutton',['FSUSBJoystickButton',['../classfreestick_1_1_f_s_u_s_b_joystick_button.html',1,'freestick']]],
+  ['fsusbjoystickdevicemanager',['FSUSBJoystickDeviceManager',['../classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html',1,'freestick']]],
+  ['fsusbjoystickinputelement',['FSUSBJoyStickInputElement',['../classfreestick_1_1_f_s_u_s_b_joy_stick_input_element.html',1,'freestick']]],
+  ['fsusbmacosxjoystick',['FSUSBMacOSXJoystick',['../classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick.html',1,'freestick']]],
+  ['fsusbmacosxjoystickdevicemanager',['FSUSBMacOSXJoystickDeviceManager',['../classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html',1,'freestick']]],
+  ['fsusbnulldevice',['FSUSBNullDevice',['../classfreestick_1_1_f_s_u_s_b_null_device.html',1,'freestick']]],
+  ['fsusbnulljoystickdevicemanager',['FSUSBNullJoystickDeviceManager',['../classfreestick_1_1_f_s_u_s_b_null_joystick_device_manager.html',1,'freestick']]],
+  ['fswindowsjoystickdevicemanager',['FSWindowsJoystickDeviceManager',['../classfreestick_1_1_f_s_windows_joystick_device_manager.html',1,'freestick']]],
+  ['fsxinputjoystick',['FSXInputJoystick',['../classfreestick_1_1_f_s_x_input_joystick.html',1,'freestick']]],
+  ['fsxinputjoystickdevicemanager',['FSXInputJoystickDeviceManager',['../classfreestick_1_1_f_s_x_input_joystick_device_manager.html',1,'freestick']]]
 ];

@@ -1,3 +1,4 @@
 <map id="freestick::FSUSBDeviceManager::doesDeviceHaveDeviceInput" name="freestick::FSUSBDeviceManager::doesDeviceHaveDeviceInput">
-<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_u_s_b_element_info_map.html#a4568ce86fa99f9920a804fc150df8cf9" title="freestick::FSUSBElementInfo\lMap::getDeviceInput" alt="" coords="265,5,455,46"/>
+<area shape="rect" id="node2" href="$_f_s_u_s_b_device_manager_8cpp.html#ad6891a5d15aa7995dc1e98c5c7a2e99f" title="createVPId" alt="" coords="323,5,410,30"/>
+<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_u_s_b_element_info_map.html#a5e3ce582646905d92643f017978c7728" title="freestick::FSUSBElementInfo\lMap::getDeviceInput" alt="" coords="270,54,464,93"/>
 </map>

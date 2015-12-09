@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['kiohiddevice_5fqueuekey',['kIOHIDDevice_QueueKey',['../_i_o_h_i_d_device___8c.html#a766ef0da165b4090f192ba16d5b787f8',1,'IOHIDDevice_.c']]],
-  ['kiohiddevice_5ftransactionkey',['kIOHIDDevice_TransactionKey',['../_i_o_h_i_d_device___8c.html#a3a5cc6de2491629492ecbd15ec752558',1,'IOHIDDevice_.c']]],
-  ['kiohidreportintervalkey',['kIOHIDReportIntervalKey',['../_i_o_h_i_d_device___8c.html#aabce391631e792bbe5f8bd5c01e4b2f3',1,'IOHIDDevice_.c']]]
+  ['directinput_5fversion',['DIRECTINPUT_VERSION',['../_f_s_direct_input_joystick_8h.html#a1d7ab29fdefabdb4e7e7cd27ac4c9934',1,'DIRECTINPUT_VERSION():&#160;FSDirectInputJoystick.h'],['../_f_s_direct_input_joystick_manager_8h.html#a1d7ab29fdefabdb4e7e7cd27ac4c9934',1,'DIRECTINPUT_VERSION():&#160;FSDirectInputJoystickManager.h']]],
+  ['does_5fhave_5fdevice_5finput',['Does_Have_Device_Input',['../_f_s_windows_joystick_device_manager_8cpp.html#a6d8f28776a36f68e28002efc6c09900a',1,'FSWindowsJoystickDeviceManager.cpp']]],
+  ['down_5fdpad_5fxinput_5feid',['DOWN_DPAD_XINPUT_EID',['../_f_s_x_input_joystick_8h.html#a4ad8d065999f229f171dfc0589fea05c',1,'FSXInputJoystick.h']]]
 ];

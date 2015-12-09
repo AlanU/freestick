@@ -1,0 +1,11 @@
+<map id="freestick::FSWindowsJoystickDeviceManager::lookUpDeviceInputFromID" name="freestick::FSWindowsJoystickDeviceManager::lookUpDeviceInputFromID">
+<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_windows_joystick_device_manager.html#a63d20a585816ab464a2bdc9d1141f063" title="freestick::FSWindowsJoystick\lDeviceManager::findManagerForDevice" alt="" coords="289,37,546,75"/>
+<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_u_s_b_device_manager.html#a5bcfa0e2491566888740434f4a354046" title="freestick::FSUSBDeviceManager\l::lookUpDeviceInputFromID" alt="" coords="309,99,525,138"/>
+<area shape="rect" id="node4" href="$classfreestick_1_1_f_s_base_manager.html#a8553e55f9bbad5e2d427e4faaafc5be3" title="freestick::FSBaseManager\l::getDevice" alt="" coords="613,5,792,43"/>
+<area shape="rect" id="node5" href="$classfreestick_1_1_f_s_u_s_b_device.html#a5ad356cdac17c03d0f419ae17ffd8223" title="freestick::FSUSBDevice\l::getVenderID" alt="" coords="621,67,784,106"/>
+<area shape="rect" id="node6" href="$classfreestick_1_1_f_s_u_s_b_device.html#a6a9da76687061c20384be579bcddb3bd" title="freestick::FSUSBDevice\l::getProductID" alt="" coords="621,130,784,169"/>
+<area shape="rect" id="node7" href="$classfreestick_1_1_f_s_u_s_b_device_manager.html#a6fdada8db9aed5ece5db9b4561ce281d" title="freestick::FSUSBDeviceManager\l::lookUpDeviceInputFromUSBID" alt="" coords="595,193,811,231"/>
+<area shape="rect" id="node8" href="$_f_s_u_s_b_device_manager_8cpp.html#ad6891a5d15aa7995dc1e98c5c7a2e99f" title="createVPId" alt="" coords="912,143,1000,169"/>
+<area shape="rect" id="node9" href="$classfreestick_1_1_f_s_u_s_b_element_info_map.html#afa832d91c41b237c953e7107e860c1be" title="freestick::FSUSBElementInfo\lMap::getMin" alt="" coords="859,193,1053,231"/>
+<area shape="rect" id="node10" href="$classfreestick_1_1_f_s_u_s_b_element_info_map.html#ae92cfe2915f562dc0a7b2a07165170c0" title="freestick::FSUSBElementInfo\lMap::getMax" alt="" coords="859,255,1053,294"/>
+</map>

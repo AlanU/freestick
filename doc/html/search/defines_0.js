@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['a_5fbutton_5fxinput_5feid',['A_BUTTON_XINPUT_EID',['../_f_s_x_input_joystick_8h.html#a727c11d86fd2624c08a9dc71f3bdf80f',1,'FSXInputJoystick.h']]],
   ['android_5faxis_5fbrake',['ANDROID_AXIS_BRAKE',['../_f_s_h_i_d_android_joysick_device_manager_8cpp.html#a15dd2bb93c4a35f9ac33dbbdff04b38a',1,'FSHIDAndroidJoysickDeviceManager.cpp']]],
   ['android_5faxis_5fgas',['ANDROID_AXIS_GAS',['../_f_s_h_i_d_android_joysick_device_manager_8cpp.html#ad24dc422eb089dc4ca59561ceb64da1f',1,'FSHIDAndroidJoysickDeviceManager.cpp']]],
   ['android_5faxis_5fhat_5fx',['ANDROID_AXIS_HAT_X',['../_f_s_h_i_d_android_joysick_device_manager_8cpp.html#a4102db3cfbbf3dcdaf9377bf6a37ccb1',1,'FSHIDAndroidJoysickDeviceManager.cpp']]],

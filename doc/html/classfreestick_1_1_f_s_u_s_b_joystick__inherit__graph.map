@@ -1,7 +1,9 @@
 <map id="freestick::FSUSBJoystick" name="freestick::FSUSBJoystick">
-<area shape="rect" id="node5" href="$classfreestick_1_1_f_s_android_joystick.html" title="freestick::FSAndroidJoystick" alt="" coords="5,304,192,331"/>
-<area shape="rect" id="node6" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick.html" title="freestick::FSUSBMacOSXJoystick" alt="" coords="217,304,439,331"/>
-<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_u_s_b_device.html" title="freestick::FSUSBDevice" alt="" coords="133,155,293,181"/>
-<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_base_device.html" title="freestick::FSBaseDevice" alt="" coords="131,80,295,107"/>
-<area shape="rect" id="node4" href="$classfreestick_1_1_i_f_s_device.html" title="freestick::IFSDevice" alt="" coords="145,5,281,32"/>
+<area shape="rect" id="node5" href="$classfreestick_1_1_f_s_android_joystick.html" title="freestick::FSAndroidJoystick" alt="" coords="860,5,1049,30"/>
+<area shape="rect" id="node6" href="$classfreestick_1_1_f_s_direct_input_joystick.html" title="freestick::FSDirectInput\lJoystick" alt="" coords="875,54,1035,93"/>
+<area shape="rect" id="node7" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick.html" title="freestick::FSUSBMacOSXJoystick" alt="" coords="843,117,1066,142"/>
+<area shape="rect" id="node8" href="$classfreestick_1_1_f_s_x_input_joystick.html" title="freestick::FSXInputJoystick" alt="" coords="864,166,1045,191"/>
+<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_u_s_b_device.html" title="freestick::FSUSBDevice" alt="" coords="412,89,575,114"/>
+<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_base_device.html" title="freestick::FSBaseDevice" alt="" coords="195,89,362,114"/>
+<area shape="rect" id="node4" href="$classfreestick_1_1_i_f_s_device.html" title="freestick::IFSDevice" alt="" coords="6,89,146,114"/>
 </map>

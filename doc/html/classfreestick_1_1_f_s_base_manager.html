@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">FreeStick
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">0.2</span>
    </div>
    <div id="projectbrief">Cross Platform Open Sorce Joystick Lib</div>
   </td>
@@ -93,6 +93,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classfreestick_1_1_f_s_base_manager-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">freestick::FSBaseManager Class Reference</div>  </div>
@@ -108,11 +109,14 @@ Inheritance diagram for freestick::FSBaseManager:</div>
 <div class="dyncontent">
 <div class="center"><img src="classfreestick_1_1_f_s_base_manager__inherit__graph.png" border="0" usemap="#freestick_1_1_f_s_base_manager_inherit__map" alt="Inheritance graph"/></div>
 <map name="freestick_1_1_f_s_base_manager_inherit__map" id="freestick_1_1_f_s_base_manager_inherit__map">
-<area shape="rect" id="node2" href="classfreestick_1_1_f_s_u_s_b_device_manager.html" title="freestick::FSUSBDeviceManager" alt="" coords="229,77,440,104"/>
-<area shape="rect" id="node3" href="classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html" title="freestick::FSUSBJoystick\lDeviceManager" alt="" coords="488,70,659,111"/>
-<area shape="rect" id="node4" href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html" title="freestick::FSHIDAndroidJoysick\lDeviceManager" alt="" coords="716,5,921,46"/>
-<area shape="rect" id="node5" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html" title="freestick::FSUSBMacOSXJoystick\lDeviceManager" alt="" coords="707,70,930,111"/>
-<area shape="rect" id="node6" href="classfreestick_1_1_f_s_u_s_b_null_joystick_device_manager.html" title="freestick::FSUSBNullJoystick\lDeviceManager" alt="" coords="722,135,915,177"/>
+<area shape="rect" id="node2" href="classfreestick_1_1_f_s_u_s_b_device_manager.html" title="freestick::FSUSBDeviceManager" alt="" coords="232,106,448,131"/>
+<area shape="rect" id="node3" href="classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html" title="freestick::FSUSBJoystick\lDeviceManager" alt="" coords="496,99,666,138"/>
+<area shape="rect" id="node4" href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html" title="freestick::FSHIDAndroidJoysick\lDeviceManager" alt="" coords="723,5,931,43"/>
+<area shape="rect" id="node5" href="classfreestick_1_1_f_s_updatable_joystick_device_manager.html" title="freestick::FSUpdatableJoystick\lDeviceManager" alt="" coords="725,67,928,106"/>
+<area shape="rect" id="node8" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html" title="freestick::FSUSBMacOSXJoystick\lDeviceManager" alt="" coords="715,130,938,169"/>
+<area shape="rect" id="node9" href="classfreestick_1_1_f_s_u_s_b_null_joystick_device_manager.html" title="freestick::FSUSBNullJoystick\lDeviceManager" alt="" coords="730,193,923,231"/>
+<area shape="rect" id="node6" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html" title="freestick::FSDirectInput\lJoystickManager" alt="" coords="997,37,1157,75"/>
+<area shape="rect" id="node7" href="classfreestick_1_1_f_s_x_input_joystick_device_manager.html" title="freestick::FSXInputJoystick\lDeviceManager" alt="" coords="987,99,1168,138"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -122,17 +126,19 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1bca7563f3b518a919ceb7be44dadbae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2df9d525fcf7ef537dcbd986cb3d71ae"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_base_manager.html#a2df9d525fcf7ef537dcbd986cb3d71ae">~FSBaseManager</a> ()</td></tr>
 <tr class="separator:a2df9d525fcf7ef537dcbd986cb3d71ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af87170c6c4219af77a1ef3b057746846"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_base_manager.html#af87170c6c4219af77a1ef3b057746846">ListenForAllJoysticksForEventTypes</a> (unsigned int eventFlags, <a class="el" href="classfreestick_1_1_i_f_s_joystick_listener.html">IFSJoystickListener</a> &amp;listener)</td></tr>
+<tr class="memitem:af87170c6c4219af77a1ef3b057746846"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_base_manager.html#af87170c6c4219af77a1ef3b057746846">ListenForAllJoysticksForEventTypes</a> (unsigned int eventFlags, <a class="el" href="classfreestick_1_1_i_f_s_joystick_listener.html">IFSJoystickListener</a> &amp;listener)</td></tr>
 <tr class="memdesc:af87170c6c4219af77a1ef3b057746846"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the base manager.  <a href="#af87170c6c4219af77a1ef3b057746846">More...</a><br /></td></tr>
 <tr class="separator:af87170c6c4219af77a1ef3b057746846"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a17d0ec4045a8251edbc876a7c4b9732d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_base_manager.html#a17d0ec4045a8251edbc876a7c4b9732d">UnListenForAllJoysticksForEventTypes</a> (unsigned int eventFlags, <a class="el" href="classfreestick_1_1_i_f_s_joystick_listener.html">IFSJoystickListener</a> &amp;listener)</td></tr>
+<tr class="memitem:a17d0ec4045a8251edbc876a7c4b9732d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_base_manager.html#a17d0ec4045a8251edbc876a7c4b9732d">UnListenForAllJoysticksForEventTypes</a> (unsigned int eventFlags, <a class="el" href="classfreestick_1_1_i_f_s_joystick_listener.html">IFSJoystickListener</a> &amp;listener)</td></tr>
 <tr class="separator:a17d0ec4045a8251edbc876a7c4b9732d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39bcca48e32952de1b43bc4153fc3cd3"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_base_manager.html#a39bcca48e32952de1b43bc4153fc3cd3">convertRawToNormalizedRanger</a> (double value, signed long maxValue, signed long minValue)</td></tr>
-<tr class="separator:a39bcca48e32952de1b43bc4153fc3cd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab28920257c3ad3fdb927fcadb7169c6"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_base_manager.html#aab28920257c3ad3fdb927fcadb7169c6">convertRawToNormalizedRanger</a> (double value, <a class="el" href="namespacefreestick.html#a71c9a6041b6c846f844f0b0bfc3cd0ef">MinMaxNumber</a> maxValue, <a class="el" href="namespacefreestick.html#a71c9a6041b6c846f844f0b0bfc3cd0ef">MinMaxNumber</a> minValue)</td></tr>
+<tr class="separator:aab28920257c3ad3fdb927fcadb7169c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c6a2c812697952858c86f0aec4aab26"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_base_manager.html#a0c6a2c812697952858c86f0aec4aab26">init</a> ()</td></tr>
 <tr class="separator:a0c6a2c812697952858c86f0aec4aab26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec4e2588ca183daed770cba4e69de80b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classfreestick_1_1_f_s_base_device.html">FSBaseDevice</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_base_manager.html#aec4e2588ca183daed770cba4e69de80b">getDevice</a> (unsigned int deviceID)</td></tr>
-<tr class="separator:aec4e2588ca183daed770cba4e69de80b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a560e1c5228d57c71146266a29d2b0c23"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_base_manager.html#a560e1c5228d57c71146266a29d2b0c23">init</a> (<a class="el" href="classfreestick_1_1_i_f_s_device_i_d_creator.html">IFSDeviceIDCreator</a> *idCreator)</td></tr>
+<tr class="separator:a560e1c5228d57c71146266a29d2b0c23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8553e55f9bbad5e2d427e4faaafc5be3"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="classfreestick_1_1_f_s_base_device.html">FSBaseDevice</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_base_manager.html#a8553e55f9bbad5e2d427e4faaafc5be3">getDevice</a> (<a class="el" href="namespacefreestick.html#ac4969085899dd4249c64f7cbb28c823a">ElementID</a> deviceID)</td></tr>
+<tr class="separator:a8553e55f9bbad5e2d427e4faaafc5be3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -142,18 +148,25 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:aea96b06e4dd4d19a02149b38afa44c1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5be03f4beb38edc118ea3d54ef8bcefd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_base_manager.html#a5be03f4beb38edc118ea3d54ef8bcefd">ListenForJoystickEvent</a> (<a class="el" href="namespacefreestick.html#a4fc52780a06e02ce6e645aa6651e2db7">FreeStickEventType</a> eventType, <a class="el" href="classfreestick_1_1_i_f_s_joystick_listener.html">IFSJoystickListener</a> &amp;listener)</td></tr>
 <tr class="separator:a5be03f4beb38edc118ea3d54ef8bcefd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63c7307da0cd0ad3ca9af6f7519db279"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_base_manager.html#a63c7307da0cd0ad3ca9af6f7519db279">RemoveListenerForEventType</a> (<a class="el" href="namespacefreestick.html#a4fc52780a06e02ce6e645aa6651e2db7">FreeStickEventType</a> eventType, <a class="el" href="classfreestick_1_1_i_f_s_joystick_listener.html">IFSJoystickListener</a> &amp;listener)</td></tr>
+<tr class="separator:a63c7307da0cd0ad3ca9af6f7519db279"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2055fefcc07e10a37b430a5486b086a1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_base_manager.html#a2055fefcc07e10a37b430a5486b086a1">addDevice</a> (<a class="el" href="classfreestick_1_1_f_s_base_device.html">FSBaseDevice</a> *device)</td></tr>
 <tr class="separator:a2055fefcc07e10a37b430a5486b086a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac531f509ef2600f343208d0f43747840"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_base_manager.html#ac531f509ef2600f343208d0f43747840">removeDevice</a> (<a class="el" href="classfreestick_1_1_f_s_base_device.html">FSBaseDevice</a> *device)</td></tr>
 <tr class="separator:ac531f509ef2600f343208d0f43747840"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37ece0b75c1085293fe53439b82ae9c5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_base_manager.html#a37ece0b75c1085293fe53439b82ae9c5">inputOnDeviceChanged</a> (<a class="el" href="namespacefreestick.html#a4fc52780a06e02ce6e645aa6651e2db7">FreeStickEventType</a> eventType, <a class="el" href="namespacefreestick.html#a440da94df436d9b37f6a77101f9e5114">FSEventAction</a> eventAction, <a class="el" href="namespacefreestick.html#ac52f7c0e8161f2de5d68e3c073486a8a">FSDeviceInput</a> inputType, unsigned int deviceID, unsigned int deviceControlID, int newValue, int oldValue, signed long min, signed long max)</td></tr>
-<tr class="separator:a37ece0b75c1085293fe53439b82ae9c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3713b84dda3583ed13f5b1bfebc75574"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_base_manager.html#a3713b84dda3583ed13f5b1bfebc75574">inputOnDeviceChangedWithNormilzedValues</a> (<a class="el" href="namespacefreestick.html#a4fc52780a06e02ce6e645aa6651e2db7">FreeStickEventType</a> eventType, <a class="el" href="namespacefreestick.html#a440da94df436d9b37f6a77101f9e5114">FSEventAction</a> eventAction, <a class="el" href="namespacefreestick.html#ac52f7c0e8161f2de5d68e3c073486a8a">FSDeviceInput</a> inputType, unsigned int deviceID, unsigned int deviceControlID, float newValue, float oldValue, signed long min, signed long max)</td></tr>
-<tr class="separator:a3713b84dda3583ed13f5b1bfebc75574"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a425ab4c758db9e5ecf389989ddac09e9"><td class="memItemLeft" align="right" valign="top">virtual unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_base_manager.html#a425ab4c758db9e5ecf389989ddac09e9">getNextID</a> ()</td></tr>
-<tr class="separator:a425ab4c758db9e5ecf389989ddac09e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2598956900e592004e01b4ab5b732098"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_base_manager.html#a2598956900e592004e01b4ab5b732098">inputOnDeviceChanged</a> (<a class="el" href="namespacefreestick.html#a4fc52780a06e02ce6e645aa6651e2db7">FreeStickEventType</a> eventType, <a class="el" href="namespacefreestick.html#a440da94df436d9b37f6a77101f9e5114">FSEventAction</a> eventAction, <a class="el" href="namespacefreestick.html#ac52f7c0e8161f2de5d68e3c073486a8a">FSDeviceInput</a> inputType, unsigned int deviceID, unsigned int deviceControlID, int newValue, int oldValue, <a class="el" href="namespacefreestick.html#a71c9a6041b6c846f844f0b0bfc3cd0ef">MinMaxNumber</a> min, <a class="el" href="namespacefreestick.html#a71c9a6041b6c846f844f0b0bfc3cd0ef">MinMaxNumber</a> max)</td></tr>
+<tr class="separator:a2598956900e592004e01b4ab5b732098"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af10f1fd85c3d92f63bcdbf71a41dbe3e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_base_manager.html#af10f1fd85c3d92f63bcdbf71a41dbe3e">inputOnDeviceChangedWithNormilzedValues</a> (<a class="el" href="namespacefreestick.html#a4fc52780a06e02ce6e645aa6651e2db7">FreeStickEventType</a> eventType, <a class="el" href="namespacefreestick.html#a440da94df436d9b37f6a77101f9e5114">FSEventAction</a> eventAction, <a class="el" href="namespacefreestick.html#ac52f7c0e8161f2de5d68e3c073486a8a">FSDeviceInput</a> inputType, unsigned int deviceID, unsigned int deviceControlID, float newValue, float oldValue)</td></tr>
+<tr class="separator:af10f1fd85c3d92f63bcdbf71a41dbe3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab99d44983268633e577ab4d2992af743"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespacefreestick.html#ac4969085899dd4249c64f7cbb28c823a">ElementID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_base_manager.html#ab99d44983268633e577ab4d2992af743">getNextID</a> ()</td></tr>
+<tr class="separator:ab99d44983268633e577ab4d2992af743"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe89aed4e7fb5056df31bc8dd00865cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_base_manager.html#afe89aed4e7fb5056df31bc8dd00865cc">updateEvent</a> (<a class="el" href="classfreestick_1_1_f_s_base_event.html">FSBaseEvent</a> &amp;event)</td></tr>
 <tr class="separator:afe89aed4e7fb5056df31bc8dd00865cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a070de9967b62095da08fd13844f8eba3"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; unsigned int, <a class="el" href="classfreestick_1_1_f_s_base_device.html">FSBaseDevice</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_base_manager.html#a070de9967b62095da08fd13844f8eba3">deviceMap</a></td></tr>
+<tr class="separator:a070de9967b62095da08fd13844f8eba3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is the base manager. </p>
@@ -220,22 +233,23 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a4ad73c0ebcaad2daf322dc7eed42492e">freestick::FSUSBMacOSXJoystickDeviceManager</a>.</p>
+<p>Reimplemented in <a class="el" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a795406dd5905c74c460bcd5ecc9e87b9">freestick::FSDirectInputJoystickManager</a>, and <a class="el" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a4ad73c0ebcaad2daf322dc7eed42492e">freestick::FSUSBMacOSXJoystickDeviceManager</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classfreestick_1_1_f_s_base_manager_a2055fefcc07e10a37b430a5486b086a1_cgraph.png" border="0" usemap="#classfreestick_1_1_f_s_base_manager_a2055fefcc07e10a37b430a5486b086a1_cgraph" alt=""/></div>
 <map name="classfreestick_1_1_f_s_base_manager_a2055fefcc07e10a37b430a5486b086a1_cgraph" id="classfreestick_1_1_f_s_base_manager_a2055fefcc07e10a37b430a5486b086a1_cgraph">
-<area shape="rect" id="node2" href="classfreestick_1_1_f_s_base_device.html#a1c9d1eba2c56d8f4a28886bce262b7f5" title="freestick::FSBaseDevice\l::getJoystickID" alt="" coords="235,135,399,177"/>
-<area shape="rect" id="node3" href="classfreestick_1_1_f_s_base_manager.html#afe89aed4e7fb5056df31bc8dd00865cc" title="freestick::FSBaseManager\l::updateEvent" alt="" coords="229,201,405,242"/>
-<area shape="rect" id="node4" href="classfreestick_1_1_f_s_base_event.html#a1709a72b114af0962dcc714a05172401" title="freestick::FSBaseEvent\l::getEventType" alt="" coords="471,5,630,46"/>
-<area shape="rect" id="node5" href="classfreestick_1_1_i_f_s_joystick_listener.html#a6b6b2c18f8c55b3affb08ec3df722835" title="freestick::IFSJoystickListener\l::onConnect" alt="" coords="454,70,647,111"/>
-<area shape="rect" id="node6" href="classfreestick_1_1_i_f_s_joystick_listener.html#a95388d540390b07d3f8144157ab477d0" title="freestick::IFSJoystickListener\l::onDisconnect" alt="" coords="454,135,647,177"/>
-<area shape="rect" id="node7" href="classfreestick_1_1_f_s_base_event.html#a4cf1099067b90d3fa4d2e04b7ec7a235" title="freestick::FSBaseEvent\l::getEventAction" alt="" coords="471,201,630,242"/>
-<area shape="rect" id="node8" href="classfreestick_1_1_i_f_s_joystick_listener.html#a4691ee7bd2c18091af109d66e194d204" title="freestick::IFSJoystickListener\l::onButtonDown" alt="" coords="454,266,647,307"/>
-<area shape="rect" id="node9" href="classfreestick_1_1_i_f_s_joystick_listener.html#a7f4b6975f5660aae58e887a7d45621bc" title="freestick::IFSJoystickListener\l::onButtonUp" alt="" coords="454,331,647,373"/>
-<area shape="rect" id="node10" href="classfreestick_1_1_i_f_s_joystick_listener.html#a1e62375dcb578382e619eb047e839c43" title="freestick::IFSJoystickListener\l::onStickMove" alt="" coords="454,397,647,438"/>
+<area shape="rect" id="node2" href="classfreestick_1_1_f_s_base_device.html#a1c9d1eba2c56d8f4a28886bce262b7f5" title="freestick::FSBaseDevice\l::getJoystickID" alt="" coords="238,162,405,201"/>
+<area shape="rect" id="node3" href="classfreestick_1_1_f_s_base_manager.html#afe89aed4e7fb5056df31bc8dd00865cc" title="freestick::FSBaseManager\l::updateEvent" alt="" coords="232,225,411,263"/>
+<area shape="rect" id="node4" href="classfreestick_1_1_f_s_base_event.html#a1709a72b114af0962dcc714a05172401" title="freestick::FSBaseEvent\l::getEventType" alt="" coords="484,5,644,43"/>
+<area shape="rect" id="node5" href="classfreestick_1_1_i_f_s_joystick_listener.html#a6b6b2c18f8c55b3affb08ec3df722835" title="freestick::IFSJoystickListener\l::onConnect" alt="" coords="467,67,661,106"/>
+<area shape="rect" id="node6" href="classfreestick_1_1_i_f_s_joystick_listener.html#a95388d540390b07d3f8144157ab477d0" title="freestick::IFSJoystickListener\l::onDisconnect" alt="" coords="467,130,661,169"/>
+<area shape="rect" id="node7" href="classfreestick_1_1_f_s_base_event.html#a4cf1099067b90d3fa4d2e04b7ec7a235" title="freestick::FSBaseEvent\l::getEventAction" alt="" coords="484,193,644,231"/>
+<area shape="rect" id="node8" href="classfreestick_1_1_i_f_s_joystick_listener.html#a4691ee7bd2c18091af109d66e194d204" title="freestick::IFSJoystickListener\l::onButtonDown" alt="" coords="467,255,661,294"/>
+<area shape="rect" id="node9" href="classfreestick_1_1_i_f_s_joystick_listener.html#a7f4b6975f5660aae58e887a7d45621bc" title="freestick::IFSJoystickListener\l::onButtonUp" alt="" coords="467,318,661,357"/>
+<area shape="rect" id="node10" href="classfreestick_1_1_i_f_s_joystick_listener.html#a1e62375dcb578382e619eb047e839c43" title="freestick::IFSJoystickListener\l::onStickMove" alt="" coords="467,381,661,419"/>
+<area shape="rect" id="node11" href="classfreestick_1_1_f_s_base_manager.html#a63c7307da0cd0ad3ca9af6f7519db279" title="freestick::FSBaseManager\l::RemoveListenerForEventType" alt="" coords="460,443,668,482"/>
 </map>
 </div>
 </p>
@@ -245,19 +259,21 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classfreestick_1_1_f_s_base_manager_a2055fefcc07e10a37b430a5486b086a1_icgraph.png" border="0" usemap="#classfreestick_1_1_f_s_base_manager_a2055fefcc07e10a37b430a5486b086a1_icgraph" alt=""/></div>
 <map name="classfreestick_1_1_f_s_base_manager_a2055fefcc07e10a37b430a5486b086a1_icgraph" id="classfreestick_1_1_f_s_base_manager_a2055fefcc07e10a37b430a5486b086a1_icgraph">
-<area shape="rect" id="node2" href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#ae1bb22c2e080717f4183e717277999e1" title="freestick::FSHIDAndroidJoysick\lDeviceManager::gamepadWasAddedFrom\lJINBridge" alt="" coords="230,5,495,61"/>
-<area shape="rect" id="node3" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a4ad73c0ebcaad2daf322dc7eed42492e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::addDevice" alt="" coords="251,86,474,127"/>
-<area shape="rect" id="node4" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a7d3b860eb8305da72ddf3a4649614d2e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadWasAdded" alt="" coords="544,53,779,94"/>
-<area shape="rect" id="node7" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a37672c3beb149385bfba1bb0119efd43" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::addDevice" alt="" coords="550,118,773,159"/>
-<area shape="rect" id="node5" href="_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a9c389b27da91df71189be1b7a6daf743" title="setupIOHDIManager" alt="" coords="827,60,965,87"/>
-<area shape="rect" id="node6" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::init" alt="" coords="1014,53,1237,94"/>
+<area shape="rect" id="node2" href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#ae1bb22c2e080717f4183e717277999e1" title="freestick::FSHIDAndroidJoysick\lDeviceManager::gamepadWasAddedFrom\lJINBridge" alt="" coords="233,5,506,57"/>
+<area shape="rect" id="node3" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a4ad73c0ebcaad2daf322dc7eed42492e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::addDevice" alt="" coords="258,81,481,119"/>
+<area shape="rect" id="node8" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a795406dd5905c74c460bcd5ecc9e87b9" title="freestick::FSDirectInput\lJoystickManager::addDevice" alt="" coords="273,143,465,182"/>
+<area shape="rect" id="node4" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a7d3b860eb8305da72ddf3a4649614d2e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadWasAdded" alt="" coords="555,18,797,57"/>
+<area shape="rect" id="node7" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a37672c3beb149385bfba1bb0119efd43" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::addDevice" alt="" coords="564,81,788,119"/>
+<area shape="rect" id="node5" href="_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a9c389b27da91df71189be1b7a6daf743" title="setupIOHDIManager" alt="" coords="846,25,989,50"/>
+<area shape="rect" id="node6" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::init" alt="" coords="1038,18,1261,57"/>
+<area shape="rect" id="node9" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a1e88f8429cdf730b6c15a56993d86d1b" title="freestick::FSDirectInput\lJoystickManager::addDevice" alt="" coords="580,143,772,182"/>
 </map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a39bcca48e32952de1b43bc4153fc3cd3"></a>
+<a class="anchor" id="aab28920257c3ad3fdb927fcadb7169c6"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -273,13 +289,13 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">signed long&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacefreestick.html#a71c9a6041b6c846f844f0b0bfc3cd0ef">MinMaxNumber</a>&#160;</td>
           <td class="paramname"><em>maxValue</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">signed long&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacefreestick.html#a71c9a6041b6c846f844f0b0bfc3cd0ef">MinMaxNumber</a>&#160;</td>
           <td class="paramname"><em>minValue</em>&#160;</td>
         </tr>
         <tr>
@@ -298,54 +314,26 @@ Here is the caller graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classfreestick_1_1_f_s_base_manager_a39bcca48e32952de1b43bc4153fc3cd3_icgraph.png" border="0" usemap="#classfreestick_1_1_f_s_base_manager_a39bcca48e32952de1b43bc4153fc3cd3_icgraph" alt=""/></div>
-<map name="classfreestick_1_1_f_s_base_manager_a39bcca48e32952de1b43bc4153fc3cd3_icgraph" id="classfreestick_1_1_f_s_base_manager_a39bcca48e32952de1b43bc4153fc3cd3_icgraph">
-<area shape="rect" id="node2" href="classfreestick_1_1_f_s_base_manager.html#a37ece0b75c1085293fe53439b82ae9c5" title="freestick::FSBaseManager\l::inputOnDeviceChanged" alt="" coords="269,50,445,91"/>
-<area shape="rect" id="node3" href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#ad1dadcd770d1daa68363d6952c93f89a" title="freestick::FSHIDAndroidJoysick\lDeviceManager::gamepadWasUpdated\lFromJINBridge" alt="" coords="494,5,741,61"/>
-<area shape="rect" id="node4" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2a9e26628802fdafd65935996ebc9e8d" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadAction" alt="" coords="506,86,729,127"/>
-<area shape="rect" id="node5" href="_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a9c389b27da91df71189be1b7a6daf743" title="setupIOHDIManager" alt="" coords="789,93,928,120"/>
-<area shape="rect" id="node6" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::init" alt="" coords="977,86,1199,127"/>
+<div class="center"><img src="classfreestick_1_1_f_s_base_manager_aab28920257c3ad3fdb927fcadb7169c6_icgraph.png" border="0" usemap="#classfreestick_1_1_f_s_base_manager_aab28920257c3ad3fdb927fcadb7169c6_icgraph" alt=""/></div>
+<map name="classfreestick_1_1_f_s_base_manager_aab28920257c3ad3fdb927fcadb7169c6_icgraph" id="classfreestick_1_1_f_s_base_manager_aab28920257c3ad3fdb927fcadb7169c6_icgraph">
+<area shape="rect" id="node2" href="classfreestick_1_1_f_s_base_manager.html#a2598956900e592004e01b4ab5b732098" title="freestick::FSBaseManager\l::inputOnDeviceChanged" alt="" coords="277,131,456,170"/>
+<area shape="rect" id="node3" href="classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html#ad8a4534e53febe3964b7a64a66d34a22" title="freestick::FSUSBJoystick\lDeviceManager::updateEvents" alt="" coords="530,62,734,101"/>
+<area shape="rect" id="node9" href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#ad1dadcd770d1daa68363d6952c93f89a" title="freestick::FSHIDAndroidJoysick\lDeviceManager::gamepadWasUpdated\lFromJINBridge" alt="" coords="505,125,759,177"/>
+<area shape="rect" id="node10" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2a9e26628802fdafd65935996ebc9e8d" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadAction" alt="" coords="520,201,744,239"/>
+<area shape="rect" id="node4" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#af9cd9daa2e5c3b77f18d8a43a24a7d6a" title="freestick::FSDirectInput\lJoystickManager::updateJoysticksPOV" alt="" coords="809,5,1061,43"/>
+<area shape="rect" id="node5" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#ae41d9f4049f13d2713171a92c871c57c" title="freestick::FSDirectInput\lJoystickManager::updateJoysticks" alt="" coords="1110,62,1333,101"/>
+<area shape="rect" id="node8" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a0349b8bfcbabdb845acbbfcd2aed0a7a" title="freestick::FSDirectInput\lJoystickManager::updateJoysticksAxis" alt="" coords="810,119,1059,158"/>
+<area shape="rect" id="node6" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a51aeec5940323e120428ec94b04a076b" title="freestick::FSDirectInput\lJoystickManager::update" alt="" coords="1382,62,1551,101"/>
+<area shape="rect" id="node7" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a8b07b04816b89940f86156a5ae5f3078" title="freestick::FSDirectInput\lJoystickManager::init" alt="" coords="1600,62,1760,101"/>
+<area shape="rect" id="node11" href="_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a9c389b27da91df71189be1b7a6daf743" title="setupIOHDIManager" alt="" coords="863,207,1006,233"/>
+<area shape="rect" id="node12" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::init" alt="" coords="1110,201,1333,239"/>
 </map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="aec4e2588ca183daed770cba4e69de80b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="classfreestick_1_1_f_s_base_device.html">FSBaseDevice</a> * FSBaseManager::getDevice </td>
-          <td>(</td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>deviceID</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classfreestick_1_1_f_s_base_manager_aec4e2588ca183daed770cba4e69de80b_icgraph.png" border="0" usemap="#classfreestick_1_1_f_s_base_manager_aec4e2588ca183daed770cba4e69de80b_icgraph" alt=""/></div>
-<map name="classfreestick_1_1_f_s_base_manager_aec4e2588ca183daed770cba4e69de80b_icgraph" id="classfreestick_1_1_f_s_base_manager_aec4e2588ca183daed770cba4e69de80b_icgraph">
-<area shape="rect" id="node2" href="classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html#afbf48d9abb9b03164ae38f770a4f5c33" title="freestick::FSUSBJoystick\lDeviceManager::getUSBJoystick\lDevice" alt="" coords="245,5,456,61"/>
-<area shape="rect" id="node6" href="classfreestick_1_1_f_s_u_s_b_device_manager.html#a1d713193e04aefde22282dd5ecfd9331" title="freestick::FSUSBDeviceManager\l::addMapping" alt="" coords="245,86,456,127"/>
-<area shape="rect" id="node7" href="classfreestick_1_1_f_s_u_s_b_device_manager.html#a3df9977676e0832d3547efd95915ed6d" title="freestick::FSUSBDeviceManager\l::lookUpDeviceInputFromID" alt="" coords="245,151,456,193"/>
-<area shape="rect" id="node8" href="classfreestick_1_1_f_s_u_s_b_device_manager.html#a1583519d8f3f075506e2bf5d56f7dc8d" title="freestick::FSUSBDeviceManager\l::doesDeviceHaveDeviceInputForValue" alt="" coords="229,217,472,258"/>
-<area shape="rect" id="node9" href="classfreestick_1_1_f_s_u_s_b_device_manager.html#a551dc443a9d49b58b757b9ba17726917" title="freestick::FSUSBDeviceManager\l::doesDeviceHaveDeviceInput" alt="" coords="245,282,456,323"/>
-<area shape="rect" id="node10" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#ad5d7f537afcd6e0cc877ebc2b2a2ac30" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::removeDevice" alt="" coords="239,347,462,389"/>
-<area shape="rect" id="node3" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2a9e26628802fdafd65935996ebc9e8d" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadAction" alt="" coords="521,13,743,54"/>
-<area shape="rect" id="node4" href="_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a9c389b27da91df71189be1b7a6daf743" title="setupIOHDIManager" alt="" coords="792,20,931,47"/>
-<area shape="rect" id="node5" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::init" alt="" coords="979,13,1202,54"/>
-</map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a425ab4c758db9e5ecf389989ddac09e9"></a>
+<a class="anchor" id="a8553e55f9bbad5e2d427e4faaafc5be3"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -353,7 +341,51 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned int FSBaseManager::getNextID </td>
+          <td class="memname">const <a class="el" href="classfreestick_1_1_f_s_base_device.html">FSBaseDevice</a> * FSBaseManager::getDevice </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespacefreestick.html#ac4969085899dd4249c64f7cbb28c823a">ElementID</a>&#160;</td>
+          <td class="paramname"><em>deviceID</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classfreestick_1_1_f_s_base_manager_a8553e55f9bbad5e2d427e4faaafc5be3_icgraph.png" border="0" usemap="#classfreestick_1_1_f_s_base_manager_a8553e55f9bbad5e2d427e4faaafc5be3_icgraph" alt=""/></div>
+<map name="classfreestick_1_1_f_s_base_manager_a8553e55f9bbad5e2d427e4faaafc5be3_icgraph" id="classfreestick_1_1_f_s_base_manager_a8553e55f9bbad5e2d427e4faaafc5be3_icgraph">
+<area shape="rect" id="node2" href="classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html#afbf48d9abb9b03164ae38f770a4f5c33" title="freestick::FSUSBJoystick\lDeviceManager::getUSBJoystick\lDevice" alt="" coords="251,5,466,57"/>
+<area shape="rect" id="node6" href="classfreestick_1_1_f_s_u_s_b_device_manager.html#a1d713193e04aefde22282dd5ecfd9331" title="freestick::FSUSBDeviceManager\l::addMapping" alt="" coords="251,81,467,119"/>
+<area shape="rect" id="node7" href="classfreestick_1_1_f_s_u_s_b_device_manager.html#a5bcfa0e2491566888740434f4a354046" title="freestick::FSUSBDeviceManager\l::lookUpDeviceInputFromID" alt="" coords="251,143,467,182"/>
+<area shape="rect" id="node9" href="classfreestick_1_1_f_s_u_s_b_device_manager.html#a1583519d8f3f075506e2bf5d56f7dc8d" title="freestick::FSUSBDeviceManager\l::doesDeviceHaveDeviceInputForValue" alt="" coords="232,206,485,245"/>
+<area shape="rect" id="node10" href="classfreestick_1_1_f_s_u_s_b_device_manager.html#a551dc443a9d49b58b757b9ba17726917" title="freestick::FSUSBDeviceManager\l::doesDeviceHaveDeviceInput" alt="" coords="251,269,467,307"/>
+<area shape="rect" id="node11" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#ad5d7f537afcd6e0cc877ebc2b2a2ac30" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::removeDevice" alt="" coords="247,331,470,370"/>
+<area shape="rect" id="node12" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#ae6006c47f0411935db23ae7c90e2bc03" title="freestick::FSDirectInput\lJoystickManager::removeDevice" alt="" coords="252,394,466,433"/>
+<area shape="rect" id="node3" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2a9e26628802fdafd65935996ebc9e8d" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadAction" alt="" coords="539,11,762,50"/>
+<area shape="rect" id="node4" href="_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a9c389b27da91df71189be1b7a6daf743" title="setupIOHDIManager" alt="" coords="816,18,960,43"/>
+<area shape="rect" id="node5" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::init" alt="" coords="1008,11,1232,50"/>
+<area shape="rect" id="node8" href="classfreestick_1_1_f_s_windows_joystick_device_manager.html#aaaf907e7a9ae43c1ff125ee6c6a3b740" title="freestick::FSWindowsJoystick\lDeviceManager::lookUpDeviceInput\lFromID" alt="" coords="534,137,768,189"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ab99d44983268633e577ab4d2992af743"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacefreestick.html#ac4969085899dd4249c64f7cbb28c823a">ElementID</a> FSBaseManager::getNextID </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -367,12 +399,23 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classfreestick_1_1_f_s_base_manager_ab99d44983268633e577ab4d2992af743_cgraph.png" border="0" usemap="#classfreestick_1_1_f_s_base_manager_ab99d44983268633e577ab4d2992af743_cgraph" alt=""/></div>
+<map name="classfreestick_1_1_f_s_base_manager_ab99d44983268633e577ab4d2992af743_cgraph" id="classfreestick_1_1_f_s_base_manager_ab99d44983268633e577ab4d2992af743_cgraph">
+<area shape="rect" id="node2" href="classfreestick_1_1_i_f_s_device_i_d_creator.html#afdd626eaa122b398fbc133fc322085f0" title="freestick::IFSDeviceIDCreator\l::getNextID" alt="" coords="232,5,430,43"/>
+</map>
+</div>
+</p>
+
+<p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classfreestick_1_1_f_s_base_manager_a425ab4c758db9e5ecf389989ddac09e9_icgraph.png" border="0" usemap="#classfreestick_1_1_f_s_base_manager_a425ab4c758db9e5ecf389989ddac09e9_icgraph" alt=""/></div>
-<map name="classfreestick_1_1_f_s_base_manager_a425ab4c758db9e5ecf389989ddac09e9_icgraph" id="classfreestick_1_1_f_s_base_manager_a425ab4c758db9e5ecf389989ddac09e9_icgraph">
-<area shape="rect" id="node2" href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#ae1bb22c2e080717f4183e717277999e1" title="freestick::FSHIDAndroidJoysick\lDeviceManager::gamepadWasAddedFrom\lJINBridge" alt="" coords="230,5,495,61"/>
-<area shape="rect" id="node3" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a37672c3beb149385bfba1bb0119efd43" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::addDevice" alt="" coords="251,86,474,127"/>
+<div class="center"><img src="classfreestick_1_1_f_s_base_manager_ab99d44983268633e577ab4d2992af743_icgraph.png" border="0" usemap="#classfreestick_1_1_f_s_base_manager_ab99d44983268633e577ab4d2992af743_icgraph" alt=""/></div>
+<map name="classfreestick_1_1_f_s_base_manager_ab99d44983268633e577ab4d2992af743_icgraph" id="classfreestick_1_1_f_s_base_manager_ab99d44983268633e577ab4d2992af743_icgraph">
+<area shape="rect" id="node2" href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#ae1bb22c2e080717f4183e717277999e1" title="freestick::FSHIDAndroidJoysick\lDeviceManager::gamepadWasAddedFrom\lJINBridge" alt="" coords="233,5,506,57"/>
+<area shape="rect" id="node3" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a37672c3beb149385bfba1bb0119efd43" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::addDevice" alt="" coords="258,81,481,119"/>
+<area shape="rect" id="node4" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a1e88f8429cdf730b6c15a56993d86d1b" title="freestick::FSDirectInput\lJoystickManager::addDevice" alt="" coords="273,143,465,182"/>
 </map>
 </div>
 </p>
@@ -400,26 +443,61 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="classfreestick_1_1_f_s_u_s_b_device_manager.html#a634bc01536ebc6c6177ea1abdb8014d4">freestick::FSUSBDeviceManager</a>, <a class="el" href="classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html#a2051a89a2e6073ff1dbc8849ab10553e">freestick::FSUSBJoystickDeviceManager</a>, <a class="el" href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#a6d47d77f5ce23d8ddf620149b2cc0a6b">freestick::FSHIDAndroidJoysickDeviceManager</a>, <a class="el" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e">freestick::FSUSBMacOSXJoystickDeviceManager</a>, and <a class="el" href="classfreestick_1_1_f_s_u_s_b_null_joystick_device_manager.html#a30bff31a1f79ba09e8bc51a35db08708">freestick::FSUSBNullJoystickDeviceManager</a>.</p>
+<p>Reimplemented in <a class="el" href="classfreestick_1_1_f_s_u_s_b_device_manager.html#a634bc01536ebc6c6177ea1abdb8014d4">freestick::FSUSBDeviceManager</a>, <a class="el" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a8b07b04816b89940f86156a5ae5f3078">freestick::FSDirectInputJoystickManager</a>, <a class="el" href="classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html#a2051a89a2e6073ff1dbc8849ab10553e">freestick::FSUSBJoystickDeviceManager</a>, <a class="el" href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#a6d47d77f5ce23d8ddf620149b2cc0a6b">freestick::FSHIDAndroidJoysickDeviceManager</a>, <a class="el" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e">freestick::FSUSBMacOSXJoystickDeviceManager</a>, and <a class="el" href="classfreestick_1_1_f_s_u_s_b_null_joystick_device_manager.html#a30bff31a1f79ba09e8bc51a35db08708">freestick::FSUSBNullJoystickDeviceManager</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classfreestick_1_1_f_s_base_manager_a0c6a2c812697952858c86f0aec4aab26_icgraph.png" border="0" usemap="#classfreestick_1_1_f_s_base_manager_a0c6a2c812697952858c86f0aec4aab26_icgraph" alt=""/></div>
 <map name="classfreestick_1_1_f_s_base_manager_a0c6a2c812697952858c86f0aec4aab26_icgraph" id="classfreestick_1_1_f_s_base_manager_a0c6a2c812697952858c86f0aec4aab26_icgraph">
-<area shape="rect" id="node2" href="classfreestick_1_1_f_s_u_s_b_device_manager.html#a634bc01536ebc6c6177ea1abdb8014d4" title="freestick::FSUSBDeviceManager\l::init" alt="" coords="229,70,440,111"/>
-<area shape="rect" id="node3" href="classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html#a2051a89a2e6073ff1dbc8849ab10553e" title="freestick::FSUSBJoystick\lDeviceManager::init" alt="" coords="505,5,676,46"/>
-<area shape="rect" id="node5" href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#a6d47d77f5ce23d8ddf620149b2cc0a6b" title="freestick::FSHIDAndroidJoysick\lDeviceManager::init" alt="" coords="488,70,693,111"/>
-<area shape="rect" id="node7" href="classfreestick_1_1_f_s_u_s_b_null_joystick_device_manager.html#a30bff31a1f79ba09e8bc51a35db08708" title="freestick::FSUSBNullJoystick\lDeviceManager::init" alt="" coords="494,135,687,177"/>
-<area shape="rect" id="node4" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::init" alt="" coords="742,5,965,46"/>
-<area shape="rect" id="node6" href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#a46c06a9488db23ea6ed2496c882947a0" title="freestick::FSHIDAndroidJoysick\lDeviceManager::init" alt="" coords="751,70,956,111"/>
+<area shape="rect" id="node2" href="classfreestick_1_1_f_s_base_manager.html#a560e1c5228d57c71146266a29d2b0c23" title="freestick::FSBaseManager\l::init" alt="" coords="251,5,429,43"/>
+<area shape="rect" id="node3" href="classfreestick_1_1_f_s_u_s_b_device_manager.html#a634bc01536ebc6c6177ea1abdb8014d4" title="freestick::FSUSBDeviceManager\l::init" alt="" coords="232,67,448,106"/>
+<area shape="rect" id="node4" href="classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html#a2051a89a2e6073ff1dbc8849ab10553e" title="freestick::FSUSBJoystick\lDeviceManager::init" alt="" coords="515,5,685,43"/>
+<area shape="rect" id="node6" href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#a6d47d77f5ce23d8ddf620149b2cc0a6b" title="freestick::FSHIDAndroidJoysick\lDeviceManager::init" alt="" coords="496,67,704,106"/>
+<area shape="rect" id="node8" href="classfreestick_1_1_f_s_u_s_b_null_joystick_device_manager.html#a30bff31a1f79ba09e8bc51a35db08708" title="freestick::FSUSBNullJoystick\lDeviceManager::init" alt="" coords="503,130,697,169"/>
+<area shape="rect" id="node5" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::init" alt="" coords="752,5,976,43"/>
+<area shape="rect" id="node7" href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#a46c06a9488db23ea6ed2496c882947a0" title="freestick::FSHIDAndroidJoysick\lDeviceManager::init" alt="" coords="760,67,968,106"/>
 </map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a37ece0b75c1085293fe53439b82ae9c5"></a>
+<a class="anchor" id="a560e1c5228d57c71146266a29d2b0c23"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FSBaseManager::init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classfreestick_1_1_i_f_s_device_i_d_creator.html">IFSDeviceIDCreator</a> *&#160;</td>
+          <td class="paramname"><em>idCreator</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classfreestick_1_1_f_s_base_manager_a560e1c5228d57c71146266a29d2b0c23_cgraph.png" border="0" usemap="#classfreestick_1_1_f_s_base_manager_a560e1c5228d57c71146266a29d2b0c23_cgraph" alt=""/></div>
+<map name="classfreestick_1_1_f_s_base_manager_a560e1c5228d57c71146266a29d2b0c23_cgraph" id="classfreestick_1_1_f_s_base_manager_a560e1c5228d57c71146266a29d2b0c23_cgraph">
+<area shape="rect" id="node2" href="classfreestick_1_1_f_s_base_manager.html#a0c6a2c812697952858c86f0aec4aab26" title="freestick::FSBaseManager\l::init" alt="" coords="232,5,411,43"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a2598956900e592004e01b4ab5b732098"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -471,13 +549,13 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">signed long&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacefreestick.html#a71c9a6041b6c846f844f0b0bfc3cd0ef">MinMaxNumber</a>&#160;</td>
           <td class="paramname"><em>min</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">signed long&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacefreestick.html#a71c9a6041b6c846f844f0b0bfc3cd0ef">MinMaxNumber</a>&#160;</td>
           <td class="paramname"><em>max</em>&#160;</td>
         </tr>
         <tr>
@@ -496,18 +574,19 @@ Here is the caller graph for this function:</div>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classfreestick_1_1_f_s_base_manager_a37ece0b75c1085293fe53439b82ae9c5_cgraph.png" border="0" usemap="#classfreestick_1_1_f_s_base_manager_a37ece0b75c1085293fe53439b82ae9c5_cgraph" alt=""/></div>
-<map name="classfreestick_1_1_f_s_base_manager_a37ece0b75c1085293fe53439b82ae9c5_cgraph" id="classfreestick_1_1_f_s_base_manager_a37ece0b75c1085293fe53439b82ae9c5_cgraph">
-<area shape="rect" id="node2" href="classfreestick_1_1_f_s_base_manager.html#a3713b84dda3583ed13f5b1bfebc75574" title="freestick::FSBaseManager\l::inputOnDeviceChangedWithNormilzed\lValues" alt="" coords="230,193,479,249"/>
-<area shape="rect" id="node11" href="classfreestick_1_1_f_s_base_manager.html#a39bcca48e32952de1b43bc4153fc3cd3" title="freestick::FSBaseManager\l::convertRawToNormalizedRanger" alt="" coords="247,274,463,315"/>
-<area shape="rect" id="node3" href="classfreestick_1_1_f_s_base_manager.html#afe89aed4e7fb5056df31bc8dd00865cc" title="freestick::FSBaseManager\l::updateEvent" alt="" coords="528,201,704,242"/>
-<area shape="rect" id="node4" href="classfreestick_1_1_f_s_base_event.html#a1709a72b114af0962dcc714a05172401" title="freestick::FSBaseEvent\l::getEventType" alt="" coords="770,5,929,46"/>
-<area shape="rect" id="node5" href="classfreestick_1_1_i_f_s_joystick_listener.html#a6b6b2c18f8c55b3affb08ec3df722835" title="freestick::IFSJoystickListener\l::onConnect" alt="" coords="753,70,946,111"/>
-<area shape="rect" id="node6" href="classfreestick_1_1_i_f_s_joystick_listener.html#a95388d540390b07d3f8144157ab477d0" title="freestick::IFSJoystickListener\l::onDisconnect" alt="" coords="753,135,946,177"/>
-<area shape="rect" id="node7" href="classfreestick_1_1_f_s_base_event.html#a4cf1099067b90d3fa4d2e04b7ec7a235" title="freestick::FSBaseEvent\l::getEventAction" alt="" coords="770,201,929,242"/>
-<area shape="rect" id="node8" href="classfreestick_1_1_i_f_s_joystick_listener.html#a4691ee7bd2c18091af109d66e194d204" title="freestick::IFSJoystickListener\l::onButtonDown" alt="" coords="753,266,946,307"/>
-<area shape="rect" id="node9" href="classfreestick_1_1_i_f_s_joystick_listener.html#a7f4b6975f5660aae58e887a7d45621bc" title="freestick::IFSJoystickListener\l::onButtonUp" alt="" coords="753,331,946,373"/>
-<area shape="rect" id="node10" href="classfreestick_1_1_i_f_s_joystick_listener.html#a1e62375dcb578382e619eb047e839c43" title="freestick::IFSJoystickListener\l::onStickMove" alt="" coords="753,397,946,438"/>
+<div class="center"><img src="classfreestick_1_1_f_s_base_manager_a2598956900e592004e01b4ab5b732098_cgraph.png" border="0" usemap="#classfreestick_1_1_f_s_base_manager_a2598956900e592004e01b4ab5b732098_cgraph" alt=""/></div>
+<map name="classfreestick_1_1_f_s_base_manager_a2598956900e592004e01b4ab5b732098_cgraph" id="classfreestick_1_1_f_s_base_manager_a2598956900e592004e01b4ab5b732098_cgraph">
+<area shape="rect" id="node2" href="classfreestick_1_1_f_s_base_manager.html#af10f1fd85c3d92f63bcdbf71a41dbe3e" title="freestick::FSBaseManager\l::inputOnDeviceChangedWithNormilzed\lValues" alt="" coords="233,218,490,270"/>
+<area shape="rect" id="node12" href="classfreestick_1_1_f_s_base_manager.html#aab28920257c3ad3fdb927fcadb7169c6" title="freestick::FSBaseManager\l::convertRawToNormalizedRanger" alt="" coords="249,294,474,333"/>
+<area shape="rect" id="node3" href="classfreestick_1_1_f_s_base_manager.html#afe89aed4e7fb5056df31bc8dd00865cc" title="freestick::FSBaseManager\l::updateEvent" alt="" coords="539,225,717,263"/>
+<area shape="rect" id="node4" href="classfreestick_1_1_f_s_base_event.html#a1709a72b114af0962dcc714a05172401" title="freestick::FSBaseEvent\l::getEventType" alt="" coords="791,5,951,43"/>
+<area shape="rect" id="node5" href="classfreestick_1_1_i_f_s_joystick_listener.html#a6b6b2c18f8c55b3affb08ec3df722835" title="freestick::IFSJoystickListener\l::onConnect" alt="" coords="774,67,968,106"/>
+<area shape="rect" id="node6" href="classfreestick_1_1_i_f_s_joystick_listener.html#a95388d540390b07d3f8144157ab477d0" title="freestick::IFSJoystickListener\l::onDisconnect" alt="" coords="774,130,968,169"/>
+<area shape="rect" id="node7" href="classfreestick_1_1_f_s_base_event.html#a4cf1099067b90d3fa4d2e04b7ec7a235" title="freestick::FSBaseEvent\l::getEventAction" alt="" coords="791,193,951,231"/>
+<area shape="rect" id="node8" href="classfreestick_1_1_i_f_s_joystick_listener.html#a4691ee7bd2c18091af109d66e194d204" title="freestick::IFSJoystickListener\l::onButtonDown" alt="" coords="774,255,968,294"/>
+<area shape="rect" id="node9" href="classfreestick_1_1_i_f_s_joystick_listener.html#a7f4b6975f5660aae58e887a7d45621bc" title="freestick::IFSJoystickListener\l::onButtonUp" alt="" coords="774,318,968,357"/>
+<area shape="rect" id="node10" href="classfreestick_1_1_i_f_s_joystick_listener.html#a1e62375dcb578382e619eb047e839c43" title="freestick::IFSJoystickListener\l::onStickMove" alt="" coords="774,381,968,419"/>
+<area shape="rect" id="node11" href="classfreestick_1_1_f_s_base_manager.html#a63c7307da0cd0ad3ca9af6f7519db279" title="freestick::FSBaseManager\l::RemoveListenerForEventType" alt="" coords="766,443,975,482"/>
 </map>
 </div>
 </p>
@@ -515,19 +594,25 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classfreestick_1_1_f_s_base_manager_a37ece0b75c1085293fe53439b82ae9c5_icgraph.png" border="0" usemap="#classfreestick_1_1_f_s_base_manager_a37ece0b75c1085293fe53439b82ae9c5_icgraph" alt=""/></div>
-<map name="classfreestick_1_1_f_s_base_manager_a37ece0b75c1085293fe53439b82ae9c5_icgraph" id="classfreestick_1_1_f_s_base_manager_a37ece0b75c1085293fe53439b82ae9c5_icgraph">
-<area shape="rect" id="node2" href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#ad1dadcd770d1daa68363d6952c93f89a" title="freestick::FSHIDAndroidJoysick\lDeviceManager::gamepadWasUpdated\lFromJINBridge" alt="" coords="230,5,477,61"/>
-<area shape="rect" id="node3" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2a9e26628802fdafd65935996ebc9e8d" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadAction" alt="" coords="242,86,465,127"/>
-<area shape="rect" id="node4" href="_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a9c389b27da91df71189be1b7a6daf743" title="setupIOHDIManager" alt="" coords="525,93,664,120"/>
-<area shape="rect" id="node5" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::init" alt="" coords="713,86,935,127"/>
+<div class="center"><img src="classfreestick_1_1_f_s_base_manager_a2598956900e592004e01b4ab5b732098_icgraph.png" border="0" usemap="#classfreestick_1_1_f_s_base_manager_a2598956900e592004e01b4ab5b732098_icgraph" alt=""/></div>
+<map name="classfreestick_1_1_f_s_base_manager_a2598956900e592004e01b4ab5b732098_icgraph" id="classfreestick_1_1_f_s_base_manager_a2598956900e592004e01b4ab5b732098_icgraph">
+<area shape="rect" id="node2" href="classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html#ad8a4534e53febe3964b7a64a66d34a22" title="freestick::FSUSBJoystick\lDeviceManager::updateEvents" alt="" coords="258,62,462,101"/>
+<area shape="rect" id="node8" href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#ad1dadcd770d1daa68363d6952c93f89a" title="freestick::FSHIDAndroidJoysick\lDeviceManager::gamepadWasUpdated\lFromJINBridge" alt="" coords="233,125,487,177"/>
+<area shape="rect" id="node9" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2a9e26628802fdafd65935996ebc9e8d" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadAction" alt="" coords="248,201,472,239"/>
+<area shape="rect" id="node3" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#af9cd9daa2e5c3b77f18d8a43a24a7d6a" title="freestick::FSDirectInput\lJoystickManager::updateJoysticksPOV" alt="" coords="537,5,789,43"/>
+<area shape="rect" id="node4" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#ae41d9f4049f13d2713171a92c871c57c" title="freestick::FSDirectInput\lJoystickManager::updateJoysticks" alt="" coords="838,62,1061,101"/>
+<area shape="rect" id="node7" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a0349b8bfcbabdb845acbbfcd2aed0a7a" title="freestick::FSDirectInput\lJoystickManager::updateJoysticksAxis" alt="" coords="538,119,787,158"/>
+<area shape="rect" id="node5" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a51aeec5940323e120428ec94b04a076b" title="freestick::FSDirectInput\lJoystickManager::update" alt="" coords="1110,62,1279,101"/>
+<area shape="rect" id="node6" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a8b07b04816b89940f86156a5ae5f3078" title="freestick::FSDirectInput\lJoystickManager::init" alt="" coords="1328,62,1488,101"/>
+<area shape="rect" id="node10" href="_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a9c389b27da91df71189be1b7a6daf743" title="setupIOHDIManager" alt="" coords="591,207,734,233"/>
+<area shape="rect" id="node11" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::init" alt="" coords="838,201,1061,239"/>
 </map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a3713b84dda3583ed13f5b1bfebc75574"></a>
+<a class="anchor" id="af10f1fd85c3d92f63bcdbf71a41dbe3e"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -574,19 +659,7 @@ Here is the caller graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>oldValue</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">signed long&#160;</td>
-          <td class="paramname"><em>min</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">signed long&#160;</td>
-          <td class="paramname"><em>max</em>&#160;</td>
+          <td class="paramname"><em>oldValue</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -604,16 +677,17 @@ Here is the caller graph for this function:</div>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classfreestick_1_1_f_s_base_manager_a3713b84dda3583ed13f5b1bfebc75574_cgraph.png" border="0" usemap="#classfreestick_1_1_f_s_base_manager_a3713b84dda3583ed13f5b1bfebc75574_cgraph" alt=""/></div>
-<map name="classfreestick_1_1_f_s_base_manager_a3713b84dda3583ed13f5b1bfebc75574_cgraph" id="classfreestick_1_1_f_s_base_manager_a3713b84dda3583ed13f5b1bfebc75574_cgraph">
-<area shape="rect" id="node2" href="classfreestick_1_1_f_s_base_manager.html#afe89aed4e7fb5056df31bc8dd00865cc" title="freestick::FSBaseManager\l::updateEvent" alt="" coords="304,201,480,242"/>
-<area shape="rect" id="node3" href="classfreestick_1_1_f_s_base_event.html#a1709a72b114af0962dcc714a05172401" title="freestick::FSBaseEvent\l::getEventType" alt="" coords="546,5,705,46"/>
-<area shape="rect" id="node4" href="classfreestick_1_1_i_f_s_joystick_listener.html#a6b6b2c18f8c55b3affb08ec3df722835" title="freestick::IFSJoystickListener\l::onConnect" alt="" coords="529,70,722,111"/>
-<area shape="rect" id="node5" href="classfreestick_1_1_i_f_s_joystick_listener.html#a95388d540390b07d3f8144157ab477d0" title="freestick::IFSJoystickListener\l::onDisconnect" alt="" coords="529,135,722,177"/>
-<area shape="rect" id="node6" href="classfreestick_1_1_f_s_base_event.html#a4cf1099067b90d3fa4d2e04b7ec7a235" title="freestick::FSBaseEvent\l::getEventAction" alt="" coords="546,201,705,242"/>
-<area shape="rect" id="node7" href="classfreestick_1_1_i_f_s_joystick_listener.html#a4691ee7bd2c18091af109d66e194d204" title="freestick::IFSJoystickListener\l::onButtonDown" alt="" coords="529,266,722,307"/>
-<area shape="rect" id="node8" href="classfreestick_1_1_i_f_s_joystick_listener.html#a7f4b6975f5660aae58e887a7d45621bc" title="freestick::IFSJoystickListener\l::onButtonUp" alt="" coords="529,331,722,373"/>
-<area shape="rect" id="node9" href="classfreestick_1_1_i_f_s_joystick_listener.html#a1e62375dcb578382e619eb047e839c43" title="freestick::IFSJoystickListener\l::onStickMove" alt="" coords="529,397,722,438"/>
+<div class="center"><img src="classfreestick_1_1_f_s_base_manager_af10f1fd85c3d92f63bcdbf71a41dbe3e_cgraph.png" border="0" usemap="#classfreestick_1_1_f_s_base_manager_af10f1fd85c3d92f63bcdbf71a41dbe3e_cgraph" alt=""/></div>
+<map name="classfreestick_1_1_f_s_base_manager_af10f1fd85c3d92f63bcdbf71a41dbe3e_cgraph" id="classfreestick_1_1_f_s_base_manager_af10f1fd85c3d92f63bcdbf71a41dbe3e_cgraph">
+<area shape="rect" id="node2" href="classfreestick_1_1_f_s_base_manager.html#afe89aed4e7fb5056df31bc8dd00865cc" title="freestick::FSBaseManager\l::updateEvent" alt="" coords="312,225,491,263"/>
+<area shape="rect" id="node3" href="classfreestick_1_1_f_s_base_event.html#a1709a72b114af0962dcc714a05172401" title="freestick::FSBaseEvent\l::getEventType" alt="" coords="564,5,724,43"/>
+<area shape="rect" id="node4" href="classfreestick_1_1_i_f_s_joystick_listener.html#a6b6b2c18f8c55b3affb08ec3df722835" title="freestick::IFSJoystickListener\l::onConnect" alt="" coords="547,67,741,106"/>
+<area shape="rect" id="node5" href="classfreestick_1_1_i_f_s_joystick_listener.html#a95388d540390b07d3f8144157ab477d0" title="freestick::IFSJoystickListener\l::onDisconnect" alt="" coords="547,130,741,169"/>
+<area shape="rect" id="node6" href="classfreestick_1_1_f_s_base_event.html#a4cf1099067b90d3fa4d2e04b7ec7a235" title="freestick::FSBaseEvent\l::getEventAction" alt="" coords="564,193,724,231"/>
+<area shape="rect" id="node7" href="classfreestick_1_1_i_f_s_joystick_listener.html#a4691ee7bd2c18091af109d66e194d204" title="freestick::IFSJoystickListener\l::onButtonDown" alt="" coords="547,255,741,294"/>
+<area shape="rect" id="node8" href="classfreestick_1_1_i_f_s_joystick_listener.html#a7f4b6975f5660aae58e887a7d45621bc" title="freestick::IFSJoystickListener\l::onButtonUp" alt="" coords="547,318,741,357"/>
+<area shape="rect" id="node9" href="classfreestick_1_1_i_f_s_joystick_listener.html#a1e62375dcb578382e619eb047e839c43" title="freestick::IFSJoystickListener\l::onStickMove" alt="" coords="547,381,741,419"/>
+<area shape="rect" id="node10" href="classfreestick_1_1_f_s_base_manager.html#a63c7307da0cd0ad3ca9af6f7519db279" title="freestick::FSBaseManager\l::RemoveListenerForEventType" alt="" coords="540,443,748,482"/>
 </map>
 </div>
 </p>
@@ -621,13 +695,19 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classfreestick_1_1_f_s_base_manager_a3713b84dda3583ed13f5b1bfebc75574_icgraph.png" border="0" usemap="#classfreestick_1_1_f_s_base_manager_a3713b84dda3583ed13f5b1bfebc75574_icgraph" alt=""/></div>
-<map name="classfreestick_1_1_f_s_base_manager_a3713b84dda3583ed13f5b1bfebc75574_icgraph" id="classfreestick_1_1_f_s_base_manager_a3713b84dda3583ed13f5b1bfebc75574_icgraph">
-<area shape="rect" id="node2" href="classfreestick_1_1_f_s_base_manager.html#a37ece0b75c1085293fe53439b82ae9c5" title="freestick::FSBaseManager\l::inputOnDeviceChanged" alt="" coords="304,59,480,101"/>
-<area shape="rect" id="node3" href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#ad1dadcd770d1daa68363d6952c93f89a" title="freestick::FSHIDAndroidJoysick\lDeviceManager::gamepadWasUpdated\lFromJINBridge" alt="" coords="529,5,775,61"/>
-<area shape="rect" id="node4" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2a9e26628802fdafd65935996ebc9e8d" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadAction" alt="" coords="541,97,763,138"/>
-<area shape="rect" id="node5" href="_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a9c389b27da91df71189be1b7a6daf743" title="setupIOHDIManager" alt="" coords="824,104,963,131"/>
-<area shape="rect" id="node6" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::init" alt="" coords="1011,97,1234,138"/>
+<div class="center"><img src="classfreestick_1_1_f_s_base_manager_af10f1fd85c3d92f63bcdbf71a41dbe3e_icgraph.png" border="0" usemap="#classfreestick_1_1_f_s_base_manager_af10f1fd85c3d92f63bcdbf71a41dbe3e_icgraph" alt=""/></div>
+<map name="classfreestick_1_1_f_s_base_manager_af10f1fd85c3d92f63bcdbf71a41dbe3e_icgraph" id="classfreestick_1_1_f_s_base_manager_af10f1fd85c3d92f63bcdbf71a41dbe3e_icgraph">
+<area shape="rect" id="node2" href="classfreestick_1_1_f_s_base_manager.html#a2598956900e592004e01b4ab5b732098" title="freestick::FSBaseManager\l::inputOnDeviceChanged" alt="" coords="312,78,491,116"/>
+<area shape="rect" id="node3" href="classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html#ad8a4534e53febe3964b7a64a66d34a22" title="freestick::FSUSBJoystick\lDeviceManager::updateEvents" alt="" coords="565,24,768,63"/>
+<area shape="rect" id="node9" href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#ad1dadcd770d1daa68363d6952c93f89a" title="freestick::FSHIDAndroidJoysick\lDeviceManager::gamepadWasUpdated\lFromJINBridge" alt="" coords="540,90,794,142"/>
+<area shape="rect" id="node10" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2a9e26628802fdafd65935996ebc9e8d" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadAction" alt="" coords="555,172,778,211"/>
+<area shape="rect" id="node4" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#af9cd9daa2e5c3b77f18d8a43a24a7d6a" title="freestick::FSDirectInput\lJoystickManager::updateJoysticksPOV" alt="" coords="843,24,1095,63"/>
+<area shape="rect" id="node5" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#ae41d9f4049f13d2713171a92c871c57c" title="freestick::FSDirectInput\lJoystickManager::updateJoysticks" alt="" coords="1144,24,1368,63"/>
+<area shape="rect" id="node8" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a0349b8bfcbabdb845acbbfcd2aed0a7a" title="freestick::FSDirectInput\lJoystickManager::updateJoysticksAxis" alt="" coords="845,87,1094,126"/>
+<area shape="rect" id="node6" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a51aeec5940323e120428ec94b04a076b" title="freestick::FSDirectInput\lJoystickManager::update" alt="" coords="1417,24,1586,63"/>
+<area shape="rect" id="node7" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a8b07b04816b89940f86156a5ae5f3078" title="freestick::FSDirectInput\lJoystickManager::init" alt="" coords="1635,24,1795,63"/>
+<area shape="rect" id="node11" href="_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a9c389b27da91df71189be1b7a6daf743" title="setupIOHDIManager" alt="" coords="898,179,1041,204"/>
+<area shape="rect" id="node12" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::init" alt="" coords="1144,172,1368,211"/>
 </map>
 </div>
 </p>
@@ -671,7 +751,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classfreestick_1_1_f_s_base_manager_acc8f7d9b85edfd24cbbfccafdf76be11_icgraph.png" border="0" usemap="#classfreestick_1_1_f_s_base_manager_acc8f7d9b85edfd24cbbfccafdf76be11_icgraph" alt=""/></div>
 <map name="classfreestick_1_1_f_s_base_manager_acc8f7d9b85edfd24cbbfccafdf76be11_icgraph" id="classfreestick_1_1_f_s_base_manager_acc8f7d9b85edfd24cbbfccafdf76be11_icgraph">
-<area shape="rect" id="node2" href="classfreestick_1_1_f_s_base_manager.html#af87170c6c4219af77a1ef3b057746846" title="This is the base manager. " alt="" coords="288,5,528,46"/>
+<area shape="rect" id="node2" href="classfreestick_1_1_f_s_base_manager.html#af87170c6c4219af77a1ef3b057746846" title="This is the base manager. " alt="" coords="291,5,533,43"/>
 </map>
 </div>
 </p>
@@ -681,6 +761,9 @@ Here is the caller graph for this function:</div>
 <a class="anchor" id="af87170c6c4219af77a1ef3b057746846"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void FSBaseManager::ListenForAllJoysticksForEventTypes </td>
@@ -700,6 +783,11 @@ Here is the caller graph for this function:</div>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>This is the base manager. </p>
@@ -717,9 +805,9 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classfreestick_1_1_f_s_base_manager_af87170c6c4219af77a1ef3b057746846_cgraph.png" border="0" usemap="#classfreestick_1_1_f_s_base_manager_af87170c6c4219af77a1ef3b057746846_cgraph" alt=""/></div>
 <map name="classfreestick_1_1_f_s_base_manager_af87170c6c4219af77a1ef3b057746846_cgraph" id="classfreestick_1_1_f_s_base_manager_af87170c6c4219af77a1ef3b057746846_cgraph">
-<area shape="rect" id="node2" href="classfreestick_1_1_f_s_base_device.html#a1c9d1eba2c56d8f4a28886bce262b7f5" title="freestick::FSBaseDevice\l::getJoystickID" alt="" coords="329,5,493,46"/>
-<area shape="rect" id="node3" href="classfreestick_1_1_i_f_s_joystick_listener.html#a6b6b2c18f8c55b3affb08ec3df722835" title="freestick::IFSJoystickListener\l::onConnect" alt="" coords="314,70,507,111"/>
-<area shape="rect" id="node4" href="classfreestick_1_1_f_s_base_manager.html#acc8f7d9b85edfd24cbbfccafdf76be11" title="freestick::FSBaseManager\l::ListenForAllJoysticksForEventType" alt="" coords="294,135,527,177"/>
+<area shape="rect" id="node2" href="classfreestick_1_1_f_s_base_device.html#a1c9d1eba2c56d8f4a28886bce262b7f5" title="freestick::FSBaseDevice\l::getJoystickID" alt="" coords="331,5,498,43"/>
+<area shape="rect" id="node3" href="classfreestick_1_1_i_f_s_joystick_listener.html#a6b6b2c18f8c55b3affb08ec3df722835" title="freestick::IFSJoystickListener\l::onConnect" alt="" coords="318,67,512,106"/>
+<area shape="rect" id="node4" href="classfreestick_1_1_f_s_base_manager.html#acc8f7d9b85edfd24cbbfccafdf76be11" title="freestick::FSBaseManager\l::ListenForAllJoysticksForEventType" alt="" coords="297,130,533,169"/>
 </map>
 </div>
 </p>
@@ -782,22 +870,23 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a0da12b7477919c79cc55ba39e02638cc">freestick::FSUSBMacOSXJoystickDeviceManager</a>.</p>
+<p>Reimplemented in <a class="el" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a5257e94de81f6c15334803bb9bbf4d44">freestick::FSDirectInputJoystickManager</a>, and <a class="el" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a0da12b7477919c79cc55ba39e02638cc">freestick::FSUSBMacOSXJoystickDeviceManager</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classfreestick_1_1_f_s_base_manager_ac531f509ef2600f343208d0f43747840_cgraph.png" border="0" usemap="#classfreestick_1_1_f_s_base_manager_ac531f509ef2600f343208d0f43747840_cgraph" alt=""/></div>
 <map name="classfreestick_1_1_f_s_base_manager_ac531f509ef2600f343208d0f43747840_cgraph" id="classfreestick_1_1_f_s_base_manager_ac531f509ef2600f343208d0f43747840_cgraph">
-<area shape="rect" id="node2" href="classfreestick_1_1_f_s_base_device.html#a1c9d1eba2c56d8f4a28886bce262b7f5" title="freestick::FSBaseDevice\l::getJoystickID" alt="" coords="235,135,399,177"/>
-<area shape="rect" id="node3" href="classfreestick_1_1_f_s_base_manager.html#afe89aed4e7fb5056df31bc8dd00865cc" title="freestick::FSBaseManager\l::updateEvent" alt="" coords="229,201,405,242"/>
-<area shape="rect" id="node4" href="classfreestick_1_1_f_s_base_event.html#a1709a72b114af0962dcc714a05172401" title="freestick::FSBaseEvent\l::getEventType" alt="" coords="471,5,630,46"/>
-<area shape="rect" id="node5" href="classfreestick_1_1_i_f_s_joystick_listener.html#a6b6b2c18f8c55b3affb08ec3df722835" title="freestick::IFSJoystickListener\l::onConnect" alt="" coords="454,70,647,111"/>
-<area shape="rect" id="node6" href="classfreestick_1_1_i_f_s_joystick_listener.html#a95388d540390b07d3f8144157ab477d0" title="freestick::IFSJoystickListener\l::onDisconnect" alt="" coords="454,135,647,177"/>
-<area shape="rect" id="node7" href="classfreestick_1_1_f_s_base_event.html#a4cf1099067b90d3fa4d2e04b7ec7a235" title="freestick::FSBaseEvent\l::getEventAction" alt="" coords="471,201,630,242"/>
-<area shape="rect" id="node8" href="classfreestick_1_1_i_f_s_joystick_listener.html#a4691ee7bd2c18091af109d66e194d204" title="freestick::IFSJoystickListener\l::onButtonDown" alt="" coords="454,266,647,307"/>
-<area shape="rect" id="node9" href="classfreestick_1_1_i_f_s_joystick_listener.html#a7f4b6975f5660aae58e887a7d45621bc" title="freestick::IFSJoystickListener\l::onButtonUp" alt="" coords="454,331,647,373"/>
-<area shape="rect" id="node10" href="classfreestick_1_1_i_f_s_joystick_listener.html#a1e62375dcb578382e619eb047e839c43" title="freestick::IFSJoystickListener\l::onStickMove" alt="" coords="454,397,647,438"/>
+<area shape="rect" id="node2" href="classfreestick_1_1_f_s_base_device.html#a1c9d1eba2c56d8f4a28886bce262b7f5" title="freestick::FSBaseDevice\l::getJoystickID" alt="" coords="238,162,405,201"/>
+<area shape="rect" id="node3" href="classfreestick_1_1_f_s_base_manager.html#afe89aed4e7fb5056df31bc8dd00865cc" title="freestick::FSBaseManager\l::updateEvent" alt="" coords="232,225,411,263"/>
+<area shape="rect" id="node4" href="classfreestick_1_1_f_s_base_event.html#a1709a72b114af0962dcc714a05172401" title="freestick::FSBaseEvent\l::getEventType" alt="" coords="484,5,644,43"/>
+<area shape="rect" id="node5" href="classfreestick_1_1_i_f_s_joystick_listener.html#a6b6b2c18f8c55b3affb08ec3df722835" title="freestick::IFSJoystickListener\l::onConnect" alt="" coords="467,67,661,106"/>
+<area shape="rect" id="node6" href="classfreestick_1_1_i_f_s_joystick_listener.html#a95388d540390b07d3f8144157ab477d0" title="freestick::IFSJoystickListener\l::onDisconnect" alt="" coords="467,130,661,169"/>
+<area shape="rect" id="node7" href="classfreestick_1_1_f_s_base_event.html#a4cf1099067b90d3fa4d2e04b7ec7a235" title="freestick::FSBaseEvent\l::getEventAction" alt="" coords="484,193,644,231"/>
+<area shape="rect" id="node8" href="classfreestick_1_1_i_f_s_joystick_listener.html#a4691ee7bd2c18091af109d66e194d204" title="freestick::IFSJoystickListener\l::onButtonDown" alt="" coords="467,255,661,294"/>
+<area shape="rect" id="node9" href="classfreestick_1_1_i_f_s_joystick_listener.html#a7f4b6975f5660aae58e887a7d45621bc" title="freestick::IFSJoystickListener\l::onButtonUp" alt="" coords="467,318,661,357"/>
+<area shape="rect" id="node10" href="classfreestick_1_1_i_f_s_joystick_listener.html#a1e62375dcb578382e619eb047e839c43" title="freestick::IFSJoystickListener\l::onStickMove" alt="" coords="467,381,661,419"/>
+<area shape="rect" id="node11" href="classfreestick_1_1_f_s_base_manager.html#a63c7307da0cd0ad3ca9af6f7519db279" title="freestick::FSBaseManager\l::RemoveListenerForEventType" alt="" coords="460,443,668,482"/>
 </map>
 </div>
 </p>
@@ -807,11 +896,82 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classfreestick_1_1_f_s_base_manager_ac531f509ef2600f343208d0f43747840_icgraph.png" border="0" usemap="#classfreestick_1_1_f_s_base_manager_ac531f509ef2600f343208d0f43747840_icgraph" alt=""/></div>
 <map name="classfreestick_1_1_f_s_base_manager_ac531f509ef2600f343208d0f43747840_icgraph" id="classfreestick_1_1_f_s_base_manager_ac531f509ef2600f343208d0f43747840_icgraph">
-<area shape="rect" id="node2" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a0da12b7477919c79cc55ba39e02638cc" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::removeDevice" alt="" coords="230,38,453,79"/>
-<area shape="rect" id="node3" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#aace77ce7465a2261e16d509a6d63515c" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadWasRemoved" alt="" coords="501,5,752,46"/>
-<area shape="rect" id="node6" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#ad5d7f537afcd6e0cc877ebc2b2a2ac30" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::removeDevice" alt="" coords="515,70,738,111"/>
-<area shape="rect" id="node4" href="_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a9c389b27da91df71189be1b7a6daf743" title="setupIOHDIManager" alt="" coords="800,12,939,39"/>
-<area shape="rect" id="node5" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::init" alt="" coords="987,5,1210,46"/>
+<area shape="rect" id="node2" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a0da12b7477919c79cc55ba39e02638cc" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::removeDevice" alt="" coords="232,67,456,106"/>
+<area shape="rect" id="node7" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a5257e94de81f6c15334803bb9bbf4d44" title="freestick::FSDirectInput\lJoystickManager::removeDevice" alt="" coords="237,130,451,169"/>
+<area shape="rect" id="node3" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#aace77ce7465a2261e16d509a6d63515c" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadWasRemoved" alt="" coords="504,5,765,43"/>
+<area shape="rect" id="node6" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#ad5d7f537afcd6e0cc877ebc2b2a2ac30" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::removeDevice" alt="" coords="523,67,746,106"/>
+<area shape="rect" id="node4" href="_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a9c389b27da91df71189be1b7a6daf743" title="setupIOHDIManager" alt="" coords="814,11,957,37"/>
+<area shape="rect" id="node5" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::init" alt="" coords="1006,5,1229,43"/>
+<area shape="rect" id="node8" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#ae6006c47f0411935db23ae7c90e2bc03" title="freestick::FSDirectInput\lJoystickManager::removeDevice" alt="" coords="528,130,742,169"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a63c7307da0cd0ad3ca9af6f7519db279"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FSBaseManager::RemoveListenerForEventType </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespacefreestick.html#a4fc52780a06e02ce6e645aa6651e2db7">FreeStickEventType</a>&#160;</td>
+          <td class="paramname"><em>eventType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classfreestick_1_1_i_f_s_joystick_listener.html">IFSJoystickListener</a> &amp;&#160;</td>
+          <td class="paramname"><em>listener</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classfreestick_1_1_f_s_base_manager_a63c7307da0cd0ad3ca9af6f7519db279_icgraph.png" border="0" usemap="#classfreestick_1_1_f_s_base_manager_a63c7307da0cd0ad3ca9af6f7519db279_icgraph" alt=""/></div>
+<map name="classfreestick_1_1_f_s_base_manager_a63c7307da0cd0ad3ca9af6f7519db279_icgraph" id="classfreestick_1_1_f_s_base_manager_a63c7307da0cd0ad3ca9af6f7519db279_icgraph">
+<area shape="rect" id="node2" href="classfreestick_1_1_f_s_base_manager.html#afe89aed4e7fb5056df31bc8dd00865cc" title="freestick::FSBaseManager\l::updateEvent" alt="" coords="264,306,443,344"/>
+<area shape="rect" id="node3" href="classfreestick_1_1_f_s_base_manager.html#af10f1fd85c3d92f63bcdbf71a41dbe3e" title="freestick::FSBaseManager\l::inputOnDeviceChangedWithNormilzed\lValues" alt="" coords="492,115,748,167"/>
+<area shape="rect" id="node15" href="classfreestick_1_1_f_s_base_manager.html#a2055fefcc07e10a37b430a5486b086a1" title="freestick::FSBaseManager\l::addDevice" alt="" coords="531,306,709,344"/>
+<area shape="rect" id="node22" href="classfreestick_1_1_f_s_base_manager.html#ac531f509ef2600f343208d0f43747840" title="freestick::FSBaseManager\l::removeDevice" alt="" coords="531,456,709,495"/>
+<area shape="rect" id="node4" href="classfreestick_1_1_f_s_base_manager.html#a2598956900e592004e01b4ab5b732098" title="freestick::FSBaseManager\l::inputOnDeviceChanged" alt="" coords="845,122,1024,160"/>
+<area shape="rect" id="node5" href="classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html#ad8a4534e53febe3964b7a64a66d34a22" title="freestick::FSUSBJoystick\lDeviceManager::updateEvents" alt="" coords="1149,24,1352,63"/>
+<area shape="rect" id="node11" href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#ad1dadcd770d1daa68363d6952c93f89a" title="freestick::FSHIDAndroidJoysick\lDeviceManager::gamepadWasUpdated\lFromJINBridge" alt="" coords="1124,90,1378,142"/>
+<area shape="rect" id="node12" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2a9e26628802fdafd65935996ebc9e8d" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadAction" alt="" coords="1139,171,1362,210"/>
+<area shape="rect" id="node6" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#af9cd9daa2e5c3b77f18d8a43a24a7d6a" title="freestick::FSDirectInput\lJoystickManager::updateJoysticksPOV" alt="" coords="1430,24,1682,63"/>
+<area shape="rect" id="node7" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#ae41d9f4049f13d2713171a92c871c57c" title="freestick::FSDirectInput\lJoystickManager::updateJoysticks" alt="" coords="1731,24,1954,63"/>
+<area shape="rect" id="node10" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a0349b8bfcbabdb845acbbfcd2aed0a7a" title="freestick::FSDirectInput\lJoystickManager::updateJoysticksAxis" alt="" coords="1432,87,1680,126"/>
+<area shape="rect" id="node8" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a51aeec5940323e120428ec94b04a076b" title="freestick::FSDirectInput\lJoystickManager::update" alt="" coords="2003,24,2173,63"/>
+<area shape="rect" id="node9" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a8b07b04816b89940f86156a5ae5f3078" title="freestick::FSDirectInput\lJoystickManager::init" alt="" coords="2221,24,2381,63"/>
+<area shape="rect" id="node13" href="_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a9c389b27da91df71189be1b7a6daf743" title="setupIOHDIManager" alt="" coords="1484,303,1628,328"/>
+<area shape="rect" id="node14" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::init" alt="" coords="1731,296,1954,335"/>
+<area shape="rect" id="node16" href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#ae1bb22c2e080717f4183e717277999e1" title="freestick::FSHIDAndroidJoysick\lDeviceManager::gamepadWasAddedFrom\lJINBridge" alt="" coords="798,299,1071,351"/>
+<area shape="rect" id="node17" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a4ad73c0ebcaad2daf322dc7eed42492e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::addDevice" alt="" coords="823,236,1046,275"/>
+<area shape="rect" id="node20" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a795406dd5905c74c460bcd5ecc9e87b9" title="freestick::FSDirectInput\lJoystickManager::addDevice" alt="" coords="839,375,1031,414"/>
+<area shape="rect" id="node18" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a7d3b860eb8305da72ddf3a4649614d2e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadWasAdded" alt="" coords="1129,296,1372,335"/>
+<area shape="rect" id="node19" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a37672c3beb149385bfba1bb0119efd43" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::addDevice" alt="" coords="1139,234,1362,272"/>
+<area shape="rect" id="node21" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a1e88f8429cdf730b6c15a56993d86d1b" title="freestick::FSDirectInput\lJoystickManager::addDevice" alt="" coords="1155,359,1347,398"/>
+<area shape="rect" id="node23" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a0da12b7477919c79cc55ba39e02638cc" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::removeDevice" alt="" coords="823,456,1046,495"/>
+<area shape="rect" id="node26" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a5257e94de81f6c15334803bb9bbf4d44" title="freestick::FSDirectInput\lJoystickManager::removeDevice" alt="" coords="828,538,1042,576"/>
+<area shape="rect" id="node24" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#aace77ce7465a2261e16d509a6d63515c" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadWasRemoved" alt="" coords="1120,422,1381,460"/>
+<area shape="rect" id="node25" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#ad5d7f537afcd6e0cc877ebc2b2a2ac30" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::removeDevice" alt="" coords="1139,484,1362,523"/>
+<area shape="rect" id="node27" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#ae6006c47f0411935db23ae7c90e2bc03" title="freestick::FSDirectInput\lJoystickManager::removeDevice" alt="" coords="1144,547,1358,586"/>
 </map>
 </div>
 </p>
@@ -855,7 +1015,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classfreestick_1_1_f_s_base_manager_aea96b06e4dd4d19a02149b38afa44c1e_icgraph.png" border="0" usemap="#classfreestick_1_1_f_s_base_manager_aea96b06e4dd4d19a02149b38afa44c1e_icgraph" alt=""/></div>
 <map name="classfreestick_1_1_f_s_base_manager_aea96b06e4dd4d19a02149b38afa44c1e_icgraph" id="classfreestick_1_1_f_s_base_manager_aea96b06e4dd4d19a02149b38afa44c1e_icgraph">
-<area shape="rect" id="node2" href="classfreestick_1_1_f_s_base_manager.html#a17d0ec4045a8251edbc876a7c4b9732d" title="freestick::FSBaseManager\l::UnListenForAllJoysticksForEventTypes" alt="" coords="304,5,560,46"/>
+<area shape="rect" id="node2" href="classfreestick_1_1_f_s_base_manager.html#a17d0ec4045a8251edbc876a7c4b9732d" title="freestick::FSBaseManager\l::UnListenForAllJoysticksForEventTypes" alt="" coords="307,5,567,43"/>
 </map>
 </div>
 </p>
@@ -865,6 +1025,9 @@ Here is the caller graph for this function:</div>
 <a class="anchor" id="a17d0ec4045a8251edbc876a7c4b9732d"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void FSBaseManager::UnListenForAllJoysticksForEventTypes </td>
@@ -884,6 +1047,11 @@ Here is the caller graph for this function:</div>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p><div class="dynheader">
@@ -891,7 +1059,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classfreestick_1_1_f_s_base_manager_a17d0ec4045a8251edbc876a7c4b9732d_cgraph.png" border="0" usemap="#classfreestick_1_1_f_s_base_manager_a17d0ec4045a8251edbc876a7c4b9732d_cgraph" alt=""/></div>
 <map name="classfreestick_1_1_f_s_base_manager_a17d0ec4045a8251edbc876a7c4b9732d_cgraph" id="classfreestick_1_1_f_s_base_manager_a17d0ec4045a8251edbc876a7c4b9732d_cgraph">
-<area shape="rect" id="node2" href="classfreestick_1_1_f_s_base_manager.html#aea96b06e4dd4d19a02149b38afa44c1e" title="freestick::FSBaseManager\l::UnListenForAllJoysticksForEventType" alt="" coords="310,5,559,46"/>
+<area shape="rect" id="node2" href="classfreestick_1_1_f_s_base_manager.html#aea96b06e4dd4d19a02149b38afa44c1e" title="freestick::FSBaseManager\l::UnListenForAllJoysticksForEventType" alt="" coords="315,5,568,43"/>
 </map>
 </div>
 </p>
@@ -925,13 +1093,14 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classfreestick_1_1_f_s_base_manager_afe89aed4e7fb5056df31bc8dd00865cc_cgraph.png" border="0" usemap="#classfreestick_1_1_f_s_base_manager_afe89aed4e7fb5056df31bc8dd00865cc_cgraph" alt=""/></div>
 <map name="classfreestick_1_1_f_s_base_manager_afe89aed4e7fb5056df31bc8dd00865cc_cgraph" id="classfreestick_1_1_f_s_base_manager_afe89aed4e7fb5056df31bc8dd00865cc_cgraph">
-<area shape="rect" id="node2" href="classfreestick_1_1_f_s_base_event.html#a1709a72b114af0962dcc714a05172401" title="freestick::FSBaseEvent\l::getEventType" alt="" coords="247,5,406,46"/>
-<area shape="rect" id="node3" href="classfreestick_1_1_i_f_s_joystick_listener.html#a6b6b2c18f8c55b3affb08ec3df722835" title="freestick::IFSJoystickListener\l::onConnect" alt="" coords="230,70,423,111"/>
-<area shape="rect" id="node4" href="classfreestick_1_1_i_f_s_joystick_listener.html#a95388d540390b07d3f8144157ab477d0" title="freestick::IFSJoystickListener\l::onDisconnect" alt="" coords="230,135,423,177"/>
-<area shape="rect" id="node5" href="classfreestick_1_1_f_s_base_event.html#a4cf1099067b90d3fa4d2e04b7ec7a235" title="freestick::FSBaseEvent\l::getEventAction" alt="" coords="247,201,406,242"/>
-<area shape="rect" id="node6" href="classfreestick_1_1_i_f_s_joystick_listener.html#a4691ee7bd2c18091af109d66e194d204" title="freestick::IFSJoystickListener\l::onButtonDown" alt="" coords="230,266,423,307"/>
-<area shape="rect" id="node7" href="classfreestick_1_1_i_f_s_joystick_listener.html#a7f4b6975f5660aae58e887a7d45621bc" title="freestick::IFSJoystickListener\l::onButtonUp" alt="" coords="230,331,423,373"/>
-<area shape="rect" id="node8" href="classfreestick_1_1_i_f_s_joystick_listener.html#a1e62375dcb578382e619eb047e839c43" title="freestick::IFSJoystickListener\l::onStickMove" alt="" coords="230,397,423,438"/>
+<area shape="rect" id="node2" href="classfreestick_1_1_f_s_base_event.html#a1709a72b114af0962dcc714a05172401" title="freestick::FSBaseEvent\l::getEventType" alt="" coords="257,5,417,43"/>
+<area shape="rect" id="node3" href="classfreestick_1_1_i_f_s_joystick_listener.html#a6b6b2c18f8c55b3affb08ec3df722835" title="freestick::IFSJoystickListener\l::onConnect" alt="" coords="240,67,434,106"/>
+<area shape="rect" id="node4" href="classfreestick_1_1_i_f_s_joystick_listener.html#a95388d540390b07d3f8144157ab477d0" title="freestick::IFSJoystickListener\l::onDisconnect" alt="" coords="240,130,434,169"/>
+<area shape="rect" id="node5" href="classfreestick_1_1_f_s_base_event.html#a4cf1099067b90d3fa4d2e04b7ec7a235" title="freestick::FSBaseEvent\l::getEventAction" alt="" coords="257,193,417,231"/>
+<area shape="rect" id="node6" href="classfreestick_1_1_i_f_s_joystick_listener.html#a4691ee7bd2c18091af109d66e194d204" title="freestick::IFSJoystickListener\l::onButtonDown" alt="" coords="240,255,434,294"/>
+<area shape="rect" id="node7" href="classfreestick_1_1_i_f_s_joystick_listener.html#a7f4b6975f5660aae58e887a7d45621bc" title="freestick::IFSJoystickListener\l::onButtonUp" alt="" coords="240,318,434,357"/>
+<area shape="rect" id="node8" href="classfreestick_1_1_i_f_s_joystick_listener.html#a1e62375dcb578382e619eb047e839c43" title="freestick::IFSJoystickListener\l::onStickMove" alt="" coords="240,381,434,419"/>
+<area shape="rect" id="node9" href="classfreestick_1_1_f_s_base_manager.html#a63c7307da0cd0ad3ca9af6f7519db279" title="freestick::FSBaseManager\l::RemoveListenerForEventType" alt="" coords="233,443,442,482"/>
 </map>
 </div>
 </p>
@@ -941,24 +1110,55 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classfreestick_1_1_f_s_base_manager_afe89aed4e7fb5056df31bc8dd00865cc_icgraph.png" border="0" usemap="#classfreestick_1_1_f_s_base_manager_afe89aed4e7fb5056df31bc8dd00865cc_icgraph" alt=""/></div>
 <map name="classfreestick_1_1_f_s_base_manager_afe89aed4e7fb5056df31bc8dd00865cc_icgraph" id="classfreestick_1_1_f_s_base_manager_afe89aed4e7fb5056df31bc8dd00865cc_icgraph">
-<area shape="rect" id="node2" href="classfreestick_1_1_f_s_base_manager.html#a3713b84dda3583ed13f5b1bfebc75574" title="freestick::FSBaseManager\l::inputOnDeviceChangedWithNormilzed\lValues" alt="" coords="230,71,479,127"/>
-<area shape="rect" id="node8" href="classfreestick_1_1_f_s_base_manager.html#a2055fefcc07e10a37b430a5486b086a1" title="freestick::FSBaseManager\l::addDevice" alt="" coords="267,210,443,251"/>
-<area shape="rect" id="node13" href="classfreestick_1_1_f_s_base_manager.html#ac531f509ef2600f343208d0f43747840" title="freestick::FSBaseManager\l::removeDevice" alt="" coords="267,275,443,317"/>
-<area shape="rect" id="node3" href="classfreestick_1_1_f_s_base_manager.html#a37ece0b75c1085293fe53439b82ae9c5" title="freestick::FSBaseManager\l::inputOnDeviceChanged" alt="" coords="573,49,749,90"/>
-<area shape="rect" id="node4" href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#ad1dadcd770d1daa68363d6952c93f89a" title="freestick::FSHIDAndroidJoysick\lDeviceManager::gamepadWasUpdated\lFromJINBridge" alt="" coords="845,5,1091,61"/>
-<area shape="rect" id="node5" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2a9e26628802fdafd65935996ebc9e8d" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadAction" alt="" coords="857,107,1079,149"/>
-<area shape="rect" id="node6" href="_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a9c389b27da91df71189be1b7a6daf743" title="setupIOHDIManager" alt="" coords="1141,188,1280,215"/>
-<area shape="rect" id="node7" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::init" alt="" coords="1329,181,1551,222"/>
-<area shape="rect" id="node9" href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#ae1bb22c2e080717f4183e717277999e1" title="freestick::FSHIDAndroidJoysick\lDeviceManager::gamepadWasAddedFrom\lJINBridge" alt="" coords="529,165,794,221"/>
-<area shape="rect" id="node10" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a4ad73c0ebcaad2daf322dc7eed42492e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::addDevice" alt="" coords="550,246,773,287"/>
-<area shape="rect" id="node11" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a7d3b860eb8305da72ddf3a4649614d2e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadWasAdded" alt="" coords="851,181,1085,222"/>
-<area shape="rect" id="node12" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a37672c3beb149385bfba1bb0119efd43" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::addDevice" alt="" coords="857,246,1079,287"/>
-<area shape="rect" id="node14" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a0da12b7477919c79cc55ba39e02638cc" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::removeDevice" alt="" coords="550,311,773,353"/>
-<area shape="rect" id="node15" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#aace77ce7465a2261e16d509a6d63515c" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadWasRemoved" alt="" coords="843,311,1093,353"/>
-<area shape="rect" id="node16" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#ad5d7f537afcd6e0cc877ebc2b2a2ac30" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::removeDevice" alt="" coords="857,377,1079,418"/>
+<area shape="rect" id="node2" href="classfreestick_1_1_f_s_base_manager.html#af10f1fd85c3d92f63bcdbf71a41dbe3e" title="freestick::FSBaseManager\l::inputOnDeviceChangedWithNormilzed\lValues" alt="" coords="233,115,490,167"/>
+<area shape="rect" id="node14" href="classfreestick_1_1_f_s_base_manager.html#a2055fefcc07e10a37b430a5486b086a1" title="freestick::FSBaseManager\l::addDevice" alt="" coords="272,306,451,344"/>
+<area shape="rect" id="node21" href="classfreestick_1_1_f_s_base_manager.html#ac531f509ef2600f343208d0f43747840" title="freestick::FSBaseManager\l::removeDevice" alt="" coords="272,456,451,495"/>
+<area shape="rect" id="node3" href="classfreestick_1_1_f_s_base_manager.html#a2598956900e592004e01b4ab5b732098" title="freestick::FSBaseManager\l::inputOnDeviceChanged" alt="" coords="587,122,765,160"/>
+<area shape="rect" id="node4" href="classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html#ad8a4534e53febe3964b7a64a66d34a22" title="freestick::FSUSBJoystick\lDeviceManager::updateEvents" alt="" coords="890,24,1094,63"/>
+<area shape="rect" id="node10" href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#ad1dadcd770d1daa68363d6952c93f89a" title="freestick::FSHIDAndroidJoysick\lDeviceManager::gamepadWasUpdated\lFromJINBridge" alt="" coords="865,90,1119,142"/>
+<area shape="rect" id="node11" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2a9e26628802fdafd65935996ebc9e8d" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadAction" alt="" coords="880,171,1104,210"/>
+<area shape="rect" id="node5" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#af9cd9daa2e5c3b77f18d8a43a24a7d6a" title="freestick::FSDirectInput\lJoystickManager::updateJoysticksPOV" alt="" coords="1171,24,1423,63"/>
+<area shape="rect" id="node6" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#ae41d9f4049f13d2713171a92c871c57c" title="freestick::FSDirectInput\lJoystickManager::updateJoysticks" alt="" coords="1472,24,1696,63"/>
+<area shape="rect" id="node9" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a0349b8bfcbabdb845acbbfcd2aed0a7a" title="freestick::FSDirectInput\lJoystickManager::updateJoysticksAxis" alt="" coords="1173,87,1422,126"/>
+<area shape="rect" id="node7" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a51aeec5940323e120428ec94b04a076b" title="freestick::FSDirectInput\lJoystickManager::update" alt="" coords="1745,24,1914,63"/>
+<area shape="rect" id="node8" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a8b07b04816b89940f86156a5ae5f3078" title="freestick::FSDirectInput\lJoystickManager::init" alt="" coords="1963,24,2123,63"/>
+<area shape="rect" id="node12" href="_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a9c389b27da91df71189be1b7a6daf743" title="setupIOHDIManager" alt="" coords="1226,303,1369,328"/>
+<area shape="rect" id="node13" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::init" alt="" coords="1472,296,1696,335"/>
+<area shape="rect" id="node15" href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#ae1bb22c2e080717f4183e717277999e1" title="freestick::FSHIDAndroidJoysick\lDeviceManager::gamepadWasAddedFrom\lJINBridge" alt="" coords="539,299,813,351"/>
+<area shape="rect" id="node16" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a4ad73c0ebcaad2daf322dc7eed42492e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::addDevice" alt="" coords="564,236,788,275"/>
+<area shape="rect" id="node19" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a795406dd5905c74c460bcd5ecc9e87b9" title="freestick::FSDirectInput\lJoystickManager::addDevice" alt="" coords="580,375,772,414"/>
+<area shape="rect" id="node17" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a7d3b860eb8305da72ddf3a4649614d2e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadWasAdded" alt="" coords="871,296,1113,335"/>
+<area shape="rect" id="node18" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a37672c3beb149385bfba1bb0119efd43" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::addDevice" alt="" coords="880,234,1104,272"/>
+<area shape="rect" id="node20" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a1e88f8429cdf730b6c15a56993d86d1b" title="freestick::FSDirectInput\lJoystickManager::addDevice" alt="" coords="896,359,1088,398"/>
+<area shape="rect" id="node22" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a0da12b7477919c79cc55ba39e02638cc" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::removeDevice" alt="" coords="564,456,788,495"/>
+<area shape="rect" id="node25" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a5257e94de81f6c15334803bb9bbf4d44" title="freestick::FSDirectInput\lJoystickManager::removeDevice" alt="" coords="569,538,783,576"/>
+<area shape="rect" id="node23" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#aace77ce7465a2261e16d509a6d63515c" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadWasRemoved" alt="" coords="862,422,1122,460"/>
+<area shape="rect" id="node24" href="classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#ad5d7f537afcd6e0cc877ebc2b2a2ac30" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::removeDevice" alt="" coords="880,484,1104,523"/>
+<area shape="rect" id="node26" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#ae6006c47f0411935db23ae7c90e2bc03" title="freestick::FSDirectInput\lJoystickManager::removeDevice" alt="" coords="885,547,1099,586"/>
 </map>
 </div>
 </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a070de9967b62095da08fd13844f8eba3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unordered_map&lt;unsigned int, <a class="el" href="classfreestick_1_1_f_s_base_device.html">FSBaseDevice</a> * &gt; freestick::FSBaseManager::deviceMap</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -969,7 +1169,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Aug 14 2015 01:58:49 for FreeStick by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Dec 9 2015 17:47:05 for FreeStick by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

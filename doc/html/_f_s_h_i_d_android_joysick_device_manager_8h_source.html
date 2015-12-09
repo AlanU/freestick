@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">FreeStick
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">0.2</span>
    </div>
    <div id="projectbrief">Cross Platform Open Sorce Joystick Lib</div>
   </td>
@@ -137,7 +137,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#a02e3a6d3796003918359cbfe7d574cfb">addAndroidMapping</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> androidEventType,<a class="code" href="namespacefreestick.html#ac52f7c0e8161f2de5d68e3c073486a8a">FSDeviceInput</a> deviceInput);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#aa7df1e952f3a9f713e76eb96cf0e1a82">update</a>();</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        std::map&lt;int,unsigned int&gt; _androidIDToIDMap;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        std::map&lt;int,ElementID&gt; _androidIDToIDMap;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="comment">//Requires two maps since motion events and key events defines collide</span></div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        std::map&lt;unsigned int,FSDeviceInput &gt; _androidButtonUsageMapToInputEvent;<span class="comment">//KeyEvents</span></div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        std::map&lt;unsigned int,FSDeviceInput &gt; _androidAxisnUsageMapToInputEvent;<span class="comment">//MotionEvents</span></div>
@@ -152,7 +152,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager_html_aa7df1e952f3a9f713e76eb96cf0e1a82"><div class="ttname"><a href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#aa7df1e952f3a9f713e76eb96cf0e1a82">freestick::FSHIDAndroidJoysickDeviceManager::update</a></div><div class="ttdeci">void update()</div><div class="ttdef"><b>Definition:</b> FSHIDAndroidJoysickDeviceManager.cpp:272</div></div>
 <div class="ttc" id="_f_s_j_n_i___wrapper_8h_html"><div class="ttname"><a href="_f_s_j_n_i___wrapper_8h.html">FSJNI_Wrapper.h</a></div></div>
 <div class="ttc" id="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager_html_a6d47d77f5ce23d8ddf620149b2cc0a6b"><div class="ttname"><a href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#a6d47d77f5ce23d8ddf620149b2cc0a6b">freestick::FSHIDAndroidJoysickDeviceManager::init</a></div><div class="ttdeci">virtual void init()</div><div class="ttdef"><b>Definition:</b> FSHIDAndroidJoysickDeviceManager.cpp:112</div></div>
-<div class="ttc" id="_f_s_j_n_i___wrapper_8h_html_aa5091748198d48cceb18788fd2b05f73"><div class="ttname"><a href="_f_s_j_n_i___wrapper_8h.html#aa5091748198d48cceb18788fd2b05f73">JNICallBackType</a></div><div class="ttdeci">JNICallBackType</div><div class="ttdef"><b>Definition:</b> FSJNI_Wrapper.h:34</div></div>
+<div class="ttc" id="_f_s_j_n_i___wrapper_8h_html_aa5091748198d48cceb18788fd2b05f73"><div class="ttname"><a href="_f_s_j_n_i___wrapper_8h.html#aa5091748198d48cceb18788fd2b05f73">JNICallBackType</a></div><div class="ttdeci">JNICallBackType</div><div class="ttdef"><b>Definition:</b> FSJNI_Wrapper.h:35</div></div>
 <div class="ttc" id="_f_s_u_s_b_joystick_device_manager_8h_html"><div class="ttname"><a href="_f_s_u_s_b_joystick_device_manager_8h.html">FSUSBJoystickDeviceManager.h</a></div></div>
 <div class="ttc" id="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager_html_ad7eb8ab83b1ebf0bccd78555fdb0b7f3"><div class="ttname"><a href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#ad7eb8ab83b1ebf0bccd78555fdb0b7f3">freestick::FSHIDAndroidJoysickDeviceManager::gamepadWasRemovedFromJINBridge</a></div><div class="ttdeci">virtual void gamepadWasRemovedFromJINBridge(int hid_id)</div><div class="ttdef"><b>Definition:</b> FSHIDAndroidJoysickDeviceManager.cpp:254</div></div>
 <div class="ttc" id="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager_html_a02e3a6d3796003918359cbfe7d574cfb"><div class="ttname"><a href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html#a02e3a6d3796003918359cbfe7d574cfb">freestick::FSHIDAndroidJoysickDeviceManager::addAndroidMapping</a></div><div class="ttdeci">void addAndroidMapping(unsigned int androidEventType, FSDeviceInput deviceInput)</div><div class="ttdef"><b>Definition:</b> FSHIDAndroidJoysickDeviceManager.cpp:52</div></div>
@@ -165,7 +165,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Aug 14 2015 01:58:48 for FreeStick by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Dec 9 2015 17:47:05 for FreeStick by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

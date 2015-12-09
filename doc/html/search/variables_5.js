@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['inputdevice_5fsource_5fdpad',['InputDevice_SOURCE_DPAD',['../_f_s_j_n_i___wrapper_8cpp.html#a57f450dffbfb986d47ca6f7d17aae9fa',1,'FSJNI_Wrapper.cpp']]],
-  ['inputdevice_5fsource_5fgamepad',['InputDevice_SOURCE_GAMEPAD',['../_f_s_j_n_i___wrapper_8cpp.html#a926624cdc3a919a17f401aaf4e3d6e71',1,'FSJNI_Wrapper.cpp']]],
-  ['inputdevice_5fsource_5fjoystick',['InputDevice_SOURCE_JOYSTICK',['../_f_s_j_n_i___wrapper_8cpp.html#ae64eb8af30d87a27b071e5b7fe490033',1,'FSJNI_Wrapper.cpp']]]
+  ['hvg2twinps2',['HVG2TwinPS2',['../namespacefreestick.html#af34e2e879582827871203ca7072e075a',1,'freestick']]],
+  ['hvg2venderid',['HVG2VenderID',['../namespacefreestick.html#a2135bbf4152d88dd4b03f0f2d0278222',1,'freestick']]]
 ];

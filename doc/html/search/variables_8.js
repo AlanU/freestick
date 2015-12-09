@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['ouyacontrollerid',['OUYAControllerID',['../namespacefreestick.html#a830dad894a25c9da738a650a71775f02',1,'freestick']]],
-  ['ouyavendorid',['OUYAVendorID',['../namespacefreestick.html#aa5c9edf8b9d6a8f42261be0e00ad21af',1,'freestick']]]
+  ['logitechdualactionid',['LogitechDualActionID',['../namespacefreestick.html#ae1ed3781b3591b9a5ae537e5266e0dd4',1,'freestick']]],
+  ['logitechgamepadf310',['LogitechGamepadF310',['../namespacefreestick.html#a651adda5e10c9cbb2078fe4aaa0fe781',1,'freestick']]],
+  ['logitechvendorid',['LogitechVendorID',['../namespacefreestick.html#a82938db32b0f31d50928cb2adfcbc798',1,'freestick']]]
 ];

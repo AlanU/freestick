@@ -1,15 +1,9 @@
 var searchData=
 [
-  ['_7eeeassertstream',['~EEAssertStream',['../class_e_e_assert_stream.html#a6c1228bfc3e6e7b1ca731c05ec70797a',1,'EEAssertStream']]],
-  ['_7eeestream',['~EEStream',['../class_e_e_stream.html#a534bacdc96f25886cdb6b57ecd813dfd',1,'EEStream']]],
-  ['_7efsandroidjoystick',['~FSAndroidJoystick',['../classfreestick_1_1_f_s_android_joystick.html#adf8f22d2c4188221ad5698fe818e66b9',1,'freestick::FSAndroidJoystick']]],
-  ['_7efsbasedevice',['~FSBaseDevice',['../classfreestick_1_1_f_s_base_device.html#a8e83201f2fdb701fc95996fe3417e494',1,'freestick::FSBaseDevice']]],
-  ['_7efsbasemanager',['~FSBaseManager',['../classfreestick_1_1_f_s_base_manager.html#a2df9d525fcf7ef537dcbd986cb3d71ae',1,'freestick::FSBaseManager']]],
-  ['_7efsusbdevicemanager',['~FSUSBDeviceManager',['../classfreestick_1_1_f_s_u_s_b_device_manager.html#aa456765769a1c72d3e738255a38e04e3',1,'freestick::FSUSBDeviceManager']]],
-  ['_7efsusbjoystick',['~FSUSBJoystick',['../classfreestick_1_1_f_s_u_s_b_joystick.html#ae4fd2a735b547fd9061d1629a6d4d72b',1,'freestick::FSUSBJoystick']]],
-  ['_7efsusbjoystickdevicemanager',['~FSUSBJoystickDeviceManager',['../classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html#ad798ffd7661aba236d5a40e88f27ea1c',1,'freestick::FSUSBJoystickDeviceManager']]],
-  ['_7efsusbmacosxjoystick',['~FSUSBMacOSXJoystick',['../classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick.html#a0f4b96d904560be49a00a8c11f3972d5',1,'freestick::FSUSBMacOSXJoystick']]],
-  ['_7efsusbmacosxjoystickdevicemanager',['~FSUSBMacOSXJoystickDeviceManager',['../classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#afd93cb6c527e44a2d774cbf019599ba2',1,'freestick::FSUSBMacOSXJoystickDeviceManager']]],
-  ['_7efsusbnulljoystickdevicemanager',['~FSUSBNullJoystickDeviceManager',['../classfreestick_1_1_f_s_u_s_b_null_joystick_device_manager.html#a2c227d479f29d110e468e3ad5ebeb1d8',1,'freestick::FSUSBNullJoystickDeviceManager']]],
-  ['_7eifsdevice',['~IFSDevice',['../classfreestick_1_1_i_f_s_device.html#a2ea920f43893aab25afa4a4b4ad12693',1,'freestick::IFSDevice']]]
+  ['y_5fbutton_5fxinput_5feid',['Y_BUTTON_XINPUT_EID',['../_f_s_x_input_joystick_8h.html#abebd72ecee7eda806a576a88ccd3178e',1,'FSXInputJoystick.h']]],
+  ['yaxis',['YAxis',['../namespacefreestick.html#ac52f7c0e8161f2de5d68e3c073486a8aa618e4b239d32f98c80649d9b0693e017',1,'freestick']]],
+  ['yaxis2',['YAxis2',['../namespacefreestick.html#ac52f7c0e8161f2de5d68e3c073486a8aa7584d951bd92c4eb0e4f73caaa14e859',1,'freestick']]],
+  ['yaxis2_5fxinput_5feid',['YAXIS2_XINPUT_EID',['../_f_s_x_input_joystick_8h.html#a109532949c28783613c9c98102521795',1,'FSXInputJoystick.h']]],
+  ['yaxis3',['YAxis3',['../namespacefreestick.html#ac52f7c0e8161f2de5d68e3c073486a8aabc2368548782d51231fab4b118ac461d',1,'freestick']]],
+  ['yaxis_5fxinput_5feid',['YAXIS_XINPUT_EID',['../_f_s_x_input_joystick_8h.html#a6cead2d0ec38af6dfc6346d2c41b981b',1,'FSXInputJoystick.h']]]
 ];

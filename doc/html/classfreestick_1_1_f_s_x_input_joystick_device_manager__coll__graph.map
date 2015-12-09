@@ -1,0 +1,6 @@
+<map id="freestick::FSXInputJoystickDeviceManager" name="freestick::FSXInputJoystickDeviceManager">
+<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_updatable_joystick_device_manager.html" title="freestick::FSUpdatableJoystick\lDeviceManager" alt="" coords="12,243,215,282"/>
+<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html" title="freestick::FSUSBJoystick\lDeviceManager" alt="" coords="28,155,197,194"/>
+<area shape="rect" id="node4" href="$classfreestick_1_1_f_s_u_s_b_device_manager.html" title="freestick::FSUSBDeviceManager" alt="" coords="5,81,221,106"/>
+<area shape="rect" id="node5" href="$classfreestick_1_1_f_s_base_manager.html" title="This is the base manager. " alt="" coords="24,6,201,31"/>
+</map>

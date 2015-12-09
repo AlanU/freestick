@@ -1,6 +1,7 @@
 var searchData=
 [
   ['ifsdevice_2eh',['IFSDevice.h',['../_i_f_s_device_8h.html',1,'']]],
+  ['ifsdeviceidcreator_2eh',['IFSDeviceIDCreator.h',['../_i_f_s_device_i_d_creator_8h.html',1,'']]],
   ['ifsevent_2eh',['IFSEvent.h',['../_i_f_s_event_8h.html',1,'']]],
   ['ifsjoystickinfo_2eh',['IFSJoystickInfo.h',['../_i_f_s_joystick_info_8h.html',1,'']]],
   ['ifsjoysticklistener_2eh',['IFSJoystickListener.h',['../_i_f_s_joystick_listener_8h.html',1,'']]],

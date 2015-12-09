@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['amazonfiregamecontrollerid',['AmazonFireGameControllerID',['../namespacefreestick.html#ab165ab7ea2828ddbe7614a65389ee926',1,'freestick']]],
-  ['amazonvendorid',['AmazonVendorID',['../namespacefreestick.html#a273a6d00ba33aed1311406ac70570b0b',1,'freestick']]]
+  ['amazonfiregamecontrollerid',['AmazonFireGameControllerID',['../namespacefreestick.html#ac2d0b737b2b50afba559ac9cd3342511',1,'freestick']]],
+  ['amazonvendorid',['AmazonVendorID',['../namespacefreestick.html#a80cc5cfea60c17b585fbbc1350b565c6',1,'freestick']]]
 ];

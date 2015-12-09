@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">FreeStick
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">0.2</span>
    </div>
    <div id="projectbrief">Cross Platform Open Sorce Joystick Lib</div>
   </td>
@@ -129,64 +129,69 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &lt;ostream&gt;</span></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &lt;sstream&gt;</span></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">//TODO add NULL stream for disabling a level</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805">   39</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805">EELogLevels</a></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{</div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805a0dfe004908cc0a578e8dc3cff113926e">   41</a></span>&#160;    <a class="code" href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805a0dfe004908cc0a578e8dc3cff113926e">EE_LEVEL_INFO</a> = 0,</div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805a1b65d9e8432350cfb7deec991269fe15">   42</a></span>&#160;    <a class="code" href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805a1b65d9e8432350cfb7deec991269fe15">EE_LEVEL_WARNING</a>,</div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805a86f760dcb987bb97c645b701b20ef9b7">   43</a></span>&#160;    <a class="code" href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805a86f760dcb987bb97c645b701b20ef9b7">EE_LEVEL_ERROR</a>,</div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805a63d64bfa789b7e6043bd9e3a21d792e2">   44</a></span>&#160;    <a class="code" href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805a63d64bfa789b7e6043bd9e3a21d792e2">EE_LEVEL_DEBUG</a>,</div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805ad2361a2f717e99c0ac415b39f105be95">   45</a></span>&#160;    <a class="code" href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805ad2361a2f717e99c0ac415b39f105be95">EE_LEVEL_LAST</a>,</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;};</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="_e_e_log_8h.html#aa18ea87258aed05f7ced1d448762e6ad">   48</a></span>&#160;<span class="preprocessor">#define EE_INFO EELog::GetInstance()-&gt;GetLogLevel(EE_LEVEL_INFO)</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="_e_e_log_8h.html#ab41e0c1e25e2b24289b2f4835ace4ecb">   49</a></span>&#160;<span class="preprocessor">#define EE_WARNING EELog::GetInstance()-&gt;GetLogLevel(EE_LEVEL_WARNING)</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="_e_e_log_8h.html#a03279e5d413fa6cc8b020ec60b58431b">   50</a></span>&#160;<span class="preprocessor">#define EE_ERROR  EELog::GetInstance()-&gt;GetLogLevel(EE_LEVEL_ERROR)</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="_e_e_log_8h.html#ae338c4ace193a43cf8d29c3e79968d05">   51</a></span>&#160;<span class="preprocessor">#define EE_DEBUG EELog::GetInstance()-&gt;GetLogLevel(EE_LEVEL_DEBUG)</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="class_e_e_log.html">   53</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_e_e_log.html">EELog</a></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;{</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_e_e_log.html">EELog</a> * <a class="code" href="class_e_e_log.html#a3c83743b9223be2b206001fc8d9576ad">GetInstance</a>();</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_e_e_log.html#a1c1d0828c304d7919d1fbb726b21e959">Destroy</a>();</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="class_e_e_stream.html">EEStream</a> &amp; <a class="code" href="class_e_e_log.html#a55a5b2b5023752f15755183b89235e18">GetLogLevel</a>(<a class="code" href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805">EELogLevels</a> _Level);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="class_e_e_log.html#af18687e61c994d84a4ad1bfb637bdd81">   62</a></span>&#160;    <a class="code" href="class_e_e_stream.html">EEStream</a> * <a class="code" href="class_e_e_log.html#af18687e61c994d84a4ad1bfb637bdd81">m_StreamLevels</a>[<a class="code" href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805ad2361a2f717e99c0ac415b39f105be95">EE_LEVEL_LAST</a>];</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_e_e_log.html">EELog</a> * EELogInstance;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="class_e_e_log.html">EELog</a>(){};</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    ~<a class="code" href="class_e_e_log.html">EELog</a>(){};</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="class_e_e_log.html">EELog</a>(<span class="keyword">const</span> <a class="code" href="class_e_e_log.html">EELog</a> &amp;){};</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="class_e_e_log.html">EELog</a> &amp; operator = (<span class="keyword">const</span> <a class="code" href="class_e_e_log.html">EELog</a> &amp;)</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    }</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">void</span> Init();</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">void</span> TearDown();</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">void</span> PrependLevelInformation(<a class="code" href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805">EELogLevels</a> _Level);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;};</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="_e_e_log_8h_html_a63841c5f5ee022b66026eadca5489805a0dfe004908cc0a578e8dc3cff113926e"><div class="ttname"><a href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805a0dfe004908cc0a578e8dc3cff113926e">EE_LEVEL_INFO</a></div><div class="ttdef"><b>Definition:</b> EELog.h:41</div></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805">   38</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805">EELogLevels</a></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805a0dfe004908cc0a578e8dc3cff113926e">   40</a></span>&#160;    <a class="code" href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805a0dfe004908cc0a578e8dc3cff113926e">EE_LEVEL_INFO</a> = 0,</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805a1b65d9e8432350cfb7deec991269fe15">   41</a></span>&#160;    <a class="code" href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805a1b65d9e8432350cfb7deec991269fe15">EE_LEVEL_WARNING</a>,</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805a86f760dcb987bb97c645b701b20ef9b7">   42</a></span>&#160;    <a class="code" href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805a86f760dcb987bb97c645b701b20ef9b7">EE_LEVEL_ERROR</a>,</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805a63d64bfa789b7e6043bd9e3a21d792e2">   43</a></span>&#160;    <a class="code" href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805a63d64bfa789b7e6043bd9e3a21d792e2">EE_LEVEL_DEBUG</a>,</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805ad2361a2f717e99c0ac415b39f105be95">   44</a></span>&#160;    <a class="code" href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805ad2361a2f717e99c0ac415b39f105be95">EE_LEVEL_LAST</a>,</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;};</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#ifdef TURN_OFF_LOGGING</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">    #define EE_INFO EELog::GetInstance()-&gt;GetLogLevel(EE_LEVEL_INFO)</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">    #define EE_WARNING EELog::GetInstance()-&gt;GetLogLevel(EE_LEVEL_WARNING)</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">    #define EE_ERROR  EELog::GetInstance()-&gt;GetLogLevel(EE_LEVEL_ERROR)</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">    #define EE_DEBUG EELog::GetInstance()-&gt;GetLogLevel(EE_LEVEL_DEBUG)</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="_e_e_log_8h.html#aa18ea87258aed05f7ced1d448762e6ad">   52</a></span>&#160;<span class="preprocessor">    #define EE_INFO EELog::GetInstance()-&gt;GetLogLevel(EE_LEVEL_INFO)</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="_e_e_log_8h.html#ab41e0c1e25e2b24289b2f4835ace4ecb">   53</a></span>&#160;<span class="preprocessor">    #define EE_WARNING EELog::GetInstance()-&gt;GetLogLevel(EE_LEVEL_WARNING)</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="_e_e_log_8h.html#a03279e5d413fa6cc8b020ec60b58431b">   54</a></span>&#160;<span class="preprocessor">    #define EE_ERROR  EELog::GetInstance()-&gt;GetLogLevel(EE_LEVEL_ERROR)</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="_e_e_log_8h.html#ae338c4ace193a43cf8d29c3e79968d05">   55</a></span>&#160;<span class="preprocessor">    #define EE_DEBUG EELog::GetInstance()-&gt;GetLogLevel(EE_LEVEL_DEBUG)</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="class_e_e_log.html">   57</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_e_e_log.html">EELog</a></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;{</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_e_e_log.html">EELog</a> * <a class="code" href="class_e_e_log.html#a3c83743b9223be2b206001fc8d9576ad">GetInstance</a>();</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_e_e_log.html#ad9363ff998a8a6db5517a8a494924c31">Destroy</a>();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="class_e_e_stream.html">EEStream</a> &amp; <a class="code" href="class_e_e_log.html#a55a5b2b5023752f15755183b89235e18">GetLogLevel</a>(<a class="code" href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805">EELogLevels</a> _Level);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="class_e_e_log.html#af18687e61c994d84a4ad1bfb637bdd81">   66</a></span>&#160;    <a class="code" href="class_e_e_stream.html">EEStream</a> * <a class="code" href="class_e_e_log.html#af18687e61c994d84a4ad1bfb637bdd81">m_StreamLevels</a>[<a class="code" href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805ad2361a2f717e99c0ac415b39f105be95">EE_LEVEL_LAST</a>];</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_e_e_log.html">EELog</a> * EELogInstance;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">bool</span> isInited;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="class_e_e_log.html">EELog</a>(){isInited = <span class="keyword">false</span>;}</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    ~<a class="code" href="class_e_e_log.html">EELog</a>();</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <a class="code" href="class_e_e_log.html">EELog</a>(<span class="keyword">const</span> <a class="code" href="class_e_e_log.html">EELog</a> &amp;){};</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="class_e_e_log.html">EELog</a> &amp; operator = (<span class="keyword">const</span> <a class="code" href="class_e_e_log.html">EELog</a> &amp;)</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    }</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">void</span> Init();</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">void</span> TearDown();</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">void</span> PrependLevelInformation(<a class="code" href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805">EELogLevels</a> _Level);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;};</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="_e_e_log_8h_html_a63841c5f5ee022b66026eadca5489805a0dfe004908cc0a578e8dc3cff113926e"><div class="ttname"><a href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805a0dfe004908cc0a578e8dc3cff113926e">EE_LEVEL_INFO</a></div><div class="ttdef"><b>Definition:</b> EELog.h:40</div></div>
 <div class="ttc" id="_e_e_stream_8h_html"><div class="ttname"><a href="_e_e_stream_8h.html">EEStream.h</a></div></div>
-<div class="ttc" id="class_e_e_log_html_a3c83743b9223be2b206001fc8d9576ad"><div class="ttname"><a href="class_e_e_log.html#a3c83743b9223be2b206001fc8d9576ad">EELog::GetInstance</a></div><div class="ttdeci">static EELog * GetInstance()</div><div class="ttdef"><b>Definition:</b> EELog.cpp:41</div></div>
-<div class="ttc" id="class_e_e_log_html"><div class="ttname"><a href="class_e_e_log.html">EELog</a></div><div class="ttdef"><b>Definition:</b> EELog.h:53</div></div>
-<div class="ttc" id="class_e_e_log_html_af18687e61c994d84a4ad1bfb637bdd81"><div class="ttname"><a href="class_e_e_log.html#af18687e61c994d84a4ad1bfb637bdd81">EELog::m_StreamLevels</a></div><div class="ttdeci">EEStream * m_StreamLevels[EE_LEVEL_LAST]</div><div class="ttdef"><b>Definition:</b> EELog.h:62</div></div>
-<div class="ttc" id="_e_e_log_8h_html_a63841c5f5ee022b66026eadca5489805a86f760dcb987bb97c645b701b20ef9b7"><div class="ttname"><a href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805a86f760dcb987bb97c645b701b20ef9b7">EE_LEVEL_ERROR</a></div><div class="ttdef"><b>Definition:</b> EELog.h:43</div></div>
-<div class="ttc" id="_e_e_log_8h_html_a63841c5f5ee022b66026eadca5489805a1b65d9e8432350cfb7deec991269fe15"><div class="ttname"><a href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805a1b65d9e8432350cfb7deec991269fe15">EE_LEVEL_WARNING</a></div><div class="ttdef"><b>Definition:</b> EELog.h:42</div></div>
-<div class="ttc" id="class_e_e_log_html_a55a5b2b5023752f15755183b89235e18"><div class="ttname"><a href="class_e_e_log.html#a55a5b2b5023752f15755183b89235e18">EELog::GetLogLevel</a></div><div class="ttdeci">EEStream &amp; GetLogLevel(EELogLevels _Level)</div><div class="ttdef"><b>Definition:</b> EELog.cpp:109</div></div>
-<div class="ttc" id="_e_e_log_8h_html_a63841c5f5ee022b66026eadca5489805"><div class="ttname"><a href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805">EELogLevels</a></div><div class="ttdeci">EELogLevels</div><div class="ttdef"><b>Definition:</b> EELog.h:39</div></div>
-<div class="ttc" id="_e_e_log_8h_html_a63841c5f5ee022b66026eadca5489805ad2361a2f717e99c0ac415b39f105be95"><div class="ttname"><a href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805ad2361a2f717e99c0ac415b39f105be95">EE_LEVEL_LAST</a></div><div class="ttdef"><b>Definition:</b> EELog.h:45</div></div>
-<div class="ttc" id="class_e_e_log_html_a1c1d0828c304d7919d1fbb726b21e959"><div class="ttname"><a href="class_e_e_log.html#a1c1d0828c304d7919d1fbb726b21e959">EELog::Destroy</a></div><div class="ttdeci">static void Destroy()</div><div class="ttdef"><b>Definition:</b> EELog.cpp:73</div></div>
+<div class="ttc" id="class_e_e_log_html_a3c83743b9223be2b206001fc8d9576ad"><div class="ttname"><a href="class_e_e_log.html#a3c83743b9223be2b206001fc8d9576ad">EELog::GetInstance</a></div><div class="ttdeci">static EELog * GetInstance()</div><div class="ttdef"><b>Definition:</b> EELog.cpp:39</div></div>
+<div class="ttc" id="class_e_e_log_html"><div class="ttname"><a href="class_e_e_log.html">EELog</a></div><div class="ttdef"><b>Definition:</b> EELog.h:57</div></div>
+<div class="ttc" id="class_e_e_log_html_af18687e61c994d84a4ad1bfb637bdd81"><div class="ttname"><a href="class_e_e_log.html#af18687e61c994d84a4ad1bfb637bdd81">EELog::m_StreamLevels</a></div><div class="ttdeci">EEStream * m_StreamLevels[EE_LEVEL_LAST]</div><div class="ttdef"><b>Definition:</b> EELog.h:66</div></div>
+<div class="ttc" id="_e_e_log_8h_html_a63841c5f5ee022b66026eadca5489805a86f760dcb987bb97c645b701b20ef9b7"><div class="ttname"><a href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805a86f760dcb987bb97c645b701b20ef9b7">EE_LEVEL_ERROR</a></div><div class="ttdef"><b>Definition:</b> EELog.h:42</div></div>
+<div class="ttc" id="_e_e_log_8h_html_a63841c5f5ee022b66026eadca5489805a1b65d9e8432350cfb7deec991269fe15"><div class="ttname"><a href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805a1b65d9e8432350cfb7deec991269fe15">EE_LEVEL_WARNING</a></div><div class="ttdef"><b>Definition:</b> EELog.h:41</div></div>
+<div class="ttc" id="class_e_e_log_html_a55a5b2b5023752f15755183b89235e18"><div class="ttname"><a href="class_e_e_log.html#a55a5b2b5023752f15755183b89235e18">EELog::GetLogLevel</a></div><div class="ttdeci">EEStream &amp; GetLogLevel(EELogLevels _Level)</div><div class="ttdef"><b>Definition:</b> EELog.cpp:113</div></div>
+<div class="ttc" id="class_e_e_log_html_ad9363ff998a8a6db5517a8a494924c31"><div class="ttname"><a href="class_e_e_log.html#ad9363ff998a8a6db5517a8a494924c31">EELog::Destroy</a></div><div class="ttdeci">static void Destroy()</div></div>
+<div class="ttc" id="_e_e_log_8h_html_a63841c5f5ee022b66026eadca5489805"><div class="ttname"><a href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805">EELogLevels</a></div><div class="ttdeci">EELogLevels</div><div class="ttdef"><b>Definition:</b> EELog.h:38</div></div>
+<div class="ttc" id="_e_e_log_8h_html_a63841c5f5ee022b66026eadca5489805ad2361a2f717e99c0ac415b39f105be95"><div class="ttname"><a href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805ad2361a2f717e99c0ac415b39f105be95">EE_LEVEL_LAST</a></div><div class="ttdef"><b>Definition:</b> EELog.h:44</div></div>
 <div class="ttc" id="class_e_e_stream_html"><div class="ttname"><a href="class_e_e_stream.html">EEStream</a></div><div class="ttdef"><b>Definition:</b> EEStream.h:40</div></div>
-<div class="ttc" id="_e_e_log_8h_html_a63841c5f5ee022b66026eadca5489805a63d64bfa789b7e6043bd9e3a21d792e2"><div class="ttname"><a href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805a63d64bfa789b7e6043bd9e3a21d792e2">EE_LEVEL_DEBUG</a></div><div class="ttdef"><b>Definition:</b> EELog.h:44</div></div>
+<div class="ttc" id="_e_e_log_8h_html_a63841c5f5ee022b66026eadca5489805a63d64bfa789b7e6043bd9e3a21d792e2"><div class="ttname"><a href="_e_e_log_8h.html#a63841c5f5ee022b66026eadca5489805a63d64bfa789b7e6043bd9e3a21d792e2">EE_LEVEL_DEBUG</a></div><div class="ttdef"><b>Definition:</b> EELog.h:43</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Aug 14 2015 01:58:48 for FreeStick by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Dec 9 2015 17:47:05 for FreeStick by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

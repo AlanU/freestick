@@ -1,6 +1,7 @@
 <map id="freestick::FSUSBDeviceManager::addMapping" name="freestick::FSUSBDeviceManager::addMapping">
-<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_base_manager.html#aec4e2588ca183daed770cba4e69de80b" title="freestick::FSBaseManager\l::getDevice" alt="" coords="281,5,457,46"/>
-<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_u_s_b_device.html#ac8620ba8735f70fcfb6826c109b23cdf" title="freestick::FSUSBDevice\l::getVenderID" alt="" coords="289,70,450,111"/>
-<area shape="rect" id="node4" href="$classfreestick_1_1_f_s_u_s_b_device.html#a169919f9f809a0ffbf020ed888164941" title="freestick::FSUSBDevice\l::getProductID" alt="" coords="289,135,450,177"/>
-<area shape="rect" id="node5" href="$classfreestick_1_1_f_s_u_s_b_device_manager.html#a3da1717c1c670eb946192ebae46b81c3" title="freestick::FSUSBDeviceManager\l::addMapping" alt="" coords="264,201,475,242"/>
+<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_base_manager.html#a8553e55f9bbad5e2d427e4faaafc5be3" title="freestick::FSBaseManager\l::getDevice" alt="" coords="288,5,467,43"/>
+<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_u_s_b_device.html#a5ad356cdac17c03d0f419ae17ffd8223" title="freestick::FSUSBDevice\l::getVenderID" alt="" coords="296,67,459,106"/>
+<area shape="rect" id="node4" href="$classfreestick_1_1_f_s_u_s_b_device.html#a6a9da76687061c20384be579bcddb3bd" title="freestick::FSUSBDevice\l::getProductID" alt="" coords="296,130,459,169"/>
+<area shape="rect" id="node5" href="$classfreestick_1_1_f_s_u_s_b_device_manager.html#a3da1717c1c670eb946192ebae46b81c3" title="freestick::FSUSBDeviceManager\l::addMapping" alt="" coords="269,193,485,231"/>
+<area shape="rect" id="node6" href="$_f_s_u_s_b_device_manager_8cpp.html#ad6891a5d15aa7995dc1e98c5c7a2e99f" title="createVPId" alt="" coords="534,199,621,225"/>
 </map>

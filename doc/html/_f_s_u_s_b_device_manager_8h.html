@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">FreeStick
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">0.2</span>
    </div>
    <div id="projectbrief">Cross Platform Open Sorce Joystick Lib</div>
   </td>
@@ -97,22 +97,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="_f_s_base_manager_8h_source.html">../../baseClasses/FSBaseManager.h</a>&quot;</code><br />
-<code>#include &lt;map&gt;</code><br />
 <code>#include &quot;<a class="el" href="_i_f_s_device_8h_source.html">../../Interfaces/IFSDevice.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_f_s_types_8h_source.html">common/FSTypes.h</a>&quot;</code><br />
 <code>#include &lt;string&gt;</code><br />
+<code>#include &lt;unordered_map&gt;</code><br />
+<code>#include &lt;cstdint&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for FSUSBDeviceManager.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="_f_s_u_s_b_device_manager_8h__incl.png" border="0" usemap="#inc_2_u_s_b_2common_2_f_s_u_s_b_device_manager_8h" alt=""/></div>
 <map name="inc_2_u_s_b_2common_2_f_s_u_s_b_device_manager_8h" id="inc_2_u_s_b_2common_2_f_s_u_s_b_device_manager_8h">
-<area shape="rect" id="node2" href="_f_s_base_manager_8h.html" title="../../baseClasses/FSBase\lManager.h" alt="" coords="687,97,859,138"/>
-<area shape="rect" id="node7" href="_i_f_s_device_8h.html" title="IFSDevice.h" alt="" coords="421,501,512,528"/>
-<area shape="rect" id="node5" href="_i_f_s_joystick_listener_8h.html" title="../Interfaces/IFSJoystick\lListener.h" alt="" coords="32,187,195,229"/>
-<area shape="rect" id="node9" href="_f_s_base_event_8h.html" title="../baseClasses/FSBaseEvent.h" alt="" coords="92,352,295,379"/>
-<area shape="rect" id="node11" href="_i_f_s_joystick_info_8h.html" title="../Interfaces/IFSJoystick\lInfo.h" alt="" coords="555,187,717,229"/>
-<area shape="rect" id="node12" href="_f_s_base_device_8h.html" title="../baseClasses/FSBaseDevice.h" alt="" coords="321,195,529,221"/>
-<area shape="rect" id="node6" href="_i_f_s_event_8h.html" title="IFSEvent.h" alt="" coords="151,427,236,453"/>
-<area shape="rect" id="node10" href="_f_s_device_input_event_8h.html" title="../common/FSDeviceInputEvent.h" alt="" coords="143,277,357,304"/>
+<area shape="rect" id="node2" href="_f_s_base_manager_8h.html" title="../../baseClasses/FSBase\lManager.h" alt="" coords="640,94,811,133"/>
+<area shape="rect" id="node7" href="_i_f_s_device_8h.html" title="IFSDevice.h" alt="" coords="1130,494,1224,519"/>
+<area shape="rect" id="node8" href="_f_s_types_8h.html" title="common/FSTypes.h" alt="" coords="1107,569,1247,594"/>
+<area shape="rect" id="node5" href="_i_f_s_joystick_listener_8h.html" title="../Interfaces/IFSJoystick\lListener.h" alt="" coords="796,182,959,221"/>
+<area shape="rect" id="node12" href="_f_s_base_event_8h.html" title="../baseClasses/FSBaseEvent.h" alt="" coords="651,345,855,370"/>
+<area shape="rect" id="node14" href="_i_f_s_joystick_info_8h.html" title="../Interfaces/IFSJoystick\lInfo.h" alt="" coords="1217,182,1380,221"/>
+<area shape="rect" id="node15" href="_f_s_base_device_8h.html" title="../baseClasses/FSBaseDevice.h" alt="" coords="982,189,1193,214"/>
+<area shape="rect" id="node18" href="_i_f_s_device_i_d_creator_8h.html" title="../Interfaces/IFSDeviceIDCreator.h" alt="" coords="181,189,405,214"/>
+<area shape="rect" id="node6" href="_i_f_s_event_8h.html" title="IFSEvent.h" alt="" coords="850,419,936,445"/>
+<area shape="rect" id="node13" href="_f_s_device_input_event_8h.html" title="../common/FSDeviceInputEvent.h" alt="" coords="921,270,1140,295"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -120,27 +124,39 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="_f_s_u_s_b_device_manager_8h__dep__incl.png" border="0" usemap="#inc_2_u_s_b_2common_2_f_s_u_s_b_device_manager_8hdep" alt=""/></div>
 <map name="inc_2_u_s_b_2common_2_f_s_u_s_b_device_manager_8hdep" id="inc_2_u_s_b_2common_2_f_s_u_s_b_device_manager_8hdep">
-<area shape="rect" id="node2" href="_f_s_u_s_b_device_8cpp.html" title="src/USB/common/FSUSBDevice.cpp" alt="" coords="5,104,240,131"/>
-<area shape="rect" id="node3" href="_f_s_u_s_b_device_manager_8cpp.html" title="src/USB/common/FSUSBDevice\lManager.cpp" alt="" coords="265,97,476,138"/>
-<area shape="rect" id="node4" href="_f_s_u_s_b_joystick_device_manager_8cpp.html" title="src/USB/common/FSUSBJoystick\lDeviceManager.cpp" alt="" coords="2273,375,2495,417"/>
-<area shape="rect" id="node5" href="freestick_8h.html" title="inc/freestick.h" alt="" coords="799,487,901,513"/>
-<area shape="rect" id="node6" href="_f_s_u_s_b_joy_stick_input_element_8h.html" title="inc/USB/common/FSUSBJoyStick\lInputElement.h" alt="" coords="674,97,896,138"/>
-<area shape="rect" id="node12" href="_f_s_u_s_b_joystick_device_manager_8h.html" title="inc/USB/common/FSUSBJoystick\lDeviceManager.h" alt="" coords="1563,278,1783,319"/>
-<area shape="rect" id="node7" href="_f_s_u_s_b_joy_stick_input_element_8cpp.html" title="src/USB/common/FSUSBJoyStick\lInputElement.cpp" alt="" coords="898,278,1120,319"/>
-<area shape="rect" id="node8" href="_f_s_u_s_b_joystick_button_8h.html" title="inc/USB/common/FSUSBJoystick\lButton.h" alt="" coords="675,187,895,229"/>
-<area shape="rect" id="node10" href="_f_s_u_s_b_joystick_8h.html" title="inc/USB/common/FSUSBJoystick.h" alt="" coords="1123,195,1353,221"/>
-<area shape="rect" id="node9" href="_f_s_u_s_b_joystick_button_8cpp.html" title="src/USB/common/FSUSBJoystick\lButton.cpp" alt="" coords="601,278,823,319"/>
-<area shape="rect" id="node11" href="_f_s_u_s_b_joystick_8cpp.html" title="src/USB/common/FSUSBJoystick.cpp" alt="" coords="1277,285,1523,312"/>
-<area shape="rect" id="node17" href="_f_s_android_joystick_8h.html" title="inc/USB/platform/Android\l/jni/src/FSAndroidJoystick.h" alt="" coords="1211,375,1396,417"/>
-<area shape="rect" id="node21" href="_f_s_u_s_b_mac_o_s_x_joystick_8h.html" title="inc/USB/platform/MacOSX\l/FSUSBMacOSXJoystick.h" alt="" coords="2018,375,2197,417"/>
-<area shape="rect" id="node13" href="_f_s_u_s_b_mac_o_s_x_joystick_8cpp.html" title="src/USB/platform/MacOSX\l/FSUSBMacOSXJoystick.cpp" alt="" coords="1755,479,1949,521"/>
-<area shape="rect" id="node14" href="_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html" title="src/USB/platform/MacOSX\l/FSUSBMacOSXJoystickDeviceManager.cpp" alt="" coords="1973,479,2256,521"/>
-<area shape="rect" id="node15" href="_f_s_u_s_b_null_joystick_device_manager_8h.html" title="inc/USB/platform/NULL\l/FSUSBNullJoystickDeviceManager.h" alt="" coords="949,375,1187,417"/>
-<area shape="rect" id="node20" href="_f_s_h_i_d_android_joysick_device_manager_8h.html" title="inc/USB/platform/Android\l/jni/src/FSHIDAndroidJoysickDevice\lManager.h" alt="" coords="1421,368,1651,424"/>
-<area shape="rect" id="node22" href="_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8h.html" title="inc/USB/platform/MacOSX\l/FSUSBMacOSXJoystickDeviceManager.h" alt="" coords="1726,375,1993,417"/>
-<area shape="rect" id="node16" href="_f_s_u_s_b_null_joystick_device_manager_8cpp.html" title="src/USB/platform/NULL\l/FSUSBNullJoystickDeviceManager.cpp" alt="" coords="927,479,1180,521"/>
-<area shape="rect" id="node18" href="_f_s_android_joystick_8cpp.html" title="src/USB/platform/Android\l/jni/src/FSAndroidJoystick.cpp" alt="" coords="1205,479,1403,521"/>
-<area shape="rect" id="node19" href="_f_s_h_i_d_android_joysick_device_manager_8cpp.html" title="src/USB/platform/Android\l/jni/src/FSHIDAndroidJoysickDevice\lManager.cpp" alt="" coords="1428,472,1657,528"/>
+<area shape="rect" id="node2" href="_f_s_u_s_b_device_8cpp.html" title="src/USB/common/FSUSBDevice.cpp" alt="" coords="423,101,661,126"/>
+<area shape="rect" id="node3" href="_f_s_u_s_b_device_manager_8cpp.html" title="src/USB/common/FSUSBDevice\lManager.cpp" alt="" coords="686,94,900,133"/>
+<area shape="rect" id="node4" href="_f_s_u_s_b_joystick_device_manager_8cpp.html" title="src/USB/common/FSUSBJoystick\lDeviceManager.cpp" alt="" coords="119,365,339,403"/>
+<area shape="rect" id="node5" href="freestick_8h.html" title="inc/freestick.h" alt="" coords="2682,473,2784,498"/>
+<area shape="rect" id="node6" href="_f_s_u_s_b_joy_stick_input_element_8h.html" title="inc/USB/common/FSUSBJoyStick\lInputElement.h" alt="" coords="1792,94,2013,133"/>
+<area shape="rect" id="node13" href="_f_s_u_s_b_joystick_device_manager_8h.html" title="inc/USB/common/FSUSBJoystick\lDeviceManager.h" alt="" coords="1323,270,1543,309"/>
+<area shape="rect" id="node7" href="_f_s_u_s_b_joy_stick_input_element_8cpp.html" title="src/USB/common/FSUSBJoyStick\lInputElement.cpp" alt="" coords="975,270,1197,309"/>
+<area shape="rect" id="node8" href="_f_s_direct_input_joystick_8cpp.html" title="src/USB/platform/Windows\l/FSDirectInputJoystick.cpp" alt="" coords="1717,466,1896,505"/>
+<area shape="rect" id="node9" href="_f_s_u_s_b_joystick_button_8h.html" title="inc/USB/common/FSUSBJoystick\lButton.h" alt="" coords="2555,182,2775,221"/>
+<area shape="rect" id="node11" href="_f_s_u_s_b_joystick_8h.html" title="inc/USB/common/FSUSBJoystick.h" alt="" coords="1464,189,1695,214"/>
+<area shape="rect" id="node10" href="_f_s_u_s_b_joystick_button_8cpp.html" title="src/USB/common/FSUSBJoystick\lButton.cpp" alt="" coords="2607,270,2827,309"/>
+<area shape="rect" id="node12" href="_f_s_u_s_b_joystick_8cpp.html" title="src/USB/common/FSUSBJoystick.cpp" alt="" coords="1617,277,1863,302"/>
+<area shape="rect" id="node26" href="_f_s_android_joystick_8h.html" title="inc/USB/platform/Android\l/jni/src/FSAndroidJoystick.h" alt="" coords="1929,365,2113,403"/>
+<area shape="rect" id="node30" href="_f_s_u_s_b_mac_o_s_x_joystick_8h.html" title="inc/USB/platform/MacOSX\l/FSUSBMacOSXJoystick.h" alt="" coords="364,365,545,403"/>
+<area shape="rect" id="node32" href="_f_s_direct_input_joystick_8h.html" title="inc/USB/platform/Windows\l/FSDirectInputJoystick.h" alt="" coords="1417,365,1596,403"/>
+<area shape="rect" id="node33" href="_f_s_x_input_joystick_8h.html" title="inc/USB/platform/Windows\l/FSXInputJoystick.h" alt="" coords="969,365,1148,403"/>
+<area shape="rect" id="node14" href="_f_s_u_s_b_mac_o_s_x_joystick_8cpp.html" title="src/USB/platform/MacOSX\l/FSUSBMacOSXJoystick.cpp" alt="" coords="317,466,512,505"/>
+<area shape="rect" id="node15" href="_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html" title="src/USB/platform/MacOSX\l/FSUSBMacOSXJoystickDeviceManager.cpp" alt="" coords="5,466,293,505"/>
+<area shape="rect" id="node16" href="_f_s_u_s_b_null_joystick_device_manager_8h.html" title="inc/USB/platform/NULL\l/FSUSBNullJoystickDeviceManager.h" alt="" coords="2188,365,2431,403"/>
+<area shape="rect" id="node18" href="_f_s_updatable_joystick_device_manager_8h.html" title="inc/USB/common/FSUpdatable\lJoystickDeviceManager.h" alt="" coords="1188,365,1393,403"/>
+<area shape="rect" id="node29" href="_f_s_h_i_d_android_joysick_device_manager_8h.html" title="inc/USB/platform/Android\l/jni/src/FSHIDAndroidJoysickDevice\lManager.h" alt="" coords="1671,358,1904,410"/>
+<area shape="rect" id="node31" href="_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8h.html" title="inc/USB/platform/MacOSX\l/FSUSBMacOSXJoystickDeviceManager.h" alt="" coords="620,365,893,403"/>
+<area shape="rect" id="node17" href="_f_s_u_s_b_null_joystick_device_manager_8cpp.html" title="src/USB/platform/NULL\l/FSUSBNullJoystickDeviceManager.cpp" alt="" coords="2400,466,2657,505"/>
+<area shape="rect" id="node19" href="_f_s_updatable_joystick_device_manager_8cpp.html" title="src/USB/common/FSUpdatable\lJoystickDeviceManager.cpp" alt="" coords="1095,466,1301,505"/>
+<area shape="rect" id="node20" href="_f_s_direct_input_joystick_manager_8h.html" title="inc/USB/platform/Windows\l/FSDirectInputJoystickManager.h" alt="" coords="1426,466,1643,505"/>
+<area shape="rect" id="node22" href="_f_s_windows_joystick_device_manager_8h.html" title="inc/USB/platform/Windows\l/FSWindowsJoystickDeviceManager.h" alt="" coords="1215,561,1461,599"/>
+<area shape="rect" id="node24" href="_f_s_x_input_joystick_device_manager_8h.html" title="inc/USB/platform/Windows\l/FSXInputJoystickDeviceManager.h" alt="" coords="789,466,1020,505"/>
+<area shape="rect" id="node21" href="_f_s_direct_input_joystick_manager_8cpp.html" title="src/USB/platform/Windows\l/FSDirectInputJoystickManager.cpp" alt="" coords="1524,561,1755,599"/>
+<area shape="rect" id="node23" href="_f_s_windows_joystick_device_manager_8cpp.html" title="src/USB/platform/Windows\l/FSWindowsJoystickDeviceManager.cpp" alt="" coords="1208,649,1469,687"/>
+<area shape="rect" id="node25" href="_f_s_x_input_joystick_device_manager_8cpp.html" title="src/USB/platform/Windows\l/FSXInputJoystickDeviceManager.cpp" alt="" coords="605,561,851,599"/>
+<area shape="rect" id="node27" href="_f_s_android_joystick_8cpp.html" title="src/USB/platform/Android\l/jni/src/FSAndroidJoystick.cpp" alt="" coords="2178,466,2376,505"/>
+<area shape="rect" id="node28" href="_f_s_h_i_d_android_joysick_device_manager_8cpp.html" title="src/USB/platform/Android\l/jni/src/FSHIDAndroidJoysickDevice\lManager.cpp" alt="" coords="1920,459,2153,511"/>
+<area shape="rect" id="node34" href="_f_s_x_input_joystick_8cpp.html" title="src/USB/platform/Windows\l/FSXInputJoystick.cpp" alt="" coords="586,466,765,505"/>
 </map>
 </div>
 </div>
@@ -160,63 +176,71 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a03c2937fb60f88f023c7dca0bd65d5bd"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a03c2937fb60f88f023c7dca0bd65d5bd">freestick::GravisVendorID</a> = 1064</td></tr>
-<tr class="separator:a03c2937fb60f88f023c7dca0bd65d5bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc555cc695af997ade8911cf4ad02a23"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#acc555cc695af997ade8911cf4ad02a23">freestick::GamePadProID</a> = 16385</td></tr>
-<tr class="separator:acc555cc695af997ade8911cf4ad02a23"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d9c6e7f52baaf3622151d141d40b670"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a4d9c6e7f52baaf3622151d141d40b670">freestick::DragonRiseID</a> = 121</td></tr>
-<tr class="separator:a4d9c6e7f52baaf3622151d141d40b670"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5640bf1bb09f5fbed5d2fcc178d6baef"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a5640bf1bb09f5fbed5d2fcc178d6baef">freestick::Gtron</a> = DragonRiseID</td></tr>
-<tr class="separator:a5640bf1bb09f5fbed5d2fcc178d6baef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f835d3305dfe64dcd8c20981468e6f5"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a0f835d3305dfe64dcd8c20981468e6f5">freestick::SteelSeries3GCControllerID</a> = 6</td></tr>
-<tr class="separator:a0f835d3305dfe64dcd8c20981468e6f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a273a6d00ba33aed1311406ac70570b0b"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a273a6d00ba33aed1311406ac70570b0b">freestick::AmazonVendorID</a> = 6473</td></tr>
-<tr class="separator:a273a6d00ba33aed1311406ac70570b0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab165ab7ea2828ddbe7614a65389ee926"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#ab165ab7ea2828ddbe7614a65389ee926">freestick::AmazonFireGameControllerID</a> = 1026</td></tr>
-<tr class="separator:ab165ab7ea2828ddbe7614a65389ee926"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a28e73f70b076d63416813c77c834dbe2"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a28e73f70b076d63416813c77c834dbe2">freestick::GameElementsVendorID</a> = 3888</td></tr>
-<tr class="separator:a28e73f70b076d63416813c77c834dbe2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a409cb896ed1ae2fa675b85a3f17cb6da"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a409cb896ed1ae2fa675b85a3f17cb6da">freestick::GameElementsRecoilID</a> = 263</td></tr>
-<tr class="separator:a409cb896ed1ae2fa675b85a3f17cb6da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9d916aef134f819aa34ba7f5f7bd775"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#ab9d916aef134f819aa34ba7f5f7bd775">freestick::SteelSeriesVendorID</a> = 4152</td></tr>
-<tr class="separator:ab9d916aef134f819aa34ba7f5f7bd775"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46c2feb3668a336745a0687c43857e65"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a46c2feb3668a336745a0687c43857e65">freestick::SteelSeriesFreeControllerID</a> = 5138</td></tr>
-<tr class="separator:a46c2feb3668a336745a0687c43857e65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d56a4fb4a3738918f31ef8a8e2d5fb2"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a4d56a4fb4a3738918f31ef8a8e2d5fb2">freestick::SonyVendorID</a> = 1356</td></tr>
-<tr class="separator:a4d56a4fb4a3738918f31ef8a8e2d5fb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a02169fc787e4d1a4843ca010dd40ba8c"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a02169fc787e4d1a4843ca010dd40ba8c">freestick::Playstation3ControllerID</a> = 616</td></tr>
-<tr class="separator:a02169fc787e4d1a4843ca010dd40ba8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefa2e0e472314fc98bea3871a173fc30"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#aefa2e0e472314fc98bea3871a173fc30">freestick::Playstation4ControllerID</a> = 1476</td></tr>
-<tr class="separator:aefa2e0e472314fc98bea3871a173fc30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab74c56a74783f632703a2b81e7f4f98c"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#ab74c56a74783f632703a2b81e7f4f98c">freestick::LogitechVendorID</a> = 1133</td></tr>
-<tr class="separator:ab74c56a74783f632703a2b81e7f4f98c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa340a037389b0a80c5fc94d4b8d680a2"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#aa340a037389b0a80c5fc94d4b8d680a2">freestick::LogitechDualActionID</a> = 49686</td></tr>
-<tr class="separator:aa340a037389b0a80c5fc94d4b8d680a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac846fbaa9a2fd506dfbc71be3906890a"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#ac846fbaa9a2fd506dfbc71be3906890a">freestick::LogitechGamepadF310</a> = 49693</td></tr>
-<tr class="separator:ac846fbaa9a2fd506dfbc71be3906890a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5c9edf8b9d6a8f42261be0e00ad21af"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#aa5c9edf8b9d6a8f42261be0e00ad21af">freestick::OUYAVendorID</a> = 10294</td></tr>
-<tr class="separator:aa5c9edf8b9d6a8f42261be0e00ad21af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a830dad894a25c9da738a650a71775f02"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a830dad894a25c9da738a650a71775f02">freestick::OUYAControllerID</a> = 1</td></tr>
-<tr class="separator:a830dad894a25c9da738a650a71775f02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0319ba1630f1e8ba04449bd6e99d9370"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a0319ba1630f1e8ba04449bd6e99d9370">freestick::MicrosoftVendorID</a> = 1118</td></tr>
-<tr class="separator:a0319ba1630f1e8ba04449bd6e99d9370"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d8368f2cb0c9935744943e9a345d100"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a6d8368f2cb0c9935744943e9a345d100">freestick::MicrosoftXbox360WindowsControllerID</a> = 654</td></tr>
-<tr class="separator:a6d8368f2cb0c9935744943e9a345d100"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8efd8a6eca22e963bf770760279b5a40"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a8efd8a6eca22e963bf770760279b5a40">freestick::RockCandyVenderID</a> = 3695</td></tr>
-<tr class="separator:a8efd8a6eca22e963bf770760279b5a40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1fc1770d1bfc32861e0b1b536da24cd"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#ad1fc1770d1bfc32861e0b1b536da24cd">freestick::RockCandyXbox360ControlllerID</a> = 3695</td></tr>
-<tr class="separator:ad1fc1770d1bfc32861e0b1b536da24cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa65f2560ee9e93de7ce014307e93f5c"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#afa65f2560ee9e93de7ce014307e93f5c">freestick::HVG2VenderID</a> = 2064</td></tr>
-<tr class="separator:afa65f2560ee9e93de7ce014307e93f5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b36a37b040d7a18a3a5e66abe2de8d1"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a4b36a37b040d7a18a3a5e66abe2de8d1">freestick::HVG2TwinPS2</a> = 1</td></tr>
-<tr class="separator:a4b36a37b040d7a18a3a5e66abe2de8d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade93e6a5aa13466c6a58f807ce836f30"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#ade93e6a5aa13466c6a58f807ce836f30">freestick::GtronRetroSNES</a> = 17</td></tr>
-<tr class="separator:ade93e6a5aa13466c6a58f807ce836f30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32fd826c1941b609f8d791c5edfb3df9"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a32fd826c1941b609f8d791c5edfb3df9">freestick::GravisVendorID</a> = 1064</td></tr>
+<tr class="separator:a32fd826c1941b609f8d791c5edfb3df9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcca6340bc244478c4e15f50ba107a37"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#adcca6340bc244478c4e15f50ba107a37">freestick::GamePadProID</a> = 16385</td></tr>
+<tr class="separator:adcca6340bc244478c4e15f50ba107a37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ea0c58c3251246b29b23cee4ab5179b"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a5ea0c58c3251246b29b23cee4ab5179b">freestick::DragonRiseID</a> = 121</td></tr>
+<tr class="separator:a5ea0c58c3251246b29b23cee4ab5179b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b5d1030b86a692211b0ca1e8c392707"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a4b5d1030b86a692211b0ca1e8c392707">freestick::Gtron</a> = DragonRiseID</td></tr>
+<tr class="separator:a4b5d1030b86a692211b0ca1e8c392707"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88c95216b6223fc28461ed8fcea53c30"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a88c95216b6223fc28461ed8fcea53c30">freestick::SteelSeries3GCControllerID</a> = 6</td></tr>
+<tr class="separator:a88c95216b6223fc28461ed8fcea53c30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80cc5cfea60c17b585fbbc1350b565c6"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a80cc5cfea60c17b585fbbc1350b565c6">freestick::AmazonVendorID</a> = 6473</td></tr>
+<tr class="separator:a80cc5cfea60c17b585fbbc1350b565c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2d0b737b2b50afba559ac9cd3342511"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#ac2d0b737b2b50afba559ac9cd3342511">freestick::AmazonFireGameControllerID</a> = 1026</td></tr>
+<tr class="separator:ac2d0b737b2b50afba559ac9cd3342511"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a559266c0f6d5c6501727e34b6fe26439"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a559266c0f6d5c6501727e34b6fe26439">freestick::GameElementsVendorID</a> = 3888</td></tr>
+<tr class="separator:a559266c0f6d5c6501727e34b6fe26439"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af97a87b1c0c55f7540655806a0c921d2"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#af97a87b1c0c55f7540655806a0c921d2">freestick::GameElementsRecoilID</a> = 263</td></tr>
+<tr class="separator:af97a87b1c0c55f7540655806a0c921d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6a87c8bb366c5175d03a78060a376f5"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#aa6a87c8bb366c5175d03a78060a376f5">freestick::SteelSeriesVendorID</a> = 4152</td></tr>
+<tr class="separator:aa6a87c8bb366c5175d03a78060a376f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a776c41afc4a6af89e309315b265d9ab2"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a776c41afc4a6af89e309315b265d9ab2">freestick::SteelSeriesFreeControllerID</a> = 5138</td></tr>
+<tr class="separator:a776c41afc4a6af89e309315b265d9ab2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95242de1fd151853241cb54a34a99ba2"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a95242de1fd151853241cb54a34a99ba2">freestick::SonyVendorID</a> = 1356</td></tr>
+<tr class="separator:a95242de1fd151853241cb54a34a99ba2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3d4f991d79c8706bd375fad99d55a9a"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#ab3d4f991d79c8706bd375fad99d55a9a">freestick::Playstation3ControllerID</a> = 616</td></tr>
+<tr class="separator:ab3d4f991d79c8706bd375fad99d55a9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3abdaed194736aff1d3d5270740fc47"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#ae3abdaed194736aff1d3d5270740fc47">freestick::Playstation4ControllerID</a> = 1476</td></tr>
+<tr class="separator:ae3abdaed194736aff1d3d5270740fc47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82938db32b0f31d50928cb2adfcbc798"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a82938db32b0f31d50928cb2adfcbc798">freestick::LogitechVendorID</a> = 1133</td></tr>
+<tr class="separator:a82938db32b0f31d50928cb2adfcbc798"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1ed3781b3591b9a5ae537e5266e0dd4"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#ae1ed3781b3591b9a5ae537e5266e0dd4">freestick::LogitechDualActionID</a> = 49686</td></tr>
+<tr class="separator:ae1ed3781b3591b9a5ae537e5266e0dd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a651adda5e10c9cbb2078fe4aaa0fe781"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a651adda5e10c9cbb2078fe4aaa0fe781">freestick::LogitechGamepadF310</a> = 49693</td></tr>
+<tr class="separator:a651adda5e10c9cbb2078fe4aaa0fe781"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab909d319042cf2898300f7958494d720"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#ab909d319042cf2898300f7958494d720">freestick::OUYAVendorID</a> = 10294</td></tr>
+<tr class="separator:ab909d319042cf2898300f7958494d720"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0eea7963bb9ec14c2f8dc91ef6f2d7fe"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a0eea7963bb9ec14c2f8dc91ef6f2d7fe">freestick::OUYAControllerID</a> = 1</td></tr>
+<tr class="separator:a0eea7963bb9ec14c2f8dc91ef6f2d7fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49a4baeafc46a886606ffae25317fd0b"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a49a4baeafc46a886606ffae25317fd0b">freestick::MicrosoftVendorID</a> = 1118</td></tr>
+<tr class="separator:a49a4baeafc46a886606ffae25317fd0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5dec6a1de6aabeef2a905ea5a39a66ec"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a5dec6a1de6aabeef2a905ea5a39a66ec">freestick::MicrosoftXbox360WindowsControllerID</a> = 654</td></tr>
+<tr class="separator:a5dec6a1de6aabeef2a905ea5a39a66ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08a5c8085d6845a3bd82616ebd252537"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a08a5c8085d6845a3bd82616ebd252537">freestick::RockCandyVenderID</a> = 3695</td></tr>
+<tr class="separator:a08a5c8085d6845a3bd82616ebd252537"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addd0211bea0efb238d1a462a8236eea7"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#addd0211bea0efb238d1a462a8236eea7">freestick::RockCandyXbox360ControlllerID</a> = 3695</td></tr>
+<tr class="separator:addd0211bea0efb238d1a462a8236eea7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2135bbf4152d88dd4b03f0f2d0278222"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a2135bbf4152d88dd4b03f0f2d0278222">freestick::HVG2VenderID</a> = 2064</td></tr>
+<tr class="separator:a2135bbf4152d88dd4b03f0f2d0278222"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af34e2e879582827871203ca7072e075a"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#af34e2e879582827871203ca7072e075a">freestick::HVG2TwinPS2</a> = 1</td></tr>
+<tr class="separator:af34e2e879582827871203ca7072e075a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad43481e2c6499a2069bec2ca399be0e8"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#ad43481e2c6499a2069bec2ca399be0e8">freestick::GtronRetroSNES</a> = 17</td></tr>
+<tr class="separator:ad43481e2c6499a2069bec2ca399be0e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67e06c79789ed54d220e22e2d68eb8b7"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a67e06c79789ed54d220e22e2d68eb8b7">freestick::TomeeVenderID</a> = 7511</td></tr>
+<tr class="separator:a67e06c79789ed54d220e22e2d68eb8b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e7fdcec4914a084f2dc6147aaccdcef"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a7e7fdcec4914a084f2dc6147aaccdcef">freestick::TomeeNesUSBID</a> = 33</td></tr>
+<tr class="separator:a7e7fdcec4914a084f2dc6147aaccdcef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b5cb7857b0f77e382ea1c0c8b59b456"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a8b5cb7857b0f77e382ea1c0c8b59b456">freestick::PCUSBSNESVenderID</a> = 3727</td></tr>
+<tr class="separator:a8b5cb7857b0f77e382ea1c0c8b59b456"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e0bff342d7fa76e31146fded71d061d"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefreestick.html#a2e0bff342d7fa76e31146fded71d061d">freestick::PCUSBSNESID</a> = 12307</td></tr>
+<tr class="separator:a2e0bff342d7fa76e31146fded71d061d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Aug 14 2015 01:58:49 for FreeStick by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Dec 9 2015 17:47:05 for FreeStick by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

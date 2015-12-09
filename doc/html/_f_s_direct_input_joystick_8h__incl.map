@@ -1,0 +1,17 @@
+<map id="inc/USB/platform/Windows/FSDirectInputJoystick.h" name="inc/USB/platform/Windows/FSDirectInputJoystick.h">
+<area shape="rect" id="node4" href="$_f_s_u_s_b_joystick_8h.html" title="USB/common/FSUSBJoystick.h" alt="" coords="118,182,327,207"/>
+<area shape="rect" id="node30" href="$_f_s_u_s_b_joystick_device_manager_8h.html" title="USB/common/FSUSBJoystick\lDeviceManager.h" alt="" coords="260,94,459,133"/>
+<area shape="rect" id="node6" href="$_f_s_u_s_b_device_8h.html" title="FSUSBDevice.h" alt="" coords="87,413,204,438"/>
+<area shape="rect" id="node12" href="$_f_s_u_s_b_joy_stick_input_element_8h.html" title="FSUSBJoyStickInputElement.h" alt="" coords="73,257,277,282"/>
+<area shape="rect" id="node7" href="$_f_s_base_device_8h.html" title="../../baseClasses/FSBase\lDevice.h" alt="" coords="236,494,407,533"/>
+<area shape="rect" id="node8" href="$_i_f_s_device_8h.html" title="../Interfaces/IFSDevice.h" alt="" coords="1450,806,1616,831"/>
+<area shape="rect" id="node9" href="$_f_s_types_8h.html" title="common/FSTypes.h" alt="" coords="1546,881,1685,906"/>
+<area shape="rect" id="node13" href="$_f_s_u_s_b_device_manager_8h.html" title="FSUSBDeviceManager.h" alt="" coords="621,331,789,357"/>
+<area shape="rect" id="node14" href="$_f_s_base_manager_8h.html" title="../../baseClasses/FSBase\lManager.h" alt="" coords="706,406,877,445"/>
+<area shape="rect" id="node17" href="$_i_f_s_joystick_listener_8h.html" title="../Interfaces/IFSJoystick\lListener.h" alt="" coords="1320,494,1483,533"/>
+<area shape="rect" id="node21" href="$_f_s_base_event_8h.html" title="../baseClasses/FSBaseEvent.h" alt="" coords="1268,657,1472,682"/>
+<area shape="rect" id="node23" href="$_i_f_s_joystick_info_8h.html" title="../Interfaces/IFSJoystick\lInfo.h" alt="" coords="885,494,1048,533"/>
+<area shape="rect" id="node24" href="$_i_f_s_device_i_d_creator_8h.html" title="../Interfaces/IFSDeviceIDCreator.h" alt="" coords="1072,501,1296,526"/>
+<area shape="rect" id="node18" href="$_i_f_s_event_8h.html" title="IFSEvent.h" alt="" coords="1119,731,1205,757"/>
+<area shape="rect" id="node22" href="$_f_s_device_input_event_8h.html" title="../common/FSDeviceInputEvent.h" alt="" coords="1263,582,1483,607"/>
+</map>

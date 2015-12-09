@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['joystickelementmap',['JoyStickElementMap',['../namespacefreestick.html#a8978875dd5703d15c81e8437a9564bf8',1,'freestick']]]
+  ['freestickdevicemanager',['FreeStickDeviceManager',['../freestick_8h.html#af545fe3ed9cb9f96ef7e319bb77d71cb',1,'freestick.h']]]
 ];

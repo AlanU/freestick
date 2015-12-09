@@ -1,5 +1,11 @@
 <map id="freestick::IFSEvent::getEventFromInputType" name="freestick::IFSEvent::getEventFromInputType">
-<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2a9e26628802fdafd65935996ebc9e8d" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadAction" alt="" coords="222,5,445,46"/>
-<area shape="rect" id="node3" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a9c389b27da91df71189be1b7a6daf743" title="setupIOHDIManager" alt="" coords="493,12,632,39"/>
-<area shape="rect" id="node4" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::init" alt="" coords="681,5,903,46"/>
+<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html#ad8a4534e53febe3964b7a64a66d34a22" title="freestick::FSUSBJoystick\lDeviceManager::updateEvents" alt="" coords="234,75,438,114"/>
+<area shape="rect" id="node8" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2a9e26628802fdafd65935996ebc9e8d" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::gamepadAction" alt="" coords="224,150,448,189"/>
+<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_direct_input_joystick_manager.html#af9cd9daa2e5c3b77f18d8a43a24a7d6a" title="freestick::FSDirectInput\lJoystickManager::updateJoysticksPOV" alt="" coords="497,5,749,43"/>
+<area shape="rect" id="node4" href="$classfreestick_1_1_f_s_direct_input_joystick_manager.html#ae41d9f4049f13d2713171a92c871c57c" title="freestick::FSDirectInput\lJoystickManager::updateJoysticks" alt="" coords="798,62,1021,101"/>
+<area shape="rect" id="node7" href="$classfreestick_1_1_f_s_direct_input_joystick_manager.html#a0349b8bfcbabdb845acbbfcd2aed0a7a" title="freestick::FSDirectInput\lJoystickManager::updateJoysticksAxis" alt="" coords="498,119,747,158"/>
+<area shape="rect" id="node5" href="$classfreestick_1_1_f_s_direct_input_joystick_manager.html#a51aeec5940323e120428ec94b04a076b" title="freestick::FSDirectInput\lJoystickManager::update" alt="" coords="1070,62,1239,101"/>
+<area shape="rect" id="node6" href="$classfreestick_1_1_f_s_direct_input_joystick_manager.html#a8b07b04816b89940f86156a5ae5f3078" title="freestick::FSDirectInput\lJoystickManager::init" alt="" coords="1288,62,1448,101"/>
+<area shape="rect" id="node9" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a9c389b27da91df71189be1b7a6daf743" title="setupIOHDIManager" alt="" coords="551,182,694,207"/>
+<area shape="rect" id="node10" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a2bbc1f18271def53e79a860c426b061e" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::init" alt="" coords="798,175,1021,214"/>
 </map>

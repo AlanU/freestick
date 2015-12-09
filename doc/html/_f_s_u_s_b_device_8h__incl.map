@@ -1,4 +1,5 @@
 <map id="inc/USB/common/FSUSBDevice.h" name="inc/USB/common/FSUSBDevice.h">
-<area shape="rect" id="node2" href="$_f_s_base_device_8h.html" title="../../baseClasses/FSBase\lDevice.h" alt="" coords="79,81,251,122"/>
-<area shape="rect" id="node3" href="$_i_f_s_device_8h.html" title="../Interfaces/IFSDevice.h" alt="" coords="84,171,247,197"/>
+<area shape="rect" id="node2" href="$_f_s_base_device_8h.html" title="../../baseClasses/FSBase\lDevice.h" alt="" coords="81,81,252,119"/>
+<area shape="rect" id="node3" href="$_i_f_s_device_8h.html" title="../Interfaces/IFSDevice.h" alt="" coords="83,169,249,194"/>
+<area shape="rect" id="node4" href="$_f_s_types_8h.html" title="common/FSTypes.h" alt="" coords="97,243,236,269"/>
 </map>

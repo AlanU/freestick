@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['physicalvaluenumber',['PhysicalValueNumber',['../namespacefreestick.html#af2b27d910a7df9122edb0f4c9e4c2dfc',1,'freestick']]]
+  ['joystickelementmap',['JoyStickElementMap',['../namespacefreestick.html#a8978875dd5703d15c81e8437a9564bf8',1,'freestick']]]
 ];

@@ -1,5 +1,5 @@
 <map id="freestick::FSHIDAndroidJoysickDeviceManager" name="freestick::FSHIDAndroidJoysickDeviceManager">
-<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html" title="freestick::FSUSBJoystick\lDeviceManager" alt="" coords="25,155,196,197"/>
-<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_u_s_b_device_manager.html" title="freestick::FSUSBDeviceManager" alt="" coords="5,80,216,107"/>
-<area shape="rect" id="node4" href="$classfreestick_1_1_f_s_base_manager.html" title="This is the base manager. " alt="" coords="23,5,199,32"/>
+<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html" title="freestick::FSUSBJoystick\lDeviceManager" alt="" coords="28,155,197,194"/>
+<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_u_s_b_device_manager.html" title="freestick::FSUSBDeviceManager" alt="" coords="5,81,221,106"/>
+<area shape="rect" id="node4" href="$classfreestick_1_1_f_s_base_manager.html" title="This is the base manager. " alt="" coords="24,6,201,31"/>
 </map>

@@ -1,6 +1,7 @@
 <map id="inc/Interfaces/IFSJoystickListener.h" name="inc/Interfaces/IFSJoystickListener.h">
-<area shape="rect" id="node2" href="$_i_f_s_event_8h.html" title="IFSEvent.h" alt="" coords="96,245,181,272"/>
-<area shape="rect" id="node5" href="$_f_s_base_event_8h.html" title="../baseClasses/FSBaseEvent.h" alt="" coords="37,171,240,197"/>
-<area shape="rect" id="node6" href="$_f_s_device_input_event_8h.html" title="../common/FSDeviceInputEvent.h" alt="" coords="129,96,343,123"/>
-<area shape="rect" id="node3" href="$_i_f_s_device_8h.html" title="IFSDevice.h" alt="" coords="215,320,305,347"/>
+<area shape="rect" id="node2" href="$_i_f_s_event_8h.html" title="IFSEvent.h" alt="" coords="95,243,181,269"/>
+<area shape="rect" id="node8" href="$_f_s_base_event_8h.html" title="../baseClasses/FSBaseEvent.h" alt="" coords="36,169,240,194"/>
+<area shape="rect" id="node9" href="$_f_s_device_input_event_8h.html" title="../common/FSDeviceInputEvent.h" alt="" coords="127,94,347,119"/>
+<area shape="rect" id="node3" href="$_i_f_s_device_8h.html" title="IFSDevice.h" alt="" coords="217,318,311,343"/>
+<area shape="rect" id="node4" href="$_f_s_types_8h.html" title="common/FSTypes.h" alt="" coords="194,393,333,418"/>
 </map>

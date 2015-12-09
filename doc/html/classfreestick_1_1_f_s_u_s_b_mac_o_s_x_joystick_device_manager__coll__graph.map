@@ -1,5 +1,5 @@
 <map id="freestick::FSUSBMacOSXJoystickDeviceManager" name="freestick::FSUSBMacOSXJoystickDeviceManager">
-<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html" title="freestick::FSUSBJoystick\lDeviceManager" alt="" coords="31,155,201,197"/>
-<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_u_s_b_device_manager.html" title="freestick::FSUSBDeviceManager" alt="" coords="11,80,221,107"/>
-<area shape="rect" id="node4" href="$classfreestick_1_1_f_s_base_manager.html" title="This is the base manager. " alt="" coords="28,5,204,32"/>
+<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html" title="freestick::FSUSBJoystick\lDeviceManager" alt="" coords="31,155,200,194"/>
+<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_u_s_b_device_manager.html" title="freestick::FSUSBDeviceManager" alt="" coords="8,81,224,106"/>
+<area shape="rect" id="node4" href="$classfreestick_1_1_f_s_base_manager.html" title="This is the base manager. " alt="" coords="27,6,204,31"/>
 </map>

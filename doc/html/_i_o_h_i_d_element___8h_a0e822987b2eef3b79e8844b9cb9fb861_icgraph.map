@@ -1,9 +1,9 @@
 <map id="IOHIDElement_GetDoubleProperty" name="IOHIDElement_GetDoubleProperty">
-<area shape="rect" id="node2" href="$_i_o_h_i_d_element___8h.html#a5201e7e6b0394d07e40d8afdfea342bf" title="IOHIDElement_GetCalibrationMin" alt="" coords="277,5,491,32"/>
-<area shape="rect" id="node3" href="$_i_o_h_i_d_element___8h.html#a9d26bd5fa098f56777809154e574feb1" title="IOHIDElement_GetCalibrationMax" alt="" coords="275,56,493,83"/>
-<area shape="rect" id="node4" href="$_i_o_h_i_d_element___8h.html#aba9ac03c9cb22d66b7b1c7136772289f" title="IOHIDElement_GetCalibration\lSaturationMin" alt="" coords="287,107,481,149"/>
-<area shape="rect" id="node5" href="$_i_o_h_i_d_element___8h.html#a2afa3868f7423cc31de890e068162dde" title="IOHIDElement_GetCalibration\lSaturationMax" alt="" coords="287,173,481,214"/>
-<area shape="rect" id="node6" href="$_i_o_h_i_d_element___8h.html#a9abb39eee45e1061448da19cc3a5d753" title="IOHIDElement_GetCalibration\lDeadZoneMin" alt="" coords="287,238,481,279"/>
-<area shape="rect" id="node7" href="$_i_o_h_i_d_element___8h.html#af795abfef087c556a3fdfa4ee567f21b" title="IOHIDElement_GetCalibration\lDeadZoneMax" alt="" coords="287,303,481,345"/>
-<area shape="rect" id="node8" href="$_i_o_h_i_d_element___8h.html#a71af44742d5795185510108aca7ba462" title="IOHIDElement_GetCalibration\lGranularity" alt="" coords="287,369,481,410"/>
+<area shape="rect" id="node2" href="$_i_o_h_i_d_element___8h.html#a5201e7e6b0394d07e40d8afdfea342bf" title="IOHIDElement_GetCalibrationMin" alt="" coords="285,5,507,30"/>
+<area shape="rect" id="node3" href="$_i_o_h_i_d_element___8h.html#a9d26bd5fa098f56777809154e574feb1" title="IOHIDElement_GetCalibrationMax" alt="" coords="283,54,509,79"/>
+<area shape="rect" id="node4" href="$_i_o_h_i_d_element___8h.html#aba9ac03c9cb22d66b7b1c7136772289f" title="IOHIDElement_GetCalibration\lSaturationMin" alt="" coords="296,103,496,142"/>
+<area shape="rect" id="node5" href="$_i_o_h_i_d_element___8h.html#a2afa3868f7423cc31de890e068162dde" title="IOHIDElement_GetCalibration\lSaturationMax" alt="" coords="296,166,496,205"/>
+<area shape="rect" id="node6" href="$_i_o_h_i_d_element___8h.html#a9abb39eee45e1061448da19cc3a5d753" title="IOHIDElement_GetCalibration\lDeadZoneMin" alt="" coords="296,229,496,267"/>
+<area shape="rect" id="node7" href="$_i_o_h_i_d_element___8h.html#af795abfef087c556a3fdfa4ee567f21b" title="IOHIDElement_GetCalibration\lDeadZoneMax" alt="" coords="296,291,496,330"/>
+<area shape="rect" id="node8" href="$_i_o_h_i_d_element___8h.html#a71af44742d5795185510108aca7ba462" title="IOHIDElement_GetCalibration\lGranularity" alt="" coords="296,354,496,393"/>
 </map>
