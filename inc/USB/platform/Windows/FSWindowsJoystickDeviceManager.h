@@ -51,6 +51,7 @@ namespace freestick {
         void update();
         void init( );
         ElementID getNextID();
+        const FSUSBJoystick * getUSBJoystickDevice(unsigned int deviceID){return static_cast<const FSUSBJoystick *>(getDevice(deviceID));}
         const FSBaseDevice * getDevice(ElementID deviceID);
         void ListenForAllJoysticksForEventTypes(unsigned int eventFlags,IFSJoystickListener & listener);
         void UnListenForAllJoysticksForEventTypes(unsigned int eventFlags,IFSJoystickListener & listener);
