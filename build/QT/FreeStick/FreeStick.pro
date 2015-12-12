@@ -53,6 +53,7 @@ SOURCES += \
 HEADERS += \
         $$files(../../../inc/*.h) \
         $$files(../../../inc/common/*.h) \
+        $$files(../../../inc/baseClasses/*.h) \
         $$files(../../../inc/Interfaces/*.h) \
         $$files(../../../inc/USB/common/*.h) \
         $$files(../../../inc/USB/*.h) \
@@ -60,10 +61,6 @@ HEADERS += \
         $$files(../../../src/3rdParty/EELog/src/*.h)
 
 INCLUDEPATH += ../../../inc \
-
-
-
-INCLUDEPATH +=
 
 unix:!symbian:!android {
     maemo5 {
@@ -75,21 +72,12 @@ unix:!symbian:!android {
     INSTALLS += target
 }
 
-android
-{
-  target.path = /libs/armeabi-v7a
-  INSTALLS += target
-#  message ( system(ndk-build  $$(NDK_ROOT)/sources/android/native_app_glue) )
-message ( system(ndk-build ../../../src/USB/platform/Android))
-}
-
-
-
-
 android {
-
+    target.path = /libs/armeabi-v7a
+    INSTALLS += target
+    #message ( system(ndk-build  $$(NDK_ROOT)/sources/android/native_app_glue) )
+    message ( system(ndk-build ../../../src/USB/platform/Android))
     SOURCES += $$files(../../../src/USB/platform/Android/jni/src/*.cpp)
-
     HEADERS += $$files(../../../inc/USB/platform/Android/jni/src/*.h)
     NDK_ROOT = $$(ANDROID_NDK_ROOT)
     !exists($$NDK_ROOT) {
@@ -100,11 +88,11 @@ android {
                     $$(JAVA_HOME)/include/win32 \
                     $$NDK_ROOT/sources/android \
 
-ANDROID_PACKAGE_SOURCE_DIR += $$PWD/../../../src/USB/platform/Android/java
+    ANDROID_PACKAGE_SOURCE_DIR += $$PWD/../../../src/USB/platform/Android/java
 
 
-OTHER_FILES += $$files(../../../src/USB/platform/Android/jni/*.mk) \
- $$files(../../../src/USB/platform/Android/java/src/org/freestick/*.java) \
+    OTHER_FILES += $$files(../../../src/USB/platform/Android/jni/*.mk) \
+     $$files(../../../src/USB/platform/Android/java/src/org/freestick/*.java) \
 
     message("ndk path")
     message($$NDK_ROOT)
@@ -113,30 +101,30 @@ OTHER_FILES += $$files(../../../src/USB/platform/Android/jni/*.mk) \
 }
 
 macx {
-QMAKE_CXXFLAGS_WARN_ON= -Wall -Wno-unused-parameter -Wsign-compare
-SOURCES += \
+    QMAKE_CXXFLAGS_WARN_ON= -Wall -Wno-unused-parameter -Wsign-compare
+    SOURCES += \
          $$files(../../../src/3rdParty/Mac/IOHID/*.c) \
         ../../../src/USB/platform/MacOSX/FSUSBMacOSXJoystick.cpp \
         ../../../src/USB/platform/MacOSX/FSUSBMacOSXJoystickDeviceManager.cpp \
 
 
-HEADERS += \
+    HEADERS += \
         $$files(../../../src/3rdParty/Mac/IOHID/*.h) \
         ../../../inc/USB/platform/MacOSX/FSUSBMacOSXJoystick.h \
         ../../../inc/USB/platform/MacOSX/FSUSBMacOSXJoystickDeviceManager.h \
 
-LIBS += -framework IOKit \
+    LIBS += -framework IOKit \
         -framework ForceFeedback \
         -framework CoreFoundation \
 }
 
 win32 {
 
-SOURCES += $$files(../../../src/USB/platform/Windows/*.cpp)
+    SOURCES += $$files(../../../src/USB/platform/Windows/*.cpp)
 
-HEADERS += $$files(../../../inc/USB/platform/Windows/*.h)
+    HEADERS += $$files(../../../inc/USB/platform/Windows/*.h)
 
-LIBS += -lXinput9_1_0
+    LIBS += -lXinput9_1_0
 }
 
 
