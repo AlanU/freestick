@@ -111,7 +111,6 @@ void FSDirectInputJoystickManager::update()
 void FSDirectInputJoystickManager::updateJoysticksPOV(FSDirectInputJoystick * device, LONG axisValue, long int idForXAxis)
 {
     FSDeviceInput povInput = LastInput;
-
     if (axisValue == -1) {
         povInput = LastValueUp;
 
@@ -127,15 +126,13 @@ void FSDirectInputJoystickManager::updateJoysticksPOV(FSDirectInputJoystick * de
         povInput = DPadDown;
 
     }
-
     if(lastPOVValue[device->getJoystickID()] != axisValue)
     {
         FSUSBElementInfoMap temp =  this->infoMapForInputType(device->getVenderID(), device->getProductID(), povInput);
         if (temp.getDeviceInput() != LastInput && temp.getEventMapping() != FSLastEventAction ) {
             FSUSBJoyStickInputElement * element = (FSUSBJoyStickInputElement*)device->findInputElement(idForXAxis);
-            axisValue = temp.getMin();
             if (element!= NULL) {
-                updateEvents(device->getJoystickID(), element, axisValue);
+                updateEvents(device->getJoystickID(), element,  temp.getMin());
             }
         }
     }
