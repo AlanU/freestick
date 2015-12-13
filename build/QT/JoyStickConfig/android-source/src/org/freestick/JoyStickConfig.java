@@ -41,8 +41,13 @@ import android.content.Intent;
 
 public class JoyStickConfig extends org.qtproject.qt5.android.bindings.QtActivity
 {
+    static {
+        System.loadLibrary("gnustl_shared");
+         System.loadLibrary("FreeStick"); // Load native library at runtime
+    }
    private static InputManager m_inputManager;
    static FreestickDeviceManager m_deviceManager;
+
    public JoyStickConfig()
    {
 
@@ -60,8 +65,8 @@ public class JoyStickConfig extends org.qtproject.qt5.android.bindings.QtActivit
 
     super.onCreate(savedInstanceState);
 
-    Intent intent = new Intent(JoyStickConfig.this,org.freestick.JoystickNatvieActivity.class);
-    startActivity(intent);
+   // Intent intent = new Intent(JoyStickConfig.this,org.freestick.JoystickNatvieActivity.class);
+    //startActivity(intent);
   }
 
    public boolean dispatchGenericMotionEvent(MotionEvent event)
