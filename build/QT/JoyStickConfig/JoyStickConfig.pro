@@ -45,7 +45,7 @@ ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android-source
 
 
 OTHER_FILES+= $$files(android-source/src/org/freestick/*.java) \
-                  $$files(android-source/*.xml)
+                  $$files(android-source/*.xml) \
 #CONFIG += dylib
 }
 
@@ -74,7 +74,6 @@ LIBS += -framework IOKit \
         -framework CoreFoundation
 }
 
-#win32:CONFIG(release, debug|release): LIBS += -L"C:\Program Files (x86)\Windows Kits\8.0\Lib\win8\um\x64" -ldinput8 -ldxguid
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../FreeStick/release/ -lFreeStick
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../FreeStick/debug/ -lFreeStick

@@ -22,10 +22,10 @@ public:
 private:
     ControllerMappingTableModel();
     FreeStickDeviceManager * _manager;
-    int _joystickId;
+    unsigned int _joystickId;
     JoyStickElementMap _JoyStickElementMap;
     std::vector<IDNumber> _elemntIDList;
-    void modelChanged(int joystickiD);
+    void modelChanged(unsigned int joystickiD);
     void elementChanged(unsigned int elementID,float newValue);
     std::vector<bool> _elemnetMapped;
     std::vector<float> _elementValuelist;

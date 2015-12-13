@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
     return a.exec();
 }
 
-#ifdef Q_OS_ANDROID
+#if defined( Q_OS_ANDROID) && defined(FS_NATIVE_ANDROD)
 
 void android_main(struct android_app* app)
 {

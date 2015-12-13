@@ -121,7 +121,7 @@ int ControllerMappingTableModel::rowCount(const QModelIndex & /*parent*/) const
  }
 
 
-void ControllerMappingTableModel::modelChanged(int joystickID)
+void ControllerMappingTableModel::modelChanged(unsigned int joystickID)
 {
     beginResetModel();
     _joystickId = joystickID;

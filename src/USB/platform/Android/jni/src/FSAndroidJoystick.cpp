@@ -51,7 +51,7 @@ FSAndroidJoystick::FSAndroidJoystick(int androidDeviceID,
     _androidDeviceID = androidDeviceID;
 	JNIEnv *env;
 	//TODO cache jclass and methodID
-	jvm->AttachCurrentThread(&env,NULL);
+    jvm->AttachCurrentThread((void**)(&env),NULL);
 	jclass inputDeviceClass = env->FindClass("android/view/InputDevice");
 	bool error = false;
 	if(!inputDeviceClass)

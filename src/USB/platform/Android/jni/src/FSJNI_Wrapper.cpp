@@ -134,7 +134,7 @@ void  JNIBridge::updateJoysticks(JavaVM * jvm)
     std::vector<jint> foundJoysticks;
     JNIEnv *env;
     //TODO cache jclass and methodID
-    jvm->AttachCurrentThread(&env,NULL);
+    jvm->AttachCurrentThread((void **)(&env),NULL);
     jclass inputDeviceClass = env->FindClass("android/view/InputDevice");
 
     if(!inputDeviceClass)
