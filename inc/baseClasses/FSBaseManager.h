@@ -45,11 +45,12 @@ and must not be misrepresented as being the original software.
   * then register your class with the Device Manager for the call back you are intrested in<br>
   * \code
     #include "freestick.h"
+    using namespace freestick;
     class JoystickEventHandler: public IFSJoystickListener
     {
        public:
-           JoystickEventHandler();
-           ~JoystickEventHandler();
+           JoystickEventHandler(){};
+           ~JoystickEventHandler(){};
            virtual void onButtonDown(FSDeviceInputEvent event) {}
            virtual void onButtonUp(FSDeviceInputEvent event) {}
            virtual void onStickMove(FSDeviceInputEvent event) { }
