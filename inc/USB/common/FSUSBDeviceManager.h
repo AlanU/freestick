@@ -53,6 +53,7 @@ const uint32_t Playstation3ControllerID = 616;
 const uint32_t Playstation4ControllerID = 1476;
 const uint32_t LogitechVendorID = 1133;
 const uint32_t LogitechDualActionID = 49686;
+const uint32_t LogitechGamepadF710 = 49689;
 const uint32_t LogitechGamepadF310 = 49693;
 const uint32_t OUYAVendorID = 10294;
 const uint32_t OUYAControllerID = 1;

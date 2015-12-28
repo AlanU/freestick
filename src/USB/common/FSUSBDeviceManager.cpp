@@ -361,6 +361,42 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation4ControllerID)][65589].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));//RXaxis stick
     _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation4ControllerID)][65586].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));//RYaxis stick
 
+    //Logitech F710
+
+    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][589826] = ButtonA;
+    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][589827] = ButtonB;
+    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][589825] = ButtonX;
+    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][589828] = ButtonY;
+
+    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][589829]= LeftShoulder;
+    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][589830] = RightShoulder;
+    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][589831] = LeftShoulder2;
+    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][589832] = RightShoulder2;
+
+    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][589835] = Axis1Button;
+    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][589836] = Axis2Button;
+
+    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][589833] = ButtonSelect;
+    // No center button not accessible
+    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][589834] = ButtonStart;
+
+    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][65593].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][65593].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][65593].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][65593].push_back(FSUSBElementInfoMap(3,3,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][65593].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][65593].push_back(FSUSBElementInfoMap(5,5,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][65593].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][65593].push_back(FSUSBElementInfoMap(7,7,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][65593].push_back(FSUSBElementInfoMap(8,8,LastValueUp,FSInputRest));
+
+    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][65584].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));//LXaxis stick
+    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][65585].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));//LYaxis stick
+
+    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][65589].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));//RXaxis stick
+    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][65586].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));//RYaxis stick
+
+
     // Logitech Dual Action
 
     _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechDualActionID)][589826] = ButtonA;
