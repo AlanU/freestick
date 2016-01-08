@@ -340,8 +340,8 @@ void FSDirectInputJoystickManager::removeDevice(GUID guidDeviceInstance)
 //-----------------------------------------------------------------------------
 bool FSDirectInputJoystickManager::IsXInputDevice( const GUID* pGuidProductFromDirectInput )
 {
-    static std::map<GUID, bool> isXInputDevice;
-    std::map<GUID, bool>::iterator device = isXInputDevice.find(*pGuidProductFromDirectInput);
+    static std::unordered_map<GUID, bool> isXInputDevice;
+    std::unordered_map<GUID, bool>::iterator device = isXInputDevice.find(*pGuidProductFromDirectInput);
 
     if ( device != isXInputDevice.end()) {
         return (*device).second;
