@@ -64,6 +64,22 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputRangeEvent[createVPId(PCUSBSNESVenderID,PCUSBSNESID)][65584].push_back(FSUSBElementInfoMap(128,128,LastValueUp,FSInputRest));
 
 
+    _usageMapToInputEvent[createVPId(TomeeVenderID2,TomeeNesUSBControllerID)][589825] = ButtonB;
+    _usageMapToInputEvent[createVPId(TomeeVenderID2,TomeeNesUSBControllerID)][589826] = ButtonA;
+
+    _usageMapToInputEvent[createVPId(TomeeVenderID2,TomeeNesUSBControllerID)][589834] = ButtonStart;
+    _usageMapToInputEvent[createVPId(TomeeVenderID2,TomeeNesUSBControllerID)][589833] = ButtonSelect;
+
+
+    _usageMapToInputRangeEvent[createVPId(TomeeVenderID2,TomeeNesUSBControllerID)][65585].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(TomeeVenderID2,TomeeNesUSBControllerID)][65585].push_back(FSUSBElementInfoMap(255,255,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(TomeeVenderID2,TomeeNesUSBControllerID)][65585].push_back(FSUSBElementInfoMap(127,127,LastValueUp,FSInputRest));
+
+    _usageMapToInputRangeEvent[createVPId(TomeeVenderID2,TomeeNesUSBControllerID)][65584].push_back(FSUSBElementInfoMap(0,0,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(TomeeVenderID2,TomeeNesUSBControllerID)][65584].push_back(FSUSBElementInfoMap(255,255,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(TomeeVenderID2,TomeeNesUSBControllerID)][65584].push_back(FSUSBElementInfoMap(127,127,LastValueUp,FSInputRest));
+
+
 
     _usageMapToInputEvent[createVPId(TomeeVenderID,TomeeNesUSBID)][589825] = ButtonB;
     _usageMapToInputEvent[createVPId(TomeeVenderID,TomeeNesUSBID)][589826] = ButtonA;

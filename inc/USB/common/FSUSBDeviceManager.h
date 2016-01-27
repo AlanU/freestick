@@ -68,7 +68,8 @@ const uint32_t TomeeVenderID = 7511;
 const uint32_t TomeeNesUSBID = 33;
 const uint32_t PCUSBSNESVenderID = 3727;
 const uint32_t PCUSBSNESID = 12307;
-
+const uint32_t TomeeVenderID2 = 4797;
+const uint32_t TomeeNesUSBControllerID = 53269;
 
     class FSUSBElementInfoMap
     {
