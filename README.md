@@ -14,9 +14,9 @@ The easies way to get started is to download [QT](http://qt-project.org/download
 There is a NULL device if you wish to build and test the code out on an unsupported platform. 
 
 ### Notes ###
-This code is in a alpha state and currently only works on MacOSX and Android.
+This code is in a alpha state and currently only works on MacOSX, Android, Windows (coming soon).
 
-The future versions will support iOS, Windows ,and Linux.
+The future versions will support iOS, NDK Only Android ,and Linux.
 
 We are looking for contributors. Contact AlanU for more information
 
