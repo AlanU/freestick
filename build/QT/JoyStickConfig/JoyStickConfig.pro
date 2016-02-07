@@ -67,7 +67,7 @@ HEADERS  += mainwindow.h \
 FORMS    += mainwindow.ui \
     joystickconfigwidget.ui
 macx{
-QMAKE_CXXFLAGS_WARN_ON= -Wall -Wunused-prameter -Wno-inconsistent-missing-override
+QMAKE_CXXFLAGS_WARN_ON= -Wall -Wno-unused-parameter -Wno-inconsistent-missing-override
 
 LIBS += -framework IOKit \
         -framework ForceFeedback \
