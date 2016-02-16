@@ -39,8 +39,8 @@ Then register your class with the Device Manager for the call back you are intre
     class JoystickEventHandler: public IFSJoystickListener
     {
        public:
-           JoystickEventHandler();
-           ~JoystickEventHandler();
+           JoystickEventHandler(){}
+           ~JoystickEventHandler(){}
            virtual void onButtonDown(freestick::FSDeviceInputEvent event) {}
            virtual void onButtonUp(freestick::FSDeviceInputEvent event) {}
            virtual void onStickMove(freestick::FSDeviceInputEvent event) {}
