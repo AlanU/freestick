@@ -44,8 +44,8 @@ Then register your class with the Device Manager for the call back you are intre
            virtual void onButtonDown(freestick::FSDeviceInputEvent event) {}
            virtual void onButtonUp(freestick::FSDeviceInputEvent event) {}
            virtual void onStickMove(freestick::FSDeviceInputEvent event) {}
-           virtual void onDisconnect(freestick::FSBaseEvent event){};
-           virtual void onConnect(freestick::FSBaseEvent event){};
+           virtual void onDisconnect(freestick::FSBaseEvent event){}
+           virtual void onConnect(freestick::FSBaseEvent event){}
     };
 
    void main()
