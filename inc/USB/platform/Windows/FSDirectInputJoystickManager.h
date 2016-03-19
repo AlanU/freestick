@@ -35,7 +35,10 @@ and must not be misrepresented as being the original software.
 #include <dinputd.h>
 #include <wbemidl.h>
 #include <oleauto.h>
-
+#include <mutex>
+#include <memory>
+#include <thread>
+#include <atomic>
 #define SAFE_DELETE(p)  { if(p) { delete (p);     (p)=nullptr; } }
 #define SAFE_RELEASE(p) { if(p) { (p)->Release(); (p)=nullptr; } }
 inline bool operator<( const GUID & lhs, const GUID & rhs )
@@ -86,8 +89,12 @@ struct DirectInput_Enum_Contex
         //unsigned int getDeviceIDFromIOHIDevice(LPDIRECTINPUTDEVICE8 inputDevice );
     private:
         std::unordered_map<IDNumber,LONG> lastPOVValue;
+        std::recursive_mutex connectedJoystickLock;
+        std::vector<FSDirectInputJoystick * > joysticksToAddThisUpdate;
+        std::vector<const FSBaseDevice * > joysticksToRemoveThisUpdate;
+        std::unique_ptr<std::thread> connectedJoystickThread;
         void updateConnectJoysticks();
-
+        std::atomic_flag lookingForJoysticks  = ATOMIC_FLAG_INIT;
     };
 
 

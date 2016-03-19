@@ -28,6 +28,7 @@
 #include "USB/platform/Windows/FSDirectInputJoystickManager.h"
 #include "USB/platform/Windows/FSDirectInputJoystick.h"
 #include <hidusage.h>
+#include <chrono>
 using namespace freestick;
 
 
@@ -53,13 +54,18 @@ void FSDirectInputJoystickManager::init( )
     if (FAILED(hr = _directInput8->QueryInterface(IID_IDirectInputJoyConfig8, (void**)&joyConfig) ))
         enumContext.isVaild = true;
     SAFE_RELEASE(joyConfig);
-
+    std::unique_ptr<std::thread>  connectThread (
+                new std::thread(&freestick::FSDirectInputJoystickManager::updateConnectJoysticks,this));
+    connectedJoystickThread = std::move(connectThread);
     update();
 
 }
 
 void FSDirectInputJoystickManager::updateConnectJoysticks()
 {
+    lookingForJoysticks.test_and_set(std::memory_order_acquire);
+    while(lookingForJoysticks)
+    {
     HRESULT hr;
 
     std::vector<GUID> newThisUpdate;
@@ -100,11 +106,26 @@ void FSDirectInputJoystickManager::updateConnectJoysticks()
         enumContext.joysticksConnectedThisUpdate.clear();
 
     }
+      std::this_thread::sleep_for(std::chrono::milliseconds(700));
+    }
 }
 
 void FSDirectInputJoystickManager::update()
 {
-    updateConnectJoysticks();
+    connectedJoystickLock.lock();
+    for( FSDirectInputJoystick * &joystickToAdd : joysticksToAddThisUpdate )
+    {
+        addDevice(joystickToAdd);
+
+    }
+    joysticksToAddThisUpdate.clear();
+    for( const FSBaseDevice *  &joystickToRemove : joysticksToRemoveThisUpdate )
+    {
+        removeDevice((FSBaseDevice*)joystickToRemove);
+
+    }
+    joysticksToRemoveThisUpdate.clear();
+    connectedJoystickLock.unlock();
     updateJoysticks();
 }
 
@@ -271,6 +292,8 @@ void FSDirectInputJoystickManager::updateJoysticks()
 
 FSDirectInputJoystickManager::~FSDirectInputJoystickManager()
 {
+    lookingForJoysticks.clear(std::memory_order_release);
+    connectedJoystickThread.get()->join();
 
 }
 
@@ -309,6 +332,7 @@ void FSDirectInputJoystickManager::removeDevice(FSBaseDevice * device)
 
 void FSDirectInputJoystickManager::addDevice(GUID guidDeviceInstance)
 {
+    std::lock_guard<std::recursive_mutex> lock(connectedJoystickLock);
     if (_directInputToDeviceIDMap.find(guidDeviceInstance) == _directInputToDeviceIDMap.end()) {
         LPDIRECTINPUTDEVICE8 _Joystick = NULL;
         HRESULT result;
@@ -317,7 +341,8 @@ void FSDirectInputJoystickManager::addDevice(GUID guidDeviceInstance)
             //TODO set up event with SetEventNotification , CreateEvent , and WaitForSingleObject
             ElementID newID = this->getNextID();
             FSDirectInputJoystick * newJoystick = new FSDirectInputJoystick(_Joystick, newID, 0, 0, 0, false, -1, -1, *this);
-            this->addDevice(newJoystick);
+            joysticksToAddThisUpdate.push_back(newJoystick);
+            //  this->addDevice(newJoystick);
             _directInputToDeviceIDMap[guidDeviceInstance] = newID;
         }
     }
@@ -325,10 +350,12 @@ void FSDirectInputJoystickManager::addDevice(GUID guidDeviceInstance)
 
 void FSDirectInputJoystickManager::removeDevice(GUID guidDeviceInstance)
 {
+    std::lock_guard<std::recursive_mutex> lock (connectedJoystickLock);
     if (_directInputToDeviceIDMap.find(guidDeviceInstance) != _directInputToDeviceIDMap.end()) {
         unsigned int id = _directInputToDeviceIDMap[guidDeviceInstance];
         const FSBaseDevice * joystickToDelete = this->getDevice(id);
-        this->removeDevice((FSBaseDevice*)joystickToDelete);
+        joysticksToRemoveThisUpdate.push_back(joystickToDelete);
+        //this->removeDevice((FSBaseDevice*)joystickToDelete);
         _directInputToDeviceIDMap.erase(guidDeviceInstance);
     }
 }
