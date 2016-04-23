@@ -30,11 +30,10 @@ and must not be misrepresented as being the original software.
 #include "USB/platform/Windows/FSDirectInputJoystick.h"
 #define DIRECTINPUT_VERSION 0x0800
 #define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
 #include <dinput.h>
 #include <dinputd.h>
-#include <wbemidl.h>
-#include <oleauto.h>
+//#include <wbemidl.h>
+//#include <oleauto.h>
 #include <mutex>
 #include <memory>
 #include <thread>
@@ -47,15 +46,35 @@ inline bool operator<( const GUID & lhs, const GUID & rhs )
 }
 
 namespace freestick {
-class FSDirectInputJoystickManager;
-struct DirectInput_Enum_Contex
-{
-    DIJOYCONFIG * joystickConfig;
-    bool isVaild;
-    freestick::FSDirectInputJoystickManager * manager;
-    std::vector<GUID> connectedLastUpdateJoysticks;
-    std::vector<GUID> joysticksConnectedThisUpdate;
-};
+    class FSDirectInputJoystickManager;
+    struct DirectInput_Enum_Contex
+    {
+        DIJOYCONFIG * joystickConfig;
+        bool isVaild;
+        freestick::FSDirectInputJoystickManager * manager;
+        std::vector<GUID> connectedLastUpdateJoysticks;
+        std::vector<GUID> joysticksConnectedThisUpdate;
+    };
+
+    class FSSpinLock
+    {
+    public:
+        void lock()
+        {
+            while(locked.test_and_set(std::memory_order_acquire)){;}
+        }
+        bool try_lock()
+        {
+            return !locked.test_and_set(std::memory_order_acquire);
+        }
+
+        void unlock()
+        {
+            locked.clear(std::memory_order_release);
+        }
+     private:
+        std::atomic_flag locked = ATOMIC_FLAG_INIT;
+    };
 
     class FSDirectInputJoystickManager : public FSUpdatableJoystickDeviceManager
     {
@@ -64,7 +83,8 @@ struct DirectInput_Enum_Contex
         virtual void init( );
         virtual void update();
         virtual ~FSDirectInputJoystickManager();
-        static bool IsXInputDevice( const GUID* pGuidProductFromDirectInput );
+        //static bool IsXInputDevice( const GUID* pGuidProductFromDirectInput );
+        static bool IsXInputDeviceRaw( const GUID* pGuidProductFromDirectInput );
         //Windows BOOL is type def for int
         static BOOL CALLBACK EnumJoysticksCallback( const DIDEVICEINSTANCE* pdidInstance,void* pContext );
         static BOOL CALLBACK EnumInputObjectsCallback( const DIDEVICEOBJECTINSTANCE* pdidoi,VOID* pContext );
@@ -89,12 +109,14 @@ struct DirectInput_Enum_Contex
         //unsigned int getDeviceIDFromIOHIDevice(LPDIRECTINPUTDEVICE8 inputDevice );
     private:
         std::unordered_map<IDNumber,LONG> lastPOVValue;
-        std::recursive_mutex connectedJoystickLock;
+        typedef FSSpinLock ConnctionLockType ;
+        ConnctionLockType connectedJoystickLock;
         std::vector<FSDirectInputJoystick * > joysticksToAddThisUpdate;
         std::vector<const FSBaseDevice * > joysticksToRemoveThisUpdate;
         std::unique_ptr<std::thread> connectedJoystickThread;
         void updateConnectJoysticks();
-        std::atomic_flag lookingForJoysticks  = ATOMIC_FLAG_INIT;
+        FSSpinLock spinLock;
+        std::atomic_flag lookingForJoysticks = ATOMIC_FLAG_INIT;
     };
 
 

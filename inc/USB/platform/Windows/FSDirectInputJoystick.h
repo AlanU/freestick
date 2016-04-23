@@ -27,7 +27,6 @@ and must not be misrepresented as being the original software.
 
 #pragma once
 #define DIRECTINPUT_VERSION 0x0800
-#include <Windows.h>
 #include <dinput.h>
 
 #include "USB/common/FSUSBJoystick.h"
