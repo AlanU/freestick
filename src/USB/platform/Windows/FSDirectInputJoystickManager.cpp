@@ -30,6 +30,8 @@
 #include <hidusage.h>
 #include <chrono>
 #include <string.h>
+
+constexpr std::chrono::milliseconds connectionCheckSleep(1500);
 using namespace freestick;
 
 
@@ -106,7 +108,7 @@ void FSDirectInputJoystickManager::updateConnectJoysticks()
             enumContext.joysticksConnectedThisUpdate.clear();
 
          // lookingForJoysticks.clear(std::memory_order_release);
-          std::this_thread::sleep_for(std::chrono::milliseconds(700));
+          std::this_thread::sleep_for(connectionCheckSleep);
         }
    }
 }
