@@ -29,6 +29,7 @@
 #include "USB/platform/Windows/FSDirectInputJoystick.h"
 #include <hidusage.h>
 #include <chrono>
+#include <string.h>
 using namespace freestick;
 
 
@@ -54,6 +55,7 @@ void FSDirectInputJoystickManager::init( )
     if (FAILED(hr = _directInput8->QueryInterface(IID_IDirectInputJoyConfig8, (void**)&joyConfig) ))
         enumContext.isVaild = true;
     SAFE_RELEASE(joyConfig);
+    lookingForJoysticks.test_and_set(std::memory_order_acquire);
     std::unique_ptr<std::thread>  connectThread (
                 new std::thread(&freestick::FSDirectInputJoystickManager::updateConnectJoysticks,this));
     connectedJoystickThread = std::move(connectThread);
@@ -63,51 +65,50 @@ void FSDirectInputJoystickManager::init( )
 
 void FSDirectInputJoystickManager::updateConnectJoysticks()
 {
-    lookingForJoysticks.test_and_set(std::memory_order_acquire);
-    while(lookingForJoysticks)
+    while(lookingForJoysticks.test_and_set(std::memory_order_acquire))
     {
-    HRESULT hr;
+        HRESULT hr;
+        std::vector<GUID> newThisUpdate;
+        std::vector<GUID> foundThisUpdate;
 
-    std::vector<GUID> newThisUpdate;
-    std::vector<GUID> foundThisUpdate;
+        if (SUCCEEDED( hr = _directInput8->EnumDevices(DI8DEVCLASS_GAMECTRL,
+                                   FSDirectInputJoystickManager::EnumJoysticksCallback,
+                                   &enumContext,
+                                   DIEDFL_ATTACHEDONLY))) {
+            for ( std::vector<GUID>::iterator itr =  enumContext.joysticksConnectedThisUpdate.begin(); itr != enumContext.joysticksConnectedThisUpdate.end(); ++itr) {
+                GUID foundJoystick = *itr;
+                std::vector<GUID>::iterator itr2 = std::find(enumContext.connectedLastUpdateJoysticks.begin(),
+                                        enumContext.connectedLastUpdateJoysticks.end(),
+                                        foundJoystick);
+                if (itr2 != enumContext.connectedLastUpdateJoysticks.end()) {
+                    enumContext.connectedLastUpdateJoysticks.erase(itr2);
 
-    if (SUCCEEDED( hr = _directInput8->EnumDevices(DI8DEVCLASS_GAMECTRL,
-                               FSDirectInputJoystickManager::EnumJoysticksCallback,
-                               &enumContext,
-                               DIEDFL_ATTACHEDONLY))) {
-        for ( std::vector<GUID>::iterator itr =  enumContext.joysticksConnectedThisUpdate.begin(); itr != enumContext.joysticksConnectedThisUpdate.end(); ++itr) {
-            GUID foundJoystick = *itr;
-            std::vector<GUID>::iterator itr2 = std::find(enumContext.connectedLastUpdateJoysticks.begin(),
-                                    enumContext.connectedLastUpdateJoysticks.end(),
-                                    foundJoystick);
-            if (itr2 != enumContext.connectedLastUpdateJoysticks.end()) {
-                enumContext.connectedLastUpdateJoysticks.erase(itr2);
+                }else  {
+                    newThisUpdate.push_back(foundJoystick);
+                }
+                foundThisUpdate.push_back(foundJoystick);
 
-            }else  {
-                newThisUpdate.push_back(foundJoystick);
             }
-            foundThisUpdate.push_back(foundJoystick);
+            for (int index =(int) enumContext.connectedLastUpdateJoysticks.size() - 1; index >= 0; index--) {
+                GUID deviceToDelete = enumContext.connectedLastUpdateJoysticks[index];
+                this->removeDevice(deviceToDelete );
+            }
+            std::vector<GUID>::iterator itrAdd;
+            for (itrAdd = newThisUpdate.begin(); itrAdd != newThisUpdate.end(); ++itrAdd ) {
+                this->addDevice(*itrAdd);
 
+            }
+
+            //delete every joystick in connectedLastUpdateJoysticks
+            //add all in newThisUpdate
+
+            enumContext.connectedLastUpdateJoysticks = foundThisUpdate;
+            enumContext.joysticksConnectedThisUpdate.clear();
+
+         // lookingForJoysticks.clear(std::memory_order_release);
+          std::this_thread::sleep_for(std::chrono::milliseconds(700));
         }
-        for (int index =(int) enumContext.connectedLastUpdateJoysticks.size() - 1; index >= 0; index--) {
-            GUID deviceToDelete = enumContext.connectedLastUpdateJoysticks[index];
-            this->removeDevice(deviceToDelete );
-        }
-        std::vector<GUID>::iterator itrAdd;
-        for (itrAdd = newThisUpdate.begin(); itrAdd != newThisUpdate.end(); ++itrAdd ) {
-            this->addDevice(*itrAdd);
-
-        }
-
-        //delete every joystick in connectedLastUpdateJoysticks
-        //add all in newThisUpdate
-
-        enumContext.connectedLastUpdateJoysticks = foundThisUpdate;
-        enumContext.joysticksConnectedThisUpdate.clear();
-
-    }
-      std::this_thread::sleep_for(std::chrono::milliseconds(700));
-    }
+   }
 }
 
 void FSDirectInputJoystickManager::update()
@@ -302,8 +303,7 @@ BOOL CALLBACK FSDirectInputJoystickManager::EnumJoysticksCallback( const DIDEVIC
 {
     DirectInput_Enum_Contex * enumContext = reinterpret_cast<DirectInput_Enum_Contex *>(pContext);
 
-    //IsXInputDevice is really expinsivce to call
-    if (IsXInputDevice(&pdidInstance->guidProduct))
+    if (IsXInputDeviceRaw(&pdidInstance->guidProduct))
         return DIENUM_CONTINUE;
 
     // Skip anything other than the perferred joystick device as defined by the control panel.
@@ -332,7 +332,7 @@ void FSDirectInputJoystickManager::removeDevice(FSBaseDevice * device)
 
 void FSDirectInputJoystickManager::addDevice(GUID guidDeviceInstance)
 {
-    std::lock_guard<std::recursive_mutex> lock(connectedJoystickLock);
+    std::lock_guard<ConnctionLockType> lock(connectedJoystickLock);
     if (_directInputToDeviceIDMap.find(guidDeviceInstance) == _directInputToDeviceIDMap.end()) {
         LPDIRECTINPUTDEVICE8 _Joystick = NULL;
         HRESULT result;
@@ -350,7 +350,7 @@ void FSDirectInputJoystickManager::addDevice(GUID guidDeviceInstance)
 
 void FSDirectInputJoystickManager::removeDevice(GUID guidDeviceInstance)
 {
-    std::lock_guard<std::recursive_mutex> lock (connectedJoystickLock);
+    std::lock_guard<ConnctionLockType> lock (connectedJoystickLock);
     if (_directInputToDeviceIDMap.find(guidDeviceInstance) != _directInputToDeviceIDMap.end()) {
         unsigned int id = _directInputToDeviceIDMap[guidDeviceInstance];
         const FSBaseDevice * joystickToDelete = this->getDevice(id);
@@ -359,15 +359,62 @@ void FSDirectInputJoystickManager::removeDevice(GUID guidDeviceInstance)
         _directInputToDeviceIDMap.erase(guidDeviceInstance);
     }
 }
+bool FSDirectInputJoystickManager::IsXInputDeviceRaw( const GUID* pGuidProductFromDirectInput )
+{
+    bool isXInputDevice = false;
+    UINT nDevices, nDeviceCount;
+    PRAWINPUTDEVICELIST pRawInputDeviceList;
+    if (GetRawInputDeviceList(NULL, &nDevices, sizeof(RAWINPUTDEVICELIST)) != 0)
+    {
+        return false;
+    }
+    if ((pRawInputDeviceList = static_cast<RAWINPUTDEVICELIST *>(malloc(sizeof(RAWINPUTDEVICELIST) * nDevices))) == NULL)
+    {
+        return false;
+    }
+    if ((nDeviceCount = GetRawInputDeviceList(pRawInputDeviceList, &nDevices, sizeof(RAWINPUTDEVICELIST))) == (UINT)-1)
+    {
+       free(pRawInputDeviceList);
+       return false;
+    }
+
+    for(UINT index = 0 ; index < nDeviceCount; ++index)
+    {
+        if(pRawInputDeviceList[index].dwType == RIM_TYPEHID)
+        {
+            RID_DEVICE_INFO ridDeviceInfo;
+            UINT cbSizeTemp = ridDeviceInfo.cbSize = sizeof(ridDeviceInfo);
+
+            if((INT)GetRawInputDeviceInfoA(pRawInputDeviceList[index].hDevice,RIDI_DEVICEINFO,&ridDeviceInfo,&cbSizeTemp)>0)
+            {
+                if(MAKELONG(ridDeviceInfo.hid.dwVendorId, ridDeviceInfo.hid.dwProductId) == (LONG)pGuidProductFromDirectInput->Data1 )
+                {
+                    char deviceName[256] = {'\0'};
+                    UINT deviceNameLength = std::extent< decltype( deviceName ) >::value;
+                    UINT resultLength =  GetRawInputDeviceInfoA(pRawInputDeviceList[index].hDevice,RIDI_DEVICENAME,deviceName,&deviceNameLength);
+                   if(resultLength != (UINT)-1)
+                   {
+
+                       isXInputDevice = (strstr(deviceName,"IG_") != nullptr);
+                       break;
+                   }
+                }
+            }
+        }
+    }
+    free(pRawInputDeviceList);
+    return isXInputDevice;
+}
+
 
 //-----------------------------------------------------------------------------
 // Enum each PNP device using WMI and check each device ID to see if it contains
 // "IG_" (ex. "VID_045E&PID_028E&IG_00").  If it does, then it's an XInput device
 // Unfortunately this information can not be found by just using DirectInput
 //-----------------------------------------------------------------------------
-bool FSDirectInputJoystickManager::IsXInputDevice( const GUID* pGuidProductFromDirectInput )
-{
-    static std::map<GUID, bool> isXInputDevice;
+//bool FSDirectInputJoystickManager::IsXInputDevice( const GUID* pGuidProductFromDirectInput )
+//{
+  /* static std::map<GUID, bool> isXInputDevice;
     std::map<GUID, bool>::iterator device = isXInputDevice.find(*pGuidProductFromDirectInput);
 
     if ( device != isXInputDevice.end()) {
@@ -474,5 +521,6 @@ bool FSDirectInputJoystickManager::IsXInputDevice( const GUID* pGuidProductFromD
 
     isXInputDevice[*pGuidProductFromDirectInput] = bIsXinputDevice;
 
-    return bIsXinputDevice;
-}
+    return bIsXinputDevice;*/
+   // return false;
+//}
