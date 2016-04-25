@@ -266,23 +266,21 @@ void FSDirectInputJoystickManager::updateJoysticks()
             }
             updateJoysticksPOV(device, angleValue, idForAxis);
 
-            //update buttons
-            std::vector<IDNumber> elements = device->getElementIds();
-            int buttonNumber = 0;
-            for ( unsigned int i = 0; i < elements.size(); i++ ) {
-                FSUSBJoyStickInputElement * element = (FSUSBJoyStickInputElement*)device->findInputElement(elements[i]);
+			int buttonNumber = 0;
 
-                if (element->getMinValue() == 0 && element->getMaxValue() == 1) {
-                    long value = ( js.rgbButtons[buttonNumber] & 0x80 ) ? 1 : 0;
+			for  (auto & item : *device)
+			{
+				FSUSBJoyStickInputElement & element = item.second;
+				if (element.getMinValue() == 0 && element.getMaxValue() == 1) {
+					long value = (js.rgbButtons[buttonNumber] & 0x80) ? 1 : 0;
 
-                    //TODO fix compare to not lose precision
-                    if (element->getValue() != value) {
-                        updateEvents(device->getJoystickID(), element, value);
-                    }
-                    buttonNumber++;
-                }
-
-            }
+					//TODO fix compare to not lose precision
+					if (element.getValue() != value) {
+						updateEvents(device->getJoystickID(),&element, value);
+					}
+					buttonNumber++;
+				}
+			}
         }
 
     }
@@ -361,6 +359,12 @@ void FSDirectInputJoystickManager::removeDevice(GUID guidDeviceInstance)
         _directInputToDeviceIDMap.erase(guidDeviceInstance);
     }
 }
+
+//-----------------------------------------------------------------------------
+// Enum each PNP device using Raw HID and check each device ID to see if it contains
+// "IG_" (ex. "VID_045E&PID_028E&IG_00").  If it does, then it's an XInput device
+// Unfortunately this information can not be found by just using DirectInput
+//-----------------------------------------------------------------------------
 bool FSDirectInputJoystickManager::IsXInputDeviceRaw( const GUID* pGuidProductFromDirectInput )
 {
     bool isXInputDevice = false;

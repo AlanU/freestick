@@ -60,25 +60,42 @@ void FSUSBJoystick::addInputElement(FSUSBJoyStickInputElement & element)
 }
 const FSUSBJoyStickInputElement * FSUSBJoystick::findInputElement(IDNumber id) const
 {
-    std::map<IDNumber,FSUSBJoyStickInputElement >::const_iterator itr = _inputElementMap.find(id);
-
-    if(itr != _inputElementMap.end())
-    {
-
-        return &(itr->second);
-    }
-    else
-       return NULL;
+	for (auto &itr : _inputElementMap)
+	{
+		if (itr.first == id)
+			return &(itr.second);
+	}
+	return nullptr;
 }
 
 std::vector<IDNumber> FSUSBJoystick::getElementIds() const
 {
     std::vector<IDNumber > elementKeys;
-    std::map<IDNumber,FSUSBJoyStickInputElement >::const_iterator itr = _inputElementMap.begin();
+	elementKeys.reserve(_inputElementMap.size());
+	JoyStickElementMap::const_iterator itr = _inputElementMap.begin();
     while(itr != _inputElementMap.end())
     {
         elementKeys.push_back(itr->first);
         ++itr;
     }
-    return elementKeys;
+    return std::move(elementKeys);
+}
+
+JoyStickElementMap::const_iterator FSUSBJoystick::begin() const
+{
+	return _inputElementMap.begin(); //FSUSBJoystick::const_iterator (&_inputElementMap, _inputElementMap.begin()->first);
+}
+JoyStickElementMap::const_iterator FSUSBJoystick::end() const
+{
+	return  _inputElementMap.end();//FSUSBJoystick::const_iterator(&_inputElementMap, _inputElementMap.end()->first);
+}
+
+JoyStickElementMap::iterator FSUSBJoystick::begin()
+{
+	return  _inputElementMap.begin();//FSUSBJoystick::iterator(&_inputElementMap, _inputElementMap.begin()->first);
+}
+JoyStickElementMap::iterator FSUSBJoystick::end()
+{
+	return  _inputElementMap.end();// FSUSBJoystick::iterator(&_inputElementMap, _inputElementMap.end()->first);
+
 }

@@ -28,6 +28,7 @@ and must not be misrepresented as being the original software.
 #pragma once
 #include "USB/common/FSUpdatableJoystickDeviceManager.h"
 #include "USB/platform/Windows/FSDirectInputJoystick.h"
+#include "common/FSSpinlock.h"
 #define DIRECTINPUT_VERSION 0x0800
 #define WIN32_LEAN_AND_MEAN
 #include <dinput.h>
@@ -54,26 +55,6 @@ namespace freestick {
         freestick::FSDirectInputJoystickManager * manager;
         std::vector<GUID> connectedLastUpdateJoysticks;
         std::vector<GUID> joysticksConnectedThisUpdate;
-    };
-
-    class FSSpinLock
-    {
-    public:
-        void lock()
-        {
-            while(locked.test_and_set(std::memory_order_acquire)){;}
-        }
-        bool try_lock()
-        {
-            return !locked.test_and_set(std::memory_order_acquire);
-        }
-
-        void unlock()
-        {
-            locked.clear(std::memory_order_release);
-        }
-     private:
-        std::atomic_flag locked = ATOMIC_FLAG_INIT;
     };
 
     class FSDirectInputJoystickManager : public FSUpdatableJoystickDeviceManager
