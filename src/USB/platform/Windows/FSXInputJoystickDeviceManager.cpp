@@ -46,21 +46,39 @@ void  FSXInputJoystickDeviceManager::updateAnalog(unsigned int axisToLookFor , c
 {
     FSUSBJoyStickInputElement * element = (FSUSBJoyStickInputElement*) xinputJoystick->findInputElement(axisToLookFor) ;
     updateEvents(controllerID,element,value);
+	
 }
 
+void FSXInputJoystickDeviceManager::updateEvents(unsigned int joystickDeviceID, FSUSBJoyStickInputElement * elementDevice, PhysicalValueNumber elementValue)
+{
+	if (elementDevice->getValue() != elementValue) {
+
+		if (elementDevice->isIntialized())
+		{
+			FSUpdatableJoystickDeviceManager::updateEvents(joystickDeviceID, elementDevice, elementValue);
+		}
+		else
+		{
+			std::stack<FSUSBElementInfoMap> inputTypes;
+			elementDevice->getMapping(elementValue , inputTypes);
+		}
+	}
+}
 void  FSXInputJoystickDeviceManager::updateButton(WORD buttons,WORD xButtonToLookFor,unsigned int buttonToLookFor , const FSXInputJoystick * xinputJoystick , unsigned int controllerID )
 {
     bool value = ((buttons & xButtonToLookFor)!= 0 );
     FSUSBJoyStickInputElement * pad = (FSUSBJoyStickInputElement*) xinputJoystick->findInputElement(buttonToLookFor) ;
-    updateEvents(controllerID,pad,value ? 1 : 0);
+	updateEvents(controllerID, pad, value ? 1 : 0);
 }
 
 void FSXInputJoystickDeviceManager::updateJoysticks()
 {
     static DWORD lastState[XUSER_MAX_COUNT]= {0,0,0,0};
-
-    for (DWORD index = 0; index < XUSER_MAX_COUNT; index++)
+	//do not as for the state of disconnected joysticks this causes performance issues
+	DWORD index = 0;
+	for (auto & itr = _wordToIDControllerMap.begin(); itr != _wordToIDControllerMap.end();++itr)
     {
+		index = itr->first;
         DWORD result;
         //TODO do not do this twice
         XINPUT_STATE xState;
@@ -108,7 +126,7 @@ void FSXInputJoystickDeviceManager::updateJoysticks()
 
 void FSXInputJoystickDeviceManager::updateConnectJoysticks()
 {
-
+//TODO put this in a background thread like direct input
 std::vector<DWORD> newThisUpdate;
 std::vector<DWORD> foundThisUpdate;
 

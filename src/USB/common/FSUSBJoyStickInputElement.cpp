@@ -196,3 +196,8 @@ void FSUSBJoyStickInputElement::recalibrate(PhysicalValueNumber currentValue, Mi
 {
     calibrate(currentValue,elementMin,elementMax);
 }
+
+bool FSUSBJoyStickInputElement::isIntialized()
+{
+	return _intialized;
+}

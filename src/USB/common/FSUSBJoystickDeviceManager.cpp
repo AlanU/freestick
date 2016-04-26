@@ -52,11 +52,9 @@ uint32_t FSUSBJoystickDeviceManager::createIdForElement(uint32_t usage,uint32_t 
 void FSUSBJoystickDeviceManager::updateEvents(unsigned int joystickDeviceID,FSUSBJoyStickInputElement * elementDevice, PhysicalValueNumber elementValue)
 {
     static std::stack<FSUSBElementInfoMap> inputTypes;
-
     if (elementDevice) {
         elementDevice->getMapping(elementValue, inputTypes);
         bool isValueVaild = elementDevice->isValueInDeadZone(elementValue);
-
         while (!inputTypes.empty()) {
             FSUSBElementInfoMap inputType = inputTypes.top();
 

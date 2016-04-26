@@ -68,6 +68,7 @@ namespace freestick
         inline MinMaxNumber getValue() const {return _value;}
         void setValue(MinMaxNumber newValue);
         bool isValueInDeadZone(MinMaxNumber value);
+		bool isIntialized();
         inline MinMaxNumber getMaxValue() const {return _elementMax;}
         inline MinMaxNumber getMinValue() const {return _elementMin;}
         inline MinMaxNumber getDeadZoneMin() const {return _deadZoneMin;}
