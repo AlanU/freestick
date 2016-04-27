@@ -33,8 +33,7 @@ FSUSBJoystick::FSUSBJoystick()
 
 FSUSBJoystick::~FSUSBJoystick()
 {
-    /** \todo delete map free memory
-      */
+
 }
 FSUSBJoystick::FSUSBJoystick(unsigned int joyStickID,
                              unsigned int numberOfButtons,
@@ -78,7 +77,7 @@ std::vector<IDNumber> FSUSBJoystick::getElementIds() const
         elementKeys.push_back(itr->first);
         ++itr;
     }
-    return std::move(elementKeys);
+    return elementKeys;
 }
 
 JoyStickElementMap::const_iterator FSUSBJoystick::begin() const
