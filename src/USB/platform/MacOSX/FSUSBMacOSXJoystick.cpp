@@ -219,15 +219,11 @@ std::string FSUSBMacOSXJoystick::CFStringRefToString(CFStringRef refString)
     {
         CFIndex length = CFStringGetLength(refString);
         CFIndex maxSize = CFStringGetMaximumSizeForEncoding(length, kCFStringEncodingUTF8);
-        char * buffer = (char* )malloc(maxSize);
+        std::string strBuffer(maxSize, ' ');
+        char * buffer = &*strBuffer.begin();
         if(CFStringGetCString(refString, buffer, maxSize, kCFStringEncodingUTF8))
         {
-            std::string temp = buffer;
-            free(buffer);
-            return temp;
-        }
-        else{
-            free(buffer);
+            return strBuffer;
         }
     }
 
