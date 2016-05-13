@@ -63,10 +63,6 @@
 namespace  freestick {
     class FSXInputJoystick : public FSUSBJoystick
     {
-        DWORD id;
-        FSUSBJoystickDeviceManager * _usbJoystickManager;
-        unsigned int _totalButtonNumber;
-
     public:
         FSXInputJoystick(XINPUT_STATE & state,
                          DWORD id, unsigned int joyStickID,
@@ -80,7 +76,14 @@ namespace  freestick {
         void addXinputElements(XINPUT_STATE & state);
         void addButtonElement(unsigned int buttonID);
         void addElement(unsigned int buttonID,MinMaxNumber min,MinMaxNumber max,PhysicalValueNumber currentValue);
+        void setCalibrated();
+        bool isCalibrated() const;
 
+    private:
+        DWORD id;
+        FSUSBJoystickDeviceManager * _usbJoystickManager = nullptr;
+        unsigned int _totalButtonNumber = 0;
+        bool calibrated = false;
 
 
     };

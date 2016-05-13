@@ -45,25 +45,19 @@ void FSXInputJoystickDeviceManager::update()
 void  FSXInputJoystickDeviceManager::updateAnalog(unsigned int axisToLookFor , const FSXInputJoystick * xinputJoystick , unsigned int controllerID ,PhysicalValueNumber value )
 {
     FSUSBJoyStickInputElement * element = (FSUSBJoyStickInputElement*) xinputJoystick->findInputElement(axisToLookFor) ;
-    updateEvents(controllerID,element,value);
-	
+
+    if (element) {
+        if (!xinputJoystick->isCalibrated()) {
+            element->setCalibrationOffsetPrecent(0.06f);
+            element->recalibrate(value, element->getMinValue(), element->getMaxValue());
+            return;
+        }
+        if (element->getValue() != value) {
+            updateEvents(controllerID, element, value);
+        }
+    }
 }
 
-void FSXInputJoystickDeviceManager::updateEvents(unsigned int joystickDeviceID, FSUSBJoyStickInputElement * elementDevice, PhysicalValueNumber elementValue)
-{
-	if (elementDevice->getValue() != elementValue) {
-
-		if (elementDevice->isIntialized())
-		{
-			FSUpdatableJoystickDeviceManager::updateEvents(joystickDeviceID, elementDevice, elementValue);
-		}
-		else
-		{
-			std::stack<FSUSBElementInfoMap> inputTypes;
-			elementDevice->getMapping(elementValue , inputTypes);
-		}
-	}
-}
 void  FSXInputJoystickDeviceManager::updateButton(WORD buttons,WORD xButtonToLookFor,unsigned int buttonToLookFor , const FSXInputJoystick * xinputJoystick , unsigned int controllerID )
 {
     bool value = ((buttons & xButtonToLookFor)!= 0 );
@@ -89,7 +83,7 @@ void FSXInputJoystickDeviceManager::updateJoysticks()
            if(_wordToIDControllerMap.find(index) != _wordToIDControllerMap.end())
            {
                unsigned int joyID = _wordToIDControllerMap[index];
-              const FSXInputJoystick * xinputJoystick = static_cast<const FSXInputJoystick*>(getDevice(joyID));
+               const FSXInputJoystick * xinputJoystick = static_cast<const FSXInputJoystick*>(getDevice(joyID));
 
 
                updateButton(xState.Gamepad.wButtons,XINPUT_GAMEPAD_DPAD_UP,UP_DPAD_XINPUT_EID,xinputJoystick,joyID);
@@ -118,6 +112,7 @@ void FSXInputJoystickDeviceManager::updateJoysticks()
 
 
                lastState[index]= xState.dwPacketNumber;
+               const_cast<FSXInputJoystick *>(xinputJoystick)->setCalibrated();
            }
         }
     }

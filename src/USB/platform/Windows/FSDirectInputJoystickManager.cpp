@@ -47,8 +47,8 @@ void FSDirectInputJoystickManager::init( )
     if (FAILED(hr = DirectInput8Create(GetModuleHandle(NULL), DIRECTINPUT_VERSION, IID_IDirectInput8, (void**)&_directInput8, NULL)))
         return;
 
+
     PreferredJoyCfg;
-    // DirectInput_Enum_Contex enumContext;
     enumContext.joystickConfig = &PreferredJoyCfg;
     enumContext.isVaild = false;
     enumContext.manager = this;
@@ -56,12 +56,17 @@ void FSDirectInputJoystickManager::init( )
     IDirectInputJoyConfig * joyConfig;
     if (FAILED(hr = _directInput8->QueryInterface(IID_IDirectInputJoyConfig8, (void**)&joyConfig) ))
         enumContext.isVaild = true;
-    SAFE_RELEASE(joyConfig);
-    lookingForJoysticks.test_and_set(std::memory_order_acquire);
+    if(joyConfig)
+    {
+        joyConfig->Release();
+        joyConfig = nullptr;
+    }
+    lookingForJoysticks.test_and_set(std::memory_order_relaxed);
     std::unique_ptr<std::thread>  connectThread (
                 new std::thread(&freestick::FSDirectInputJoystickManager::updateConnectJoysticks,this));
     connectedJoystickThread = std::move(connectThread);
     update();
+
 
 }
 
@@ -107,7 +112,6 @@ void FSDirectInputJoystickManager::updateConnectJoysticks()
             enumContext.connectedLastUpdateJoysticks = foundThisUpdate;
             enumContext.joysticksConnectedThisUpdate.clear();
 
-         // lookingForJoysticks.clear(std::memory_order_release);
           std::this_thread::sleep_for(connectionCheckSleep);
         }
    }
@@ -132,7 +136,7 @@ void FSDirectInputJoystickManager::update()
     updateJoysticks();
 }
 
-void FSDirectInputJoystickManager::updateJoysticksPOV(FSDirectInputJoystick * device, LONG axisValue, long int idForXAxis)
+void FSDirectInputJoystickManager::updateJoysticksPOV(FSDirectInputJoystick & device, LONG axisValue, long int idForXAxis)
 {
     FSDeviceInput povInput = LastInput;
     if (axisValue == -1) {
@@ -150,30 +154,31 @@ void FSDirectInputJoystickManager::updateJoysticksPOV(FSDirectInputJoystick * de
         povInput = DPadDown;
 
     }
-    if(lastPOVValue[device->getJoystickID()] != axisValue)
+
+    if(lastPOVValue[device.getJoystickID()] != axisValue)
     {
-        FSUSBElementInfoMap temp =  this->infoMapForInputType(device->getVenderID(), device->getProductID(), povInput);
+        FSUSBElementInfoMap temp = this->infoMapForInputType(device.getVenderID(), device.getProductID(), povInput);
         if (temp.getDeviceInput() != LastInput && temp.getEventMapping() != FSLastEventAction ) {
-            FSUSBJoyStickInputElement * element = (FSUSBJoyStickInputElement*)device->findInputElement(idForXAxis);
+            FSUSBJoyStickInputElement * element = (FSUSBJoyStickInputElement*)device.findInputElement(idForXAxis);
             if (element!= NULL) {
-                updateEvents(device->getJoystickID(), element,  temp.getMin());
+                updateEvents(device.getJoystickID(), element,  temp.getMin());
             }
         }
     }
-   lastPOVValue[device->getJoystickID()] = axisValue;
+   lastPOVValue[device.getJoystickID()] = axisValue;
 
 }
-void FSDirectInputJoystickManager::updateJoysticksAxis(FSDirectInputJoystick * device, LONG axisValue, long int idForXAxis, bool calibrate)
+void FSDirectInputJoystickManager::updateJoysticksAxis(FSDirectInputJoystick & device, LONG axisValue, long int idForXAxis)
 {
-    FSUSBJoyStickInputElement * element = (FSUSBJoyStickInputElement*)device->findInputElement(idForXAxis);
+    FSUSBJoyStickInputElement * element = const_cast<FSUSBJoyStickInputElement*>(device.findInputElement(idForXAxis));
 
     if (element) {
-        if (calibrate) {
+        if (device.isCalibrated()) {
             element->recalibrate(axisValue, element->getMinValue(), element->getMaxValue());
             return;
         }
         if (element->getValue() != axisValue) {
-            updateEvents(device->getJoystickID(), element, axisValue);
+            updateEvents(device.getJoystickID(), element, axisValue);
         }
     }
 
@@ -181,13 +186,16 @@ void FSDirectInputJoystickManager::updateJoysticksAxis(FSDirectInputJoystick * d
 
 void FSDirectInputJoystickManager::updateJoysticks()
 {
-    static bool firstTime(true);
-
     // DInput joystick state
     if (!deviceMap.empty()) {
         std::unordered_map<unsigned int, FSBaseDevice * >::iterator itr;
         for (itr = deviceMap.begin(); itr != deviceMap.end(); ++itr) {
             FSDirectInputJoystick * device = static_cast<FSDirectInputJoystick *>(itr->second);
+
+            if(device == nullptr)
+            {
+                continue;
+            }
 
             LPDIRECTINPUTDEVICE8 directInputJoystick = device->getDirectInputPtr();
             HRESULT hr;
@@ -200,7 +208,6 @@ void FSDirectInputJoystickManager::updateJoysticks()
                 // we don't have any special reset that needs to be done. We
                 // just re-acquire and try again.
                 hr = directInputJoystick->Acquire();
-
 
                 while ( hr == DIERR_INPUTLOST )
                     hr = directInputJoystick->Acquire();
@@ -224,33 +231,34 @@ void FSDirectInputJoystickManager::updateJoysticks()
                 continue; // The device should have been acquired during the Poll()
 
 
+            //TODO put this in a std::array<ipair<hex,hex>> to
             //X-axis
             long int idForAxis =  FSUSBJoystickDeviceManager::createIdForElement(HID_USAGE_GENERIC_X, HID_USAGE_PAGE_GENERIC);
 
-            updateJoysticksAxis(device, js.lX, idForAxis, firstTime);
+            updateJoysticksAxis(*device, js.lX, idForAxis);
             //Yaxis
             idForAxis =  FSUSBJoystickDeviceManager::createIdForElement(HID_USAGE_GENERIC_Y, HID_USAGE_PAGE_GENERIC);
-            updateJoysticksAxis(device, js.lY, idForAxis, firstTime);
+            updateJoysticksAxis(*device, js.lY, idForAxis);
 
             //zaxis
             idForAxis =  FSUSBJoystickDeviceManager::createIdForElement(HID_USAGE_GENERIC_Z, HID_USAGE_PAGE_GENERIC);
-            updateJoysticksAxis(device, js.lZ, idForAxis, firstTime);
+            updateJoysticksAxis(*device, js.lZ, idForAxis);
 
             //rxaxis
             idForAxis =  FSUSBJoystickDeviceManager::createIdForElement(HID_USAGE_GENERIC_RX, HID_USAGE_PAGE_GENERIC);
-            updateJoysticksAxis(device, js.lRx, idForAxis, firstTime);
+            updateJoysticksAxis(*device, js.lRx, idForAxis);
 
             //ryaxis
             idForAxis =  FSUSBJoystickDeviceManager::createIdForElement(HID_USAGE_GENERIC_RY, HID_USAGE_PAGE_GENERIC);
-            updateJoysticksAxis(device, js.lRy, idForAxis, firstTime);
+            updateJoysticksAxis(*device, js.lRy, idForAxis);
 
             //rzaxis
             idForAxis =  FSUSBJoystickDeviceManager::createIdForElement(HID_USAGE_GENERIC_RZ, HID_USAGE_PAGE_GENERIC);
-            updateJoysticksAxis(device, js.lRz, idForAxis, firstTime);
+            updateJoysticksAxis(*device, js.lRz, idForAxis);
 
             //slider
             idForAxis =  FSUSBJoystickDeviceManager::createIdForElement(HID_USAGE_GENERIC_RZ, HID_USAGE_PAGE_GENERIC);
-            updateJoysticksAxis(device, js.lRz, idForAxis, firstTime);
+            updateJoysticksAxis(*device, js.lRz, idForAxis);
 
 
             //TODO map POV to DPadUp DPadDown DPadLeft DPadRight
@@ -264,7 +272,7 @@ void FSDirectInputJoystickManager::updateJoysticks()
                 double valueScaled = ((double )js.rgdwPOV[0]) / double(leftSpan);
                 angleValue = (long)(valueScaled * rightSpan);
             }
-            updateJoysticksPOV(device, angleValue, idForAxis);
+            updateJoysticksPOV(*device, angleValue, idForAxis);
 
 			int buttonNumber = 0;
 
@@ -272,10 +280,9 @@ void FSDirectInputJoystickManager::updateJoysticks()
 			{
 				FSUSBJoyStickInputElement & element = item.second;
 				if (element.getMinValue() == 0 && element.getMaxValue() == 1) {
-					long value = (js.rgbButtons[buttonNumber] & 0x80) ? 1 : 0;
+                    MinMaxNumber value = (js.rgbButtons[buttonNumber] & 0x80) ? 1 : 0;
 
-					//TODO fix compare to not lose precision
-					if (element.getValue() != value) {
+                    if (element.getValue() != value) {
 						updateEvents(device->getJoystickID(),&element, value);
 					}
 					buttonNumber++;
@@ -284,11 +291,6 @@ void FSDirectInputJoystickManager::updateJoysticks()
         }
 
     }
-
-    if (firstTime) {
-        firstTime = false;
-    }
-
 }
 
 FSDirectInputJoystickManager::~FSDirectInputJoystickManager()
@@ -360,11 +362,8 @@ void FSDirectInputJoystickManager::removeDevice(GUID guidDeviceInstance)
     }
 }
 
-//-----------------------------------------------------------------------------
-// Enum each PNP device using Raw HID and check each device ID to see if it contains
-// "IG_" (ex. "VID_045E&PID_028E&IG_00").  If it does, then it's an XInput device
-// Unfortunately this information can not be found by just using DirectInput
-//-----------------------------------------------------------------------------
+
+//Check each device using RAW HID to see if the device contains "IG_" if so it is a Xinput device.
 bool FSDirectInputJoystickManager::IsXInputDeviceRaw( const GUID* pGuidProductFromDirectInput )
 {
     bool isXInputDevice = false;
@@ -374,11 +373,16 @@ bool FSDirectInputJoystickManager::IsXInputDeviceRaw( const GUID* pGuidProductFr
     {
         return false;
     }
-    if ((pRawInputDeviceList = static_cast<RAWINPUTDEVICELIST *>(malloc(sizeof(RAWINPUTDEVICELIST) * nDevices))) == NULL)
+
+    //TODO remove malloc and free and use std::Array
+    pRawInputDeviceList = static_cast<RAWINPUTDEVICELIST *>(malloc(sizeof(RAWINPUTDEVICELIST) * nDevices));
+    if (pRawInputDeviceList == NULL)
     {
         return false;
     }
-    if ((nDeviceCount = GetRawInputDeviceList(pRawInputDeviceList, &nDevices, sizeof(RAWINPUTDEVICELIST))) == (UINT)-1)
+
+    nDeviceCount = GetRawInputDeviceList(pRawInputDeviceList, &nDevices, sizeof(RAWINPUTDEVICELIST));
+    if (nDeviceCount == (UINT)-1)
     {
        free(pRawInputDeviceList);
        return false;
@@ -411,122 +415,3 @@ bool FSDirectInputJoystickManager::IsXInputDeviceRaw( const GUID* pGuidProductFr
     free(pRawInputDeviceList);
     return isXInputDevice;
 }
-
-
-//-----------------------------------------------------------------------------
-// Enum each PNP device using WMI and check each device ID to see if it contains
-// "IG_" (ex. "VID_045E&PID_028E&IG_00").  If it does, then it's an XInput device
-// Unfortunately this information can not be found by just using DirectInput
-//-----------------------------------------------------------------------------
-//bool FSDirectInputJoystickManager::IsXInputDevice( const GUID* pGuidProductFromDirectInput )
-//{
-  /* static std::map<GUID, bool> isXInputDevice;
-    std::map<GUID, bool>::iterator device = isXInputDevice.find(*pGuidProductFromDirectInput);
-
-    if ( device != isXInputDevice.end()) {
-        return (*device).second;
-    }
-
-    IWbemLocator*           pIWbemLocator  = NULL;
-    IEnumWbemClassObject*   pEnumDevices   = NULL;
-    IWbemClassObject*       pDevices[20]   = { 0 };
-    IWbemServices*          pIWbemServices = NULL;
-    BSTR bstrNamespace  = NULL;
-    BSTR bstrDeviceID   = NULL;
-    BSTR bstrClassName  = NULL;
-    DWORD uReturned      = 0;
-    bool bIsXinputDevice = false;
-    UINT iDevice        = 0;
-    VARIANT var;
-    HRESULT hr;
-
-    // CoInit if needed
-    hr = CoInitialize(NULL);
-    bool bCleanupCOM = SUCCEEDED(hr);
-
-    // Create WMI
-    hr = CoCreateInstance( __uuidof(WbemLocator),
-                   NULL,
-                   CLSCTX_INPROC_SERVER,
-                   __uuidof(IWbemLocator),
-                   (LPVOID*)&pIWbemLocator);
-    if ( FAILED(hr) || pIWbemLocator == NULL )
-        goto LCleanup;
-
-    bstrNamespace = SysAllocString( L"\\\\.\\root\\cimv2" ); if ( bstrNamespace == NULL ) goto LCleanup;
-    bstrClassName = SysAllocString( L"Win32_PNPEntity" );   if ( bstrClassName == NULL ) goto LCleanup;
-    bstrDeviceID  = SysAllocString( L"DeviceID" );          if ( bstrDeviceID == NULL ) goto LCleanup;
-
-    // Connect to WMI
-    hr = pIWbemLocator->ConnectServer( bstrNamespace, NULL, NULL, 0L,
-                       0L, NULL, NULL, &pIWbemServices );
-    if ( FAILED(hr) || pIWbemServices == NULL )
-        goto LCleanup;
-
-    // Switch security level to IMPERSONATE.
-    CoSetProxyBlanket( pIWbemServices, RPC_C_AUTHN_WINNT, RPC_C_AUTHZ_NONE, NULL,
-               RPC_C_AUTHN_LEVEL_CALL, RPC_C_IMP_LEVEL_IMPERSONATE, NULL, EOAC_NONE );
-
-    hr = pIWbemServices->CreateInstanceEnum( bstrClassName, 0, NULL, &pEnumDevices );
-    if ( FAILED(hr) || pEnumDevices == NULL )
-        goto LCleanup;
-
-    // Loop over all devices
-    for (;; ) {
-        // Get 20 at a time
-        hr = pEnumDevices->Next( 10000, 20, pDevices, &uReturned );
-        if ( FAILED(hr) )
-            goto LCleanup;
-        if ( uReturned == 0 )
-            break;
-
-        for ( iDevice = 0; iDevice < uReturned; iDevice++ ) {
-            // For each device, get its device ID
-            hr = pDevices[iDevice]->Get( bstrDeviceID, 0L, &var, NULL, NULL );
-            if ( SUCCEEDED( hr ) && var.vt == VT_BSTR && var.bstrVal != NULL ) {
-                // Check if the device ID contains "IG_".  If it does, then it's an XInput device
-                // This information can not be found from DirectInput
-                if ( wcsstr( var.bstrVal, L"IG_" ) ) {
-                    // If it does, then get the VID/PID from var.bstrVal
-                    DWORD dwPid = 0, dwVid = 0;
-                    WCHAR* strVid = wcsstr( var.bstrVal, L"VID_" );
-                    if ( strVid && swscanf_s( strVid, L"VID_%4X", &dwVid ) != 1 )
-                        dwVid = 0;
-                    WCHAR* strPid = wcsstr( var.bstrVal, L"PID_" );
-                    if ( strPid && swscanf_s( strPid, L"PID_%4X", &dwPid ) != 1 )
-                        dwPid = 0;
-
-                    // Compare the VID/PID to the DInput device
-                    DWORD dwVidPid = MAKELONG( dwVid, dwPid );
-                    if ( dwVidPid == pGuidProductFromDirectInput->Data1 ) {
-                        bIsXinputDevice = true;
-                        goto LCleanup;
-                    }
-                }
-            }
-            SAFE_RELEASE( pDevices[iDevice] );
-        }
-    }
-
- LCleanup:
-    if (bstrNamespace)
-        SysFreeString(bstrNamespace);
-    if (bstrDeviceID)
-        SysFreeString(bstrDeviceID);
-    if (bstrClassName)
-        SysFreeString(bstrClassName);
-    for ( iDevice = 0; iDevice < 20; iDevice++ )
-        SAFE_RELEASE( pDevices[iDevice] );
-    SAFE_RELEASE( pEnumDevices );
-    SAFE_RELEASE( pIWbemLocator );
-    SAFE_RELEASE( pIWbemServices );
-
-    if ( bCleanupCOM )
-        CoUninitialize();
-
-
-    isXInputDevice[*pGuidProductFromDirectInput] = bIsXinputDevice;
-
-    return bIsXinputDevice;*/
-   // return false;
-//}
