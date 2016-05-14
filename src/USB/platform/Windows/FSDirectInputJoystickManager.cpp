@@ -106,9 +106,6 @@ void FSDirectInputJoystickManager::updateConnectJoysticks()
 
             }
 
-            //delete every joystick in connectedLastUpdateJoysticks
-            //add all in newThisUpdate
-
             enumContext.connectedLastUpdateJoysticks = foundThisUpdate;
             enumContext.joysticksConnectedThisUpdate.clear();
 
@@ -155,13 +152,20 @@ void FSDirectInputJoystickManager::updateJoysticksPOV(FSDirectInputJoystick & de
 
     }
 
-    if(lastPOVValue[device.getJoystickID()] != axisValue)
+   if(lastPOVValue[device.getJoystickID()] != axisValue)
     {
         FSUSBElementInfoMap temp = this->infoMapForInputType(device.getVenderID(), device.getProductID(), povInput);
         if (temp.getDeviceInput() != LastInput && temp.getEventMapping() != FSLastEventAction ) {
             FSUSBJoyStickInputElement * element = (FSUSBJoyStickInputElement*)device.findInputElement(idForXAxis);
             if (element!= NULL) {
-                updateEvents(device.getJoystickID(), element,  temp.getMin());
+
+                if (!element->isIntialized())
+                {
+                    std::stack<FSUSBElementInfoMap> inputTypes;
+                    element->getMapping(temp.getMin(), inputTypes);
+                }
+                FSUSBJoystickDeviceManager::updateEvents(device.getJoystickID(), element, temp.getMin());
+               // updateEvents(device.getJoystickID(), element,  temp.getMin());
             }
         }
     }
