@@ -28,6 +28,7 @@ and must not be misrepresented as being the original software.
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "joystickconfigwidget.h"
+#include <QMessageBox>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -41,4 +42,9 @@ MainWindow::~MainWindow()
 {
     this->setCentralWidget(NULL);
     delete ui;
+}
+
+void MainWindow::showAbout()
+{
+    QMessageBox::about(this,tr("About Joystick Config"),tr("Joystick Config Version ")+qApp->applicationVersion()+tr("p2"));
 }
