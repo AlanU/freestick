@@ -138,4 +138,12 @@ win32 {
     LIBS += -lXinput9_1_0 -lUser32
 }
 
+unix:!macx:!symbian:!android
+{
+
+    SOURCES += $$files(../../../src/USB/platform/Linux/*.cpp)
+
+    HEADERS += $$files(../../../inc/USB/platform/Linux/*.h)
+}
+
 
