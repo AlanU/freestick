@@ -78,6 +78,10 @@ namespace freestick {
    // Windows
     #include "USB/platform/Windows/FSWindowsJoystickDeviceManager.h"
     typedef freestick::FSWindowsJoystickDeviceManager FreeStickDeviceManager;
+#elif __linux__
+    #include "USB/platform/Linux/FSLinuxJoystickDeviceManager.h"
+    typedef freestick::FSLinuxJoystickDeviceManager FreeStickDeviceManager;
+
 #else
     #include "USB/platform/NULL/FSUSBNullJoystickDeviceManager.h"
     typedef freestick::FSUSBNullJoystickDeviceManager FreeStickDeviceManager;
