@@ -183,6 +183,12 @@ Public Member Functions</h2></td></tr>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a10a70a6bd289bb35be017944c1d7bf00"><td class="memItemLeft" align="right" valign="top">static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html#a10a70a6bd289bb35be017944c1d7bf00">createIdForElement</a> (uint32_t usage, uint32_t usagePage)</td></tr>
 <tr class="separator:a10a70a6bd289bb35be017944c1d7bf00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a637a5189277c08341958110133eda944"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html#a637a5189277c08341958110133eda944">getUsageFromIdForElement</a> (uint32_t id, uint16_t &amp;usage, uint16_t &amp;usagePage)</td></tr>
+<tr class="separator:a637a5189277c08341958110133eda944"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a949ccdb0e6a32e975723d4f628c258e8"><td class="memItemLeft" align="right" valign="top">static uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html#a949ccdb0e6a32e975723d4f628c258e8">getUsageForElement</a> (uint32_t id)</td></tr>
+<tr class="separator:a949ccdb0e6a32e975723d4f628c258e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a346538babf2873d47cc07c732521240a"><td class="memItemLeft" align="right" valign="top">static uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html#a346538babf2873d47cc07c732521240a">getUsagePageForElement</a> (uint32_t id)</td></tr>
+<tr class="separator:a346538babf2873d47cc07c732521240a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -300,6 +306,94 @@ Here is the caller graph for this function:</div>
 </map>
 </div>
 </p>
+
+</div>
+</div>
+<a class="anchor" id="a949ccdb0e6a32e975723d4f628c258e8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t FSUSBJoystickDeviceManager::getUsageForElement </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a637a5189277c08341958110133eda944"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FSUSBJoystickDeviceManager::getUsageFromIdForElement </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t &amp;&#160;</td>
+          <td class="paramname"><em>usage</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t &amp;&#160;</td>
+          <td class="paramname"><em>usagePage</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a346538babf2873d47cc07c732521240a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t FSUSBJoystickDeviceManager::getUsagePageForElement </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -435,6 +529,8 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Reimplemented in <a class="el" href="classfreestick_1_1_f_s_updatable_joystick_device_manager.html#aacf2c886e83741b42e5d7b06f9d5bf42">freestick::FSUpdatableJoystickDeviceManager</a>.</p>
+
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -476,11 +572,12 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classfreestick_1_1_f_s_u_s_b_joystick_device_manager_ad8a4534e53febe3964b7a64a66d34a22_icgraph.png" border="0" usemap="#classfreestick_1_1_f_s_u_s_b_joystick_device_manager_ad8a4534e53febe3964b7a64a66d34a22_icgraph" alt=""/></div>
 <map name="classfreestick_1_1_f_s_u_s_b_joystick_device_manager_ad8a4534e53febe3964b7a64a66d34a22_icgraph" id="classfreestick_1_1_f_s_u_s_b_joystick_device_manager_ad8a4534e53febe3964b7a64a66d34a22_icgraph">
-<area shape="rect" id="node2" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#af9cd9daa2e5c3b77f18d8a43a24a7d6a" title="freestick::FSDirectInput\lJoystickManager::updateJoysticksPOV" alt="" coords="259,5,511,43"/>
-<area shape="rect" id="node3" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#ae41d9f4049f13d2713171a92c871c57c" title="freestick::FSDirectInput\lJoystickManager::updateJoysticks" alt="" coords="560,62,784,101"/>
-<area shape="rect" id="node6" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a0349b8bfcbabdb845acbbfcd2aed0a7a" title="freestick::FSDirectInput\lJoystickManager::updateJoysticksAxis" alt="" coords="261,119,510,158"/>
-<area shape="rect" id="node4" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a51aeec5940323e120428ec94b04a076b" title="freestick::FSDirectInput\lJoystickManager::update" alt="" coords="833,62,1002,101"/>
-<area shape="rect" id="node5" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a8b07b04816b89940f86156a5ae5f3078" title="freestick::FSDirectInput\lJoystickManager::init" alt="" coords="1051,62,1211,101"/>
+<area shape="rect" id="node2" href="classfreestick_1_1_f_s_updatable_joystick_device_manager.html#aacf2c886e83741b42e5d7b06f9d5bf42" title="freestick::FSUpdatableJoystick\lDeviceManager::updateEvents" alt="" coords="260,62,463,101"/>
+<area shape="rect" id="node7" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a1378f4ea61697699f30838dc6355a72a" title="freestick::FSDirectInput\lJoystickManager::updateJoysticksPOV" alt="" coords="513,119,765,158"/>
+<area shape="rect" id="node3" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a31439e1c2862c092d196a493af4bfaa1" title="freestick::FSDirectInput\lJoystickManager::updateJoysticksAxis" alt="" coords="514,5,763,43"/>
+<area shape="rect" id="node4" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#ae41d9f4049f13d2713171a92c871c57c" title="freestick::FSDirectInput\lJoystickManager::updateJoysticks" alt="" coords="814,62,1037,101"/>
+<area shape="rect" id="node5" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a51aeec5940323e120428ec94b04a076b" title="freestick::FSDirectInput\lJoystickManager::update" alt="" coords="1086,62,1255,101"/>
+<area shape="rect" id="node6" href="classfreestick_1_1_f_s_direct_input_joystick_manager.html#a8b07b04816b89940f86156a5ae5f3078" title="freestick::FSDirectInput\lJoystickManager::init" alt="" coords="1304,62,1464,101"/>
 </map>
 </div>
 </p>
@@ -494,7 +591,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 9 2015 17:47:05 for FreeStick by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun May 22 2016 11:10:34 for FreeStick by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>
