@@ -1,8 +1,0 @@
-<map id="freestick::FSUSBJoystickDeviceManager::updateEvents" name="freestick::FSUSBJoystickDeviceManager::updateEvents">
-<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_updatable_joystick_device_manager.html#aacf2c886e83741b42e5d7b06f9d5bf42" title="freestick::FSUpdatableJoystick\lDeviceManager::updateEvents" alt="" coords="260,62,463,101"/>
-<area shape="rect" id="node7" href="$classfreestick_1_1_f_s_direct_input_joystick_manager.html#a1378f4ea61697699f30838dc6355a72a" title="freestick::FSDirectInput\lJoystickManager::updateJoysticksPOV" alt="" coords="513,119,765,158"/>
-<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_direct_input_joystick_manager.html#a31439e1c2862c092d196a493af4bfaa1" title="freestick::FSDirectInput\lJoystickManager::updateJoysticksAxis" alt="" coords="514,5,763,43"/>
-<area shape="rect" id="node4" href="$classfreestick_1_1_f_s_direct_input_joystick_manager.html#ae41d9f4049f13d2713171a92c871c57c" title="freestick::FSDirectInput\lJoystickManager::updateJoysticks" alt="" coords="814,62,1037,101"/>
-<area shape="rect" id="node5" href="$classfreestick_1_1_f_s_direct_input_joystick_manager.html#a51aeec5940323e120428ec94b04a076b" title="freestick::FSDirectInput\lJoystickManager::update" alt="" coords="1086,62,1255,101"/>
-<area shape="rect" id="node6" href="$classfreestick_1_1_f_s_direct_input_joystick_manager.html#a8b07b04816b89940f86156a5ae5f3078" title="freestick::FSDirectInput\lJoystickManager::init" alt="" coords="1304,62,1464,101"/>
-</map>

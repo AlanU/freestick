@@ -1,6 +1,0 @@
-<map id="freestick::FSDirectInputJoystick" name="freestick::FSDirectInputJoystick">
-<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_u_s_b_joystick.html" title="freestick::FSUSBJoystick" alt="" coords="4,230,173,255"/>
-<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_u_s_b_device.html" title="freestick::FSUSBDevice" alt="" coords="8,155,171,181"/>
-<area shape="rect" id="node4" href="$classfreestick_1_1_f_s_base_device.html" title="freestick::FSBaseDevice" alt="" coords="6,81,172,106"/>
-<area shape="rect" id="node5" href="$classfreestick_1_1_i_f_s_device.html" title="freestick::IFSDevice" alt="" coords="19,6,159,31"/>
-</map>

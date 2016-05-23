@@ -1,7 +1,0 @@
-<map id="freestick::FSXInputJoystick::FSXInputJoystick" name="freestick::FSXInputJoystick::FSXInputJoystick">
-<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_x_input_joystick.html#aab3ab3d44720a3bf4549abce46e380fb" title="freestick::FSXInputJoystick\l::addXinputElements" alt="" coords="235,34,416,73"/>
-<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_x_input_joystick.html#a607557246370cdc23266acc54dad9a92" title="freestick::FSXInputJoystick\l::addButtonElement" alt="" coords="464,5,645,43"/>
-<area shape="rect" id="node4" href="$classfreestick_1_1_f_s_x_input_joystick.html#a944fb352225bfecde871d4efdad42100" title="freestick::FSXInputJoystick\l::addElement" alt="" coords="693,34,875,73"/>
-<area shape="rect" id="node5" href="$classfreestick_1_1_f_s_base_device.html#a1c9d1eba2c56d8f4a28886bce262b7f5" title="freestick::FSBaseDevice\l::getJoystickID" alt="" coords="1142,34,1309,73"/>
-<area shape="rect" id="node6" href="$classfreestick_1_1_f_s_u_s_b_joystick.html#af4ed509ede9239b99ea9d21351184dcb" title="freestick::FSUSBJoystick\l::addInputElement" alt="" coords="923,62,1093,101"/>
-</map>

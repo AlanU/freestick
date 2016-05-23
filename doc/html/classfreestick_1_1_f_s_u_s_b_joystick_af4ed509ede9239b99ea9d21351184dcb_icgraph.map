@@ -1,8 +1,0 @@
-<map id="freestick::FSUSBJoystick::addInputElement" name="freestick::FSUSBJoystick::addInputElement">
-<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick.html#a24723761d0d3339dc7c58244a5ccd7b6" title="freestick::FSUSBMacOSXJoystick\l::Init" alt="" coords="224,5,448,43"/>
-<area shape="rect" id="node4" href="$classfreestick_1_1_f_s_x_input_joystick.html#a944fb352225bfecde871d4efdad42100" title="freestick::FSXInputJoystick\l::addElement" alt="" coords="245,67,427,106"/>
-<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a37672c3beb149385bfba1bb0119efd43" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::addDevice" alt="" coords="496,5,720,43"/>
-<area shape="rect" id="node5" href="$classfreestick_1_1_f_s_x_input_joystick.html#a607557246370cdc23266acc54dad9a92" title="freestick::FSXInputJoystick\l::addButtonElement" alt="" coords="517,67,699,106"/>
-<area shape="rect" id="node6" href="$classfreestick_1_1_f_s_x_input_joystick.html#aab3ab3d44720a3bf4549abce46e380fb" title="freestick::FSXInputJoystick\l::addXinputElements" alt="" coords="768,97,949,135"/>
-<area shape="rect" id="node7" href="$classfreestick_1_1_f_s_x_input_joystick.html#afffa2815a721e521b62e7608c8817a7d" title="freestick::FSXInputJoystick\l::FSXInputJoystick" alt="" coords="997,97,1179,135"/>
-</map>
