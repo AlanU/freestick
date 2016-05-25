@@ -27,10 +27,10 @@
 
 
 TEMPLATE = subdirs
-CONFIG += ordered
+
 SUBDIRS += \
         ../FreeStick \
         ../JoyStickConfig
 
-
+JoyStickConfig.depends = FreeStick
 
