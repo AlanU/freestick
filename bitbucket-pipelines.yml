@@ -12,9 +12,9 @@ pipelines:
           - pwd
           - ls
           - sudo mkdir build-FreeStickTestApp-Android_for_armeabi_v7a_GCC_4_9_Qt_5_4_0-Release
-          - cd ./build-FreeStickTestApp-Android_for_armeabi_v7a_GCC_4_9_Qt_5_4_0-Release
+          - cd ./FreeStickTestApp
           - sudo cp -u ../../../src/USB/platform/Android/java/src/org/freestick/FreestickDeviceManager.java ../JoyStickConfig/android-source/src/org/freestick/
-          - qmake ../FreeStickTestApp/FreeStickTestApp.pro -r -spec android-g++
+          - qmake FreeStickTestApp.pro -r -spec android-g++
           - make
           - ls
           - echo "Runs on branches that don't have specific pipeline."
