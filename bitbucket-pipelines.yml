@@ -7,6 +7,13 @@ pipelines:
     - step:
         script:
           - pwd
+          - ls
+          - cd ./build/QT/
+          - mkdir build-FreeStickTestApp-Android_for_armeabi_v7a_GCC_4_9_Qt_5_4_0-Release
+          - cd ./build-FreeStickTestApp-Android_for_armeabi_v7a_GCC_4_9_Qt_5_4_0-Release
+          - qmake /Users/alanuthoff/Documents/Development/freestick/build/QT/FreeStickTestApp/FreeStickTestApp.pro -r -spec android-g++
+          - make
+          - ls
           - echo "Runs on branches that don't have specific pipeline."
   #branches: # Container for all branch-specific pipelines.
    # master:
