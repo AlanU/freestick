@@ -1,0 +1,20 @@
+# You can use a Docker image from Docker Hub or your own container
+# registry for your build environment.
+image: rabits/qt:5.4-android
+
+pipelines:
+  default:
+    - step:
+        script:
+          - pwd
+          - echo "Runs on branches that don't have specific pipeline."
+  #branches: # Container for all branch-specific pipelines.
+   # master:
+    #  - step:
+     #     script:
+      #      - echo "Runs only on the master branch."
+    #feature/*:
+     # - step:
+      #    image: java:openjdk-9 # This step uses its own image.
+       #   script:
+        #    - echo "Runs only on branches that match this pattern."
