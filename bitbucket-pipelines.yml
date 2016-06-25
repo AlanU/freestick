@@ -11,7 +11,7 @@ pipelines:
           - cd ./build/QT/
           - pwd
           - ls
-          - kdir build-FreeStickTestApp-Android_for_armeabi_v7a_GCC_4_9_Qt_5_4_0-Release
+          - mkdir build-FreeStickTestApp-Android_for_armeabi_v7a_GCC_4_9_Qt_5_4_0-Release
           - cd ./FreeStickTestApp
           - cp -u ../../../src/USB/platform/Android/java/src/org/freestick/FreestickDeviceManager.java ../JoyStickConfig/android-source/src/org/freestick/
           - qmake FreeStickTestApp.pro -r -spec android-g++
