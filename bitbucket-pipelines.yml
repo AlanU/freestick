@@ -9,10 +9,10 @@ pipelines:
           - pwd
           - ls
           - id -u -n
+          - sudo git submodule update --init --recursive
           - sudo chown user -R ./build
           - sudo chown user -R ./src
           - sudo chown user -R ./inc
-          - git submodule update --init --recursive
           - cd ./build/QT/
           - pwd
           - ls
