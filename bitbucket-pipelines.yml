@@ -12,6 +12,7 @@ pipelines:
           - sudo chown user -R ./build
           - sudo chown user -R ./src
           - sudo chown user -R ./inc
+          - git submodule update --init --recursive
           - cd ./build/QT/
           - pwd
           - ls
