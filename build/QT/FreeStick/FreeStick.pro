@@ -86,6 +86,7 @@ android {
     INCLUDEPATH +=  $$(JAVA_HOME)/include \
                    $$(JAVA_HOME)/include/darwin \
                     $$(JAVA_HOME)/include/win32 \
+                    $(JAVA_HOME)/include/linux \
                     $$NDK_ROOT/sources/android \
 
     ANDROID_PACKAGE_SOURCE_DIR += $$PWD/../../../src/USB/platform/Android/java
