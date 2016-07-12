@@ -72,6 +72,17 @@ void FSXInputJoystick::addElement(unsigned int buttonID,MinMaxNumber min,MinMaxN
                                    min,max, MicrosoftVendorID,MicrosoftXbox360WindowsControllerID,*_usbJoystickManager,currentValue,++_totalButtonNumber);
     this->addInputElement(newElement);
 }
+
+void FSXInputJoystick::setCalibrated()
+{
+    calibrated = true;
+}
+
+bool FSXInputJoystick::isCalibrated() const
+{
+    return calibrated;
+}
+
 void FSXInputJoystick::addXinputElements(XINPUT_STATE & state)
 {
 

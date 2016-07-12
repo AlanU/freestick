@@ -49,86 +49,91 @@ FSAndroidJoystick::FSAndroidJoystick(int androidDeviceID,
 {
 
     _androidDeviceID = androidDeviceID;
-	JNIEnv *env;
-	//TODO cache jclass and methodID
+    JNIEnv *env;
+    //TODO cache jclass and methodID
+#ifdef JDK1_4
     jvm->AttachCurrentThread((void**)(&env),NULL);
-	jclass inputDeviceClass = env->FindClass("android/view/InputDevice");
-	bool error = false;
-	if(!inputDeviceClass)
-	{
+#else
+    //Old jdk pre 1.4
+    jvm->AttachCurrentThread(&env,NULL);
+#endif
+    jclass inputDeviceClass = env->FindClass("android/view/InputDevice");
+    bool error = false;
+    if(!inputDeviceClass)
+    {
         FS_LOGI("call from updateJoysticks class not found");
-		error = true;
-	}
+        error = true;
+    }
 
-	jmethodID getDeviceMethodId = env->GetStaticMethodID(inputDeviceClass,"getDevice","(I)Landroid/view/InputDevice;");
-	if(!getDeviceMethodId)
-	{
+    jmethodID getDeviceMethodId = env->GetStaticMethodID(inputDeviceClass,"getDevice","(I)Landroid/view/InputDevice;");
+    if(!getDeviceMethodId)
+    {
         FS_LOGI("get device MethodID lookup failed");
-		error = true;
-	}
-	jobject currentInputDevice=env->CallStaticObjectMethod(inputDeviceClass,getDeviceMethodId,androidDeviceID);
+        error = true;
+    }
+    jobject currentInputDevice=env->CallStaticObjectMethod(inputDeviceClass,getDeviceMethodId,androidDeviceID);
 
-	if(currentInputDevice)
-	{
-		jclass deviceInstanceClass = env->GetObjectClass(currentInputDevice);
-		if(!deviceInstanceClass)
-		{
+    if(currentInputDevice)
+    {
+        jclass deviceInstanceClass = env->GetObjectClass(currentInputDevice);
+        if(!deviceInstanceClass)
+        {
             FS_LOGI("deviceInstanceClass not found");
-			error = true;
-		}
+            error = true;
+        }
 
-		jmethodID deviceNameMethodID = env->GetMethodID(deviceInstanceClass,"getName","()Ljava/lang/String;");
+        jmethodID deviceNameMethodID = env->GetMethodID(deviceInstanceClass,"getName","()Ljava/lang/String;");
 
-		if(!deviceNameMethodID)
-		{
+        if(!deviceNameMethodID)
+        {
                 FS_LOGI("device sources getName lookup failed");
-				error = true;
+                error = true;
 
-		}
-		 jstring nameString = (jstring) env->CallObjectMethod(currentInputDevice,deviceNameMethodID);
-		 const char * str = env->GetStringUTFChars(nameString, NULL);
-		 _prodcutIDFriendlyName = str;
+        }
+         jstring nameString = (jstring) env->CallObjectMethod(currentInputDevice,deviceNameMethodID);
+         const char * str = env->GetStringUTFChars(nameString, NULL);
+         _prodcutIDFriendlyName = str;
          FS_LOGI("Found name of controller %s",str);
-		 env->ReleaseStringUTFChars(nameString, str);
+         env->ReleaseStringUTFChars(nameString, str);
 
-		 /*Requires sdk 19 or greater
-		  * try
-		 {
-			jmethodID deviceVendorIdMethodID = env->GetMethodID(deviceInstanceClass,"getVendorId","()I");
+         /*Requires sdk 19 or greater
+          * try
+         {
+            jmethodID deviceVendorIdMethodID = env->GetMethodID(deviceInstanceClass,"getVendorId","()I");
 
-			if(!deviceVendorIdMethodID)
-			{
+            if(!deviceVendorIdMethodID)
+            {
                     FS_LOGI("device vendor id lookup failed");
-					error = true;
+                    error = true;
 
-			}
-			else
-			{
-				_vendorID = (long) env->CallIntMethod(currentInputDevice,deviceVendorIdMethodID);
-			}
-		}
-		catch(int e){}
-		try
-		{
-			jmethodID deviceProductIdMethodID = env->GetMethodID(deviceInstanceClass,"getProductId ","()I");
+            }
+            else
+            {
+                _vendorID = (long) env->CallIntMethod(currentInputDevice,deviceVendorIdMethodID);
+            }
+        }
+        catch(int e){}
+        try
+        {
+            jmethodID deviceProductIdMethodID = env->GetMethodID(deviceInstanceClass,"getProductId ","()I");
 
-			if(!deviceProductIdMethodID)
-			{
+            if(!deviceProductIdMethodID)
+            {
                     FS_LOGI("device product ID lookup failed");
-					error = true;
+                    error = true;
 
-			}
-			else
-			{
-				_productID = (long) env->CallIntMethod(currentInputDevice,deviceProductIdMethodID);
-			}
-		}
-		catch(int e){}*/
+            }
+            else
+            {
+                _productID = (long) env->CallIntMethod(currentInputDevice,deviceProductIdMethodID);
+            }
+        }
+        catch(int e){}*/
 
 
-		 env->DeleteLocalRef(deviceInstanceClass);
-		 env->DeleteLocalRef(currentInputDevice);
-	}
+         env->DeleteLocalRef(deviceInstanceClass);
+         env->DeleteLocalRef(currentInputDevice);
+    }
 
 
 }

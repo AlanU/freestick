@@ -27,7 +27,7 @@
 
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets svg
-
+VERSION = 0.0.2
 TARGET = JoyStickConfig
 CONFIG += c++11
 android {
@@ -39,6 +39,7 @@ ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android-source
    INCLUDEPATH +=  $$(JAVA_HOME)/include \
                    $$(JAVA_HOME)/include/darwin \
                     $$(JAVA_HOME)/include/win32 \
+                    $$(JAVA_HOME)/include/linux \
                     $$NDK_ROOT/sources/android \
 
 
@@ -84,5 +85,6 @@ DEPENDPATH += $$PWD/../FreeStick
 
 
 
-win32: LIBS += -ldinput8 -ldxguid -lcomctl32 -lOle32 -lOleAut32 -lXinput9_1_0
-
+win32:{
+ LIBS += -ldinput8 -ldxguid -lcomctl32 -lOle32 -lOleAut32 -lXinput9_1_0 -lUser32
+}

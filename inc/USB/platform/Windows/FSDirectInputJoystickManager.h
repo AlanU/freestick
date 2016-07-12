@@ -28,31 +28,31 @@ and must not be misrepresented as being the original software.
 #pragma once
 #include "USB/common/FSUpdatableJoystickDeviceManager.h"
 #include "USB/platform/Windows/FSDirectInputJoystick.h"
+#include "common/FSSpinlock.h"
 #define DIRECTINPUT_VERSION 0x0800
 #define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
 #include <dinput.h>
 #include <dinputd.h>
-#include <wbemidl.h>
-#include <oleauto.h>
+#include <mutex>
+#include <memory>
+#include <thread>
+#include <atomic>
 
-#define SAFE_DELETE(p)  { if(p) { delete (p);     (p)=nullptr; } }
-#define SAFE_RELEASE(p) { if(p) { (p)->Release(); (p)=nullptr; } }
 inline bool operator<( const GUID & lhs, const GUID & rhs )
 {
         return  memcmp(&lhs, &rhs, sizeof(GUID) )< 0;
 }
 
 namespace freestick {
-class FSDirectInputJoystickManager;
-struct DirectInput_Enum_Contex
-{
-    DIJOYCONFIG * joystickConfig;
-    bool isVaild;
-    freestick::FSDirectInputJoystickManager * manager;
-    std::vector<GUID> connectedLastUpdateJoysticks;
-    std::vector<GUID> joysticksConnectedThisUpdate;
-};
+    class FSDirectInputJoystickManager;
+    struct DirectInput_Enum_Contex
+    {
+        DIJOYCONFIG * joystickConfig;
+        bool isVaild;
+        freestick::FSDirectInputJoystickManager * manager;
+        std::vector<GUID> connectedLastUpdateJoysticks;
+        std::vector<GUID> joysticksConnectedThisUpdate;
+    };
 
     class FSDirectInputJoystickManager : public FSUpdatableJoystickDeviceManager
     {
@@ -61,7 +61,7 @@ struct DirectInput_Enum_Contex
         virtual void init( );
         virtual void update();
         virtual ~FSDirectInputJoystickManager();
-        static bool IsXInputDevice( const GUID* pGuidProductFromDirectInput );
+        static bool IsXInputDeviceRaw( const GUID* pGuidProductFromDirectInput );
         //Windows BOOL is type def for int
         static BOOL CALLBACK EnumJoysticksCallback( const DIDEVICEINSTANCE* pdidInstance,void* pContext );
         static BOOL CALLBACK EnumInputObjectsCallback( const DIDEVICEOBJECTINSTANCE* pdidoi,VOID* pContext );
@@ -78,16 +78,20 @@ struct DirectInput_Enum_Contex
         virtual void removeDevice(FSBaseDevice * device);
         virtual void addDevice(GUID guidDeviceInstance);
         virtual void removeDevice(GUID guidDeviceInstance);
-        void updateJoysticksAxis(FSDirectInputJoystick * device,LONG axisValue, long int idForXAxis,bool calibrate = false);
-        void updateJoysticksPOV(FSDirectInputJoystick * device,LONG axisValue, long int idForXAxis);
+        void updateJoysticksAxis(FSDirectInputJoystick & device,LONG axisValue, long int idForXAxis);
+        void updateJoysticksPOV(FSDirectInputJoystick & device,LONG axisValue, long int idForXAxis);
 
         void updateJoysticks();
-
-        //unsigned int getDeviceIDFromIOHIDevice(LPDIRECTINPUTDEVICE8 inputDevice );
     private:
         std::unordered_map<IDNumber,LONG> lastPOVValue;
+        typedef FSSpinLock ConnctionLockType ;
+        ConnctionLockType connectedJoystickLock;
+        std::vector<FSDirectInputJoystick * > joysticksToAddThisUpdate;
+        std::vector<const FSBaseDevice * > joysticksToRemoveThisUpdate;
+        std::unique_ptr<std::thread> connectedJoystickThread;
         void updateConnectJoysticks();
-
+        FSSpinLock spinLock;
+        std::atomic_flag lookingForJoysticks = ATOMIC_FLAG_INIT;
     };
 
 

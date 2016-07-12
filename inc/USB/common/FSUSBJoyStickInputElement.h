@@ -57,6 +57,7 @@ namespace freestick
         bool _useLastValueStack;
         unsigned int _parentID;
         MinMaxNumber _buttonNumber;
+        float _calibrationOffsetPrecent = 0.05f; //Offset used to calibrate deadzones
     protected:
         void calibrate(PhysicalValueNumber currentValue, MinMaxNumber elementMin, MinMaxNumber elementMax );
         void EmptyQue(std::stack<FSUSBElementInfoMap> & infoMapsToReturn,unsigned int sizeToleft);
@@ -68,12 +69,16 @@ namespace freestick
         inline MinMaxNumber getValue() const {return _value;}
         void setValue(MinMaxNumber newValue);
         bool isValueInDeadZone(MinMaxNumber value);
+		bool isIntialized();
         inline MinMaxNumber getMaxValue() const {return _elementMax;}
         inline MinMaxNumber getMinValue() const {return _elementMin;}
         inline MinMaxNumber getDeadZoneMin() const {return _deadZoneMin;}
         inline MinMaxNumber getDeadZoneMax() const {return _deadZoneMax;}
         inline MinMaxNumber getButtonNumber() const {return _buttonNumber;}
         void recalibrate(PhysicalValueNumber currentValue, MinMaxNumber elementMin, MinMaxNumber elementMax );
-
+        uint16_t getHIDUsage();
+        uint16_t getHIDUsagePage();
+        //used to pad out the dead zone when calibrating
+        void setCalibrationOffsetPrecent(float offset ) ;
     };
 }

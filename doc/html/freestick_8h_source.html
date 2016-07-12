@@ -161,32 +161,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">    #include &quot;<a class="code" href="_f_s_j_n_i___wrapper_8h.html">USB/platform/Android/jni/src/FSJNI_Wrapper.h</a>&quot;</span></div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keyword">typedef</span> <a class="code" href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html">freestick::FSHIDAndroidJoysickDeviceManager</a> <a class="code" href="freestick_8h.html#af545fe3ed9cb9f96ef7e319bb77d71cb">FreeStickDeviceManager</a>;</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#elif _WIN32</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="comment">//direct input</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="comment">//#include &quot;USB/platform/Windows/FSDirectInputJoystick.h&quot;</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="comment">//#include &quot;USB/platform/Windows/FSDirectInputJoystickManager.h&quot;</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="comment">//typedef freestick::FSDirectInputJoystickManager FreeStickDeviceManager;</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;   <span class="comment">// Windows</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">    #include &quot;<a class="code" href="_f_s_windows_joystick_device_manager_8h.html">USB/platform/Windows/FSWindowsJoystickDeviceManager.h</a>&quot;</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keyword">typedef</span> <a class="code" href="classfreestick_1_1_f_s_windows_joystick_device_manager.html">freestick::FSWindowsJoystickDeviceManager</a> <a class="code" href="freestick_8h.html#af545fe3ed9cb9f96ef7e319bb77d71cb">FreeStickDeviceManager</a>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#else</span></div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">    #include &quot;<a class="code" href="_f_s_u_s_b_null_joystick_device_manager_8h.html">USB/platform/NULL/FSUSBNullJoystickDeviceManager.h</a>&quot;</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="comment">//Xinput</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;   <span class="comment">// #include &quot;USB/platform/Windows/FSXInputJoystickDeviceManager.h&quot;</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="comment">//#include &quot;USB/platform/Windows/FSXInputJoystick.h&quot;</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="comment">//typedef freestick::FSXInputJoystickDeviceManager FreeStickDeviceManager;</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="comment">//Windows</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">    #include &quot;<a class="code" href="_f_s_windows_joystick_device_manager_8h.html">USB/platform/Windows/FSWindowsJoystickDeviceManager.h</a>&quot;</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keyword">typedef</span> <a class="code" href="classfreestick_1_1_f_s_windows_joystick_device_manager.html">freestick::FSWindowsJoystickDeviceManager</a> <a class="code" href="freestick_8h.html#af545fe3ed9cb9f96ef7e319bb77d71cb">FreeStickDeviceManager</a>;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">    #include &quot;<a class="code" href="_f_s_u_s_b_null_joystick_device_manager_8h.html">USB/platform/NULL/FSUSBNullJoystickDeviceManager.h</a>&quot;</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="freestick_8h.html#af545fe3ed9cb9f96ef7e319bb77d71cb">   86</a></span>&#160;    <span class="keyword">typedef</span> <a class="code" href="classfreestick_1_1_f_s_u_s_b_null_joystick_device_manager.html">freestick::FSUSBNullJoystickDeviceManager</a> <a class="code" href="freestick_8h.html#af545fe3ed9cb9f96ef7e319bb77d71cb">FreeStickDeviceManager</a>;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">#endif // FREESTICK_H</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="freestick_8h.html#af545fe3ed9cb9f96ef7e319bb77d71cb">   75</a></span>&#160;    <span class="keyword">typedef</span> <a class="code" href="classfreestick_1_1_f_s_u_s_b_null_joystick_device_manager.html">freestick::FSUSBNullJoystickDeviceManager</a> <a class="code" href="freestick_8h.html#af545fe3ed9cb9f96ef7e319bb77d71cb">FreeStickDeviceManager</a>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">#endif // FREESTICK_H</span></div>
 <div class="ttc" id="_f_s_u_s_b_null_joystick_device_manager_8h_html"><div class="ttname"><a href="_f_s_u_s_b_null_joystick_device_manager_8h.html">FSUSBNullJoystickDeviceManager.h</a></div></div>
 <div class="ttc" id="_f_s_base_event_8h_html"><div class="ttname"><a href="_f_s_base_event_8h.html">FSBaseEvent.h</a></div></div>
 <div class="ttc" id="_f_s_base_manager_8h_html"><div class="ttname"><a href="_f_s_base_manager_8h.html">FSBaseManager.h</a></div></div>
 <div class="ttc" id="_f_s_u_s_b_device_8h_html"><div class="ttname"><a href="_f_s_u_s_b_device_8h.html">FSUSBDevice.h</a></div></div>
 <div class="ttc" id="_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8h_html"><div class="ttname"><a href="_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8h.html">FSUSBMacOSXJoystickDeviceManager.h</a></div></div>
-<div class="ttc" id="classfreestick_1_1_f_s_windows_joystick_device_manager_html"><div class="ttname"><a href="classfreestick_1_1_f_s_windows_joystick_device_manager.html">freestick::FSWindowsJoystickDeviceManager</a></div><div class="ttdef"><b>Definition:</b> FSWindowsJoystickDeviceManager.h:46</div></div>
+<div class="ttc" id="classfreestick_1_1_f_s_windows_joystick_device_manager_html"><div class="ttname"><a href="classfreestick_1_1_f_s_windows_joystick_device_manager.html">freestick::FSWindowsJoystickDeviceManager</a></div><div class="ttdef"><b>Definition:</b> FSWindowsJoystickDeviceManager.h:47</div></div>
 <div class="ttc" id="_i_f_s_device_8h_html"><div class="ttname"><a href="_i_f_s_device_8h.html">IFSDevice.h</a></div></div>
 <div class="ttc" id="_f_s_h_i_d_android_joysick_device_manager_8h_html"><div class="ttname"><a href="_f_s_h_i_d_android_joysick_device_manager_8h.html">FSHIDAndroidJoysickDeviceManager.h</a></div></div>
 <div class="ttc" id="_f_s_j_n_i___wrapper_8h_html"><div class="ttname"><a href="_f_s_j_n_i___wrapper_8h.html">FSJNI_Wrapper.h</a></div></div>
@@ -200,7 +189,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager_html"><div class="ttname"><a href="classfreestick_1_1_f_s_h_i_d_android_joysick_device_manager.html">freestick::FSHIDAndroidJoysickDeviceManager</a></div><div class="ttdef"><b>Definition:</b> FSHIDAndroidJoysickDeviceManager.h:34</div></div>
 <div class="ttc" id="_f_s_windows_joystick_device_manager_8h_html"><div class="ttname"><a href="_f_s_windows_joystick_device_manager_8h.html">FSWindowsJoystickDeviceManager.h</a></div></div>
 <div class="ttc" id="_f_s_base_joystick_info_8h_html"><div class="ttname"><a href="_f_s_base_joystick_info_8h.html">FSBaseJoystickInfo.h</a></div></div>
-<div class="ttc" id="freestick_8h_html_af545fe3ed9cb9f96ef7e319bb77d71cb"><div class="ttname"><a href="freestick_8h.html#af545fe3ed9cb9f96ef7e319bb77d71cb">FreeStickDeviceManager</a></div><div class="ttdeci">freestick::FSUSBNullJoystickDeviceManager FreeStickDeviceManager</div><div class="ttdef"><b>Definition:</b> freestick.h:86</div></div>
+<div class="ttc" id="freestick_8h_html_af545fe3ed9cb9f96ef7e319bb77d71cb"><div class="ttname"><a href="freestick_8h.html#af545fe3ed9cb9f96ef7e319bb77d71cb">FreeStickDeviceManager</a></div><div class="ttdeci">freestick::FSUSBNullJoystickDeviceManager FreeStickDeviceManager</div><div class="ttdef"><b>Definition:</b> freestick.h:75</div></div>
 <div class="ttc" id="classfreestick_1_1_f_s_u_s_b_null_joystick_device_manager_html"><div class="ttname"><a href="classfreestick_1_1_f_s_u_s_b_null_joystick_device_manager.html">freestick::FSUSBNullJoystickDeviceManager</a></div><div class="ttdef"><b>Definition:</b> FSUSBNullJoystickDeviceManager.h:32</div></div>
 <div class="ttc" id="_f_s_u_s_b_device_manager_8h_html"><div class="ttname"><a href="_f_s_u_s_b_device_manager_8h.html">FSUSBDeviceManager.h</a></div></div>
 <div class="ttc" id="_f_s_u_s_b_joystick_8h_html"><div class="ttname"><a href="_f_s_u_s_b_joystick_8h.html">FSUSBJoystick.h</a></div></div>
@@ -208,7 +197,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 9 2015 17:47:05 for FreeStick by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun May 22 2016 23:20:01 for FreeStick by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

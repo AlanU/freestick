@@ -27,6 +27,7 @@ and must not be misrepresented as being the original software.
 
 #include "USB/common/FSUSBJoyStickInputElement.h"
 #include "USB/common/FSUSBJoystick.h"
+#include "USB/common/FSUSBJoystickDeviceManager.h"
 #include <time.h>
 #include <cstdlib>
 
@@ -155,6 +156,11 @@ FSUSBJoyStickInputElement::FSUSBJoyStickInputElement(unsigned int id,  unsigned 
     firstTime = time(NULL);
 }
 
+void FSUSBJoyStickInputElement::setCalibrationOffsetPrecent(float offset )
+{
+    _calibrationOffsetPrecent = offset;
+}
+
 void FSUSBJoyStickInputElement::calibrate(PhysicalValueNumber currentValue, MinMaxNumber elementMin, MinMaxNumber elementMax )
 {
     _needsDeadZone = false;
@@ -183,7 +189,7 @@ void FSUSBJoyStickInputElement::calibrate(PhysicalValueNumber currentValue, MinM
            _deadZoneMin = temp;
         }
 
-        MinMaxNumber precent = static_cast<MinMaxNumber>(( (float)(_elementMax + std::abs(_elementMin) ) )*0.05f);
+        MinMaxNumber precent = static_cast<MinMaxNumber>(( (float)(_elementMax + std::abs(_elementMin) ) )*_calibrationOffsetPrecent);
 
         _deadZoneMax= _elementMax < _deadZoneMax+precent ?  _deadZoneMax :_deadZoneMax + precent ;
         _deadZoneMin = _elementMin > _deadZoneMin-precent ? _deadZoneMin : _deadZoneMin - precent;
@@ -195,4 +201,9 @@ void FSUSBJoyStickInputElement::calibrate(PhysicalValueNumber currentValue, MinM
 void FSUSBJoyStickInputElement::recalibrate(PhysicalValueNumber currentValue, MinMaxNumber elementMin, MinMaxNumber elementMax )
 {
     calibrate(currentValue,elementMin,elementMax);
+}
+
+bool FSUSBJoyStickInputElement::isIntialized()
+{
+	return _intialized;
 }

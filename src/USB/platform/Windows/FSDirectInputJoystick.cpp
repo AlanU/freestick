@@ -62,8 +62,55 @@ FSDirectInputJoystick::FSDirectInputJoystick(LPDIRECTINPUTDEVICE8  LPDIDJoystick
       _productID = productIDW;
       _vendorIDFriendlyName = FSUSBDevice::GetFrendlyVenderNameFromID(_vendorID);
       _prodcutIDFriendlyName = FSUSBDevice::GetFrendlyProductNameFromID(_vendorID,_productID);
-      _friendlyName = _vendorIDFriendlyName + " "+ _prodcutIDFriendlyName;
+      if( _prodcutIDFriendlyName == "unknown")
+      {
+          DIPROPSTRING  dipstr;
+          dipstr.diph.dwSize = sizeof(DIPROPSTRING);
 
+          dipstr.diph.dwHeaderSize = sizeof(DIPROPHEADER);
+          dipstr.diph.dwObj =0;
+          dipstr.diph.dwHow = DIPH_DEVICE;
+          HRESULT hr = _LPDIDJoystick->GetProperty(DIPROP_PRODUCTNAME,&dipstr.diph);
+          if(SUCCEEDED(hr))
+          {
+              char str[MAX_PATH];
+              char defaultChar = ' ';
+              try
+              {
+                 WideCharToMultiByte(CP_ACP,0,dipstr.wsz,-1,str,MAX_PATH,&defaultChar,NULL);
+                 _prodcutIDFriendlyName = str;
+
+              }
+              catch(...)
+              {
+
+              }
+
+          }
+      }
+      DIPROPSTRING  dipInstance;
+      dipInstance.diph.dwSize = sizeof(DIPROPSTRING);
+
+      dipInstance.diph.dwHeaderSize = sizeof(DIPROPHEADER);
+      dipInstance.diph.dwObj =0;
+      dipInstance.diph.dwHow = DIPH_DEVICE;
+      HRESULT hr = _LPDIDJoystick->GetProperty(DIPROP_INSTANCENAME,&dipInstance.diph);
+      if(SUCCEEDED(hr))
+      {
+          char str[MAX_PATH];
+          char defaultChar = ' ';
+          try
+          {
+             WideCharToMultiByte(CP_ACP,0,dipInstance.wsz,-1,str,MAX_PATH,&defaultChar,NULL);
+             _friendlyName = str;
+
+          }
+          catch(...)
+          {
+
+          }
+
+      }
     }
 
 
@@ -168,4 +215,14 @@ FSDirectInputJoystick::~FSDirectInputJoystick()
     {
         _LPDIDJoystick->Unacquire();
     }
+}
+
+void FSDirectInputJoystick::setCalibrated()
+{
+    calibrated = true;
+}
+
+bool FSDirectInputJoystick::isCalibrated() const
+{
+    return calibrated;
 }

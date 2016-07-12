@@ -27,7 +27,7 @@ and must not be misrepresented as being the original software.
 
 #include "mainwindow.h"
 #include <QApplication>
-
+constexpr const char * version = "0.0.2";
 #ifdef Q_OS_ANDROID
 
 #include <native_app_glue/android_native_app_glue.h>
@@ -36,6 +36,7 @@ and must not be misrepresented as being the original software.
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    a.setApplicationVersion(version);
     MainWindow w;
     w.show();
 

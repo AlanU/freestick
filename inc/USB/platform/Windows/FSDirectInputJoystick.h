@@ -27,7 +27,6 @@ and must not be misrepresented as being the original software.
 
 #pragma once
 #define DIRECTINPUT_VERSION 0x0800
-#include <Windows.h>
 #include <dinput.h>
 
 #include "USB/common/FSUSBJoystick.h"
@@ -50,11 +49,15 @@ namespace freestick {
         LPDIRECTINPUTDEVICE8 getDirectInputPtr(){return _LPDIDJoystick;}
         virtual ~FSDirectInputJoystick();
         virtual FSDeviceType getClassType() const {return FSDirectInputJoystickType;}
+        void setCalibrated();
+        bool isCalibrated() const;
     private:
         LPDIRECTINPUTDEVICE8    _LPDIDJoystick;
         FSUSBJoystickDeviceManager * _usbJoystickManager;
         static BOOL CALLBACK EnumInputObjectsCallback( const DIDEVICEOBJECTINSTANCE* pdidoi,VOID* pContext );
         long int getCurrentValue(FSDirectInputJoystick * device,const DIDEVICEOBJECTINSTANCE* pdidoi);
         void addElement(long int usage, long int usagePage,MinMaxNumber elementId,MinMaxNumber min,MinMaxNumber max,long int value);
+        bool calibrated = false;
+
     };
 }

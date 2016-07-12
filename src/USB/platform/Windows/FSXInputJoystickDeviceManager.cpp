@@ -45,22 +45,34 @@ void FSXInputJoystickDeviceManager::update()
 void  FSXInputJoystickDeviceManager::updateAnalog(unsigned int axisToLookFor , const FSXInputJoystick * xinputJoystick , unsigned int controllerID ,PhysicalValueNumber value )
 {
     FSUSBJoyStickInputElement * element = (FSUSBJoyStickInputElement*) xinputJoystick->findInputElement(axisToLookFor) ;
-    updateEvents(controllerID,element,value);
+
+    if (element) {
+        if (!xinputJoystick->isCalibrated()) {
+            element->setCalibrationOffsetPrecent(0.06f);
+            element->recalibrate(value, element->getMinValue(), element->getMaxValue());
+            return;
+        }
+        if (element->getValue() != value) {
+            updateEvents(controllerID, element, value);
+        }
+    }
 }
 
 void  FSXInputJoystickDeviceManager::updateButton(WORD buttons,WORD xButtonToLookFor,unsigned int buttonToLookFor , const FSXInputJoystick * xinputJoystick , unsigned int controllerID )
 {
     bool value = ((buttons & xButtonToLookFor)!= 0 );
     FSUSBJoyStickInputElement * pad = (FSUSBJoyStickInputElement*) xinputJoystick->findInputElement(buttonToLookFor) ;
-    updateEvents(controllerID,pad,value ? 1 : 0);
+	updateEvents(controllerID, pad, value ? 1 : 0);
 }
 
 void FSXInputJoystickDeviceManager::updateJoysticks()
 {
     static DWORD lastState[XUSER_MAX_COUNT]= {0,0,0,0};
-
-    for (DWORD index = 0; index < XUSER_MAX_COUNT; index++)
+	//do not as for the state of disconnected joysticks this causes performance issues
+	DWORD index = 0;
+	for (auto & itr = _wordToIDControllerMap.begin(); itr != _wordToIDControllerMap.end();++itr)
     {
+		index = itr->first;
         DWORD result;
         //TODO do not do this twice
         XINPUT_STATE xState;
@@ -71,7 +83,7 @@ void FSXInputJoystickDeviceManager::updateJoysticks()
            if(_wordToIDControllerMap.find(index) != _wordToIDControllerMap.end())
            {
                unsigned int joyID = _wordToIDControllerMap[index];
-              const FSXInputJoystick * xinputJoystick = static_cast<const FSXInputJoystick*>(getDevice(joyID));
+               const FSXInputJoystick * xinputJoystick = static_cast<const FSXInputJoystick*>(getDevice(joyID));
 
 
                updateButton(xState.Gamepad.wButtons,XINPUT_GAMEPAD_DPAD_UP,UP_DPAD_XINPUT_EID,xinputJoystick,joyID);
@@ -100,6 +112,7 @@ void FSXInputJoystickDeviceManager::updateJoysticks()
 
 
                lastState[index]= xState.dwPacketNumber;
+               const_cast<FSXInputJoystick *>(xinputJoystick)->setCalibrated();
            }
         }
     }
@@ -108,7 +121,7 @@ void FSXInputJoystickDeviceManager::updateJoysticks()
 
 void FSXInputJoystickDeviceManager::updateConnectJoysticks()
 {
-
+//TODO put this in a background thread like direct input
 std::vector<DWORD> newThisUpdate;
 std::vector<DWORD> foundThisUpdate;
 

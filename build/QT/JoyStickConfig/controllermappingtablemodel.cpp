@@ -1,4 +1,45 @@
 #include "controllermappingtablemodel.h"
+#include <string>
+#include <array>
+//This is not the full page map
+const std::array<const std::string,16> usagePageList  {"Undefined",
+                                                    "Generic Desktop",
+                                                    "Simulation Controls",
+                                                   "VR Controls",
+                                                   "Sports Controls",
+                                                   "Game Controls",
+                                                   "Generic Device Controls",
+                                                   "Keyboard/Keypad",
+                                                   "LEDs",
+                                                   "Button",
+                                                   "Ordinal",
+                                                   "Telephony",
+                                                   "Consumer",
+                                                   "Digitizer",
+                                                   "PID Page",
+                                                   "Unicode"};
+/*const std::array<const std::map<uint16_t,const std::string>,16>  usageList { {
+                                                                 {0x00,"Undefined"},
+                                                                 {0x01,"Pointer"},
+                                                                 {0x02,"Mouser"},
+                                                                 {0x03,"Reserved"},
+                                                                 {0x04,"Joystick"},
+                                                                 {0x05,"Game Pad"},
+                                                                 {0x06,"Keyboard"},
+                                                                 {0x07,"KeyPad"},
+                                                                 {0x08,"Multi-axis Controller"},
+                                                                 {0x09,"Table PC System Controls"},
+                                                                 {0x30,"X"},
+                                                                 {0x31,"Y"},
+                                                                 {0x32,"Z"},
+                                                                 {0x33,"Rx"},
+                                                                 {0x34,"Ry"},
+                                                                 {0x35,"Rz"},
+                                                                 {0x36,"Slider"},
+                                                                 {0x37,"Dial"},
+                                                                 {0x38,"Wheel"},
+                                                                 {0x39,"Hat switch"},
+                                                                 {0x3A,"Counted Buffer"}}};*/
 
 ControllerMappingTableModel::ControllerMappingTableModel(FreeStickDeviceManager & manager,unsigned int joystickID)
 {
@@ -33,7 +74,7 @@ int ControllerMappingTableModel::rowCount(const QModelIndex & /*parent*/) const
 
  int ControllerMappingTableModel::columnCount(const QModelIndex & /*parent*/) const
  {
-     return 9;
+     return 11;
  }
 
 
@@ -70,6 +111,12 @@ int ControllerMappingTableModel::rowCount(const QModelIndex & /*parent*/) const
                   case 8:
                     return tr("Element Cookie");
                   break;
+                  case 9:
+                    return tr("Usage Page");
+                  break;
+                  case 10:
+                    return tr("Usage");
+                  break;
                   default:
                     break;
              }
@@ -80,6 +127,22 @@ int ControllerMappingTableModel::rowCount(const QModelIndex & /*parent*/) const
  }
  QVariant ControllerMappingTableModel::data(const QModelIndex &index, int role) const
  {
+     if (role == Qt::ToolTipRole)
+     {
+         switch (index.column()) {
+         case 9:
+         {
+             quint16 usagePage = static_cast<quint16>(FSUSBJoystickDeviceManager::getUsagePageForElement(_elemntIDList[index.row()]));
+             if(usagePage < usagePageList.size())
+             {
+                 return usagePage;
+             }
+         }
+             break;
+         default:
+             break;
+         }
+     }
      if (role == Qt::DisplayRole)
      {
          unsigned int id =_elemntIDList[index.row()];
@@ -113,6 +176,20 @@ int ControllerMappingTableModel::rowCount(const QModelIndex & /*parent*/) const
          break;
         case 8:
             return static_cast<qlonglong>(element.getButtonNumber());
+         break;
+        case 9:
+        {
+            quint16 usagePage = static_cast<quint16>(FSUSBJoystickDeviceManager::getUsagePageForElement(_elemntIDList[index.row()]));
+            if(usagePage < usagePageList.size())
+            {
+                return tr(usagePageList[usagePage].c_str());
+            }
+            return usagePage;
+        }
+        break;
+        case 10:
+            return static_cast<quint16>(FSUSBJoystickDeviceManager::getUsageForElement(_elemntIDList[index.row()]));
+        break;
         default:
             break;
         }

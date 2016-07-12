@@ -42,21 +42,33 @@ FSUSBJoystickDeviceManager::~FSUSBJoystickDeviceManager()
 
 }
 
+uint16_t FSUSBJoystickDeviceManager::getUsageForElement(uint32_t id)
+{
+   return (id&0xffff);
+}
+
+uint16_t FSUSBJoystickDeviceManager::getUsagePageForElement(uint32_t id)
+{
+    return (id>>16);
+}
+void FSUSBJoystickDeviceManager::getUsageFromIdForElement(uint32_t id, uint16_t &usage,uint16_t &usagePage)
+{
+    usage = (id&0xffff);
+    usagePage = (id>>16);
+}
 
 uint32_t FSUSBJoystickDeviceManager::createIdForElement(uint32_t usage,uint32_t usagePage )
 {
-    return (usagePage << 16) | usage;
+     return (usagePage << 16) | usage;
 }
 
 
 void FSUSBJoystickDeviceManager::updateEvents(unsigned int joystickDeviceID,FSUSBJoyStickInputElement * elementDevice, PhysicalValueNumber elementValue)
 {
     static std::stack<FSUSBElementInfoMap> inputTypes;
-
     if (elementDevice) {
         elementDevice->getMapping(elementValue, inputTypes);
         bool isValueVaild = elementDevice->isValueInDeadZone(elementValue);
-
         while (!inputTypes.empty()) {
             FSUSBElementInfoMap inputType = inputTypes.top();
 

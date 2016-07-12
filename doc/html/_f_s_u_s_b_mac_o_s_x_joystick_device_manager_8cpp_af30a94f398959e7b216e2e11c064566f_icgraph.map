@@ -1,8 +1,0 @@
-<map id="numberOfDeviecType" name="numberOfDeviecType">
-<area shape="rect" id="node2" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a04cf217a240ee978334285d671c2dbc9" title="numberOfButtons" alt="" coords="221,126,347,151"/>
-<area shape="rect" id="node6" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a3680ae0a81ef04740edb194eb90db4ff" title="numberOfAnalogSticks" alt="" coords="205,177,363,202"/>
-<area shape="rect" id="node7" href="$_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#af974b03dff445e967e3bd0583c116a16" title="numberOfAnalogAxis" alt="" coords="449,234,596,259"/>
-<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_u_s_b_joystick.html#ad0a872e698d34dd058a8765d155431bf" title="freestick::FSUSBJoystick\l::FSUSBJoystick" alt="" coords="438,5,608,43"/>
-<area shape="rect" id="node4" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick.html#a24723761d0d3339dc7c58244a5ccd7b6" title="freestick::FSUSBMacOSXJoystick\l::Init" alt="" coords="411,119,634,158"/>
-<area shape="rect" id="node5" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html#a37672c3beb149385bfba1bb0119efd43" title="freestick::FSUSBMacOSXJoystick\lDeviceManager::addDevice" alt="" coords="683,119,906,158"/>
-</map>

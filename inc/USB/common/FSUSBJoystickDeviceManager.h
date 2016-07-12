@@ -40,6 +40,10 @@ namespace freestick
         const FSUSBJoystick * getUSBJoystickDevice(unsigned int deviceID){return static_cast<const FSUSBJoystick *>(FSUSBDeviceManager::getDevice(deviceID));}
         virtual void updateEvents(unsigned int joystickDeviceID,FSUSBJoyStickInputElement * elementDevice, PhysicalValueNumber elementValue);
         static uint32_t createIdForElement(uint32_t usage, uint32_t usagePage);
+        static void getUsageFromIdForElement(uint32_t id, uint16_t &usage,uint16_t &usagePage);
+        static uint16_t getUsageForElement(uint32_t id);
+        static uint16_t getUsagePageForElement(uint32_t id);
+
 
     };
 }

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vibratejoystick',['vibrateJoystick',['../_f_s_u_s_b_mac_o_s_x_joystick_device_manager_8cpp.html#a3d8617f4206d7442328a05bbdc8fab85',1,'FSUSBMacOSXJoystickDeviceManager.cpp']]]
+  ['try_5flock',['try_lock',['../classfreestick_1_1_f_s_spin_lock.html#aa5297897c86b7a019da4637c73bf802e',1,'freestick::FSSpinLock']]]
 ];

@@ -14,11 +14,12 @@ var searchData=
   ['listenforalljoysticksforeventtype',['ListenForAllJoysticksForEventType',['../classfreestick_1_1_f_s_base_manager.html#acc8f7d9b85edfd24cbbfccafdf76be11',1,'freestick::FSBaseManager']]],
   ['listenforalljoysticksforeventtypes',['ListenForAllJoysticksForEventTypes',['../classfreestick_1_1_f_s_base_manager.html#af87170c6c4219af77a1ef3b057746846',1,'freestick::FSBaseManager::ListenForAllJoysticksForEventTypes()'],['../classfreestick_1_1_f_s_windows_joystick_device_manager.html#acef9fae184cb332a2acc3bc7c0c0da63',1,'freestick::FSWindowsJoystickDeviceManager::ListenForAllJoysticksForEventTypes()']]],
   ['listenforjoystickevent',['ListenForJoystickEvent',['../classfreestick_1_1_f_s_base_manager.html#a5be03f4beb38edc118ea3d54ef8bcefd',1,'freestick::FSBaseManager']]],
+  ['lock',['lock',['../classfreestick_1_1_f_s_spin_lock.html#a63784ea0e4ef984f963dd1a7b4bfed8e',1,'freestick::FSSpinLock']]],
   ['logitechdualactionid',['LogitechDualActionID',['../namespacefreestick.html#ae1ed3781b3591b9a5ae537e5266e0dd4',1,'freestick']]],
   ['logitechgamepadf310',['LogitechGamepadF310',['../namespacefreestick.html#a651adda5e10c9cbb2078fe4aaa0fe781',1,'freestick']]],
+  ['logitechgamepadf710',['LogitechGamepadF710',['../namespacefreestick.html#af3a80955f4fd282b31fd26c14058aa4d',1,'freestick']]],
   ['logitechvendorid',['LogitechVendorID',['../namespacefreestick.html#a82938db32b0f31d50928cb2adfcbc798',1,'freestick']]],
   ['lookupdeviceinputfromid',['lookUpDeviceInputFromID',['../classfreestick_1_1_f_s_u_s_b_device_manager.html#a5bcfa0e2491566888740434f4a354046',1,'freestick::FSUSBDeviceManager::lookUpDeviceInputFromID()'],['../classfreestick_1_1_f_s_windows_joystick_device_manager.html#aaaf907e7a9ae43c1ff125ee6c6a3b740',1,'freestick::FSWindowsJoystickDeviceManager::lookUpDeviceInputFromID()']]],
   ['lookupdeviceinputfromusbid',['lookUpDeviceInputFromUSBID',['../classfreestick_1_1_f_s_u_s_b_device_manager.html#a6fdada8db9aed5ece5db9b4561ce281d',1,'freestick::FSUSBDeviceManager::lookUpDeviceInputFromUSBID()'],['../classfreestick_1_1_f_s_windows_joystick_device_manager.html#aa5fd805532ec1ceb58cf4a5cd653b1fb',1,'freestick::FSWindowsJoystickDeviceManager::lookUpDeviceInputFromUSBID()']]],
-  ['loop_5fover_5fmanagers_5fwith_5ffunction',['LOOP_OVER_MANAGERS_WITH_FUNCTION',['../_f_s_windows_joystick_device_manager_8cpp.html#aef05fa4981074556be1701b2e69fde38',1,'FSWindowsJoystickDeviceManager.cpp']]],
   ['ltrigger_5fxinput_5feid',['LTRIGGER_XINPUT_EID',['../_f_s_x_input_joystick_8h.html#a5867df5e69c1a3a6b79cee03437cd349',1,'FSXInputJoystick.h']]]
 ];

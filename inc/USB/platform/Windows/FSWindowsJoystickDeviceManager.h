@@ -37,6 +37,7 @@
 #include "USB/common/FSUpdatableJoystickDeviceManager.h"
 #include "common/FSTypes.h"
 #include <memory>
+#include <functional>
 
 typedef freestick::FSUpdatableJoystickDeviceManager managerType;
 typedef std::unique_ptr<managerType> unique_ptr_of_managers;
@@ -76,6 +77,9 @@ namespace freestick {
     private:
          bool _listeningForEvents;
          std::vector<unique_ptr_of_managers> managers;
+         bool DoesDeviceHaveInput(std::function<bool(unique_ptr_of_managers&)>const &func);
+
+
 
     };
 

@@ -29,6 +29,7 @@ and must not be misrepresented as being the original software.
 #include <string>
 #include "FSUSBDevice.h"
 #include "FSUSBJoyStickInputElement.h"
+#include <map>
 namespace freestick
 {
 typedef std::map<IDNumber,FSUSBJoyStickInputElement > JoyStickElementMap ;
@@ -39,11 +40,12 @@ typedef std::map<IDNumber,FSUSBJoyStickInputElement > JoyStickElementMap ;
         unsigned int _numberOfAnlogSticks;
         unsigned int _numberOfDigitalSticks;
         bool        _forceFeedBackSupported;
-        std::map<IDNumber,FSUSBJoyStickInputElement > _inputElementMap;
+        JoyStickElementMap _inputElementMap;
 
     protected:
         FSUSBJoystick();
     public:
+
         ~FSUSBJoystick();
         FSUSBJoystick(unsigned int joyStickID,
                       unsigned int numberOfButtons,
@@ -61,7 +63,10 @@ typedef std::map<IDNumber,FSUSBJoyStickInputElement > JoyStickElementMap ;
         JoyStickElementMap getElements() const  { return _inputElementMap; }
         std::vector<IDNumber> getElementIds() const;
         const FSUSBJoyStickInputElement * findInputElement(IDNumber id) const;
-
+		JoyStickElementMap::const_iterator begin() const;
+		JoyStickElementMap::const_iterator end() const ;
+		JoyStickElementMap::iterator begin();
+		JoyStickElementMap::iterator end();
     };
 }
 

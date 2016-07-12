@@ -67,18 +67,7 @@ and must not be misrepresented as being the original software.
     #include "USB/platform/Android/jni/src/FSJNI_Wrapper.h"
     typedef freestick::FSHIDAndroidJoysickDeviceManager FreeStickDeviceManager;
 #elif _WIN32
-    //direct input
-    //#include "USB/platform/Windows/FSDirectInputJoystick.h"
-    //#include "USB/platform/Windows/FSDirectInputJoystickManager.h"
-    //typedef freestick::FSDirectInputJoystickManager FreeStickDeviceManager;
-    #include "USB/platform/NULL/FSUSBNullJoystickDeviceManager.h"
-
-    //Xinput
-   // #include "USB/platform/Windows/FSXInputJoystickDeviceManager.h"
-    //#include "USB/platform/Windows/FSXInputJoystick.h"
-    //typedef freestick::FSXInputJoystickDeviceManager FreeStickDeviceManager;
-
-    //Windows
+   // Windows
     #include "USB/platform/Windows/FSWindowsJoystickDeviceManager.h"
     typedef freestick::FSWindowsJoystickDeviceManager FreeStickDeviceManager;
 #else
