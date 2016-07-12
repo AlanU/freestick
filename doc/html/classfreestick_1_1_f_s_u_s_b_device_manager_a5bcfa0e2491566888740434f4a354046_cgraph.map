@@ -1,9 +1,0 @@
-<map id="freestick::FSUSBDeviceManager::lookUpDeviceInputFromID" name="freestick::FSUSBDeviceManager::lookUpDeviceInputFromID">
-<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_base_manager.html#a8553e55f9bbad5e2d427e4faaafc5be3" title="freestick::FSBaseManager\l::getDevice" alt="" coords="288,5,467,43"/>
-<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_u_s_b_device.html#a5ad356cdac17c03d0f419ae17ffd8223" title="freestick::FSUSBDevice\l::getVenderID" alt="" coords="296,67,459,106"/>
-<area shape="rect" id="node4" href="$classfreestick_1_1_f_s_u_s_b_device.html#a6a9da76687061c20384be579bcddb3bd" title="freestick::FSUSBDevice\l::getProductID" alt="" coords="296,130,459,169"/>
-<area shape="rect" id="node5" href="$classfreestick_1_1_f_s_u_s_b_device_manager.html#a6fdada8db9aed5ece5db9b4561ce281d" title="freestick::FSUSBDeviceManager\l::lookUpDeviceInputFromUSBID" alt="" coords="269,193,485,231"/>
-<area shape="rect" id="node6" href="$_f_s_u_s_b_device_manager_8cpp.html#ad6891a5d15aa7995dc1e98c5c7a2e99f" title="createVPId" alt="" coords="587,143,674,169"/>
-<area shape="rect" id="node7" href="$classfreestick_1_1_f_s_u_s_b_element_info_map.html#afa832d91c41b237c953e7107e860c1be" title="freestick::FSUSBElementInfo\lMap::getMin" alt="" coords="534,193,728,231"/>
-<area shape="rect" id="node8" href="$classfreestick_1_1_f_s_u_s_b_element_info_map.html#ae92cfe2915f562dc0a7b2a07165170c0" title="freestick::FSUSBElementInfo\lMap::getMax" alt="" coords="534,255,728,294"/>
-</map>

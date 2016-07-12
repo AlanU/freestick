@@ -2,6 +2,7 @@ var searchData=
 [
   ['b_5fbutton_5fxinput_5feid',['B_BUTTON_XINPUT_EID',['../_f_s_x_input_joystick_8h.html#a73ee67c1abaa7847402907c45ec0028a',1,'FSXInputJoystick.h']]],
   ['back_5fbutton_5fxinput_5feid',['BACK_BUTTON_XINPUT_EID',['../_f_s_x_input_joystick_8h.html#a7747df0d81f14d1e0aa7c664f4affbb7',1,'FSXInputJoystick.h']]],
+  ['begin',['begin',['../classfreestick_1_1_f_s_u_s_b_joystick.html#a17f7605a5997cc01bddafa5243da7d9c',1,'freestick::FSUSBJoystick::begin() const '],['../classfreestick_1_1_f_s_u_s_b_joystick.html#a35803b0fbf9ed4c131a5fef3ad71666d',1,'freestick::FSUSBJoystick::begin()']]],
   ['button0',['Button0',['../namespacefreestick.html#ac52f7c0e8161f2de5d68e3c073486a8aacffe670a190a661d6a39af15c340e057',1,'freestick']]],
   ['button1',['Button1',['../namespacefreestick.html#ac52f7c0e8161f2de5d68e3c073486a8aace1498ab71833e9ea3f867f58a0d6c63',1,'freestick']]],
   ['button10',['Button10',['../namespacefreestick.html#ac52f7c0e8161f2de5d68e3c073486a8aa7e5a983571d9a5b73d3364024cb0ab7b',1,'freestick']]],
