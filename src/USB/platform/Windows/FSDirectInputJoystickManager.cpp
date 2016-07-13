@@ -30,13 +30,19 @@
 #include <hidusage.h>
 #include <chrono>
 #include <string.h>
-
-constexpr std::chrono::milliseconds connectionCheckSleep(1500);
+//This is a work around for VS 2013 not supporting constexpr correctly
+//This should be change to constexpr once 2013 support is dropped
+const std::chrono::milliseconds connectionCheckSleep(1500);
 using namespace freestick;
 
 
 FSDirectInputJoystickManager::FSDirectInputJoystickManager()
 {
+    //sets the atomic_flag to false before use
+    //This is a work around for VS 2013 not supporting
+    //std::atomic_flag locked = ATOMIC_FLAG_INIT
+    //Once VS 2013 is droped this code should be changed back
+    lookingForJoysticks.clear();
     _directInput8 = NULL;
 }
 

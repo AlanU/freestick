@@ -27,7 +27,9 @@ and must not be misrepresented as being the original software.
 
 #include "mainwindow.h"
 #include <QApplication>
-constexpr const char * version = "0.0.2";
+//This is a work around for VS 2013 not supporting constexpr correctly
+//This should be change to constexpr once 2013 support is dropped
+const char * version = "0.0.2";
 #ifdef Q_OS_ANDROID
 
 #include <native_app_glue/android_native_app_glue.h>

@@ -91,7 +91,7 @@ namespace freestick {
         std::unique_ptr<std::thread> connectedJoystickThread;
         void updateConnectJoysticks();
         FSSpinLock spinLock;
-        std::atomic_flag lookingForJoysticks = ATOMIC_FLAG_INIT;
+        std::atomic_flag lookingForJoysticks;
     };
 
 
