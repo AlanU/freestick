@@ -27,10 +27,9 @@
 
 
 TEMPLATE = subdirs
-CONFIG += ordered
 SUBDIRS += \
         ../FreeStick \
         ../CommandLineHarness
-
+CommandLineHarness.depends = FreeStick
 
 
