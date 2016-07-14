@@ -168,11 +168,11 @@ FSUSBMacOSXJoystick::FSUSBMacOSXJoystick(IOHIDDeviceRef device,
                                                                                      0,
                                                                                      0 )
 {
-    _vendorID = static_cast<VenderIDType>(IOHIDDevice_GetVendorID(device));
+    _vendorID = static_cast<VendorIDType>(IOHIDDevice_GetVendorID(device));
     _productID = static_cast<ProductIDType>( IOHIDDevice_GetProductID(device));
 
-    EE_DEBUG<<"device with venderID "<<_vendorID<<" and productID "<<_productID<<std::endl;
-    _vendorIDFriendlyName = FSUSBDevice::GetFrendlyVenderNameFromID(_vendorID);
+    EE_DEBUG<<"device with vendorID "<<_vendorID<<" and productID "<<_productID<<std::endl;
+    _vendorIDFriendlyName = FSUSBDevice::GetFrendlyVendorNameFromID(_vendorID);
     if(_vendorIDFriendlyName == "unknown")
     {
         CFStringRef manufactureStringRef = IOHIDDevice_GetManufacturer(device);
@@ -185,8 +185,8 @@ FSUSBMacOSXJoystick::FSUSBMacOSXJoystick(IOHIDDeviceRef device,
            }
         }
     }
-    _prodcutIDFriendlyName = FSUSBDevice::GetFrendlyProductNameFromID(_vendorID,_productID);
-    if(_prodcutIDFriendlyName == "unknown")
+    _productIDFriendlyName = FSUSBDevice::GetFrendlyProductNameFromID(_vendorID,_productID);
+    if(_productIDFriendlyName == "unknown")
     {
        CFStringRef productStringRef = IOHIDDevice_GetProduct(device);
        if(productStringRef)
@@ -195,11 +195,11 @@ FSUSBMacOSXJoystick::FSUSBMacOSXJoystick(IOHIDDeviceRef device,
 
            if(!temp.empty())
            {
-               _prodcutIDFriendlyName = temp;
+               _productIDFriendlyName = temp;
            }
        }
     }
-    _friendlyName = _vendorIDFriendlyName + " "+ _prodcutIDFriendlyName;
+    _friendlyName = _vendorIDFriendlyName + " "+ _productIDFriendlyName;
 
     _macIOHIDDeviceRef = device;
     CFRetain(_macIOHIDDeviceRef);

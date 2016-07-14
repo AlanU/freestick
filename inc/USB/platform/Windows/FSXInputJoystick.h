@@ -70,7 +70,7 @@ namespace  freestick {
                          unsigned int numberOfAnlogSticks,
                          unsigned int numberOfDigitalSticks,
                          bool  forceFeedBackSupported,
-                         long venderID,
+                         long vendorID,
                          long productID,
                          FSUSBJoystickDeviceManager & usbJoystickManager);
         void addXinputElements(XINPUT_STATE & state);

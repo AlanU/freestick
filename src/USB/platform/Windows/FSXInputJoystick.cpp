@@ -37,7 +37,7 @@ FSXInputJoystick::FSXInputJoystick(XINPUT_STATE & state,
                                    unsigned int numberOfAnlogSticks,
                                    unsigned int numberOfDigitalSticks,
                                    bool  forceFeedBackSupported,
-                                   long venderID,
+                                   long vendorID,
                                    long productID,
                                    FSUSBJoystickDeviceManager & usbJoystickManager
                                    ):FSUSBJoystick( joyStickID,
@@ -45,7 +45,7 @@ FSXInputJoystick::FSXInputJoystick(XINPUT_STATE & state,
                                                     numberOfAnlogSticks,
                                                     numberOfDigitalSticks,
                                                     forceFeedBackSupported,
-                                                    venderID,
+                                                    vendorID,
                                                     productID)
 {
 
@@ -53,8 +53,8 @@ FSXInputJoystick::FSXInputJoystick(XINPUT_STATE & state,
     playerNumber << id+1;
 
     _vendorIDFriendlyName = "XIputController";
-    _prodcutIDFriendlyName = "Player " + playerNumber.str();
-    _friendlyName = _vendorIDFriendlyName + " "+ _prodcutIDFriendlyName;
+    _productIDFriendlyName = "Player " + playerNumber.str();
+    _friendlyName = _vendorIDFriendlyName + " "+ _productIDFriendlyName;
     _usbJoystickManager = &usbJoystickManager;
     _totalButtonNumber = 0;
     addXinputElements(state);

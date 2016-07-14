@@ -367,8 +367,8 @@ void JoyStickConfigWidget::PopulateDeviceStats(unsigned int id)
     {
       const  FSUSBJoystick * usbDevice = static_cast<const FSUSBJoystick *>(device);
 
-        DeviceInfo += " Vender ID: ";
-        DeviceInfo += QString::number(usbDevice->getVenderID());
+        DeviceInfo += " Vendor ID: ";
+        DeviceInfo += QString::number(usbDevice->getVendorID());
 
         DeviceInfo +=  " Product ID: ";
         DeviceInfo += QString::number(usbDevice->getProductID());

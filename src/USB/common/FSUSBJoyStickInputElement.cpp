@@ -132,7 +132,7 @@ void FSUSBJoyStickInputElement::setValue(MinMaxNumber newValue)
     if(_useLastValueStack ) {_lastValueStack.push(_value);}
 }
 
-FSUSBJoyStickInputElement::FSUSBJoyStickInputElement(unsigned int id,  unsigned int parentID, MinMaxNumber elementMin, MinMaxNumber elementMax ,VenderIDType venderID,ProductIDType productID,FSUSBDeviceManager & _manager,PhysicalValueNumber currentValue,MinMaxNumber buttonNumber):FSUSBDevice(id,venderID,productID)
+FSUSBJoyStickInputElement::FSUSBJoyStickInputElement(unsigned int id,  unsigned int parentID, MinMaxNumber elementMin, MinMaxNumber elementMax ,VendorIDType vendorID,ProductIDType productID,FSUSBDeviceManager & _manager,PhysicalValueNumber currentValue,MinMaxNumber buttonNumber):FSUSBDevice(id,vendorID,productID)
 {
     _buttonNumber = buttonNumber;
      _elementMin = elementMin;
@@ -149,7 +149,7 @@ FSUSBJoyStickInputElement::FSUSBJoyStickInputElement(unsigned int id,  unsigned 
 
     _parentID = parentID;
 
-   _useLastValueStack = _usbDeviceManager->doesElementHaveDeviceInputForValue(venderID,productID,id,LastValueUp);
+   _useLastValueStack = _usbDeviceManager->doesElementHaveDeviceInputForValue(vendorID,productID,id,LastValueUp);
 
     calibrate(currentValue,elementMin,elementMax);
 
