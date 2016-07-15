@@ -26,6 +26,16 @@ and must not be misrepresented as being the original software.
 **************************************************************************/
 
 #pragma once
+#define DEPRECATED_SUPPORT
+#ifdef DEPRECATED_SUPPORT
+//Variables
+#define getVenderID getVendorID
+//Functions
+#define getVenderFriendlyName  getVendorFriendlyName
+#define getVenderID getVendorID
+#define GetFrendlyVenderNameFromID GetFrendlyVendorNameFromID
+#endif
+
 #include "../../baseClasses/FSBaseDevice.h"
 #include <string>
 #include <map>
