@@ -40,9 +40,9 @@ FSDirectInputJoystick::FSDirectInputJoystick(LPDIRECTINPUTDEVICE8  LPDIDJoystick
               unsigned int numberOfAnlogSticks,
               unsigned int numberOfDigitalSticks,
               bool  forceFeedBackSupported,
-              long venderID,
+              long vendorID,
               long productID,
-              FSUSBJoystickDeviceManager & usbJoystickManager):FSUSBJoystick(joyStickID,numberOfButtons,numberOfAnlogSticks,numberOfDigitalSticks ,forceFeedBackSupported,venderID,productID)
+              FSUSBJoystickDeviceManager & usbJoystickManager):FSUSBJoystick(joyStickID,numberOfButtons,numberOfAnlogSticks,numberOfDigitalSticks ,forceFeedBackSupported,vendorID,productID)
 {
     _LPDIDJoystick = LPDIDJoystick;
     _usbJoystickManager = &usbJoystickManager;
@@ -60,9 +60,9 @@ FSDirectInputJoystick::FSDirectInputJoystick(LPDIRECTINPUTDEVICE8  LPDIDJoystick
       WORD  productIDW = HIWORD(dipdw.dwData);
       _vendorID = vendorIDW;
       _productID = productIDW;
-      _vendorIDFriendlyName = FSUSBDevice::GetFrendlyVenderNameFromID(_vendorID);
-      _prodcutIDFriendlyName = FSUSBDevice::GetFrendlyProductNameFromID(_vendorID,_productID);
-      if( _prodcutIDFriendlyName == "unknown")
+      _vendorIDFriendlyName = FSUSBDevice::GetFrendlyVendorNameFromID(_vendorID);
+      _productIDFriendlyName = FSUSBDevice::GetFrendlyProductNameFromID(_vendorID,_productID);
+      if( _productIDFriendlyName == "unknown")
       {
           DIPROPSTRING  dipstr;
           dipstr.diph.dwSize = sizeof(DIPROPSTRING);
@@ -78,7 +78,7 @@ FSDirectInputJoystick::FSDirectInputJoystick(LPDIRECTINPUTDEVICE8  LPDIDJoystick
               try
               {
                  WideCharToMultiByte(CP_ACP,0,dipstr.wsz,-1,str,MAX_PATH,&defaultChar,NULL);
-                 _prodcutIDFriendlyName = str;
+                 _productIDFriendlyName = str;
 
               }
               catch(...)

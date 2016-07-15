@@ -39,7 +39,7 @@ namespace freestick
         static void gamepadWasAdded(void* inContext, IOReturn inResult, void* inSender, IOHIDDeviceRef device);
         static void gamepadWasRemoved(void* inContext, IOReturn inResult, void* inSender, IOHIDDeviceRef device);
         static void gamepadAction(void* inContext, IOReturn inResult, void* inSender, IOHIDValueRef value);
-        static uint32_t createIdForElement(uint32_t usage, uint32_t usagePage, uint32_t elementCookie, long venderID, long productID );
+        static uint32_t createIdForElement(uint32_t usage, uint32_t usagePage, uint32_t elementCookie, long vendorID, long productID );
 
         void update();
     private:

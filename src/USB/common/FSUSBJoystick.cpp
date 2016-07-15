@@ -40,9 +40,9 @@ FSUSBJoystick::FSUSBJoystick(unsigned int joyStickID,
                              unsigned int numberOfAnlogSticks,
                              unsigned int numberOfDigitalSticks,
                              bool  forceFeedBackSupported,
-                             VenderIDType venderID,
+                             VendorIDType vendorID,
                              ProductIDType productID):FSUSBDevice(joyStickID,
-                                                         venderID,
+                                                         vendorID,
                                                          productID)
 {
     _numberOfButtons = numberOfButtons;

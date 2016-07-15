@@ -59,16 +59,16 @@ const uint32_t OUYAVendorID = 10294;
 const uint32_t OUYAControllerID = 1;
 const uint32_t MicrosoftVendorID = 1118;
 const uint32_t MicrosoftXbox360WindowsControllerID = 654;
-const uint32_t RockCandyVenderID = 3695;
+const uint32_t RockCandyVendorID = 3695;
 const uint32_t RockCandyXbox360ControlllerID = 3695;
-const uint32_t HVG2VenderID = 2064;
+const uint32_t HVG2VendorID = 2064;
 const uint32_t HVG2TwinPS2 = 1 ;
 const uint32_t GtronRetroSNES = 17;
-const uint32_t TomeeVenderID = 7511;
+const uint32_t TomeeVendorID = 7511;
 const uint32_t TomeeNesUSBID = 33;
-const uint32_t PCUSBSNESVenderID = 3727;
+const uint32_t PCUSBSNESVendorID = 3727;
 const uint32_t PCUSBSNESID = 12307;
-const uint32_t TomeeVenderID2 = 4797;
+const uint32_t TomeeVendorID2 = 4797;
 const uint32_t TomeeNesUSBControllerID = 53269;
 
     class FSUSBElementInfoMap
@@ -88,9 +88,9 @@ const uint32_t TomeeNesUSBControllerID = 53269;
     class FSUSBDeviceManager : public FSBaseManager
     {
     private:
-        // vender with map of products conatins a map of elemnets with a map of input devices with a map string key which it the min-max-inputMapping(pressed, rest ,move)
+        // vendor with map of products conatins a map of elemnets with a map of input devices with a map string key which it the min-max-inputMapping(pressed, rest ,move)
         /** \todo
-         * combind vender and product ID in to on 64bit key to cut down the size of this type
+         * combind vendor and product ID in to on 64bit key to cut down the size of this type
          */
         std::unordered_map<DeviceID,std::unordered_map<IDNumber,FSDeviceInput> > _usageMapToInputEvent; //can only have a value of 1 or 0 where 1 is pressed and 0 is not
         std::unordered_map<DeviceID,std::unordered_map<IDNumber,std::vector<FSUSBElementInfoMap> > > _usageMapToInputRangeEvent;
@@ -103,7 +103,7 @@ const uint32_t TomeeNesUSBControllerID = 53269;
         void addMapping(unsigned int deviceID,unsigned int controlID,FSDeviceInput deviceInput);
         //FSUSBElementInfoMap lookUpDeviceInputFromID(unsigned int deviceID, unsigned int controlID);
         FSUSBElementInfoMap lookUpDeviceInputFromID(unsigned int deviceID, unsigned int controlID, MinMaxNumber min, MinMaxNumber max,int value);
-        FSUSBElementInfoMap lookUpDeviceInputFromUSBID( VenderIDType vendorUSBID, ProductIDType productUSBID , unsigned int controlID,MinMaxNumber min,MinMaxNumber max,int value);
+        FSUSBElementInfoMap lookUpDeviceInputFromUSBID( VendorIDType vendorUSBID, ProductIDType productUSBID , unsigned int controlID,MinMaxNumber min,MinMaxNumber max,int value);
         FSUSBElementInfoMap infoMapForInputType(unsigned int vendorUSBID, unsigned int productUSBID ,FSDeviceInput inputToLookFor );
 
 

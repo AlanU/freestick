@@ -32,7 +32,7 @@ and must not be misrepresented as being the original software.
 #include <algorithm>
 #include <cstdint>
 using namespace freestick;
-//creates a 64 bit id from the vender and product id
+//creates a 64 bit id from the vendor and product id
 DeviceID createVPId(uint32_t vendor, uint32_t product ) {DeviceID newID = product ; return (newID << 32) | vendor;}
 
 FSUSBDeviceManager::FSUSBDeviceManager()
@@ -41,63 +41,63 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     * populate map _usageMapToInputEvent
     */
 
-    _usageMapToInputEvent[createVPId(PCUSBSNESVenderID,PCUSBSNESID)][589826] = ButtonB;
-    _usageMapToInputEvent[createVPId(PCUSBSNESVenderID,PCUSBSNESID)][589827] = ButtonA;
-    _usageMapToInputEvent[createVPId(PCUSBSNESVenderID,PCUSBSNESID)][589825] = ButtonY;
-    _usageMapToInputEvent[createVPId(PCUSBSNESVenderID,PCUSBSNESID)][589828] = ButtonX;
+    _usageMapToInputEvent[createVPId(PCUSBSNESVendorID,PCUSBSNESID)][589826] = ButtonB;
+    _usageMapToInputEvent[createVPId(PCUSBSNESVendorID,PCUSBSNESID)][589827] = ButtonA;
+    _usageMapToInputEvent[createVPId(PCUSBSNESVendorID,PCUSBSNESID)][589825] = ButtonY;
+    _usageMapToInputEvent[createVPId(PCUSBSNESVendorID,PCUSBSNESID)][589828] = ButtonX;
 
 
-    _usageMapToInputEvent[createVPId(PCUSBSNESVenderID,PCUSBSNESID)][589832] = RightShoulder;
-    _usageMapToInputEvent[createVPId(PCUSBSNESVenderID,PCUSBSNESID)][589831] = LeftShoulder;
+    _usageMapToInputEvent[createVPId(PCUSBSNESVendorID,PCUSBSNESID)][589832] = RightShoulder;
+    _usageMapToInputEvent[createVPId(PCUSBSNESVendorID,PCUSBSNESID)][589831] = LeftShoulder;
 
 
-    _usageMapToInputEvent[createVPId(PCUSBSNESVenderID,PCUSBSNESID)][589833] = ButtonSelect;
-    _usageMapToInputEvent[createVPId(PCUSBSNESVenderID,PCUSBSNESID)][589834] = ButtonStart;
+    _usageMapToInputEvent[createVPId(PCUSBSNESVendorID,PCUSBSNESID)][589833] = ButtonSelect;
+    _usageMapToInputEvent[createVPId(PCUSBSNESVendorID,PCUSBSNESID)][589834] = ButtonStart;
 
 
-    _usageMapToInputRangeEvent[createVPId(PCUSBSNESVenderID,PCUSBSNESID)][65585].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(PCUSBSNESVenderID,PCUSBSNESID)][65585].push_back(FSUSBElementInfoMap(255,255,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(PCUSBSNESVenderID,PCUSBSNESID)][65585].push_back(FSUSBElementInfoMap(128,128,LastValueUp,FSInputRest));
+    _usageMapToInputRangeEvent[createVPId(PCUSBSNESVendorID,PCUSBSNESID)][65585].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(PCUSBSNESVendorID,PCUSBSNESID)][65585].push_back(FSUSBElementInfoMap(255,255,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(PCUSBSNESVendorID,PCUSBSNESID)][65585].push_back(FSUSBElementInfoMap(128,128,LastValueUp,FSInputRest));
 
-    _usageMapToInputRangeEvent[createVPId(PCUSBSNESVenderID,PCUSBSNESID)][65584].push_back(FSUSBElementInfoMap(0,0,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(PCUSBSNESVenderID,PCUSBSNESID)][65584].push_back(FSUSBElementInfoMap(255,255,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(PCUSBSNESVenderID,PCUSBSNESID)][65584].push_back(FSUSBElementInfoMap(128,128,LastValueUp,FSInputRest));
-
-
-    _usageMapToInputEvent[createVPId(TomeeVenderID2,TomeeNesUSBControllerID)][589825] = ButtonB;
-    _usageMapToInputEvent[createVPId(TomeeVenderID2,TomeeNesUSBControllerID)][589826] = ButtonA;
-
-    _usageMapToInputEvent[createVPId(TomeeVenderID2,TomeeNesUSBControllerID)][589834] = ButtonStart;
-    _usageMapToInputEvent[createVPId(TomeeVenderID2,TomeeNesUSBControllerID)][589833] = ButtonSelect;
+    _usageMapToInputRangeEvent[createVPId(PCUSBSNESVendorID,PCUSBSNESID)][65584].push_back(FSUSBElementInfoMap(0,0,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(PCUSBSNESVendorID,PCUSBSNESID)][65584].push_back(FSUSBElementInfoMap(255,255,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(PCUSBSNESVendorID,PCUSBSNESID)][65584].push_back(FSUSBElementInfoMap(128,128,LastValueUp,FSInputRest));
 
 
-    _usageMapToInputRangeEvent[createVPId(TomeeVenderID2,TomeeNesUSBControllerID)][65585].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(TomeeVenderID2,TomeeNesUSBControllerID)][65585].push_back(FSUSBElementInfoMap(255,255,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(TomeeVenderID2,TomeeNesUSBControllerID)][65585].push_back(FSUSBElementInfoMap(127,127,LastValueUp,FSInputRest));
+    _usageMapToInputEvent[createVPId(TomeeVendorID2,TomeeNesUSBControllerID)][589825] = ButtonB;
+    _usageMapToInputEvent[createVPId(TomeeVendorID2,TomeeNesUSBControllerID)][589826] = ButtonA;
 
-    _usageMapToInputRangeEvent[createVPId(TomeeVenderID2,TomeeNesUSBControllerID)][65584].push_back(FSUSBElementInfoMap(0,0,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(TomeeVenderID2,TomeeNesUSBControllerID)][65584].push_back(FSUSBElementInfoMap(255,255,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(TomeeVenderID2,TomeeNesUSBControllerID)][65584].push_back(FSUSBElementInfoMap(127,127,LastValueUp,FSInputRest));
+    _usageMapToInputEvent[createVPId(TomeeVendorID2,TomeeNesUSBControllerID)][589834] = ButtonStart;
+    _usageMapToInputEvent[createVPId(TomeeVendorID2,TomeeNesUSBControllerID)][589833] = ButtonSelect;
 
 
+    _usageMapToInputRangeEvent[createVPId(TomeeVendorID2,TomeeNesUSBControllerID)][65585].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(TomeeVendorID2,TomeeNesUSBControllerID)][65585].push_back(FSUSBElementInfoMap(255,255,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(TomeeVendorID2,TomeeNesUSBControllerID)][65585].push_back(FSUSBElementInfoMap(127,127,LastValueUp,FSInputRest));
 
-    _usageMapToInputEvent[createVPId(TomeeVenderID,TomeeNesUSBID)][589825] = ButtonB;
-    _usageMapToInputEvent[createVPId(TomeeVenderID,TomeeNesUSBID)][589826] = ButtonA;
-
-    _usageMapToInputEvent[createVPId(TomeeVenderID,TomeeNesUSBID)][589827] = ButtonSelect;
-    _usageMapToInputEvent[createVPId(TomeeVenderID,TomeeNesUSBID)][589828] = ButtonStart;
+    _usageMapToInputRangeEvent[createVPId(TomeeVendorID2,TomeeNesUSBControllerID)][65584].push_back(FSUSBElementInfoMap(0,0,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(TomeeVendorID2,TomeeNesUSBControllerID)][65584].push_back(FSUSBElementInfoMap(255,255,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(TomeeVendorID2,TomeeNesUSBControllerID)][65584].push_back(FSUSBElementInfoMap(127,127,LastValueUp,FSInputRest));
 
 
-    _usageMapToInputRangeEvent[createVPId(TomeeVenderID,TomeeNesUSBID)][65585].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(TomeeVenderID,TomeeNesUSBID)][65585].push_back(FSUSBElementInfoMap(255,255,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(TomeeVenderID,TomeeNesUSBID)][65585].push_back(FSUSBElementInfoMap(127,127,LastValueUp,FSInputRest));
 
-    _usageMapToInputRangeEvent[createVPId(TomeeVenderID,TomeeNesUSBID)][65584].push_back(FSUSBElementInfoMap(0,0,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(TomeeVenderID,TomeeNesUSBID)][65584].push_back(FSUSBElementInfoMap(255,255,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(TomeeVenderID,TomeeNesUSBID)][65584].push_back(FSUSBElementInfoMap(127,127,LastValueUp,FSInputRest));
+    _usageMapToInputEvent[createVPId(TomeeVendorID,TomeeNesUSBID)][589825] = ButtonB;
+    _usageMapToInputEvent[createVPId(TomeeVendorID,TomeeNesUSBID)][589826] = ButtonA;
+
+    _usageMapToInputEvent[createVPId(TomeeVendorID,TomeeNesUSBID)][589827] = ButtonSelect;
+    _usageMapToInputEvent[createVPId(TomeeVendorID,TomeeNesUSBID)][589828] = ButtonStart;
+
+
+    _usageMapToInputRangeEvent[createVPId(TomeeVendorID,TomeeNesUSBID)][65585].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(TomeeVendorID,TomeeNesUSBID)][65585].push_back(FSUSBElementInfoMap(255,255,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(TomeeVendorID,TomeeNesUSBID)][65585].push_back(FSUSBElementInfoMap(127,127,LastValueUp,FSInputRest));
+
+    _usageMapToInputRangeEvent[createVPId(TomeeVendorID,TomeeNesUSBID)][65584].push_back(FSUSBElementInfoMap(0,0,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(TomeeVendorID,TomeeNesUSBID)][65584].push_back(FSUSBElementInfoMap(255,255,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(TomeeVendorID,TomeeNesUSBID)][65584].push_back(FSUSBElementInfoMap(127,127,LastValueUp,FSInputRest));
 
     // SteelSeries ("Gtron") Gtron Retro Classic FC SNES Controller
-    //has the same vender id as DragonRise
+    //has the same vendor id as DragonRise
     //TODO add in start and select
     _usageMapToInputEvent[createVPId(Gtron,GtronRetroSNES)][589826] = ButtonB ;
     _usageMapToInputEvent[createVPId(Gtron,GtronRetroSNES)][589827] = ButtonA ;
@@ -122,37 +122,37 @@ FSUSBDeviceManager::FSUSBDeviceManager()
 
 
     //First ps2 port
-    _usageMapToInputEvent[createVPId(HVG2VenderID,HVG2TwinPS2)][589827] =  ButtonA;
-    _usageMapToInputEvent[createVPId(HVG2VenderID,HVG2TwinPS2)][589826] =  ButtonB;
-    _usageMapToInputEvent[createVPId(HVG2VenderID,HVG2TwinPS2)][589828] =  ButtonY;
-    _usageMapToInputEvent[createVPId(HVG2VenderID,HVG2TwinPS2)][589825] =  ButtonX;
+    _usageMapToInputEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][589827] =  ButtonA;
+    _usageMapToInputEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][589826] =  ButtonB;
+    _usageMapToInputEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][589828] =  ButtonY;
+    _usageMapToInputEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][589825] =  ButtonX;
 
-    _usageMapToInputEvent[createVPId(HVG2VenderID,HVG2TwinPS2)][589831] =  LeftShoulder;
-    _usageMapToInputEvent[createVPId(HVG2VenderID,HVG2TwinPS2)][589832] =  RightShoulder;
-    _usageMapToInputEvent[createVPId(HVG2VenderID,HVG2TwinPS2)][589829] =  LeftShoulder2;
-    _usageMapToInputEvent[createVPId(HVG2VenderID,HVG2TwinPS2)][589830] =  RightShoulder2;
+    _usageMapToInputEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][589831] =  LeftShoulder;
+    _usageMapToInputEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][589832] =  RightShoulder;
+    _usageMapToInputEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][589829] =  LeftShoulder2;
+    _usageMapToInputEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][589830] =  RightShoulder2;
 
-    _usageMapToInputEvent[createVPId(HVG2VenderID,HVG2TwinPS2)][589835] = Axis1Button;
-    _usageMapToInputEvent[createVPId(HVG2VenderID,HVG2TwinPS2)][589836] = Axis2Button;
+    _usageMapToInputEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][589835] = Axis1Button;
+    _usageMapToInputEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][589836] = Axis2Button;
 
-    _usageMapToInputEvent[createVPId(HVG2VenderID,HVG2TwinPS2)][589833] =  ButtonSelect;
-    _usageMapToInputEvent[createVPId(HVG2VenderID,HVG2TwinPS2)][589834] =  ButtonStart;
+    _usageMapToInputEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][589833] =  ButtonSelect;
+    _usageMapToInputEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][589834] =  ButtonStart;
 
-    _usageMapToInputRangeEvent[createVPId(HVG2VenderID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(HVG2VenderID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(HVG2VenderID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(HVG2VenderID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(3,3,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(HVG2VenderID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(HVG2VenderID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(HVG2VenderID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(HVG2VenderID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(HVG2VenderID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(15,15,LastValueUp,FSInputRest));
+    _usageMapToInputRangeEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(3,3,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(15,15,LastValueUp,FSInputRest));
 
-    _usageMapToInputRangeEvent[createVPId(HVG2VenderID,HVG2TwinPS2)][65584].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));
-    _usageMapToInputRangeEvent[createVPId(HVG2VenderID,HVG2TwinPS2)][65585].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));
+    _usageMapToInputRangeEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][65584].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));
+    _usageMapToInputRangeEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][65585].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));
 
-    _usageMapToInputRangeEvent[createVPId(HVG2VenderID,HVG2TwinPS2)][65589].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));
-    _usageMapToInputRangeEvent[createVPId(HVG2VenderID,HVG2TwinPS2)][65586].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));
+    _usageMapToInputRangeEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][65589].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));
+    _usageMapToInputRangeEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][65586].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));
 
 
     // SteelSeries ("DragonRise") 3GC controller
@@ -555,36 +555,36 @@ FSUSBDeviceManager::FSUSBDeviceManager()
 
      //Rock candy xbox360 controller
 
-    _usageMapToInputEvent[createVPId(RockCandyVenderID,RockCandyXbox360ControlllerID)][589825] = ButtonA;
-    _usageMapToInputEvent[createVPId(RockCandyVenderID,RockCandyXbox360ControlllerID)][589826] = ButtonB;
-    _usageMapToInputEvent[createVPId(RockCandyVenderID,RockCandyXbox360ControlllerID)][589827] = ButtonX;
-    _usageMapToInputEvent[createVPId(RockCandyVenderID,RockCandyXbox360ControlllerID)][589828] = ButtonY;
+    _usageMapToInputEvent[createVPId(RockCandyVendorID,RockCandyXbox360ControlllerID)][589825] = ButtonA;
+    _usageMapToInputEvent[createVPId(RockCandyVendorID,RockCandyXbox360ControlllerID)][589826] = ButtonB;
+    _usageMapToInputEvent[createVPId(RockCandyVendorID,RockCandyXbox360ControlllerID)][589827] = ButtonX;
+    _usageMapToInputEvent[createVPId(RockCandyVendorID,RockCandyXbox360ControlllerID)][589828] = ButtonY;
 
-    _usageMapToInputEvent[createVPId(RockCandyVenderID,RockCandyXbox360ControlllerID)][589829] = LeftShoulder;//L1 sholder button
-    _usageMapToInputEvent[createVPId(RockCandyVenderID,RockCandyXbox360ControlllerID)][589830] = RightShoulder;//R2 sholder button
+    _usageMapToInputEvent[createVPId(RockCandyVendorID,RockCandyXbox360ControlllerID)][589829] = LeftShoulder;//L1 sholder button
+    _usageMapToInputEvent[createVPId(RockCandyVendorID,RockCandyXbox360ControlllerID)][589830] = RightShoulder;//R2 sholder button
    //xbox 360 is for 0 - 255 but xbox one is for 0 - 1023 and the xbox one driver pretends it is a xbox 360 with the 1023 value
-    _usageMapToInputRangeEvent[createVPId(RockCandyVenderID,RockCandyXbox360ControlllerID)][65586].push_back(FSUSBElementInfoMap(0,1023,Trigger1,FSInputChanged));//L2 trigger
-    _usageMapToInputRangeEvent[createVPId(RockCandyVenderID,RockCandyXbox360ControlllerID)][65589].push_back(FSUSBElementInfoMap(0,1023,Trigger2,FSInputChanged));//R2 trigger
+    _usageMapToInputRangeEvent[createVPId(RockCandyVendorID,RockCandyXbox360ControlllerID)][65586].push_back(FSUSBElementInfoMap(0,1023,Trigger1,FSInputChanged));//L2 trigger
+    _usageMapToInputRangeEvent[createVPId(RockCandyVendorID,RockCandyXbox360ControlllerID)][65589].push_back(FSUSBElementInfoMap(0,1023,Trigger2,FSInputChanged));//R2 trigger
 
-    _usageMapToInputEvent[createVPId(RockCandyVenderID,RockCandyXbox360ControlllerID)][589831] = Axis1Button;//L3 left thumb down
-    _usageMapToInputEvent[createVPId(RockCandyVenderID,RockCandyXbox360ControlllerID)][589832] = Axis2Button;//R3 right thumb down
+    _usageMapToInputEvent[createVPId(RockCandyVendorID,RockCandyXbox360ControlllerID)][589831] = Axis1Button;//L3 left thumb down
+    _usageMapToInputEvent[createVPId(RockCandyVendorID,RockCandyXbox360ControlllerID)][589832] = Axis2Button;//R3 right thumb down
 
-    _usageMapToInputEvent[createVPId(RockCandyVenderID,RockCandyXbox360ControlllerID)][589834] = ButtonSelect;//back
-    _usageMapToInputEvent[createVPId(RockCandyVenderID,RockCandyXbox360ControlllerID)][589835] = ButtonCenter;//Microsoft xbox button
-    _usageMapToInputEvent[createVPId(RockCandyVenderID,RockCandyXbox360ControlllerID)][589840] = ButtonCenter;//Microsoft xbox one button
+    _usageMapToInputEvent[createVPId(RockCandyVendorID,RockCandyXbox360ControlllerID)][589834] = ButtonSelect;//back
+    _usageMapToInputEvent[createVPId(RockCandyVendorID,RockCandyXbox360ControlllerID)][589835] = ButtonCenter;//Microsoft xbox button
+    _usageMapToInputEvent[createVPId(RockCandyVendorID,RockCandyXbox360ControlllerID)][589840] = ButtonCenter;//Microsoft xbox one button
 
-    _usageMapToInputEvent[createVPId(RockCandyVenderID,RockCandyXbox360ControlllerID)][589833] = ButtonStart;//start
+    _usageMapToInputEvent[createVPId(RockCandyVendorID,RockCandyXbox360ControlllerID)][589833] = ButtonStart;//start
 
-    _usageMapToInputEvent[createVPId(RockCandyVenderID,RockCandyXbox360ControlllerID)][589836] = DPadUp;
-    _usageMapToInputEvent[createVPId(RockCandyVenderID,RockCandyXbox360ControlllerID)][589837] = DPadDown;
-    _usageMapToInputEvent[createVPId(RockCandyVenderID,RockCandyXbox360ControlllerID)][589838] = DPadLeft;
-    _usageMapToInputEvent[createVPId(RockCandyVenderID,RockCandyXbox360ControlllerID)][589839] = DPadRight;
+    _usageMapToInputEvent[createVPId(RockCandyVendorID,RockCandyXbox360ControlllerID)][589836] = DPadUp;
+    _usageMapToInputEvent[createVPId(RockCandyVendorID,RockCandyXbox360ControlllerID)][589837] = DPadDown;
+    _usageMapToInputEvent[createVPId(RockCandyVendorID,RockCandyXbox360ControlllerID)][589838] = DPadLeft;
+    _usageMapToInputEvent[createVPId(RockCandyVendorID,RockCandyXbox360ControlllerID)][589839] = DPadRight;
 
-    _usageMapToInputRangeEvent[createVPId(RockCandyVenderID,RockCandyXbox360ControlllerID)][65584].push_back(FSUSBElementInfoMap(-32768,32767,XAxis,FSInputChanged));//LXaxis stick trigger
-    _usageMapToInputRangeEvent[createVPId(RockCandyVenderID,RockCandyXbox360ControlllerID)][65585].push_back(FSUSBElementInfoMap(-32768,32767,YAxis,FSInputChanged));//LYaxis stick trigger
+    _usageMapToInputRangeEvent[createVPId(RockCandyVendorID,RockCandyXbox360ControlllerID)][65584].push_back(FSUSBElementInfoMap(-32768,32767,XAxis,FSInputChanged));//LXaxis stick trigger
+    _usageMapToInputRangeEvent[createVPId(RockCandyVendorID,RockCandyXbox360ControlllerID)][65585].push_back(FSUSBElementInfoMap(-32768,32767,YAxis,FSInputChanged));//LYaxis stick trigger
 
-    _usageMapToInputRangeEvent[createVPId(RockCandyVenderID,RockCandyXbox360ControlllerID)][65587].push_back(FSUSBElementInfoMap(-32768,32767,XAxis2,FSInputChanged));//RXaxis stick trigger
-    _usageMapToInputRangeEvent[createVPId(RockCandyVenderID,RockCandyXbox360ControlllerID)][65588].push_back(FSUSBElementInfoMap(-32768,32767,YAxis2,FSInputChanged));//RYaxis stick trigger
+    _usageMapToInputRangeEvent[createVPId(RockCandyVendorID,RockCandyXbox360ControlllerID)][65587].push_back(FSUSBElementInfoMap(-32768,32767,XAxis2,FSInputChanged));//RXaxis stick trigger
+    _usageMapToInputRangeEvent[createVPId(RockCandyVendorID,RockCandyXbox360ControlllerID)][65588].push_back(FSUSBElementInfoMap(-32768,32767,YAxis2,FSInputChanged));//RYaxis stick trigger
 
     //Gravis GamePad Pro
 
@@ -628,7 +628,7 @@ void FSUSBDeviceManager::addMapping(unsigned int deviceID,unsigned int controlID
     const FSUSBDevice * usbDeice = (const FSUSBDevice *)getDevice(deviceID);
     if(usbDeice != NULL)
     {
-        VenderIDType vendorUSBID = static_cast<VenderIDType>(usbDeice->getVenderID());
+        VendorIDType vendorUSBID = static_cast<VendorIDType>(usbDeice->getVendorID());
         ProductIDType productUSBID = static_cast<ProductIDType>(usbDeice->getProductID());
         addMapping(vendorUSBID,productUSBID,controlID,deviceInput);
     }
@@ -654,7 +654,7 @@ FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromID(unsigned int de
     const FSUSBDevice * usbDeice = static_cast<const FSUSBDevice *>(getDevice(deviceID));
     if(usbDeice != NULL)
     {
-        VenderIDType vendorUSBID = static_cast<VenderIDType>(usbDeice->getVenderID());
+        VendorIDType vendorUSBID = static_cast<VendorIDType>(usbDeice->getVendorID());
         ProductIDType productUSBID =static_cast<ProductIDType>(usbDeice->getProductID());
         return lookUpDeviceInputFromUSBID(vendorUSBID,
                                 productUSBID ,
@@ -667,25 +667,25 @@ FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromID(unsigned int de
     return FSUSBElementInfoMap(0,1,LastInput,FSInputChanged);
 }
 
-FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromUSBID( VenderIDType vendorUSBID, ProductIDType productUSBID , unsigned int controlID,MinMaxNumber min,MinMaxNumber max,int value)
+FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromUSBID( VendorIDType vendorUSBID, ProductIDType productUSBID , unsigned int controlID,MinMaxNumber min,MinMaxNumber max,int value)
  {
-    DeviceID venderProductID = createVPId(vendorUSBID,productUSBID);
+    DeviceID vendorProductID = createVPId(vendorUSBID,productUSBID);
      if(min==0 && max == 1)
      {
-         if(_usageMapToInputEvent.find(venderProductID) != _usageMapToInputEvent.end() &&
-                 _usageMapToInputEvent[venderProductID].find(controlID) != _usageMapToInputEvent[venderProductID].end())
+         if(_usageMapToInputEvent.find(vendorProductID) != _usageMapToInputEvent.end() &&
+                 _usageMapToInputEvent[vendorProductID].find(controlID) != _usageMapToInputEvent[vendorProductID].end())
          {
              FSEventAction isPressed = FSInputPressed;
              (value == 0 ) ? isPressed = FSInputRest: NULL;
-             return FSUSBElementInfoMap(0,1,_usageMapToInputEvent[venderProductID][controlID],isPressed);
+             return FSUSBElementInfoMap(0,1,_usageMapToInputEvent[vendorProductID][controlID],isPressed);
          }
      }
      else
     {
-         if(_usageMapToInputRangeEvent.find(venderProductID) != _usageMapToInputRangeEvent.end() &&
-                 _usageMapToInputRangeEvent[venderProductID].find(controlID) != _usageMapToInputRangeEvent[venderProductID].end())
+         if(_usageMapToInputRangeEvent.find(vendorProductID) != _usageMapToInputRangeEvent.end() &&
+                 _usageMapToInputRangeEvent[vendorProductID].find(controlID) != _usageMapToInputRangeEvent[vendorProductID].end())
         {
-             for(std::vector<FSUSBElementInfoMap>::iterator rangeUsageList = _usageMapToInputRangeEvent[venderProductID][controlID].begin(); rangeUsageList != _usageMapToInputRangeEvent[venderProductID][controlID].end();++rangeUsageList)
+             for(std::vector<FSUSBElementInfoMap>::iterator rangeUsageList = _usageMapToInputRangeEvent[vendorProductID][controlID].begin(); rangeUsageList != _usageMapToInputRangeEvent[vendorProductID][controlID].end();++rangeUsageList)
              {
                  FSUSBElementInfoMap * item  = &(*rangeUsageList);
                  if(value >= item->getMin()  && value <= item->getMax())
@@ -702,10 +702,10 @@ FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromUSBID( VenderIDTyp
 
 bool FSUSBDeviceManager::doesElementHaveDeviceInputForValue(unsigned int vendorUSBID, unsigned int productUSBID ,unsigned int elementID,FSDeviceInput inputToLookFor )
 {
-   DeviceID venderProductID = createVPId(vendorUSBID,productUSBID);
+   DeviceID vendorProductID = createVPId(vendorUSBID,productUSBID);
 
-   std::vector<FSUSBElementInfoMap> ::iterator itr =  _usageMapToInputRangeEvent[venderProductID][elementID].begin();
-   for(itr;itr !=  _usageMapToInputRangeEvent[venderProductID][elementID].end(); ++itr)
+   std::vector<FSUSBElementInfoMap> ::iterator itr =  _usageMapToInputRangeEvent[vendorProductID][elementID].begin();
+   for(itr;itr !=  _usageMapToInputRangeEvent[vendorProductID][elementID].end(); ++itr)
    {
       FSUSBElementInfoMap infoMapToLookThrough = *itr;
       FSDeviceInput deviceInput = infoMapToLookThrough.getDeviceInput();
@@ -724,7 +724,7 @@ bool FSUSBDeviceManager::doesDeviceHaveDeviceInputForValue(unsigned int deviceID
     const FSUSBDevice * usbDeice = (const FSUSBDevice *)getDevice(deviceID);
     if(usbDeice != NULL)
     {
-        VenderIDType vendorUSBID =static_cast<VenderIDType>(usbDeice->getVenderID());
+        VendorIDType vendorUSBID =static_cast<VendorIDType>(usbDeice->getVendorID());
         ProductIDType productUSBID = static_cast<ProductIDType>(usbDeice->getProductID());
         return  doesDeviceHaveDeviceInputForValue(vendorUSBID,productUSBID,inputToLookFor,value);
     }
@@ -734,9 +734,9 @@ bool FSUSBDeviceManager::doesDeviceHaveDeviceInputForValue(unsigned int deviceID
 
 FSUSBElementInfoMap FSUSBDeviceManager::infoMapForInputType(unsigned int vendorUSBID, unsigned int productUSBID ,FSDeviceInput inputToLookFor )
 {
-    DeviceID venderProductID = createVPId(vendorUSBID,productUSBID);
-    std::unordered_map<IDNumber,std::vector<FSUSBElementInfoMap> >::iterator itRange = _usageMapToInputRangeEvent[venderProductID].begin();
-    for(itRange;itRange != _usageMapToInputRangeEvent[venderProductID].end();++itRange)
+    DeviceID vendorProductID = createVPId(vendorUSBID,productUSBID);
+    std::unordered_map<IDNumber,std::vector<FSUSBElementInfoMap> >::iterator itRange = _usageMapToInputRangeEvent[vendorProductID].begin();
+    for(itRange;itRange != _usageMapToInputRangeEvent[vendorProductID].end();++itRange)
     {
        std::vector<FSUSBElementInfoMap>::iterator vItr = itRange->second.begin();
        for(vItr;vItr !=  itRange->second.end(); ++vItr)
@@ -754,9 +754,9 @@ FSUSBElementInfoMap FSUSBDeviceManager::infoMapForInputType(unsigned int vendorU
 
 bool FSUSBDeviceManager::doesDeviceHaveDeviceInputForValue(unsigned int vendorUSBID, unsigned int productUSBID ,FSDeviceInput inputToLookFor,  int value )
 {
-    DeviceID venderProductID = createVPId(vendorUSBID,productUSBID);
-    std::unordered_map<IDNumber,std::vector<FSUSBElementInfoMap> >::iterator itRange = _usageMapToInputRangeEvent[venderProductID].begin();
-    for(itRange;itRange != _usageMapToInputRangeEvent[venderProductID].end();++itRange)
+    DeviceID vendorProductID = createVPId(vendorUSBID,productUSBID);
+    std::unordered_map<IDNumber,std::vector<FSUSBElementInfoMap> >::iterator itRange = _usageMapToInputRangeEvent[vendorProductID].begin();
+    for(itRange;itRange != _usageMapToInputRangeEvent[vendorProductID].end();++itRange)
     {
        std::vector<FSUSBElementInfoMap>::iterator vItr = itRange->second.begin();
        for(vItr;vItr !=  itRange->second.end(); ++vItr)
@@ -777,7 +777,7 @@ bool FSUSBDeviceManager::doesDeviceHaveDeviceInput(unsigned int deviceID,FSDevic
     const FSUSBDevice * usbDeice = (const FSUSBDevice *)getDevice(deviceID);
     if(usbDeice != NULL)
     {
-        VenderIDType vendorUSBID = static_cast<VenderIDType>(usbDeice->getVenderID());
+        VendorIDType vendorUSBID = static_cast<VendorIDType>(usbDeice->getVendorID());
         ProductIDType productUSBID = static_cast<ProductIDType>(usbDeice->getProductID());
       return  doesDeviceHaveDeviceInput(vendorUSBID,productUSBID,inputToLookFor);
     }
@@ -802,13 +802,13 @@ bool FSUSBDeviceManager::doesDeviceHaveDeviceInput(unsigned int vendorUSBID, uns
     lastProductUSBID = productUSBID;
     lastInputToLookFor = inputToLookFor;
 
-    DeviceID venderProductID = createVPId(vendorUSBID,productUSBID);
+    DeviceID vendorProductID = createVPId(vendorUSBID,productUSBID);
     //TODO add this however right now there are no digital devices that use
     if(FS_isButtion(inputToLookFor) || FS_isDpad(inputToLookFor))
     {
 
-        std::unordered_map<IDNumber,FSDeviceInput>::iterator itDigital = _usageMapToInputEvent[venderProductID].begin();
-        for(itDigital; itDigital != _usageMapToInputEvent[venderProductID].end() ; ++itDigital)
+        std::unordered_map<IDNumber,FSDeviceInput>::iterator itDigital = _usageMapToInputEvent[vendorProductID].begin();
+        for(itDigital; itDigital != _usageMapToInputEvent[vendorProductID].end() ; ++itDigital)
         {
             FSDeviceInput deviceInputFound = itDigital->second;
             if(deviceInputFound == inputToLookFor)
@@ -821,8 +821,8 @@ bool FSUSBDeviceManager::doesDeviceHaveDeviceInput(unsigned int vendorUSBID, uns
     }
     else
     {
-        std::unordered_map<IDNumber,std::vector<FSUSBElementInfoMap> >::iterator itRange = _usageMapToInputRangeEvent[venderProductID].begin();
-        for(itRange;itRange != _usageMapToInputRangeEvent[venderProductID].end();++itRange)
+        std::unordered_map<IDNumber,std::vector<FSUSBElementInfoMap> >::iterator itRange = _usageMapToInputRangeEvent[vendorProductID].begin();
+        for(itRange;itRange != _usageMapToInputRangeEvent[vendorProductID].end();++itRange)
         {
            std::vector<FSUSBElementInfoMap>::iterator vItr = itRange->second.begin();
            for(vItr;vItr !=  itRange->second.end(); ++vItr)

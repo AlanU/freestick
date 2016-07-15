@@ -43,7 +43,7 @@ namespace freestick {
                               unsigned int numberOfAnlogSticks,
                               unsigned int numberOfDigitalSticks,
                               bool  forceFeedBackSupported,
-                              long venderID,
+                              long vendorID,
                               long productID,
                               FSUSBJoystickDeviceManager & usbJoystickManager);
         LPDIRECTINPUTDEVICE8 getDirectInputPtr(){return _LPDIDJoystick;}

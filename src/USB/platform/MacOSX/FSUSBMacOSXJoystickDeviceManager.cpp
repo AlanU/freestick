@@ -337,9 +337,9 @@ void FSUSBMacOSXJoystickDeviceManager::findDpad(IOHIDDeviceRef device)
 
 }
 
-uint32_t FSUSBMacOSXJoystickDeviceManager::createIdForElement(uint32_t usage, uint32_t usagePage, uint32_t elementCookie, long venderID, long productID )
+uint32_t FSUSBMacOSXJoystickDeviceManager::createIdForElement(uint32_t usage, uint32_t usagePage, uint32_t elementCookie, long vendorID, long productID )
 {
-    if(venderID == SonyVendorID && productID == Playstation3ControllerID)
+    if(vendorID == SonyVendorID && productID == Playstation3ControllerID)
     {
        return  elementCookie;
     }
@@ -402,7 +402,7 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn i
     unsigned int deviceID = manager->getDeviceIDFromIOHIDevice(device);
     const FSUSBJoystick * fsDevice = manager->getUSBJoystickDevice(deviceID);
     if(fsDevice) {
-        uniqueElementID = FSUSBMacOSXJoystickDeviceManager::createIdForElement(usage,usagePage,elementID,fsDevice->getVenderID(),fsDevice->getProductID());
+        uniqueElementID = FSUSBMacOSXJoystickDeviceManager::createIdForElement(usage,usagePage,elementID,fsDevice->getVendorID(),fsDevice->getProductID());
     }
     EE_DEBUG<<"Gamepad talked! type of input "<<(unsigned int)IOHIDElementGetType(element)<<" id: "<<uniqueElementID<<" old id: "<< elementID<<std::endl;
 
