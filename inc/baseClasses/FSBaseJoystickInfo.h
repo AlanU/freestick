@@ -43,7 +43,6 @@ namespace freestick
         virtual unsigned int NumberOfButtons() { return 0;};
         virtual unsigned int NumberOfAnlogSticks() {return 0;};
         virtual unsigned int NumberOfDigitalSticks() {return 0;};
-       // FSBaseJoystickInfo(unsigned int id); did not convert unsigned int to typedef idNumber
     };
 }
 

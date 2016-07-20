@@ -32,7 +32,7 @@
 using namespace freestick;
 FSXInputJoystick::FSXInputJoystick(XINPUT_STATE & state,
                                    DWORD id,
-                                   unsigned int joyStickID,
+                                   idNumber joyStickID,
                                    unsigned int numberOfButtons,
                                    unsigned int numberOfAnlogSticks,
                                    unsigned int numberOfDigitalSticks,

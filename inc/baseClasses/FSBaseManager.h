@@ -100,7 +100,6 @@ namespace freestick
 
 
         inline float convertRawToNormalizedRanger(double value,minMaxNumber maxValue,minMaxNumber minValue);
-      // const std::vector<IFSJoystickInfo> & listOfConnectedJoysticks();
        virtual void init() ;
        virtual void init(IFSDeviceIDCreator * idCreator);
 #ifdef __APPLE__

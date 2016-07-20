@@ -86,11 +86,7 @@ void JNIBridge::update(int hidDeviceID, UpdateType type)
 {
 	JNIBridge::update(hidDeviceID,type,NULL);
 }
-/**
- * @todo change type to a class enum
- * 0 added device type 1 is removed device type
- * update: added enum class but I don't believe the class is working correctly when the object is being called by the update()
- */
+
 void JNIBridge::update(int hidDeviceID, UpdateType type, JavaVM * jvm)
 {
     int t=hidDeviceID;

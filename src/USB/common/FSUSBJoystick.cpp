@@ -35,7 +35,7 @@ FSUSBJoystick::~FSUSBJoystick()
 {
 
 }
-FSUSBJoystick::FSUSBJoystick(unsigned int joyStickID,
+FSUSBJoystick::FSUSBJoystick(idNumber joyStickID,
                              unsigned int numberOfButtons,
                              unsigned int numberOfAnlogSticks,
                              unsigned int numberOfDigitalSticks,

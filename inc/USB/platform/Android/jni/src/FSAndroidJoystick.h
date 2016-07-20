@@ -40,7 +40,7 @@ namespace freestick
             FSAndroidJoystick();
         public:
             FSAndroidJoystick(int androidDeviceID,
-                              unsigned int joyStickID,
+                              idNumber joyStickID,
                               unsigned int numberOfButtons,
                               unsigned int numberOfAnlogSticks,
                               unsigned int numberOfDigitalSticks,

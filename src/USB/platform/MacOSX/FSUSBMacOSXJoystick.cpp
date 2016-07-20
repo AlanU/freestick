@@ -156,7 +156,7 @@ FSUSBMacOSXJoystick::FSUSBMacOSXJoystick()
 }
 
 FSUSBMacOSXJoystick::FSUSBMacOSXJoystick(IOHIDDeviceRef device,
-                                         elementID joyStickID,
+                                         idNumber joyStickID,
                                          unsigned int numberOfButtons,
                                          unsigned int numberOfAnlogSticks,
                                          unsigned int numberOfDigitalSticks,
