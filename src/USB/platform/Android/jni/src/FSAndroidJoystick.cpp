@@ -94,6 +94,7 @@ FSAndroidJoystick::FSAndroidJoystick(int androidDeviceID,
          jstring nameString = (jstring) env->CallObjectMethod(currentInputDevice,deviceNameMethodID);
          const char * str = env->GetStringUTFChars(nameString, NULL);
          _productIDFriendlyName = str;
+         _friendlyName = str;
          FS_LOGI("Found name of controller %s",str);
          env->ReleaseStringUTFChars(nameString, str);
 
