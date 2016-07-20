@@ -271,7 +271,7 @@ void FSHIDAndroidJoysickDeviceManager::gamepadWasRemovedFromJINBridge(int device
 
 void FSHIDAndroidJoysickDeviceManager::update()
 {
-    JNIBridge::updateJoysticks(_jvm);
+    //JNIBridge::updateJoysticks(_jvm);
 }
 
 
