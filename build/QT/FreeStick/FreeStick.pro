@@ -76,7 +76,7 @@ android {
     target.path = /libs/armeabi-v7a
     INSTALLS += target
     #message ( system(ndk-build  $$(NDK_ROOT)/sources/android/native_app_glue) )
-    message ( system(ndk-build ../../../src/USB/platform/Android))
+    #message ( system(ndk-build ../../../src/USB/platform/Android))
     SOURCES += $$files(../../../src/USB/platform/Android/jni/src/*.cpp)
     HEADERS += $$files(../../../inc/USB/platform/Android/jni/src/*.h)
     NDK_ROOT = $$(ANDROID_NDK_ROOT)

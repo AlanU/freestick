@@ -224,9 +224,11 @@ void ControllerMappingTableModel::elementChanged(unsigned int elementID,float ne
 
     const FSUSBJoyStickInputElement * element = joystick->findInputElement(elementID) ;
 
-
-    FSUSBJoyStickInputElement *  elementCopy = &_JoyStickElementMap[elementID];
-    elementCopy->setValue(element->getValue());
+    if(element != nullptr)
+    {
+        FSUSBJoyStickInputElement *  elementCopy = &_JoyStickElementMap[elementID];
+        elementCopy->setValue(element->getValue());
+    }
 
     for(unsigned int index = 0 ; index < _elemntIDList.size(); index++)
     {
@@ -236,9 +238,9 @@ void ControllerMappingTableModel::elementChanged(unsigned int elementID,float ne
               _elemnetMapped[index] = true;
               _elementValuelist[index]=newValue;
               QModelIndex topLeft = createIndex(index,0);
-                QModelIndex bottom = createIndex(index,4);
-               dataChanged(topLeft,bottom);
-               return ;
+              QModelIndex bottom = createIndex(index,4);
+              dataChanged(topLeft,bottom);
+              return ;
         }
 
     }

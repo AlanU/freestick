@@ -118,7 +118,7 @@ void JoyStickConfigWidget::onStickMove(FSDeviceInputEvent event)
 }
 void JoyStickConfigWidget::updateVirtualButton(QWidget * button,freestick::FSEventAction action )
 {
-    updateVirtualButton(button,action,Qt::red,Qt::transparent);
+    updateVirtualButton(button,action,Qt::red,Qt::blue);
 }
 
 void JoyStickConfigWidget::updateVirtualButton(QWidget * button,FSEventAction action ,QColor buttonColor,QColor releaseButtonColor )
@@ -326,7 +326,7 @@ void JoyStickConfigWidget::onConnect(FSBaseEvent event)
 
 void JoyStickConfigWidget::update()
 {
-#if defined( Q_OS_ANDROID) || defined(Q_OS_WIN)
+#if defined(Q_OS_WIN)
 
     deviceManager.update();
 #endif
