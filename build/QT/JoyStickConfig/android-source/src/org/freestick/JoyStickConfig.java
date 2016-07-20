@@ -82,7 +82,6 @@ public class JoyStickConfig extends org.qtproject.qt5.android.bindings.QtActivit
 
   public boolean dispatchKeyEvent(KeyEvent event)
   {
-     m_deviceManager.checkForNewJoysticks(m_inputManager);
      m_deviceManager.handelButtonEvent(event);
      return super.dispatchKeyEvent(event);
   }
