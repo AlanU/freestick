@@ -99,14 +99,14 @@ namespace freestick
        // void UnListenForJoystick(IFSJoystickListener & listener ,unsigned int deviceID,FSDeviceInput input){};
 
 
-        inline float convertRawToNormalizedRanger(double value,MinMaxNumber maxValue,MinMaxNumber minValue);
+        inline float convertRawToNormalizedRanger(double value,minMaxNumber maxValue,minMaxNumber minValue);
       // const std::vector<IFSJoystickInfo> & listOfConnectedJoysticks();
        virtual void init() ;
        virtual void init(IFSDeviceIDCreator * idCreator);
 #ifdef __APPLE__
 #pragma mark -Advance API
 #endif
-       virtual const FSBaseDevice * getDevice(ElementID deviceID);
+       virtual const FSBaseDevice * getDevice(idNumber deviceID);
     private:
         std::unordered_multimap<FreeStickEventType,std::pair<IFSJoystickListener *,bool> > _joystickDeviceListeners;
         typedef std::unordered_multimap<FreeStickEventType,std::pair<IFSJoystickListener *,bool> >::iterator joystickDeviceListenersItr;
@@ -126,9 +126,9 @@ namespace freestick
         void RemoveListenerForEventType(FreeStickEventType eventType,IFSJoystickListener & listener);
         virtual void addDevice(FSBaseDevice * device);
         virtual void removeDevice(FSBaseDevice * device);
-        virtual void inputOnDeviceChanged(FreeStickEventType eventType,FSEventAction eventAction,FSDeviceInput inputType,unsigned int deviceID,unsigned int deviceControlID,int newValue,int oldValue,MinMaxNumber min,MinMaxNumber max);
-        virtual void inputOnDeviceChangedWithNormilzedValues(FreeStickEventType eventType, FSEventAction eventAction, FSDeviceInput inputType, unsigned int deviceID, unsigned int deviceControlID, float newValue, float oldValue);
-        virtual ElementID getNextID();
+        virtual void inputOnDeviceChanged(FreeStickEventType eventType,FSEventAction eventAction,FSDeviceInput inputType,idNumber deviceID,idNumber deviceControlID,int newValue,int oldValue,minMaxNumber min,minMaxNumber max);
+        virtual void inputOnDeviceChangedWithNormilzedValues(FreeStickEventType eventType, FSEventAction eventAction, FSDeviceInput inputType, idNumber deviceID, idNumber deviceControlID, float newValue, float oldValue);
+        virtual elementID getNextID();
         void updateEvent(FSBaseEvent & event);
 
     };

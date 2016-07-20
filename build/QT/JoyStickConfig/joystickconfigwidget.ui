@@ -36,7 +36,7 @@
        <item row="0" column="0">
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
-          <widget class="QLabel" name="DeviceID">
+          <widget class="QLabel" name="deviceID">
            <property name="text">
             <string>TextLabel</string>
            </property>

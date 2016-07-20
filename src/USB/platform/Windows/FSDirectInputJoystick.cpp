@@ -35,7 +35,7 @@ FSDirectInputJoystick::FSDirectInputJoystick()
 }
 
 FSDirectInputJoystick::FSDirectInputJoystick(LPDIRECTINPUTDEVICE8  LPDIDJoystick,
-              ElementID joyStickID,
+              elementID joyStickID,
               unsigned int numberOfButtons,
               unsigned int numberOfAnlogSticks,
               unsigned int numberOfDigitalSticks,
@@ -132,7 +132,7 @@ FSDirectInputJoystick::FSDirectInputJoystick(LPDIRECTINPUTDEVICE8  LPDIDJoystick
 }
 
 void FSDirectInputJoystick::addElement(long int usage, long int usagePage,
-                                       MinMaxNumber elementId,MinMaxNumber min, MinMaxNumber max,long int value)
+                                       minMaxNumber elementId,minMaxNumber min, minMaxNumber max,long int value)
 {
     FSUSBJoyStickInputElement temp(FSUSBJoystickDeviceManager::createIdForElement(usage,usagePage),getJoystickID() ,
                                    min,max, _vendorID,_productID,*_usbJoystickManager,value,elementId);
@@ -168,8 +168,8 @@ BOOL CALLBACK  FSDirectInputJoystick::EnumInputObjectsCallback( const DIDEVICEOB
 
         if ( joystick->getDirectInputPtr()->GetProperty(DIPROP_LOGICALRANGE, &range.diph) == DI_OK)
         {
-           MinMaxNumber min  = range.lMin;
-           MinMaxNumber max  = range.lMax;
+           minMaxNumber min  = range.lMin;
+           minMaxNumber max  = range.lMax;
            bool didRangeSetOK = false;
            long int value = max/2;
           if(pdidoi->guidType == GUID_POV)

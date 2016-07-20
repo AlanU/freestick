@@ -118,7 +118,7 @@ void FSHIDAndroidJoysickDeviceManager::init( )
     JNIBridge::registerDeviceWasUpdated(this);
 }
 
-bool FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int deviceid,int code,JNICallBackType type,float value,int min,int max)
+bool FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int deviceid,int code,JNICallBackType type,float value,minMaxNumber min,minMaxNumber max)
 {
     static std::stack<FSDeviceInput> lastDpadDownX;
     static std::stack<FSDeviceInput> lastDpadDownY;
@@ -245,7 +245,7 @@ void FSHIDAndroidJoysickDeviceManager::gamepadWasAddedFromJINBridge(int deviceID
     FS_LOGI("From C++ GamePad was added ");
     if(_androidIDToIDMap.find(deviceID) == _androidIDToIDMap.end())
     {
-        ElementID newdeviceID = this->getNextID();
+        elementID newdeviceID = this->getNextID();
         _androidIDToIDMap[deviceID] = newdeviceID;
        this->addDevice(new FSAndroidJoystick(deviceID,newdeviceID,0,0,0,false,jvm));
     }

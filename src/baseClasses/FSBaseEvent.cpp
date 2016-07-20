@@ -27,7 +27,7 @@ and must not be misrepresented as being the original software.
 
 #include "baseClasses/FSBaseEvent.h"
 using namespace freestick;
-FSBaseEvent::FSBaseEvent(FreeStickEventType eventType,FSEventAction eventAction,unsigned int timeStamp,unsigned int deviceID)
+FSBaseEvent::FSBaseEvent(FreeStickEventType eventType, FSEventAction eventAction, unsigned int timeStamp, idNumber deviceID)
 {
     _timeStamp = timeStamp;
     _deviceID = deviceID;

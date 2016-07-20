@@ -399,7 +399,7 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn i
     usagePage = IOHIDElementGetUsagePage(element);
 
     FSUSBMacOSXJoystickDeviceManager * manager = (FSUSBMacOSXJoystickDeviceManager *) inContext;
-    unsigned int deviceID = manager->getDeviceIDFromIOHIDevice(device);
+    idNumber deviceID = manager->getDeviceIDFromIOHIDevice(device);
     const FSUSBJoystick * fsDevice = manager->getUSBJoystickDevice(deviceID);
     if(fsDevice) {
         uniqueElementID = FSUSBMacOSXJoystickDeviceManager::createIdForElement(usage,usagePage,elementID,fsDevice->getVendorID(),fsDevice->getProductID());
@@ -449,8 +449,8 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn i
                 manager->inputOnDeviceChanged(eventType,inputType.getEventMapping(),inputType.getDeviceInput(),
                                               deviceID,elementDevice->getJoystickID(),
                                               elementDevice->getValue(),0,
-                                              static_cast<MinMaxNumber>(IOHIDElementGetLogicalMin(element)),
-                                              static_cast<MinMaxNumber>(IOHIDElementGetLogicalMax(element)));
+                                              static_cast<minMaxNumber>(IOHIDElementGetLogicalMin(element)),
+                                              static_cast<minMaxNumber>(IOHIDElementGetLogicalMax(element)));
             }
         }
         inputTypes.pop();

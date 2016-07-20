@@ -32,9 +32,9 @@ FSUSBDevice::FSUSBDevice()
 {
 }
 
-FSUSBDevice::FSUSBDevice(IDNumber id,
-                         VendorIDType vendorID,
-                         ProductIDType productID)
+FSUSBDevice::FSUSBDevice(idNumber id,
+                         vendorIDType vendorID,
+                         productIDType productID)
                          :FSBaseDevice(id)
 {
 
@@ -46,7 +46,7 @@ FSUSBDevice::FSUSBDevice(IDNumber id,
 
 }
 
-std::string FSUSBDevice::GetFrendlyProductNameFromID(VendorIDType vendorID, ProductIDType productID)
+std::string FSUSBDevice::GetFrendlyProductNameFromID(vendorIDType vendorID, productIDType productID)
 {
     static std::map<long, std::map<long,std::string > >s_productFriendlyNames;
     s_productFriendlyNames[LogitechVendorID][LogitechDualActionID] = "Dual Action";
@@ -67,7 +67,7 @@ std::string FSUSBDevice::GetFrendlyProductNameFromID(VendorIDType vendorID, Prod
     return "unknown";//Call down and ask the device
 }
 
- std::string  FSUSBDevice::GetFrendlyVendorNameFromID(VendorIDType vendorID)
+ std::string  FSUSBDevice::GetFrendlyVendorNameFromID(vendorIDType vendorID)
 {
 
      static std::map<long, std::string > s_vendorFriendlyNames;

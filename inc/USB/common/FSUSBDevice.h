@@ -46,21 +46,21 @@ namespace freestick
 
     protected:
          FSUSBDevice();
-         VendorIDType _vendorID;
+         vendorIDType _vendorID;
          std::string _vendorIDFriendlyName;
-         ProductIDType _productID;
+         productIDType _productID;
          std::string _productIDFriendlyName;
     public:
-       FSUSBDevice(IDNumber id,
-                   VendorIDType vendorID,
-                   ProductIDType productID);
+       FSUSBDevice(idNumber id,
+                   vendorIDType vendorID,
+                   productIDType productID);
        virtual FSDeviceType getClassType() const {return FSUSBDeviceType;}
        const std::string getVendorFriendlyName() const { return _vendorIDFriendlyName;}
        const std::string getProductFrendlyName() const { return _productIDFriendlyName;}
-       VendorIDType getProductID() const{ return _productID;}
-       ProductIDType getVendorID() const { return _vendorID;}
-       static std::string GetFrendlyVendorNameFromID(VendorIDType vendorID);
-       static std::string GetFrendlyProductNameFromID(VendorIDType vendorID, ProductIDType productID);
+       vendorIDType getProductID() const{ return _productID;}
+       productIDType getVendorID() const { return _vendorID;}
+       static std::string GetFrendlyVendorNameFromID(vendorIDType vendorID);
+       static std::string GetFrendlyProductNameFromID(vendorIDType vendorID, productIDType productID);
 
     };
 }

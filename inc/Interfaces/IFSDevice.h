@@ -116,7 +116,7 @@ namespace freestick {
     private:
 
     public:
-        virtual IDNumber getJoystickID() const= 0;
+        virtual idNumber getJoystickID() const= 0;
         virtual FSDeviceType getClassType() const = 0;
     };
 }

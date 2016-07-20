@@ -32,7 +32,7 @@ and must not be misrepresented as being the original software.
 #include <map>
 namespace freestick
 {
-typedef std::map<IDNumber,FSUSBJoyStickInputElement > JoyStickElementMap ;
+typedef std::map<idNumber,FSUSBJoyStickInputElement > JoyStickElementMap ;
     class FSUSBJoystick : public FSUSBDevice
     {
     private:
@@ -52,8 +52,8 @@ typedef std::map<IDNumber,FSUSBJoyStickInputElement > JoyStickElementMap ;
                       unsigned int numberOfAnlogSticks,
                       unsigned int numberOfDigitalSticks,
                       bool  forceFeedBackSupported,
-                      VendorIDType vendorID,
-                      ProductIDType productID);
+                      vendorIDType vendorID,
+                      productIDType productID);
         unsigned int getNumberOfButtons() const {return _numberOfButtons;}
         unsigned int getNumberOfAnlogSticks()const {return _numberOfAnlogSticks;}
         unsigned int getNumberOfDigitalSticks() const {return _numberOfDigitalSticks;}
@@ -61,8 +61,8 @@ typedef std::map<IDNumber,FSUSBJoyStickInputElement > JoyStickElementMap ;
         virtual FSDeviceType getClassType() const {return FSUSBJoystickType;}
         void addInputElement(FSUSBJoyStickInputElement & element);
         JoyStickElementMap getElements() const  { return _inputElementMap; }
-        std::vector<IDNumber> getElementIds() const;
-        const FSUSBJoyStickInputElement * findInputElement(IDNumber id) const;
+        std::vector<idNumber> getElementIds() const;
+        const FSUSBJoyStickInputElement * findInputElement(idNumber id) const;
 		JoyStickElementMap::const_iterator begin() const;
 		JoyStickElementMap::const_iterator end() const ;
 		JoyStickElementMap::iterator begin();

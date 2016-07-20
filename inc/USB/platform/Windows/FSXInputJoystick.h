@@ -75,7 +75,7 @@ namespace  freestick {
                          FSUSBJoystickDeviceManager & usbJoystickManager);
         void addXinputElements(XINPUT_STATE & state);
         void addButtonElement(unsigned int buttonID);
-        void addElement(unsigned int buttonID,MinMaxNumber min,MinMaxNumber max,PhysicalValueNumber currentValue);
+        void addElement(unsigned int buttonID,minMaxNumber min,minMaxNumber max,physicalValueNumber currentValue);
         void setCalibrated();
         bool isCalibrated() const;
 

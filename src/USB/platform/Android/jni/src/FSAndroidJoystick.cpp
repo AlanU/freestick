@@ -33,6 +33,10 @@ and must not be misrepresented as being the original software.
 
 #include <jni.h>
 using namespace freestick;
+/**
+ * @todo joystickID converted to typedef id number
+ * use general idNumber
+ */
 FSAndroidJoystick::FSAndroidJoystick(int androidDeviceID,
                                     unsigned int joyStickID,
                                     unsigned int numberOfButtons,

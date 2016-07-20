@@ -40,8 +40,8 @@ FSUSBJoystick::FSUSBJoystick(unsigned int joyStickID,
                              unsigned int numberOfAnlogSticks,
                              unsigned int numberOfDigitalSticks,
                              bool  forceFeedBackSupported,
-                             VendorIDType vendorID,
-                             ProductIDType productID):FSUSBDevice(joyStickID,
+                             vendorIDType vendorID,
+                             productIDType productID):FSUSBDevice(joyStickID,
                                                          vendorID,
                                                          productID)
 {
@@ -57,7 +57,7 @@ void FSUSBJoystick::addInputElement(FSUSBJoyStickInputElement & element)
     if(_inputElementMap.find(element.getJoystickID()) == _inputElementMap.end())
         _inputElementMap[element.getJoystickID()] = element;
 }
-const FSUSBJoyStickInputElement * FSUSBJoystick::findInputElement(IDNumber id) const
+const FSUSBJoyStickInputElement * FSUSBJoystick::findInputElement(idNumber id) const
 {
 	for (auto &itr : _inputElementMap)
 	{
@@ -67,9 +67,9 @@ const FSUSBJoyStickInputElement * FSUSBJoystick::findInputElement(IDNumber id) c
 	return nullptr;
 }
 
-std::vector<IDNumber> FSUSBJoystick::getElementIds() const
+std::vector<idNumber> FSUSBJoystick::getElementIds() const
 {
-    std::vector<IDNumber > elementKeys;
+    std::vector<idNumber > elementKeys;
 	elementKeys.reserve(_inputElementMap.size());
 	JoyStickElementMap::const_iterator itr = _inputElementMap.begin();
     while(itr != _inputElementMap.end())

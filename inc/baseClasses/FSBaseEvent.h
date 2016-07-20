@@ -34,14 +34,14 @@ namespace freestick
     {
     private:
         unsigned int _timeStamp;
-        unsigned int _deviceID;
+        idNumber _deviceID;
         FreeStickEventType _eventType;
         FSEventAction _eventAction;
     protected:
         FSBaseEvent();
     public:
 
-         FSBaseEvent(FreeStickEventType eventType,FSEventAction eventAction,unsigned int timeStamp,unsigned int deviceID);
+         FSBaseEvent(FreeStickEventType eventType,FSEventAction eventAction,unsigned int timeStamp,idNumber deviceID);
          virtual unsigned int getTimeStamp() {return _timeStamp;}
          virtual FSEventAction getEventAction() {return _eventAction;}
          virtual FreeStickEventType getEventType() {return _eventType;}

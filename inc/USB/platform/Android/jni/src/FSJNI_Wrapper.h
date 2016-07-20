@@ -39,6 +39,13 @@ typedef enum
     KeyEvent = 2,
     MotionEvent = 3
 }JNICallBackType;
+
+enum class UpdateType:int
+{
+   addedDevice = 0,
+   removedDevice = 1
+};
+
 #ifdef __cplusplus
 #include <vector>
 extern "C" {
@@ -49,7 +56,7 @@ extern "C" {
     JNIEXPORT void JNICALL Java_org_freestick_FreestickDeviceManager_updateJoystickConnectedStatus(JNIEnv *env, jobject thisObj );
 #ifdef __cplusplus
 }
-class IJINICallBack
+class IJNICallBack
 {
 public:
     virtual void gamepadWasAddedFromJINBridge(int hid_id,JavaVM * jvm) = 0;
@@ -61,18 +68,18 @@ class JNIBridge
 {
     public:
         //TODO use flag to make this all the register call backs two functions
-       static void registerDeviceWasAdded(IJINICallBack * listener);
-       static void registerDeviceWasRemoved(IJINICallBack * listener);
-       static void registerDeviceWasUpdated(IJINICallBack * listener);
-       static void deregisterDeviceWasAdded(IJINICallBack * listener){}
-       static void deregisterDeviceWasRemoved(IJINICallBack * listener){}
-       static void update(int hidDeviceID, int type);
-       static void update(int hidDeviceID, int type,JavaVM * jvm);
+       static void registerDeviceWasAdded(IJNICallBack * listener);
+       static void registerDeviceWasRemoved(IJNICallBack * listener);
+       static void registerDeviceWasUpdated(IJNICallBack * listener);
+       static void deregisterDeviceWasAdded(IJNICallBack * listener){}
+       static void deregisterDeviceWasRemoved(IJNICallBack * listener){}
+       static void update(int hidDeviceID, UpdateType type);
+       static void update(int hidDeviceID, UpdateType type,JavaVM * jvm);
        static bool updateValue(int deviceid,int code,JNICallBackType type,float value,int min,int max);
        static void updateJoysticks(JavaVM * jvm);
     private:
-        static std::vector<IJINICallBack*> _deviceAddedCallback;
-        static std::vector<IJINICallBack*> _deviceRemovedCallback;
-        static std::vector<IJINICallBack*> _deviceUpdateCallback;
+        static std::vector<IJNICallBack*> _deviceAddedCallback;
+        static std::vector<IJNICallBack*> _deviceRemovedCallback;
+        static std::vector<IJNICallBack*> _deviceUpdateCallback;
 };
 #endif

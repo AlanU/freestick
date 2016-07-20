@@ -5,6 +5,22 @@
 #include <QAbstractTableModel>
 
 using namespace freestick;
+
+typedef enum
+{
+    id = 0,
+    minValueRange = 1,
+    maxValueRange = 2,
+    rawValue = 3,
+    value = 4,
+    deadMin = 5,
+    deadMax = 6,
+    mapped = 7,
+    elementCookie = 8,
+    usagePage = 9,
+    usage = 10
+} sectionType;
+
 class ControllerMappingTableModel : public QAbstractTableModel ,public  freestick::IFSJoystickListener
 {
 public:
@@ -12,7 +28,8 @@ public:
     int rowCount(const QModelIndex & /*parent*/) const;
     int columnCount(const QModelIndex & /*parent*/) const;
     virtual QVariant data(const QModelIndex &index, int role) const;
-    virtual  QVariant headerData(int section, Qt::Orientation orientation, int role) const;
+
+    virtual  QVariant headerData(sectionType section, Qt::Orientation orientation, int role) const;
     virtual ~ControllerMappingTableModel();
     virtual void onButtonDown(FSDeviceInputEvent event);
     virtual void onButtonUp(FSDeviceInputEvent event);
@@ -24,7 +41,7 @@ private:
     FreeStickDeviceManager * _manager;
     unsigned int _joystickId;
     JoyStickElementMap _JoyStickElementMap;
-    std::vector<IDNumber> _elemntIDList;
+    std::vector<idNumber> _elemntIDList;
     void modelChanged(unsigned int joystickiD);
     void elementChanged(unsigned int elementID,float newValue);
     std::vector<bool> _elemnetMapped;

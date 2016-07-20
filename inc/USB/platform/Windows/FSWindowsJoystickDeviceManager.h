@@ -51,28 +51,28 @@ namespace freestick {
         virtual ~FSWindowsJoystickDeviceManager();
         void update();
         void init( );
-        ElementID getNextID();
-        const FSUSBJoystick * getUSBJoystickDevice(unsigned int deviceID){return static_cast<const FSUSBJoystick *>(getDevice(deviceID));}
-        const FSBaseDevice * getDevice(ElementID deviceID);
+        elementID getNextID();
+        const FSUSBJoystick * getUSBJoystickDevice(idNumber deviceID){return static_cast<const FSUSBJoystick *>(getDevice(deviceID));}
+        const FSBaseDevice * getDevice(idNumber deviceID);
         void ListenForAllJoysticksForEventTypes(unsigned int eventFlags,IFSJoystickListener & listener);
         void UnListenForAllJoysticksForEventTypes(unsigned int eventFlags,IFSJoystickListener & listener);
 
         //add or replace mapping
          //void addMappingForButton(unsigned int vendorUSBID,unsigned int productUSBID,unsigned int controlUSBID,FSDeviceInput deviceInput);
-         void addMapping(unsigned int vendorUSBID,unsigned int productUSBID,unsigned int controlUSBID,FSDeviceInput deviceInput);
-         void addMapping(unsigned int deviceID,unsigned int controlID,FSDeviceInput deviceInput);
+         void addMapping(vendorIDType vendorUSBID,productIDType productUSBID, idNumber controlUSBID,FSDeviceInput deviceInput);
+         void addMapping(idNumber deviceID, idNumber controlID,FSDeviceInput deviceInput);
          //FSUSBElementInfoMap lookUpDeviceInputFromID(unsigned int deviceID, unsigned int controlID);
-         FSUSBElementInfoMap lookUpDeviceInputFromID(unsigned int deviceID, unsigned int controlID, MinMaxNumber min, MinMaxNumber max,int value);
-         FSUSBElementInfoMap lookUpDeviceInputFromUSBID( unsigned int vendorUSBID, unsigned int productUSBID , unsigned int controlID,MinMaxNumber min,MinMaxNumber max,int value);
-         FSUSBElementInfoMap infoMapForInputType(unsigned int vendorUSBID, unsigned int productUSBID ,FSDeviceInput inputToLookFor );
+         FSUSBElementInfoMap lookUpDeviceInputFromID(idNumber deviceID, idNumber controlID, minMaxNumber min, minMaxNumber max,physicalValueNumber value);
+         FSUSBElementInfoMap lookUpDeviceInputFromUSBID( vendorIDType vendorUSBID, productIDType productUSBID , idNumber controlID,minMaxNumber min,minMaxNumber max,physicalValueNumber value);
+         FSUSBElementInfoMap infoMapForInputType(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor );
 
-         bool doesDeviceHaveDeviceInput(unsigned int deviceID,FSDeviceInput inputToLookFor);
-         bool doesElementHaveDeviceInputForValue(unsigned int vendorUSBID, unsigned int productUSBID ,unsigned int elementID,FSDeviceInput inputToLookFor );
-         bool doesDeviceHaveDeviceInput(unsigned int vendorUSBID, unsigned int productUSBID ,FSDeviceInput inputToLookFor);
-         bool doesDeviceHaveDeviceInputForValue(unsigned int vendorUSBID, unsigned int productUSBID ,FSDeviceInput inputToLookFor,int value );
-         bool doesDeviceHaveDeviceInputForValue(unsigned int deviceID,FSDeviceInput inputToLookFor,  int value );
+         bool doesDeviceHaveDeviceInput(idNumber deviceID,FSDeviceInput inputToLookFor);
+         bool doesElementHaveDeviceInputForValue(vendorIDType vendorUSBID, productIDType productUSBID , idNumber elementID, FSDeviceInput inputToLookFor );
+         bool doesDeviceHaveDeviceInput(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor);
+         bool doesDeviceHaveDeviceInputForValue(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor,physicalValueNumber value );
+         bool doesDeviceHaveDeviceInputForValue(idNumber deviceID,FSDeviceInput inputToLookFor,  physicalValueNumber value );
 
-         managerType * findManagerForDevice(ElementID deviceID);
+         managerType * findManagerForDevice(idNumber deviceID);
 
     private:
          bool _listeningForEvents;

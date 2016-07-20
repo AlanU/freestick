@@ -55,7 +55,7 @@ void FSWindowsJoystickDeviceManager::update()
        manager->update();});
 }
 
-const FSBaseDevice * FSWindowsJoystickDeviceManager::getDevice(ElementID deviceID)
+const FSBaseDevice * FSWindowsJoystickDeviceManager::getDevice(elementID deviceID)
 {
     const FSBaseDevice * device = nullptr;
      for(unique_ptr_of_managers & manager : managers)
@@ -69,7 +69,7 @@ const FSBaseDevice * FSWindowsJoystickDeviceManager::getDevice(ElementID deviceI
     return device;
 }
 
-managerType * FSWindowsJoystickDeviceManager::findManagerForDevice(ElementID deviceID)
+managerType * FSWindowsJoystickDeviceManager::findManagerForDevice(elementID deviceID)
 {
     managerType * resultManger = nullptr;
     for(unique_ptr_of_managers & manager : managers)
@@ -84,13 +84,13 @@ managerType * FSWindowsJoystickDeviceManager::findManagerForDevice(ElementID dev
    return resultManger;
 }
 
-ElementID FSWindowsJoystickDeviceManager::getNextID()
+elementID FSWindowsJoystickDeviceManager::getNextID()
 {
     static unsigned int ID = 1;//0 is reserved for errors
     return (ID++);
 }
 
-void FSWindowsJoystickDeviceManager::addMapping(unsigned int vendorUSBID,unsigned int productUSBID,unsigned int controlUSBID,FSDeviceInput deviceInput)
+void FSWindowsJoystickDeviceManager::addMapping(vendorIDType vendorUSBID, productIDType productUSBID, idNumber controlUSBID,FSDeviceInput deviceInput)
 {
 
     std::for_each(managers.begin(),managers.end(),
@@ -98,14 +98,14 @@ void FSWindowsJoystickDeviceManager::addMapping(unsigned int vendorUSBID,unsigne
     {manager->addMapping(vendorUSBID, productUSBID, controlUSBID, deviceInput);});
 }
 
-void FSWindowsJoystickDeviceManager::addMapping(unsigned int deviceID,unsigned int controlID,FSDeviceInput deviceInput)
+void FSWindowsJoystickDeviceManager::addMapping(idNumber deviceID,idNumber controlID,FSDeviceInput deviceInput)
 {
      std::for_each(managers.begin(),managers.end(),
                    [deviceID,controlID,&deviceInput](unique_ptr_of_managers &manager)
      {manager->addMapping(deviceID,controlID, deviceInput);});
 }
 
-FSUSBElementInfoMap FSWindowsJoystickDeviceManager::lookUpDeviceInputFromID(unsigned int deviceID, unsigned int controlID, MinMaxNumber min, MinMaxNumber max,int value)
+FSUSBElementInfoMap FSWindowsJoystickDeviceManager::lookUpDeviceInputFromID(idNumber deviceID, idNumber controlID, minMaxNumber min, minMaxNumber max,physicalValueNumber value)
 {
     managerType * managerForDevice = findManagerForDevice(deviceID);
     if(managerForDevice != nullptr)
@@ -115,7 +115,7 @@ FSUSBElementInfoMap FSWindowsJoystickDeviceManager::lookUpDeviceInputFromID(unsi
     return FSUSBElementInfoMap(0,1,LastInput,FSInputChanged);
 }
 
-FSUSBElementInfoMap FSWindowsJoystickDeviceManager::lookUpDeviceInputFromUSBID( unsigned int vendorUSBID, unsigned int productUSBID , unsigned int controlID,MinMaxNumber min,MinMaxNumber max,int value)
+FSUSBElementInfoMap FSWindowsJoystickDeviceManager::lookUpDeviceInputFromUSBID(vendorIDType vendorUSBID, productIDType productUSBID , idNumber controlID, minMaxNumber min,minMaxNumber max,physicalValueNumber value)
 {
   FSUSBElementInfoMap returnMap(0,1,LastInput,FSInputChanged);
   for(unique_ptr_of_managers & manager : managers)
@@ -130,7 +130,7 @@ FSUSBElementInfoMap FSWindowsJoystickDeviceManager::lookUpDeviceInputFromUSBID( 
   return returnMap;
 }
 
-FSUSBElementInfoMap FSWindowsJoystickDeviceManager::infoMapForInputType(unsigned int vendorUSBID, unsigned int productUSBID ,FSDeviceInput inputToLookFor )
+FSUSBElementInfoMap FSWindowsJoystickDeviceManager::infoMapForInputType(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor )
 {
     FSUSBElementInfoMap returnMap(0,1,LastInput,FSInputChanged);
     for(unique_ptr_of_managers & manager : managers)
@@ -144,32 +144,32 @@ FSUSBElementInfoMap FSWindowsJoystickDeviceManager::infoMapForInputType(unsigned
     return returnMap;
 }
 
-bool FSWindowsJoystickDeviceManager::doesDeviceHaveDeviceInput(unsigned int deviceID,FSDeviceInput inputToLookFor)
+bool FSWindowsJoystickDeviceManager::doesDeviceHaveDeviceInput(idNumber deviceID,FSDeviceInput inputToLookFor)
 {
    return DoesDeviceHaveInput([deviceID,&inputToLookFor](unique_ptr_of_managers &manager) {
         return manager->doesDeviceHaveDeviceInput( deviceID, inputToLookFor);});
 }
 
-bool FSWindowsJoystickDeviceManager::doesElementHaveDeviceInputForValue(unsigned int vendorUSBID, unsigned int productUSBID ,unsigned int elementID,FSDeviceInput inputToLookFor )
+bool FSWindowsJoystickDeviceManager::doesElementHaveDeviceInputForValue(vendorIDType vendorUSBID, productIDType productUSBID ,idNumber elementID,FSDeviceInput inputToLookFor )
 {
     return DoesDeviceHaveInput([vendorUSBID, productUSBID, elementID,&inputToLookFor](unique_ptr_of_managers &manager) {
          return manager->doesElementHaveDeviceInputForValue( vendorUSBID,  productUSBID , elementID, inputToLookFor );});
 }
 
-bool FSWindowsJoystickDeviceManager::doesDeviceHaveDeviceInput(unsigned int vendorUSBID, unsigned int productUSBID ,FSDeviceInput inputToLookFor)
+bool FSWindowsJoystickDeviceManager::doesDeviceHaveDeviceInput(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor)
 {
     return DoesDeviceHaveInput([vendorUSBID, productUSBID,&inputToLookFor](unique_ptr_of_managers &manager) {
          return manager->doesDeviceHaveDeviceInput( vendorUSBID,  productUSBID , inputToLookFor );});
 }
 
-bool FSWindowsJoystickDeviceManager::doesDeviceHaveDeviceInputForValue(unsigned int vendorUSBID, unsigned int productUSBID ,FSDeviceInput inputToLookFor,int value )
+bool FSWindowsJoystickDeviceManager::doesDeviceHaveDeviceInputForValue(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor,physicalValueNumber value )
 {
 
     return DoesDeviceHaveInput([vendorUSBID, productUSBID,&inputToLookFor,value](unique_ptr_of_managers &manager) {
          return manager->doesDeviceHaveDeviceInputForValue( vendorUSBID,  productUSBID , inputToLookFor ,value);});
 }
 
-bool FSWindowsJoystickDeviceManager::doesDeviceHaveDeviceInputForValue(unsigned int deviceID,FSDeviceInput inputToLookFor,  int value )
+bool FSWindowsJoystickDeviceManager::doesDeviceHaveDeviceInputForValue(idNumber deviceID,FSDeviceInput inputToLookFor,  physicalValueNumber value )
 {
     return DoesDeviceHaveInput([deviceID,&inputToLookFor, value](unique_ptr_of_managers &manager) {
          return manager->doesDeviceHaveDeviceInputForValue( inputToLookFor,inputToLookFor ,value);});

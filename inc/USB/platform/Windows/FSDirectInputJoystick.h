@@ -38,7 +38,7 @@ namespace freestick {
     public:
         FSDirectInputJoystick();
         FSDirectInputJoystick(LPDIRECTINPUTDEVICE8 LPDIDJoystick,
-                              ElementID joyStickID,
+                              elementID joyStickID,
                               unsigned int numberOfButtons,
                               unsigned int numberOfAnlogSticks,
                               unsigned int numberOfDigitalSticks,
@@ -56,7 +56,7 @@ namespace freestick {
         FSUSBJoystickDeviceManager * _usbJoystickManager;
         static BOOL CALLBACK EnumInputObjectsCallback( const DIDEVICEOBJECTINSTANCE* pdidoi,VOID* pContext );
         long int getCurrentValue(FSDirectInputJoystick * device,const DIDEVICEOBJECTINSTANCE* pdidoi);
-        void addElement(long int usage, long int usagePage,MinMaxNumber elementId,MinMaxNumber min,MinMaxNumber max,long int value);
+        void addElement(long int usage, long int usagePage,minMaxNumber elementId,minMaxNumber min,minMaxNumber max,long int value);
         bool calibrated = false;
 
     };

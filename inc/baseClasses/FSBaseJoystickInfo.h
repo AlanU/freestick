@@ -27,12 +27,13 @@ and must not be misrepresented as being the original software.
 
 #pragma once
 #include "../Interfaces/IFSJoystickInfo.h"
+#include "common/FSTypes.h"
 namespace freestick
 {
     class FSBaseJoystickInfo : public IFSJoystickInfo
     {
     private:
-        unsigned int _id;
+        idNumber _id;
     protected:
 
     public:
@@ -42,7 +43,7 @@ namespace freestick
         virtual unsigned int NumberOfButtons() { return 0;};
         virtual unsigned int NumberOfAnlogSticks() {return 0;};
         virtual unsigned int NumberOfDigitalSticks() {return 0;};
-       // FSBaseJoystickInfo(unsigned int id);
+       // FSBaseJoystickInfo(unsigned int id); did not convert unsigned int to typedef idNumber
     };
 }
 

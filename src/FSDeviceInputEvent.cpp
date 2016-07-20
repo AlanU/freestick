@@ -31,7 +31,7 @@ FSDeviceInputEvent::FSDeviceInputEvent()
 {
 }
 
-FSDeviceInputEvent::FSDeviceInputEvent(FreeStickEventType eventType,FSEventAction eventAction,unsigned int timeStamp,unsigned int deviceID,unsigned int controlID,float oldValue,float newValue,FSDeviceInput inputType) :
+FSDeviceInputEvent::FSDeviceInputEvent(FreeStickEventType eventType, FSEventAction eventAction, unsigned int timeStamp, idNumber deviceID, unsigned int controlID, float oldValue, float newValue, FSDeviceInput inputType) :
     _controlID(controlID),
     _oldValue(oldValue),
     _newValue(newValue) ,

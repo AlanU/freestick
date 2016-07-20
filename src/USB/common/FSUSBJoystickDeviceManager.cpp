@@ -42,16 +42,16 @@ FSUSBJoystickDeviceManager::~FSUSBJoystickDeviceManager()
 
 }
 
-uint16_t FSUSBJoystickDeviceManager::getUsageForElement(uint32_t id)
+uint16_t FSUSBJoystickDeviceManager::getUsageForElement(idNumber id)
 {
    return (id&0xffff);
 }
 
-uint16_t FSUSBJoystickDeviceManager::getUsagePageForElement(uint32_t id)
+uint16_t FSUSBJoystickDeviceManager::getUsagePageForElement(idNumber id)
 {
     return (id>>16);
 }
-void FSUSBJoystickDeviceManager::getUsageFromIdForElement(uint32_t id, uint16_t &usage,uint16_t &usagePage)
+void FSUSBJoystickDeviceManager::getUsageFromIdForElement(idNumber id, uint16_t &usage,uint16_t &usagePage)
 {
     usage = (id&0xffff);
     usagePage = (id>>16);
@@ -63,7 +63,7 @@ uint32_t FSUSBJoystickDeviceManager::createIdForElement(uint32_t usage,uint32_t 
 }
 
 
-void FSUSBJoystickDeviceManager::updateEvents(unsigned int joystickDeviceID,FSUSBJoyStickInputElement * elementDevice, PhysicalValueNumber elementValue)
+void FSUSBJoystickDeviceManager::updateEvents(unsigned int joystickDeviceID,FSUSBJoyStickInputElement * elementDevice, physicalValueNumber elementValue)
 {
     static std::stack<FSUSBElementInfoMap> inputTypes;
     if (elementDevice) {

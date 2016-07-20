@@ -66,7 +66,7 @@ void FSXInputJoystick::addButtonElement(unsigned int buttonID)
     addElement(buttonID,0,1,0);
 }
 
-void FSXInputJoystick::addElement(unsigned int buttonID,MinMaxNumber min,MinMaxNumber max,PhysicalValueNumber currentValue)
+void FSXInputJoystick::addElement(unsigned int buttonID,minMaxNumber min,minMaxNumber max,physicalValueNumber currentValue)
 {
     FSUSBJoyStickInputElement newElement (buttonID,getJoystickID() ,
                                    min,max, MicrosoftVendorID,MicrosoftXbox360WindowsControllerID,*_usbJoystickManager,currentValue,++_totalButtonNumber);

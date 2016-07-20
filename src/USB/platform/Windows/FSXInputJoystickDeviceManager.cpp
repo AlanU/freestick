@@ -42,7 +42,7 @@ void FSXInputJoystickDeviceManager::update()
     updateJoysticks();
 }
 
-void  FSXInputJoystickDeviceManager::updateAnalog(unsigned int axisToLookFor , const FSXInputJoystick * xinputJoystick , unsigned int controllerID ,PhysicalValueNumber value )
+void  FSXInputJoystickDeviceManager::updateAnalog(unsigned int axisToLookFor , const FSXInputJoystick * xinputJoystick , unsigned int controllerID ,physicalValueNumber value )
 {
     FSUSBJoyStickInputElement * element = (FSUSBJoyStickInputElement*) xinputJoystick->findInputElement(axisToLookFor) ;
 
@@ -165,7 +165,7 @@ void FSXInputJoystickDeviceManager::removeXInputDevice(DWORD device)
 {
     if(_wordToIDControllerMap.find(device) != _wordToIDControllerMap.end())
     {
-        unsigned int id = _wordToIDControllerMap[device];
+        elementID id = _wordToIDControllerMap[device];
         const FSBaseDevice * joystickToDelete = getDevice(id);
         removeDevice((FSBaseDevice*)joystickToDelete);
         _wordToIDControllerMap.erase(device);

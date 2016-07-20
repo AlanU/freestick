@@ -39,7 +39,7 @@ namespace freestick
         FSUSBMacOSXJoystick();
     public:
         FSUSBMacOSXJoystick(IOHIDDeviceRef device,
-                            ElementID joyStickID,
+                            elementID joyStickID,
                             unsigned int numberOfButtons,
                             unsigned int numberOfAnlogSticks,
                             unsigned int numberOfDigitalSticks,
