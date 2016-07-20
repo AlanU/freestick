@@ -54,7 +54,7 @@ JoyStickConfigWidget::JoyStickConfigWidget(QWidget *parent) :
                                                      FS_JOYSTICK_DISCONNECT_EVENT |
                                                      FS_BUTTON_EVENT | FS_AXIS_EVENT
                                                      | FS_TRIGGER_EVENT,*this);
-    ui->DeviceID->hide();
+    ui->deviceID->hide();
     ui->FoceFeedBack->hide();
     timer= new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(update()));
@@ -355,7 +355,7 @@ void JoyStickConfigWidget::PopulateDeviceStats(unsigned int id)
    bool FFBackSupport = false;
    if(device == NULL)
    {
-         ui->DeviceID->hide();
+         ui->deviceID->hide();
          ui->FoceFeedBack->hide();
          return;
    }
@@ -394,8 +394,8 @@ void JoyStickConfigWidget::PopulateDeviceStats(unsigned int id)
      ui->LeftTriggerBox->setEnabled(deviceManager.doesDeviceHaveDeviceInput(id,Trigger1));
      ui->RightTriggerBox->setEnabled(deviceManager.doesDeviceHaveDeviceInput(id,Trigger2));
 
-     ui->DeviceID->setText(DeviceInfo);
-     ui->DeviceID->show();
+     ui->deviceID->setText(DeviceInfo);
+     ui->deviceID->show();
      ui->FoceFeedBack->show();
 }
 

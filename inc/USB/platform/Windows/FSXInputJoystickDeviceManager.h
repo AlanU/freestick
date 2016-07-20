@@ -46,7 +46,7 @@ namespace freestick
         void removeXInputDevice(DWORD device);
         void addXInputDevice(DWORD device,XINPUT_STATE & xState);
         void updateButton(WORD  buttons,WORD xButtonToLookFor,unsigned int buttonToLookFor , const FSXInputJoystick * xinputJoystick , unsigned int controllerID  );
-        void updateAnalog(unsigned int axisToLookFor , const FSXInputJoystick * xinputJoystick , unsigned int controllerID ,PhysicalValueNumber value );
+        void updateAnalog(unsigned int axisToLookFor , const FSXInputJoystick * xinputJoystick , unsigned int controllerID ,physicalValueNumber value );
 			//called by update
         void updateConnectJoysticks();
         void updateJoysticks();

@@ -33,7 +33,7 @@ and must not be misrepresented as being the original software.
 #include <cstdint>
 using namespace freestick;
 //creates a 64 bit id from the vendor and product id
-DeviceID createVPId(uint32_t vendor, uint32_t product ) {DeviceID newID = product ; return (newID << 32) | vendor;}
+deviceID createVPId(uint32_t vendor, uint32_t product ) {deviceID newID = product ; return (newID << 32) | vendor;}
 
 FSUSBDeviceManager::FSUSBDeviceManager()
 {
@@ -628,8 +628,8 @@ void FSUSBDeviceManager::addMapping(unsigned int deviceID,unsigned int controlID
     const FSUSBDevice * usbDeice = (const FSUSBDevice *)getDevice(deviceID);
     if(usbDeice != NULL)
     {
-        VendorIDType vendorUSBID = static_cast<VendorIDType>(usbDeice->getVendorID());
-        ProductIDType productUSBID = static_cast<ProductIDType>(usbDeice->getProductID());
+        vendorIDType vendorUSBID = static_cast<vendorIDType>(usbDeice->getVendorID());
+        productIDType productUSBID = static_cast<productIDType>(usbDeice->getProductID());
         addMapping(vendorUSBID,productUSBID,controlID,deviceInput);
     }
 }
@@ -649,13 +649,13 @@ void FSUSBDeviceManager::addMapping(unsigned int vendorUSBID,unsigned int produc
 }*/
 
 
-FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromID(unsigned int deviceID, unsigned int controlID,MinMaxNumber min,MinMaxNumber max,int value)
+FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromID(idNumber deviceID, idNumber controlID, minMaxNumber min, minMaxNumber max, physicalValueNumber value)
 {
     const FSUSBDevice * usbDeice = static_cast<const FSUSBDevice *>(getDevice(deviceID));
     if(usbDeice != NULL)
     {
-        VendorIDType vendorUSBID = static_cast<VendorIDType>(usbDeice->getVendorID());
-        ProductIDType productUSBID =static_cast<ProductIDType>(usbDeice->getProductID());
+        vendorIDType vendorUSBID = static_cast<vendorIDType>(usbDeice->getVendorID());
+        productIDType productUSBID =static_cast<productIDType>(usbDeice->getProductID());
         return lookUpDeviceInputFromUSBID(vendorUSBID,
                                 productUSBID ,
                                 controlID,
@@ -667,9 +667,9 @@ FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromID(unsigned int de
     return FSUSBElementInfoMap(0,1,LastInput,FSInputChanged);
 }
 
-FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromUSBID( VendorIDType vendorUSBID, ProductIDType productUSBID , unsigned int controlID,MinMaxNumber min,MinMaxNumber max,int value)
+FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromUSBID( vendorIDType vendorUSBID, productIDType productUSBID , unsigned int controlID,minMaxNumber min,minMaxNumber max,int value)
  {
-    DeviceID vendorProductID = createVPId(vendorUSBID,productUSBID);
+    deviceID vendorProductID = createVPId(vendorUSBID,productUSBID);
      if(min==0 && max == 1)
      {
          if(_usageMapToInputEvent.find(vendorProductID) != _usageMapToInputEvent.end() &&
@@ -702,7 +702,7 @@ FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromUSBID( VendorIDTyp
 
 bool FSUSBDeviceManager::doesElementHaveDeviceInputForValue(unsigned int vendorUSBID, unsigned int productUSBID ,unsigned int elementID,FSDeviceInput inputToLookFor )
 {
-   DeviceID vendorProductID = createVPId(vendorUSBID,productUSBID);
+   deviceID vendorProductID = createVPId(vendorUSBID,productUSBID);
 
    std::vector<FSUSBElementInfoMap> ::iterator itr =  _usageMapToInputRangeEvent[vendorProductID][elementID].begin();
    for(itr;itr !=  _usageMapToInputRangeEvent[vendorProductID][elementID].end(); ++itr)
@@ -724,18 +724,18 @@ bool FSUSBDeviceManager::doesDeviceHaveDeviceInputForValue(unsigned int deviceID
     const FSUSBDevice * usbDeice = (const FSUSBDevice *)getDevice(deviceID);
     if(usbDeice != NULL)
     {
-        VendorIDType vendorUSBID =static_cast<VendorIDType>(usbDeice->getVendorID());
-        ProductIDType productUSBID = static_cast<ProductIDType>(usbDeice->getProductID());
+        vendorIDType vendorUSBID =static_cast<vendorIDType>(usbDeice->getVendorID());
+        productIDType productUSBID = static_cast<productIDType>(usbDeice->getProductID());
         return  doesDeviceHaveDeviceInputForValue(vendorUSBID,productUSBID,inputToLookFor,value);
     }
     return false;
 }
 
 
-FSUSBElementInfoMap FSUSBDeviceManager::infoMapForInputType(unsigned int vendorUSBID, unsigned int productUSBID ,FSDeviceInput inputToLookFor )
+FSUSBElementInfoMap FSUSBDeviceManager::infoMapForInputType(vendorIDType vendorUSBID, productIDType productUSBID , FSDeviceInput inputToLookFor )
 {
-    DeviceID vendorProductID = createVPId(vendorUSBID,productUSBID);
-    std::unordered_map<IDNumber,std::vector<FSUSBElementInfoMap> >::iterator itRange = _usageMapToInputRangeEvent[vendorProductID].begin();
+    deviceID vendorProductID = createVPId(vendorUSBID,productUSBID);
+    std::unordered_map<idNumber,std::vector<FSUSBElementInfoMap> >::iterator itRange = _usageMapToInputRangeEvent[vendorProductID].begin();
     for(itRange;itRange != _usageMapToInputRangeEvent[vendorProductID].end();++itRange)
     {
        std::vector<FSUSBElementInfoMap>::iterator vItr = itRange->second.begin();
@@ -754,8 +754,8 @@ FSUSBElementInfoMap FSUSBDeviceManager::infoMapForInputType(unsigned int vendorU
 
 bool FSUSBDeviceManager::doesDeviceHaveDeviceInputForValue(unsigned int vendorUSBID, unsigned int productUSBID ,FSDeviceInput inputToLookFor,  int value )
 {
-    DeviceID vendorProductID = createVPId(vendorUSBID,productUSBID);
-    std::unordered_map<IDNumber,std::vector<FSUSBElementInfoMap> >::iterator itRange = _usageMapToInputRangeEvent[vendorProductID].begin();
+    deviceID vendorProductID = createVPId(vendorUSBID,productUSBID);
+    std::unordered_map<idNumber,std::vector<FSUSBElementInfoMap> >::iterator itRange = _usageMapToInputRangeEvent[vendorProductID].begin();
     for(itRange;itRange != _usageMapToInputRangeEvent[vendorProductID].end();++itRange)
     {
        std::vector<FSUSBElementInfoMap>::iterator vItr = itRange->second.begin();
@@ -777,8 +777,8 @@ bool FSUSBDeviceManager::doesDeviceHaveDeviceInput(unsigned int deviceID,FSDevic
     const FSUSBDevice * usbDeice = (const FSUSBDevice *)getDevice(deviceID);
     if(usbDeice != NULL)
     {
-        VendorIDType vendorUSBID = static_cast<VendorIDType>(usbDeice->getVendorID());
-        ProductIDType productUSBID = static_cast<ProductIDType>(usbDeice->getProductID());
+        vendorIDType vendorUSBID = static_cast<vendorIDType>(usbDeice->getVendorID());
+        productIDType productUSBID = static_cast<productIDType>(usbDeice->getProductID());
       return  doesDeviceHaveDeviceInput(vendorUSBID,productUSBID,inputToLookFor);
     }
     return false;
@@ -802,12 +802,12 @@ bool FSUSBDeviceManager::doesDeviceHaveDeviceInput(unsigned int vendorUSBID, uns
     lastProductUSBID = productUSBID;
     lastInputToLookFor = inputToLookFor;
 
-    DeviceID vendorProductID = createVPId(vendorUSBID,productUSBID);
+    deviceID vendorProductID = createVPId(vendorUSBID,productUSBID);
     //TODO add this however right now there are no digital devices that use
     if(FS_isButtion(inputToLookFor) || FS_isDpad(inputToLookFor))
     {
 
-        std::unordered_map<IDNumber,FSDeviceInput>::iterator itDigital = _usageMapToInputEvent[vendorProductID].begin();
+        std::unordered_map<idNumber,FSDeviceInput>::iterator itDigital = _usageMapToInputEvent[vendorProductID].begin();
         for(itDigital; itDigital != _usageMapToInputEvent[vendorProductID].end() ; ++itDigital)
         {
             FSDeviceInput deviceInputFound = itDigital->second;
@@ -821,7 +821,7 @@ bool FSUSBDeviceManager::doesDeviceHaveDeviceInput(unsigned int vendorUSBID, uns
     }
     else
     {
-        std::unordered_map<IDNumber,std::vector<FSUSBElementInfoMap> >::iterator itRange = _usageMapToInputRangeEvent[vendorProductID].begin();
+        std::unordered_map<idNumber,std::vector<FSUSBElementInfoMap> >::iterator itRange = _usageMapToInputRangeEvent[vendorProductID].begin();
         for(itRange;itRange != _usageMapToInputRangeEvent[vendorProductID].end();++itRange)
         {
            std::vector<FSUSBElementInfoMap>::iterator vItr = itRange->second.begin();

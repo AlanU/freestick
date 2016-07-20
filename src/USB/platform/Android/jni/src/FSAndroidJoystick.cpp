@@ -33,8 +33,9 @@ and must not be misrepresented as being the original software.
 
 #include <jni.h>
 using namespace freestick;
+
 FSAndroidJoystick::FSAndroidJoystick(int androidDeviceID,
-                                    unsigned int joyStickID,
+                                    idNumber joyStickID,
                                     unsigned int numberOfButtons,
                                     unsigned int numberOfAnlogSticks,
                                     unsigned int numberOfDigitalSticks,

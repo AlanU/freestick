@@ -29,9 +29,9 @@ and must not be misrepresented as being the original software.
 #include <android/input.h>
 #include <algorithm>
 #include <jni.h>
-std::vector<IJINICallBack*> JNIBridge::_deviceAddedCallback;
-std::vector<IJINICallBack*> JNIBridge::_deviceRemovedCallback;
-std::vector<IJINICallBack*> JNIBridge::_deviceUpdateCallback;
+std::vector<IJNICallBack*> JNIBridge::_deviceAddedCallback;
+std::vector<IJNICallBack*> JNIBridge::_deviceRemovedCallback;
+std::vector<IJNICallBack*> JNIBridge::_deviceUpdateCallback;
 
 const int  InputDevice_SOURCE_GAMEPAD = 0x00000401;
 const int  InputDevice_SOURCE_JOYSTICK = 0x01000010;
@@ -75,32 +75,33 @@ JNIEXPORT void JNICALL Java_org_freestick_FreestickDeviceManager_gamepadWasRemov
 bool JNIBridge::updateValue(int deviceid,int code,JNICallBackType type,float value,int min,int max)
 {
     bool returnValue = false;
-    for(std::vector<IJINICallBack*>::iterator itr = _deviceUpdateCallback.begin();itr != _deviceUpdateCallback.end();++itr)
+    for(std::vector<IJNICallBack*>::iterator itr = _deviceUpdateCallback.begin();itr != _deviceUpdateCallback.end();++itr)
     {
         returnValue = returnValue || (*itr)->gamepadWasUpdatedFromJINBridge(deviceid, code, type, value,min,max);
 
     }
     return returnValue;
 }
-void JNIBridge::update(int hidDeviceID, int type)
+void JNIBridge::update(int hidDeviceID, UpdateType type)
 {
 	JNIBridge::update(hidDeviceID,type,NULL);
 }
-void JNIBridge::update(int hidDeviceID, int type,JavaVM * jvm)
+
+void JNIBridge::update(int hidDeviceID, UpdateType type, JavaVM * jvm)
 {
     int t=hidDeviceID;
     switch(type)
-    {
-    case 0:
-        for(std::vector<IJINICallBack*>::iterator itr = _deviceAddedCallback.begin();itr != _deviceAddedCallback.end();++itr)
+    { 
+    case addedDevice: //  addedDevice = 0
+        for(std::vector<IJNICallBack*>::iterator itr = _deviceAddedCallback.begin();itr != _deviceAddedCallback.end();++itr)
         {
             FS_LOGI("Call back from bridge added device");
             (*itr)->gamepadWasAddedFromJINBridge(hidDeviceID,jvm);
         }
         //run through the _devieAddedCallback map cand call the correct function
         break;
-    case 1:
-        for(std::vector<IJINICallBack*>::iterator itr = _deviceRemovedCallback.begin();itr != _deviceRemovedCallback.end();++itr)
+    case removedDevice: // removedDevice = 1
+        for(std::vector<IJNICallBack*>::iterator itr = _deviceRemovedCallback.begin();itr != _deviceRemovedCallback.end();++itr)
         {
             FS_LOGI("Call back from bridge for device remove");
             (*itr)->gamepadWasRemovedFromJINBridge(hidDeviceID);
@@ -110,20 +111,20 @@ void JNIBridge::update(int hidDeviceID, int type,JavaVM * jvm)
     }
 }
 
-void JNIBridge::registerDeviceWasAdded(IJINICallBack *listener)
+void JNIBridge::registerDeviceWasAdded(IJNICallBack *listener)
 {
     FS_LOGI("Registed for device added");
 
     _deviceAddedCallback.push_back(listener);
 }
 
-void JNIBridge::registerDeviceWasRemoved(IJINICallBack *listener)
+void JNIBridge::registerDeviceWasRemoved(IJNICallBack *listener)
 {
     FS_LOGI("Registed for device remove");
     _deviceRemovedCallback.push_back(listener);
 }
 
-void JNIBridge::registerDeviceWasUpdated(IJINICallBack * listener)
+void JNIBridge::registerDeviceWasUpdated(IJNICallBack * listener)
 {
     _deviceUpdateCallback.push_back(listener);
 }

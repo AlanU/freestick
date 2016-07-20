@@ -28,6 +28,7 @@ and must not be misrepresented as being the original software.
 #pragma once
 #include "USB/common/FSUSBJoystickDeviceManager.h"
 #include "FSJNI_Wrapper.h"
+#include "common/FSTypes.h"
 #include <jni.h>
 namespace freestick
 {
@@ -39,11 +40,11 @@ namespace freestick
         virtual void init();
         virtual void gamepadWasAddedFromJINBridge(int hid_id,JavaVM * jvm);
         virtual void gamepadWasRemovedFromJINBridge(int hid_id);
-        virtual bool gamepadWasUpdatedFromJINBridge(int deviceid,int code,JNICallBackType type,float value,int min,int max);
+        virtual bool gamepadWasUpdatedFromJINBridge(int deviceid,int code,JNICallBackType type,float value,minMaxNumber min,minMaxNumber max);
         void addAndroidMapping(unsigned int androidEventType,FSDeviceInput deviceInput);
         void update();
     private:
-        std::map<int,ElementID> _androidIDToIDMap;
+        std::map<int,elementID> _androidIDToIDMap;
         //Requires two maps since motion events and key events defines collide
         std::map<unsigned int,FSDeviceInput > _androidButtonUsageMapToInputEvent;//KeyEvents
         std::map<unsigned int,FSDeviceInput > _androidAxisnUsageMapToInputEvent;//MotionEvents

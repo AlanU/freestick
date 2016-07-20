@@ -30,12 +30,12 @@ and must not be misrepresented as being the original software.
 namespace freestick {
 
     /* TODO: rename type to lower case*/
-    typedef uint32_t IDNumber; //Needs to be at lest 32bits and unsigned
-    typedef int32_t  MinMaxNumber; //Needs to be at lest 32bits and signed
-    typedef int32_t PhysicalValueNumber; //Needs to be at lest 32bits and signed
-    typedef unsigned int ElementID;
-    typedef uint64_t DeviceID; //Needs to be 64 bits
-    typedef uint32_t VendorIDType;//Needs to be at lest 32bits
-    typedef uint32_t ProductIDType;//Needs to be at lest 32bits
+    typedef uint32_t idNumber; //Needs to be at lest 32bits and unsigned
+    typedef int32_t  minMaxNumber; //Needs to be at lest 32bits and signed
+    typedef int32_t physicalValueNumber; //Needs to be at lest 32bits and signed
+    typedef unsigned int elementID;
+    typedef uint64_t deviceID; //Needs to be 64 bits
+    typedef uint32_t vendorIDType;//Needs to be at lest 32bits
+    typedef uint32_t productIDType;//Needs to be at lest 32bits
 
 }

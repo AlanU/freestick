@@ -41,7 +41,7 @@ void FSUSBJoyStickInputElement::EmptyQue(std::stack<FSUSBElementInfoMap> & infoM
 
     while(_lastValueStack.size() >sizeToleft)
     {
-      MinMaxNumber stackValue = _lastValueStack.front();
+      minMaxNumber stackValue = _lastValueStack.front();
       FSUSBElementInfoMap LastValueMap =  _usbDeviceManager->lookUpDeviceInputFromUSBID(_vendorID,_productID,getJoystickID(),_elementMin,_elementMax,stackValue);
       FSUSBElementInfoMap map = FSUSBElementInfoMap(LastValueMap.getMin(),LastValueMap.getMax(),LastValueMap.getDeviceInput(),FSInputRest);
       infoMapsToReturn.push(map);
@@ -76,7 +76,7 @@ void FSUSBJoyStickInputElement::getMapping(int inputValue ,std::stack<FSUSBEleme
 
 }
 
-bool FSUSBJoyStickInputElement::isValueInDeadZone(MinMaxNumber value)
+bool FSUSBJoyStickInputElement::isValueInDeadZone(minMaxNumber value)
 {
     if(_calibrated && _needsDeadZone)
     {
@@ -92,7 +92,7 @@ bool FSUSBJoyStickInputElement::isValueInDeadZone(MinMaxNumber value)
     return true;
 }
 
-void FSUSBJoyStickInputElement::setValue(MinMaxNumber newValue)
+void FSUSBJoyStickInputElement::setValue(minMaxNumber newValue)
 {
     double diffranceInTime = difftime(time(NULL),firstTime);
 
@@ -132,7 +132,7 @@ void FSUSBJoyStickInputElement::setValue(MinMaxNumber newValue)
     if(_useLastValueStack ) {_lastValueStack.push(_value);}
 }
 
-FSUSBJoyStickInputElement::FSUSBJoyStickInputElement(unsigned int id,  unsigned int parentID, MinMaxNumber elementMin, MinMaxNumber elementMax ,VendorIDType vendorID,ProductIDType productID,FSUSBDeviceManager & _manager,PhysicalValueNumber currentValue,MinMaxNumber buttonNumber):FSUSBDevice(id,vendorID,productID)
+FSUSBJoyStickInputElement::FSUSBJoyStickInputElement(idNumber id,  idNumber parentID, minMaxNumber elementMin, minMaxNumber elementMax ,vendorIDType vendorID,productIDType productID,FSUSBDeviceManager & _manager,physicalValueNumber currentValue,minMaxNumber buttonNumber):FSUSBDevice(id,vendorID,productID)
 {
     _buttonNumber = buttonNumber;
      _elementMin = elementMin;
@@ -161,7 +161,7 @@ void FSUSBJoyStickInputElement::setCalibrationOffsetPrecent(float offset )
     _calibrationOffsetPrecent = offset;
 }
 
-void FSUSBJoyStickInputElement::calibrate(PhysicalValueNumber currentValue, MinMaxNumber elementMin, MinMaxNumber elementMax )
+void FSUSBJoyStickInputElement::calibrate(physicalValueNumber currentValue, minMaxNumber elementMin, minMaxNumber elementMax )
 {
     _needsDeadZone = false;
     _calibrated =false;
@@ -184,12 +184,12 @@ void FSUSBJoyStickInputElement::calibrate(PhysicalValueNumber currentValue, MinM
         }
         if(_deadZoneMin > _deadZoneMax)
         {
-           MinMaxNumber temp = _deadZoneMax;
+           minMaxNumber temp = _deadZoneMax;
            _deadZoneMax = _deadZoneMin ;
            _deadZoneMin = temp;
         }
 
-        MinMaxNumber precent = static_cast<MinMaxNumber>(( (float)(_elementMax + std::abs(_elementMin) ) )*_calibrationOffsetPrecent);
+        minMaxNumber precent = static_cast<minMaxNumber>(( (float)(_elementMax + std::abs(_elementMin) ) )*_calibrationOffsetPrecent);
 
         _deadZoneMax= _elementMax < _deadZoneMax+precent ?  _deadZoneMax :_deadZoneMax + precent ;
         _deadZoneMin = _elementMin > _deadZoneMin-precent ? _deadZoneMin : _deadZoneMin - precent;
@@ -198,7 +198,7 @@ void FSUSBJoyStickInputElement::calibrate(PhysicalValueNumber currentValue, MinM
    }
 }
 
-void FSUSBJoyStickInputElement::recalibrate(PhysicalValueNumber currentValue, MinMaxNumber elementMin, MinMaxNumber elementMax )
+void FSUSBJoyStickInputElement::recalibrate(physicalValueNumber currentValue, minMaxNumber elementMin, minMaxNumber elementMax )
 {
     calibrate(currentValue,elementMin,elementMax);
 }

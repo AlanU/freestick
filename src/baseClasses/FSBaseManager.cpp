@@ -66,7 +66,7 @@ FSBaseManager::~FSBaseManager()
 
 }
 
-const FSBaseDevice * FSBaseManager::getDevice(ElementID deviceID)
+const FSBaseDevice * FSBaseManager::getDevice(elementID deviceID)
 {
     if(deviceMap.find(deviceID) != deviceMap.end())
         return deviceMap[deviceID];
@@ -278,7 +278,7 @@ void FSBaseManager::updateEvent(FSBaseEvent & event)
 
 }
 
-float FSBaseManager::convertRawToNormalizedRanger(double value,MinMaxNumber maxValue,MinMaxNumber minValue)
+float FSBaseManager::convertRawToNormalizedRanger(double value,minMaxNumber maxValue,minMaxNumber minValue)
 {
 
     double joystickRange = (double)maxValue - (double)minValue;
@@ -295,8 +295,8 @@ float FSBaseManager::convertRawToNormalizedRanger(double value,MinMaxNumber maxV
 void FSBaseManager::inputOnDeviceChangedWithNormilzedValues(FreeStickEventType eventType,
                                          FSEventAction eventAction,
                                          FSDeviceInput inputType,
-                                         unsigned int deviceID,
-                                         unsigned int deviceControlID,
+                                         idNumber deviceID,
+                                         idNumber deviceControlID,
                                          float newValue,
                                          float oldValue)
 {
@@ -308,7 +308,7 @@ void FSBaseManager::inputOnDeviceChangedWithNormilzedValues(FreeStickEventType e
 }
 
 
-void FSBaseManager::inputOnDeviceChanged(FreeStickEventType eventType,FSEventAction eventAction,FSDeviceInput inputType,unsigned int deviceID,unsigned int deviceControlID,int newValue,int oldValue,MinMaxNumber min, MinMaxNumber max)
+void FSBaseManager::inputOnDeviceChanged(FreeStickEventType eventType,FSEventAction eventAction,FSDeviceInput inputType,idNumber deviceID, idNumber deviceControlID,int newValue,int oldValue,minMaxNumber min, minMaxNumber max)
 {
     inputOnDeviceChangedWithNormilzedValues(eventType,eventAction,inputType,deviceID,deviceControlID, convertRawToNormalizedRanger(newValue,max,min), convertRawToNormalizedRanger(oldValue,max,min));
 }
@@ -338,7 +338,7 @@ void FSBaseManager::removeDevice(FSBaseDevice * device)
 
 }
 
-ElementID FSBaseManager::getNextID()
+elementID FSBaseManager::getNextID()
 {
     static unsigned int ID = 1;//0 is reserved for errors
     if(_devicIDCreator != NULL)

@@ -73,16 +73,16 @@ const uint32_t TomeeNesUSBControllerID = 53269;
 
     class FSUSBElementInfoMap
     {
-         MinMaxNumber _min;
-         MinMaxNumber _max;
+         minMaxNumber _min;
+         minMaxNumber _max;
          FSDeviceInput _inputMapping;
          FSEventAction _typeMapping; // is the value down or up on the
     public:
-         inline MinMaxNumber getMax()const {return _max;}
-         inline MinMaxNumber getMin()const {return _min;}
+         inline minMaxNumber getMax()const {return _max;}
+         inline minMaxNumber getMin()const {return _min;}
          inline FSDeviceInput getDeviceInput()const {return _inputMapping;}
          inline FSEventAction getEventMapping()const {return _typeMapping;}
-        FSUSBElementInfoMap(MinMaxNumber min,MinMaxNumber max,FSDeviceInput inputMapping,FSEventAction typeMapping):_min(min),_max(max),_inputMapping(inputMapping),_typeMapping(typeMapping){}
+        FSUSBElementInfoMap(minMaxNumber min,minMaxNumber max,FSDeviceInput inputMapping,FSEventAction typeMapping):_min(min),_max(max),_inputMapping(inputMapping),_typeMapping(typeMapping){}
     };
 
     class FSUSBDeviceManager : public FSBaseManager
@@ -92,27 +92,27 @@ const uint32_t TomeeNesUSBControllerID = 53269;
         /** \todo
          * combind vendor and product ID in to on 64bit key to cut down the size of this type
          */
-        std::unordered_map<DeviceID,std::unordered_map<IDNumber,FSDeviceInput> > _usageMapToInputEvent; //can only have a value of 1 or 0 where 1 is pressed and 0 is not
-        std::unordered_map<DeviceID,std::unordered_map<IDNumber,std::vector<FSUSBElementInfoMap> > > _usageMapToInputRangeEvent;
+        std::unordered_map<deviceID,std::unordered_map<idNumber,FSDeviceInput> > _usageMapToInputEvent; //can only have a value of 1 or 0 where 1 is pressed and 0 is not
+        std::unordered_map<deviceID,std::unordered_map<idNumber,std::vector<FSUSBElementInfoMap> > > _usageMapToInputRangeEvent;
     public:
 
        //add or replace mapping
         //TODO add addMappingForButton
         //void addMappingForButton(unsigned int vendorUSBID,unsigned int productUSBID,unsigned int controlUSBID,FSDeviceInput deviceInput);
-        void addMapping(unsigned int vendorUSBID,unsigned int productUSBID,unsigned int controlUSBID,FSDeviceInput deviceInput);
-        void addMapping(unsigned int deviceID,unsigned int controlID,FSDeviceInput deviceInput);
+        void addMapping(vendorIDType vendorUSBID, productIDType productUSBID, idNumber controlUSBID,FSDeviceInput deviceInput);
+        void addMapping(idNumber deviceID, idNumber controlID, FSDeviceInput deviceInput);
         //FSUSBElementInfoMap lookUpDeviceInputFromID(unsigned int deviceID, unsigned int controlID);
-        FSUSBElementInfoMap lookUpDeviceInputFromID(unsigned int deviceID, unsigned int controlID, MinMaxNumber min, MinMaxNumber max,int value);
-        FSUSBElementInfoMap lookUpDeviceInputFromUSBID( VendorIDType vendorUSBID, ProductIDType productUSBID , unsigned int controlID,MinMaxNumber min,MinMaxNumber max,int value);
-        FSUSBElementInfoMap infoMapForInputType(unsigned int vendorUSBID, unsigned int productUSBID ,FSDeviceInput inputToLookFor );
+        FSUSBElementInfoMap lookUpDeviceInputFromID(idNumber deviceID, idNumber controlID, minMaxNumber min, minMaxNumber max,physicalValueNumber value);
+        FSUSBElementInfoMap lookUpDeviceInputFromUSBID( vendorIDType vendorUSBID, productIDType productUSBID , idNumber controlID, minMaxNumber min, minMaxNumber max, physicalValueNumber value);
+        FSUSBElementInfoMap infoMapForInputType(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor );
 
 
-        bool doesDeviceHaveDeviceInput(unsigned int deviceID,FSDeviceInput inputToLookFor);
+        bool doesDeviceHaveDeviceInput(idNumber deviceID,FSDeviceInput inputToLookFor);
         //TODO have androd overide this fuction
-        bool doesElementHaveDeviceInputForValue(unsigned int vendorUSBID, unsigned int productUSBID ,unsigned int elementID,FSDeviceInput inputToLookFor );
-        bool doesDeviceHaveDeviceInput(unsigned int vendorUSBID, unsigned int productUSBID ,FSDeviceInput inputToLookFor);
-        bool doesDeviceHaveDeviceInputForValue(unsigned int vendorUSBID, unsigned int productUSBID ,FSDeviceInput inputToLookFor,int value );
-        bool doesDeviceHaveDeviceInputForValue(unsigned int deviceID,FSDeviceInput inputToLookFor,  int value );
+        bool doesElementHaveDeviceInputForValue(vendorIDType vendorUSBID, productIDType productUSBID ,elementID elementID, FSDeviceInput inputToLookFor );
+        bool doesDeviceHaveDeviceInput(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor);
+        bool doesDeviceHaveDeviceInputForValue(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor,physicalValueNumber value );
+        bool doesDeviceHaveDeviceInputForValue(idNumber deviceID,FSDeviceInput inputToLookFor,  physicalValueNumber value );
 
 
 

@@ -31,13 +31,13 @@ FSBaseDevice::FSBaseDevice()
 {
 }
 
-FSBaseDevice::FSBaseDevice(IDNumber id)
+FSBaseDevice::FSBaseDevice(idNumber id)
 {
     _id = id;
     _friendlyName = "unknown";
 }
 
-IDNumber FSBaseDevice::getJoystickID() const
+idNumber FSBaseDevice::getJoystickID() const
 {
     return _id;
 }

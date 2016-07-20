@@ -10,13 +10,13 @@ void FSUpdatableJoystickDeviceManager::update()
 
 }
 
-void FSUpdatableJoystickDeviceManager::updateEvents(unsigned int joystickDeviceID, FSUSBJoyStickInputElement * elementDevice, PhysicalValueNumber elementValue)
+void FSUpdatableJoystickDeviceManager::updateEvents(idNumber joystickDeviceID, FSUSBJoyStickInputElement * elementDevice, physicalValueNumber elementValue)
 {
 	if (elementDevice->getValue() != elementValue) {
 
 		if (elementDevice->isIntialized())
 		{
-			FSUSBJoystickDeviceManager::updateEvents(joystickDeviceID, elementDevice, elementValue);
+            FSUSBJoystickDeviceManager::updateEvents(joystickDeviceID, elementDevice, elementValue);
 		}
 		else
 		{

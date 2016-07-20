@@ -33,7 +33,7 @@ namespace freestick
     {
     public:
         FSUpdatableJoystickDeviceManager();
-		virtual void updateEvents(unsigned int joystickDeviceID, FSUSBJoyStickInputElement * elementDevice, PhysicalValueNumber elementValue);
+        virtual void updateEvents(idNumber joystickDeviceID, FSUSBJoyStickInputElement * elementDevice, physicalValueNumber elementValue);
         virtual void update();
     };
 }

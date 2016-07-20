@@ -83,7 +83,7 @@ namespace freestick {
 
         void updateJoysticks();
     private:
-        std::unordered_map<IDNumber,LONG> lastPOVValue;
+        std::unordered_map<idNumber,LONG> lastPOVValue;
         typedef FSSpinLock ConnctionLockType ;
         ConnctionLockType connectedJoystickLock;
         std::vector<FSDirectInputJoystick * > joysticksToAddThisUpdate;

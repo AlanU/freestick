@@ -78,43 +78,44 @@ int ControllerMappingTableModel::rowCount(const QModelIndex & /*parent*/) const
  }
 
 
- QVariant ControllerMappingTableModel::headerData(int section, Qt::Orientation orientation, int role) const
+ QVariant ControllerMappingTableModel::headerData(sectionType section, Qt::Orientation orientation, int role) const
  {
      if(role == Qt::DisplayRole && orientation ==  Qt::Horizontal)
      {
+
             switch(section)
              {
-                  case 0:
+                  case id:
                      return tr("ID");
                   break;
-                  case 1:
+                  case minValueRange:
                      return tr( "Min Value Range");
                   break;
-                  case 2:
+                  case maxValueRange:
                     return tr("Max Value Range");
                   break;
-                  case 3:
+                  case rawValue:
                     return tr("Raw Value");
                   break;
-                  case 4:
+                  case value:
                     return tr("Value");
                   break;
-                  case 5:
+                  case deadMin:
                     return tr("Dead Min");
                    break;
-                  case 6:
+                  case deadMax:
                     return tr("Dead Max");
                    break;
-                  case 7:
+                  case mapped:
                     return tr("Mapped");
                   break;
-                  case 8:
+                  case elementCookie:
                     return tr("Element Cookie");
                   break;
-                  case 9:
+                  case usagePage:
                     return tr("Usage Page");
                   break;
-                  case 10:
+                  case usage:
                     return tr("Usage");
                   break;
                   default:

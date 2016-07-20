@@ -35,16 +35,16 @@ namespace  freestick
     class FSBaseDevice : public IFSDevice
     {
     private:
-        IDNumber _id;
+        idNumber _id;
         std::map<FSDeviceInput,std::string> _controlInputToFriendlyName;
     protected:
         FSBaseDevice();
         std::string _friendlyName;
     public:
-        virtual IDNumber getJoystickID() const;
+        virtual idNumber getJoystickID() const;
         virtual FSDeviceType getClassType() const {return FSBaseDeviceType;}
         const std::string & GetFrendlyName() const {return _friendlyName;}
-        FSBaseDevice(IDNumber id);
+        FSBaseDevice(idNumber id);
         virtual ~FSBaseDevice();
 
     };

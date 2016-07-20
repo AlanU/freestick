@@ -290,7 +290,7 @@ void FSDirectInputJoystickManager::updateJoysticks()
 			{
 				FSUSBJoyStickInputElement & element = item.second;
 				if (element.getMinValue() == 0 && element.getMaxValue() == 1) {
-                    MinMaxNumber value = (js.rgbButtons[buttonNumber] & 0x80) ? 1 : 0;
+                    minMaxNumber value = (js.rgbButtons[buttonNumber] & 0x80) ? 1 : 0;
 
                     if (element.getValue() != value) {
 						updateEvents(device->getJoystickID(),&element, value);
@@ -351,7 +351,7 @@ void FSDirectInputJoystickManager::addDevice(GUID guidDeviceInstance)
         result = _directInput8->CreateDevice(guidDeviceInstance, &_Joystick, NULL);
         if (SUCCEEDED(result)) {
             //TODO set up event with SetEventNotification , CreateEvent , and WaitForSingleObject
-            ElementID newID = this->getNextID();
+            elementID newID = this->getNextID();
             FSDirectInputJoystick * newJoystick = new FSDirectInputJoystick(_Joystick, newID, 0, 0, 0, false, -1, -1, *this);
             joysticksToAddThisUpdate.push_back(newJoystick);
             //  this->addDevice(newJoystick);
@@ -364,7 +364,7 @@ void FSDirectInputJoystickManager::removeDevice(GUID guidDeviceInstance)
 {
     std::lock_guard<ConnctionLockType> lock (connectedJoystickLock);
     if (_directInputToDeviceIDMap.find(guidDeviceInstance) != _directInputToDeviceIDMap.end()) {
-        unsigned int id = _directInputToDeviceIDMap[guidDeviceInstance];
+       elementID id = _directInputToDeviceIDMap[guidDeviceInstance];
         const FSBaseDevice * joystickToDelete = this->getDevice(id);
         joysticksToRemoveThisUpdate.push_back(joystickToDelete);
         //this->removeDevice((FSBaseDevice*)joystickToDelete);

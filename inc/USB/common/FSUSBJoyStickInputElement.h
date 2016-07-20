@@ -42,40 +42,40 @@ namespace freestick
          *typedef these private data members and other classes
          *so type of the elements can change easly if a given platform needs to
          */
-        MinMaxNumber _elementMin;
-        MinMaxNumber _elementMax;
-        MinMaxNumber _oldValue;
-        MinMaxNumber _value;
-        MinMaxNumber _deadZoneMin;
-        MinMaxNumber _deadZoneMax;
+        minMaxNumber _elementMin;
+        minMaxNumber _elementMax;
+        minMaxNumber _oldValue;
+        minMaxNumber _value;
+        minMaxNumber _deadZoneMin;
+        minMaxNumber _deadZoneMax;
         bool _needsDeadZone;
         bool _calibrated;
         bool _intialized;
         FSUSBDeviceManager * _usbDeviceManager;
         time_t firstTime;
-        std::queue<MinMaxNumber> _lastValueStack;
+        std::queue<minMaxNumber> _lastValueStack;
         bool _useLastValueStack;
         unsigned int _parentID;
-        MinMaxNumber _buttonNumber;
+        minMaxNumber _buttonNumber;
         float _calibrationOffsetPrecent = 0.05f; //Offset used to calibrate deadzones
     protected:
-        void calibrate(PhysicalValueNumber currentValue, MinMaxNumber elementMin, MinMaxNumber elementMax );
+        void calibrate(physicalValueNumber currentValue, minMaxNumber elementMin, minMaxNumber elementMax );
         void EmptyQue(std::stack<FSUSBElementInfoMap> & infoMapsToReturn,unsigned int sizeToleft);
     public:
         //FSUSBJoyStickInputElement(const & FSUSBJoyStickInputElement copy){}
                  FSUSBJoyStickInputElement();
-        FSUSBJoyStickInputElement(unsigned int id, unsigned int parentID, MinMaxNumber elementMin, MinMaxNumber elementMax, VendorIDType vendorID,ProductIDType productID,FSUSBDeviceManager & _manager,PhysicalValueNumber currentValue,MinMaxNumber buttonNumber);
+        FSUSBJoyStickInputElement(unsigned int id, unsigned int parentID, minMaxNumber elementMin, minMaxNumber elementMax, vendorIDType vendorID,productIDType productID,FSUSBDeviceManager & _manager,physicalValueNumber currentValue,minMaxNumber buttonNumber);
         void getMapping(int inputValue,std::stack<FSUSBElementInfoMap> & infoMapsToReturn) ;
-        inline MinMaxNumber getValue() const {return _value;}
-        void setValue(MinMaxNumber newValue);
-        bool isValueInDeadZone(MinMaxNumber value);
+        inline minMaxNumber getValue() const {return _value;}
+        void setValue(minMaxNumber newValue);
+        bool isValueInDeadZone(minMaxNumber value);
 		bool isIntialized();
-        inline MinMaxNumber getMaxValue() const {return _elementMax;}
-        inline MinMaxNumber getMinValue() const {return _elementMin;}
-        inline MinMaxNumber getDeadZoneMin() const {return _deadZoneMin;}
-        inline MinMaxNumber getDeadZoneMax() const {return _deadZoneMax;}
-        inline MinMaxNumber getButtonNumber() const {return _buttonNumber;}
-        void recalibrate(PhysicalValueNumber currentValue, MinMaxNumber elementMin, MinMaxNumber elementMax );
+        inline minMaxNumber getMaxValue() const {return _elementMax;}
+        inline minMaxNumber getMinValue() const {return _elementMin;}
+        inline minMaxNumber getDeadZoneMin() const {return _deadZoneMin;}
+        inline minMaxNumber getDeadZoneMax() const {return _deadZoneMax;}
+        inline minMaxNumber getButtonNumber() const {return _buttonNumber;}
+        void recalibrate(physicalValueNumber currentValue, minMaxNumber elementMin, minMaxNumber elementMax );
         uint16_t getHIDUsage();
         uint16_t getHIDUsagePage();
         //used to pad out the dead zone when calibrating
