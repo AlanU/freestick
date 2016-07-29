@@ -41,3 +41,4 @@ build/QT/JoyStickConfig/release/
 build/QT/JoyStickConfig/debug/
 *.vcxproj
 build/QT/JoyStickConfig/JoyStickConfig_resource.rc
+*.o
