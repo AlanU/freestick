@@ -32,7 +32,7 @@ and must not be misrepresented as being the original software.
 #include <jni.h>
 namespace freestick
 {
-    class FSHIDAndroidJoysickDeviceManager : public FSUSBJoystickDeviceManager , IJINICallBack
+    class FSHIDAndroidJoysickDeviceManager : public FSUSBJoystickDeviceManager , IJNICallBack
     {
     public:
         FSHIDAndroidJoysickDeviceManager();
