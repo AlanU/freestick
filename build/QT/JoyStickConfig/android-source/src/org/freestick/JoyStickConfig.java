@@ -61,7 +61,7 @@ public class JoyStickConfig extends org.qtproject.qt5.android.bindings.QtActivit
     m_deviceManager = new FreestickDeviceManager();
     m_deviceManager.checkForNewJoysticks(m_inputManager);
 
-    //m_inputManager.registerInputDeviceListener(m_deviceManager, null);
+    m_inputManager.registerInputDeviceListener(m_deviceManager, null);
 
     super.onCreate(savedInstanceState);
 
@@ -72,9 +72,14 @@ public class JoyStickConfig extends org.qtproject.qt5.android.bindings.QtActivit
    public boolean dispatchGenericMotionEvent(MotionEvent event)
    {
 
-       m_deviceManager.handelMotionEvent(event);
+       if(m_deviceManager.handelMotionEvent(event))
+        {
+            return true;
+        }
+
 
         return super.dispatchGenericMotionEvent(event);
+
    }
 
 
@@ -82,7 +87,11 @@ public class JoyStickConfig extends org.qtproject.qt5.android.bindings.QtActivit
 
   public boolean dispatchKeyEvent(KeyEvent event)
   {
-     m_deviceManager.handelButtonEvent(event);
+     if(m_deviceManager.handelButtonEvent(event))
+     {
+         return true;
+     }
+
      return super.dispatchKeyEvent(event);
   }
 

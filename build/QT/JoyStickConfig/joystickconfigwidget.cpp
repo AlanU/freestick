@@ -113,8 +113,9 @@ void JoyStickConfigWidget::onStickMove(FSDeviceInputEvent event)
     text += tr(" with Value of ");
     text += QString::number(event.getNewInputValue());
     ui->AnologDebugControl->setText(text);
+#ifndef Q_OS_ANDROID
     updateVirtualAnalogGamePad(event.getInputType(),event.getEventAction(),event.getNewInputValue() );
-
+#endif
 }
 void JoyStickConfigWidget::updateVirtualButton(QWidget * button,freestick::FSEventAction action )
 {
@@ -304,9 +305,8 @@ void JoyStickConfigWidget::onButtonDown(FSDeviceInputEvent event)
      text += QString::number(event.getControlID());
 
      ui->DebugControl->setText(text);
+
      updateVirtualDigitalGamePad(event.getInputType(),event.getEventAction());
-
-
 }
 void JoyStickConfigWidget::onConnect(FSBaseEvent event)
 {
