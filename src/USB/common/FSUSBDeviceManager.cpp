@@ -610,6 +610,39 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputRangeEvent[createVPId(GravisVendorID,GamePadProID)][65584].push_back(FSUSBElementInfoMap(255,255,DPadRight,FSInputPressed));
     _usageMapToInputRangeEvent[createVPId(GravisVendorID,GamePadProID)][65584].push_back(FSUSBElementInfoMap(127,127,LastValueUp,FSInputRest));
 
+    //ZD-V V Wired GamePad
+    _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65593].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65593].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65593].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65593].push_back(FSUSBElementInfoMap(3,3,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65593].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65593].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65593].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65593].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65593].push_back(FSUSBElementInfoMap(15,15,LastValueUp,FSInputRest));
+
+    _usageMapToInputEvent[createVPId(ZDVVendorID,VWiredGamePadID)][589827] =  ButtonA;
+    _usageMapToInputEvent[createVPId(ZDVVendorID,VWiredGamePadID)][589826] =  ButtonB;
+    _usageMapToInputEvent[createVPId(ZDVVendorID,VWiredGamePadID)][589828] =  ButtonX;
+    _usageMapToInputEvent[createVPId(ZDVVendorID,VWiredGamePadID)][589825] =  ButtonY;
+
+    _usageMapToInputEvent[createVPId(ZDVVendorID,VWiredGamePadID)][589831] =  LeftShoulder2;
+    _usageMapToInputEvent[createVPId(ZDVVendorID,VWiredGamePadID)][589832] =  RightShoulder2;
+    _usageMapToInputEvent[createVPId(ZDVVendorID,VWiredGamePadID)][589829] =  LeftShoulder;
+    _usageMapToInputEvent[createVPId(ZDVVendorID,VWiredGamePadID)][589830] =  RightShoulder;
+
+    _usageMapToInputEvent[createVPId(ZDVVendorID,VWiredGamePadID)][589835] = Axis1Button;
+    _usageMapToInputEvent[createVPId(ZDVVendorID,VWiredGamePadID)][589836] = Axis2Button;
+
+    _usageMapToInputEvent[createVPId(ZDVVendorID,VWiredGamePadID)][589833] =  ButtonSelect;
+    _usageMapToInputEvent[createVPId(ZDVVendorID,VWiredGamePadID)][589834] =  ButtonStart;
+
+    _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65584].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));
+    _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65585].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));
+
+    _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65589].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));
+    _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65586].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));
+
 
 }
 

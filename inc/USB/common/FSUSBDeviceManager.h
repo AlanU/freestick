@@ -70,6 +70,8 @@ const uint32_t PCUSBSNESVendorID = 3727;
 const uint32_t PCUSBSNESID = 12307;
 const uint32_t TomeeVendorID2 = 4797;
 const uint32_t TomeeNesUSBControllerID = 53269;
+const uint32_t ZDVVendorID = 9571;
+const uint32_t VWiredGamePadID = 1397;
 
     class FSUSBElementInfoMap
     {
