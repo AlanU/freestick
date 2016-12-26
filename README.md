@@ -57,8 +57,10 @@ Then register your class with the Device Manager for the call back you are intre
    }
 ```
 
-Supports the Following Controllers
-Mac:
+## Supports the Following Controllers ##
+
+**Mac:**
+
 * Xbox 360 Wireless and Wired
 * Xbox One (USB Only)
 * PlayStation Dualshock 2 (with HVG USB adapter Only)
@@ -73,7 +75,8 @@ Mac:
 * Gtron Retro USB Super Classic Controller
 * Gravis GamePad Pro (USB)
 
-Window:
+**Window:**
+
 * All Xinput controllers
 * Xbox 360 Wireless and Wired
 * Xbox One (USB Only)
@@ -87,5 +90,6 @@ Window:
 * Gtron Retro USB Super Classic Controller
 * Gravis GamePad Pro (USB)
 
-Android:
+**Android:**
+
 * Any controller supported by the OS
