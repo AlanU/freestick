@@ -59,33 +59,33 @@ Then register your class with the Device Manager for the call back you are intre
 
 Supports the Following Controllers
 Mac:
-Xbox 360 Wireless and Wired
-Xbox One (USB Only)
-PlayStation Dualshock 2 (with HVG USB adapter Only)
-PlayStation Dualshock 3
-PlayStation Dualshock 4
-Steelseries Free
-Steelseries 3GC 
-Logitech F310 (Xinput and Direct Input mode)
-Logitect F710 (Xinput and Direct Input mode)
-Logitect Dual Action
-Game Elements Recoil
-Gtron Retro USB Super Classic Controller
-Gravis GamePad Pro (USB)
+* Xbox 360 Wireless and Wired
+* Xbox One (USB Only)
+* PlayStation Dualshock 2 (with HVG USB adapter Only)
+* PlayStation Dualshock 3
+* PlayStation Dualshock 4
+* Steelseries Free
+* Steelseries 3GC 
+* Logitech F310 (Xinput and Direct Input mode)
+* Logitect F710 (Xinput and Direct Input mode)
+* Logitect Dual Action
+* Game Elements Recoil
+* Gtron Retro USB Super Classic Controller
+* Gravis GamePad Pro (USB)
 
 Window:
-All Xinput controllers
-Xbox 360 Wireless and Wired
-Xbox One (USB Only)
-PlayStation Dualshock 2 (with HVG USB adapter Only)
-Steelseries Free
-Steelseries 3GC 
-Logitech F310 (Xinput and Direct Input mode)
-Logitect F710 (Xinput and Direct Input mode)
-Logitect Dual Action
-Game Elements Recoil
-Gtron Retro USB Super Classic Controller
-Gravis GamePad Pro (USB)
+* All Xinput controllers
+* Xbox 360 Wireless and Wired
+* Xbox One (USB Only)
+* PlayStation Dualshock 2 (with HVG USB adapter Only)
+* Steelseries Free
+* Steelseries 3GC 
+* Logitech F310 (Xinput and Direct Input mode)
+* Logitect F710 (Xinput and Direct Input mode)
+* Logitect Dual Action
+* Game Elements Recoil
+* Gtron Retro USB Super Classic Controller
+* Gravis GamePad Pro (USB)
 
 Android:
-Any controller supported by the OS
+* Any controller supported by the OS
