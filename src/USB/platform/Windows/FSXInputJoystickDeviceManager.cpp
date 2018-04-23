@@ -70,7 +70,7 @@ void FSXInputJoystickDeviceManager::updateJoysticks()
     static DWORD lastState[XUSER_MAX_COUNT]= {0,0,0,0};
 	//do not as for the state of disconnected joysticks this causes performance issues
 	DWORD index = 0;
-	for (auto & itr = _wordToIDControllerMap.begin(); itr != _wordToIDControllerMap.end();++itr)
+    for (auto itr = _wordToIDControllerMap.begin(); itr != _wordToIDControllerMap.end();++itr)
     {
 		index = itr->first;
         DWORD result;
