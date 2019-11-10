@@ -40,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-    this->setCentralWidget(NULL);
+    this->setCentralWidget(nullptr);
     delete ui;
 }
 

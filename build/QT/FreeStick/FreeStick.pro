@@ -119,6 +119,16 @@ macx {
         -framework CoreFoundation \
 }
 
+ios {
+    OBJECTIVE_SOURCES += ../../../src/USB/platform/iOS/FSMFIJoystickManager.mm \
+                         ../../../src/USB/platform/iOS/FSMFIJoystick.mm
+    HEADERS += ../../../inc/USB/platform/iOS/FSMFIJoystickManager.h \
+               ../../../inc/USB/platform/iOS/FSMFIJoystick.h
+    LIBS += -framework GameController \
+            -framework Foundation
+    QMAKE_IOS_DEPLOYMENT_TARGET = 10.0
+}
+
 win32 {
 
     SOURCES += $$files(../../../src/USB/platform/Windows/*.cpp)

@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Main.qml</file>
+        <file>MainForm.ui.qml</file>
+        <file>JoystickTablePage.qml</file>
+        <file>JoystickTablePageForm.qml</file>
+    </qresource>
+</RCC>

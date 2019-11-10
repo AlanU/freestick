@@ -26,21 +26,44 @@ and must not be misrepresented as being the original software.
 **************************************************************************/
 
 #include "mainwindow.h"
+#include "freestick.h"
+#include "qfreestickdevicemanger.h"
+#include <QQmlContext>
 #include <QApplication>
+#include <QQmlApplicationEngine>
+#include "controllermappingtablemodel.h"
+#include "devicelistmodel.h"
 //This is a work around for VS 2013 not supporting constexpr correctly
 //This should be change to constexpr once 2013 support is dropped
 const char * version = "0.0.2";
 #ifdef Q_OS_ANDROID
 
 #include <native_app_glue/android_native_app_glue.h>
+#include <QAndroidJniEnvironment>
 
 #endif
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     a.setApplicationVersion(version);
-    MainWindow w;
-    w.show();
+    QQmlApplicationEngine engine;
+    //MainWindow w;
+  //  w.show();
+    FreeStickDeviceManager deviceManager;
+#ifdef Q_OS_ANDROID
+    QAndroidJniEnvironment qjniEnv;
+    JavaVM * jvm = QAndroidJniEnvironment::javaVM();
+    deviceManager.init(jvm);
+
+#else
+     deviceManager.init();
+#endif
+    QFreestickDeviceManger qDeviceManager(&deviceManager);//This is just a wrapper class to work with QML
+    qmlRegisterType<ControllerMappingTableModel>("org.freestick.models", 1, 0, "ContorllerMapping");
+    qmlRegisterType<DeviceListModel>("org.freestick.models", 1, 0, "DeviceList");
+
+    engine.rootContext()->setContextProperty("deviceManager", &qDeviceManager);
+    engine.load(QUrl(QStringLiteral("qrc:/Main.qml")));
 
     return a.exec();
 }

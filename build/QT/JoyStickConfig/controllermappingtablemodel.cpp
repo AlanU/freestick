@@ -43,33 +43,79 @@ const std::array<const std::string,16> usagePageList  {"Undefined",
 
 ControllerMappingTableModel::ControllerMappingTableModel(FreeStickDeviceManager & manager,unsigned int joystickID)
 {
-    _manager = &manager;
-    modelChanged(joystickID);
-    _manager->ListenForAllJoysticksForEventTypes(FS_JOYSTICK_CONNECTED_EVENT |
+  //  _manager = &manager;
+    setJoystickID(joystickID);
+    setManager(&manager);
+    //modelChanged(joystickID);
+    /*_manager->ListenForAllJoysticksForEventTypes(FS_JOYSTICK_CONNECTED_EVENT |
                                                  FS_JOYSTICK_DISCONNECT_EVENT |
                                                  FS_BUTTON_EVENT | FS_AXIS_EVENT
-                                                 | FS_TRIGGER_EVENT,*this);
+                                                 | FS_TRIGGER_EVENT,*this);*/
 
 }
 
 ControllerMappingTableModel::ControllerMappingTableModel()
 {
+}
+
+unsigned int ControllerMappingTableModel::joystickID()
+{
+    return _joystickId;
+}
+
+void ControllerMappingTableModel::setJoystickID(unsigned int newID)
+{
+    modelChanged(newID);
+    emit joystickIDChanged(newID);
+}
+
+QFreestickDeviceManger* ControllerMappingTableModel::manager()
+{
+    return _wrapperManger;
+}
+
+void ControllerMappingTableModel::setManager(QFreestickDeviceManger * manager)
+{
+    setManager(manager->freestickManager());
+
+    _wrapperManger = manager;
+    emit managerChanged(_wrapperManger);
+}
+
+void ControllerMappingTableModel::setManager(FreeStickDeviceManager* manager)
+{
+    if(_manager)
+    {
+        _manager->UnListenForAllJoysticksForEventTypes(FS_JOYSTICK_CONNECTED_EVENT |
+                                                 FS_JOYSTICK_DISCONNECT_EVENT |
+                                                 FS_BUTTON_EVENT | FS_AXIS_EVENT
+                                                 | FS_TRIGGER_EVENT,*this);
+    }
+    _manager = manager;
+
+    _manager->ListenForAllJoysticksForEventTypes(FS_JOYSTICK_CONNECTED_EVENT |
+                                              FS_JOYSTICK_DISCONNECT_EVENT |
+                                              FS_BUTTON_EVENT | FS_AXIS_EVENT
+                                              | FS_TRIGGER_EVENT,*this);
 
 }
 
 ControllerMappingTableModel::~ControllerMappingTableModel()
 {
-    _manager->UnListenForAllJoysticksForEventTypes(FS_JOYSTICK_CONNECTED_EVENT |
+    if(_manager)
+    {
+         _manager->UnListenForAllJoysticksForEventTypes(FS_JOYSTICK_CONNECTED_EVENT |
                                                  FS_JOYSTICK_DISCONNECT_EVENT |
                                                  FS_BUTTON_EVENT | FS_AXIS_EVENT
                                                  | FS_TRIGGER_EVENT,*this);
+    }
 
 }
 
 int ControllerMappingTableModel::rowCount(const QModelIndex & /*parent*/) const
  {
 
-    return (int)_elemntIDList.size() ;
+    return static_cast<int>(_elemntIDList.size());
  }
 
  int ControllerMappingTableModel::columnCount(const QModelIndex & /*parent*/) const
@@ -77,55 +123,128 @@ int ControllerMappingTableModel::rowCount(const QModelIndex & /*parent*/) const
      return 11;
  }
 
+ QHash<int, QByteArray> ControllerMappingTableModel::roleNames() const {
+     QHash<int, QByteArray> roles;
+     roles[id] = "ID";
+     roles[minValueRange] = "Min_Value_Range";
+     roles[maxValueRange] = "Max_Value_Range";
+     roles[rawValue] =  "Raw_Value";
+     roles[value] = "Value";
+     roles[deadMin] = "Dead_Min";
+     roles[deadMax] =  "Dead_Max";
+     roles[mapped] = "Mapped";
+     roles[elementCookie] = "Element_Cookie";
+     roles[usagePage] =  "Usage_Page";
+     roles[usage] =  "Usage";
+     roles[Qt::DisplayRole] = "display";
+     return roles;
+ }
 
- QVariant ControllerMappingTableModel::headerData(sectionType section, Qt::Orientation orientation, int role) const
+
+
+ QVariant ControllerMappingTableModel::headerData(int section, Qt::Orientation orientation, int role) const
  {
      if(role == Qt::DisplayRole && orientation ==  Qt::Horizontal)
      {
-
+            QString role = "";
             switch(section)
              {
                   case id:
-                     return tr("ID");
+                     role = tr("ID");
                   break;
                   case minValueRange:
-                     return tr( "Min Value Range");
+                     role = tr( "Min Value Range");
                   break;
                   case maxValueRange:
-                    return tr("Max Value Range");
+                    role = tr("Max Value Range");
                   break;
                   case rawValue:
-                    return tr("Raw Value");
+                    role = tr("Raw Value");
                   break;
                   case value:
-                    return tr("Value");
+                    role = tr("Value");
                   break;
                   case deadMin:
-                    return tr("Dead Min");
+                    role = tr("Dead Min");
                    break;
                   case deadMax:
-                    return tr("Dead Max");
+                    role = tr("Dead Max");
                    break;
                   case mapped:
-                    return tr("Mapped");
+                    role = tr("Mapped");
                   break;
                   case elementCookie:
-                    return tr("Element Cookie");
+                    role = tr("Element Cookie");
                   break;
                   case usagePage:
-                    return tr("Usage Page");
+                    role = tr("Usage Page");
                   break;
                   case usage:
-                    return tr("Usage");
+                    role = tr("Usage");
                   break;
                   default:
                     break;
              }
+            return role;
 
      }
      return QVariant();
 
  }
+
+ QVariant ControllerMappingTableModel::dataFromCol(const unsigned int col,const unsigned int row) const
+ {
+     QVariant data;
+     unsigned int elementID =_elemntIDList[row];
+     FSUSBJoyStickInputElement element = _JoyStickElementMap.at(elementID);
+     switch(col)
+     {
+     case 0:
+         data = static_cast<quint32>(_elemntIDList[row]);
+     break;
+     case 1:
+         data =  static_cast<qlonglong>(element.getMinValue());
+     break;
+     case 2:
+         data =  static_cast<qlonglong>(element.getMaxValue());
+     break;
+     case 3:
+         data =  static_cast<qlonglong>(element.getValue());
+     break;
+     case 4:
+         data =  static_cast<QVariant>(_elementValuelist[row]);
+      break;
+     case 5:
+         data =  static_cast<qlonglong>(element.getDeadZoneMin());
+     break;
+     case 6:
+         data =  static_cast<qlonglong>(element.getDeadZoneMax());
+      break;
+     case 7:
+         data =  static_cast<QVariant>(_elemnetMapped[row]);
+      break;
+     case 8:
+         data = static_cast<qlonglong>(element.getButtonNumber());
+      break;
+     case 9:
+     {
+         quint16 usagePage = static_cast<quint16>(FSUSBJoystickDeviceManager::getUsagePageForElement(_elemntIDList[row]));
+         if(usagePage < usagePageList.size())
+         {
+             data =  tr(usagePageList[usagePage].c_str());
+         }
+         data =  usagePage;
+     }
+     break;
+     case 10:
+         data =  static_cast<quint16>(FSUSBJoystickDeviceManager::getUsageForElement(_elemntIDList[row]));
+     break;
+     default:
+         break;
+     }
+     return data;
+ }
+
  QVariant ControllerMappingTableModel::data(const QModelIndex &index, int role) const
  {
      if (role == Qt::ToolTipRole)
@@ -146,54 +265,17 @@ int ControllerMappingTableModel::rowCount(const QModelIndex & /*parent*/) const
      }
      if (role == Qt::DisplayRole)
      {
-         unsigned int id =_elemntIDList[index.row()];
-        FSUSBJoyStickInputElement element = _JoyStickElementMap.at(id);
-
-        switch(index.column())
-        {
-        case 0:
-            return static_cast<quint32>(_elemntIDList[index.row()]);
-        break;
-        case 1:
-            return static_cast<qlonglong>(element.getMinValue());
-        break;
-        case 2:
-            return static_cast<qlonglong>(element.getMaxValue());
-        break;
-        case 3:
-            return static_cast<qlonglong>(element.getValue());
-        break;
-        case 4:
-            return static_cast<QVariant>(_elementValuelist[index.row()]);
-         break;
-        case 5:
-            return static_cast<qlonglong>(element.getDeadZoneMin());
-        break;
-        case 6:
-            return static_cast<qlonglong>(element.getDeadZoneMax());
-         break;
-        case 7:
-            return static_cast<QVariant>(_elemnetMapped[index.row()]);
-         break;
-        case 8:
-            return static_cast<qlonglong>(element.getButtonNumber());
-         break;
-        case 9:
-        {
-            quint16 usagePage = static_cast<quint16>(FSUSBJoystickDeviceManager::getUsagePageForElement(_elemntIDList[index.row()]));
-            if(usagePage < usagePageList.size())
-            {
-                return tr(usagePageList[usagePage].c_str());
-            }
-            return usagePage;
-        }
-        break;
-        case 10:
-            return static_cast<quint16>(FSUSBJoystickDeviceManager::getUsageForElement(_elemntIDList[index.row()]));
-        break;
-        default:
-            break;
-        }
+        //QString("%1, %2").arg(index.column()).arg(index.row());
+        return QString(dataFromCol(index.column(),index.row()).toString());
+      }
+     else if(role > firstSectionType &&  role < lastSectionType)
+     {
+         // int firstNum = firstSectionType;
+        // int lastNum = lastSectionType;
+       //  int idNum = id;
+        // int col = index.column();
+       // int row = index.row();
+        return dataFromCol((role-firstSectionType)-1,index.row());
      }
      return QVariant();
  }
@@ -201,21 +283,22 @@ int ControllerMappingTableModel::rowCount(const QModelIndex & /*parent*/) const
 
 void ControllerMappingTableModel::modelChanged(unsigned int joystickID)
 {
-    beginResetModel();
-    _joystickId = joystickID;
-
-    const FSUSBJoystick *  joystick = static_cast<const FSUSBJoystick *>(_manager->getDevice(joystickID));
-
-    _JoyStickElementMap = joystick->getElements();
-    _elemntIDList = joystick->getElementIds();
-    for(unsigned int index = 0; index < _elemntIDList.size(); index++)
+    if(_manager && _manager->getDevice(joystickID))
     {
-        _elemnetMapped.push_back(false);
-        _elementValuelist.push_back(0);
+        beginResetModel();
+        _joystickId = joystickID;
+
+        const FSUSBJoystick *  joystick = static_cast<const FSUSBJoystick *>(_manager->getDevice(joystickID));
+
+        _JoyStickElementMap = joystick->getElements();
+        _elemntIDList = joystick->getElementIds();
+        for(unsigned int index = 0; index < _elemntIDList.size(); index++)
+        {
+            _elemnetMapped.push_back(false);
+            _elementValuelist.push_back(0);
+        }
+        endResetModel();
     }
-    endResetModel();
-
-
 }
 
 void ControllerMappingTableModel::elementChanged(unsigned int elementID,float newValue)
@@ -232,6 +315,7 @@ void ControllerMappingTableModel::elementChanged(unsigned int elementID,float ne
 
     for(unsigned int index = 0 ; index < _elemntIDList.size(); index++)
     {
+
         if(_elemntIDList[index] == elementID)
         {
 
@@ -274,12 +358,13 @@ void ControllerMappingTableModel::onStickMove(FSDeviceInputEvent event)
 
 
 }
-void ControllerMappingTableModel::onDisconnect(FSBaseEvent event)
+void ControllerMappingTableModel::onDisconnect(FSBaseEvent /*event*/)
 {
-    event;//To remove warning
+
 }
 
- void ControllerMappingTableModel::onConnect(FSBaseEvent event)
+ void ControllerMappingTableModel::onConnect(FSBaseEvent /*event*/)
 {
-    event;//To remove warning
+     //setJoystickID(event.getDeviceID());
+    //event;//To remove warning
 }

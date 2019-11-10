@@ -3,10 +3,25 @@
 
 #include "freestick.h"
 #include <QAbstractTableModel>
-
+#include "qfreestickdevicemanger.h"
 using namespace freestick;
-
 typedef enum
+{
+    firstSectionType = Qt::UserRole + 1,
+    id ,
+    minValueRange ,
+    maxValueRange ,
+    rawValue ,
+    value ,
+    deadMin ,
+    deadMax ,
+    mapped ,
+    elementCookie ,
+    usagePage,
+    usage,
+    lastSectionType
+} sectionType;
+/*typedef enum
 {
     id = 0,
     minValueRange = 1,
@@ -19,27 +34,45 @@ typedef enum
     elementCookie = 8,
     usagePage = 9,
     usage = 10
-} sectionType;
+} sectionType;*/
 
 class ControllerMappingTableModel : public QAbstractTableModel ,public  freestick::IFSJoystickListener
 {
+    Q_OBJECT
 public:
-    ControllerMappingTableModel(FreeStickDeviceManager & manager,unsigned int joystickiD);
-    int rowCount(const QModelIndex & /*parent*/) const;
-    int columnCount(const QModelIndex & /*parent*/) const;
-    virtual QVariant data(const QModelIndex &index, int role) const;
-
-    virtual  QVariant headerData(sectionType section, Qt::Orientation orientation, int role) const;
-    virtual ~ControllerMappingTableModel();
-    virtual void onButtonDown(FSDeviceInputEvent event);
-    virtual void onButtonUp(FSDeviceInputEvent event);
-    virtual void onStickMove(FSDeviceInputEvent event);
-    virtual void onDisconnect(FSBaseEvent event) ;
-    virtual void onConnect(FSBaseEvent event) ;
-private:
     ControllerMappingTableModel();
-    FreeStickDeviceManager * _manager;
-    unsigned int _joystickId;
+    ControllerMappingTableModel(FreeStickDeviceManager & manager,unsigned int joystickiD);
+    int rowCount(const QModelIndex & /*parent*/) const override;
+    int columnCount(const QModelIndex & /*parent*/) const override;
+    virtual QVariant data(const QModelIndex &index, int role) const override;
+
+    Q_PROPERTY(QFreestickDeviceManger* manager READ manager WRITE setManager NOTIFY managerChanged)
+    Q_PROPERTY(unsigned int joystickID READ joystickID WRITE setJoystickID NOTIFY joystickIDChanged)
+
+    unsigned int joystickID();
+    void setJoystickID(unsigned int newID);
+
+    QFreestickDeviceManger* manager();
+    void setManager(QFreestickDeviceManger* manager);
+    void setManager(FreeStickDeviceManager* manager);
+
+    virtual QHash<int, QByteArray> roleNames() const override;
+
+    virtual  QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
+    virtual ~ControllerMappingTableModel() override;
+    virtual void onButtonDown(FSDeviceInputEvent event) override;
+    virtual void onButtonUp(FSDeviceInputEvent event) override;
+    virtual void onStickMove(FSDeviceInputEvent event) override;
+    virtual void onDisconnect(FSBaseEvent event) override;
+    virtual void onConnect(FSBaseEvent event) override ;
+signals:
+    void joystickIDChanged(unsigned int newID);
+    void managerChanged(QFreestickDeviceManger* manager);
+private:
+    QVariant dataFromCol(const unsigned int col,const unsigned int row) const;
+    QFreestickDeviceManger * _wrapperManger = nullptr;
+    FreeStickDeviceManager * _manager = nullptr;//Does not own memory
+    unsigned int _joystickId = 0;
     JoyStickElementMap _JoyStickElementMap;
     std::vector<idNumber> _elemntIDList;
     void modelChanged(unsigned int joystickiD);
