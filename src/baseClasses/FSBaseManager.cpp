@@ -35,7 +35,7 @@ using namespace freestick;
 
 FSBaseManager::FSBaseManager()
 {
-    _devicIDCreator = NULL;
+    _devicIDCreator = nullptr;
 }
 
 void FSBaseManager::init( )
@@ -71,7 +71,7 @@ const FSBaseDevice * FSBaseManager::getDevice(elementID deviceID)
     if(deviceMap.find(deviceID) != deviceMap.end())
         return deviceMap[deviceID];
     else
-        return NULL;
+        return nullptr;
 }
 
 void  FSBaseManager::ListenForAllJoysticksForEventTypes(unsigned int eventFlags,IFSJoystickListener & listener)
@@ -210,7 +210,7 @@ void FSBaseManager::updateEvent(FSBaseEvent & event)
 {
     std::pair<std::unordered_multimap<FreeStickEventType,std::pair<IFSJoystickListener *,bool> >::iterator, std::unordered_multimap<FreeStickEventType,std::pair<IFSJoystickListener *,bool> >::iterator> rangedItr;
     rangedItr = _joystickDeviceListeners.equal_range(event.getEventType());
-    IFSJoystickListener * ListenerToCall = NULL;
+    IFSJoystickListener * ListenerToCall = nullptr;
     while (rangedItr.first != rangedItr.second)
     {
         if(rangedItr.first->second.second)
@@ -227,13 +227,13 @@ void FSBaseManager::updateEvent(FSBaseEvent & event)
             case FS_BUTTON_EVENT:
 
                 if (event.getEventAction() == FSInputPressed )
-                    ListenerToCall->onButtonDown(*(FSDeviceInputEvent *)&event);
+                    ListenerToCall->onButtonDown(*static_cast<FSDeviceInputEvent *>(&event));
                 else
-                    ListenerToCall->onButtonUp(*(FSDeviceInputEvent *)&event);
+                    ListenerToCall->onButtonUp(*static_cast<FSDeviceInputEvent *>(&event));
                 break;
             case FS_TRIGGER_EVENT:
             case FS_AXIS_EVENT:
-                ListenerToCall->onStickMove(*(FSDeviceInputEvent *)&event);
+                ListenerToCall->onStickMove(*static_cast<FSDeviceInputEvent *>(&event));
                 break;
             default:
                 break;
@@ -243,7 +243,7 @@ void FSBaseManager::updateEvent(FSBaseEvent & event)
     }
 
 
-    auto rangedItrDevice = _joystickDeviceInputListeners[( (FSDeviceInputEvent *)&event)->getDeviceID()].equal_range(event.getEventType());
+    auto rangedItrDevice = _joystickDeviceInputListeners[(static_cast<FSDeviceInputEvent *>(&event))->getDeviceID()].equal_range(event.getEventType());
     while (rangedItrDevice.first != rangedItrDevice.second)
     {
         ListenerToCall = rangedItrDevice.first->second;

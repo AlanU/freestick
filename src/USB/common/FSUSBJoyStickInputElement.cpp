@@ -149,11 +149,39 @@ FSUSBJoyStickInputElement::FSUSBJoyStickInputElement(idNumber id,  idNumber pare
 
     _parentID = parentID;
 
-   _useLastValueStack = _usbDeviceManager->doesElementHaveDeviceInputForValue(vendorID,productID,id,LastValueUp);
+
+    _useLastValueStack = _usbDeviceManager->doesElementHaveDeviceInputForValue(vendorID,productID,id,LastValueUp);
 
     calibrate(currentValue,elementMin,elementMax);
 
-    firstTime = time(NULL);
+    firstTime = time(nullptr);
+
+}
+
+FSUSBJoyStickInputElement::FSUSBJoyStickInputElement(idNumber id,  idNumber parentID, minMaxNumber elementMin, minMaxNumber elementMax ,vendorIDType vendorID,productIDType productID,FSUSBDeviceManager * _manager,physicalValueNumber currentValue,minMaxNumber buttonNumber):FSUSBDevice(id,vendorID,productID)
+{
+    _buttonNumber = buttonNumber;
+     _elementMin = elementMin;
+     _elementMax = elementMax;
+     _oldValue = -1;
+    _value = -2;
+    _intialized =false;
+    _usbDeviceManager = _manager;
+
+    _needsDeadZone = false;
+    _calibrated =false;
+
+    _useLastValueStack = false;
+
+    _parentID = parentID;
+
+    if(_usbDeviceManager)
+    {
+        _useLastValueStack = _usbDeviceManager->doesElementHaveDeviceInputForValue(vendorID,productID,id,LastValueUp);
+    }
+    calibrate(currentValue,elementMin,elementMax);
+
+    firstTime = time(nullptr);
 }
 
 void FSUSBJoyStickInputElement::setCalibrationOffsetPrecent(float offset )
@@ -164,6 +192,9 @@ void FSUSBJoyStickInputElement::setCalibrationOffsetPrecent(float offset )
 void FSUSBJoyStickInputElement::calibrate(physicalValueNumber currentValue, minMaxNumber elementMin, minMaxNumber elementMax )
 {
     _needsDeadZone = false;
+    if(!_usbDeviceManager)
+        return;
+
     _calibrated =false;
 
     _elementMin = elementMin;

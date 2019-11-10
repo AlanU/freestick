@@ -32,8 +32,6 @@ and must not be misrepresented as being the original software.
 #include <algorithm>
 #include <cstdint>
 using namespace freestick;
-//creates a 64 bit id from the vendor and product id
-deviceID createVPId(uint32_t vendor, uint32_t product ) {deviceID newID = product ; return (newID << 32) | vendor;}
 
 FSUSBDeviceManager::FSUSBDeviceManager()
 {
@@ -642,7 +640,6 @@ FSUSBDeviceManager::FSUSBDeviceManager()
 
     _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65589].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));
     _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65586].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));
-
 
 }
 

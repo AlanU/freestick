@@ -89,7 +89,7 @@ const uint32_t VWiredGamePadID = 1397;
 
     class FSUSBDeviceManager : public FSBaseManager
     {
-    private:
+    protected:
         // vendor with map of products conatins a map of elemnets with a map of input devices with a map string key which it the min-max-inputMapping(pressed, rest ,move)
         /** \todo
          * combind vendor and product ID in to on 64bit key to cut down the size of this type
@@ -117,6 +117,8 @@ const uint32_t VWiredGamePadID = 1397;
         bool doesDeviceHaveDeviceInputForValue(idNumber deviceID,FSDeviceInput inputToLookFor,  physicalValueNumber value );
 
 
+        //creates a 64 bit id from the vendor and product id
+        static deviceID createVPId(uint32_t vendor, uint32_t product ) {deviceID newID = product ; return (newID << 32) | vendor;}
 
         FSUSBDeviceManager();
         virtual void init( );

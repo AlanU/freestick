@@ -53,8 +53,9 @@ and must not be misrepresented as being the original software.
         // define something for simulator
         typedef freestick::FSUSBNullJoystickDeviceManager FreeStickDeviceManager;
     #elif TARGET_OS_IPHONE
+        #include "USB/platform/iOS/FSMFIJoystickManager.h"
         // define something for iphone
-        typedef freestick::FSUSBNullJoystickDeviceManager FreeStickDeviceManager;
+        typedef freestick::FSMFIJoystickDeviceManager FreeStickDeviceManager;
     #else
         #define TARGET_OS_OSX 1
         // define something for OSX
