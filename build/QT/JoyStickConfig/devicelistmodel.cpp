@@ -97,7 +97,7 @@ void DeviceListModel::onConnect(FSBaseEvent event)
 
 QVariant DeviceListModel::getIdFromIndex(QVariant index)
 {
-   if(m_data.size() > index.toInt())
+   if(index.toInt() >= 0 && m_data.size() > index.toInt())
    {
        return  m_data[index.toInt()].second;
    }
