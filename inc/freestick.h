@@ -52,10 +52,12 @@ and must not be misrepresented as being the original software.
     #if TARGET_OS_IPHONE && TARGET_IPHONE_SIMULATOR
         // define something for simulator
         typedef freestick::FSUSBNullJoystickDeviceManager FreeStickDeviceManager;
-    #elif TARGET_OS_IPHONE
+    #elif TARGET_OS_IPHONE || TARGET_OS_TV
         #include "USB/platform/iOS/FSMFIJoystickManager.h"
         // define something for iphone
         typedef freestick::FSMFIJoystickDeviceManager FreeStickDeviceManager;
+    #elif TARGET_OS_WATCH
+        typedef freestick::FSUSBNullJoystickDeviceManager FreeStickDeviceManager;
     #else
         #define TARGET_OS_OSX 1
         // define something for OSX
