@@ -1,6 +1,7 @@
 #include "USB/platform/iOS/FSMFIJoystickManager.h"
 #include "USB/platform/iOS/FSMFIJoystick.h"
 #include "USB/common/FSUSBJoystickDeviceManager.h"
+#include <array>
 #import <GameController/GCController.h>
 #import <Foundation/Foundation.h>
 using namespace freestick;
@@ -8,7 +9,7 @@ using namespace freestick;
 FSMFIJoystickDeviceManager::FSMFIJoystickDeviceManager()
 {
 
-    // Microsoft Xbox 360 Windows controller
+    // MFI controller
 
     _usageMapToInputEvent[createVPId(APPLE_VENDER_ID,MFI_PRODUCT_ID)][A_BUTTON_MFI_EID] = ButtonA;
     _usageMapToInputEvent[createVPId(APPLE_VENDER_ID,MFI_PRODUCT_ID)][B_BUTTON_MFI_EID] = ButtonB;
@@ -48,29 +49,30 @@ FSMFIJoystickDeviceManager::~FSMFIJoystickDeviceManager(){
 void FSMFIJoystickDeviceManager::init() {
     FSUSBDeviceManager::init();
     NSLog(@"Init");
-    [GCController startWirelessControllerDiscoveryWithCompletionHandler:^{
+    /*[GCController startWirelessControllerDiscoveryWithCompletionHandler:^{
         updateControllers();
     }];
-    [GCController stopWirelessControllerDiscovery];
-    updateControllers();
+    [GCController stopWirelessControllerDiscovery];*/
 
     //Register for connections
    [[NSNotificationCenter defaultCenter] addObserverForName:GCControllerDidConnectNotification
                           object:nil
                           queue:nil
-                          usingBlock:^(NSNotification *note)
+                          usingBlock:^(NSNotification * /*note*/)
                           {
-                            updateControllers();
-                           }
+                             updateConnectedControllers();
+                            //updateControllers();
+                          }
     ];
 
     [[NSNotificationCenter defaultCenter] addObserverForName:GCControllerDidDisconnectNotification
                            object:nil
                            queue:nil
-                           usingBlock:^(NSNotification *note)
+                           usingBlock:^(NSNotification * /*note*/)
                            {
-                             updateControllers();
-                            }
+                             updateConnectedControllers();
+                             //updateControllers();
+                           }
      ];
 
 }
@@ -128,11 +130,93 @@ void FSMFIJoystickDeviceManager::updateJoystickAnalog(idNumber joyStickID,idNumb
                                            value );
 
 }
+void FSMFIJoystickDeviceManager::updateConnectedControllers(){
+
+    ///TODO
+    /// track what was last seen remove what is there
+    /// what is left is what has been dissconnectd
+    ///
+    std::vector<mfiID> newThisUpdate;
+    std::vector<mfiID> foundThisUpdate;
+    unsigned int MFI_MAX_COUNT = 4;
+    std::array<GCController*,4> lastState{nullptr,nullptr,nullptr,nullptr};
+
+        for (unsigned int index = 0; index < MFI_MAX_COUNT; index++)
+        {
+                bool result = [GCController controllers].count > index;
+                if(result)
+                {
+                    lastState[index] = [GCController controllers][index];
+                    mfiID foundJoystick = index;
+                    std::vector<mfiID>::iterator itr2 = std::find(_connectedLastUpdateJoysticks.begin(),
+                                                                  _connectedLastUpdateJoysticks.end(),
+                                                                   foundJoystick);
+                    if (itr2 != _connectedLastUpdateJoysticks.end()) {
+                        _connectedLastUpdateJoysticks.erase(itr2);
+
+                    }else  {
+                        newThisUpdate.push_back(foundJoystick);
+                    }
+                    foundThisUpdate.push_back(foundJoystick);
+                }
+        }
+        for (int index =(int) _connectedLastUpdateJoysticks.size() - 1; index >= 0; index--) {
+            mfiID deviceToDelete = _connectedLastUpdateJoysticks[index];
+            this->removeMFIDevice(deviceToDelete );
+        }
+        std::vector<mfiID>::iterator itrAdd;
+        for (itrAdd = newThisUpdate.begin(); itrAdd != newThisUpdate.end(); ++itrAdd) {
+            this->addMFIDevice(*itrAdd,lastState[*itrAdd]);
+        }
+
+        _connectedLastUpdateJoysticks = foundThisUpdate;
+}
+
+void FSMFIJoystickDeviceManager::removeMFIDevice(mfiID device)
+{
+    if(_wordToIDControllerMap.find(device) != _wordToIDControllerMap.end())
+    {
+        elementID id = _wordToIDControllerMap[device];
+        const FSBaseDevice * joystickToDelete = getDevice(id);
+        removeDevice((FSBaseDevice*)joystickToDelete);
+        _wordToIDControllerMap.erase(device);
+    }
+}
+
+void FSMFIJoystickDeviceManager::addMFIDevice(mfiID device, void * controller)
+{
+    if(_wordToIDControllerMap.find(device) == _wordToIDControllerMap.end())
+    {
+       unsigned int newId = getNextID();
+       _wordToIDControllerMap[device] = newId;
+
+        unsigned int numberOfButtons = 5;
+        unsigned int numberOfAnlogSticks =2;
+        unsigned int numberOfDigitalSticks=1;
+        bool  forceFeedBackSupported =false;
+        vendorIDType vendorID = 0;
+        productIDType productID = 0;
+       // controller.playerIndex = static_cast<GCControllerPlayerIndex>(contorllerCount++);
+
+        FSUSBDeviceManager::addDevice(new FSMFIJoystick(static_cast<void *>(controller),
+                                                        newId,
+                                                        numberOfButtons,
+                                                        numberOfAnlogSticks,
+                                                        numberOfDigitalSticks,
+                                                        forceFeedBackSupported,
+                                                        vendorID,
+                                                        productID));
+
+    }
+
+}
+
 
 void FSMFIJoystickDeviceManager::updateControllers(){
     // Remove old controlers
     //This is the inital update uses GCControllerDIdConnectNotifcation for add and
     // GSControllerDidDisconnectNotification
+    NSInteger contorllerCount = 0;
     for(GCController * controller in [GCController controllers] ){
         // TODO create FSMFIJoystick
         NSLog(@"vender Name %@",[controller vendorName]);
@@ -143,6 +227,8 @@ void FSMFIJoystickDeviceManager::updateControllers(){
         bool  forceFeedBackSupported =false;
         vendorIDType vendorID = 0;
         productIDType productID = 0;
+        controller.playerIndex = static_cast<GCControllerPlayerIndex>(contorllerCount++);
+
         FSUSBDeviceManager::addDevice(new FSMFIJoystick(static_cast<void *>(controller),
                                                          joyStickID,
                                                         numberOfButtons,
