@@ -48,12 +48,6 @@ FSMFIJoystickDeviceManager::~FSMFIJoystickDeviceManager(){
 
 void FSMFIJoystickDeviceManager::init() {
     FSUSBDeviceManager::init();
-    NSLog(@"Init");
-    /*[GCController startWirelessControllerDiscoveryWithCompletionHandler:^{
-        updateControllers();
-    }];
-    [GCController stopWirelessControllerDiscovery];*/
-
     //Register for connections
    [[NSNotificationCenter defaultCenter] addObserverForName:GCControllerDidConnectNotification
                           object:nil
@@ -281,82 +275,3 @@ void FSMFIJoystickDeviceManager::addMFIDevice(mfiID device, void * controller)
     }
 
 }
-
-/*
-void FSMFIJoystickDeviceManager::updateControllers(){
-    // Remove old controlers
-    //This is the inital update uses GCControllerDIdConnectNotifcation for add and
-    // GSControllerDidDisconnectNotification
-    NSInteger contorllerCount = 0;
-    for(GCController * controller in [GCController controllers] ){
-        // TODO create FSMFIJoystick
-        NSLog(@"vender Name %@",[controller vendorName]);
-
-        if (_wordToIDControllerMap.find([controller playerIndex]) == _wordToIDControllerMap.end())
-        {
-           continue;
-        }
-        idNumber joyStickID = _wordToIDControllerMap[[controller playerIndex]];
-        unsigned int numberOfButtons = 5;
-        unsigned int numberOfAnlogSticks =2;
-        unsigned int numberOfDigitalSticks=1;
-        bool  forceFeedBackSupported =false;
-        vendorIDType vendorID = 0;
-        productIDType productID = 0;
-
-        if([controller extendedGamepad])
-        {
-            [controller extendedGamepad].buttonA.valueChangedHandler = ^(GCControllerButtonInput * button,float value, BOOL pressed)
-            { updateJoystickButtons(joyStickID,A_BUTTON_MFI_EID,pressed,value); };
-            [controller extendedGamepad].buttonB.valueChangedHandler = ^(GCControllerButtonInput *button,float value, BOOL pressed)
-            { updateJoystickButtons(joyStickID,B_BUTTON_MFI_EID,pressed,value); };
-            [controller extendedGamepad].buttonX.valueChangedHandler = ^(GCControllerButtonInput *button,float value, BOOL pressed)
-            { updateJoystickButtons(joyStickID,X_BUTTON_MFI_EID,pressed,value); };
-            [controller extendedGamepad].buttonY.valueChangedHandler = ^(GCControllerButtonInput *button,float value, BOOL pressed)
-            { updateJoystickButtons(joyStickID,Y_BUTTON_MFI_EID,pressed,value); };
-            [controller extendedGamepad].buttonMenu.valueChangedHandler = ^(GCControllerButtonInput *button,float value, BOOL pressed)
-            { updateJoystickButtons(joyStickID,MENU_BUTTON_MFI_EID,pressed,value); };
-            [controller extendedGamepad].dpad.up.valueChangedHandler = ^(GCControllerButtonInput *button,float value, BOOL pressed)
-            { updateJoystickButtons(joyStickID,UP_DPAD_MFI_EID,pressed,value); };
-            [controller extendedGamepad].dpad.down.valueChangedHandler = ^(GCControllerButtonInput *button,float value, BOOL pressed)
-            { updateJoystickButtons(joyStickID,DOWN_DPAD_MFI_EID,pressed,value); };
-            [controller extendedGamepad].dpad.left.valueChangedHandler = ^(GCControllerButtonInput *button,float value, BOOL pressed)
-            { updateJoystickButtons(joyStickID,LEFT_DPAD_MFI_EID,pressed,value); };
-            [controller extendedGamepad].dpad.right.valueChangedHandler = ^(GCControllerButtonInput *button,float value, BOOL pressed)
-            { updateJoystickButtons(joyStickID,RIGHT_DPAD_MFI_EID,pressed,value); };
-            [controller extendedGamepad].leftShoulder.valueChangedHandler = ^(GCControllerButtonInput *button,float value, BOOL pressed)
-            { updateJoystickButtons(joyStickID,LEFT_SHOULDER_BUTTON_MFI_EID,pressed,value); };
-            [controller extendedGamepad].rightShoulder.valueChangedHandler = ^(GCControllerButtonInput *button,float value, BOOL pressed)
-            { updateJoystickButtons(joyStickID,RIGHT_SHOULDER_BUTTON_MFI_EID,pressed,value); };
-
-            [controller extendedGamepad].leftTrigger.valueChangedHandler = ^(GCControllerButtonInput *button,float value, BOOL pressed)
-            { updateJoystickAnalog(joyStickID,LTRIGGER_MFI_EID,value); };
-            [controller extendedGamepad].rightTrigger.valueChangedHandler = ^(GCControllerButtonInput *button,float value, BOOL pressed)
-            { updateJoystickAnalog(joyStickID,RTRIGGER_MFI_EID,value); };
-
-            [controller extendedGamepad].leftThumbstick.xAxis.valueChangedHandler = ^(GCControllerAxisInput *axis,float value)
-            { updateJoystickAnalog(joyStickID,LEFT_XAXIS_MFI_EID,value); };
-            [controller extendedGamepad].leftThumbstick.yAxis.valueChangedHandler = ^(GCControllerAxisInput *axis,float value)
-            { updateJoystickAnalog(joyStickID,LEFT_YAXIS_MFI_EID,value); };
-
-            [controller extendedGamepad].rightThumbstick.xAxis.valueChangedHandler = ^(GCControllerAxisInput *axis,float value)
-            { updateJoystickAnalog(joyStickID,RIGHT_XAXIS_MFI_EID,value); };
-            [controller extendedGamepad].rightThumbstick.yAxis.valueChangedHandler = ^(GCControllerAxisInput *axis,float value)
-            { updateJoystickAnalog(joyStickID,RIGHT_YAXIS_MFI_EID,value); };
-
-            //Add check for IOS
-            if (@available(iOS 12.1, *)) {
-                [controller extendedGamepad].leftThumbstickButton.valueChangedHandler = ^(GCControllerButtonInput *button,float value, BOOL pressed)
-            { updateJoystickButtons(joyStickID,LTRIGGER_MFI_EID,pressed,value); };
-            [controller extendedGamepad].rightThumbstickButton.valueChangedHandler = ^(GCControllerButtonInput *button,float value, BOOL pressed)
-            { updateJoystickButtons(joyStickID,RTRIGGER_MFI_EID,pressed,value); };
-            }
-
-        }
-        else if([controller microGamepad])
-        {
-
-        }
-    }
-}*/
-
