@@ -40,6 +40,7 @@ typedef std::map<idNumber,FSUSBJoyStickInputElement > JoyStickElementMap ;
         unsigned int _numberOfAnlogSticks;
         unsigned int _numberOfDigitalSticks;
         bool        _forceFeedBackSupported;
+    protected:
         JoyStickElementMap _inputElementMap;
 
     protected:

@@ -32,7 +32,7 @@ and must not be misrepresented as being the original software.
 #include <cstdlib>
 
 using namespace freestick;
-FSUSBJoyStickInputElement::FSUSBJoyStickInputElement()
+FSUSBJoyStickInputElement::FSUSBJoyStickInputElement():FSUSBDevice()
 {
 }
 

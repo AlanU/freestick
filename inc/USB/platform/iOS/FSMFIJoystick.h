@@ -71,6 +71,7 @@ namespace freestick
                       bool  forceFeedBackSupported,
                       vendorIDType vendorID,
                       productIDType productID);
+        bool setElementValue(elementID element,float value);
     protected:
         void addButtonElement(unsigned int buttonID);
         void addElement(unsigned int buttonID,minMaxNumber min,minMaxNumber max,physicalValueNumber currentValue);

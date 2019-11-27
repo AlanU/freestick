@@ -69,6 +69,7 @@ namespace freestick
         void getMapping(int inputValue,std::stack<FSUSBElementInfoMap> & infoMapsToReturn) ;
         inline minMaxNumber getValue() const {return _value;}
         void setValue(minMaxNumber newValue);
+        minMaxNumber getOldValue() const {return _oldValue;};
         bool isValueInDeadZone(minMaxNumber value);
 		bool isIntialized();
         inline minMaxNumber getMaxValue() const {return _elementMax;}

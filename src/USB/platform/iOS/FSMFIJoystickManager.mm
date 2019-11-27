@@ -86,14 +86,24 @@ void FSMFIJoystickDeviceManager::addMFIMapping()
 
 void FSMFIJoystickDeviceManager::updateJoystickButtons(idNumber joyStickID,idNumber elementID, bool pressed,float value)
 {
+    //TODO create new templated USBJoystick to support FSUSBNormlizedJoyStickInputElement
     //TODO get old value form elemement
-    // TODO look up in map for FSDeviceInput
+    FSMFIJoystick * contorller = nullptr;
+    if(deviceMap.find(joyStickID) != deviceMap.end())
+    {
+         contorller = static_cast<FSMFIJoystick *>(deviceMap[joyStickID]);
+    }
+    if(contorller)
+    {
+        contorller->setElementValue(elementID,value*10000);
+    }
     FSEventAction buttonEvent = FSEventAction::FSInputRest;
     if(pressed)
     {
-          if(value >= 1)
+          auto element = contorller->findInputElement(elementID);
+          if(element && element->getOldValue() == 0)
           {
-                buttonEvent =  FSEventAction::FSInputPressed;
+             buttonEvent =  FSEventAction::FSInputPressed;
           }
           else
           {
@@ -131,45 +141,105 @@ void FSMFIJoystickDeviceManager::updateJoystickAnalog(idNumber joyStickID,idNumb
 
 }
 void FSMFIJoystickDeviceManager::updateConnectedControllers(){
+    if (@available(iOS 7, *)) {
+        std::vector<mfiID> newThisUpdate;
+        std::vector<mfiID> foundThisUpdate;
+        unsigned int MFI_MAX_COUNT = 4;
+        std::array<GCController*,4> lastState{nullptr,nullptr,nullptr,nullptr};
 
-    ///TODO
-    /// track what was last seen remove what is there
-    /// what is left is what has been dissconnectd
-    ///
-    std::vector<mfiID> newThisUpdate;
-    std::vector<mfiID> foundThisUpdate;
-    unsigned int MFI_MAX_COUNT = 4;
-    std::array<GCController*,4> lastState{nullptr,nullptr,nullptr,nullptr};
+            for (unsigned int index = 0; index < MFI_MAX_COUNT; index++)
+            {
+                    bool result = [GCController controllers].count > index;
+                    if(result)
+                    {
+                        lastState[index] = [GCController controllers][index];
+                        mfiID foundJoystick = index;
+                        std::vector<mfiID>::iterator itr2 = std::find(_connectedLastUpdateJoysticks.begin(),
+                                                                      _connectedLastUpdateJoysticks.end(),
+                                                                       foundJoystick);
+                        if (itr2 != _connectedLastUpdateJoysticks.end()) {
+                            _connectedLastUpdateJoysticks.erase(itr2);
 
-        for (unsigned int index = 0; index < MFI_MAX_COUNT; index++)
-        {
-                bool result = [GCController controllers].count > index;
-                if(result)
-                {
-                    lastState[index] = [GCController controllers][index];
-                    mfiID foundJoystick = index;
-                    std::vector<mfiID>::iterator itr2 = std::find(_connectedLastUpdateJoysticks.begin(),
-                                                                  _connectedLastUpdateJoysticks.end(),
-                                                                   foundJoystick);
-                    if (itr2 != _connectedLastUpdateJoysticks.end()) {
-                        _connectedLastUpdateJoysticks.erase(itr2);
-
-                    }else  {
-                        newThisUpdate.push_back(foundJoystick);
+                        }else  {
+                            newThisUpdate.push_back(foundJoystick);
+                        }
+                        foundThisUpdate.push_back(foundJoystick);
                     }
-                    foundThisUpdate.push_back(foundJoystick);
-                }
-        }
-        for (int index =(int) _connectedLastUpdateJoysticks.size() - 1; index >= 0; index--) {
-            mfiID deviceToDelete = _connectedLastUpdateJoysticks[index];
-            this->removeMFIDevice(deviceToDelete );
-        }
-        std::vector<mfiID>::iterator itrAdd;
-        for (itrAdd = newThisUpdate.begin(); itrAdd != newThisUpdate.end(); ++itrAdd) {
-            this->addMFIDevice(*itrAdd,lastState[*itrAdd]);
-        }
+            }
+            for (int index =(int) _connectedLastUpdateJoysticks.size() - 1; index >= 0; index--) {
+                mfiID deviceToDelete = _connectedLastUpdateJoysticks[index];
+                this->removeMFIDevice(deviceToDelete );
+            }
+            std::vector<mfiID>::iterator itrAdd;
+            for (itrAdd = newThisUpdate.begin(); itrAdd != newThisUpdate.end(); ++itrAdd) {
+                this->addMFIDevice(*itrAdd,lastState[*itrAdd]);
+            }
 
-        _connectedLastUpdateJoysticks = foundThisUpdate;
+            _connectedLastUpdateJoysticks = foundThisUpdate;
+    }
+}
+
+void FSMFIJoystickDeviceManager::connectControlesToController(void * contorllerToConnect,idNumber joyStickID )
+{
+    if (@available(iOS 7, *)) {
+    GCController * controller = static_cast<GCController*>(contorllerToConnect);
+        if([controller extendedGamepad])
+        {
+            [controller extendedGamepad].buttonA.valueChangedHandler = ^(GCControllerButtonInput * button,float value, BOOL pressed)
+            { updateJoystickButtons(joyStickID,A_BUTTON_MFI_EID,pressed,value); };
+            [controller extendedGamepad].buttonB.valueChangedHandler = ^(GCControllerButtonInput *button,float value, BOOL pressed)
+            { updateJoystickButtons(joyStickID,B_BUTTON_MFI_EID,pressed,value); };
+            [controller extendedGamepad].buttonX.valueChangedHandler = ^(GCControllerButtonInput *button,float value, BOOL pressed)
+            { updateJoystickButtons(joyStickID,X_BUTTON_MFI_EID,pressed,value); };
+
+            [controller extendedGamepad].buttonY.valueChangedHandler = ^(GCControllerButtonInput *button,float value, BOOL pressed)
+            { updateJoystickButtons(joyStickID,Y_BUTTON_MFI_EID,pressed,value); };
+            if (@available(iOS 13, *)) {
+                [controller extendedGamepad].buttonMenu.valueChangedHandler = ^(GCControllerButtonInput *button,float value, BOOL pressed)
+                { updateJoystickButtons(joyStickID,MENU_BUTTON_MFI_EID,pressed,value); };
+            }
+            [controller extendedGamepad].dpad.up.valueChangedHandler = ^(GCControllerButtonInput *button,float value, BOOL pressed)
+            { updateJoystickButtons(joyStickID,UP_DPAD_MFI_EID,pressed,value); };
+            [controller extendedGamepad].dpad.down.valueChangedHandler = ^(GCControllerButtonInput *button,float value, BOOL pressed)
+            { updateJoystickButtons(joyStickID,DOWN_DPAD_MFI_EID,pressed,value); };
+            [controller extendedGamepad].dpad.left.valueChangedHandler = ^(GCControllerButtonInput *button,float value, BOOL pressed)
+            { updateJoystickButtons(joyStickID,LEFT_DPAD_MFI_EID,pressed,value); };
+            [controller extendedGamepad].dpad.right.valueChangedHandler = ^(GCControllerButtonInput *button,float value, BOOL pressed)
+            { updateJoystickButtons(joyStickID,RIGHT_DPAD_MFI_EID,pressed,value); };
+            [controller extendedGamepad].leftShoulder.valueChangedHandler = ^(GCControllerButtonInput *button,float value, BOOL pressed)
+            { updateJoystickButtons(joyStickID,LEFT_SHOULDER_BUTTON_MFI_EID,pressed,value); };
+            [controller extendedGamepad].rightShoulder.valueChangedHandler = ^(GCControllerButtonInput *button,float value, BOOL pressed)
+            { updateJoystickButtons(joyStickID,RIGHT_SHOULDER_BUTTON_MFI_EID,pressed,value); };
+
+            [controller extendedGamepad].leftTrigger.valueChangedHandler = ^(GCControllerButtonInput *button,float value, BOOL pressed)
+            { updateJoystickAnalog(joyStickID,LTRIGGER_MFI_EID,value); };
+            [controller extendedGamepad].rightTrigger.valueChangedHandler = ^(GCControllerButtonInput *button,float value, BOOL pressed)
+            { updateJoystickAnalog(joyStickID,RTRIGGER_MFI_EID,value); };
+
+            [controller extendedGamepad].leftThumbstick.xAxis.valueChangedHandler = ^(GCControllerAxisInput *axis,float value)
+            { updateJoystickAnalog(joyStickID,LEFT_XAXIS_MFI_EID,value); };
+            [controller extendedGamepad].leftThumbstick.yAxis.valueChangedHandler = ^(GCControllerAxisInput *axis,float value)
+            { updateJoystickAnalog(joyStickID,LEFT_YAXIS_MFI_EID,value); };
+
+            [controller extendedGamepad].rightThumbstick.xAxis.valueChangedHandler = ^(GCControllerAxisInput *axis,float value)
+            { updateJoystickAnalog(joyStickID,RIGHT_XAXIS_MFI_EID,value); };
+            [controller extendedGamepad].rightThumbstick.yAxis.valueChangedHandler = ^(GCControllerAxisInput *axis,float value)
+            { updateJoystickAnalog(joyStickID,RIGHT_YAXIS_MFI_EID,value); };
+
+            //Add check for IOS
+            if (@available(iOS 12.1, *)) {
+                [controller extendedGamepad].leftThumbstickButton.valueChangedHandler = ^(GCControllerButtonInput *button,float value, BOOL pressed)
+            { updateJoystickButtons(joyStickID,LTRIGGER_MFI_EID,pressed,value); };
+            [controller extendedGamepad].rightThumbstickButton.valueChangedHandler = ^(GCControllerButtonInput *button,float value, BOOL pressed)
+            { updateJoystickButtons(joyStickID,RTRIGGER_MFI_EID,pressed,value); };
+            }
+
+        }
+        else if([controller microGamepad])
+        {
+            // TODO add support
+        }
+    }
 }
 
 void FSMFIJoystickDeviceManager::removeMFIDevice(mfiID device)
@@ -178,7 +248,7 @@ void FSMFIJoystickDeviceManager::removeMFIDevice(mfiID device)
     {
         elementID id = _wordToIDControllerMap[device];
         const FSBaseDevice * joystickToDelete = getDevice(id);
-        removeDevice((FSBaseDevice*)joystickToDelete);
+        removeDevice(const_cast<FSBaseDevice*>(joystickToDelete));
         _wordToIDControllerMap.erase(device);
     }
 }
@@ -198,7 +268,7 @@ void FSMFIJoystickDeviceManager::addMFIDevice(mfiID device, void * controller)
         productIDType productID = 0;
        // controller.playerIndex = static_cast<GCControllerPlayerIndex>(contorllerCount++);
 
-        FSUSBDeviceManager::addDevice(new FSMFIJoystick(static_cast<void *>(controller),
+        FSUSBDeviceManager::addDevice(new FSMFIJoystick(controller,
                                                         newId,
                                                         numberOfButtons,
                                                         numberOfAnlogSticks,
@@ -206,12 +276,13 @@ void FSMFIJoystickDeviceManager::addMFIDevice(mfiID device, void * controller)
                                                         forceFeedBackSupported,
                                                         vendorID,
                                                         productID));
+        connectControlesToController(controller,newId);
 
     }
 
 }
 
-
+/*
 void FSMFIJoystickDeviceManager::updateControllers(){
     // Remove old controlers
     //This is the inital update uses GCControllerDIdConnectNotifcation for add and
@@ -220,23 +291,19 @@ void FSMFIJoystickDeviceManager::updateControllers(){
     for(GCController * controller in [GCController controllers] ){
         // TODO create FSMFIJoystick
         NSLog(@"vender Name %@",[controller vendorName]);
-        idNumber joyStickID = [controller playerIndex];
+
+        if (_wordToIDControllerMap.find([controller playerIndex]) == _wordToIDControllerMap.end())
+        {
+           continue;
+        }
+        idNumber joyStickID = _wordToIDControllerMap[[controller playerIndex]];
         unsigned int numberOfButtons = 5;
         unsigned int numberOfAnlogSticks =2;
         unsigned int numberOfDigitalSticks=1;
         bool  forceFeedBackSupported =false;
         vendorIDType vendorID = 0;
         productIDType productID = 0;
-        controller.playerIndex = static_cast<GCControllerPlayerIndex>(contorllerCount++);
 
-        FSUSBDeviceManager::addDevice(new FSMFIJoystick(static_cast<void *>(controller),
-                                                         joyStickID,
-                                                        numberOfButtons,
-                                                        numberOfAnlogSticks,
-                                                        numberOfDigitalSticks,
-                                                        forceFeedBackSupported,
-                                                        vendorID,
-                                                        productID));
         if([controller extendedGamepad])
         {
             [controller extendedGamepad].buttonA.valueChangedHandler = ^(GCControllerButtonInput * button,float value, BOOL pressed)
@@ -291,5 +358,5 @@ void FSMFIJoystickDeviceManager::updateControllers(){
 
         }
     }
-}
+}*/
 

@@ -34,6 +34,19 @@ FSMFIJoystick::FSMFIJoystick(void * controller,idNumber joyStickID,
     _friendlyName = [[gccontroller vendorName] UTF8String];
 }
 
+bool FSMFIJoystick::setElementValue(elementID element,float value)
+{
+    for (auto &itr : _inputElementMap)
+    {
+        if (itr.first == element)
+        {
+            (itr.second).setValue(value);
+            return true;
+        }
+    }
+    return false;
+}
+
 void FSMFIJoystick::addMFIElements()
 {
     addButtonElement(UP_DPAD_MFI_EID);
@@ -85,8 +98,16 @@ void FSMFIJoystick::addElement(unsigned int buttonID,minMaxNumber min,minMaxNumb
                                           nullptr,
                                           currentValue,
                                           ++_totalButtonNumber);
+    if(min == 0)
+    {
+        newElement.setValue(0); //since all buttons are pressure sensitive they need to be initlized to zero for manager to fire events correctly
+    }
     this->addInputElement(newElement);
+
 }
+
+
+
 
 
 

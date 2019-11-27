@@ -63,6 +63,9 @@ FSBaseManager::~FSBaseManager()
         }
     }
     deviceMap.clear();
+    _joystickDeviceListeners.clear();
+    allJoystickListeners.clear();
+    _listenersToCleanUp.clear();
 
 }
 
@@ -225,11 +228,10 @@ void FSBaseManager::updateEvent(FSBaseEvent & event)
                 ListenerToCall->onDisconnect(event);
                 break;
             case FS_BUTTON_EVENT:
-
-                if (event.getEventAction() == FSInputPressed )
-                    ListenerToCall->onButtonDown(*static_cast<FSDeviceInputEvent *>(&event));
-                else
+                if (event.getEventAction() == FSInputRest)
                     ListenerToCall->onButtonUp(*static_cast<FSDeviceInputEvent *>(&event));
+                else
+                    ListenerToCall->onButtonDown(*static_cast<FSDeviceInputEvent *>(&event));
                 break;
             case FS_TRIGGER_EVENT:
             case FS_AXIS_EVENT:

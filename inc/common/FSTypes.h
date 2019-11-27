@@ -38,5 +38,8 @@ namespace freestick {
     typedef uint32_t vendorIDType;//Needs to be at lest 32bits
     typedef uint32_t productIDType;//Needs to be at lest 32bits
     typedef float nMinMaxNumber; //normlized max min number should be float to match system
+    typedef float nPhysicalValueNumber; //normlized physical number should be float to match system
+    typedef double universlalMinMaxNumber; //normlized max min number should be float to match system
+    typedef double universlalPhysicalValueNumber; //normlized physical number should be float to match system
 
 }
