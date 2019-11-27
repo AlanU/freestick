@@ -48,9 +48,9 @@ JoyStickConfigWidget::JoyStickConfigWidget(QWidget *parent) :
     deviceManager.init(jvm);
 
 #else
-     deviceManager.init();
+     deviceManager->init();
 #endif
-    deviceManager.ListenForAllJoysticksForEventTypes(FS_JOYSTICK_CONNECTED_EVENT |
+    deviceManager->ListenForAllJoysticksForEventTypes(FS_JOYSTICK_CONNECTED_EVENT |
                                                      FS_JOYSTICK_DISCONNECT_EVENT |
                                                      FS_BUTTON_EVENT | FS_AXIS_EVENT
                                                      | FS_TRIGGER_EVENT,*this);
@@ -311,7 +311,7 @@ void JoyStickConfigWidget::onButtonDown(FSDeviceInputEvent event)
 void JoyStickConfigWidget::onConnect(FSBaseEvent event)
 {
     qDebug()<<"Event Type "<<event.getEventType()<<" ID "<<event.getDeviceID()<<" time stamp "<<event.getTimeStamp()<<endl;
-    const FSBaseDevice * device = deviceManager.getDevice(event.getDeviceID());
+    const FSBaseDevice * device = deviceManager->getDevice(event.getDeviceID());
     QString deviceBoxName = tr(device->GetFrendlyName().c_str());
     ui->DeviceListBox->addItem(deviceBoxName,event.getDeviceID());
     _joystickModelMap[event.getDeviceID()] =(new ControllerMappingTableModel(deviceManager,event.getDeviceID()));
@@ -351,7 +351,7 @@ void JoyStickConfigWidget::onDisconnect(FSBaseEvent event)
 
 void JoyStickConfigWidget::PopulateDeviceStats(unsigned int id)
 {
-   const FSBaseDevice * device = deviceManager.getDevice(id);
+   const FSBaseDevice * device = deviceManager->getDevice(id);
    bool FFBackSupport = false;
    if(device == NULL)
    {
@@ -387,12 +387,12 @@ void JoyStickConfigWidget::PopulateDeviceStats(unsigned int id)
     }
      ui->FoceFeedBack->setChecked(FFBackSupport);
 
-     ui->R2->setEnabled(deviceManager.doesDeviceHaveDeviceInput(id,LeftShoulder2));
-     ui->L2->setEnabled(deviceManager.doesDeviceHaveDeviceInput(id,RightShoulder2));
+     ui->R2->setEnabled(deviceManager->doesDeviceHaveDeviceInput(id,LeftShoulder2));
+     ui->L2->setEnabled(deviceManager->doesDeviceHaveDeviceInput(id,RightShoulder2));
 
 
-     ui->LeftTriggerBox->setEnabled(deviceManager.doesDeviceHaveDeviceInput(id,Trigger1));
-     ui->RightTriggerBox->setEnabled(deviceManager.doesDeviceHaveDeviceInput(id,Trigger2));
+     ui->LeftTriggerBox->setEnabled(deviceManager->doesDeviceHaveDeviceInput(id,Trigger1));
+     ui->RightTriggerBox->setEnabled(deviceManager->doesDeviceHaveDeviceInput(id,Trigger2));
 
      ui->deviceID->setText(DeviceInfo);
      ui->deviceID->show();

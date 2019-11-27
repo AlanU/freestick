@@ -9,6 +9,7 @@ class DeviceListModel : public QAbstractListModel ,public  freestick::IFSJoystic
     Q_OBJECT
 public:
     DeviceListModel();
+    ~DeviceListModel() override;
     enum DeviceRoles{
         modelDataRole = Qt::UserRole + 1,
     };
@@ -32,7 +33,7 @@ public:
 signals:
     void managerChanged(QFreestickDeviceManger* manager);
 private:
-    FreeStickDeviceManager * m_manager = nullptr;//Does not own memory
+    std::weak_ptr<FreeStickDeviceManager> m_manager;
     QFreestickDeviceManger * m_wrapperManger = nullptr;//Does not own memory
     QVector<QPair<QString,unsigned int>> m_data;
 

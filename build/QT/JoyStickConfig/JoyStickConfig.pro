@@ -25,7 +25,7 @@
 #3. This notice may not be removed or altered from any source distribution.
 #**************************************************************************/
 
-QT       += core gui
+QT       += core gui quickcontrols2 qml quick
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets svg
 VERSION = 0.0.2
 TARGET = JoyStickConfig
@@ -47,32 +47,46 @@ ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android-source
 
 OTHER_FILES+= $$files(android-source/src/org/freestick/*.java) \
                   $$files(android-source/*.xml) \
-#CONFIG += dylib
+CONFIG += dylib
 }
 
 TEMPLATE = app
 PRECOMPILED_HEADER = $$PWD/../../../inc/freestick.h
 
 SOURCES += main.cpp\
+    devicelistmodel.cpp \
         mainwindow.cpp \
         joystickconfigwidget.cpp \
     analogaxiswidget.cpp \
-    controllermappingtablemodel.cpp
+    controllermappingtablemodel.cpp \
+    joysticklistener.cpp \
+    qfreestickdevicemanger.cpp
 
 
 HEADERS  += mainwindow.h \
+    devicelistmodel.h \
     joystickconfigwidget.h \
     analogaxiswidget.h \
-    controllermappingtablemodel.h
+    controllermappingtablemodel.h \
+    joysticklistener.h \
+    qfreestickdevicemanger.h
 
 FORMS    += mainwindow.ui \
     joystickconfigwidget.ui
+
+
 macx{
 QMAKE_CXXFLAGS_WARN_ON= -Wall -Wno-unused-parameter -Wno-inconsistent-missing-override
 
 LIBS += -framework IOKit \
         -framework ForceFeedback \
         -framework CoreFoundation
+}
+
+ios{
+    LIBS += -framework GameController \
+            -framework Foundation
+     QMAKE_IOS_DEPLOYMENT_TARGET = 10.0
 }
 
 
@@ -88,3 +102,6 @@ DEPENDPATH += $$PWD/../FreeStick
 win32:{
  LIBS += -ldinput8 -ldxguid -lcomctl32 -lOle32 -lOleAut32 -lXinput9_1_0 -lUser32
 }
+
+RESOURCES += \
+    qml.qrc

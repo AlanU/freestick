@@ -59,7 +59,7 @@ private:
     /** \todo
      *put device manager more centrlized
      */
-    FreeStickDeviceManager deviceManager;
+    std::shared_ptr<FreeStickDeviceManager> deviceManager = std::make_shared<FreeStickDeviceManager>();
     Ui::JoyStickConfigWidget *ui;
     void PopulateDeviceStats(unsigned int id);
     QTimer * timer;

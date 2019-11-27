@@ -2,22 +2,22 @@
 #define QFREESTICKDEVICEMANGER_H
 #include <freestick.h>
 #include <QObject>
-
+#include <memory>
 class QFreestickDeviceManger: public QObject
 {
     Q_OBJECT
 public:
     virtual ~QFreestickDeviceManger();
-    explicit QFreestickDeviceManger(FreeStickDeviceManager * deviceManager,QObject *parent = nullptr);
+    explicit QFreestickDeviceManger(std::shared_ptr<FreeStickDeviceManager> deviceManager,QObject *parent = nullptr);
     QFreestickDeviceManger() = delete;
     QFreestickDeviceManger(QObject *parent = nullptr) = delete;
-    Q_PROPERTY(FreeStickDeviceManager* freestickManager READ freestickManager NOTIFY freestickManagerChanged);
-    FreeStickDeviceManager * freestickManager();
+    Q_PROPERTY(std::weak_ptr<FreeStickDeviceManager> freestickManager READ freestickManager NOTIFY freestickManagerChanged)
+    std::weak_ptr<FreeStickDeviceManager> freestickManager();
 signals:
     void freestickManagerChanged();
 
 private:
-    FreeStickDeviceManager * m_manager = nullptr;// does not own mananger
+    std::shared_ptr<FreeStickDeviceManager>m_manager;
 };
 
 #endif // QFREESTICKDEVICEMANGER_H

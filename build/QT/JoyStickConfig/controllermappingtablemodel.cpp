@@ -41,11 +41,11 @@ const std::array<const std::string,16> usagePageList  {"Undefined",
                                                                  {0x39,"Hat switch"},
                                                                  {0x3A,"Counted Buffer"}}};*/
 
-ControllerMappingTableModel::ControllerMappingTableModel(FreeStickDeviceManager & manager,unsigned int joystickID)
+ControllerMappingTableModel::ControllerMappingTableModel(std::weak_ptr<FreeStickDeviceManager> manager,unsigned int joystickID)
 {
   //  _manager = &manager;
     setJoystickID(joystickID);
-    setManager(&manager);
+    setManager(manager);
     //modelChanged(joystickID);
     /*_manager->ListenForAllJoysticksForEventTypes(FS_JOYSTICK_CONNECTED_EVENT |
                                                  FS_JOYSTICK_DISCONNECT_EVENT |
@@ -82,33 +82,41 @@ void ControllerMappingTableModel::setManager(QFreestickDeviceManger * manager)
     emit managerChanged(_wrapperManger);
 }
 
-void ControllerMappingTableModel::setManager(FreeStickDeviceManager* manager)
+void ControllerMappingTableModel::setManager(std::weak_ptr<FreeStickDeviceManager> manager)
 {
-    if(_manager)
+    if(!_manager.expired())
     {
-        _manager->UnListenForAllJoysticksForEventTypes(FS_JOYSTICK_CONNECTED_EVENT |
+        _manager.lock()->UnListenForAllJoysticksForEventTypes(FS_JOYSTICK_CONNECTED_EVENT |
                                                  FS_JOYSTICK_DISCONNECT_EVENT |
                                                  FS_BUTTON_EVENT | FS_AXIS_EVENT
                                                  | FS_TRIGGER_EVENT,*this);
     }
+
     _manager = manager;
 
-    _manager->ListenForAllJoysticksForEventTypes(FS_JOYSTICK_CONNECTED_EVENT |
-                                              FS_JOYSTICK_DISCONNECT_EVENT |
-                                              FS_BUTTON_EVENT | FS_AXIS_EVENT
-                                              | FS_TRIGGER_EVENT,*this);
+    if(!_manager.expired())
+    {
+        _manager.lock()->ListenForAllJoysticksForEventTypes(FS_JOYSTICK_CONNECTED_EVENT |
+                                                  FS_JOYSTICK_DISCONNECT_EVENT |
+                                                  FS_BUTTON_EVENT | FS_AXIS_EVENT
+                                                  | FS_TRIGGER_EVENT,*this);
+    }
 
 }
 
 ControllerMappingTableModel::~ControllerMappingTableModel()
 {
-    if(_manager)
+    if(!_manager.expired())
     {
-         _manager->UnListenForAllJoysticksForEventTypes(FS_JOYSTICK_CONNECTED_EVENT |
+         _manager.lock()->UnListenForAllJoysticksForEventTypes(FS_JOYSTICK_CONNECTED_EVENT |
                                                  FS_JOYSTICK_DISCONNECT_EVENT |
                                                  FS_BUTTON_EVENT | FS_AXIS_EVENT
                                                  | FS_TRIGGER_EVENT,*this);
     }
+    _wrapperManger = nullptr;
+    _elemnetMapped.clear();
+    _elementValuelist.clear();
+    _elemntIDList.clear();
 
 }
 
@@ -283,12 +291,12 @@ int ControllerMappingTableModel::rowCount(const QModelIndex & /*parent*/) const
 
 void ControllerMappingTableModel::modelChanged(unsigned int joystickID)
 {
-    if(_manager && _manager->getDevice(joystickID))
+    if(!_manager.expired() && _manager.lock()->getDevice(joystickID))
     {
         beginResetModel();
         _joystickId = joystickID;
 
-        const FSUSBJoystick *  joystick = static_cast<const FSUSBJoystick *>(_manager->getDevice(joystickID));
+        const FSUSBJoystick *  joystick = static_cast<const FSUSBJoystick *>(_manager.lock()->getDevice(joystickID));
 
         _JoyStickElementMap = joystick->getElements();
         _elemntIDList = joystick->getElementIds();
@@ -303,30 +311,33 @@ void ControllerMappingTableModel::modelChanged(unsigned int joystickID)
 
 void ControllerMappingTableModel::elementChanged(unsigned int elementID,float newValue)
 {
-    const FSUSBJoystick *  joystick = static_cast<const FSUSBJoystick *>(_manager->getDevice(_joystickId));
-
-    const FSUSBJoyStickInputElement * element = joystick->findInputElement(elementID) ;
-
-    if(element != nullptr)
+    if(!_manager.expired())
     {
-        FSUSBJoyStickInputElement *  elementCopy = &_JoyStickElementMap[elementID];
-        elementCopy->setValue(element->getValue());
-    }
+        const FSUSBJoystick *  joystick = static_cast<const FSUSBJoystick *>(_manager.lock()->getDevice(_joystickId));
 
-    for(unsigned int index = 0 ; index < _elemntIDList.size(); index++)
-    {
+        const FSUSBJoyStickInputElement * element = joystick->findInputElement(elementID) ;
 
-        if(_elemntIDList[index] == elementID)
+        if(element != nullptr)
         {
-
-              _elemnetMapped[index] = true;
-              _elementValuelist[index]=newValue;
-              QModelIndex topLeft = createIndex(index,0);
-              QModelIndex bottom = createIndex(index,4);
-              dataChanged(topLeft,bottom);
-              return ;
+            FSUSBJoyStickInputElement *  elementCopy = &_JoyStickElementMap[elementID];
+            elementCopy->setValue(element->getValue());
         }
 
+        for(unsigned int index = 0 ; index < _elemntIDList.size(); index++)
+        {
+
+            if(_elemntIDList[index] == elementID)
+            {
+
+                  _elemnetMapped[index] = true;
+                  _elementValuelist[index]=newValue;
+                  QModelIndex topLeft = createIndex(index,0);
+                  QModelIndex bottom = createIndex(index,4);
+                  dataChanged(topLeft,bottom);
+                  return ;
+            }
+
+        }
     }
 
 }

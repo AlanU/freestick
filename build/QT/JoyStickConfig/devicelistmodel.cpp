@@ -12,9 +12,9 @@ QFreestickDeviceManger* DeviceListModel::manager()
 }
 void DeviceListModel::setManager(QFreestickDeviceManger* manager)
 {
-    if(m_manager)
+    if(!m_manager.expired())
     {
-        m_manager->UnListenForAllJoysticksForEventTypes(FS_JOYSTICK_CONNECTED_EVENT |
+        m_manager.lock()->UnListenForAllJoysticksForEventTypes(FS_JOYSTICK_CONNECTED_EVENT |
                                                         FS_JOYSTICK_DISCONNECT_EVENT,
                                                          *this);
     }
@@ -23,13 +23,27 @@ void DeviceListModel::setManager(QFreestickDeviceManger* manager)
     {
         m_wrapperManger = manager;
         m_manager = m_wrapperManger->freestickManager();
-
-        m_manager->ListenForAllJoysticksForEventTypes(FS_JOYSTICK_CONNECTED_EVENT |
+        if(!m_manager.expired())
+        {
+             m_manager.lock()->ListenForAllJoysticksForEventTypes(FS_JOYSTICK_CONNECTED_EVENT |
                                                       FS_JOYSTICK_DISCONNECT_EVENT ,
                                                       *this);
+        }
     }
 
     emit managerChanged(manager);
+}
+
+DeviceListModel::~DeviceListModel()
+{
+    if(!m_manager.expired())
+    {
+        m_manager.lock()->UnListenForAllJoysticksForEventTypes(FS_JOYSTICK_CONNECTED_EVENT |
+                                                        FS_JOYSTICK_DISCONNECT_EVENT,
+                                                         *this);
+    }
+    m_wrapperManger = nullptr;
+    m_data.clear();
 }
 
 
@@ -88,11 +102,14 @@ void DeviceListModel::onDisconnect(FSBaseEvent event)
 
 void DeviceListModel::onConnect(FSBaseEvent event)
 {
-    beginResetModel();
-    auto contoller =  m_manager->getDevice(event.getDeviceID());
-    QString name (contoller->GetFrendlyName().c_str());
-    m_data.push_back(QPair<QString,unsigned int>(name,event.getDeviceID()));
-    endResetModel();
+    if(!m_manager.expired())
+    {
+        beginResetModel();
+        auto contoller =  m_manager.lock()->getDevice(event.getDeviceID());
+        QString name (contoller->GetFrendlyName().c_str());
+        m_data.push_back(QPair<QString,unsigned int>(name,event.getDeviceID()));
+        endResetModel();
+    }
 }
 
 QVariant DeviceListModel::getIdFromIndex(QVariant index)

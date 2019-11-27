@@ -41,7 +41,7 @@ class ControllerMappingTableModel : public QAbstractTableModel ,public  freestic
     Q_OBJECT
 public:
     ControllerMappingTableModel();
-    ControllerMappingTableModel(FreeStickDeviceManager & manager,unsigned int joystickiD);
+    ControllerMappingTableModel(std::weak_ptr<FreeStickDeviceManager> manager,unsigned int joystickiD);
     int rowCount(const QModelIndex & /*parent*/) const override;
     int columnCount(const QModelIndex & /*parent*/) const override;
     virtual QVariant data(const QModelIndex &index, int role) const override;
@@ -54,7 +54,7 @@ public:
 
     QFreestickDeviceManger* manager();
     void setManager(QFreestickDeviceManger* manager);
-    void setManager(FreeStickDeviceManager* manager);
+    void setManager(std::weak_ptr<FreeStickDeviceManager> manager);
 
     virtual QHash<int, QByteArray> roleNames() const override;
 
@@ -71,7 +71,7 @@ signals:
 private:
     QVariant dataFromCol(const unsigned int col,const unsigned int row) const;
     QFreestickDeviceManger * _wrapperManger = nullptr;
-    FreeStickDeviceManager * _manager = nullptr;//Does not own memory
+    std::weak_ptr<FreeStickDeviceManager> _manager;
     unsigned int _joystickId = 0;
     JoyStickElementMap _JoyStickElementMap;
     std::vector<idNumber> _elemntIDList;

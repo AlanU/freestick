@@ -49,16 +49,16 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     //MainWindow w;
   //  w.show();
-    FreeStickDeviceManager deviceManager;
+    std::shared_ptr<FreeStickDeviceManager> deviceManager = std::make_shared<FreeStickDeviceManager>();
 #ifdef Q_OS_ANDROID
     QAndroidJniEnvironment qjniEnv;
     JavaVM * jvm = QAndroidJniEnvironment::javaVM();
-    deviceManager.init(jvm);
+    deviceManager->init(jvm);
 
 #else
-     deviceManager.init();
+     deviceManager->init();
 #endif
-    QFreestickDeviceManger qDeviceManager(&deviceManager);//This is just a wrapper class to work with QML
+    QFreestickDeviceManger qDeviceManager (deviceManager);//This is just a wrapper class to work with QML
     qmlRegisterType<ControllerMappingTableModel>("org.freestick.models", 1, 0, "ContorllerMapping");
     qmlRegisterType<DeviceListModel>("org.freestick.models", 1, 0, "DeviceList");
 

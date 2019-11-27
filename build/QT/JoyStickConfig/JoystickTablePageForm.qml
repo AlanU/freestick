@@ -3,12 +3,14 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 Item {
+    id:root
     width: 400
     height: 400
     property alias model: tableView.model
     property alias deviceModel: devices.model
     property alias devicesControl: devices
     property alias tableView: tableView
+    property var columnNames: ["ID", "Min Value", "Max Value","Raw Value", "Value", "Dead Min","Dead Max","Mapped","Element Cookie","Usage Page","Usage"]
     Page {
         id: page
         anchors.fill: parent
@@ -37,7 +39,7 @@ Item {
                     Label{
                         width: tableView.columnWidthProvider(modelData)
                         height: 20
-                        text: "C" + modelData
+                        text: root.columnNames[modelData]
                         color: '#aaaaaa'
                         background: Rectangle { color: "#333333" }
                     }
