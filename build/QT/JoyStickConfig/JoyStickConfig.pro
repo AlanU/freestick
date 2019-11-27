@@ -27,7 +27,7 @@
 
 QT       += core gui quickcontrols2 qml quick
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets svg
-VERSION = 0.0.2
+VERSION = 0.0.3
 TARGET = JoyStickConfig
 CONFIG += c++11
 android {
