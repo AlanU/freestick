@@ -70,18 +70,10 @@ void FSMFIJoystickDeviceManager::init() {
      ];
 
 }
-//        void addMapping(vendorIDType vendorUSBID, productIDType productUSBID, idNumber controlUSBID,FSDeviceInput deviceInput);
-
-void FSMFIJoystickDeviceManager::addMFIMapping()
-{
-        //TODO Map1 to the a button
-    this->addMapping(APPLE_VENDER_ID,MFI_PRODUCT_ID,1,ButtonA);
-}
 
 void FSMFIJoystickDeviceManager::updateJoystickButtons(idNumber joyStickID,idNumber elementID, bool pressed,float value)
 {
     //TODO create new templated USBJoystick to support FSUSBNormlizedJoyStickInputElement
-    //TODO get old value form elemement
     FSMFIJoystick * contorller = nullptr;
     if(deviceMap.find(joyStickID) != deviceMap.end())
     {
@@ -103,8 +95,6 @@ void FSMFIJoystickDeviceManager::updateJoystickButtons(idNumber joyStickID,idNum
           {
              buttonEvent =  FSEventAction::FSInputChanged;
           }
-
-
     }
 
     auto map = _usageMapToInputEvent[createVPId(APPLE_VENDER_ID,MFI_PRODUCT_ID)][elementID];
@@ -121,9 +111,6 @@ void FSMFIJoystickDeviceManager::updateJoystickButtons(idNumber joyStickID,idNum
 void FSMFIJoystickDeviceManager::updateJoystickAnalog(idNumber joyStickID,idNumber elementID,float value)
 {
     //TODO get old value form elemement
-    // TODO look up in map for FSDeviceInput
-
-
     auto map = lookUpDeviceInputFromUSBID(APPLE_VENDER_ID,MFI_PRODUCT_ID,elementID,elementID == LTRIGGER_MFI_EID || elementID == RTRIGGER_MFI_EID ? 0 :-1,1,value);
     inputOnDeviceChangedWithNormilzedValues(FreeStickEventType::FS_AXIS_EVENT
                                             ,FSEventAction::FSInputChanged

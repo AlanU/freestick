@@ -21,7 +21,6 @@ typedef int mfiID;
         void connectControlesToController(void * contorller,idNumber joyStickID);
         void removeMFIDevice(mfiID device);
         void addMFIDevice(mfiID device, void * controller);
-        void addMFIMapping();
        // uint64_t contorllerIDs = 0;
        std::vector<mfiID> _connectedLastUpdateJoysticks;
        std::map<mfiID,unsigned int> _wordToIDControllerMap;
