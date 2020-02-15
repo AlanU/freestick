@@ -38,6 +38,7 @@ FSMFIJoystick::FSMFIJoystick(void * controller,idNumber joyStickID,
     #endif
     {
         _productIDFriendlyName = [[gccontroller productCategory]UTF8String];
+        _productIDFriendlyName += " Player " + playerNumber.str();
     } else {
         // Fallback on earlier versions
         _productIDFriendlyName = "Player " + playerNumber.str();
