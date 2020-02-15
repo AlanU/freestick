@@ -353,7 +353,12 @@ uint32_t FSUSBMacOSXJoystickDeviceManager::createIdForElement(uint32_t usage, ui
 
 void FSUSBMacOSXJoystickDeviceManager::gamepadWasAdded(void* inContext, IOReturn inResult, void* inSender, IOHIDDeviceRef device) {
     FSUSBMacOSXJoystickDeviceManager * manager = (FSUSBMacOSXJoystickDeviceManager *) inContext;
-    manager->addDevice(device);
+    vendorIDType vendorID = static_cast<vendorIDType>(IOHIDDevice_GetVendorID(device));
+    //productIDType productID = static_cast<productIDType>( IOHIDDevice_GetProductID(device)); // Might need depending on how other mac mifi device work
+    if(vendorID != MIFIVenderID)
+    {
+        manager->addDevice(device);
+    }
 
     // vibrateJoystick(device);
 }

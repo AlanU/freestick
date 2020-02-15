@@ -1,6 +1,6 @@
 /**************************************************************************
 Created by Alan Uthoff on 10/13/2013
-Copyright (C) 2013
+Copyright (C) 2019
 
 This Code is free software; you can redistribute it and/or
 modify it under the terms of the zlib/libpng License as published

@@ -52,7 +52,8 @@ std::string FSUSBDevice::GetFrendlyProductNameFromID(vendorIDType vendorID, prod
     s_productFriendlyNames[LogitechVendorID][LogitechDualActionID] = "Dual Action";
     s_productFriendlyNames[SonyVendorID][Playstation3ControllerID] = "DualShock 3 Controller";
     s_productFriendlyNames[HVG2VendorID][HVG2TwinPS2] ="Twin DualShock 2";
-    s_productFriendlyNames[SonyVendorID][Playstation4ControllerID] = "DualShock 4 Controller";
+    s_productFriendlyNames[SonyVendorID][Playstation4ControllerIDV1] = "DualShock 4 Controller";
+    s_productFriendlyNames[SonyVendorID][Playstation4ControllerIDV2] = "DualShock 4 Controller (2nd Gen)";
     s_productFriendlyNames[GameElementsVendorID][GameElementsRecoilID] = "GGE908";
     s_productFriendlyNames[DragonRiseID][SteelSeries3GCControllerID] = "3GC Controller";
 

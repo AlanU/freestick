@@ -80,7 +80,8 @@ QMAKE_CXXFLAGS_WARN_ON= -Wall -Wno-unused-parameter -Wno-inconsistent-missing-ov
 
 LIBS += -framework IOKit \
         -framework ForceFeedback \
-        -framework CoreFoundation
+        -framework CoreFoundation \
+        -framework GameController
 }
 
 ios{

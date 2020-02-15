@@ -61,8 +61,8 @@ and must not be misrepresented as being the original software.
     #else
         #define TARGET_OS_OSX 1
         // define something for OSX
-        #include "USB/platform/MacOSX/FSUSBMacOSXJoystickDeviceManager.h"
-        typedef freestick::FSUSBMacOSXJoystickDeviceManager FreeStickDeviceManager;
+        #include "USB/platform/MacOSX/FSMacOSXJoystickDeviceManager.h"
+        typedef freestick::FSMacOSXJoystickDeviceManager FreeStickDeviceManager;
     #endif
 #elif __ANDROID__
     //define for android

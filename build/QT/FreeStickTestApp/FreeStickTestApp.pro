@@ -34,3 +34,5 @@ SUBDIRS += \
 
 JoyStickConfig.depends = FreeStick
 
+#Required to tell QMake order to process the .pro files in
+CONFIG += ordered

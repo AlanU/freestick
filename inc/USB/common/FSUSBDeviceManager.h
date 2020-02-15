@@ -50,7 +50,8 @@ const uint32_t SteelSeriesVendorID = 4152;
 const uint32_t SteelSeriesFreeControllerID = 5138;
 const uint32_t SonyVendorID = 1356;
 const uint32_t Playstation3ControllerID = 616;
-const uint32_t Playstation4ControllerID = 1476;
+const uint32_t Playstation4ControllerIDV1 = 1476;
+const uint32_t Playstation4ControllerIDV2 = 2508;
 const uint32_t LogitechVendorID = 1133;
 const uint32_t LogitechDualActionID = 49686;
 const uint32_t LogitechGamepadF710 = 49689;
@@ -72,6 +73,10 @@ const uint32_t TomeeVendorID2 = 4797;
 const uint32_t TomeeNesUSBControllerID = 53269;
 const uint32_t ZDVVendorID = 9571;
 const uint32_t VWiredGamePadID = 1397;
+
+//MIFI
+const uint32_t NIMBUS = 5152;
+const uint32_t MIFIVenderID = 273;
 
     class FSUSBElementInfoMap
     {

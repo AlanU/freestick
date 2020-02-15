@@ -27,10 +27,11 @@ and must not be misrepresented as being the original software.
 
 #pragma once
 #include "USB/common/FSUSBJoystickDeviceManager.h"
+#include "USB/common/FSUpdatableJoystickDeviceManager.h"
 #include <IOKit/hid/IOHIDLib.h>
 namespace freestick
 {
-    class FSUSBMacOSXJoystickDeviceManager : public FSUSBJoystickDeviceManager
+    class FSUSBMacOSXJoystickDeviceManager : public FSUpdatableJoystickDeviceManager
     {
     public:
         FSUSBMacOSXJoystickDeviceManager();

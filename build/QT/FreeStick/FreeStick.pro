@@ -48,8 +48,6 @@ SOURCES += \
         $$files(../../../src/3rdParty/EELog/src/*.cpp) \
         ../../../src/FSDeviceInputEvent.cpp \
 
-
-
 HEADERS += \
         $$files(../../../inc/*.h) \
         $$files(../../../inc/common/*.h) \
@@ -107,16 +105,25 @@ macx {
          $$files(../../../src/3rdParty/Mac/IOHID/*.c) \
         ../../../src/USB/platform/MacOSX/FSUSBMacOSXJoystick.cpp \
         ../../../src/USB/platform/MacOSX/FSUSBMacOSXJoystickDeviceManager.cpp \
+        ../../../src/USB/platform/MacOSX/FSMacOSXJoystickDeviceManager.cpp \
+
 
 
     HEADERS += \
         $$files(../../../src/3rdParty/Mac/IOHID/*.h) \
         ../../../inc/USB/platform/MacOSX/FSUSBMacOSXJoystick.h \
         ../../../inc/USB/platform/MacOSX/FSUSBMacOSXJoystickDeviceManager.h \
+        ../../../inc/USB/platform/MacOSX/FSMacOSXJoystickDeviceManager.h \
+
+    OBJECTIVE_SOURCES += ../../../src/USB/platform/iOS/FSMFIJoystickManager.mm \
+                         ../../../src/USB/platform/iOS/FSMFIJoystick.mm
 
     LIBS += -framework IOKit \
         -framework ForceFeedback \
         -framework CoreFoundation \
+        -framework GameController \
+        -framework Foundation \
+QMAKE_MAC_SDK = 10.5
 }
 
 ios {

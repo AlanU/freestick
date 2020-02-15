@@ -28,10 +28,22 @@ FSMFIJoystick::FSMFIJoystick(void * controller,idNumber joyStickID,
     std::stringstream playerNumber;
     playerNumber << joyStickID+1;
     addMFIElements();
-    _vendorIDFriendlyName = "MFIController";
-    _productIDFriendlyName = "Player " + playerNumber.str();
+    _vendorIDFriendlyName = [[gccontroller vendorName] UTF8String];
+    #if TARGET_OS_IPHONE
+    if (@available(iOS 13.0, *) )
+    #elif TARGET_OS_TV
+    if (@available(tvOS 13.0, *) )
+    #else
+    if (@available(macOS 10.15, *))
+    #endif
+    {
+        _productIDFriendlyName = [[gccontroller productCategory]UTF8String];
+    } else {
+        // Fallback on earlier versions
+        _productIDFriendlyName = "Player " + playerNumber.str();
+    }
     _friendlyName = _vendorIDFriendlyName + " "+ _productIDFriendlyName;
-    _friendlyName = [[gccontroller vendorName] UTF8String];
+   // _friendlyName = [[gccontroller vendorName] UTF8String];
 }
 
 bool FSMFIJoystick::setElementValue(elementID element,float value)
