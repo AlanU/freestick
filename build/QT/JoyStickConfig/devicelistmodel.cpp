@@ -88,7 +88,7 @@ void DeviceListModel::onStickMove(FSDeviceInputEvent event)
 void DeviceListModel::onDisconnect(FSBaseEvent event)
 {
     auto id = event.getDeviceID();
-    for(int index = m_data.size()-1; index >= 0;++index)
+    for(int index = m_data.size()-1; index >= 0;--index)
     {
         if(id == m_data[index].second)
         {
