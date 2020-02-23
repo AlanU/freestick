@@ -5,6 +5,8 @@ Item {
     id: mainForm
     width: 400
     height: 400
+    property alias swipeView: swipeView
+    property alias tabBar: tabBar
     property alias deviceModel: devices.model
     property alias devicesControl: devices
     property int currentControllerID: 0
@@ -18,10 +20,9 @@ Item {
         SwipeView {
             id: swipeView
             anchors.fill: parent
-            currentIndex: tabBar.currentIndex
-
+            interactive: false
             JoystickInformationPage {
-                id:contorllerInfoPage
+                id: contorllerInfoPage
                 width: swipeView.width
                 height: swipeView.height
                 currentInfoPageControllerID: mainForm.currentControllerID
@@ -45,9 +46,8 @@ Item {
                 }
             }
 
-
             JoystickTablePage {
-                id:contorllerTable
+                id: contorllerTable
                 width: swipeView.width
                 height: swipeView.height
                 currentTableContorllerID: mainForm.currentControllerID
@@ -56,8 +56,6 @@ Item {
 
         footer: TabBar {
             id: tabBar
-            currentIndex: swipeView.currentIndex
-
             TabButton {
                 text: "Infomation"
             }

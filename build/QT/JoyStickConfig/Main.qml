@@ -27,16 +27,14 @@ ApplicationWindow {
             if(id)
             {
                 currentControllerID = id
-                conrollerInfoPage = id
 
             }
         }
 
-        onCurrentControllerIDChanged: {
-            console.log(currentControllerID);
+        tabBar.onCurrentIndexChanged: {
+            swipeView.setCurrentIndex(tabBar.currentIndex)
         }
-
-
     }
+
 
 }
