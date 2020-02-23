@@ -156,9 +156,8 @@ void JoyStickConfigWidget::setAxisWidgetFromValue(QWidget * widgetToSet,float va
 
 }
 
-void JoyStickConfigWidget::updateVirtualAnalogGamePad(FSDeviceInput input,FSEventAction action,float value )
+void JoyStickConfigWidget::updateVirtualAnalogGamePad(FSDeviceInput input,FSEventAction /*action*/,float value )
 {
-    action;//to remove unused warning
     switch (input)
     {
         case Trigger1:

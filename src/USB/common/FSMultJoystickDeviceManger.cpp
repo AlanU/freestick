@@ -169,9 +169,9 @@ bool FSMultJoystickDeviceManger::doesDeviceHaveDeviceInputForValue(vendorIDType 
          return manager->doesDeviceHaveDeviceInputForValue( vendorUSBID,  productUSBID , inputToLookFor ,value);});
 }
 
-bool FSMultJoystickDeviceManger::doesDeviceHaveDeviceInputForValue(idNumber deviceID,FSDeviceInput inputToLookFor,  physicalValueNumber value )
+bool FSMultJoystickDeviceManger::doesDeviceHaveDeviceInputForValue(idNumber /*deviceID*/,FSDeviceInput inputToLookFor,  physicalValueNumber value )
 {
-    return DoesDeviceHaveInput([deviceID,&inputToLookFor, value](unique_ptr_of_managers &manager) {
+    return DoesDeviceHaveInput([&inputToLookFor, value](unique_ptr_of_managers &manager) {
          return manager->doesDeviceHaveDeviceInputForValue( inputToLookFor,inputToLookFor ,value);});
 }
 

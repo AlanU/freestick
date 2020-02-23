@@ -60,8 +60,8 @@ FSDirectInputJoystick::FSDirectInputJoystick(LPDIRECTINPUTDEVICE8  LPDIDJoystick
       WORD  productIDW = HIWORD(dipdw.dwData);
       _vendorID = vendorIDW;
       _productID = productIDW;
-      _vendorIDFriendlyName = FSUSBDevice::GetFrendlyVendorNameFromID(_vendorID);
-      _productIDFriendlyName = FSUSBDevice::GetFrendlyProductNameFromID(_vendorID,_productID);
+      _vendorIDFriendlyName = FSUSBDevice::getFrendlyVendorNameFromID(_vendorID);
+      _productIDFriendlyName = FSUSBDevice::getFrendlyProductNameFromID(_vendorID,_productID);
       if( _productIDFriendlyName == "unknown")
       {
           DIPROPSTRING  dipstr;

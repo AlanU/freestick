@@ -29,9 +29,9 @@ and must not be misrepresented as being the original software.
 #define DEPRECATED_SUPPORT
 #ifdef DEPRECATED_SUPPORT
 //Functions
-#define getVenderFriendlyName  getVendorFriendlyName
-#define getVenderID getVendorID
-#define GetFrendlyVenderNameFromID GetFrendlyVendorNameFromID
+//#define getVenderFriendlyName  getVendorFriendlyName
+//#define getVenderID getVendorID
+//#define GetFrendlyVenderNameFromID GetFrendlyVendorNameFromID
 #endif
 
 #include "../../baseClasses/FSBaseDevice.h"
@@ -59,8 +59,8 @@ namespace freestick
        const std::string getProductFrendlyName() const { return _productIDFriendlyName;}
        vendorIDType getProductID() const{ return _productID;}
        productIDType getVendorID() const { return _vendorID;}
-       static std::string GetFrendlyVendorNameFromID(vendorIDType vendorID);
-       static std::string GetFrendlyProductNameFromID(vendorIDType vendorID, productIDType productID);
+       static std::string getFrendlyVendorNameFromID(vendorIDType vendorID);
+       static std::string getFrendlyProductNameFromID(vendorIDType vendorID, productIDType productID);
 
     };
 }
