@@ -43,3 +43,5 @@ build/QT/JoyStickConfig/debug/
 build/QT/JoyStickConfig/JoyStickConfig_resource.rc
 *.o
 build/QT/JoyStickConfig/moc_*
+/build/QT/JoyStickConfig/qmlcache_loader.cpp
+/build/QT/JoyStickConfig/qrc_qml.cpp
