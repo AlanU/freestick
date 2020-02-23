@@ -60,6 +60,7 @@ const uint32_t OUYAVendorID = 10294;
 const uint32_t OUYAControllerID = 1;
 const uint32_t MicrosoftVendorID = 1118;
 const uint32_t MicrosoftXbox360WindowsControllerID = 654;
+const uint32_t MicrosoftXboxOneWindowsControllerID = 746;
 const uint32_t RockCandyVendorID = 3695;
 const uint32_t RockCandyXbox360ControlllerID = 3695;
 const uint32_t HVG2VendorID = 2064;

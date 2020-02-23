@@ -522,39 +522,42 @@ FSUSBDeviceManager::FSUSBDeviceManager()
    // _usageMapToInputRangeEvent[createId(OUYAVendorID,OUYAControllerID)][65585].push_back(FSUSBElementInfoMap(-127,127,YAxis3,FSInputChanged));
 
     // Microsoft Xbox 360 Windows controller
+    std::array<uint32_t,2> microsoftProductIds{MicrosoftXbox360WindowsControllerID,MicrosoftXboxOneWindowsControllerID};
 
-    _usageMapToInputEvent[createVPId(MicrosoftVendorID,MicrosoftXbox360WindowsControllerID)][589825] = ButtonA;
-    _usageMapToInputEvent[createVPId(MicrosoftVendorID,MicrosoftXbox360WindowsControllerID)][589826] = ButtonB;
-    _usageMapToInputEvent[createVPId(MicrosoftVendorID,MicrosoftXbox360WindowsControllerID)][589827] = ButtonX;
-    _usageMapToInputEvent[createVPId(MicrosoftVendorID,MicrosoftXbox360WindowsControllerID)][589828] = ButtonY;
+    for ( auto xboxControllerID : microsoftProductIds)
+    {
+        _usageMapToInputEvent[createVPId(MicrosoftVendorID,xboxControllerID)][589825] = ButtonA;
+        _usageMapToInputEvent[createVPId(MicrosoftVendorID,xboxControllerID)][589826] = ButtonB;
+        _usageMapToInputEvent[createVPId(MicrosoftVendorID,xboxControllerID)][589827] = ButtonX;
+        _usageMapToInputEvent[createVPId(MicrosoftVendorID,xboxControllerID)][589828] = ButtonY;
 
-    _usageMapToInputEvent[createVPId(MicrosoftVendorID,MicrosoftXbox360WindowsControllerID)][589829] = LeftShoulder;//L1 sholder button
-    _usageMapToInputEvent[createVPId(MicrosoftVendorID,MicrosoftXbox360WindowsControllerID)][589830] = RightShoulder;//R2 sholder button
+        _usageMapToInputEvent[createVPId(MicrosoftVendorID,xboxControllerID)][589829] = LeftShoulder;//L1 sholder button
+        _usageMapToInputEvent[createVPId(MicrosoftVendorID,xboxControllerID)][589830] = RightShoulder;//R2 sholder button
 
-    //xbox 360 is for 0 - 255 but xbox one is for 0 - 1023 and the xbox one driver pretends it is a xbox 360 with the 1023 value
-    _usageMapToInputRangeEvent[createVPId(MicrosoftVendorID,MicrosoftXbox360WindowsControllerID)][65586].push_back(FSUSBElementInfoMap(0,1023,Trigger1,FSInputChanged));//L2 trigger
-    _usageMapToInputRangeEvent[createVPId(MicrosoftVendorID,MicrosoftXbox360WindowsControllerID)][65589].push_back(FSUSBElementInfoMap(0,1023,Trigger2,FSInputChanged));//R2 trigger
+        //xbox 360 is for 0 - 255 but xbox one is for 0 - 1023 and the xbox one driver pretends it is a xbox 360 with the 1023 value
+        _usageMapToInputRangeEvent[createVPId(MicrosoftVendorID,xboxControllerID)][65586].push_back(FSUSBElementInfoMap(0,1023,Trigger1,FSInputChanged));//L2 trigger
+        _usageMapToInputRangeEvent[createVPId(MicrosoftVendorID,xboxControllerID)][65589].push_back(FSUSBElementInfoMap(0,1023,Trigger2,FSInputChanged));//R2 trigger
 
-    _usageMapToInputEvent[createVPId(MicrosoftVendorID,MicrosoftXbox360WindowsControllerID)][589831] = Axis1Button;//L3 left thumb down
-    _usageMapToInputEvent[createVPId(MicrosoftVendorID,MicrosoftXbox360WindowsControllerID)][589832] = Axis2Button;//R3 right thumb down
+        _usageMapToInputEvent[createVPId(MicrosoftVendorID,xboxControllerID)][589831] = Axis1Button;//L3 left thumb down
+        _usageMapToInputEvent[createVPId(MicrosoftVendorID,xboxControllerID)][589832] = Axis2Button;//R3 right thumb down
 
-    _usageMapToInputEvent[createVPId(MicrosoftVendorID,MicrosoftXbox360WindowsControllerID)][589834] = ButtonSelect;//back
-    _usageMapToInputEvent[createVPId(MicrosoftVendorID,MicrosoftXbox360WindowsControllerID)][589835] = ButtonCenter;//Microsoft xbox button
-    _usageMapToInputEvent[createVPId(MicrosoftVendorID,MicrosoftXbox360WindowsControllerID)][589840] = ButtonCenter;//Microsoft xbox one button
+        _usageMapToInputEvent[createVPId(MicrosoftVendorID,xboxControllerID)][589834] = ButtonSelect;//back
+        _usageMapToInputEvent[createVPId(MicrosoftVendorID,xboxControllerID)][589835] = ButtonCenter;//Microsoft xbox button
+        _usageMapToInputEvent[createVPId(MicrosoftVendorID,xboxControllerID)][589840] = ButtonCenter;//Microsoft xbox one button
 
-    _usageMapToInputEvent[createVPId(MicrosoftVendorID,MicrosoftXbox360WindowsControllerID)][589833] = ButtonStart;//start
+        _usageMapToInputEvent[createVPId(MicrosoftVendorID,xboxControllerID)][589833] = ButtonStart;//start
 
-    _usageMapToInputEvent[createVPId(MicrosoftVendorID,MicrosoftXbox360WindowsControllerID)][589836] = DPadUp;
-    _usageMapToInputEvent[createVPId(MicrosoftVendorID,MicrosoftXbox360WindowsControllerID)][589837] = DPadDown;
-    _usageMapToInputEvent[createVPId(MicrosoftVendorID,MicrosoftXbox360WindowsControllerID)][589838] = DPadLeft;
-    _usageMapToInputEvent[createVPId(MicrosoftVendorID,MicrosoftXbox360WindowsControllerID)][589839] = DPadRight;
+        _usageMapToInputEvent[createVPId(MicrosoftVendorID,xboxControllerID)][589836] = DPadUp;
+        _usageMapToInputEvent[createVPId(MicrosoftVendorID,xboxControllerID)][589837] = DPadDown;
+        _usageMapToInputEvent[createVPId(MicrosoftVendorID,xboxControllerID)][589838] = DPadLeft;
+        _usageMapToInputEvent[createVPId(MicrosoftVendorID,xboxControllerID)][589839] = DPadRight;
 
-    _usageMapToInputRangeEvent[createVPId(MicrosoftVendorID,MicrosoftXbox360WindowsControllerID)][65584].push_back(FSUSBElementInfoMap(-32768,32767,XAxis,FSInputChanged));//LXaxis stick trigger
-    _usageMapToInputRangeEvent[createVPId(MicrosoftVendorID,MicrosoftXbox360WindowsControllerID)][65585].push_back(FSUSBElementInfoMap(-32768,32767,YAxis,FSInputChanged));//LYaxis stick trigger
+        _usageMapToInputRangeEvent[createVPId(MicrosoftVendorID,xboxControllerID)][65584].push_back(FSUSBElementInfoMap(-32768,32767,XAxis,FSInputChanged));//LXaxis stick trigger
+        _usageMapToInputRangeEvent[createVPId(MicrosoftVendorID,xboxControllerID)][65585].push_back(FSUSBElementInfoMap(-32768,32767,YAxis,FSInputChanged));//LYaxis stick trigger
 
-    _usageMapToInputRangeEvent[createVPId(MicrosoftVendorID,MicrosoftXbox360WindowsControllerID)][65587].push_back(FSUSBElementInfoMap(-32768,32767,XAxis2,FSInputChanged));//RXaxis stick trigger
-    _usageMapToInputRangeEvent[createVPId(MicrosoftVendorID,MicrosoftXbox360WindowsControllerID)][65588].push_back(FSUSBElementInfoMap(-32768,32767,YAxis2,FSInputChanged));//RYaxis stick trigger
-
+        _usageMapToInputRangeEvent[createVPId(MicrosoftVendorID,xboxControllerID)][65587].push_back(FSUSBElementInfoMap(-32768,32767,XAxis2,FSInputChanged));//RXaxis stick trigger
+        _usageMapToInputRangeEvent[createVPId(MicrosoftVendorID,xboxControllerID)][65588].push_back(FSUSBElementInfoMap(-32768,32767,YAxis2,FSInputChanged));//RYaxis stick trigger
+    }
 
      //Rock candy xbox360 controller
 
