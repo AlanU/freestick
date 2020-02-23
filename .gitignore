@@ -45,3 +45,4 @@ build/QT/JoyStickConfig/JoyStickConfig_resource.rc
 build/QT/JoyStickConfig/moc_*
 /build/QT/JoyStickConfig/qmlcache_loader.cpp
 /build/QT/JoyStickConfig/qrc_qml.cpp
+/build/QT/FreeStickTestApp/FreeStickTestApp.pro.user.1d850b9
