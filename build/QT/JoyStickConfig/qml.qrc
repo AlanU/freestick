@@ -4,5 +4,7 @@
         <file>MainForm.ui.qml</file>
         <file>JoystickTablePage.qml</file>
         <file>JoystickTablePageForm.qml</file>
+        <file>JoystickInformationPage.qml</file>
+        <file>JoystickInformationPageForm.ui.qml</file>
     </qresource>
 </RCC>

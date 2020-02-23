@@ -1,22 +1,18 @@
 import QtQuick 2.4
 import org.freestick.models 1.0
 JoystickTablePageForm {
+    property int currentTableContorllerID: -1
+
     model:ContorllerMapping{
-           id:controllerModel
+          id:controllerModel
           manager: deviceManager
+          onJoystickIDChanged:
+          {
+                console.log(joystickID)
+          }
     }
-    deviceModel: DeviceList{
-        id:deviceModelList
-        manager: deviceManager
-        onModelReset: {
-            if (devicesControl.currentText == "")
-            {
-                devicesControl.currentIndex = 0
-            }
-        }
+    onCurrentTableContorllerIDChanged: {
+        controllerModel.joystickID =currentTableContorllerID
     }
-    devicesControl.onCurrentIndexChanged: {
-        let id = deviceModelList.getIdFromIndex(devicesControl.currentIndex)
-        controllerModel.joystickID = id
-    }
+
 }

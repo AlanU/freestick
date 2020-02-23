@@ -7,16 +7,11 @@ Item {
     width: 400
     height: 400
     property alias model: tableView.model
-    property alias deviceModel: devices.model
-    property alias devicesControl: devices
     property alias tableView: tableView
     property var columnNames: ["ID", "Min Value", "Max Value","Raw Value", "Value", "Dead Min","Dead Max","Mapped","Element Cookie","Usage Page","Usage"]
     Page {
         id: page
         anchors.fill: parent
-        header:  ComboBox{
-            id: devices
-        }
         TableView {
             id: tableView
             anchors.fill: parent
