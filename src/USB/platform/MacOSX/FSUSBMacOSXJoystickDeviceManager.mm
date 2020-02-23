@@ -356,20 +356,7 @@ uint32_t FSUSBMacOSXJoystickDeviceManager::createIdForElement(uint32_t usage, ui
 void FSUSBMacOSXJoystickDeviceManager::gamepadWasAdded(void* inContext, IOReturn /*inResult*/, void* /*inSender*/, IOHIDDeviceRef device) {
     FSUSBMacOSXJoystickDeviceManager * manager = (FSUSBMacOSXJoystickDeviceManager *) inContext;
     vendorIDType vendorID = static_cast<vendorIDType>(IOHIDDevice_GetVendorID(device));
-    //productIDType productID = static_cast<productIDType>( IOHIDDevice_GetProductID(device));
-   // NSOperatingSystemVersion minimumSupportedOSVersion = { .majorVersion = 10, .minorVersion = 12, .patchVersion = 0 };
-   // BOOL isSupported = [NSProcessInfo.processInfo isOperatingSy:minimumSupportedOSVersion];
-   /* if ([[NSProcessInfo operatingSystemVersion] minorVerion])
-    {
-        if(vendorID != MIFIVenderID )// && productID != Playstation4ControllerIDV1 && productID != Playstation4ControllerIDV2)
-        {
-            manager->addDevice(device);
-        }
-    }
-    else
-    {*/
 
-       // containsControler
     if (@available(macOS 10.15, *))
     {
         std::string deviceName = FSUSBMacOSXJoystick::getManufactureName(device);

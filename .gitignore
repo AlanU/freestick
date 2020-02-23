@@ -46,3 +46,12 @@ build/QT/JoyStickConfig/moc_*
 /build/QT/JoyStickConfig/qmlcache_loader.cpp
 /build/QT/JoyStickConfig/qrc_qml.cpp
 /build/QT/FreeStickTestApp/FreeStickTestApp.pro.user.1d850b9
+/build/QT/JoyStickConfig/Main_qml.cpp
+/build/QT/JoyStickConfig/JoystickInformationPage_qml.cpp
+/build/QT/JoyStickConfig/joystickconfig_qml_plugin_import.cpp
+/build/QT/JoyStickConfig/JoystickInformationPageForm.ui_qml.cpp
+/build/QT/JoyStickConfig/Release-iphoneos
+/build/QT/JoyStickConfig/MainForm.ui_qml.cpp
+/build/QT/JoyStickConfig/JoystickTablePageForm_qml.cpp
+/build/QT/JoyStickConfig/JoystickTablePage_qml.cpp
+/build/QT/JoyStickConfig/joystickconfig_plugin_import.cpp
