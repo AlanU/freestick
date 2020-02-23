@@ -32,10 +32,12 @@ and must not be misrepresented as being the original software.
 #include <IOKit/IOKitLib.h>
 #include <ForceFeedback/ForceFeedback.h>
 #include "USB/platform/MacOSX/FSUSBMacOSXJoystick.h"
+#include "USB/platform/MacOSX/FSMacUtil.h"
 #include "stdio.h"
 #include "../../../3rdParty/Mac/IOHID/IOHIDDevice_.h"
 #include "common/FreeStickLog.h"
 
+#import <Foundation/Foundation.h>
 using namespace freestick;
 
 FSUSBMacOSXJoystickDeviceManager::FSUSBMacOSXJoystickDeviceManager()
@@ -351,16 +353,38 @@ uint32_t FSUSBMacOSXJoystickDeviceManager::createIdForElement(uint32_t usage, ui
 
 }
 
-void FSUSBMacOSXJoystickDeviceManager::gamepadWasAdded(void* inContext, IOReturn inResult, void* inSender, IOHIDDeviceRef device) {
+void FSUSBMacOSXJoystickDeviceManager::gamepadWasAdded(void* inContext, IOReturn /*inResult*/, void* /*inSender*/, IOHIDDeviceRef device) {
     FSUSBMacOSXJoystickDeviceManager * manager = (FSUSBMacOSXJoystickDeviceManager *) inContext;
     vendorIDType vendorID = static_cast<vendorIDType>(IOHIDDevice_GetVendorID(device));
-    //productIDType productID = static_cast<productIDType>( IOHIDDevice_GetProductID(device)); // Might need depending on how other mac mifi device work
-    if(vendorID != MIFIVenderID)
+    //productIDType productID = static_cast<productIDType>( IOHIDDevice_GetProductID(device));
+   // NSOperatingSystemVersion minimumSupportedOSVersion = { .majorVersion = 10, .minorVersion = 12, .patchVersion = 0 };
+   // BOOL isSupported = [NSProcessInfo.processInfo isOperatingSy:minimumSupportedOSVersion];
+   /* if ([[NSProcessInfo operatingSystemVersion] minorVerion])
     {
-        manager->addDevice(device);
+        if(vendorID != MIFIVenderID )// && productID != Playstation4ControllerIDV1 && productID != Playstation4ControllerIDV2)
+        {
+            manager->addDevice(device);
+        }
     }
+    else
+    {*/
 
-    // vibrateJoystick(device);
+       // containsControler
+    if (@available(macOS 10.15, *))
+    {
+        std::string deviceName = FSUSBMacOSXJoystick::getManufactureName(device);
+        if(deviceName.empty() || !containsControler(deviceName)  ) //vendorID != MIFIVenderID)// && productID != Playstation4ControllerIDV1 && productID != Playstation4ControllerIDV2)
+        {
+            manager->addDevice(device);
+        }
+    }
+    else
+    {
+        if(vendorID != MIFIVenderID)
+        {
+            manager->addDevice(device);
+        }
+    }
 }
 
 void FSUSBMacOSXJoystickDeviceManager::gamepadWasRemoved(void* inContext, IOReturn inResult, void* inSender, IOHIDDeviceRef device) {
@@ -508,7 +532,7 @@ void FSUSBMacOSXJoystickDeviceManager::update()
 {
     if(IOHIDDeviceToIDMap.begin() != IOHIDDeviceToIDMap.end())
     {
-        std::map<IOHIDDeviceRef,unsigned int>::iterator itr = IOHIDDeviceToIDMap.begin();
+        //std::map<IOHIDDeviceRef,unsigned int>::iterator itr = IOHIDDeviceToIDMap.begin();
         /*for(itr ; itr != IOHIDDeviceToIDMap.end() ; itr++ )
          {
            //numberOfDeviecType(itr->first,NULL,NULL,NULL);
@@ -535,7 +559,7 @@ void FSUSBMacOSXJoystickDeviceManager::addDevice(IOHIDDeviceRef  device)
         FSUSBMacOSXJoystick * temp = new FSUSBMacOSXJoystick(device, this->getNextID(),numberOfButtons(device),numberOfAnalogSticks(device),0,isForceFeedBackSupported(device));
         temp->Init(*this);
         this->addDevice(temp);
-        findDpad(device);
+        //findDpad(device);
         EE_DEBUG<<"Gamepad was plugged in with "<<temp->getNumberOfButtons()<<" buttons and "<<temp->getNumberOfAnlogSticks()<<" sticks"<<std::endl;
     }
 

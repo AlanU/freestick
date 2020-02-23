@@ -172,7 +172,7 @@ FSUSBMacOSXJoystick::FSUSBMacOSXJoystick(IOHIDDeviceRef device,
     _productID = static_cast<productIDType>( IOHIDDevice_GetProductID(device));
 
     EE_DEBUG<<"device with vendorID "<<_vendorID<<" and productID "<<_productID<<std::endl;
-    _vendorIDFriendlyName = FSUSBDevice::GetFrendlyVendorNameFromID(_vendorID);
+    _vendorIDFriendlyName = FSUSBDevice::getFrendlyVendorNameFromID(_vendorID);
     if(_vendorIDFriendlyName == "unknown")
     {
         CFStringRef manufactureStringRef = IOHIDDevice_GetManufacturer(device);
@@ -185,7 +185,7 @@ FSUSBMacOSXJoystick::FSUSBMacOSXJoystick(IOHIDDeviceRef device,
            }
         }
     }
-    _productIDFriendlyName = FSUSBDevice::GetFrendlyProductNameFromID(_vendorID,_productID);
+    _productIDFriendlyName = FSUSBDevice::getFrendlyProductNameFromID(_vendorID,_productID);
     if(_productIDFriendlyName == "unknown")
     {
        CFStringRef productStringRef = IOHIDDevice_GetProduct(device);
@@ -237,5 +237,16 @@ std::string FSUSBMacOSXJoystick::CFStringRefToString(CFStringRef refString)
     return std::string();
 
 
+}
+
+std::string FSUSBMacOSXJoystick::getManufactureName(IOHIDDeviceRef device)
+{
+    CFStringRef manufactureStringRef = IOHIDDevice_GetManufacturer(device);
+    if(manufactureStringRef)
+    {
+       return CFStringRefToString(manufactureStringRef);
+
+    }
+    return std::string();
 }
 

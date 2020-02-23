@@ -6,6 +6,10 @@
 #import <Foundation/Foundation.h>
 using namespace freestick;
 
+#if TARGET_OS_OSX
+#include "USB/platform/MacOSX/FSMacUtil.h"
+#endif
+
 FSMFIJoystickDeviceManager::FSMFIJoystickDeviceManager()
 {
 
@@ -268,6 +272,12 @@ void FSMFIJoystickDeviceManager::removeMFIDevice(mfiID device)
 {
     if(_wordToIDControllerMap.find(device) != _wordToIDControllerMap.end())
     {
+#if TARGET_OS_OSX
+        //TODO fix waring
+        GCController * gccontroller = [GCController controllers][device];
+        std::string temp([[gccontroller vendorName] UTF8String]);
+        dissconnectKnownControllers(temp);
+#endif
         elementID id = _wordToIDControllerMap[device];
         const FSBaseDevice * joystickToDelete = getDevice(id);
         removeDevice(const_cast<FSBaseDevice*>(joystickToDelete));
@@ -290,6 +300,11 @@ void FSMFIJoystickDeviceManager::addMFIDevice(mfiID device, void * controller)
         productIDType productID = 0;
        // controller.playerIndex = static_cast<GCControllerPlayerIndex>(contorllerCount++);
 
+#if TARGET_OS_OSX
+        GCController * gccontroller = static_cast<GCController*>(controller);
+        std::string temp([[gccontroller vendorName] UTF8String]);
+       connectKnownControllers(temp);
+#endif
         FSUSBDeviceManager::addDevice(new FSMFIJoystick(controller,
                                                         newId,
                                                         numberOfButtons,
@@ -298,6 +313,7 @@ void FSMFIJoystickDeviceManager::addMFIDevice(mfiID device, void * controller)
                                                         forceFeedBackSupported,
                                                         vendorID,
                                                         productID));
+
         connectControlesToController(controller,newId);
 
     }
