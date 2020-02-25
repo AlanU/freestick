@@ -26,7 +26,7 @@ FSMFIJoystick::FSMFIJoystick(void * controller,idNumber joyStickID,
     GCController * gccontroller = static_cast<GCController*>(controller);
 
     std::stringstream playerNumber;
-    playerNumber << joyStickID+1;
+    playerNumber << joyStickID;
     addMFIElements();
     _vendorIDFriendlyName = [[gccontroller vendorName] UTF8String];
     #if TARGET_OS_IPHONE
