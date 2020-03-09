@@ -24,9 +24,6 @@ FSMFIJoystick::FSMFIJoystick(void * controller,idNumber joyStickID,
                             productID)
 {
     GCController * gccontroller = static_cast<GCController*>(controller);
-
-    std::stringstream playerNumber;
-    playerNumber << joyStickID;
     addMFIElements();
     _vendorIDFriendlyName = [[gccontroller vendorName] UTF8String];
     #if TARGET_OS_IPHONE
@@ -38,10 +35,6 @@ FSMFIJoystick::FSMFIJoystick(void * controller,idNumber joyStickID,
     #endif
     {
         _productIDFriendlyName = [[gccontroller productCategory]UTF8String];
-        _productIDFriendlyName += " Player " + playerNumber.str();
-    } else {
-        // Fallback on earlier versions
-        _productIDFriendlyName = "Player " + playerNumber.str();
     }
     _friendlyName = _vendorIDFriendlyName + " "+ _productIDFriendlyName;
    // _friendlyName = [[gccontroller vendorName] UTF8String];

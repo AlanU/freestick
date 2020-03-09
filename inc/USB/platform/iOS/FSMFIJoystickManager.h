@@ -28,6 +28,7 @@
 #include "USB/common/FSUpdatableJoystickDeviceManager.h"
 #include <map>
 #include <vector>
+//#import <GameController/GCController.h>
 namespace freestick
 {
 typedef int mfiID;
@@ -43,12 +44,13 @@ typedef int mfiID;
         void updateJoystickButtons(idNumber joyStickID, idNumber elementID, bool pressed,float value);
         void updateJoystickAnalog(idNumber joyStickID,idNumber elementID,float value);
         void updateConnectedControllers();
+        void addMFIDevice(void * controller);
+        void removeMFIDevice(void * device);
+
        // void updateControllers();
         void connectControlesToController(void * contorller,idNumber joyStickID);
-        void removeMFIDevice(mfiID device);
-        void addMFIDevice(mfiID device, void * controller);
        // uint64_t contorllerIDs = 0;
        std::vector<mfiID> _connectedLastUpdateJoysticks;
-       std::map<mfiID,unsigned int> _wordToIDControllerMap;
+       std::map<void *,unsigned int> _wordToIDControllerMap;
     };
 }

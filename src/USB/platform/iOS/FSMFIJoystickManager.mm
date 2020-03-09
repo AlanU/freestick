@@ -56,24 +56,75 @@ void FSMFIJoystickDeviceManager::init() {
    [[NSNotificationCenter defaultCenter] addObserverForName:GCControllerDidConnectNotification
                           object:nil
                           queue:nil
-                          usingBlock:^(NSNotification * /*note*/)
+                          usingBlock:^(NSNotification * note)
                           {
-                             updateConnectedControllers();
-                            //updateControllers();
+                            addMFIDevice(static_cast<void *>(note.object));
                           }
     ];
 
     [[NSNotificationCenter defaultCenter] addObserverForName:GCControllerDidDisconnectNotification
                            object:nil
                            queue:nil
-                           usingBlock:^(NSNotification * /*note*/)
+                           usingBlock:^(NSNotification * note)
                            {
-                             updateConnectedControllers();
-                             //updateControllers();
+                             removeMFIDevice(static_cast<void *>(note.object));\
                            }
      ];
 
 }
+
+void FSMFIJoystickDeviceManager::removeMFIDevice(void * device)
+{
+    if(_wordToIDControllerMap.find(device) != _wordToIDControllerMap.end())
+    {
+#if TARGET_OS_OSX
+        GCController * gccontroller = static_cast<GCController*>(device);
+        std::string temp([[gccontroller vendorName] UTF8String]);
+        dissconnectKnownControllers(temp);
+#endif
+        elementID id = _wordToIDControllerMap[device];
+        const FSBaseDevice * joystickToDelete = getDevice(id);
+        removeDevice(const_cast<FSBaseDevice*>(joystickToDelete));
+        _wordToIDControllerMap.erase(device);
+    }
+}
+
+void FSMFIJoystickDeviceManager::addMFIDevice(void * device)
+{
+    GCController * controller = static_cast<GCController * >(device);
+    if([controller extendedGamepad] && _wordToIDControllerMap.find(device) == _wordToIDControllerMap.end())
+    {
+       unsigned int newId = getNextID();
+       _wordToIDControllerMap[device] = newId;
+
+        unsigned int numberOfButtons = 5;
+        unsigned int numberOfAnlogSticks =2;
+        unsigned int numberOfDigitalSticks=1;
+        bool  forceFeedBackSupported =false;
+        vendorIDType vendorID = 0;
+        productIDType productID = 0;
+       // controller.playerIndex = static_cast<GCControllerPlayerIndex>(contorllerCount++);
+
+#if TARGET_OS_OSX
+        GCController * gccontroller = static_cast<GCController*>(device);
+        std::string temp([[gccontroller vendorName] UTF8String]);
+       connectKnownControllers(temp);
+#endif
+        FSUSBDeviceManager::addDevice(new FSMFIJoystick(device,
+                                                        newId,
+                                                        numberOfButtons,
+                                                        numberOfAnlogSticks,
+                                                        numberOfDigitalSticks,
+                                                        forceFeedBackSupported,
+                                                        vendorID,
+                                                        productID));
+
+        connectControlesToController(device,newId);
+
+    }
+
+}
+
 
 void FSMFIJoystickDeviceManager::updateJoystickButtons(idNumber joyStickID,idNumber elementID, bool pressed,float value)
 {
@@ -125,62 +176,6 @@ void FSMFIJoystickDeviceManager::updateJoystickAnalog(idNumber joyStickID,idNumb
                                             ,value
                                             );
 
-}
-void FSMFIJoystickDeviceManager::updateConnectedControllers(){
-    #if TARGET_OS_IPHONE
-    if (@available(iOS 7.0, *) )
-    #elif TARGET_OS_TV
-    if (@available(tvOS 9.0, *) )
-    #else
-    if (@available(macOS 10.9, *))
-    #endif
-    {
-        std::vector<mfiID> newThisUpdate;
-        std::vector<mfiID> foundThisUpdate;
-        unsigned int MFI_MAX_COUNT = 4;
-        std::array<GCController*,4> lastState{nullptr,nullptr,nullptr,nullptr};
-
-            for (unsigned int index = 0; index < MFI_MAX_COUNT; index++)
-            {
-                bool result = [GCController controllers].count > index;
-                if(result)
-                {
-                    GCController * indexController = nullptr;
-                    indexController  = [GCController controllers][index];
-                   //  bool checkForMicro = false; //For Future use
-                    if( indexController && ![indexController extendedGamepad])
-                    {
-                        break;
-                    }
-                    lastState[index] = [GCController controllers][index];
-                    mfiID foundJoystick = index;
-                    std::vector<mfiID>::iterator itr2 = std::find(_connectedLastUpdateJoysticks.begin(),
-                                                                  _connectedLastUpdateJoysticks.end(),
-                                                                   foundJoystick);
-                    if (itr2 != _connectedLastUpdateJoysticks.end()) {
-                        _connectedLastUpdateJoysticks.erase(itr2);
-
-                    }else  {
-                        newThisUpdate.push_back(foundJoystick);
-                    }
-                    foundThisUpdate.push_back(foundJoystick);
-                }
-
-            }
-            for (int index =(int) _connectedLastUpdateJoysticks.size() - 1; index >= 0; index--) {
-                mfiID deviceToDelete = _connectedLastUpdateJoysticks[index];
-                this->removeMFIDevice(deviceToDelete );
-            }
-            std::vector<mfiID>::iterator itrAdd;
-            for (itrAdd = newThisUpdate.begin(); itrAdd != newThisUpdate.end(); ++itrAdd) {
-                if(lastState[*itrAdd])
-                {
-                    this->addMFIDevice(*itrAdd,lastState[*itrAdd]);
-                }
-            }
-
-            _connectedLastUpdateJoysticks = foundThisUpdate;
-    }
 }
 
 void FSMFIJoystickDeviceManager::connectControlesToController(void * contorllerToConnect,idNumber joyStickID )
@@ -266,56 +261,4 @@ void FSMFIJoystickDeviceManager::connectControlesToController(void * contorllerT
             // TODO add support
         }
     }
-}
-
-void FSMFIJoystickDeviceManager::removeMFIDevice(mfiID device)
-{
-    if(_wordToIDControllerMap.find(device) != _wordToIDControllerMap.end())
-    {
-#if TARGET_OS_OSX
-        //TODO fix waring
-        GCController * gccontroller = [GCController controllers][device];
-        std::string temp([[gccontroller vendorName] UTF8String]);
-        dissconnectKnownControllers(temp);
-#endif
-        elementID id = _wordToIDControllerMap[device];
-        const FSBaseDevice * joystickToDelete = getDevice(id);
-        removeDevice(const_cast<FSBaseDevice*>(joystickToDelete));
-        _wordToIDControllerMap.erase(device);
-    }
-}
-
-void FSMFIJoystickDeviceManager::addMFIDevice(mfiID device, void * controller)
-{
-    if(_wordToIDControllerMap.find(device) == _wordToIDControllerMap.end())
-    {
-       unsigned int newId = getNextID();
-       _wordToIDControllerMap[device] = newId;
-
-        unsigned int numberOfButtons = 5;
-        unsigned int numberOfAnlogSticks =2;
-        unsigned int numberOfDigitalSticks=1;
-        bool  forceFeedBackSupported =false;
-        vendorIDType vendorID = 0;
-        productIDType productID = 0;
-       // controller.playerIndex = static_cast<GCControllerPlayerIndex>(contorllerCount++);
-
-#if TARGET_OS_OSX
-        GCController * gccontroller = static_cast<GCController*>(controller);
-        std::string temp([[gccontroller vendorName] UTF8String]);
-       connectKnownControllers(temp);
-#endif
-        FSUSBDeviceManager::addDevice(new FSMFIJoystick(controller,
-                                                        newId,
-                                                        numberOfButtons,
-                                                        numberOfAnlogSticks,
-                                                        numberOfDigitalSticks,
-                                                        forceFeedBackSupported,
-                                                        vendorID,
-                                                        productID));
-
-        connectControlesToController(controller,newId);
-
-    }
-
 }
