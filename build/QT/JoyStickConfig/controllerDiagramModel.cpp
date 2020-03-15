@@ -1,5 +1,4 @@
 #include "controllerDiagramModel.h"
-#include "qmlControllerModel.h"
 
 ControllerDiagramModel::ControllerDiagramModel():BaseDeviceModel()
 {

@@ -3,7 +3,6 @@
 #include <QAbstractListModel>
 #include "qfreestickdevicemanger.h"
 #include "baseDeviceModel.h"
-#include "qmlControllerModel.h"
 using namespace freestick;
 
 class ControllerDiagramModel :public BaseDeviceModel
