@@ -44,6 +44,9 @@ const char * version = "0.0.3";
 #include <QAndroidJniEnvironment>
 
 #endif
+#ifdef Q_OS_WIN
+#include <QTimer>
+#endif
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -60,6 +63,13 @@ int main(int argc, char *argv[])
 #else
      deviceManager->init();
 #endif
+#ifdef Q_OS_WIN
+     QTimer *timer = new QTimer();
+     QObject::connect(timer, &QTimer::timeout, [&deviceManager](){
+         deviceManager->update();
+     });
+     timer->start(68);
+#endif
     QFreestickDeviceManger qDeviceManager (deviceManager);//This is just a wrapper class to work with QML
     qmlRegisterType<ControllerMappingTableModel>("org.freestick.models", 1, 0, "ContorllerMapping");
     qmlRegisterType<DeviceListModel>("org.freestick.models", 1, 0, "DeviceList");
@@ -68,7 +78,9 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("deviceManager", &qDeviceManager);
     engine.load(QUrl(QStringLiteral("qrc:/Main.qml")));
 
-    return a.exec();
+    auto returnValue = a.exec();
+    timer->stop();
+    return returnValue;
 }
 
 #if defined( Q_OS_ANDROID) && defined(FS_NATIVE_ANDROD)
