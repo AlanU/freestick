@@ -54,6 +54,8 @@ TEMPLATE = app
 PRECOMPILED_HEADER = $$PWD/../../../inc/freestick.h
 
 SOURCES += main.cpp\
+    baseDeviceModel.cpp \
+    controllerDiagramModel.cpp \
     devicelistmodel.cpp \
         mainwindow.cpp \
         joystickconfigwidget.cpp \
@@ -64,6 +66,8 @@ SOURCES += main.cpp\
 
 
 HEADERS  += mainwindow.h \
+    baseDeviceModel.h \
+    controllerDiagramModel.h \
     devicelistmodel.h \
     joystickconfigwidget.h \
     analogaxiswidget.h \

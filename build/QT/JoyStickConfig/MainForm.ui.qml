@@ -28,22 +28,11 @@ Item {
                 currentInfoPageControllerID: mainForm.currentControllerID
             }
 
-            Page {
+            JoystickDiagram {
+                id: diagramPage
                 width: swipeView.width
                 height: swipeView.height
-
-                Column {
-                    spacing: 40
-                    width: parent.width
-
-                    Label {
-                        width: parent.width
-                        wrapMode: Label.Wrap
-                        horizontalAlignment: Qt.AlignHCenter
-                        text: "TabBar is a bar with icons or text which allows the user"
-                              + "to switch between different subtasks, views, or modes."
-                    }
-                }
+                currentInfoPageControllerID: mainForm.currentControllerID
             }
 
             JoystickTablePage {

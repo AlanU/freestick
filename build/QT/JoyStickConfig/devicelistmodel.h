@@ -2,22 +2,19 @@
 #include "freestick.h"
 #include <QAbstractListModel>
 #include "qfreestickdevicemanger.h"
+#include "baseDeviceModel.h"
 using namespace freestick;
 
-class DeviceListModel : public QAbstractListModel ,public  freestick::IFSJoystickListener
+class DeviceListModel : public BaseDeviceModel
 {
     Q_OBJECT
 public:
     DeviceListModel();
-    ~DeviceListModel() override;
+    virtual ~DeviceListModel();
     enum DeviceRoles{
         modelDataRole = Qt::UserRole + 1,
     };
 
-    Q_PROPERTY(QFreestickDeviceManger* manager READ manager WRITE setManager NOTIFY managerChanged)
-
-    QFreestickDeviceManger* manager();
-    void setManager(QFreestickDeviceManger* manager);
     QHash<int,QByteArray> roleNames() const override;
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
@@ -29,12 +26,9 @@ public:
     void onDisconnect(FSBaseEvent event) override;
     void onConnect(FSBaseEvent event) override;
 
-    Q_INVOKABLE QVariant getIdFromIndex(QVariant index);
-signals:
-    void managerChanged(QFreestickDeviceManger* manager);
+    Q_INVOKABLE QVariant getIdFromIndex(QVariant index) override;
+
 private:
-    std::weak_ptr<FreeStickDeviceManager> m_manager;
-    QFreestickDeviceManger * m_wrapperManger = nullptr;//Does not own memory
     QVector<QPair<QString,unsigned int>> m_data;
 
 };

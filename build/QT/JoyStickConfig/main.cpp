@@ -33,6 +33,8 @@ and must not be misrepresented as being the original software.
 #include <QQmlApplicationEngine>
 #include "controllermappingtablemodel.h"
 #include "devicelistmodel.h"
+#include "controllerDiagramModel.h"
+
 //This is a work around for VS 2013 not supporting constexpr correctly
 //This should be change to constexpr once 2013 support is dropped
 const char * version = "0.0.3";
@@ -61,6 +63,7 @@ int main(int argc, char *argv[])
     QFreestickDeviceManger qDeviceManager (deviceManager);//This is just a wrapper class to work with QML
     qmlRegisterType<ControllerMappingTableModel>("org.freestick.models", 1, 0, "ContorllerMapping");
     qmlRegisterType<DeviceListModel>("org.freestick.models", 1, 0, "DeviceList");
+    qmlRegisterType<ControllerDiagramModel>("org.freestick.models", 1, 0, "ControllerDiagram");
 
     engine.rootContext()->setContextProperty("deviceManager", &qDeviceManager);
     engine.load(QUrl(QStringLiteral("qrc:/Main.qml")));
