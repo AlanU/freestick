@@ -1,6 +1,7 @@
 <map id="freestick::FSUSBJoyStickInputElement" name="freestick::FSUSBJoyStickInputElement">
-<area shape="rect" id="node5" href="$classfreestick_1_1_f_s_u_s_b_joystick_button.html" title="freestick::FSUSBJoystick\lButton" alt="" coords="6,318,175,357"/>
-<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_u_s_b_device.html" title="freestick::FSUSBDevice" alt="" coords="9,155,172,181"/>
-<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_base_device.html" title="freestick::FSBaseDevice" alt="" coords="7,81,173,106"/>
-<area shape="rect" id="node4" href="$classfreestick_1_1_i_f_s_device.html" title="freestick::IFSDevice" alt="" coords="21,6,160,31"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,225,178,264"/>
+<area shape="rect" id="node5" href="$classfreestick_1_1_f_s_u_s_b_joystick_button.html" title=" " alt="" coords="6,312,177,351"/>
+<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_u_s_b_device.html" title=" " alt="" coords="10,152,173,177"/>
+<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_base_device.html" title=" " alt="" coords="8,79,175,104"/>
+<area shape="rect" id="node4" href="$classfreestick_1_1_i_f_s_device.html" title=" " alt="" coords="22,5,162,31"/>
 </map>

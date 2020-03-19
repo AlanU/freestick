@@ -1,7 +1,8 @@
 <map id="inc/common/FSSpinlock.h" name="inc/common/FSSpinlock.h">
-<area shape="rect" id="node2" href="$_f_s_spinlock_8cpp.html" title="src/USB/common/FSSpinlock.cpp" alt="" coords="5,87,227,113"/>
-<area shape="rect" id="node3" href="$_f_s_direct_input_joystick_manager_8h.html" title="inc/USB/platform/Windows\l/FSDirectInputJoystickManager.h" alt="" coords="250,81,467,119"/>
-<area shape="rect" id="node4" href="$_f_s_direct_input_joystick_manager_8cpp.html" title="src/USB/platform/Windows\l/FSDirectInputJoystickManager.cpp" alt="" coords="111,169,341,207"/>
-<area shape="rect" id="node5" href="$_f_s_windows_joystick_device_manager_8h.html" title="inc/USB/platform/Windows\l/FSWindowsJoystickDeviceManager.h" alt="" coords="366,169,612,207"/>
-<area shape="rect" id="node6" href="$_f_s_windows_joystick_device_manager_8cpp.html" title="src/USB/platform/Windows\l/FSWindowsJoystickDeviceManager.cpp" alt="" coords="359,257,620,295"/>
+<area shape="rect" id="node1" title=" " alt="" coords="150,5,325,31"/>
+<area shape="rect" id="node2" href="$_f_s_spinlock_8cpp.html" title=" " alt="" coords="5,85,227,111"/>
+<area shape="rect" id="node3" href="$_f_s_direct_input_joystick_manager_8h.html" title=" " alt="" coords="250,79,467,117"/>
+<area shape="rect" id="node4" href="$_f_s_direct_input_joystick_manager_8cpp.html" title=" " alt="" coords="111,165,342,204"/>
+<area shape="rect" id="node5" href="$_f_s_windows_joystick_device_manager_8h.html" title=" " alt="" coords="366,165,613,204"/>
+<area shape="rect" id="node6" href="$_f_s_windows_joystick_device_manager_8cpp.html" title=" " alt="" coords="359,252,620,291"/>
 </map>

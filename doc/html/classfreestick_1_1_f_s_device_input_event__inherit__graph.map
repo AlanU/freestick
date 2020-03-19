@@ -1,4 +1,5 @@
 <map id="freestick::FSDeviceInputEvent" name="freestick::FSDeviceInputEvent">
-<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_base_event.html" title="freestick::FSBaseEvent" alt="" coords="8,81,167,106"/>
-<area shape="rect" id="node3" href="$classfreestick_1_1_i_f_s_event.html" title="freestick::IFSEvent" alt="" coords="21,6,153,31"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,152,171,191"/>
+<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_base_event.html" title=" " alt="" coords="8,79,168,104"/>
+<area shape="rect" id="node3" href="$classfreestick_1_1_i_f_s_event.html" title=" " alt="" coords="22,5,155,31"/>
 </map>

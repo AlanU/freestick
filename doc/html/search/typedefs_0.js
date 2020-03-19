@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['deviceid',['DeviceID',['../namespacefreestick.html#a48061d69cf5ddb20bbd207d19fc11193',1,'freestick']]]
+  ['deviceid',['deviceID',['../namespacefreestick.html#a3fb713d95c394c4cf2d3148aa9c4b29b',1,'freestick']]]
 ];

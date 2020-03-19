@@ -1,9 +1,10 @@
 <map id="src/3rdParty/EELog/src/EEStream.h" name="src/3rdParty/EELog/src/EEStream.h">
-<area shape="rect" id="node2" href="$_e_e_assert_stream_8h.html" title="src/3rdParty/EELog\l/src/EEAssertStream.h" alt="" coords="5,94,160,133"/>
-<area shape="rect" id="node3" href="$_e_e_log_8cpp.html" title="src/3rdParty/EELog\l/src/EELog.cpp" alt="" coords="74,182,211,221"/>
-<area shape="rect" id="node4" href="$_e_e_log_8h.html" title="src/3rdParty/EELog\l/src/EELog.h" alt="" coords="236,94,372,133"/>
-<area shape="rect" id="node6" href="$_e_e_null_stream_8h.html" title="src/3rdParty/EELog\l/src/EENullStream.h" alt="" coords="396,94,537,133"/>
-<area shape="rect" id="node8" href="$_e_e_stream_8cpp.html" title="src/3rdParty/EELog\l/src/EEStream.cpp" alt="" coords="561,94,697,133"/>
-<area shape="rect" id="node5" href="$_f_s_x_input_joystick_device_manager_8cpp.html" title="src/USB/platform/Windows\l/FSXInputJoystickDeviceManager.cpp" alt="" coords="236,182,481,221"/>
-<area shape="rect" id="node7" href="$_e_e_null_stream_8cpp.html" title="src/3rdParty/EELog\l/src/EENullStream.cpp" alt="" coords="506,182,661,221"/>
+<area shape="rect" id="node1" title=" " alt="" coords="236,5,373,44"/>
+<area shape="rect" id="node2" href="$_e_e_assert_stream_8h.html" title=" " alt="" coords="5,92,162,131"/>
+<area shape="rect" id="node3" href="$_e_e_log_8cpp.html" title=" " alt="" coords="75,179,212,217"/>
+<area shape="rect" id="node4" href="$_e_e_log_8h.html" title=" " alt="" coords="236,92,373,131"/>
+<area shape="rect" id="node6" href="$_e_e_null_stream_8h.html" title=" " alt="" coords="397,92,538,131"/>
+<area shape="rect" id="node8" href="$_e_e_stream_8cpp.html" title=" " alt="" coords="562,92,699,131"/>
+<area shape="rect" id="node5" href="$_f_s_x_input_joystick_device_manager_8cpp.html" title=" " alt="" coords="236,179,482,217"/>
+<area shape="rect" id="node7" href="$_e_e_null_stream_8cpp.html" title=" " alt="" coords="507,179,662,217"/>
 </map>

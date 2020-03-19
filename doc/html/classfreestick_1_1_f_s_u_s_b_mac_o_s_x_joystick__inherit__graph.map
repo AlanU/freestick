@@ -1,6 +1,7 @@
 <map id="freestick::FSUSBMacOSXJoystick" name="freestick::FSUSBMacOSXJoystick">
-<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_u_s_b_joystick.html" title="freestick::FSUSBJoystick" alt="" coords="31,230,200,255"/>
-<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_u_s_b_device.html" title="freestick::FSUSBDevice" alt="" coords="34,155,197,181"/>
-<area shape="rect" id="node4" href="$classfreestick_1_1_f_s_base_device.html" title="freestick::FSBaseDevice" alt="" coords="33,81,199,106"/>
-<area shape="rect" id="node5" href="$classfreestick_1_1_i_f_s_device.html" title="freestick::IFSDevice" alt="" coords="46,6,185,31"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,299,229,324"/>
+<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_u_s_b_joystick.html" title=" " alt="" coords="32,225,202,251"/>
+<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_u_s_b_device.html" title=" " alt="" coords="35,152,199,177"/>
+<area shape="rect" id="node4" href="$classfreestick_1_1_f_s_base_device.html" title=" " alt="" coords="34,79,200,104"/>
+<area shape="rect" id="node5" href="$classfreestick_1_1_i_f_s_device.html" title=" " alt="" coords="47,5,187,31"/>
 </map>

@@ -52,7 +52,7 @@ FSXInputJoystick::FSXInputJoystick(XINPUT_STATE & state,
     std::stringstream playerNumber;
     playerNumber << id+1;
 
-    _vendorIDFriendlyName = "XIputController";
+    _vendorIDFriendlyName = "XInputController";
     _productIDFriendlyName = "Player " + playerNumber.str();
     _friendlyName = _vendorIDFriendlyName + " "+ _productIDFriendlyName;
     _usbJoystickManager = &usbJoystickManager;

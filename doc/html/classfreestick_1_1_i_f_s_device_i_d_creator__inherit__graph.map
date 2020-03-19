@@ -1,3 +1,6 @@
 <map id="freestick::IFSDeviceIDCreator" name="freestick::IFSDeviceIDCreator">
-<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_windows_joystick_device_manager.html" title="freestick::FSWindowsJoystick\lDeviceManager" alt="" coords="6,81,201,119"/>
+<area shape="rect" id="node1" title=" " alt="" coords="107,5,305,31"/>
+<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_mult_joystick_device_manger.html" title=" " alt="" coords="19,79,187,117"/>
+<area shape="rect" id="node4" href="$classfreestick_1_1_f_s_windows_joystick_device_manager.html" title=" " alt="" coords="212,79,409,117"/>
+<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_mac_o_s_x_joystick_device_manager.html" title=" " alt="" coords="5,165,202,204"/>
 </map>

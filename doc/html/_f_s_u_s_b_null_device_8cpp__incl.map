@@ -1,7 +1,11 @@
 <map id="src/USB/platform/NULL/FSUSBNullDevice.cpp" name="src/USB/platform/NULL/FSUSBNullDevice.cpp">
-<area shape="rect" id="node2" href="$_f_s_u_s_b_null_device_8h.html" title="USB/platform/NULL/FSUSBNull\lDevice.h" alt="" coords="62,94,271,133"/>
-<area shape="rect" id="node3" href="$_f_s_u_s_b_device_8h.html" title="USB/common/FSUSBDevice.h" alt="" coords="65,182,268,207"/>
-<area shape="rect" id="node4" href="$_f_s_base_device_8h.html" title="../../baseClasses/FSBase\lDevice.h" alt="" coords="81,257,252,295"/>
-<area shape="rect" id="node5" href="$_i_f_s_device_8h.html" title="../Interfaces/IFSDevice.h" alt="" coords="83,345,249,370"/>
-<area shape="rect" id="node6" href="$_f_s_types_8h.html" title="common/FSTypes.h" alt="" coords="97,419,236,445"/>
+<area shape="rect" id="node1" title=" " alt="" coords="87,5,247,44"/>
+<area shape="rect" id="node2" href="$_f_s_u_s_b_null_device_8h.html" title=" " alt="" coords="62,92,272,131"/>
+<area shape="rect" id="node3" href="$_f_s_u_s_b_device_8h.html" title=" " alt="" coords="65,179,269,204"/>
+<area shape="rect" id="node4" href="$_f_s_base_device_8h.html" title=" " alt="" coords="81,252,252,291"/>
+<area shape="rect" id="node8" title=" " alt="" coords="5,339,59,364"/>
+<area shape="rect" id="node9" title=" " alt="" coords="274,339,321,364"/>
+<area shape="rect" id="node5" href="$_i_f_s_device_8h.html" title=" " alt="" coords="83,339,251,364"/>
+<area shape="rect" id="node6" href="$_f_s_types_8h.html" title=" " alt="" coords="97,412,237,437"/>
+<area shape="rect" id="node7" title=" " alt="" coords="137,485,197,511"/>
 </map>

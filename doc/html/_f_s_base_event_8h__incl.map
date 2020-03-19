@@ -1,5 +1,9 @@
 <map id="inc/baseClasses/FSBaseEvent.h" name="inc/baseClasses/FSBaseEvent.h">
-<area shape="rect" id="node2" href="$_i_f_s_event_8h.html" title="../Interfaces/IFSEvent.h" alt="" coords="100,81,260,106"/>
-<area shape="rect" id="node3" href="$_i_f_s_device_8h.html" title="IFSDevice.h" alt="" coords="28,155,121,181"/>
-<area shape="rect" id="node4" href="$_f_s_types_8h.html" title="common/FSTypes.h" alt="" coords="5,230,144,255"/>
+<area shape="rect" id="node1" title=" " alt="" coords="73,5,288,31"/>
+<area shape="rect" id="node2" href="$_i_f_s_event_8h.html" title=" " alt="" coords="100,79,261,104"/>
+<area shape="rect" id="node3" href="$_i_f_s_device_8h.html" title=" " alt="" coords="28,152,122,177"/>
+<area shape="rect" id="node6" title=" " alt="" coords="146,152,215,177"/>
+<area shape="rect" id="node7" title=" " alt="" coords="239,152,317,177"/>
+<area shape="rect" id="node4" href="$_f_s_types_8h.html" title=" " alt="" coords="5,225,145,251"/>
+<area shape="rect" id="node5" title=" " alt="" coords="45,299,105,324"/>
 </map>

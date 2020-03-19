@@ -1,12 +1,12 @@
 #include "devicelistmodel.h"
 #include <QHash>
 using namespace freestick;
-DeviceListModel::DeviceListModel():QAbstractListModel()
+DeviceListModel::DeviceListModel():BaseDeviceModel()
 {
 
 }
 
-QFreestickDeviceManger* DeviceListModel::manager()
+/*QFreestickDeviceManger* DeviceListModel::manager()
 {
     return m_wrapperManger;
 }
@@ -32,7 +32,7 @@ void DeviceListModel::setManager(QFreestickDeviceManger* manager)
     }
 
     emit managerChanged(manager);
-}
+}*/
 
 DeviceListModel::~DeviceListModel()
 {
@@ -67,20 +67,20 @@ QVariant DeviceListModel::data(const QModelIndex &index, int role) const
    return QVariant();
 }
 
-QVariant DeviceListModel::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant DeviceListModel::headerData(int /*section*/, Qt::Orientation /*orientation*/, int /*role*/) const
 {
     return QVariant();
 }
 
-void DeviceListModel::onButtonDown(FSDeviceInputEvent event)
+void DeviceListModel::onButtonDown(FSDeviceInputEvent /*event*/)
 {
 
 }
-void DeviceListModel::onButtonUp(FSDeviceInputEvent event)
+void DeviceListModel::onButtonUp(FSDeviceInputEvent /*event*/)
 {
 
 }
-void DeviceListModel::onStickMove(FSDeviceInputEvent event)
+void DeviceListModel::onStickMove(FSDeviceInputEvent /*event*/)
 {
 
 }
