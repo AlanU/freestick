@@ -1,7 +1,10 @@
 <map id="freestick::FSUpdatableJoystickDeviceManager" name="freestick::FSUpdatableJoystickDeviceManager">
-<area shape="rect" id="node5" href="$classfreestick_1_1_f_s_direct_input_joystick_manager.html" title="freestick::FSDirectInput\lJoystickManager" alt="" coords="4,331,163,370"/>
-<area shape="rect" id="node6" href="$classfreestick_1_1_f_s_x_input_joystick_device_manager.html" title="freestick::FSXInputJoystick\lDeviceManager" alt="" coords="188,331,369,370"/>
-<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html" title="freestick::FSUSBJoystick\lDeviceManager" alt="" coords="96,155,265,194"/>
-<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_u_s_b_device_manager.html" title="freestick::FSUSBDeviceManager" alt="" coords="73,81,289,106"/>
-<area shape="rect" id="node4" href="$classfreestick_1_1_f_s_base_manager.html" title="This is the base manager. " alt="" coords="92,6,269,31"/>
+<area shape="rect" id="node1" title=" " alt="" coords="714,100,918,139"/>
+<area shape="rect" id="node5" href="$classfreestick_1_1_f_s_direct_input_joystick_manager.html" title=" " alt="" coords="998,5,1158,44"/>
+<area shape="rect" id="node6" href="$classfreestick_1_1_f_s_m_f_i_joystick_device_manager.html" title=" " alt="" coords="995,68,1161,107"/>
+<area shape="rect" id="node7" href="$classfreestick_1_1_f_s_u_s_b_mac_o_s_x_joystick_device_manager.html" title=" " alt="" coords="966,131,1189,169"/>
+<area shape="rect" id="node8" href="$classfreestick_1_1_f_s_x_input_joystick_device_manager.html" title=" " alt="" coords="987,193,1168,232"/>
+<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_u_s_b_joystick_device_manager.html" title=" " alt="" coords="496,100,666,139"/>
+<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_u_s_b_device_manager.html" title=" " alt="" coords="232,107,448,132"/>
+<area shape="rect" id="node4" href="$classfreestick_1_1_f_s_base_manager.html" title="This is the base manager." alt="" coords="5,107,184,132"/>
 </map>

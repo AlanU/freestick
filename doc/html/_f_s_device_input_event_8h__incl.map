@@ -1,6 +1,10 @@
 <map id="inc/common/FSDeviceInputEvent.h" name="inc/common/FSDeviceInputEvent.h">
-<area shape="rect" id="node2" href="$_f_s_base_event_8h.html" title="../baseClasses/FSBaseEvent.h" alt="" coords="101,94,305,119"/>
-<area shape="rect" id="node4" href="$_i_f_s_device_8h.html" title="IFSDevice.h" alt="" coords="28,243,121,269"/>
-<area shape="rect" id="node3" href="$_i_f_s_event_8h.html" title="../Interfaces/IFSEvent.h" alt="" coords="112,169,272,194"/>
-<area shape="rect" id="node5" href="$_f_s_types_8h.html" title="common/FSTypes.h" alt="" coords="5,318,144,343"/>
+<area shape="rect" id="node1" title=" " alt="" coords="47,5,231,44"/>
+<area shape="rect" id="node2" href="$_f_s_base_event_8h.html" title=" " alt="" coords="107,92,313,117"/>
+<area shape="rect" id="node4" href="$_i_f_s_device_8h.html" title=" " alt="" coords="28,239,122,264"/>
+<area shape="rect" id="node3" href="$_i_f_s_event_8h.html" title=" " alt="" coords="118,165,278,191"/>
+<area shape="rect" id="node7" title=" " alt="" coords="149,239,218,264"/>
+<area shape="rect" id="node8" title=" " alt="" coords="241,239,320,264"/>
+<area shape="rect" id="node5" href="$_f_s_types_8h.html" title=" " alt="" coords="5,312,145,337"/>
+<area shape="rect" id="node6" title=" " alt="" coords="45,385,105,411"/>
 </map>

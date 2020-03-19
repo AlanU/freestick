@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['tomeenesusbcontrollerid',['TomeeNesUSBControllerID',['../namespacefreestick.html#a01d5388d229a908deb633bb751f173fc',1,'freestick']]],
-  ['tomeenesusbid',['TomeeNesUSBID',['../namespacefreestick.html#a7e7fdcec4914a084f2dc6147aaccdcef',1,'freestick']]],
-  ['tomeevenderid',['TomeeVenderID',['../namespacefreestick.html#a67e06c79789ed54d220e22e2d68eb8b7',1,'freestick']]],
-  ['tomeevenderid2',['TomeeVenderID2',['../namespacefreestick.html#a85645433e083d2c8a363fd4fc16a9731',1,'freestick']]]
+  ['sonyvendorid',['SonyVendorID',['../namespacefreestick.html#a95242de1fd151853241cb54a34a99ba2',1,'freestick']]],
+  ['steelseries3gccontrollerid',['SteelSeries3GCControllerID',['../namespacefreestick.html#a88c95216b6223fc28461ed8fcea53c30',1,'freestick']]],
+  ['steelseriesfreecontrollerid',['SteelSeriesFreeControllerID',['../namespacefreestick.html#a776c41afc4a6af89e309315b265d9ab2',1,'freestick']]],
+  ['steelseriesvendorid',['SteelSeriesVendorID',['../namespacefreestick.html#aa6a87c8bb366c5175d03a78060a376f5',1,'freestick']]]
 ];

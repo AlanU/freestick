@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['unique_5fptr_5fof_5fmanagers',['unique_ptr_of_managers',['../_f_s_windows_joystick_device_manager_8h.html#adf013219299f70828728e159825534f7',1,'FSWindowsJoystickDeviceManager.h']]]
+  ['physicalvaluenumber',['physicalValueNumber',['../namespacefreestick.html#af1b1238af3684868ffba1b73f3a39f42',1,'freestick']]],
+  ['productidtype',['productIDType',['../namespacefreestick.html#ad5c15a8d2434b7990a47b1646dcbbbe0',1,'freestick']]]
 ];

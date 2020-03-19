@@ -1,6 +1,10 @@
 <map id="src/3rdParty/Mac/IOHID/IOHIDElement_.c" name="src/3rdParty/Mac/IOHID/IOHIDElement_.c">
-<area shape="rect" id="node2" href="$_i_o_h_i_d_element___8h.html" title="IOHIDElement_.h" alt="" coords="93,94,219,119"/>
-<area shape="rect" id="node4" href="$_i_o_h_i_d_lib___8h.html" title="IOHIDLib_.h" alt="" coords="109,169,203,194"/>
-<area shape="rect" id="node6" href="$_i_o_h_i_d_device___8h.html" title="IOHIDDevice_.h" alt="" coords="97,243,215,269"/>
-<area shape="rect" id="node7" href="$_immr_h_i_d_util_add_on_8h.html" title="ImmrHIDUtilAddOn.h" alt="" coords="289,243,435,269"/>
+<area shape="rect" id="node1" title=" " alt="" coords="75,5,238,44"/>
+<area shape="rect" id="node2" href="$_i_o_h_i_d_element___8h.html" title=" " alt="" coords="93,92,219,117"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,312,144,337"/>
+<area shape="rect" id="node4" href="$_i_o_h_i_d_lib___8h.html" title=" " alt="" coords="109,165,203,191"/>
+<area shape="rect" id="node5" title=" " alt="" coords="181,312,323,337"/>
+<area shape="rect" id="node6" href="$_i_o_h_i_d_device___8h.html" title=" " alt="" coords="97,239,215,264"/>
+<area shape="rect" id="node7" href="$_immr_h_i_d_util_add_on_8h.html" title=" " alt="" coords="290,239,436,264"/>
+<area shape="rect" id="node8" title=" " alt="" coords="348,312,461,337"/>
 </map>

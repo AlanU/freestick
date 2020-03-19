@@ -7,7 +7,7 @@ var searchData=
   ['jnicallbacktype',['JNICallBackType',['../_f_s_j_n_i___wrapper_8h.html#aa5091748198d48cceb18788fd2b05f73',1,'FSJNI_Wrapper.h']]],
   ['joystickadded',['JoystickAdded',['../_f_s_j_n_i___wrapper_8h.html#aa5091748198d48cceb18788fd2b05f73a6d31d63bc8ac40aca19352279ca93145',1,'FSJNI_Wrapper.h']]],
   ['joystickconfig',['joystickConfig',['../structfreestick_1_1_direct_input___enum___contex.html#a810a76a8fea642adcc3a2b9cdd0e2463',1,'freestick::DirectInput_Enum_Contex']]],
-  ['joystickelementmap',['JoyStickElementMap',['../namespacefreestick.html#a8978875dd5703d15c81e8437a9564bf8',1,'freestick']]],
+  ['joystickelementmap',['JoyStickElementMap',['../namespacefreestick.html#a344412716f5df69675ffcd7072b18a26',1,'freestick']]],
   ['joystickid',['JoystickID',['../classfreestick_1_1_f_s_base_joystick_info.html#a4850785681bf9eb9df68966445432eb8',1,'freestick::FSBaseJoystickInfo::JoystickID()'],['../classfreestick_1_1_i_f_s_joystick_info.html#a0c49cd2742b37424abec0a54d63fc700',1,'freestick::IFSJoystickInfo::JoystickID()']]],
   ['joystickremoved',['JoystickRemoved',['../_f_s_j_n_i___wrapper_8h.html#aa5091748198d48cceb18788fd2b05f73a2346033d65b330a3075cce300cb857bc',1,'FSJNI_Wrapper.h']]],
   ['joysticksconnectedthisupdate',['joysticksConnectedThisUpdate',['../structfreestick_1_1_direct_input___enum___contex.html#ad572e357fa8d80e8c919654faa29605e',1,'freestick::DirectInput_Enum_Contex']]]

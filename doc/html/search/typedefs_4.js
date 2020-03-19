@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['joystickelementmap',['JoyStickElementMap',['../namespacefreestick.html#a8978875dd5703d15c81e8437a9564bf8',1,'freestick']]]
+  ['joystickelementmap',['JoyStickElementMap',['../namespacefreestick.html#a344412716f5df69675ffcd7072b18a26',1,'freestick']]]
 ];

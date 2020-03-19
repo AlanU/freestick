@@ -1,7 +1,8 @@
 <map id="inc/USB/platform/Windows/FSDirectInputJoystick.h" name="inc/USB/platform/Windows/FSDirectInputJoystick.h">
-<area shape="rect" id="node2" href="$_f_s_direct_input_joystick_8cpp.html" title="src/USB/platform/Windows\l/FSDirectInputJoystick.cpp" alt="" coords="5,94,184,133"/>
-<area shape="rect" id="node3" href="$_f_s_direct_input_joystick_manager_8cpp.html" title="src/USB/platform/Windows\l/FSDirectInputJoystickManager.cpp" alt="" coords="112,182,343,221"/>
-<area shape="rect" id="node4" href="$_f_s_direct_input_joystick_manager_8h.html" title="inc/USB/platform/Windows\l/FSDirectInputJoystickManager.h" alt="" coords="258,94,475,133"/>
-<area shape="rect" id="node5" href="$_f_s_windows_joystick_device_manager_8h.html" title="inc/USB/platform/Windows\l/FSWindowsJoystickDeviceManager.h" alt="" coords="380,182,627,221"/>
-<area shape="rect" id="node6" href="$_f_s_windows_joystick_device_manager_8cpp.html" title="src/USB/platform/Windows\l/FSWindowsJoystickDeviceManager.cpp" alt="" coords="373,270,635,309"/>
+<area shape="rect" id="node1" title=" " alt="" coords="204,5,384,44"/>
+<area shape="rect" id="node2" href="$_f_s_direct_input_joystick_8cpp.html" title=" " alt="" coords="5,92,185,131"/>
+<area shape="rect" id="node3" href="$_f_s_direct_input_joystick_manager_8cpp.html" title=" " alt="" coords="113,179,344,217"/>
+<area shape="rect" id="node4" href="$_f_s_direct_input_joystick_manager_8h.html" title=" " alt="" coords="259,92,476,131"/>
+<area shape="rect" id="node5" href="$_f_s_windows_joystick_device_manager_8h.html" title=" " alt="" coords="381,179,628,217"/>
+<area shape="rect" id="node6" href="$_f_s_windows_joystick_device_manager_8cpp.html" title=" " alt="" coords="374,265,635,304"/>
 </map>

@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['y_5fbutton_5fmfi_5feid',['Y_BUTTON_MFI_EID',['../_f_s_m_f_i_joystick_8h.html#a1847371b1be6687227e71795fb77d6e7',1,'FSMFIJoystick.h']]],
   ['y_5fbutton_5fxinput_5feid',['Y_BUTTON_XINPUT_EID',['../_f_s_x_input_joystick_8h.html#abebd72ecee7eda806a576a88ccd3178e',1,'FSXInputJoystick.h']]],
   ['yaxis',['YAxis',['../namespacefreestick.html#ac52f7c0e8161f2de5d68e3c073486a8aa618e4b239d32f98c80649d9b0693e017',1,'freestick']]],
   ['yaxis2',['YAxis2',['../namespacefreestick.html#ac52f7c0e8161f2de5d68e3c073486a8aa7584d951bd92c4eb0e4f73caaa14e859',1,'freestick']]],

@@ -7,5 +7,5 @@ var searchData=
   ['hidisvaliddevice',['HIDIsValidDevice',['../_i_o_h_i_d_device___8c.html#a1eaa398353a7fc16f882c4cccacd9762',1,'HIDIsValidDevice(IOHIDDeviceRef inIOHIDDeviceRef):&#160;IOHIDDevice_.c'],['../_i_o_h_i_d_device___8h.html#a1eaa398353a7fc16f882c4cccacd9762',1,'HIDIsValidDevice(IOHIDDeviceRef inIOHIDDeviceRef):&#160;IOHIDDevice_.c']]],
   ['hidisvalidelement',['HIDIsValidElement',['../_i_o_h_i_d_element___8c.html#a3744e8c69e0c6034766e2abe61f68f7b',1,'HIDIsValidElement(IOHIDElementRef inIOHIDElementRef):&#160;IOHIDElement_.c'],['../_i_o_h_i_d_element___8h.html#a3744e8c69e0c6034766e2abe61f68f7b',1,'HIDIsValidElement(IOHIDElementRef inIOHIDElementRef):&#160;IOHIDElement_.c']]],
   ['hvg2twinps2',['HVG2TwinPS2',['../namespacefreestick.html#af34e2e879582827871203ca7072e075a',1,'freestick']]],
-  ['hvg2venderid',['HVG2VenderID',['../namespacefreestick.html#a2135bbf4152d88dd4b03f0f2d0278222',1,'freestick']]]
+  ['hvg2vendorid',['HVG2VendorID',['../namespacefreestick.html#a8f069d12a91fc935b554547119f6e17e',1,'freestick']]]
 ];

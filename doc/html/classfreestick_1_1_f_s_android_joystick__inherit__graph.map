@@ -1,6 +1,7 @@
 <map id="freestick::FSAndroidJoystick" name="freestick::FSAndroidJoystick">
-<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_u_s_b_joystick.html" title="freestick::FSUSBJoystick" alt="" coords="14,230,183,255"/>
-<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_u_s_b_device.html" title="freestick::FSUSBDevice" alt="" coords="17,155,180,181"/>
-<area shape="rect" id="node4" href="$classfreestick_1_1_f_s_base_device.html" title="freestick::FSBaseDevice" alt="" coords="15,81,181,106"/>
-<area shape="rect" id="node5" href="$classfreestick_1_1_i_f_s_device.html" title="freestick::IFSDevice" alt="" coords="29,6,168,31"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,299,194,324"/>
+<area shape="rect" id="node2" href="$classfreestick_1_1_f_s_u_s_b_joystick.html" title=" " alt="" coords="15,225,185,251"/>
+<area shape="rect" id="node3" href="$classfreestick_1_1_f_s_u_s_b_device.html" title=" " alt="" coords="18,152,182,177"/>
+<area shape="rect" id="node4" href="$classfreestick_1_1_f_s_base_device.html" title=" " alt="" coords="16,79,183,104"/>
+<area shape="rect" id="node5" href="$classfreestick_1_1_i_f_s_device.html" title=" " alt="" coords="30,5,170,31"/>
 </map>
