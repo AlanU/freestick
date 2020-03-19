@@ -61,3 +61,6 @@ build/QT/JoyStickConfig/moc_*
 /build/QT/JoyStickConfig/ControllerXYABButtonsForm.ui_qml.cpp
 /build/QT/JoyStickConfig/JoystickDiagram_qml.cpp
 /build/QT/JoyStickConfig/JoystickDiagramForm.ui_qml.cpp
+/build/QT/JoyStickConfig/Debug-iphoneos
+/build/QT/JoyStickConfig/.xcode
+/build/QT/JoyStickConfig/Thumbs.db
