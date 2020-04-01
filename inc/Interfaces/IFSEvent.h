@@ -55,9 +55,9 @@ namespace freestick
 
     struct IFSEvent
     {
-        virtual FreeStickEventType getEventType() = 0;
-        virtual FSEventAction getEventAction() = 0;
-        virtual u32 getTimeStamp() = 0;
+        virtual FreeStickEventType getEventType() const = 0;
+        virtual FSEventAction getEventAction() const = 0;
+        virtual u32 getTimeStamp() const = 0;
 
         static FreeStickEventType getEventFromInputType(const FSDeviceInput inputType){
             if((FSDeviceInput::Button0 <= inputType) && (inputType < FSDeviceInput::LastButton)){

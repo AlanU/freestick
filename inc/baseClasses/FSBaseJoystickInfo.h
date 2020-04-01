@@ -43,13 +43,13 @@ namespace freestick
         virtual u32 joystickID()const{
           return 0;
         }
-        virtual u32 numberOfButtons(){
+        virtual u32 numberOfButtons()const{
           return 0;
         }
-        virtual u32 numberOfAnlogSticks(){
+        virtual u32 numberOfAnlogSticks()const{
           return 0;
         }
-        virtual u32 numberOfDigitalSticks(){
+        virtual u32 numberOfDigitalSticks()const{
           return 0;
         }
         FSBaseJoystickInfo();

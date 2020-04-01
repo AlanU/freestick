@@ -32,8 +32,9 @@ misrepresented as being the original software.
 
 namespace freestick
 {
-    struct FSMacOSXJoystickDeviceManager : FSMultJoystickDeviceManger
+    class FSMacOSXJoystickDeviceManager : public FSMultJoystickDeviceManger
     {
+    public:
         virtual~FSMacOSXJoystickDeviceManager();
         FSMacOSXJoystickDeviceManager();
         void update() override;

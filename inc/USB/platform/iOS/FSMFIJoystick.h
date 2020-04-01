@@ -61,8 +61,9 @@ misrepresented as being the original software.
 
 namespace freestick
 {
-    struct FSMFIJoystick : FSUSBJoystick
+    class FSMFIJoystick : public FSUSBJoystick
     {
+    public:
         FSMFIJoystick();
         // Using void here to get around poluting the header file with objective-c
         FSMFIJoystick(

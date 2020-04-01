@@ -1,34 +1,36 @@
-/**************************************************************************
-   Created by Alan Uthoff on 10/8/2013
-   Copyright (C) 2015.
+/*******************************************************************************
+Created by Alan Uthoff on 10/8/2013
+Copyright (C) 2013-2020.
 
-   This Code is free software; you can redistribute it and/or
-   modify it under the terms of the zlib/libpng License as published
-   by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-   This software is provided 'as-is', without any express or implied warranty.
+This Code is free software; you can redistribute it and/or modify it under the
+terms of the zlib/libpng License as published by the Free Software Foundation;
+either version 2.1 of the License, or (at your option) any later version.  This
+software is provided 'as-is', without any express or implied warranty.
 
-   In no event will the authors be held liable for any damages arising from the use of this software.
+In no event will the authors be held liable for any damages arising from the
+use of this software.
 
-   Permission is granted to anyone to use this software for any purpose,
-   including commercial applications, and to alter it and redistribute
-   it freely, subject to the following restrictions:
+Permission is granted to anyone to use this software for any purpose, including
+commercial applications, and to alter it and redistribute it freely, subject to
+the following restrictions:
 
-   1. The origin of this software must not be misrepresented;
-   you must not claim that you wrote the original software.
-   If you use this software in a product, an acknowledgment
-   in the product documentation would be appreciated but is not required.
+1. The origin of this software must not be misrepresented; you must not claim
+that you wrote the original software.  If you use this software in a product,
+an acknowledgment in the product documentation would be appreciated but is not
+required.
 
-   2. Altered source versions must be plainly marked as such,
-   and must not be misrepresented as being the original software.
+2. Altered source versions must be plainly marked as such, and must not be
+misrepresented as being the original software.
 
-   3. This notice may not be removed or altered from any source distribution.
-*/
+3. This notice may not be removed or altered from any source distribution.
+*******************************************************************************/
 
 #pragma once
+
 #include "USB/common/FSUSBJoystick.h"
 #include <Windows.h>
 #include <Xinput.h>
+
 #include "USB/common/FSUSBJoystickDeviceManager.h"
 
 #define UP_DPAD_XINPUT_EID    589836
@@ -60,31 +62,35 @@
 #define LTRIGGER_XINPUT_EID 65586
 #define RTRIGGER_XINPUT_EID 65589
 
-namespace  freestick {
+namespace freestick
+{
     class FSXInputJoystick : public FSUSBJoystick
     {
+        FSUSBJoystickDeviceManager* _usbJoystickManager = nullptr;
+        u32 _totalButtonNumber = 0;
+        bool calibrated = false;
+        DWORD id = 0;
+
     public:
-        FSXInputJoystick(XINPUT_STATE & state,
-                         DWORD id, idNumber joyStickID,
-                         unsigned int numberOfButtons,
-                         unsigned int numberOfAnlogSticks,
-                         unsigned int numberOfDigitalSticks,
-                         bool  forceFeedBackSupported,
-                         long vendorID,
-                         long productID,
-                         FSUSBJoystickDeviceManager & usbJoystickManager);
-        void addXinputElements(XINPUT_STATE & state);
-        void addButtonElement(unsigned int buttonID);
-        void addElement(unsigned int buttonID,minMaxNumber min,minMaxNumber max,physicalValueNumber currentValue);
+        FSXInputJoystick(
+            XINPUT_STATE& state
+          , const DWORD id
+          , const idNumber joyStickID
+          , const u32 numberOfButtons
+          , const u32 numberOfAnlogSticks
+          , const u32 numberOfDigitalSticks
+          , const bool forceFeedBackSupported
+          , const long vendorID
+          , const long productID
+          , const FSUSBJoystickDeviceManager& usbJoystickManager);
+        void addXinputElements(XINPUT_STATE& state);
+        void addButtonElement(const u32 buttonID);
+        void addElement(
+            const u32 buttonID
+          , const minMaxNumber min
+          , const minMaxNumber max
+          , const physicalValueNumber currentValue);
         void setCalibrated();
         bool isCalibrated() const;
-
-    private:
-        DWORD id;
-        FSUSBJoystickDeviceManager * _usbJoystickManager = nullptr;
-        unsigned int _totalButtonNumber = 0;
-        bool calibrated = false;
-
-
     };
 }

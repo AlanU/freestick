@@ -38,8 +38,9 @@ namespace freestick
     using managerType            = FSUpdatableJoystickDeviceManager;
     using unique_ptr_of_managers = std::unique_ptr<managerType>;
 
-    struct FSMultJoystickDeviceManger : IFSDeviceIDCreator
+    class FSMultJoystickDeviceManger : public IFSDeviceIDCreator
     {
+    public:
         using DDHI_Callback = std::function<bool(unique_ptr_of_managers&)>;
 
         virtual~FSMultJoystickDeviceManger() override;

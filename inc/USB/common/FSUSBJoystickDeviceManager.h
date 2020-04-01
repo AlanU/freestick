@@ -32,8 +32,9 @@ misrepresented as being the original software.
 
 namespace freestick
 {
-    struct FSUSBJoystickDeviceManager : FSUSBDeviceManager
+    class FSUSBJoystickDeviceManager : public FSUSBDeviceManager
     {
+    public:
         virtual ~FSUSBJoystickDeviceManager();
         FSUSBJoystickDeviceManager();
 

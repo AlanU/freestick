@@ -86,11 +86,10 @@ namespace freestick
         std::unordered_multimap<FreeStickEventType,std::pair<IFSJoystickListener*,bool> > _joystickDeviceListeners;
         std::vector<IFSJoystickListener*> allJoystickListeners;
 
-        IFSDeviceIDCreator* _deviceIDCreator; //!< If not null called to get next decice id from.
         std::vector<std::pair<FreeStickEventType,IFSJoystickListener* > > _listenersToCleanUp;
+        IFSDeviceIDCreator* _deviceIDCreator; //!< If not null called to get next decice id from.
 
     public:
-
         virtual void listenForAllJoysticksForEventTypes(
               const u32 eventFlags
             , IFSJoystickListener& listener);
@@ -101,8 +100,8 @@ namespace freestick
 
         float convertRawToNormalizedRanger(
               const f64 value
-            , minMaxNumber maxValue
-            , minMaxNumber minValue);
+            , const minMaxNumber maxValue
+            , const minMaxNumber minValue);
 
         virtual void init() ;
         virtual void init(IFSDeviceIDCreator* idCreator);

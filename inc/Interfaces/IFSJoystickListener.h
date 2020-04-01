@@ -35,10 +35,10 @@ namespace freestick
 {
     struct IFSJoystickListener
     {
-        virtual void onButtonDown(const FSDeviceInputEvent event) = 0;
-        virtual void onButtonUp(const FSDeviceInputEvent event) = 0;
-        virtual void onStickMove(const FSDeviceInputEvent event) = 0;
-        virtual void onDisconnect(const FSBaseEvent event) = 0;
-        virtual void onConnect(const FSBaseEvent event) = 0;
+        virtual void onButtonDown(const FSDeviceInputEvent& event) = 0;
+        virtual void onButtonUp(const FSDeviceInputEvent& event) = 0;
+        virtual void onStickMove(const FSDeviceInputEvent& event) = 0;
+        virtual void onDisconnect(const FSBaseEvent& event) = 0;
+        virtual void onConnect(const FSBaseEvent& event) = 0;
     };
 }

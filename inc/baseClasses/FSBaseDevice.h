@@ -40,8 +40,16 @@ namespace freestick
       * said interface.
       */
 
-    struct FSBaseDevice : IFSDevice
+    class FSBaseDevice : public IFSDevice
     {
+        std::map<FSDeviceInput,std::string> _controlInputToFriendlyName;
+        idNumber _id;
+
+    protected:
+        std::string _friendlyName;
+        FSBaseDevice();
+
+    public:
         virtual idNumber getJoystickID()const;
         virtual FSDeviceType getClassType()const{
           return FSBaseDeviceType;
@@ -51,13 +59,5 @@ namespace freestick
         }
         explicit FSBaseDevice(const idNumber id);
         virtual ~FSBaseDevice();
-
-    protected:
-        FSBaseDevice();
-        std::string _friendlyName;
-
-    private:
-        std::map<FSDeviceInput,std::string> _controlInputToFriendlyName;
-        idNumber _id;
     };
 }
