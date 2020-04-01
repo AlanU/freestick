@@ -34,10 +34,10 @@ namespace freestick
       */
     struct IFSJoystickInfo
     {
-        virtual unsigned int numberOfDigitalSticks() = 0;
-        virtual unsigned int numberOfAnlogSticks() = 0;
-        virtual unsigned int numberOfButtons() = 0;
-        virtual unsigned int joystickID() = 0;
+        virtual u32 numberOfDigitalSticks() const = 0;
+        virtual u32 numberOfAnlogSticks() const = 0;
+        virtual u32 numberOfButtons() const = 0;
+        virtual u32 joystickID() const = 0;
     };
 
 }

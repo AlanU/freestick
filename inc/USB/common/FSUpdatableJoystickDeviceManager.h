@@ -31,8 +31,9 @@ misrepresented as being the original software.
 
 namespace freestick
 {
-    struct FSUpdatableJoystickDeviceManager : FSUSBJoystickDeviceManager
+    class FSUpdatableJoystickDeviceManager : public FSUSBJoystickDeviceManager
     {
+    public:
         FSUpdatableJoystickDeviceManager();
         virtual void updateEvents(
               idNumber joystickDeviceID

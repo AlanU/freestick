@@ -31,8 +31,9 @@ misrepresented as being the original software.
 
 namespace freestick
 {
-    struct FSUSBNullDevice : FSUSBDevice
+    class FSUSBNullDevice : public FSUSBDevice
     {
+    public:
         virtual FSDeviceType getClassType()const{
             return FSUSBNULLDeviceType;
         }

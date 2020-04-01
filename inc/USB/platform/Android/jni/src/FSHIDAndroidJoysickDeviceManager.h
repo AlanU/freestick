@@ -34,9 +34,9 @@ misrepresented as being the original software.
 
 namespace freestick
 {
-    struct FSHIDAndroidJoysickDeviceManager
-        : FSUSBJoystickDeviceManager
-        , IJNICallBack{
+    class FSHIDAndroidJoysickDeviceManager
+        : public FSUSBJoystickDeviceManager
+        , public IJNICallBack{
     public:
         FSHIDAndroidJoysickDeviceManager();
         void init(JavaVM* jvm);

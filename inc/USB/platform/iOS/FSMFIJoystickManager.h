@@ -35,8 +35,9 @@ namespace freestick
 {
     using mfiID = s32;
 
-    struct FSMFIJoystickDeviceManager : FSUpdatableJoystickDeviceManager
+    class FSMFIJoystickDeviceManager : public FSUpdatableJoystickDeviceManager
     {
+    public:
         virtual ~FSMFIJoystickDeviceManager();
         FSMFIJoystickDeviceManager();
         virtual void init( );

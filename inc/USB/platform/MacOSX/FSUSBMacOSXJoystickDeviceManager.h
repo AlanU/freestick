@@ -33,8 +33,21 @@ misrepresented as being the original software.
 
 namespace freestick
 {
-    struct FSUSBMacOSXJoystickDeviceManager : FSUpdatableJoystickDeviceManager
+    class FSUSBMacOSXJoystickDeviceManager : public FSUpdatableJoystickDeviceManager
     {
+        std::map<IOHIDDeviceRef,u32> IOHIDDeviceToIDMap;
+        IOHIDManagerRef hidManagerGamePad;
+        IOHIDManagerRef hidManagerJoyStick;
+        void findDpad(const IOHIDDeviceRef device);
+
+    protected:
+        virtual void addDevice(const FSBaseDevice* device);
+        virtual void removeDevice(const FSBaseDevice* device);
+        virtual void addDevice(const IOHIDDeviceRef device);
+        virtual void removeDevice(const IOHIDDeviceRef device);
+        u32 getDeviceIDFromIOHIDevice(const IOHIDDeviceRef deviceRef);
+
+    public:
         FSUSBMacOSXJoystickDeviceManager();
         virtual ~FSUSBMacOSXJoystickDeviceManager();
         virtual void init();
@@ -60,18 +73,5 @@ namespace freestick
           , const long vendorID
           , const long productID);
         void update();
-
-    private:
-        std::map<IOHIDDeviceRef,u32> IOHIDDeviceToIDMap;
-        IOHIDManagerRef hidManagerGamePad;
-        IOHIDManagerRef hidManagerJoyStick;
-        void findDpad(const IOHIDDeviceRef device);
-
-    protected:
-        virtual void addDevice(const FSBaseDevice* device);
-        virtual void removeDevice(const FSBaseDevice* device);
-        virtual void addDevice(const IOHIDDeviceRef device);
-        virtual void removeDevice(const IOHIDDeviceRef device);
-        u32 getDeviceIDFromIOHIDevice(const IOHIDDeviceRef deviceRef);
     };
 }

@@ -31,7 +31,7 @@ misrepresented as being the original software.
 
 namespace freestick
 {
-  void dissconnectKnownControllers(const std::string& name);
+  void disconnectKnownControllers(const std::string& name);
   void connectKnownControllers(const std::string& name);
-  bool containsControler(const std::string& name);
+  bool containsController(const std::string& name);
 }
