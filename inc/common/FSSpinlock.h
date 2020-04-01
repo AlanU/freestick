@@ -1,25 +1,51 @@
-#ifndef FSSPINLOCK_H
-#define FSSPINLOCK_H
+/*******************************************************************************
+Created by Alan Uthoff on 10/8/2013
+Copyright (C) 2013-2020.
+
+This Code is free software; you can redistribute it and/or modify it under the
+terms of the zlib/libpng License as published by the Free Software Foundation;
+either version 2.1 of the License, or (at your option) any later version.  This
+software is provided 'as-is', without any express or implied warranty.
+
+In no event will the authors be held liable for any damages arising from the
+use of this software.
+
+Permission is granted to anyone to use this software for any purpose, including
+commercial applications, and to alter it and redistribute it freely, subject to
+the following restrictions:
+
+1. The origin of this software must not be misrepresented; you must not claim
+that you wrote the original software.  If you use this software in a product,
+an acknowledgment in the product documentation would be appreciated but is not
+required.
+
+2. Altered source versions must be plainly marked as such, and must not be
+misrepresented as being the original software.
+
+3. This notice may not be removed or altered from any source distribution.
+*******************************************************************************/
+
+#pragma once
 
 #include <atomic>
-namespace  freestick
+
+namespace freestick
 {
-    class FSSpinLock
+    class FSSpinLock final
     {
+    #if !MSVC_2013_AND_EARLIER
+        std::atomic_flag _locked = ATOMIC_FLAG_INIT;
+    #else
+        std::atomic_flag _locked;
+    #endif
     public:
-       explicit FSSpinLock()
-       {
-            //sets the atomic_flag to false before use
-            //This is a work around for VS 2013 not supporting
-            //std::atomic_flag locked = ATOMIC_FLAG_INIT
-            //Once VS 2013 is droped this code should be changed back
-            locked.clear();
+        FSSpinLock(){
+            #if MSVC_2013_AND_EARLIER
+                locked.clear();
+            #endif
         }
         void lock();
         bool try_lock();
         void unlock();
-     private:
-        std::atomic_flag locked ;
     };
 }
-#endif // FSSPINLOCK_H
