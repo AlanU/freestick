@@ -79,7 +79,6 @@ int main(int argc, char *argv[])
     engine.load(QUrl(QStringLiteral("qrc:/Main.qml")));
 
     auto returnValue = a.exec();
-    timer->stop();
     return returnValue;
 }
 
