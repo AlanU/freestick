@@ -50,6 +50,23 @@ OTHER_FILES+= $$files(android-source/src/org/freestick/*.java) \
 CONFIG += dylib
 }
 
+CONFIG(debug, debug|release) {
+DESTDIR = debug
+} else {
+DESTDIR = release
+}
+
+OBJECTS_DIR = $$DESTDIR/.obj
+MOC_DIR = $$DESTDIR/.moc
+RCC_DIR = $$DESTDIR/.qrc
+UI_DIR = $$DESTDIR/.ui
+
+macx||win32{
+# Clean files missed by clean
+QMAKE_CLEAN += -r $$DESTDIR Makefile
+QMAKE_CLEAN += -r $$DESTDIR/.qmake_stash
+}
+
 TEMPLATE = app
 PRECOMPILED_HEADER = $$PWD/../../../inc/freestick.h
 
@@ -95,10 +112,17 @@ ios{
      QMAKE_IOS_DEPLOYMENT_TARGET = 10.0
 }
 
+CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../FreeStick/release/ -lFreeStick
+CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../FreeStick/debug/ -lFreeStick
+unix:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../FreeStick/release/libFreeStick.a
+unix:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../FreeStick/debug/libFreeStick.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../FreeStick/release/FreeStick.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../FreeStick/debug/FreeStick.lib
 
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../FreeStick/release/ -lFreeStick
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../FreeStick/debug/ -lFreeStick
-else:unix: LIBS += -L$$OUT_PWD/../FreeStick/ -lFreeStick
+
+#win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../FreeStick/release/ -lFreeStick
+#else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../FreeStick/debug/ -lFreeStick
+#else:unix: LIBS += -L$$OUT_PWD/../FreeStick/ -lFreeStick
 
 INCLUDEPATH += $$PWD/../../../inc \
 DEPENDPATH += $$PWD/../FreeStick
