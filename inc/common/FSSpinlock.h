@@ -34,9 +34,9 @@ namespace freestick
     class FSSpinLock final
     {
         #if !MSVC_2013_AND_EARLIER
-            std::atomic_flag _locked = ATOMIC_FLAG_INIT;
+            std::atomic_flag m_locked = ATOMIC_FLAG_INIT;
         #else
-            std::atomic_flag _locked;
+            std::atomic_flag m_locked;
         #endif
 
     public:

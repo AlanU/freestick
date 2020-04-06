@@ -253,7 +253,7 @@ void FSBaseManager::updateEvent(FSBaseEvent & event)
         switch (event.getEventType())
         {
         case FS_BUTTON_EVENT:
-            if ( event.getEventAction() == FSInputPressed )
+            if ( event.getEventAction() == FSEventAction::Pressed )
                 ListenerToCall->onButtonDown(*(FSDeviceInputEvent *)&event);
             else
                 ListenerToCall->onButtonUp(*(FSDeviceInputEvent *)&event);

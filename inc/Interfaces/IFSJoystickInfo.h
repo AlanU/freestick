@@ -26,6 +26,7 @@ misrepresented as being the original software.
 *******************************************************************************/
 
 #pragma once
+#include "common/FSTypes.h"
 
 namespace freestick
 {

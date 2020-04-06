@@ -40,27 +40,27 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     * populate map _usageMapToInputEvent
     */
 
-    _usageMapToInputEvent[createVPId(PCUSBSNESVendorID,PCUSBSNESID)][589826] = ButtonB;
-    _usageMapToInputEvent[createVPId(PCUSBSNESVendorID,PCUSBSNESID)][589827] = ButtonA;
-    _usageMapToInputEvent[createVPId(PCUSBSNESVendorID,PCUSBSNESID)][589825] = ButtonY;
-    _usageMapToInputEvent[createVPId(PCUSBSNESVendorID,PCUSBSNESID)][589828] = ButtonX;
+    _usageMapToInputEvent[createVPId(kPCUSBSNESVendorID,kPCUSBSNESID)][589826] = ButtonB;
+    _usageMapToInputEvent[createVPId(kPCUSBSNESVendorID,kPCUSBSNESID)][589827] = ButtonA;
+    _usageMapToInputEvent[createVPId(kPCUSBSNESVendorID,kPCUSBSNESID)][589825] = ButtonY;
+    _usageMapToInputEvent[createVPId(kPCUSBSNESVendorID,kPCUSBSNESID)][589828] = ButtonX;
 
 
-    _usageMapToInputEvent[createVPId(PCUSBSNESVendorID,PCUSBSNESID)][589832] = RightShoulder;
-    _usageMapToInputEvent[createVPId(PCUSBSNESVendorID,PCUSBSNESID)][589831] = LeftShoulder;
+    _usageMapToInputEvent[createVPId(kPCUSBSNESVendorID,kPCUSBSNESID)][589832] = RightShoulder;
+    _usageMapToInputEvent[createVPId(kPCUSBSNESVendorID,kPCUSBSNESID)][589831] = LeftShoulder;
 
 
-    _usageMapToInputEvent[createVPId(PCUSBSNESVendorID,PCUSBSNESID)][589833] = ButtonSelect;
-    _usageMapToInputEvent[createVPId(PCUSBSNESVendorID,PCUSBSNESID)][589834] = ButtonStart;
+    _usageMapToInputEvent[createVPId(kPCUSBSNESVendorID,kPCUSBSNESID)][589833] = ButtonSelect;
+    _usageMapToInputEvent[createVPId(kPCUSBSNESVendorID,kPCUSBSNESID)][589834] = ButtonStart;
 
 
-    _usageMapToInputRangeEvent[createVPId(PCUSBSNESVendorID,PCUSBSNESID)][65585].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(PCUSBSNESVendorID,PCUSBSNESID)][65585].push_back(FSUSBElementInfoMap(255,255,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(PCUSBSNESVendorID,PCUSBSNESID)][65585].push_back(FSUSBElementInfoMap(128,128,LastValueUp,FSInputRest));
+    _usageMapToInputRangeEvent[createVPId(kPCUSBSNESVendorID,kPCUSBSNESID)][65585].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kPCUSBSNESVendorID,kPCUSBSNESID)][65585].push_back(FSUSBElementInfoMap(255,255,DPadDown,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kPCUSBSNESVendorID,kPCUSBSNESID)][65585].push_back(FSUSBElementInfoMap(128,128,LastValueUp,FSEventAction::Rest));
 
-    _usageMapToInputRangeEvent[createVPId(PCUSBSNESVendorID,PCUSBSNESID)][65584].push_back(FSUSBElementInfoMap(0,0,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(PCUSBSNESVendorID,PCUSBSNESID)][65584].push_back(FSUSBElementInfoMap(255,255,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(PCUSBSNESVendorID,PCUSBSNESID)][65584].push_back(FSUSBElementInfoMap(128,128,LastValueUp,FSInputRest));
+    _usageMapToInputRangeEvent[createVPId(kPCUSBSNESVendorID,kPCUSBSNESID)][65584].push_back(FSUSBElementInfoMap(0,0,DPadLeft,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kPCUSBSNESVendorID,kPCUSBSNESID)][65584].push_back(FSUSBElementInfoMap(255,255,DPadRight,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kPCUSBSNESVendorID,kPCUSBSNESID)][65584].push_back(FSUSBElementInfoMap(128,128,LastValueUp,FSEventAction::Rest));
 
 
     _usageMapToInputEvent[createVPId(TomeeVendorID2,TomeeNesUSBControllerID)][589825] = ButtonB;
@@ -70,12 +70,12 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputEvent[createVPId(TomeeVendorID2,TomeeNesUSBControllerID)][589833] = ButtonSelect;
 
 
-    _usageMapToInputRangeEvent[createVPId(TomeeVendorID2,TomeeNesUSBControllerID)][65585].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(TomeeVendorID2,TomeeNesUSBControllerID)][65585].push_back(FSUSBElementInfoMap(255,255,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(TomeeVendorID2,TomeeNesUSBControllerID)][65585].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(TomeeVendorID2,TomeeNesUSBControllerID)][65585].push_back(FSUSBElementInfoMap(255,255,DPadDown,FSEventAction::Pressed));
     _usageMapToInputRangeEvent[createVPId(TomeeVendorID2,TomeeNesUSBControllerID)][65585].push_back(FSUSBElementInfoMap(127,127,LastValueUp,FSInputRest));
 
-    _usageMapToInputRangeEvent[createVPId(TomeeVendorID2,TomeeNesUSBControllerID)][65584].push_back(FSUSBElementInfoMap(0,0,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(TomeeVendorID2,TomeeNesUSBControllerID)][65584].push_back(FSUSBElementInfoMap(255,255,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(TomeeVendorID2,TomeeNesUSBControllerID)][65584].push_back(FSUSBElementInfoMap(0,0,DPadLeft,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(TomeeVendorID2,TomeeNesUSBControllerID)][65584].push_back(FSUSBElementInfoMap(255,255,DPadRight,FSEventAction::Pressed));
     _usageMapToInputRangeEvent[createVPId(TomeeVendorID2,TomeeNesUSBControllerID)][65584].push_back(FSUSBElementInfoMap(127,127,LastValueUp,FSInputRest));
 
 
@@ -87,12 +87,12 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputEvent[createVPId(TomeeVendorID,TomeeNesUSBID)][589828] = ButtonStart;
 
 
-    _usageMapToInputRangeEvent[createVPId(TomeeVendorID,TomeeNesUSBID)][65585].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(TomeeVendorID,TomeeNesUSBID)][65585].push_back(FSUSBElementInfoMap(255,255,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(TomeeVendorID,TomeeNesUSBID)][65585].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(TomeeVendorID,TomeeNesUSBID)][65585].push_back(FSUSBElementInfoMap(255,255,DPadDown,FSEventAction::Pressed));
     _usageMapToInputRangeEvent[createVPId(TomeeVendorID,TomeeNesUSBID)][65585].push_back(FSUSBElementInfoMap(127,127,LastValueUp,FSInputRest));
 
-    _usageMapToInputRangeEvent[createVPId(TomeeVendorID,TomeeNesUSBID)][65584].push_back(FSUSBElementInfoMap(0,0,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(TomeeVendorID,TomeeNesUSBID)][65584].push_back(FSUSBElementInfoMap(255,255,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(TomeeVendorID,TomeeNesUSBID)][65584].push_back(FSUSBElementInfoMap(0,0,DPadLeft,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(TomeeVendorID,TomeeNesUSBID)][65584].push_back(FSUSBElementInfoMap(255,255,DPadRight,FSEventAction::Pressed));
     _usageMapToInputRangeEvent[createVPId(TomeeVendorID,TomeeNesUSBID)][65584].push_back(FSUSBElementInfoMap(127,127,LastValueUp,FSInputRest));
 
     // SteelSeries ("Gtron") Gtron Retro Classic FC SNES Controller
@@ -111,47 +111,47 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputEvent[createVPId(Gtron,GtronRetroSNES)][589834] = ButtonStart;
 
 
-    _usageMapToInputRangeEvent[createVPId(Gtron,GtronRetroSNES)][65585].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(Gtron,GtronRetroSNES)][65585].push_back(FSUSBElementInfoMap(255,255,DPadDown,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(Gtron,GtronRetroSNES)][65585].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(Gtron,GtronRetroSNES)][65585].push_back(FSUSBElementInfoMap(255,255,DPadDown,FSEventAction::Pressed));
     _usageMapToInputRangeEvent[createVPId(Gtron,GtronRetroSNES)][65585].push_back(FSUSBElementInfoMap(127,127,LastValueUp,FSInputRest));
 
-    _usageMapToInputRangeEvent[createVPId(Gtron,GtronRetroSNES)][65584].push_back(FSUSBElementInfoMap(0,0,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(Gtron,GtronRetroSNES)][65584].push_back(FSUSBElementInfoMap(255,255,DPadRight,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(Gtron,GtronRetroSNES)][65584].push_back(FSUSBElementInfoMap(0,0,DPadLeft,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(Gtron,GtronRetroSNES)][65584].push_back(FSUSBElementInfoMap(255,255,DPadRight,FSEventAction::Pressed));
     _usageMapToInputRangeEvent[createVPId(Gtron,GtronRetroSNES)][65584].push_back(FSUSBElementInfoMap(127,127,LastValueUp,FSInputRest));
 
 
     //First ps2 port
-    _usageMapToInputEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][589827] =  ButtonA;
-    _usageMapToInputEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][589826] =  ButtonB;
-    _usageMapToInputEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][589828] =  ButtonY;
-    _usageMapToInputEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][589825] =  ButtonX;
+    _usageMapToInputEvent[createVPId(kHVG2VendorID,HVG2TwinPS2)][589827] =  ButtonA;
+    _usageMapToInputEvent[createVPId(kHVG2VendorID,HVG2TwinPS2)][589826] =  ButtonB;
+    _usageMapToInputEvent[createVPId(kHVG2VendorID,HVG2TwinPS2)][589828] =  ButtonY;
+    _usageMapToInputEvent[createVPId(kHVG2VendorID,HVG2TwinPS2)][589825] =  ButtonX;
 
-    _usageMapToInputEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][589831] =  LeftShoulder;
-    _usageMapToInputEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][589832] =  RightShoulder;
-    _usageMapToInputEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][589829] =  LeftShoulder2;
-    _usageMapToInputEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][589830] =  RightShoulder2;
+    _usageMapToInputEvent[createVPId(kHVG2VendorID,HVG2TwinPS2)][589831] =  LeftShoulder;
+    _usageMapToInputEvent[createVPId(kHVG2VendorID,HVG2TwinPS2)][589832] =  RightShoulder;
+    _usageMapToInputEvent[createVPId(kHVG2VendorID,HVG2TwinPS2)][589829] =  LeftShoulder2;
+    _usageMapToInputEvent[createVPId(kHVG2VendorID,HVG2TwinPS2)][589830] =  RightShoulder2;
 
-    _usageMapToInputEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][589835] = Axis1Button;
-    _usageMapToInputEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][589836] = Axis2Button;
+    _usageMapToInputEvent[createVPId(kHVG2VendorID,HVG2TwinPS2)][589835] = Axis1Button;
+    _usageMapToInputEvent[createVPId(kHVG2VendorID,HVG2TwinPS2)][589836] = Axis2Button;
 
-    _usageMapToInputEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][589833] =  ButtonSelect;
-    _usageMapToInputEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][589834] =  ButtonStart;
+    _usageMapToInputEvent[createVPId(kHVG2VendorID,HVG2TwinPS2)][589833] =  ButtonSelect;
+    _usageMapToInputEvent[createVPId(kHVG2VendorID,HVG2TwinPS2)][589834] =  ButtonStart;
 
-    _usageMapToInputRangeEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(3,3,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(15,15,LastValueUp,FSInputRest));
+    _usageMapToInputRangeEvent[createVPId(kHVG2VendorID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kHVG2VendorID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kHVG2VendorID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kHVG2VendorID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(3,3,DPadRight,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kHVG2VendorID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kHVG2VendorID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kHVG2VendorID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kHVG2VendorID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kHVG2VendorID,HVG2TwinPS2)][65593].push_back(FSUSBElementInfoMap(15,15,LastValueUp,FSInputRest));
 
-    _usageMapToInputRangeEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][65584].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));
-    _usageMapToInputRangeEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][65585].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));
+    _usageMapToInputRangeEvent[createVPId(kHVG2VendorID,HVG2TwinPS2)][65584].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));
+    _usageMapToInputRangeEvent[createVPId(kHVG2VendorID,HVG2TwinPS2)][65585].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));
 
-    _usageMapToInputRangeEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][65589].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));
-    _usageMapToInputRangeEvent[createVPId(HVG2VendorID,HVG2TwinPS2)][65586].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));
+    _usageMapToInputRangeEvent[createVPId(kHVG2VendorID,HVG2TwinPS2)][65589].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));
+    _usageMapToInputRangeEvent[createVPId(kHVG2VendorID,HVG2TwinPS2)][65586].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));
 
 
     // SteelSeries ("DragonRise") 3GC controller
@@ -175,14 +175,14 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputEvent[createVPId(DragonRiseID,SteelSeries3GCControllerID)][589834] = ButtonStart;
 
     //D-pad in red LED mode. In green LED mode, D-pad mimicks left stick axes.
-    _usageMapToInputRangeEvent[createVPId(DragonRiseID,SteelSeries3GCControllerID)][65593].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(DragonRiseID,SteelSeries3GCControllerID)][65593].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(DragonRiseID,SteelSeries3GCControllerID)][65593].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(DragonRiseID,SteelSeries3GCControllerID)][65593].push_back(FSUSBElementInfoMap(3,3,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(DragonRiseID,SteelSeries3GCControllerID)][65593].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(DragonRiseID,SteelSeries3GCControllerID)][65593].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(DragonRiseID,SteelSeries3GCControllerID)][65593].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(DragonRiseID,SteelSeries3GCControllerID)][65593].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(DragonRiseID,SteelSeries3GCControllerID)][65593].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(DragonRiseID,SteelSeries3GCControllerID)][65593].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(DragonRiseID,SteelSeries3GCControllerID)][65593].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(DragonRiseID,SteelSeries3GCControllerID)][65593].push_back(FSUSBElementInfoMap(3,3,DPadRight,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(DragonRiseID,SteelSeries3GCControllerID)][65593].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(DragonRiseID,SteelSeries3GCControllerID)][65593].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(DragonRiseID,SteelSeries3GCControllerID)][65593].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(DragonRiseID,SteelSeries3GCControllerID)][65593].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSEventAction::Pressed));
     _usageMapToInputRangeEvent[createVPId(DragonRiseID,SteelSeries3GCControllerID)][65593].push_back(FSUSBElementInfoMap(15,15,LastValueUp,FSInputRest));
 
     //Left analog stick in red LED mode. In green LED mode, stick
@@ -222,14 +222,14 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputEvent[createVPId(AmazonVendorID,AmazonFireGameControllerID)][786637] = Button20;//Play Pause button
     _usageMapToInputEvent[createVPId(AmazonVendorID,AmazonFireGameControllerID)][786611] = Button21;//Fast Forward button
 
-    _usageMapToInputRangeEvent[createVPId(AmazonVendorID,AmazonFireGameControllerID)][65593].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(AmazonVendorID,AmazonFireGameControllerID)][65593].push_back(FSUSBElementInfoMap(2,2,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(AmazonVendorID,AmazonFireGameControllerID)][65593].push_back(FSUSBElementInfoMap(3,3,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(AmazonVendorID,AmazonFireGameControllerID)][65593].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(AmazonVendorID,AmazonFireGameControllerID)][65593].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(AmazonVendorID,AmazonFireGameControllerID)][65593].push_back(FSUSBElementInfoMap(6,6,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(AmazonVendorID,AmazonFireGameControllerID)][65593].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(AmazonVendorID,AmazonFireGameControllerID)][65593].push_back(FSUSBElementInfoMap(8,8,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(AmazonVendorID,AmazonFireGameControllerID)][65593].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(AmazonVendorID,AmazonFireGameControllerID)][65593].push_back(FSUSBElementInfoMap(2,2,DPadUp,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(AmazonVendorID,AmazonFireGameControllerID)][65593].push_back(FSUSBElementInfoMap(3,3,DPadRight,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(AmazonVendorID,AmazonFireGameControllerID)][65593].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(AmazonVendorID,AmazonFireGameControllerID)][65593].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(AmazonVendorID,AmazonFireGameControllerID)][65593].push_back(FSUSBElementInfoMap(6,6,DPadDown,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(AmazonVendorID,AmazonFireGameControllerID)][65593].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(AmazonVendorID,AmazonFireGameControllerID)][65593].push_back(FSUSBElementInfoMap(8,8,DPadUp,FSEventAction::Pressed));
     _usageMapToInputRangeEvent[createVPId(AmazonVendorID,AmazonFireGameControllerID)][65593].push_back(FSUSBElementInfoMap(0,0,LastValueUp,FSInputRest));
 
     // TODO: New mapping system for Fire TV controller anolog stick and trigger min and max of -1 to 0 is a lie.
@@ -259,14 +259,14 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     // No center button
     _usageMapToInputEvent[createVPId(GameElementsVendorID,GameElementsRecoilID)][589834] = ButtonStart;
 
-    _usageMapToInputRangeEvent[createVPId(GameElementsVendorID,GameElementsRecoilID)][65593].push_back(FSUSBElementInfoMap(0,0,LastValueUp,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(GameElementsVendorID,GameElementsRecoilID)][65593].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(GameElementsVendorID,GameElementsRecoilID)][65593].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(GameElementsVendorID,GameElementsRecoilID)][65593].push_back(FSUSBElementInfoMap(3,3,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(GameElementsVendorID,GameElementsRecoilID)][65593].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(GameElementsVendorID,GameElementsRecoilID)][65593].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(GameElementsVendorID,GameElementsRecoilID)][65593].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(GameElementsVendorID,GameElementsRecoilID)][65593].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(GameElementsVendorID,GameElementsRecoilID)][65593].push_back(FSUSBElementInfoMap(0,0,LastValueUp,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(GameElementsVendorID,GameElementsRecoilID)][65593].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(GameElementsVendorID,GameElementsRecoilID)][65593].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(GameElementsVendorID,GameElementsRecoilID)][65593].push_back(FSUSBElementInfoMap(3,3,DPadRight,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(GameElementsVendorID,GameElementsRecoilID)][65593].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(GameElementsVendorID,GameElementsRecoilID)][65593].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(GameElementsVendorID,GameElementsRecoilID)][65593].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(GameElementsVendorID,GameElementsRecoilID)][65593].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSEventAction::Pressed));
     //_usageMapToInputRangeEvent[createId(GameElementsVendorID,GameElementsRecoilID)][65593].push_back(FSUSBElementInfoMap(15,15,LastValueUp,FSInputRest));
 
     _usageMapToInputRangeEvent[createVPId(GameElementsVendorID,GameElementsRecoilID)][65584].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));
@@ -290,14 +290,14 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     // No center button
     _usageMapToInputEvent[createVPId(SteelSeriesVendorID,SteelSeriesFreeControllerID)][589836] = ButtonStart;//Labeled as "b"
 
-    _usageMapToInputRangeEvent[createVPId(SteelSeriesVendorID,SteelSeriesFreeControllerID)][65593].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(SteelSeriesVendorID,SteelSeriesFreeControllerID)][65593].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(SteelSeriesVendorID,SteelSeriesFreeControllerID)][65593].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(SteelSeriesVendorID,SteelSeriesFreeControllerID)][65593].push_back(FSUSBElementInfoMap(3,3,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(SteelSeriesVendorID,SteelSeriesFreeControllerID)][65593].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(SteelSeriesVendorID,SteelSeriesFreeControllerID)][65593].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(SteelSeriesVendorID,SteelSeriesFreeControllerID)][65593].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(SteelSeriesVendorID,SteelSeriesFreeControllerID)][65593].push_back(FSUSBElementInfoMap(7,7,DPadUp,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(SteelSeriesVendorID,SteelSeriesFreeControllerID)][65593].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(SteelSeriesVendorID,SteelSeriesFreeControllerID)][65593].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(SteelSeriesVendorID,SteelSeriesFreeControllerID)][65593].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(SteelSeriesVendorID,SteelSeriesFreeControllerID)][65593].push_back(FSUSBElementInfoMap(3,3,DPadDown,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(SteelSeriesVendorID,SteelSeriesFreeControllerID)][65593].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(SteelSeriesVendorID,SteelSeriesFreeControllerID)][65593].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(SteelSeriesVendorID,SteelSeriesFreeControllerID)][65593].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(SteelSeriesVendorID,SteelSeriesFreeControllerID)][65593].push_back(FSUSBElementInfoMap(7,7,DPadUp,FSEventAction::Pressed));
     _usageMapToInputRangeEvent[createVPId(SteelSeriesVendorID,SteelSeriesFreeControllerID)][65593].push_back(FSUSBElementInfoMap(15,15,LastValueUp,FSInputRest));
 
     _usageMapToInputRangeEvent[createVPId(SteelSeriesVendorID,SteelSeriesFreeControllerID)][65584].push_back(FSUSBElementInfoMap(-128,127,XAxis,FSInputChanged));
@@ -309,178 +309,178 @@ FSUSBDeviceManager::FSUSBDeviceManager()
 
     // DualShock 3 Controller
 
-    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][21] = ButtonA;
-    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][20] = ButtonB;
-    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][19] = ButtonY;
-    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][22] = ButtonX;
+    _usageMapToInputEvent[createVPId(kSonyVendorID,kPlaystation3ControllerID)][21] = ButtonA;
+    _usageMapToInputEvent[createVPId(kSonyVendorID,kPlaystation3ControllerID)][20] = ButtonB;
+    _usageMapToInputEvent[createVPId(kSonyVendorID,kPlaystation3ControllerID)][19] = ButtonY;
+    _usageMapToInputEvent[createVPId(kSonyVendorID,kPlaystation3ControllerID)][22] = ButtonX;
 
-    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][17] = LeftShoulder;
-    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][18] = RightShoulder;
+    _usageMapToInputEvent[createVPId(kSonyVendorID,kPlaystation3ControllerID)][17] = LeftShoulder;
+    _usageMapToInputEvent[createVPId(kSonyVendorID,kPlaystation3ControllerID)][18] = RightShoulder;
 
-    _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation3ControllerID)][39].push_back(FSUSBElementInfoMap(0,255,Trigger1,FSInputChanged));//L2 trigger
-    _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation3ControllerID)][40].push_back(FSUSBElementInfoMap(0,255,Trigger2,FSInputChanged));//R2 trigger
+    _usageMapToInputRangeEvent[createVPId(kSonyVendorID,kPlaystation3ControllerID)][39].push_back(FSUSBElementInfoMap(0,255,Trigger1,FSInputChanged));//L2 trigger
+    _usageMapToInputRangeEvent[createVPId(kSonyVendorID,kPlaystation3ControllerID)][40].push_back(FSUSBElementInfoMap(0,255,Trigger2,FSInputChanged));//R2 trigger
 
-    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][10] = ButtonStart;
-    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][23] = ButtonCenter;
-    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][7] = ButtonSelect;
+    _usageMapToInputEvent[createVPId(kSonyVendorID,kPlaystation3ControllerID)][10] = ButtonStart;
+    _usageMapToInputEvent[createVPId(kSonyVendorID,kPlaystation3ControllerID)][23] = ButtonCenter;
+    _usageMapToInputEvent[createVPId(kSonyVendorID,kPlaystation3ControllerID)][7] = ButtonSelect;
 
-    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][8] = Axis1Button;
-    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][9] = Axis2Button;
+    _usageMapToInputEvent[createVPId(kSonyVendorID,kPlaystation3ControllerID)][8] = Axis1Button;
+    _usageMapToInputEvent[createVPId(kSonyVendorID,kPlaystation3ControllerID)][9] = Axis2Button;
 
-    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][11] = DPadUp;
-    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][12] = DPadRight;
-    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][13] = DPadDown;
-    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][14] = DPadLeft;
+    _usageMapToInputEvent[createVPId(kSonyVendorID,kPlaystation3ControllerID)][11] = DPadUp;
+    _usageMapToInputEvent[createVPId(kSonyVendorID,kPlaystation3ControllerID)][12] = DPadRight;
+    _usageMapToInputEvent[createVPId(kSonyVendorID,kPlaystation3ControllerID)][13] = DPadDown;
+    _usageMapToInputEvent[createVPId(kSonyVendorID,kPlaystation3ControllerID)][14] = DPadLeft;
 
-    _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation3ControllerID)][27].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));
-    _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation3ControllerID)][26].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));
-    _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation3ControllerID)][28].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));
-    _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation3ControllerID)][29].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));
+    _usageMapToInputRangeEvent[createVPId(kSonyVendorID,kPlaystation3ControllerID)][27].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));
+    _usageMapToInputRangeEvent[createVPId(kSonyVendorID,kPlaystation3ControllerID)][26].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));
+    _usageMapToInputRangeEvent[createVPId(kSonyVendorID,kPlaystation3ControllerID)][28].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));
+    _usageMapToInputRangeEvent[createVPId(kSonyVendorID,kPlaystation3ControllerID)][29].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));
 
     // DualShock 4 Controller
 
-    std::array<uint32_t,2> sonyProductIds{Playstation4ControllerIDV1,Playstation4ControllerIDV2};
+    std::array<uint32_t,2> sonyProductIds{kPlaystation4ControllerIDV1,kPlaystation4ControllerIDV2};
 
     for ( auto Playstation4ControllerID : sonyProductIds)
     {
-        _usageMapToInputEvent[createVPId(SonyVendorID,Playstation4ControllerID)][589826] = ButtonA;
-        _usageMapToInputEvent[createVPId(SonyVendorID,Playstation4ControllerID)][589827] = ButtonB;
-        _usageMapToInputEvent[createVPId(SonyVendorID,Playstation4ControllerID)][589828] = ButtonY;
-        _usageMapToInputEvent[createVPId(SonyVendorID,Playstation4ControllerID)][589825] = ButtonX;
+        _usageMapToInputEvent[createVPId(kSonyVendorID,Playstation4ControllerID)][589826] = ButtonA;
+        _usageMapToInputEvent[createVPId(kSonyVendorID,Playstation4ControllerID)][589827] = ButtonB;
+        _usageMapToInputEvent[createVPId(kSonyVendorID,Playstation4ControllerID)][589828] = ButtonY;
+        _usageMapToInputEvent[createVPId(kSonyVendorID,Playstation4ControllerID)][589825] = ButtonX;
 
-        _usageMapToInputEvent[createVPId(SonyVendorID,Playstation4ControllerID)][589829] = LeftShoulder;
-        _usageMapToInputEvent[createVPId(SonyVendorID,Playstation4ControllerID)][589830] = RightShoulder;
-        _usageMapToInputEvent[createVPId(SonyVendorID,Playstation4ControllerID)][589831] = LeftShoulder2;
-        _usageMapToInputEvent[createVPId(SonyVendorID,Playstation4ControllerID)][589832] = RightShoulder2;
+        _usageMapToInputEvent[createVPId(kSonyVendorID,Playstation4ControllerID)][589829] = LeftShoulder;
+        _usageMapToInputEvent[createVPId(kSonyVendorID,Playstation4ControllerID)][589830] = RightShoulder;
+        _usageMapToInputEvent[createVPId(kSonyVendorID,Playstation4ControllerID)][589831] = LeftShoulder2;
+        _usageMapToInputEvent[createVPId(kSonyVendorID,Playstation4ControllerID)][589832] = RightShoulder2;
 
-        _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation4ControllerID)][65587].push_back(FSUSBElementInfoMap(0,255,Trigger1,FSInputChanged));//L2 trigger
-        _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation4ControllerID)][65588].push_back(FSUSBElementInfoMap(0,255,Trigger2,FSInputChanged));//R2 trigger
+        _usageMapToInputRangeEvent[createVPId(kSonyVendorID,Playstation4ControllerID)][65587].push_back(FSUSBElementInfoMap(0,255,Trigger1,FSInputChanged));//L2 trigger
+        _usageMapToInputRangeEvent[createVPId(kSonyVendorID,Playstation4ControllerID)][65588].push_back(FSUSBElementInfoMap(0,255,Trigger2,FSInputChanged));//R2 trigger
 
-        _usageMapToInputEvent[createVPId(SonyVendorID,Playstation4ControllerID)][589835] = Axis1Button;
-        _usageMapToInputEvent[createVPId(SonyVendorID,Playstation4ControllerID)][589836] = Axis2Button;
+        _usageMapToInputEvent[createVPId(kSonyVendorID,Playstation4ControllerID)][589835] = Axis1Button;
+        _usageMapToInputEvent[createVPId(kSonyVendorID,Playstation4ControllerID)][589836] = Axis2Button;
 
-        _usageMapToInputEvent[createVPId(SonyVendorID,Playstation4ControllerID)][589833] = ButtonSelect;
-        _usageMapToInputEvent[createVPId(SonyVendorID,Playstation4ControllerID)][589837] = ButtonCenter;
-        _usageMapToInputEvent[createVPId(SonyVendorID,Playstation4ControllerID)][589838] = ButtonCenter;//button under touch pad
+        _usageMapToInputEvent[createVPId(kSonyVendorID,Playstation4ControllerID)][589833] = ButtonSelect;
+        _usageMapToInputEvent[createVPId(kSonyVendorID,Playstation4ControllerID)][589837] = ButtonCenter;
+        _usageMapToInputEvent[createVPId(kSonyVendorID,Playstation4ControllerID)][589838] = ButtonCenter;//button under touch pad
 
-        _usageMapToInputEvent[createVPId(SonyVendorID,Playstation4ControllerID)][589834] = ButtonStart;
+        _usageMapToInputEvent[createVPId(kSonyVendorID,Playstation4ControllerID)][589834] = ButtonStart;
 
-        _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation4ControllerID)][65593].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
-        _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation4ControllerID)][65593].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
-        _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation4ControllerID)][65593].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
-        _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation4ControllerID)][65593].push_back(FSUSBElementInfoMap(3,3,DPadDown,FSInputPressed));
-        _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation4ControllerID)][65593].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
-        _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation4ControllerID)][65593].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
-        _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation4ControllerID)][65593].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
-        _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation4ControllerID)][65593].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSInputPressed));
-        _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation4ControllerID)][65593].push_back(FSUSBElementInfoMap(8,8,LastValueUp,FSInputRest));
+        _usageMapToInputRangeEvent[createVPId(kSonyVendorID,Playstation4ControllerID)][65593].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSEventAction::Pressed));
+        _usageMapToInputRangeEvent[createVPId(kSonyVendorID,Playstation4ControllerID)][65593].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSEventAction::Pressed));
+        _usageMapToInputRangeEvent[createVPId(kSonyVendorID,Playstation4ControllerID)][65593].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSEventAction::Pressed));
+        _usageMapToInputRangeEvent[createVPId(kSonyVendorID,Playstation4ControllerID)][65593].push_back(FSUSBElementInfoMap(3,3,DPadDown,FSEventAction::Pressed));
+        _usageMapToInputRangeEvent[createVPId(kSonyVendorID,Playstation4ControllerID)][65593].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSEventAction::Pressed));
+        _usageMapToInputRangeEvent[createVPId(kSonyVendorID,Playstation4ControllerID)][65593].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSEventAction::Pressed));
+        _usageMapToInputRangeEvent[createVPId(kSonyVendorID,Playstation4ControllerID)][65593].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSEventAction::Pressed));
+        _usageMapToInputRangeEvent[createVPId(kSonyVendorID,Playstation4ControllerID)][65593].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSEventAction::Pressed));
+        _usageMapToInputRangeEvent[createVPId(kSonyVendorID,Playstation4ControllerID)][65593].push_back(FSUSBElementInfoMap(8,8,LastValueUp,FSInputRest));
 
-        _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation4ControllerID)][65584].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));//LXaxis stick
-        _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation4ControllerID)][65585].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));//LYaxis stick
-        _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation4ControllerID)][65589].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));//RXaxis stick
-        _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation4ControllerID)][65586].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));//RYaxis stick
+        _usageMapToInputRangeEvent[createVPId(kSonyVendorID,Playstation4ControllerID)][65584].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));//LXaxis stick
+        _usageMapToInputRangeEvent[createVPId(kSonyVendorID,Playstation4ControllerID)][65585].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));//LYaxis stick
+        _usageMapToInputRangeEvent[createVPId(kSonyVendorID,Playstation4ControllerID)][65589].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));//RXaxis stick
+        _usageMapToInputRangeEvent[createVPId(kSonyVendorID,Playstation4ControllerID)][65586].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));//RYaxis stick
     }
     //Logitech F710
 
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][589826] = ButtonA;
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][589827] = ButtonB;
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][589825] = ButtonX;
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][589828] = ButtonY;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,LogitechGamepadF710)][589826] = ButtonA;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,LogitechGamepadF710)][589827] = ButtonB;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,LogitechGamepadF710)][589825] = ButtonX;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,LogitechGamepadF710)][589828] = ButtonY;
 
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][589829]= LeftShoulder;
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][589830] = RightShoulder;
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][589831] = LeftShoulder2;
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][589832] = RightShoulder2;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,LogitechGamepadF710)][589829]= LeftShoulder;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,LogitechGamepadF710)][589830] = RightShoulder;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,LogitechGamepadF710)][589831] = LeftShoulder2;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,LogitechGamepadF710)][589832] = RightShoulder2;
 
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][589835] = Axis1Button;
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][589836] = Axis2Button;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,LogitechGamepadF710)][589835] = Axis1Button;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,LogitechGamepadF710)][589836] = Axis2Button;
 
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][589833] = ButtonSelect;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,LogitechGamepadF710)][589833] = ButtonSelect;
     // No center button not accessible
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][589834] = ButtonStart;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,LogitechGamepadF710)][589834] = ButtonStart;
 
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][65593].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][65593].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][65593].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][65593].push_back(FSUSBElementInfoMap(3,3,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][65593].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][65593].push_back(FSUSBElementInfoMap(5,5,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][65593].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][65593].push_back(FSUSBElementInfoMap(7,7,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][65593].push_back(FSUSBElementInfoMap(8,8,LastValueUp,FSInputRest));
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,LogitechGamepadF710)][65593].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,LogitechGamepadF710)][65593].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,LogitechGamepadF710)][65593].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,LogitechGamepadF710)][65593].push_back(FSUSBElementInfoMap(3,3,DPadDown,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,LogitechGamepadF710)][65593].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,LogitechGamepadF710)][65593].push_back(FSUSBElementInfoMap(5,5,DPadLeft,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,LogitechGamepadF710)][65593].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,LogitechGamepadF710)][65593].push_back(FSUSBElementInfoMap(7,7,DPadUp,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,LogitechGamepadF710)][65593].push_back(FSUSBElementInfoMap(8,8,LastValueUp,FSInputRest));
 
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][65584].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));//LXaxis stick
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][65585].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));//LYaxis stick
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,LogitechGamepadF710)][65584].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));//LXaxis stick
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,LogitechGamepadF710)][65585].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));//LYaxis stick
 
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][65589].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));//RXaxis stick
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF710)][65586].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));//RYaxis stick
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,LogitechGamepadF710)][65589].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));//RXaxis stick
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,LogitechGamepadF710)][65586].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));//RYaxis stick
 
 
     // Logitech Dual Action
 
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechDualActionID)][589826] = ButtonA;
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechDualActionID)][589827] = ButtonB;
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechDualActionID)][589825] = ButtonX;
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechDualActionID)][589828] = ButtonY;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,kLogitechDualActionID)][589826] = ButtonA;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,kLogitechDualActionID)][589827] = ButtonB;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,kLogitechDualActionID)][589825] = ButtonX;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,kLogitechDualActionID)][589828] = ButtonY;
 
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechDualActionID)][589829]= LeftShoulder;
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechDualActionID)][589830] = RightShoulder;
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechDualActionID)][589831] = LeftShoulder2;
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechDualActionID)][589832] = RightShoulder2;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,kLogitechDualActionID)][589829]= LeftShoulder;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,kLogitechDualActionID)][589830] = RightShoulder;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,kLogitechDualActionID)][589831] = LeftShoulder2;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,kLogitechDualActionID)][589832] = RightShoulder2;
 
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechDualActionID)][589835] = Axis1Button;
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechDualActionID)][589836] = Axis2Button;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,kLogitechDualActionID)][589835] = Axis1Button;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,kLogitechDualActionID)][589836] = Axis2Button;
 
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechDualActionID)][589833] = ButtonSelect;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,kLogitechDualActionID)][589833] = ButtonSelect;
     // No center button
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechDualActionID)][589834] = ButtonStart;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,kLogitechDualActionID)][589834] = ButtonStart;
 
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechDualActionID)][65593].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechDualActionID)][65593].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechDualActionID)][65593].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechDualActionID)][65593].push_back(FSUSBElementInfoMap(3,3,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechDualActionID)][65593].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechDualActionID)][65593].push_back(FSUSBElementInfoMap(5,5,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechDualActionID)][65593].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechDualActionID)][65593].push_back(FSUSBElementInfoMap(7,7,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechDualActionID)][65593].push_back(FSUSBElementInfoMap(8,8,LastValueUp,FSInputRest));
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,kLogitechDualActionID)][65593].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,kLogitechDualActionID)][65593].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,kLogitechDualActionID)][65593].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,kLogitechDualActionID)][65593].push_back(FSUSBElementInfoMap(3,3,DPadDown,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,kLogitechDualActionID)][65593].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,kLogitechDualActionID)][65593].push_back(FSUSBElementInfoMap(5,5,DPadLeft,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,kLogitechDualActionID)][65593].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,kLogitechDualActionID)][65593].push_back(FSUSBElementInfoMap(7,7,DPadUp,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,kLogitechDualActionID)][65593].push_back(FSUSBElementInfoMap(8,8,LastValueUp,FSInputRest));
 
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechDualActionID)][65584].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));//LXaxis stick
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechDualActionID)][65585].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));//LYaxis stick
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,kLogitechDualActionID)][65584].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));//LXaxis stick
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,kLogitechDualActionID)][65585].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));//LYaxis stick
 
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechDualActionID)][65589].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));//RXaxis stick
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechDualActionID)][65586].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));//RYaxis stick
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,kLogitechDualActionID)][65589].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));//RXaxis stick
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,kLogitechDualActionID)][65586].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));//RYaxis stick
 
     // Logitech Gamepad F310 in x mode
 
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF310)][589825] = ButtonA;
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF310)][589826] = ButtonB;
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF310)][589827] = ButtonX;
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF310)][589828] = ButtonY;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,LogitechGamepadF310)][589825] = ButtonA;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,LogitechGamepadF310)][589826] = ButtonB;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,LogitechGamepadF310)][589827] = ButtonX;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,LogitechGamepadF310)][589828] = ButtonY;
 
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF310)][589829] = LeftShoulder;
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF310)][589830] = RightShoulder;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,LogitechGamepadF310)][589829] = LeftShoulder;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,LogitechGamepadF310)][589830] = RightShoulder;
 
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF310)][65586].push_back(FSUSBElementInfoMap(0,255,Trigger1,FSInputChanged));
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF310)][65589].push_back(FSUSBElementInfoMap(0,255,Trigger2,FSInputChanged));
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,LogitechGamepadF310)][65586].push_back(FSUSBElementInfoMap(0,255,Trigger1,FSInputChanged));
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,LogitechGamepadF310)][65589].push_back(FSUSBElementInfoMap(0,255,Trigger2,FSInputChanged));
 
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF310)][589831] = Axis1Button;
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF310)][589832] = Axis2Button;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,LogitechGamepadF310)][589831] = Axis1Button;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,LogitechGamepadF310)][589832] = Axis2Button;
 
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF310)][589834] = ButtonSelect;
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF310)][589835] = ButtonCenter;
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF310)][589833] = ButtonStart;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,LogitechGamepadF310)][589834] = ButtonSelect;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,LogitechGamepadF310)][589835] = ButtonCenter;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,LogitechGamepadF310)][589833] = ButtonStart;
 
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF310)][589836] = DPadUp;
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF310)][589839] = DPadRight;
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF310)][589837] = DPadDown;
-    _usageMapToInputEvent[createVPId(LogitechVendorID,LogitechGamepadF310)][589838] = DPadLeft;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,LogitechGamepadF310)][589836] = DPadUp;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,LogitechGamepadF310)][589839] = DPadRight;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,LogitechGamepadF310)][589837] = DPadDown;
+    _usageMapToInputEvent[createVPId(kLogitechVendorID,LogitechGamepadF310)][589838] = DPadLeft;
 
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF310)][65584].push_back(FSUSBElementInfoMap(-32768,32767,XAxis,FSInputChanged));
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF310)][65585].push_back(FSUSBElementInfoMap(-32768,32767,YAxis,FSInputChanged));
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,LogitechGamepadF310)][65584].push_back(FSUSBElementInfoMap(-32768,32767,XAxis,FSInputChanged));
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,LogitechGamepadF310)][65585].push_back(FSUSBElementInfoMap(-32768,32767,YAxis,FSInputChanged));
 
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF310)][65587].push_back(FSUSBElementInfoMap(-32768,32767,XAxis2,FSInputChanged));
-    _usageMapToInputRangeEvent[createVPId(LogitechVendorID,LogitechGamepadF310)][65588].push_back(FSUSBElementInfoMap(-32768,32767,YAxis2,FSInputChanged));
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,LogitechGamepadF310)][65587].push_back(FSUSBElementInfoMap(-32768,32767,XAxis2,FSInputChanged));
+    _usageMapToInputRangeEvent[createVPId(kLogitechVendorID,LogitechGamepadF310)][65588].push_back(FSUSBElementInfoMap(-32768,32767,YAxis2,FSInputChanged));
 
     // OUYA controller
 
@@ -594,37 +594,37 @@ FSUSBDeviceManager::FSUSBDeviceManager()
 
     //Gravis GamePad Pro
 
-    _usageMapToInputEvent[createVPId(GravisVendorID,GamePadProID)][589826] = ButtonA;
-    _usageMapToInputEvent[createVPId(GravisVendorID,GamePadProID)][589827] = ButtonB ;
-    _usageMapToInputEvent[createVPId(GravisVendorID,GamePadProID)][589825] = ButtonX;
-    _usageMapToInputEvent[createVPId(GravisVendorID,GamePadProID)][589828] = ButtonY;
+    _usageMapToInputEvent[createVPId(kGravisVendorID,GamePadProID)][589826] = ButtonA;
+    _usageMapToInputEvent[createVPId(kGravisVendorID,GamePadProID)][589827] = ButtonB ;
+    _usageMapToInputEvent[createVPId(kGravisVendorID,GamePadProID)][589825] = ButtonX;
+    _usageMapToInputEvent[createVPId(kGravisVendorID,GamePadProID)][589828] = ButtonY;
 
-    _usageMapToInputEvent[createVPId(GravisVendorID,GamePadProID)][589829] = LeftShoulder;
-    _usageMapToInputEvent[createVPId(GravisVendorID,GamePadProID)][589830] = RightShoulder;
+    _usageMapToInputEvent[createVPId(kGravisVendorID,GamePadProID)][589829] = LeftShoulder;
+    _usageMapToInputEvent[createVPId(kGravisVendorID,GamePadProID)][589830] = RightShoulder;
 
-    _usageMapToInputEvent[createVPId(GravisVendorID,GamePadProID)][589831] = LeftShoulder2;
-    _usageMapToInputEvent[createVPId(GravisVendorID,GamePadProID)][589832] = RightShoulder2;
+    _usageMapToInputEvent[createVPId(kGravisVendorID,GamePadProID)][589831] = LeftShoulder2;
+    _usageMapToInputEvent[createVPId(kGravisVendorID,GamePadProID)][589832] = RightShoulder2;
 
-    _usageMapToInputEvent[createVPId(GravisVendorID,GamePadProID)][589833] = ButtonSelect;
-    _usageMapToInputEvent[createVPId(GravisVendorID,GamePadProID)][589834] = ButtonStart;
+    _usageMapToInputEvent[createVPId(kGravisVendorID,GamePadProID)][589833] = ButtonSelect;
+    _usageMapToInputEvent[createVPId(kGravisVendorID,GamePadProID)][589834] = ButtonStart;
 
-    _usageMapToInputRangeEvent[createVPId(GravisVendorID,GamePadProID)][65585].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(GravisVendorID,GamePadProID)][65585].push_back(FSUSBElementInfoMap(255,255,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(GravisVendorID,GamePadProID)][65585].push_back(FSUSBElementInfoMap(127,127,LastValueUp,FSInputRest));
+    _usageMapToInputRangeEvent[createVPId(kGravisVendorID,GamePadProID)][65585].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kGravisVendorID,GamePadProID)][65585].push_back(FSUSBElementInfoMap(255,255,DPadDown,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kGravisVendorID,GamePadProID)][65585].push_back(FSUSBElementInfoMap(127,127,LastValueUp,FSInputRest));
 
-    _usageMapToInputRangeEvent[createVPId(GravisVendorID,GamePadProID)][65584].push_back(FSUSBElementInfoMap(0,0,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(GravisVendorID,GamePadProID)][65584].push_back(FSUSBElementInfoMap(255,255,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(GravisVendorID,GamePadProID)][65584].push_back(FSUSBElementInfoMap(127,127,LastValueUp,FSInputRest));
+    _usageMapToInputRangeEvent[createVPId(kGravisVendorID,GamePadProID)][65584].push_back(FSUSBElementInfoMap(0,0,DPadLeft,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kGravisVendorID,GamePadProID)][65584].push_back(FSUSBElementInfoMap(255,255,DPadRight,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(kGravisVendorID,GamePadProID)][65584].push_back(FSUSBElementInfoMap(127,127,LastValueUp,FSInputRest));
 
     //ZD-V V Wired GamePad
-    _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65593].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65593].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65593].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65593].push_back(FSUSBElementInfoMap(3,3,DPadRight,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65593].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65593].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65593].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSInputPressed));
-    _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65593].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSInputPressed));
+    _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65593].push_back(FSUSBElementInfoMap(0,0,DPadUp,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65593].push_back(FSUSBElementInfoMap(1,1,DPadUp,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65593].push_back(FSUSBElementInfoMap(2,2,DPadRight,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65593].push_back(FSUSBElementInfoMap(3,3,DPadRight,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65593].push_back(FSUSBElementInfoMap(4,4,DPadDown,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65593].push_back(FSUSBElementInfoMap(5,5,DPadDown,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65593].push_back(FSUSBElementInfoMap(6,6,DPadLeft,FSEventAction::Pressed));
+    _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65593].push_back(FSUSBElementInfoMap(7,7,DPadLeft,FSEventAction::Pressed));
     _usageMapToInputRangeEvent[createVPId(ZDVVendorID,VWiredGamePadID)][65593].push_back(FSUSBElementInfoMap(15,15,LastValueUp,FSInputRest));
 
     _usageMapToInputEvent[createVPId(ZDVVendorID,VWiredGamePadID)][589827] =  ButtonA;
@@ -713,7 +713,7 @@ FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromUSBID( vendorIDTyp
          if(_usageMapToInputEvent.find(vendorProductID) != _usageMapToInputEvent.end() &&
                  _usageMapToInputEvent[vendorProductID].find(controlID) != _usageMapToInputEvent[vendorProductID].end())
          {
-             FSEventAction isPressed = FSInputPressed;
+             FSEventAction isPressed = FSEventAction::Pressed;
              (value == 0 ) ? isPressed = FSInputRest: NULL;
              return FSUSBElementInfoMap(0,1,_usageMapToInputEvent[vendorProductID][controlID],isPressed);
          }

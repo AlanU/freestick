@@ -28,6 +28,7 @@ misrepresented as being the original software.
 #pragma once
 
 #include "IFSDevice.h"
+#include "./common/FSTypes.h"
 
 #include <assert.h>
 #include <functional>
@@ -47,10 +48,10 @@ namespace freestick
 
     enum class FSEventAction:u32
     {
-        kRest    = 0,
-        kPressed = 1,
-        kChanged = 2,
-        kLast    = 3
+        Rest    = 0,
+        Pressed = 1,
+        Changed = 2,
+        Last    = 3
     };
 
     struct IFSEvent
@@ -81,12 +82,12 @@ namespace std
 {
     template<> struct hash<freestick::FreeStickEventType>{
         std::size_t operator()(const freestick::FreeStickEventType& pt)const{
-             return static_cast<u32>(pt);
+             return static_cast<freestick::u32>(pt);
         }
     };
     template<> struct hash<freestick::FSEventAction>{
         std::size_t operator()(const freestick::FSEventAction& pt)const{
-             return static_cast<u32>(pt);
+             return static_cast<freestick::u32>(pt);
         }
     };
 }

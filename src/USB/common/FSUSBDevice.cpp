@@ -49,11 +49,11 @@ FSUSBDevice::FSUSBDevice(idNumber id,
 std::string FSUSBDevice::getFrendlyProductNameFromID(vendorIDType vendorID, productIDType productID)
 {
     static std::map<long, std::map<long,std::string > >s_productFriendlyNames;
-    s_productFriendlyNames[LogitechVendorID][LogitechDualActionID] = "Dual Action";
-    s_productFriendlyNames[SonyVendorID][Playstation3ControllerID] = "DualShock 3 Controller";
-    s_productFriendlyNames[HVG2VendorID][HVG2TwinPS2] ="Twin DualShock 2";
-    s_productFriendlyNames[SonyVendorID][Playstation4ControllerIDV1] = "DualShock 4 Controller";
-    s_productFriendlyNames[SonyVendorID][Playstation4ControllerIDV2] = "DualShock 4 Controller (2nd Gen)";
+    s_productFriendlyNames[kLogitechVendorID][kLogitechDualActionID] = "Dual Action";
+    s_productFriendlyNames[kSonyVendorID][kPlaystation3ControllerID] = "DualShock 3 Controller";
+    s_productFriendlyNames[kHVG2VendorID][HVG2TwinPS2] ="Twin DualShock 2";
+    s_productFriendlyNames[kSonyVendorID][kPlaystation4ControllerIDV1] = "DualShock 4 Controller";
+    s_productFriendlyNames[kSonyVendorID][kPlaystation4ControllerIDV2] = "DualShock 4 Controller (2nd Gen)";
     s_productFriendlyNames[GameElementsVendorID][GameElementsRecoilID] = "GGE908";
     s_productFriendlyNames[DragonRiseID][SteelSeries3GCControllerID] = "3GC Controller";
 
@@ -77,9 +77,9 @@ std::string FSUSBDevice::getFrendlyProductNameFromID(vendorIDType vendorID, prod
      */
 
      //
-    s_vendorFriendlyNames[SonyVendorID] = "Sony";
+    s_vendorFriendlyNames[kSonyVendorID] = "Sony";
     s_vendorFriendlyNames[MicrosoftVendorID] = "Microsoft";
-    s_vendorFriendlyNames[LogitechVendorID] = "Logitech";
+    s_vendorFriendlyNames[kLogitechVendorID] = "Logitech";
     s_vendorFriendlyNames[1149] = "Kensington";
     s_vendorFriendlyNames[1452] = "Fujitsu Takamisawa Component";
     s_vendorFriendlyNames[1635] = "Macsense";

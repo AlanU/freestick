@@ -35,10 +35,11 @@ FSUSBJoystick::~FSUSBJoystick()
 {
 
 }
-FSUSBJoystick::FSUSBJoystick(idNumber joyStickID,
-                             unsigned int numberOfButtons,
-                             unsigned int numberOfAnlogSticks,
-                             unsigned int numberOfDigitalSticks,
+
+FSUSBJoystick::FSUSBJoystick(const idNumber joyStickID,
+                             const u32 numberOfButtons,
+                             const u32 numberOfAnlogSticks,
+                             const u32 numberOfDigitalSticks,
                              bool  forceFeedBackSupported,
                              vendorIDType vendorID,
                              productIDType productID):FSUSBDevice(joyStickID,
