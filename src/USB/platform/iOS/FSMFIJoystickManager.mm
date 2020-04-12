@@ -232,12 +232,12 @@ void FSMFIJoystickDeviceManager::connectControlesToController(void * contorllerT
             [controller extendedGamepad].leftThumbstick.xAxis.valueChangedHandler = ^(GCControllerAxisInput * /*axis*/,float value)
             { updateJoystickAnalog(joyStickID,LEFT_XAXIS_MFI_EID,value); };
             [controller extendedGamepad].leftThumbstick.yAxis.valueChangedHandler = ^(GCControllerAxisInput */*axis*/,float value)
-            { updateJoystickAnalog(joyStickID,LEFT_YAXIS_MFI_EID,value); };
+            { updateJoystickAnalog(joyStickID,LEFT_YAXIS_MFI_EID,value*-1); };
 
             [controller extendedGamepad].rightThumbstick.xAxis.valueChangedHandler = ^(GCControllerAxisInput */*axis*/,float value)
             { updateJoystickAnalog(joyStickID,RIGHT_XAXIS_MFI_EID,value); };
             [controller extendedGamepad].rightThumbstick.yAxis.valueChangedHandler = ^(GCControllerAxisInput */*axis*/,float value)
-            { updateJoystickAnalog(joyStickID,RIGHT_YAXIS_MFI_EID,value); };
+            { updateJoystickAnalog(joyStickID,RIGHT_YAXIS_MFI_EID,value*-1); };
 
             //Add check for IOS
             #if TARGET_OS_IPHONE
