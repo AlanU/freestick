@@ -29,10 +29,11 @@ misrepresented as being the original software.
 
 #include "../baseClasses/FSBaseEvent.h"
 #include "../Interfaces/IFSDevice.h"
+#include "./common/FSTypes.h"
 
 #if MSVC_2013_AND_EARLIER
-  static const f32 MAX_EVENT_VALUE =  1.f;
-  static const f32 MIN_EVENT_VALUE = -1.f;
+  static const freestick::f32 MAX_EVENT_VALUE =  1.f;
+  static const freestick::f32 MIN_EVENT_VALUE = -1.f;
 #else
   constexpr f32 MAX_EVENT_VALUE =  1.f;
   constexpr f32 MIN_EVENT_VALUE = -1.f;
@@ -46,9 +47,6 @@ namespace freestick
         f32 _newValue;
         u32 _controlID;
         FSDeviceInput _inputType;
-
-    protected:
-        FSDeviceInputEvent();
 
     public:
         FSDeviceInputEvent() = delete;

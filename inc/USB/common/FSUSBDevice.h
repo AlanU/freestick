@@ -52,7 +52,7 @@ namespace freestick
 
     public:
        virtual FSDeviceType getClassType()const{
-          return FSUSBDeviceType;
+          return FSDeviceType::kUSB;
        }
        const std::string getVendorFriendlyName()const{
           return _vendorIDFriendlyName;

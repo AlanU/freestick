@@ -27,6 +27,8 @@ misrepresented as being the original software.
 
 #pragma once
 
+#include "common/FSTypes.h"
+
 namespace freestick
 {
     /** \todo
@@ -39,5 +41,4 @@ namespace freestick
         virtual u32 numberOfButtons() const = 0;
         virtual u32 joystickID() const = 0;
     };
-
 }

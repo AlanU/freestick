@@ -52,7 +52,11 @@ namespace freestick
     public:
         virtual idNumber getJoystickID()const;
         virtual FSDeviceType getClassType()const{
+<<<<<<< HEAD
           return FSBaseDeviceType;
+=======
+          return FSDeviceType::kBase;
+>>>>>>> 4f697eb06d17a58d8dcdb6d20ff9853e21163f8a
         }
         const std::string& GetFrendlyName()const{
           return _friendlyName;

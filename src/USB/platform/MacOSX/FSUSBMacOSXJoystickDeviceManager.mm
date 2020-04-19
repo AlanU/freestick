@@ -341,7 +341,7 @@ void FSUSBMacOSXJoystickDeviceManager::findDpad(IOHIDDeviceRef device)
 
 uint32_t FSUSBMacOSXJoystickDeviceManager::createIdForElement(uint32_t usage, uint32_t usagePage, uint32_t elementCookie, long vendorID, long productID )
 {
-    if(vendorID == SonyVendorID && productID == Playstation3ControllerID)
+    if(vendorID == kSonyVendorID && productID == kPlaystation3ControllerID)
     {
        return  elementCookie;
     }
@@ -360,7 +360,7 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadWasAdded(void* inContext, IOReturn
     if (@available(macOS 10.15, *))
     {
         std::string deviceName = FSUSBMacOSXJoystick::getManufactureName(device);
-        if(deviceName.empty() || !containsControler(deviceName)  ) //vendorID != MIFIVenderID)// && productID != Playstation4ControllerIDV1 && productID != Playstation4ControllerIDV2)
+        if(deviceName.empty() || !containsControler(deviceName)  ) //vendorID != MIFIVenderID)// && productID != kPlaystation4ControllerIDV1 && productID != kPlaystation4ControllerIDV2)
         {
             manager->addDevice(device);
         }

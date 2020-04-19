@@ -41,6 +41,23 @@ CONFIG(release, debug|release) {
     DEFINES += "NDEBUG"
 }
 
+CONFIG(debug, debug|release) {
+DESTDIR = debug
+} else {
+DESTDIR = release
+}
+
+OBJECTS_DIR = $$DESTDIR/.obj
+MOC_DIR = $$DESTDIR/.moc
+RCC_DIR = $$DESTDIR/.qrc
+UI_DIR = $$DESTDIR/.ui
+
+macx||win32{
+# Clean files missed by clean
+QMAKE_CLEAN += -r $$DESTDIR Makefile
+QMAKE_CLEAN += -r $$DESTDIR/.qmake_stash
+}
+
 SOURCES += \
         $$files(../../../src/baseClasses/*.cpp) \
         $$files(../../../src/USB/common/*.cpp) \

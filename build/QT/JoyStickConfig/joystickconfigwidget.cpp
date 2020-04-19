@@ -126,7 +126,7 @@ void JoyStickConfigWidget::updateVirtualButton(QWidget * button,FSEventAction ac
 {
     QPalette buttonPressed(palette());
     buttonPressed.setColor(QPalette::Background,buttonColor);
-    if(action == FSInputPressed)
+    if(action == FSEventAction::Pressed)
     {
        button->setAutoFillBackground(true);
         button->setPalette(buttonPressed);

@@ -144,7 +144,7 @@ void FSMFIJoystickDeviceManager::updateJoystickButtons(idNumber joyStickID,idNum
           auto element = contorller->findInputElement(elementID);
           if(element && element->getOldValue() == 0)
           {
-             buttonEvent =  FSEventAction::FSInputPressed;
+             buttonEvent =  FSEventAction::FSEventAction::Pressed;
           }
           else
           {

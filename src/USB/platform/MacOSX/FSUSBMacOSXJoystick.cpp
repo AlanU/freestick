@@ -78,7 +78,7 @@ unsigned int FSUSBMacOSXJoystick::Init(FSUSBJoystickDeviceManager & usbJoystickM
             CFIndex value = 0;
             IOHIDValueRef   tIOHIDValueRef;
             //Checking the value of some elements of the ps3 controller cause blue tooth erros and IOHIDDeviceGetValue will never return
-            if((_vendorID == SonyVendorID && _productID == Playstation3ControllerID))
+            if((_vendorID == kSonyVendorID && _productID == kPlaystation3ControllerID))
             {
                 value = min+max/2;
             }

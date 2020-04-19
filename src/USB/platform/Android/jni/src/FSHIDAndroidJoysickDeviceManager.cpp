@@ -151,7 +151,7 @@ bool FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int device
     {
         eventType = FS_BUTTON_EVENT;
         if(value == 0)   //down in android
-        {  eventAction = FSInputPressed; }
+        {  eventAction = FSEventAction::Pressed; }
     }
     else
     {
@@ -179,7 +179,7 @@ bool FSHIDAndroidJoysickDeviceManager::gamepadWasUpdatedFromJINBridge(int device
 
         eventType = FS_BUTTON_EVENT;
 
-        eventAction = FSInputPressed;
+        eventAction = FSEventAction::Pressed;
         isDigital = true;
         if(value == 0)
         {

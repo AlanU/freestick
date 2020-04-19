@@ -46,5 +46,5 @@ FSBaseEvent::FSBaseEvent()
     _timeStamp = 100;
     _deviceID = 100;
     _eventType = FS_JOYSTICK_DISCONNECT_EVENT;
-    _eventAction = FSInputPressed;
+    _eventAction =  FSEventAction::Pressed;
 }
