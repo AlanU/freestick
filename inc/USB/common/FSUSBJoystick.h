@@ -52,21 +52,33 @@ namespace freestick
         virtual~FSUSBJoystick();
         FSUSBJoystick(
             const idNumber joyStickID
-          , const u32 numberOfButtons,
+          , const u32 numberOfButtons
           , const u32 numberOfAnlogSticks
           , const u32 numberOfDigitalSticks
           , const bool forceFeedBackSupported
           , const vendorIDType vendorID
-          , const productIDType productID);
-        u32 getNumberOfButtons() const {return _numberOfButtons;}
-        u32 getNumberOfAnlogSticks()const {return _numberOfAnlogSticks;}
-        u32 getNumberOfDigitalSticks() const {return _numberOfDigitalSticks;}
-        bool getForceFeedbackSupport() const {return _forceFeedBackSupported;}
-        virtual FSDeviceType getClassType() const {return FSUSBJoystickType;}
-        void addInputElement(FSUSBJoyStickInputElement & element);
-        JoyStickElementMap getElements() const  { return _inputElementMap; }
+          , const productIDType productID );
+        u32 getNumberOfButtons() const{
+          return _numberOfButtons;
+        }
+        u32 getNumberOfAnlogSticks()const{
+          return _numberOfAnlogSticks;
+        }
+        u32 getNumberOfDigitalSticks()const{
+          return _numberOfDigitalSticks;
+        }
+        bool getForceFeedbackSupport()const{
+          return _forceFeedBackSupported;
+        }
+        virtual FSDeviceType getClassType()const{
+          return FSDeviceType::kUSBJoystick;
+        }
+        void addInputElement(FSUSBJoyStickInputElement& element);
+        JoyStickElementMap getElements()const{
+          return _inputElementMap;
+        }
         std::vector<idNumber> getElementIds() const;
-        const FSUSBJoyStickInputElement * findInputElement(idNumber id) const;
+        const FSUSBJoyStickInputElement* findInputElement(idNumber id) const;
         JoyStickElementMap::const_iterator begin() const;
         JoyStickElementMap::const_iterator end() const ;
         JoyStickElementMap::iterator begin();

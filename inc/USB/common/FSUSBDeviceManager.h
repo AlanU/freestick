@@ -63,11 +63,7 @@ namespace freestick
     const u32 kRockCandyVendorID = 3695;
     const u32 kRockCandyXbox360ControlllerID = 3695;
     const u32 kHVG2VendorID = 2064;
-<<<<<<< HEAD
     const u32 kHVG2TwinPS2 = 1 ;
-=======
-    const u32 HVG2TwinPS2 = 1 ;
->>>>>>> 4f697eb06d17a58d8dcdb6d20ff9853e21163f8a
     const u32 kGtronRetroSNES = 17;
     const u32 kTomeeVendorID = 7511;
     const u32 kTomeeNesUSBID = 33;

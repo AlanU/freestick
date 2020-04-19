@@ -73,7 +73,7 @@ namespace freestick
         }
         virtual ~FSDirectInputJoystick();
         virtual FSDeviceType getClassType() const {
-            return FSDirectInputJoystickType;
+            return FSDeviceType::kDirectInputJoystick;
         }
         void setCalibrated();
         bool isCalibrated() const;

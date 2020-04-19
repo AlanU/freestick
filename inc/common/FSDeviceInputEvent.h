@@ -35,8 +35,8 @@ misrepresented as being the original software.
   static const freestick::f32 MAX_EVENT_VALUE =  1.f;
   static const freestick::f32 MIN_EVENT_VALUE = -1.f;
 #else
-  constexpr f32 MAX_EVENT_VALUE =  1.f;
-  constexpr f32 MIN_EVENT_VALUE = -1.f;
+  constexpr freestick::f32 MAX_EVENT_VALUE =  1.f;
+  constexpr freestick::f32 MIN_EVENT_VALUE = -1.f;
 #endif
 
 namespace freestick

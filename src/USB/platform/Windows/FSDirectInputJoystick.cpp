@@ -34,92 +34,81 @@ FSDirectInputJoystick::FSDirectInputJoystick()
 {
 }
 
-FSDirectInputJoystick::FSDirectInputJoystick(LPDIRECTINPUTDEVICE8  LPDIDJoystick,
-              idNumber joyStickID,
-              unsigned int numberOfButtons,
-              unsigned int numberOfAnlogSticks,
-              unsigned int numberOfDigitalSticks,
-              bool  forceFeedBackSupported,
-              long vendorID,
-              long productID,
-              FSUSBJoystickDeviceManager & usbJoystickManager):FSUSBJoystick(joyStickID,numberOfButtons,numberOfAnlogSticks,numberOfDigitalSticks ,forceFeedBackSupported,vendorID,productID)
-{
-    _LPDIDJoystick = LPDIDJoystick;
-    _usbJoystickManager = &usbJoystickManager;
+FSDirectInputJoystick::FSDirectInputJoystick(
+      const void* LPDIDJoystick
+    , const idNumber joyStickID
+    , const u32 numberOfButtons
+    , const u32 numberOfAnlogSticks
+    , const u32 numberOfDigitalSticks
+    , const bool forceFeedBackSupported
+    , const long vendorID
+    , const long productID
+    , const FSUSBJoystickDeviceManager& usbJoystickManager)
+        : FSUSBJoystick( joyStickID
+        , numberOfButtons
+        , numberOfAnlogSticks
+        , numberOfDigitalSticks
+        , forceFeedBackSupported
+        , vendorID
+        , productID ){
+    _LPDIDJoystick = LPDIRECTINPUTDEVICE8(LPDIDJoystick);
+    _usbJoystickManager = const_cast<FSUSBJoystickDeviceManager*>( &usbJoystickManager );
     DIPROPDWORD dipdw;
     dipdw.diph.dwSize = sizeof(DIPROPDWORD);
-
     dipdw.diph.dwHeaderSize = sizeof(DIPROPHEADER);
     dipdw.diph.dwObj =0;
     dipdw.diph.dwHow = DIPH_DEVICE;
     HRESULT hr = _LPDIDJoystick->GetProperty(DIPROP_VIDPID,&dipdw.diph);
-    if(SUCCEEDED(hr))
-    {
-
-      WORD  vendorIDW = LOWORD(dipdw.dwData);
-      WORD  productIDW = HIWORD(dipdw.dwData);
+    if( SUCCEEDED( hr )){
+      const WORD vendorIDW  = LOWORD( dipdw.dwData );
+      const WORD productIDW = HIWORD( dipdw.dwData );
       _vendorID = vendorIDW;
       _productID = productIDW;
       _vendorIDFriendlyName = FSUSBDevice::getFrendlyVendorNameFromID(_vendorID);
       _productIDFriendlyName = FSUSBDevice::getFrendlyProductNameFromID(_vendorID,_productID);
-      if( _productIDFriendlyName == "unknown")
-      {
+      if( _productIDFriendlyName == "unknown" ){
           DIPROPSTRING  dipstr;
           dipstr.diph.dwSize = sizeof(DIPROPSTRING);
-
           dipstr.diph.dwHeaderSize = sizeof(DIPROPHEADER);
           dipstr.diph.dwObj =0;
           dipstr.diph.dwHow = DIPH_DEVICE;
           HRESULT hr = _LPDIDJoystick->GetProperty(DIPROP_PRODUCTNAME,&dipstr.diph);
-          if(SUCCEEDED(hr))
-          {
+          if(SUCCEEDED(hr)){
               char str[MAX_PATH];
               char defaultChar = ' ';
-              try
-              {
+              try{
                  WideCharToMultiByte(CP_ACP,0,dipstr.wsz,-1,str,MAX_PATH,&defaultChar,NULL);
                  _productIDFriendlyName = str;
-
               }
-              catch(...)
-              {
-
+              catch(...){
               }
-
           }
       }
-      DIPROPSTRING  dipInstance;
+      DIPROPSTRING dipInstance;
       dipInstance.diph.dwSize = sizeof(DIPROPSTRING);
-
       dipInstance.diph.dwHeaderSize = sizeof(DIPROPHEADER);
       dipInstance.diph.dwObj =0;
       dipInstance.diph.dwHow = DIPH_DEVICE;
       HRESULT hr = _LPDIDJoystick->GetProperty(DIPROP_INSTANCENAME,&dipInstance.diph);
-      if(SUCCEEDED(hr))
-      {
+      if(SUCCEEDED(hr)){
           char str[MAX_PATH];
           char defaultChar = ' ';
-          try
-          {
+          try{
              WideCharToMultiByte(CP_ACP,0,dipInstance.wsz,-1,str,MAX_PATH,&defaultChar,NULL);
              _friendlyName = str;
 
           }
-          catch(...)
-          {
+          catch(...){
 
           }
-
       }
     }
 
 
      // Set the cooperative level to let DInput know how this device should
      // interact with the system and with other DInput applications.
-    // if( FAILED( hr = _LPDIDJoystick->SetCooperativeLevel( hDlg, DISCL_EXCLUSIVE |DISCL_FOREGROUND ) ) )
-
-     hr = _LPDIDJoystick->EnumObjects( FSDirectInputJoystick::EnumInputObjectsCallback,
-                                               ( VOID* )this, DIDFT_ALL ) ;
+     // if( FAILED( hr = _LPDIDJoystick->SetCooperativeLevel( hDlg, DISCL_EXCLUSIVE |DISCL_FOREGROUND ) ) )
+     hr = _LPDIDJoystick->EnumObjects( FSDirectInputJoystick::EnumInputObjectsCallback, (VOID*)this, DIDFT_ALL );
 
      // Set the data format to "simple joystick" - a predefined data format
       //
@@ -131,11 +120,14 @@ FSDirectInputJoystick::FSDirectInputJoystick(LPDIRECTINPUTDEVICE8  LPDIDJoystick
 
 }
 
-void FSDirectInputJoystick::addElement(long int usage, long int usagePage,
-                                       minMaxNumber elementId,minMaxNumber min, minMaxNumber max,long int value)
-{
-    FSUSBJoyStickInputElement temp(FSUSBJoystickDeviceManager::createIdForElement(usage,usagePage),getJoystickID() ,
-                                   min,max, _vendorID,_productID,*_usbJoystickManager,value,elementId);
+void FSDirectInputJoystick::addElement(
+    const long int usage
+  , const long int usagePage
+  , const minMaxNumber elementId
+  , const minMaxNumber min
+  , const minMaxNumber max
+  , const long int value ){
+    FSUSBJoyStickInputElement temp( FSUSBJoystickDeviceManager::createIdForElement(usage,usagePage),getJoystickID(), min,max, _vendorID,_productID,*_usbJoystickManager,value,elementId );
     this->addInputElement(temp);
 }
 

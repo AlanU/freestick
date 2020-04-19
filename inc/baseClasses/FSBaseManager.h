@@ -113,7 +113,7 @@ namespace freestick
 #  pragma mark - Advance API -
 #endif
 
-        virtual const FSBaseDevice* getDevice(const idNumber deviceID);
+        virtual const FSBaseDevice* getDevice(const idNumber deviceID)const;
 
     protected:
         std::unordered_map<u32,FSBaseDevice* > _deviceMap;

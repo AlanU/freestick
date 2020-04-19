@@ -51,11 +51,11 @@ std::string FSUSBDevice::getFrendlyProductNameFromID(vendorIDType vendorID, prod
     static std::map<long, std::map<long,std::string > >s_productFriendlyNames;
     s_productFriendlyNames[kLogitechVendorID][kLogitechDualActionID] = "Dual Action";
     s_productFriendlyNames[kSonyVendorID][kPlaystation3ControllerID] = "DualShock 3 Controller";
-    s_productFriendlyNames[kHVG2VendorID][HVG2TwinPS2] ="Twin DualShock 2";
+    s_productFriendlyNames[kHVG2VendorID][kHVG2TwinPS2] ="Twin DualShock 2";
     s_productFriendlyNames[kSonyVendorID][kPlaystation4ControllerIDV1] = "DualShock 4 Controller";
     s_productFriendlyNames[kSonyVendorID][kPlaystation4ControllerIDV2] = "DualShock 4 Controller (2nd Gen)";
-    s_productFriendlyNames[GameElementsVendorID][GameElementsRecoilID] = "GGE908";
-    s_productFriendlyNames[DragonRiseID][SteelSeries3GCControllerID] = "3GC Controller";
+    s_productFriendlyNames[kGameElementsVendorID][kGameElementsRecoilID] = "GGE908";
+    s_productFriendlyNames[kDragonRiseID][kSteelSeries3GCControllerID] = "3GC Controller";
 
 
     if(s_productFriendlyNames.find(vendorID) != s_productFriendlyNames.end())
@@ -68,32 +68,22 @@ std::string FSUSBDevice::getFrendlyProductNameFromID(vendorIDType vendorID, prod
     return "unknown";//Call down and ask the device
 }
 
- std::string  FSUSBDevice::getFrendlyVendorNameFromID(vendorIDType vendorID)
-{
-
+std::string FSUSBDevice::getFrendlyVendorNameFromID(vendorIDType vendorID){
      static std::map<long, std::string > s_vendorFriendlyNames;
-    /** \todo
-     *make this const
-     */
-
-     //
+    /** \todo *make this const */
     s_vendorFriendlyNames[kSonyVendorID] = "Sony";
-    s_vendorFriendlyNames[MicrosoftVendorID] = "Microsoft";
+    s_vendorFriendlyNames[kMicrosoftVendorID] = "Microsoft";
     s_vendorFriendlyNames[kLogitechVendorID] = "Logitech";
     s_vendorFriendlyNames[1149] = "Kensington";
     s_vendorFriendlyNames[1452] = "Fujitsu Takamisawa Component";
     s_vendorFriendlyNames[1635] = "Macsense";
     s_vendorFriendlyNames[8738] = "Macally";
     s_vendorFriendlyNames[1848] = "Mad Catz, Inc.";
-    s_vendorFriendlyNames[SteelSeriesVendorID] = "SteelSeries";
-    s_vendorFriendlyNames[DragonRiseID] =  s_vendorFriendlyNames[SteelSeriesVendorID];
-    s_vendorFriendlyNames[AmazonVendorID] = "Amazon";
-    s_vendorFriendlyNames[GameElementsVendorID] = "Game Elements";
-
+    s_vendorFriendlyNames[kSteelSeriesVendorID] = "SteelSeries";
+    s_vendorFriendlyNames[kDragonRiseID] =  s_vendorFriendlyNames[kSteelSeriesVendorID];
+    s_vendorFriendlyNames[kAmazonVendorID] = "Amazon";
+    s_vendorFriendlyNames[kGameElementsVendorID] = "Game Elements";
     if(s_vendorFriendlyNames.find(vendorID) != s_vendorFriendlyNames.end())
         return s_vendorFriendlyNames[vendorID];
-    else
-        return "unknown"; //call down and ask the device
-
-
+      return "unknown"; //call down and ask the device
 }
