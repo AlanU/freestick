@@ -143,7 +143,6 @@ macx {
         -framework CoreFoundation \
         -framework GameController \
         -framework Foundation \
-QMAKE_MAC_SDK = 10.5
 }
 
 ios {
