@@ -32,4 +32,4 @@ SUBDIRS += \
         ../CommandLineHarness
 CommandLineHarness.depends = FreeStick
 
-
+CONFIG += ordered
