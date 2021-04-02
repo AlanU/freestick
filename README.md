@@ -20,14 +20,14 @@ The future versions will support iOS/Apple TV, NDK Only Android ,and Linux.
 
 We are looking for contributors. Contact AlanU for more information
 
-###License###
+### License ###
 FreeStick is licensed under the [Zlib license]( http://opensource.org/licenses/Zlib)
   
-###Other Mirrors###
-[GitHub mirror](https://github.com/AlanU/freestick)
+### Other Mirrors ###
+[GitHub mirror](https://github.com/AlanU/freestick)(may be out of date with this repo)
 
 
-###Example###
+### Example ###
 Create a device manager and call init.
 
 Derive your class that is going to proceess joystick events from IFSJoystickListener and implement the interface funtions
