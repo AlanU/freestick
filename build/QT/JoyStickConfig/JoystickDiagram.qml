@@ -14,22 +14,56 @@ JoystickDiagramForm {
             button.button.color = value > 0 ? "red" : "green"
        }
 
+       function updateAxis(axis, value, xAxis){
+           axis.setAxisWidgetFromValue(value,xAxis)
+       }
+       function updateAxisButton(axisObj,value)
+       {
+           axisObj.buttonColor = value > 0 ? "red" : "green"
+       }
+       onUpDpadChanged: {
+           updateButton(dpadButtons.yButton,value)
+       }
+       onDownDpadChanged: {
+           updateButton(dpadButtons.aButton,value)
+       }
+       onLeftDpadChanged: {
+           updateButton(dpadButtons.xButton,value)
+       }
+       onRightDpadChanged: {
+           updateButton(dpadButtons.bButton,value)
+       }
        onAButtonChanged: {
            updateButton(xyabControl.aButton,value)
        }
-
        onBButtonChanged: {
            updateButton(xyabControl.bButton,value)
        }
-
-       onXButtonChanged:
-       {
+       onXButtonChanged:{
            updateButton(xyabControl.xButton,value)
        }
-
        onYButtonChanged: {
            updateButton(xyabControl.yButton,value)
        }
+       onAxisButtonChanged: {
+           updateAxisButton(contollerLeftAxis,value)
+       }
+       onXAxisChanged: {
+           updateAxis(contollerLeftAxis,value,true)
+       }
+       onYAxisChanged: {
+           updateAxis(contollerLeftAxis,value,false)
+       }
+       onAxis2ButtonChanged: {
+           updateAxisButton(contollerRightAxis,value)
+       }
+       onXAxis2Changed: {
+           updateAxis(contollerRightAxis,value,true)
+       }
+       onYAxis2Changed: {
+           updateAxis(contollerRightAxis,value,false)
+       }
+
     }
 
 }

@@ -50,7 +50,7 @@ void BaseDeviceModel::onButtonUp(FSDeviceInputEvent /*event*/)
 {
 
 }
-void BaseDeviceModel::onStickMove(FSDeviceInputEvent /*event*/)
+void BaseDeviceModel::onStickMove(FSDeviceInputEvent event)
 {
 
 }

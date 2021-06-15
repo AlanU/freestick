@@ -12,5 +12,8 @@
         <file>ControllerXYABButtonsForm.ui.qml</file>
         <file>ControllerButton.qml</file>
         <file>ControllerButtonForm.ui.qml</file>
+        <file>ContollerAxis.qml</file>
+        <file>ContollerAxisForm.ui.qml</file>
+        <file>ContorllerDpadButtons.qml</file>
     </qresource>
 </RCC>

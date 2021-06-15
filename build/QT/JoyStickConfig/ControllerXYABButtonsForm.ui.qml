@@ -58,9 +58,5 @@ Item {
     }
 }
 
-/*##^##
-Designer {
-    D{i:1;anchors_y:52}D{i:3;anchors_x:23}
-}
-##^##*/
+
 
