@@ -11,7 +11,7 @@ pipeline {
                     dir(path: './build/QT/CommandLine') {
                       sh 'gem install bundler'
                       sh 'bundle install'
-                      sh 'ruby build.rb --qt=/Users/Shared/Qt/5.13.2 --target=mac'
+                      sh 'ruby build.rb --qt=/Users/Shared/Qt/5.15.2 --target=mac'
                     }
                   }
                 }
@@ -31,7 +31,7 @@ pipeline {
                         dir(path: './build/QT/CommandLine') {
                           bat 'gem install bundler'
                           bat 'bundle install'
-                          bat 'ruby build.rb --qt=C:\\Qt\\5.13.2\\ --target=windows'
+                          bat 'ruby build.rb --qt=C:\\Qt\\5.15.2\\ --target=windows'
                         }
                       }
                 }
@@ -53,7 +53,7 @@ pipeline {
                     dir(path: './build/QT/CommandLine') {
                       sh 'gem install bundler'
                       sh 'bundle install'
-                      sh 'ruby build.rb --qt=/Users/Shared/Qt/5.13.2 --target=ios'
+                      sh 'ruby build.rb --qt=/Users/Shared/Qt/5.15.2 --target=ios'
                     }
                   }
                 }
