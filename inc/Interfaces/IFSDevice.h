@@ -105,6 +105,8 @@ namespace freestick {
         FSUSBMACOSXJoystickType,
         FSAndroidJoystickType,
         FSDirectInputJoystickType,
+        FSXInputJoystickType,
+        FSMFIJoystickType,
         FSUSBNULLDeviceType
 
     } FSDeviceType;

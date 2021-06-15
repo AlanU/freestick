@@ -72,6 +72,7 @@ namespace freestick
                       vendorIDType vendorID,
                       productIDType productID);
         bool setElementValue(elementID element,float value);
+        virtual FSDeviceType getClassType() const {return FSMFIJoystickType;}
     protected:
         void addButtonElement(unsigned int buttonID);
         void addElement(unsigned int buttonID,minMaxNumber min,minMaxNumber max,physicalValueNumber currentValue);

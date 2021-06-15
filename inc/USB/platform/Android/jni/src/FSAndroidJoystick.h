@@ -50,6 +50,8 @@ namespace freestick
             virtual ~FSAndroidJoystick(){};
             int getAndroidID() const {return _androidDeviceID;}
             virtual FSDeviceType getClassType() const {return FSAndroidJoystickType;}
+            virtual const std::string getAPIName() const {return "Android"; }
+
 
     };
 }
