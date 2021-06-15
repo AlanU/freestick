@@ -1,0 +1,4 @@
+*.o
+*.stash
+build/Qmake/build-EELog-*
+*.user
