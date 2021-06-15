@@ -10,6 +10,7 @@ Item {
     property alias vendorID: venderID
     property alias productName: productName
     property alias vendorName: venderName
+    property alias api: api
     Page {
         anchors.fill: parent
         Text {
@@ -87,7 +88,7 @@ Item {
             }
             Text {
                 id: productIDLabel
-                text: qsTr("product ID")
+                text: qsTr("Product ID")
                 horizontalAlignment: Text.AlignHCenter
                 font.pixelSize: 12
                 width: parent.width / 2
@@ -95,6 +96,21 @@ Item {
 
             Text {
                 id: productID
+                text: qsTr("Text")
+                horizontalAlignment: Text.AlignHCenter
+                font.pixelSize: 12
+                width: parent.width / 2
+            }
+            Text {
+                id: apiLabel
+                text: qsTr("API")
+                horizontalAlignment: Text.AlignHCenter
+                font.pixelSize: 12
+                width: parent.width / 2
+            }
+
+            Text {
+                id: api
                 text: qsTr("Text")
                 horizontalAlignment: Text.AlignHCenter
                 font.pixelSize: 12

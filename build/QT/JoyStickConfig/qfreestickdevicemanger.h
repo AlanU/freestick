@@ -18,6 +18,7 @@ public:
     Q_INVOKABLE qint32 getProductID(qint32 controllerId);
     Q_INVOKABLE QString getProductName(qint32 controllerId);
     Q_INVOKABLE QString getFriendlyName(qint32 controllerId);
+    Q_INVOKABLE QString gerFriendlyAPIName(qint32 controllerId);
 signals:
     void freestickManagerChanged();
 

@@ -8,5 +8,6 @@ JoystickInformationPageForm {
        vendorName.text = deviceManager.getVendorName(currentInfoPageControllerID).toString()
        productID.text =  deviceManager.getProductID(currentInfoPageControllerID).toString()
        productName.text = deviceManager.getProductName(currentInfoPageControllerID)
+       api.text = deviceManager.gerFriendlyAPIName(currentInfoPageControllerID)
     }
 }

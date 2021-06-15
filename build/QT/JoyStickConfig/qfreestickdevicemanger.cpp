@@ -51,3 +51,46 @@ QString QFreestickDeviceManger::getFriendlyName(qint32 controllerId)
 {
      GET_DEVICE_PROPERTY(QString(device->GetFrendlyName().c_str()),"")
 }
+
+QString QFreestickDeviceManger::gerFriendlyAPIName(qint32 controllerId){
+
+    const freestick::FSUSBJoystick * device = dynamic_cast<const freestick::FSUSBJoystick *>(m_manager->getDevice(controllerId));
+    QString apiString = "Unknown";
+    if(device)
+    {
+        switch (device->getClassType()) {
+         case freestick::FSBaseDeviceType:
+            apiString = "Unknown Basic";
+            break;
+        case freestick::FSUSBDeviceType:
+           apiString = "Unknown USB";
+           break;
+        case freestick::FSUSBJoystickType:
+           apiString = "Unknown USB Joystick";
+           break;
+        case freestick::FSUSBMACOSXJoystickType:
+           apiString = "macOS X Legacy ";
+           break;
+        case freestick::FSMFIJoystickType:
+           apiString = "Apple MFI ";
+           break;
+        case freestick::FSAndroidJoystickType:
+           apiString = "Android";
+           break;
+        case freestick::FSDirectInputJoystickType:
+           apiString = "Windows DirectInput";
+           break;
+        case freestick::FSXInputJoystickType:
+           apiString = "Windows XInput";
+           break;
+        case freestick::FSUSBNULLDeviceType:
+           apiString = "FreeStrick Null Device";
+           break;
+        default:
+            break;
+        }
+    }
+
+    return apiString;
+}
+
