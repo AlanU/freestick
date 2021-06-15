@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-gem 'fileutils'
-gem 'concurrent-ruby'
 gem 'os'
-gem 'rubyzip'
+gem 'concurrent-ruby', require: 'concurrent'
+gem 'fileutils'
