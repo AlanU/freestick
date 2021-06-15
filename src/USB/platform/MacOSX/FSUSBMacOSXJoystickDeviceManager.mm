@@ -341,16 +341,7 @@ void FSUSBMacOSXJoystickDeviceManager::findDpad(IOHIDDeviceRef device)
 
 uint32_t FSUSBMacOSXJoystickDeviceManager::createIdForElement(uint32_t usage, uint32_t usagePage, uint32_t elementCookie, long vendorID, long productID )
 {
-    if(vendorID == SonyVendorID && productID == Playstation3ControllerID)
-    {
-       return  elementCookie;
-    }
-    else
-    {
-      return FSUSBJoystickDeviceManager::createIdForElement(usage,usagePage);
-
-    }
-
+    return FSUSBJoystickDeviceManager::createIdForElement(usage,usagePage);
 }
 
 void FSUSBMacOSXJoystickDeviceManager::gamepadWasAdded(void* inContext, IOReturn /*inResult*/, void* /*inSender*/, IOHIDDeviceRef device) {
@@ -420,30 +411,30 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn i
     if(fsDevice) {
         uniqueElementID = FSUSBMacOSXJoystickDeviceManager::createIdForElement(usage,usagePage,elementID,fsDevice->getVendorID(),fsDevice->getProductID());
     }
-    EE_DEBUG<<"Gamepad talked! type of input "<<(unsigned int)IOHIDElementGetType(element)<<" id: "<<uniqueElementID<<" old id: "<< elementID<<std::endl;
 
-    if(type == kIOHIDElementTypeInput_Button || type == kIOHIDElementTypeInput_Misc )
-    {
 
-        //CFShow(element);
-        //printf("Element: %s \n", element);
-
-        EE_DEBUG<<"Element value: "<<elementValue<<" element scaled value "<<elementScaleValue<<std::endl;
-
-        EE_DEBUG<<"Element Usage page"<<usagePage<<" with Usage "<<usage<<" min "<<min<<" max "<<max<<std::endl;
-    }
     FSUSBJoyStickInputElement * elementDevice = NULL;
+
     if(fsDevice)
     {
         elementDevice =  (FSUSBJoyStickInputElement * )fsDevice->findInputElement(uniqueElementID);
     }
     if(elementDevice)
     {
-        //  FSUSBElementInfoMap inputType = manager->lookUpDeviceInputFromID(deviceID,(unsigned int)IOHIDElementGetCookie(element),IOHIDElementGetLogicalMin(element),IOHIDElementGetLogicalMax(element),elementValue);
-        // FreeStickEventType eventType =  IFSEvent::getEventFromInputType(inputType.getDeviceInput());
        elementDevice->getMapping(elementValue,inputTypes);
        bool isValueVaild = elementDevice->isValueInDeadZone(elementValue);
+        if(isValueVaild)
+        {
+            EE_DEBUG<<"Gamepad talked! type of input "<<(unsigned int)IOHIDElementGetType(element)<<" id: "<<uniqueElementID<<" macOS cookie id: "<< elementID<<std::endl;
+            if(type == kIOHIDElementTypeInput_Button || type == kIOHIDElementTypeInput_Misc )
+            {
+                EE_DEBUG<<"Element value: "<<elementValue<<" element scaled value "<<elementScaleValue<<std::endl;
 
+                EE_DEBUG<<"Element Usage page"<<usagePage<<" with Usage "<<usage<<" min "<<min<<" max "<<max<<std::endl;
+
+            }
+            EE_DEBUG<<std::endl;
+        }
       while(!inputTypes.empty())
       {
         FSUSBElementInfoMap inputType = inputTypes.top();
@@ -472,7 +463,7 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn i
         inputTypes.pop();
       }
     }
-    EE_DEBUG<<std::endl;
+
 }
 
 

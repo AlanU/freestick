@@ -33,11 +33,23 @@ and must not be misrepresented as being the original software.
 #include <cstdint>
 #include <array>
 using namespace freestick;
+//const uint32_t VMSVenderUSBID = 1212;
+//const uint32_t VMSProductUSBID = 49153;
 
 FSUSBDeviceManager::FSUSBDeviceManager()
 {
     /** \todo
     * populate map _usageMapToInputEvent
+    */
+    //_usageMapToInputRangeEvent[createVPId(VMSVenderUSBID,VMSProductUSBID)][589872].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));
+    //_usageMapToInputRangeEvent[createVPId(VMSVenderUSBID,VMSProductUSBID)][589873].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));
+
+
+    /*_usageMapToInputEvent[createVPId(VMSVenderUSBID,VMSProductUSBID)][589835] = ButtonB;
+    _usageMapToInputEvent[createVPId(VMSVenderUSBID,VMSProductUSBID)][589836] = ButtonA;
+    _usageMapToInputEvent[createVPId(VMSVenderUSBID,VMSProductUSBID)][589837] = ButtonY;
+    _usageMapToInputEvent[createVPId(VMSVenderUSBID,VMSProductUSBID)][589838] = ButtonX;
+    _usageMapToInputEvent[createVPId(VMSVenderUSBID,VMSProductUSBID)][589839] = ButtonSelect;
     */
 
     _usageMapToInputEvent[createVPId(PCUSBSNESVendorID,PCUSBSNESID)][589826] = ButtonB;
@@ -307,7 +319,7 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputRangeEvent[createVPId(SteelSeriesVendorID,SteelSeriesFreeControllerID)][65589].push_back(FSUSBElementInfoMap(-128,127,YAxis2,FSInputChanged));
 
 
-    // DualShock 3 Controller
+    // DualShock 3 Controller using macOS HIDIcookies
 
     _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][21] = ButtonA;
     _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][20] = ButtonB;
@@ -336,6 +348,42 @@ FSUSBDeviceManager::FSUSBDeviceManager()
     _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation3ControllerID)][26].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));
     _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation3ControllerID)][28].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));
     _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation3ControllerID)][29].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));
+
+    // DualShock 3 Controller
+
+    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][589839] = ButtonA;
+    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][589838] = ButtonB;
+    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][589837] = ButtonY;
+    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][589840] = ButtonX;
+
+    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][589835] = LeftShoulder;
+    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][589836] = RightShoulder;
+
+    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][589834] = LeftShoulder2;
+    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][589833] = RightShoulder2;
+   // _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation3ControllerID)][589834].push_back(FSUSBElementInfoMap(0,255,Trigger1,FSInputChanged));//L2 trigger
+    //_usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation3ControllerID)][589833].push_back(FSUSBElementInfoMap(0,255,Trigger2,FSInputChanged));//R2 trigger
+
+    _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation3ControllerID)][589834].push_back(FSUSBElementInfoMap(0,255,Trigger1,FSInputChanged));//L2 trigger
+    _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation3ControllerID)][589833].push_back(FSUSBElementInfoMap(0,255,Trigger2,FSInputChanged));//R2 trigger
+
+
+    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][589828] = ButtonStart;
+    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][589841] = ButtonCenter;
+    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][589825] = ButtonSelect;
+
+    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][589826] = Axis1Button;
+    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][589827] = Axis2Button;
+
+    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][589829] = DPadUp;
+    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][589830] = DPadRight;
+    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][589831] = DPadDown;
+    _usageMapToInputEvent[createVPId(SonyVendorID,Playstation3ControllerID)][589832] = DPadLeft;
+
+    _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation3ControllerID)][65589].push_back(FSUSBElementInfoMap(0,255,YAxis2,FSInputChanged));
+    _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation3ControllerID)][65586].push_back(FSUSBElementInfoMap(0,255,XAxis2,FSInputChanged));
+    _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation3ControllerID)][65584].push_back(FSUSBElementInfoMap(0,255,XAxis,FSInputChanged));
+    _usageMapToInputRangeEvent[createVPId(SonyVendorID,Playstation3ControllerID)][65585].push_back(FSUSBElementInfoMap(0,255,YAxis,FSInputChanged));
 
     // DualShock 4 Controller
 
