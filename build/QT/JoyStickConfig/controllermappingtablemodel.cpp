@@ -76,10 +76,18 @@ QFreestickDeviceManger* ControllerMappingTableModel::manager()
 
 void ControllerMappingTableModel::setManager(QFreestickDeviceManger * manager)
 {
-    setManager(manager->freestickManager());
+   if(manager != nullptr)
+   {
+        setManager(manager->freestickManager());
 
-    _wrapperManger = manager;
-    emit managerChanged(_wrapperManger);
+        _wrapperManger = manager;
+        emit managerChanged(_wrapperManger);
+   }
+   else
+   {
+       _wrapperManger = manager;
+       emit managerChanged(_wrapperManger);
+   }
 }
 
 void ControllerMappingTableModel::setManager(std::weak_ptr<FreeStickDeviceManager> manager)
@@ -333,7 +341,7 @@ void ControllerMappingTableModel::elementChanged(unsigned int elementID,float ne
                   _elementValuelist[index]=newValue;
                   QModelIndex topLeft = createIndex(index,0);
                   QModelIndex bottom = createIndex(index,4);
-                  dataChanged(topLeft,bottom);
+                  emit dataChanged(topLeft,bottom);
                   return ;
             }
 
