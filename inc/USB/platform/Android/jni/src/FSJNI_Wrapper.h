@@ -29,9 +29,13 @@ and must not be misrepresented as being the original software.
 
 #include <jni.h>
 #include <android/log.h>
+#ifdef FS_LOGGING
 #define FS_LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "native-activity", __VA_ARGS__))
 #define FS_LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "native-activity", __VA_ARGS__))
-
+#else
+#define FS_LOGI(...)
+#define FS_LOGW(...)
+#endif
 typedef enum
 {
     JoystickAdded = 0,

@@ -34,7 +34,9 @@ and must not be misrepresented as being the original software.
 #include "EEStream.h"
 #include <ostream>
 #include <sstream>
-
+#ifndef  TURN_ON_LOGGING
+    #define TURN_OFF_LOGGING
+#endif
 enum EELogLevels
 {
 	EE_LEVEL_INFO = 0,
@@ -43,6 +45,7 @@ enum EELogLevels
 	EE_LEVEL_DEBUG,
 	EE_LEVEL_LAST,
 };
+
 #ifdef TURN_OFF_LOGGING
     #define EE_INFO	EELog::GetInstance()->GetLogLevel(EE_LEVEL_INFO)
     #define EE_WARNING EELog::GetInstance()->GetLogLevel(EE_LEVEL_WARNING)

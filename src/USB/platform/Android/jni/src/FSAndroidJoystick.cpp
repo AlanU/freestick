@@ -28,9 +28,13 @@ and must not be misrepresented as being the original software.
 #include "USB/platform/Android/jni/src/FSAndroidJoystick.h"
 #include <android/log.h>
 #include <android/input.h>
+#ifdef FS_LOGGING
 #define FS_LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "freestick", __VA_ARGS__))
 #define FS_LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "freestick", __VA_ARGS__))
-
+#else
+#define FS_LOGI(...)
+#define FS_LOGW(...)
+#endif
 #include <jni.h>
 using namespace freestick;
 
