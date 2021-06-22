@@ -29,6 +29,7 @@ and must not be misrepresented as being the original software.
 #include <android/input.h>
 #include <algorithm>
 #include <jni.h>
+#include <string>
 std::vector<IJNICallBack*> JNIBridge::_deviceAddedCallback;
 std::vector<IJNICallBack*> JNIBridge::_deviceRemovedCallback;
 std::vector<IJNICallBack*> JNIBridge::_deviceUpdateCallback;

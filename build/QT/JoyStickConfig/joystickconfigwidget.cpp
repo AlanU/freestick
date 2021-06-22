@@ -45,7 +45,7 @@ JoyStickConfigWidget::JoyStickConfigWidget(QWidget *parent) :
 #ifdef Q_OS_ANDROID
     QAndroidJniEnvironment qjniEnv;
     JavaVM * jvm = QAndroidJniEnvironment::javaVM();
-    deviceManager.init(jvm);
+    deviceManager->init(jvm);
 
 #else
      deviceManager->init();

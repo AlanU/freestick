@@ -33,6 +33,7 @@ and must not be misrepresented as being the original software.
 
 #include "freestick.h"
 #include "controllermappingtablemodel.h"
+#include <memory>
 namespace Ui {
 class JoyStickConfigWidget;
 }

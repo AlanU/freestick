@@ -61,6 +61,12 @@ void FSHIDAndroidJoysickDeviceManager::addAndroidMapping(unsigned int androidEve
     }
 }
 
+FSHIDAndroidJoysickDeviceManager::~FSHIDAndroidJoysickDeviceManager()
+{
+
+}
+
+
 FSHIDAndroidJoysickDeviceManager::FSHIDAndroidJoysickDeviceManager()
 {
 

@@ -30,12 +30,14 @@ and must not be misrepresented as being the original software.
 #include "FSJNI_Wrapper.h"
 #include "common/FSTypes.h"
 #include <jni.h>
+#include <map>
 namespace freestick
 {
     class FSHIDAndroidJoysickDeviceManager : public FSUSBJoystickDeviceManager , IJNICallBack
     {
     public:
         FSHIDAndroidJoysickDeviceManager();
+        ~FSHIDAndroidJoysickDeviceManager() override;
         void init(JavaVM * jvm);
         virtual void init();
         virtual void gamepadWasAddedFromJINBridge(int hid_id,JavaVM * jvm);
