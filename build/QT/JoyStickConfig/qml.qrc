@@ -8,12 +8,13 @@
         <file>JoystickInformationPageForm.ui.qml</file>
         <file>JoystickDiagram.qml</file>
         <file>JoystickDiagramForm.ui.qml</file>
-        <file>ControllerXYABButtons.qml</file>
-        <file>ControllerXYABButtonsForm.ui.qml</file>
         <file>ControllerButton.qml</file>
         <file>ControllerButtonForm.ui.qml</file>
         <file>ContollerAxis.qml</file>
         <file>ContollerAxisForm.ui.qml</file>
         <file>ContorllerDpadButtons.qml</file>
+        <file>ControllerFourButtons.qml</file>
+        <file>ControllerFourButtonsForm.ui.qml</file>
+        <file>ContollerCenterButtons.qml</file>
     </qresource>
 </RCC>

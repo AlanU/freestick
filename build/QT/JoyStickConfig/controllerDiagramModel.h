@@ -3,8 +3,8 @@
 #include <QAbstractListModel>
 #include "qfreestickdevicemanger.h"
 #include "baseDeviceModel.h"
-using namespace freestick;
-
+using namespace freestick;                                                                   \
+//TODO Convert all Q_PROPERTY to a maco
 class ControllerDiagramModel :public BaseDeviceModel
 {
     Q_OBJECT
@@ -47,6 +47,18 @@ public:
     Q_PROPERTY(float yButton READ yButton WRITE setyButton NOTIFY yButtonChanged);
     float yButton() const;
     virtual void setyButton(float value);
+
+    Q_PROPERTY(float centerButton READ centerButton WRITE setcenterButton NOTIFY centerButtonChanged);
+    float centerButton() const;
+    virtual void setcenterButton(float value);
+
+    Q_PROPERTY(float startButton READ startButton WRITE setstartButton NOTIFY startButtonChanged);
+    float startButton() const;
+    virtual void setstartButton(float value);
+
+    Q_PROPERTY(float selectButton READ selectButton WRITE setselectButton NOTIFY selectButtonChanged);
+    float selectButton() const;
+    virtual void setselectButton(float value);
 
     Q_PROPERTY(float axisButton READ axisButton WRITE setaxisButton NOTIFY axisButtonChanged);
     float axisButton() const;
@@ -92,6 +104,9 @@ signals:
     void bButtonChanged(float value);
     void xButtonChanged(float value);
     void yButtonChanged(float value);
+    void centerButtonChanged(float value);
+    void startButtonChanged(float value);
+    void selectButtonChanged(float value);
     void axisButtonChanged(float value);
     void xAxisChanged(float value);
     void yAxisChanged(float value);
@@ -112,6 +127,9 @@ private:
     float m_bButton = 0.0f;
     float m_xButton = 0.0f;
     float m_yButton = 0.0f;
+    float m_centerButton = 0.0f;
+    float m_startButton = 0.0f;
+    float m_selectButton = 0.0f;
     float m_axisButton = 0.0f;
     float m_xAxis = 0.0f;
     float m_axis2Button = 0.0f;

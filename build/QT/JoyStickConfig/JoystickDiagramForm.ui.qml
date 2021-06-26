@@ -4,12 +4,13 @@ import QtQuick.Layouts 1.12
 
 Item {
     id: controller
-    width: 600
+    width: 900
     height: 600
+    property alias centerButtons: centerButtons
     property alias dpadButtons: dpadButtons
     property alias contollerRightAxis: contollerRightAxis
     property alias contollerLeftAxis: contollerLeftAxis
-    property alias xyabControl: thumbButtons
+    property alias xyabControl: faceButtons
     Page {
         id: page
         height: 400
@@ -17,47 +18,65 @@ Item {
         RowLayout {
             anchors.fill: parent
             RowLayout {
-                Layout.maximumWidth: 200
-                Layout.maximumHeight: 100
+                id: axisRow
+                property real childSize: (controller.width * 0.30) / 2
                 Layout.preferredHeight: 100
                 Layout.preferredWidth: 200
+                Layout.maximumWidth: controller.width * 0.30
+                Layout.minimumWidth: 200
+                Layout.minimumHeight: 100
+                Layout.fillHeight: true
 
                 ContollerAxis {
                     id: contollerLeftAxis
-                    Layout.preferredHeight: 100
-                    Layout.preferredWidth: 100
+                    Layout.preferredHeight: axisRow.childSize
+                    Layout.preferredWidth: axisRow.childSize
+                    Layout.maximumHeight: axisRow.childSize
+                    Layout.maximumWidth: axisRow.childSize
                     color: "black"
                 }
 
                 ContollerAxis {
                     id: contollerRightAxis
-                    Layout.preferredHeight: 100
-                    Layout.preferredWidth: 100
+                    Layout.preferredHeight: axisRow.childSize
+                    Layout.preferredWidth: axisRow.childSize
+                    Layout.maximumHeight: axisRow.childSize
+                    Layout.maximumWidth: axisRow.childSize
                     color: "black"
                 }
-                Layout.fillHeight: true
-                Layout.preferredWidth: 200
             }
             RowLayout {
-                ContorllerDpadButtons {
-                    id: dpadButtons
-                    width: 200
-                    height: 200
-                    Layout.preferredWidth: 200
-                    Layout.preferredHeight: 200
-                }
+                id: buttonRow
 
-                ControllerXYABButtons {
-                    id: thumbButtons
-                    x: 575
-                    y: 137
-                    Layout.preferredWidth: 200
-                    Layout.preferredHeight: 200
-                }
-
+                property real childSize: controller.width * 0.70 / 3
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+                ContorllerDpadButtons {
+                    id: dpadButtons
+                    Layout.preferredWidth: buttonRow.childSize
+                    Layout.preferredHeight: buttonRow.childSize
+                }
+                ContollerCenterButtons {
+                    id: centerButtons
+                    Layout.preferredWidth: buttonRow.childSize
+                    Layout.preferredHeight: buttonRow.childSize
+                }
+
+                ControllerFourButtons {
+                    id: faceButtons
+                    //Layout.fillHeight: false
+                    // Layout.fillWidth: false
+                    Layout.preferredWidth: buttonRow.childSize
+                    Layout.preferredHeight: buttonRow.childSize
+                }
             }
         }
     }
 }
+
+/*##^##
+Designer {
+    D{i:0;formeditorZoom:0.66}
+}
+##^##*/
+

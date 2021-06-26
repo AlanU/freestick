@@ -45,6 +45,15 @@ JoystickDiagramForm {
        onYButtonChanged: {
            updateButton(xyabControl.yButton,value)
        }
+       onCenterButtonChanged: {
+           updateButton(centerButton.yButton,value)
+       }
+       onStartButtonChanged: {
+           updateButton(centerButton.xButton,value)
+       }
+       onSelectButtonChanged: {
+           updateButton(centerButton.bButton,value)
+       }
        onAxisButtonChanged: {
            updateAxisButton(contollerLeftAxis,value)
        }

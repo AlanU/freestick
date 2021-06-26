@@ -71,8 +71,6 @@ void ControllerDiagramModel::setrightDpad(float value)
     emit rightDpadChanged(value);
 }
 
-
-
 float ControllerDiagramModel::aButton() const
 {
     return m_aButton;
@@ -115,6 +113,39 @@ void ControllerDiagramModel::setyButton(float value)
 {
     m_yButton = value;
     emit yButtonChanged(value);
+}
+
+float ControllerDiagramModel::centerButton() const
+{
+    return m_centerButton;
+}
+
+void ControllerDiagramModel::setcenterButton(float value)
+{
+    m_centerButton = value;
+    emit centerButtonChanged(value);
+}
+
+float ControllerDiagramModel::startButton() const
+{
+    return m_startButton;
+}
+
+void ControllerDiagramModel::setstartButton(float value)
+{
+    m_startButton = value;
+    emit startButtonChanged(value);
+}
+
+float ControllerDiagramModel::selectButton() const
+{
+    return m_selectButton;
+}
+
+void ControllerDiagramModel::setselectButton(float value)
+{
+    m_selectButton = value;
+    emit selectButtonChanged(value);
 }
 
 float ControllerDiagramModel::axisButton() const
