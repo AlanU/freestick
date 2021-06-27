@@ -218,6 +218,7 @@ void ControllerDiagramModel::updateControllerValues(FSDeviceInputEvent & event,b
 {
     if(m_joystickId == event.getDeviceID())
     {
+        //TODO support presser sentive buttons
         float digitalButtonValue = pressed ? 1 : 0;
         switch (event.getInputType()) {
         case FSDeviceInput::ButtonA:
@@ -249,6 +250,15 @@ void ControllerDiagramModel::updateControllerValues(FSDeviceInputEvent & event,b
             break;
         case FSDeviceInput::DPadRight:
                 setrightDpad(digitalButtonValue);
+            break;
+        case FSDeviceInput::ButtonCenter:
+                setcenterButton(digitalButtonValue);
+            break;
+        case FSDeviceInput::ButtonStart:
+                setstartButton(digitalButtonValue);
+            break;
+        case FSDeviceInput::ButtonSelect:
+            setselectButton(digitalButtonValue);
             break;
         default:
             break;

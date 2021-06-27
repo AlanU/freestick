@@ -11,7 +11,7 @@ JoystickDiagramForm {
        manager: deviceManager
        function updateButton(button,value)
        {
-            button.button.color = value > 0 ? "red" : "green"
+            button.button.color = value > 0 ? "green" : "#EEEEEE"
        }
 
        function updateAxis(axis, value, xAxis){
@@ -19,7 +19,7 @@ JoystickDiagramForm {
        }
        function updateAxisButton(axisObj,value)
        {
-           axisObj.buttonColor = value > 0 ? "red" : "green"
+           axisObj.buttonColor = value > 0 ? "green" : "#EEEEEE"
        }
        onUpDpadChanged: {
            updateButton(dpadButtons.yButton,value)
@@ -46,13 +46,13 @@ JoystickDiagramForm {
            updateButton(xyabControl.yButton,value)
        }
        onCenterButtonChanged: {
-           updateButton(centerButton.yButton,value)
+           updateButton(centerButtons.yButton,value)
        }
        onStartButtonChanged: {
-           updateButton(centerButton.xButton,value)
+           updateButton(centerButtons.bButton,value)
        }
        onSelectButtonChanged: {
-           updateButton(centerButton.bButton,value)
+           updateButton(centerButtons.xButton,value)
        }
        onAxisButtonChanged: {
            updateAxisButton(contollerLeftAxis,value)
