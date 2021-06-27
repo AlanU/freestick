@@ -21,7 +21,7 @@ Item {
             Rectangle {
                 color: "#E5E5E5"
                 Layout.preferredHeight: 100
-                Layout.preferredWidth: controller.width * 0.30
+                Layout.preferredWidth: controller.width * 0.25
                 Layout.minimumWidth: 200
                 Layout.minimumHeight: 100
                 Layout.fillHeight: true
@@ -50,8 +50,8 @@ Item {
                 Layout.fillHeight: true
                 RowLayout {
                     id: sholderRow
-                    property real childSizeSholder: controller.width * 0.70 / 6
-                    Layout.preferredWidth: controller.width * 0.70
+                    property real childSizeSholder: controller.width * 0.75 / 6
+                    Layout.preferredWidth: controller.width * 0.75
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     SholderButtons {
@@ -85,14 +85,14 @@ Item {
                     ContorllerDpadButtons {
                         id: dpadButtons
                         //Layout.preferredWidth: buttonRow.childSize
-                       // Layout.preferredHeight: buttonRow.childSize
+                        // Layout.preferredHeight: buttonRow.childSize
                         Layout.fillWidth: true
                         Layout.maximumHeight: width
                         Layout.preferredHeight: width
                     }
                     ContollerCenterButtons {
                         id: centerButtons
-                       // Layout.preferredWidth: buttonRow.childSize
+                        // Layout.preferredWidth: buttonRow.childSize
                         //Layout.preferredHeight: buttonRow.childSize
                         Layout.fillWidth: true
                         Layout.maximumHeight: width
