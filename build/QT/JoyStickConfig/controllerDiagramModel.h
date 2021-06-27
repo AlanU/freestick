@@ -60,6 +60,22 @@ public:
     float selectButton() const;
     virtual void setselectButton(float value);
 
+    Q_PROPERTY(float l1Button READ l1Button WRITE setl1Button NOTIFY l1ButtonChanged);
+    float l1Button() const;
+    virtual void setl1Button(float value);
+
+    Q_PROPERTY(float l2Button READ l2Button WRITE setl2Button NOTIFY l2ButtonChanged);
+    float l2Button() const;
+    virtual void setl2Button(float value);
+
+    Q_PROPERTY(float r1Button READ r1Button WRITE setl1Button NOTIFY r1ButtonChanged);
+    float r1Button() const;
+    virtual void setr1Button(float value);
+
+    Q_PROPERTY(float r2Button READ r2Button WRITE setr2Button NOTIFY r2ButtonChanged);
+    float r2Button() const;
+    virtual void setr2Button(float value);
+
     Q_PROPERTY(float axisButton READ axisButton WRITE setaxisButton NOTIFY axisButtonChanged);
     float axisButton() const;
     virtual void setaxisButton(float value);
@@ -107,6 +123,10 @@ signals:
     void centerButtonChanged(float value);
     void startButtonChanged(float value);
     void selectButtonChanged(float value);
+    void l1ButtonChanged(float value);
+    void l2ButtonChanged(float value);
+    void r1ButtonChanged(float value);
+    void r2ButtonChanged(float value);
     void axisButtonChanged(float value);
     void xAxisChanged(float value);
     void yAxisChanged(float value);
@@ -128,6 +148,10 @@ private:
     float m_xButton = 0.0f;
     float m_yButton = 0.0f;
     float m_centerButton = 0.0f;
+    float m_l1Button = 0.0f;
+    float m_l2Button = 0.0f;
+    float m_r1Button = 0.0f;
+    float m_r2Button = 0.0f;
     float m_startButton = 0.0f;
     float m_selectButton = 0.0f;
     float m_axisButton = 0.0f;

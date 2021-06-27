@@ -142,6 +142,49 @@ float ControllerDiagramModel::selectButton() const
     return m_selectButton;
 }
 
+void ControllerDiagramModel::setl1Button(float value)
+{
+    m_l1Button = value;
+    emit l1ButtonChanged(value);
+}
+
+float ControllerDiagramModel::l1Button() const
+{
+    return m_l1Button;
+}
+void ControllerDiagramModel::setl2Button(float value)
+{
+    m_l2Button = value;
+    emit l2ButtonChanged(value);
+}
+
+float ControllerDiagramModel::l2Button() const
+{
+    return m_l2Button;
+}
+
+void ControllerDiagramModel::setr1Button(float value)
+{
+    m_r1Button = value;
+    emit r1ButtonChanged(value);
+}
+
+float ControllerDiagramModel::r1Button() const
+{
+    return m_r1Button;
+}
+void ControllerDiagramModel::setr2Button(float value)
+{
+    m_r2Button = value;
+    emit r2ButtonChanged(value);
+}
+
+float ControllerDiagramModel::r2Button() const
+{
+    return m_r2Button;
+}
+
+
 void ControllerDiagramModel::setselectButton(float value)
 {
     m_selectButton = value;
@@ -258,8 +301,20 @@ void ControllerDiagramModel::updateControllerValues(FSDeviceInputEvent & event,b
                 setstartButton(digitalButtonValue);
             break;
         case FSDeviceInput::ButtonSelect:
-            setselectButton(digitalButtonValue);
+                setselectButton(digitalButtonValue);
             break;
+         case FSDeviceInput::LeftShoulder:
+                setl1Button(digitalButtonValue);
+            break;
+        case FSDeviceInput::LeftShoulder2:
+               setl2Button(digitalButtonValue);
+           break;
+        case FSDeviceInput::RightShoulder:
+               setr1Button(digitalButtonValue);
+           break;
+       case FSDeviceInput::RightShoulder2:
+              setr2Button(digitalButtonValue);
+          break;
         default:
             break;
         }

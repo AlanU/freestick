@@ -6,6 +6,8 @@ Item {
     id: controller
     width: 900
     height: 600
+    property alias rightSholderButtons: rightSholderButtons
+    property alias leftSholderButtons: leftSholderButtons
     property alias centerButtons: centerButtons
     property alias dpadButtons: dpadButtons
     property alias contollerRightAxis: contollerRightAxis
@@ -13,61 +15,100 @@ Item {
     property alias xyabControl: faceButtons
     Page {
         id: page
-        height: 400
         anchors.fill: parent
         RowLayout {
             anchors.fill: parent
-            RowLayout {
-                id: axisRow
-                property real childSize: (controller.width * 0.30) / 2
+            Rectangle {
+                color: "#E5E5E5"
                 Layout.preferredHeight: 100
-                Layout.preferredWidth: 200
-                Layout.maximumWidth: controller.width * 0.30
+                Layout.preferredWidth: controller.width * 0.30
                 Layout.minimumWidth: 200
                 Layout.minimumHeight: 100
                 Layout.fillHeight: true
+                RowLayout {
+                    id: axisRow
+                    anchors.fill: parent
+                    ContollerAxis {
+                        id: contollerLeftAxis
+                        Layout.fillWidth: true
+                        Layout.maximumHeight: width
+                        Layout.preferredHeight: width
+                        color: "black"
+                    }
 
-                ContollerAxis {
-                    id: contollerLeftAxis
-                    Layout.preferredHeight: axisRow.childSize
-                    Layout.preferredWidth: axisRow.childSize
-                    Layout.maximumHeight: axisRow.childSize
-                    Layout.maximumWidth: axisRow.childSize
-                    color: "black"
-                }
-
-                ContollerAxis {
-                    id: contollerRightAxis
-                    Layout.preferredHeight: axisRow.childSize
-                    Layout.preferredWidth: axisRow.childSize
-                    Layout.maximumHeight: axisRow.childSize
-                    Layout.maximumWidth: axisRow.childSize
-                    color: "black"
+                    ContollerAxis {
+                        id: contollerRightAxis
+                        Layout.fillWidth: true
+                        Layout.maximumHeight: width
+                        Layout.preferredHeight: width
+                        color: "black"
+                    }
                 }
             }
-            RowLayout {
-                id: buttonRow
-
-                property real childSize: controller.width * 0.70 / 3
+            ColumnLayout {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                ContorllerDpadButtons {
-                    id: dpadButtons
-                    Layout.preferredWidth: buttonRow.childSize
-                    Layout.preferredHeight: buttonRow.childSize
-                }
-                ContollerCenterButtons {
-                    id: centerButtons
-                    Layout.preferredWidth: buttonRow.childSize
-                    Layout.preferredHeight: buttonRow.childSize
+                RowLayout {
+                    id: sholderRow
+                    property real childSizeSholder: controller.width * 0.70 / 6
+                    Layout.preferredWidth: controller.width * 0.70
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    SholderButtons {
+                        id: leftSholderButtons
+                        topButton.buttonText.text: "L2"
+                        bottomButton.buttonText.text: "L1"
+                        Layout.preferredHeight: 100
+                        Layout.preferredWidth: sholderRow.childSizeSholder
+                    }
+                    Rectangle {
+                        Layout.preferredHeight: 107
+                        Layout.preferredWidth: sholderRow.childSizeSholder * 3.5
+                        // color: "transparent"
+                    }
+
+                    SholderButtons {
+                        id: rightSholderButtons
+                        Layout.preferredHeight: 107
+                        Layout.preferredWidth: sholderRow.childSizeSholder
+                        topButton.buttonText.text: "R2"
+                        bottomButton.buttonText.text: "R1"
+                    }
                 }
 
-                ControllerFourButtons {
-                    id: faceButtons
-                    //Layout.fillHeight: false
-                    // Layout.fillWidth: false
-                    Layout.preferredWidth: buttonRow.childSize
-                    Layout.preferredHeight: buttonRow.childSize
+                RowLayout {
+                    id: buttonRow
+
+                    property real childSize: controller.width * 0.70 / 3
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    ContorllerDpadButtons {
+                        id: dpadButtons
+                        //Layout.preferredWidth: buttonRow.childSize
+                       // Layout.preferredHeight: buttonRow.childSize
+                        Layout.fillWidth: true
+                        Layout.maximumHeight: width
+                        Layout.preferredHeight: width
+                    }
+                    ContollerCenterButtons {
+                        id: centerButtons
+                       // Layout.preferredWidth: buttonRow.childSize
+                        //Layout.preferredHeight: buttonRow.childSize
+                        Layout.fillWidth: true
+                        Layout.maximumHeight: width
+                        Layout.preferredHeight: width
+                    }
+
+                    ControllerFourButtons {
+                        id: faceButtons
+                        //Layout.fillHeight: false
+                        // Layout.fillWidth: false
+                        //Layout.preferredWidth: buttonRow.childSize
+                        //Layout.preferredHeight: buttonRow.childSize
+                        Layout.fillWidth: true
+                        Layout.maximumHeight: width
+                        Layout.preferredHeight: width
+                    }
                 }
             }
         }

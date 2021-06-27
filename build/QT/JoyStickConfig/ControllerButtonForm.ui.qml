@@ -5,16 +5,17 @@ Item {
     height: 100
     property alias button: button
     property alias buttonText: buttonText
+    property bool rounded: true
     antialiasing: true
 
     Rectangle {
         id: button
         color: "#ffffff"
-        width: parent.width < parent.height ? parent.width : parent.height
+        width: rounded ? parent.width < parent.height ? parent.width : parent.height : parent.width
         border.color: "black"
         border.width: 1
         radius: width * 0.5
-        height: width
+        height: rounded ? width : parent.height
 
         Text {
             id: buttonText

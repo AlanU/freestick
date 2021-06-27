@@ -46,7 +46,7 @@ JoystickDiagramForm {
            updateButton(xyabControl.yButton,value)
        }
        onCenterButtonChanged: {
-           updateButton(centerButtons.yButton,value)
+           updateButton(centerButtons.aButton,value)
        }
        onStartButtonChanged: {
            updateButton(centerButtons.bButton,value)
@@ -71,6 +71,18 @@ JoystickDiagramForm {
        }
        onYAxis2Changed: {
            updateAxis(contollerRightAxis,value,false)
+       }
+       onL1ButtonChanged: {
+           updateButton(leftSholderButtons.bottomButton,value)
+       }
+       onL2ButtonChanged: {
+           updateButton(leftSholderButtons.topButton,value)
+       }
+       onR1ButtonChanged: {
+           updateButton(rightSholderButtons.bottomButton,value)
+       }
+       onR2ButtonChanged: {
+           updateButton(rightSholderButtons.topButton,value)
        }
 
     }

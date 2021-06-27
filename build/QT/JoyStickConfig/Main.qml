@@ -8,7 +8,8 @@ ApplicationWindow {
     height: 456
     visible: true
     title: "Joystick Config"
-
+    minimumWidth: 734
+    minimumHeight: 456
     MainForm {
         id:main
         anchors.fill: parent

@@ -16,5 +16,7 @@
         <file>ControllerFourButtons.qml</file>
         <file>ControllerFourButtonsForm.ui.qml</file>
         <file>ContollerCenterButtons.qml</file>
+        <file>SholderButtons.qml</file>
+        <file>SholderButtonsForm.ui.qml</file>
     </qresource>
 </RCC>
