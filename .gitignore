@@ -64,3 +64,6 @@ build/QT/JoyStickConfig/moc_*
 /build/QT/JoyStickConfig/Debug-iphoneos
 /build/QT/JoyStickConfig/.xcode
 /build/QT/JoyStickConfig/Thumbs.db
+build/QT/JoyStickConfig/*.ui_qml.cpp
+build/QT/JoyStickConfig/*_qml.cpp
+/build/QT/JoyStickConfig/qml_qmlcache.qrc
