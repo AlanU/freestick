@@ -111,7 +111,7 @@ const uint32_t MIFIVenderID = 273;
         void addMapping(idNumber deviceID, idNumber controlID, FSDeviceInput deviceInput);
         //FSUSBElementInfoMap lookUpDeviceInputFromID(unsigned int deviceID, unsigned int controlID);
         FSUSBElementInfoMap lookUpDeviceInputFromID(idNumber deviceID, idNumber controlID, minMaxNumber min, minMaxNumber max,physicalValueNumber value);
-        FSUSBElementInfoMap lookUpDeviceInputFromUSBID( vendorIDType vendorUSBID, productIDType productUSBID , idNumber controlID, minMaxNumber min, minMaxNumber max, physicalValueNumber value);
+        FSUSBElementInfoMap lookUpDeviceInputFromUSBID( vendorIDType vendorUSBID, productIDType productUSBID , idNumber controlID, minMaxNumber min, minMaxNumber max, physicalValueNumber value, bool forceAnalogLookup = false);
         FSUSBElementInfoMap infoMapForInputType(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor );
 
 

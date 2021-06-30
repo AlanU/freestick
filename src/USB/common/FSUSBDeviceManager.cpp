@@ -753,10 +753,10 @@ FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromID(idNumber device
     return FSUSBElementInfoMap(0,1,LastInput,FSInputChanged);
 }
 
-FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromUSBID( vendorIDType vendorUSBID, productIDType productUSBID , unsigned int controlID,minMaxNumber min,minMaxNumber max,int value)
+FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromUSBID( vendorIDType vendorUSBID, productIDType productUSBID , unsigned int controlID,minMaxNumber min,minMaxNumber max,int value,bool forceAnalogLookup)
  {
     deviceID vendorProductID = createVPId(vendorUSBID,productUSBID);
-     if(min==0 && max == 1)
+     if(min==0 && max == 1 && !forceAnalogLookup)
      {
          if(_usageMapToInputEvent.find(vendorProductID) != _usageMapToInputEvent.end() &&
                  _usageMapToInputEvent[vendorProductID].find(controlID) != _usageMapToInputEvent[vendorProductID].end())
