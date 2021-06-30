@@ -27,6 +27,7 @@ Item {
         RowLayout {
             anchors.fill: parent
             Rectangle {
+                id: rectangle
                 color: "#E5E5E5"
                 Layout.preferredHeight: 100
                 Layout.preferredWidth: controller.width * 0.25
@@ -35,10 +36,16 @@ Item {
                 Layout.fillHeight: true
                 ColumnLayout {
                     id: columnLayout
-                    anchors.fill: parent
-                    anchors.rightMargin: 10
-                    anchors.leftMargin: 10
-                    spacing: 0
+                    anchors.verticalCenter: parent.verticalCenter
+                    // width: childrenRect.width
+                    Layout.preferredHeight: childrenRect.height
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.rightMargin: 7
+                    anchors.leftMargin: 7
+
+                    //anchors.fill: parent
+                    spacing: 30
                     RowLayout {
                         Layout.fillHeight: true
                         ControllerElementProgressForm {
@@ -131,12 +138,12 @@ Item {
                 Layout.leftMargin: 20
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+                Layout.preferredHeight: parent.height * 0.65
                 RowLayout {
                     id: sholderRow
-                    property real childSizeSholder: controller.width * 0.75 / 7.5
+                    property real childSizeSholder: (controller.width * 0.75) / 7.5
                     height: 120
                     spacing: 0
-                    Layout.preferredWidth: controller.width * 0.75
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     SholderButtons {
@@ -146,84 +153,101 @@ Item {
                         bottomButton.buttonText.text: "L1"
                         Layout.preferredHeight: 60
                         Layout.preferredWidth: sholderRow.childSizeSholder
+                        Layout.fillHeight: true
+                        Layout.maximumHeight: width
                     }
                     Rectangle {
                         visible: true
                         Layout.preferredHeight: 60
-                        Layout.preferredWidth: sholderRow.childSizeSholder * 3.5
-                        // color: "transparent"
+                        Layout.maximumHeight: leftSholderButtons.height
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
+                        color: "transparent"
                     }
 
                     SholderButtons {
                         id: rightSholderButtons
                         width: 75
-
                         Layout.preferredHeight: 60
                         Layout.preferredWidth: sholderRow.childSizeSholder
                         topButton.buttonText.text: "R2"
                         bottomButton.buttonText.text: "R1"
+                        Layout.fillHeight: true
+                        Layout.maximumHeight: width
                     }
                 }
 
                 RowLayout {
                     id: buttonRow
-
-                    property real childSize: controller.width * 0.70 / 3
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     ContorllerDpadButtons {
                         id: dpadButtons
-                        //Layout.preferredWidth: buttonRow.childSize
-                        // Layout.preferredHeight: buttonRow.childSize
                         Layout.fillWidth: true
                         Layout.maximumHeight: width
                         Layout.preferredHeight: width
+                        Layout.fillHeight: true
                     }
+
                     ContollerCenterButtons {
                         id: centerButtons
-                        // Layout.preferredWidth: buttonRow.childSize
-                        //Layout.preferredHeight: buttonRow.childSize
                         Layout.fillWidth: true
                         Layout.maximumHeight: width
                         Layout.preferredHeight: width
+                        Layout.fillHeight: true
                     }
 
                     ControllerFourButtons {
                         id: faceButtons
-                        //Layout.fillHeight: false
-                        // Layout.fillWidth: false
-                        //Layout.preferredWidth: buttonRow.childSize
-                        //Layout.preferredHeight: buttonRow.childSize
                         Layout.fillWidth: true
                         Layout.maximumHeight: width
                         Layout.preferredHeight: width
+                        Layout.fillHeight: true
                     }
                 }
 
                 RowLayout {
                     id: axisButtons
-
+                    property real childSizeAxis: (controller.width * 0.75) / 6
+                    Layout.maximumHeight: (controller.height / 3) * 0.30
                     Layout.fillWidth: true
                     Layout.fillHeight: true
+                    Rectangle {
+                        visible: true
+                        Layout.fillWidth: true
+
+                        color: "transparent"
+                    }
                     ControllerButton {
                         id: l3
                         buttonText.text: "L3"
                         Layout.maximumHeight: width
                         // Layout.preferredHeight: width
                         Layout.preferredHeight: 60
+                        Layout.preferredWidth: axisButtons.childSizeAxis
+                        Layout.fillHeight: true
                     }
                     Rectangle {
                         visible: true
                         Layout.preferredHeight: 60
-                        Layout.preferredWidth: axisButtons.width / 7.5
-                        // color: "transparent"
+                        Layout.fillWidth: true
+                        color: "transparent"
                     }
                     ControllerButton {
                         id: r3
                         buttonText.text: "R3"
                         Layout.maximumHeight: width
-                        // Layout.preferredHeight: width
+                        Layout.preferredWidth: axisButtons.childSizeAxis
                         Layout.preferredHeight: 60
+                        Layout.fillHeight: true
+                    }
+                    Rectangle {
+                        visible: true
+                        Layout.preferredHeight: 60
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+
+                        color: "transparent"
                     }
                 }
             }

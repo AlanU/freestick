@@ -1,6 +1,7 @@
 import QtQuick 2.4
 
 Item {
+    id: item1
     width: 100
     height: 100
     property alias button: button
@@ -14,6 +15,8 @@ Item {
         width: rounded ? parent.width < parent.height ? parent.width : parent.height : parent.width
         border.color: "black"
         border.width: 1
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.horizontalCenter: parent.horizontalCenter
         radius: width * 0.5
         height: rounded ? width : parent.height
 
