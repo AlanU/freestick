@@ -17,9 +17,17 @@ JoystickDiagramForm {
        function updateAxis(axis, value, xAxis){
            axis.setAxisWidgetFromValue(value,xAxis)
        }
+       function updateAnlogBars(elementBar,value){
+            let finalValue = value
+           if(elementBar.precent === false) {
+              finalValue  = Math.floor((value + Number.EPSILON) * 10000) / 10000
+           }
+           elementBar.value = finalValue
+       }
+
        function updateAxisButton(axisObj,value)
        {
-           axisObj.buttonColor = value > 0 ? "green" : "#EEEEEE"
+           axisObj.button.color = value > 0 ? "green" : "#EEEEEE"
        }
        onUpDpadChanged: {
            updateButton(dpadButtons.yButton,value)
@@ -55,22 +63,27 @@ JoystickDiagramForm {
            updateButton(centerButtons.xButton,value)
        }
        onAxisButtonChanged: {
-           updateAxisButton(contollerLeftAxis,value)
+           updateAxisButton(l3,value)
        }
        onXAxisChanged: {
            updateAxis(contollerLeftAxis,value,true)
+           updateAnlogBars(xAxis1Bar,value)
        }
        onYAxisChanged: {
            updateAxis(contollerLeftAxis,value,false)
+           updateAnlogBars(yAxis1Bar,value)
        }
        onAxis2ButtonChanged: {
-           updateAxisButton(contollerRightAxis,value)
+           updateAxisButton(r3,value)
        }
        onXAxis2Changed: {
            updateAxis(contollerRightAxis,value,true)
+           updateAnlogBars(xAxis2Bar,value)
+
        }
        onYAxis2Changed: {
            updateAxis(contollerRightAxis,value,false)
+           updateAnlogBars(yAxis2Bar,value)
        }
        onL1ButtonChanged: {
            updateButton(leftSholderButtons.bottomButton,value)
@@ -83,6 +96,12 @@ JoystickDiagramForm {
        }
        onR2ButtonChanged: {
            updateButton(rightSholderButtons.topButton,value)
+       }
+       onLeftTriggerChanged: {
+           updateAnlogBars(rigthSholderBar,value)
+       }
+       onRightTriggerChanged: {
+           updateAnlogBars(leftSholderBar,value)
        }
 
     }

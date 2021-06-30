@@ -6,6 +6,14 @@ Item {
     id: controller
     width: 900
     height: 600
+    property alias r3: r3
+    property alias l3: l3
+    property alias yAxis2Bar: yAxis2
+    property alias yAxis1Bar: yAxis1
+    property alias xAxis2Bar: xAxis2
+    property alias xAxis1Bar: xAxis1
+    property alias rigthSholderBar: rigthSholderProgress
+    property alias leftSholderBar: leftSholderProgress
     property alias rightSholderButtons: rightSholderButtons
     property alias leftSholderButtons: leftSholderButtons
     property alias centerButtons: centerButtons
@@ -25,51 +33,132 @@ Item {
                 Layout.minimumWidth: 200
                 Layout.minimumHeight: 100
                 Layout.fillHeight: true
-                RowLayout {
-                    id: axisRow
+                ColumnLayout {
+                    id: columnLayout
                     anchors.fill: parent
-                    ContollerAxis {
-                        id: contollerLeftAxis
-                        Layout.fillWidth: true
-                        Layout.maximumHeight: width
-                        Layout.preferredHeight: width
-                        color: "black"
+                    anchors.rightMargin: 10
+                    anchors.leftMargin: 10
+                    spacing: 0
+                    RowLayout {
+                        Layout.fillHeight: true
+                        ControllerElementProgressForm {
+                            id: leftSholderProgress
+                            Layout.fillWidth: true
+                            elemnetName: qsTr("Left Sholder")
+                            min: 0
+                            max: 1
+                            value: 0
+                        }
+                        ControllerElementProgressForm {
+                            id: rigthSholderProgress
+                            Layout.fillWidth: true
+                            elemnetName: qsTr("Rigth Sholder")
+                            min: 0
+                            max: 1
+                            value: 0
+                        }
                     }
+                    RowLayout {
+                        id: axisRow
+                        Layout.fillHeight: true
 
-                    ContollerAxis {
-                        id: contollerRightAxis
-                        Layout.fillWidth: true
-                        Layout.maximumHeight: width
-                        Layout.preferredHeight: width
-                        color: "black"
+                        ContollerAxis {
+                            id: contollerLeftAxis
+                            Layout.fillWidth: true
+                            Layout.maximumHeight: width
+                            Layout.preferredHeight: width
+                            color: "#E5E5E5"
+                            buttonColor: "red"
+                            border: true
+                        }
+
+                        ContollerAxis {
+                            id: contollerRightAxis
+                            Layout.fillWidth: true
+                            Layout.maximumHeight: width
+                            Layout.preferredHeight: width
+                            color: "#E5E5E5"
+                            buttonColor: "red"
+                            border: true
+                        }
+                    }
+                    RowLayout {
+                        Layout.fillHeight: true
+                        ControllerElementProgressForm {
+                            id: xAxis1
+                            precent: false
+                            Layout.fillWidth: true
+                            elemnetName: qsTr("Axis X:")
+                            min: -1
+                            max: 1
+                            value: 0
+                        }
+                        ControllerElementProgressForm {
+                            id: xAxis2
+                            Layout.fillWidth: true
+                            precent: false
+                            elemnetName: qsTr("Axis X:")
+                            min: -1
+                            max: 1
+                            value: 0
+                        }
+                    }
+                    RowLayout {
+                        Layout.fillHeight: true
+                        ControllerElementProgressForm {
+                            id: yAxis1
+                            Layout.fillWidth: true
+                            precent: false
+                            elemnetName: qsTr("Axis Y:")
+                            min: -1
+                            max: 1
+                            value: 0
+                        }
+                        ControllerElementProgressForm {
+                            id: yAxis2
+                            Layout.fillWidth: true
+                            precent: false
+                            elemnetName: qsTr("Axis Y:")
+                            min: -1
+                            max: 1
+                            value: 0
+                        }
                     }
                 }
             }
             ColumnLayout {
+                Layout.rightMargin: 20
+                Layout.leftMargin: 20
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 RowLayout {
                     id: sholderRow
-                    property real childSizeSholder: controller.width * 0.75 / 6
+                    property real childSizeSholder: controller.width * 0.75 / 7.5
+                    height: 120
+                    spacing: 0
                     Layout.preferredWidth: controller.width * 0.75
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     SholderButtons {
                         id: leftSholderButtons
+                        width: 75
                         topButton.buttonText.text: "L2"
                         bottomButton.buttonText.text: "L1"
-                        Layout.preferredHeight: 100
+                        Layout.preferredHeight: 60
                         Layout.preferredWidth: sholderRow.childSizeSholder
                     }
                     Rectangle {
-                        Layout.preferredHeight: 107
+                        visible: true
+                        Layout.preferredHeight: 60
                         Layout.preferredWidth: sholderRow.childSizeSholder * 3.5
                         // color: "transparent"
                     }
 
                     SholderButtons {
                         id: rightSholderButtons
-                        Layout.preferredHeight: 107
+                        width: 75
+
+                        Layout.preferredHeight: 60
                         Layout.preferredWidth: sholderRow.childSizeSholder
                         topButton.buttonText.text: "R2"
                         bottomButton.buttonText.text: "R1"
@@ -108,6 +197,33 @@ Item {
                         Layout.fillWidth: true
                         Layout.maximumHeight: width
                         Layout.preferredHeight: width
+                    }
+                }
+
+                RowLayout {
+                    id: axisButtons
+
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    ControllerButton {
+                        id: l3
+                        buttonText.text: "L3"
+                        Layout.maximumHeight: width
+                        // Layout.preferredHeight: width
+                        Layout.preferredHeight: 60
+                    }
+                    Rectangle {
+                        visible: true
+                        Layout.preferredHeight: 60
+                        Layout.preferredWidth: axisButtons.width / 7.5
+                        // color: "transparent"
+                    }
+                    ControllerButton {
+                        id: r3
+                        buttonText.text: "R3"
+                        Layout.maximumHeight: width
+                        // Layout.preferredHeight: width
+                        Layout.preferredHeight: 60
                     }
                 }
             }

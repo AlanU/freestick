@@ -100,6 +100,14 @@ public:
     float yAxis2() const;
     virtual void setyAxis2(float value);
 
+    Q_PROPERTY(float leftTrigger READ leftTrigger WRITE setleftTrigger NOTIFY leftTriggerChanged);
+    float leftTrigger() const;
+    virtual void setleftTrigger(float value);
+
+    Q_PROPERTY(float rightTrigger READ rightTrigger WRITE setrightTrigger NOTIFY rightTriggerChanged);
+    float rightTrigger() const;
+    virtual void setrightTrigger(float value);
+
     QHash<int,QByteArray> roleNames() const override {return QHash<int,QByteArray>();};
     int rowCount(const QModelIndex & /*parent = QModelIndex()*/) const override {return 0;};
     QVariant data(const QModelIndex &/*index*/, int /*role = Qt::DisplayRole*/) const override{return QVariant();};
@@ -133,6 +141,9 @@ signals:
     void axis2ButtonChanged(float value);
     void xAxis2Changed(float value);
     void yAxis2Changed(float value);
+    void leftTriggerChanged(float value);
+    void rightTriggerChanged(float value);
+
 protected:
     void updateControllerValues(FSDeviceInputEvent & event,bool pressed);
     void updateModel(unsigned int joystickiD);
@@ -160,5 +171,7 @@ private:
     float m_yAxis = 0.0f;
     float m_xAxis2 = 0.0f;
     float m_yAxis2 = 0.0f;
+    float m_leftTrigger = 0.0f;
+    float m_rightTrigger = 0.0f;
 };
 

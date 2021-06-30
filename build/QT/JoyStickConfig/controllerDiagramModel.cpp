@@ -257,6 +257,29 @@ void  ControllerDiagramModel::setyAxis2(float value)
     emit yAxis2Changed(value);
 }
 
+float ControllerDiagramModel::leftTrigger() const
+{
+    return m_leftTrigger;
+}
+
+void  ControllerDiagramModel::setleftTrigger(float value)
+{
+    m_leftTrigger = value;
+    emit leftTriggerChanged(value);
+}
+
+float ControllerDiagramModel::rightTrigger() const
+{
+    return m_rightTrigger;
+}
+
+void  ControllerDiagramModel::setrightTrigger(float value)
+{
+    m_rightTrigger = value;
+    emit rightTriggerChanged(value);
+}
+
+
 void ControllerDiagramModel::updateControllerValues(FSDeviceInputEvent & event,bool pressed)
 {
     if(m_joystickId == event.getDeviceID())
@@ -348,6 +371,12 @@ void ControllerDiagramModel::onStickMove(FSDeviceInputEvent event)
             break;
         case FSDeviceInput::YAxis2:
             setyAxis2(event.getNewInputValue());
+            break;
+         case FSDeviceInput::Trigger1:
+            setleftTrigger(event.getNewInputValue());
+            break;
+         case FSDeviceInput::Trigger2:
+             setrightTrigger(event.getNewInputValue());
             break;
         default:
             break;

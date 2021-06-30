@@ -3,8 +3,8 @@ import QtQuick.Layouts 1.11
 
 Item {
     id: root
-    width: 118
-    height: 72
+    width: 108
+    height: 62
     property alias bottomButton: bottomButton
     property alias topButton: topButton
     property real buttonWidth: 150

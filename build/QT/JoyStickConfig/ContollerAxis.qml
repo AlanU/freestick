@@ -3,9 +3,10 @@ import QtQuick 2.4
 ContollerAxisForm {
     property string buttonColor: "green"
     property string color: "white"
+    property bool border: false
 
     function setButtonColor(newColor){
-        stick.color = newColor
+        stick.buttonColor = newColor
     }
 
     function setColor(newColor){
@@ -42,6 +43,13 @@ ContollerAxisForm {
 
     onButtonColorChanged: {
         setButtonColor(buttonColor)
+    }
+    onBorderChanged: {
+       if(border === true) {
+           axis.border.width = 2
+       } else {
+          axis.border.width = 2
+       }
     }
 
 }

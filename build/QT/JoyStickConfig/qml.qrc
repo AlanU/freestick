@@ -18,5 +18,8 @@
         <file>ContollerCenterButtons.qml</file>
         <file>SholderButtons.qml</file>
         <file>SholderButtonsForm.ui.qml</file>
+        <file>ControllerElementProgress.qml</file>
+        <file>ControllerElementProgressForm.ui.qml</file>
+        <file>ContolProgressBar.qml</file>
     </qresource>
 </RCC>
