@@ -179,6 +179,7 @@ Item {
 
                 RowLayout {
                     id: buttonRow
+                    spacing: 20
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     ContorllerDpadButtons {
@@ -222,14 +223,13 @@ Item {
                         id: l3
                         buttonText.text: "L3"
                         Layout.maximumHeight: width
-                        // Layout.preferredHeight: width
-                        Layout.preferredHeight: 60
+                        Layout.preferredHeight: 40
                         Layout.preferredWidth: axisButtons.childSizeAxis
                         Layout.fillHeight: true
                     }
                     Rectangle {
                         visible: true
-                        Layout.preferredHeight: 60
+                        Layout.preferredHeight: 40
                         Layout.fillWidth: true
                         color: "transparent"
                     }
@@ -238,12 +238,12 @@ Item {
                         buttonText.text: "R3"
                         Layout.maximumHeight: width
                         Layout.preferredWidth: axisButtons.childSizeAxis
-                        Layout.preferredHeight: 60
+                        Layout.preferredHeight: 40
                         Layout.fillHeight: true
                     }
                     Rectangle {
                         visible: true
-                        Layout.preferredHeight: 60
+                        Layout.preferredHeight: 40
                         Layout.fillWidth: true
                         Layout.fillHeight: true
 

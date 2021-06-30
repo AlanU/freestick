@@ -22,15 +22,20 @@ Item {
 
         Text {
             id: buttonText
-            y: 43
             text: qsTr("Text")
             horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            minimumPointSize: 9
+            minimumPixelSize: 9
+            anchors.bottomMargin: 20
+            anchors.topMargin: 20
+            fontSizeMode: Text.VerticalFit
             anchors.left: parent.left
-            anchors.leftMargin: 0
+            anchors.leftMargin: 10
             anchors.right: parent.right
-            anchors.rightMargin: 0
-            anchors.verticalCenter: parent.verticalCenter
-            font.pixelSize: 12
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.rightMargin: 10
         }
     }
 }
