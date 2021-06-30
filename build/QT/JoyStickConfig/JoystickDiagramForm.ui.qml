@@ -143,9 +143,12 @@ Item {
                     id: sholderRow
                     property real childSizeSholder: (controller.width * 0.75) / 7.5
                     height: 120
+                    Layout.rightMargin: 60
+                    Layout.leftMargin: 60
                     spacing: 0
                     Layout.fillWidth: true
                     Layout.fillHeight: true
+
                     SholderButtons {
                         id: leftSholderButtons
                         width: 75
@@ -158,9 +161,8 @@ Item {
                     }
                     Rectangle {
                         visible: true
-                        Layout.preferredHeight: 60
+                        Layout.preferredHeight: leftSholderButtons.height
                         Layout.maximumHeight: leftSholderButtons.height
-                        Layout.fillHeight: true
                         Layout.fillWidth: true
                         color: "transparent"
                     }
@@ -175,6 +177,7 @@ Item {
                         Layout.fillHeight: true
                         Layout.maximumHeight: width
                     }
+
                 }
 
                 RowLayout {

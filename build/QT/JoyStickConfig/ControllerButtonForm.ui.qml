@@ -6,6 +6,7 @@ Item {
     height: 100
     property alias button: button
     property alias buttonText: buttonText
+    property alias buttonBorder: button.border.width
     property bool rounded: true
     antialiasing: true
 
@@ -14,7 +15,7 @@ Item {
         color: "#ffffff"
         width: rounded ? parent.width < parent.height ? parent.width : parent.height : parent.width
         border.color: "black"
-        border.width: 1
+        border.width: 0
         anchors.verticalCenter: parent.verticalCenter
         anchors.horizontalCenter: parent.horizontalCenter
         radius: width * 0.5
