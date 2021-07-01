@@ -49,8 +49,6 @@ Item {
                     spacing: 30
                     RowLayout {
                         id: shoulderRow
-                        visible: leftSholderProgress.visible
-                                 || rigthSholderProgress.visible
                         Layout.fillHeight: true
                         ControllerElementProgressForm {
                             id: leftSholderProgress
