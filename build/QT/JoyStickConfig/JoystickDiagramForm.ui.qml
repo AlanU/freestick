@@ -21,6 +21,7 @@ Item {
     property alias contollerRightAxis: contollerRightAxis
     property alias contollerLeftAxis: contollerLeftAxis
     property alias xyabControl: faceButtons
+    property alias leftRoot: rectangle
     Page {
         id: page
         anchors.fill: parent
@@ -41,17 +42,20 @@ Item {
                     Layout.preferredHeight: childrenRect.height
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    anchors.rightMargin: 7
-                    anchors.leftMargin: 7
+                    anchors.rightMargin: 15
+                    anchors.leftMargin: 15
 
                     //anchors.fill: parent
                     spacing: 30
                     RowLayout {
+                        id: shoulderRow
+                        visible: leftSholderProgress.visible
+                                 || rigthSholderProgress.visible
                         Layout.fillHeight: true
                         ControllerElementProgressForm {
                             id: leftSholderProgress
                             Layout.fillWidth: true
-                            elemnetName: qsTr("Left Sholder")
+                            elemnetName: qsTr("Left Shoulder")
                             min: 0
                             max: 1
                             value: 0
@@ -59,7 +63,7 @@ Item {
                         ControllerElementProgressForm {
                             id: rigthSholderProgress
                             Layout.fillWidth: true
-                            elemnetName: qsTr("Rigth Sholder")
+                            elemnetName: qsTr("Rigth Shoulder")
                             min: 0
                             max: 1
                             value: 0
@@ -68,7 +72,6 @@ Item {
                     RowLayout {
                         id: axisRow
                         Layout.fillHeight: true
-
                         ContollerAxis {
                             id: contollerLeftAxis
                             Layout.fillWidth: true
@@ -90,6 +93,7 @@ Item {
                         }
                     }
                     RowLayout {
+                        id: axis1BarRow
                         Layout.fillHeight: true
                         ControllerElementProgressForm {
                             id: xAxis1
@@ -112,6 +116,7 @@ Item {
                     }
                     RowLayout {
                         Layout.fillHeight: true
+                        id: axis2BarRow
                         ControllerElementProgressForm {
                             id: yAxis1
                             Layout.fillWidth: true
@@ -177,7 +182,6 @@ Item {
                         Layout.fillHeight: true
                         Layout.maximumHeight: width
                     }
-
                 }
 
                 RowLayout {

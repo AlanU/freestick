@@ -2,10 +2,12 @@ import QtQuick 2.4
 import org.freestick.models 1.0
 
 JoystickDiagramForm {
+    id:joystickRoot
     property int currentInfoPageControllerID: 0
     onCurrentInfoPageControllerIDChanged: {
         controllerDiagramModel.joystickID = currentControllerID
     }
+
     ControllerDiagram {
        id:controllerDiagramModel
        manager: deviceManager
@@ -29,6 +31,36 @@ JoystickDiagramForm {
        {
            axisObj.button.color = value > 0 ? "green" : "#EEEEEE"
        }
+
+       function setAxisVisabilty(axisObj,axisBarX,axisBarY,visibleValue){
+           axisObj.visible = visibleValue
+           axisBarX.visible = visibleValue
+           axisBarY.visible = visibleValue
+       }
+
+       function updateVisablity(){
+            centerButtons.aButton.visible = hasCenter()
+            let triggers = hasTriggers()
+            rigthSholderBar.visible = triggers
+            leftSholderBar.visible = triggers
+            centerButtons.bButton.visible = hasStart()
+            setAxisVisabilty(contollerLeftAxis,xAxis1Bar,yAxis1Bar,hasAxis1())
+            setAxisVisabilty(contollerRightAxis,xAxis2Bar,yAxis2Bar,hasAxis2())
+            let backShoulder = hasFrontShoulder()
+            leftSholderButtons.bottomButton.visible = backShoulder
+            rightSholderButtons.bottomButton.visible = backShoulder
+            let frontShoulder = hasBackShoulder()
+            leftSholderButtons.topButton.visible = frontShoulder
+            rightSholderButtons.topButton.visible = frontShoulder
+            let xyButton = hasYXButtons()
+            xyabControl.yButton.visible = xyButton
+            xyabControl.xButton.visible = xyButton
+            l3.visible = hasAxis1Button()
+            r3.visible = hasAxis2Button()
+            joystickRoot.leftRoot.visible = hasAxis1() || hasAxis2() || triggers
+       }
+
+
        onUpDpadChanged: {
            updateButton(dpadButtons.yButton,value)
        }
@@ -102,6 +134,9 @@ JoystickDiagramForm {
        }
        onRightTriggerChanged: {
            updateAnlogBars(leftSholderBar,value)
+       }
+       onJoystickIDChanged: {
+            updateVisablity()
        }
 
     }

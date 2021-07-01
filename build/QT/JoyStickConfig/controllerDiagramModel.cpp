@@ -273,12 +273,70 @@ float ControllerDiagramModel::rightTrigger() const
     return m_rightTrigger;
 }
 
-void  ControllerDiagramModel::setrightTrigger(float value)
+void ControllerDiagramModel::setrightTrigger(float value)
 {
     m_rightTrigger = value;
     emit rightTriggerChanged(value);
 }
 
+bool ControllerDiagramModel::hasControl(FSDeviceInput inputToLookFor)
+{
+   if(!m_manager.expired())
+   {
+       return m_manager.lock()->doesDeviceHaveDeviceInput(m_joystickId,inputToLookFor);
+   }
+   return false;
+}
+
+bool ControllerDiagramModel::hasTriggers()
+{
+  return hasControl(Trigger1) && hasControl(Trigger2);
+}
+
+bool ControllerDiagramModel::hasStart()
+{
+    return hasControl(ButtonStart);
+}
+
+bool ControllerDiagramModel::hasCenter()
+{
+    return hasControl(ButtonCenter);
+}
+
+bool ControllerDiagramModel::hasAxis1()
+{
+    return hasControl(XAxis);
+}
+
+bool ControllerDiagramModel::hasAxis2()
+{
+     return hasControl(XAxis2);
+}
+
+bool ControllerDiagramModel::hasBackShoulder()
+{
+     return hasControl(LeftShoulder2) && hasControl(RightShoulder2);
+}
+
+bool ControllerDiagramModel::hasFrontShoulder()
+{
+     return hasControl(LeftShoulder) && hasControl(RightShoulder);
+}
+
+bool ControllerDiagramModel::hasYXButtons()
+{
+     return hasControl(ButtonY) && hasControl(ButtonX);
+}
+
+bool ControllerDiagramModel::hasAxis1Button()
+{
+     return hasControl(Axis1Button);
+}
+
+bool ControllerDiagramModel::hasAxis2Button()
+{
+     return hasControl(Axis2Button);
+}
 
 void ControllerDiagramModel::updateControllerValues(FSDeviceInputEvent & event,bool pressed)
 {

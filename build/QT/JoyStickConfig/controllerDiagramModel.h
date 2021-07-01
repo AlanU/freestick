@@ -108,6 +108,18 @@ public:
     float rightTrigger() const;
     virtual void setrightTrigger(float value);
 
+    Q_INVOKABLE bool hasControl(FSDeviceInput inputToLookFor);
+    Q_INVOKABLE bool hasTriggers();
+    Q_INVOKABLE bool hasStart();
+    Q_INVOKABLE bool hasCenter();
+    Q_INVOKABLE bool hasAxis1();
+    Q_INVOKABLE bool hasAxis2();
+    Q_INVOKABLE bool hasAxis1Button();
+    Q_INVOKABLE bool hasAxis2Button();
+    Q_INVOKABLE bool hasBackShoulder();
+    Q_INVOKABLE bool hasFrontShoulder();
+    Q_INVOKABLE bool hasYXButtons();
+
     QHash<int,QByteArray> roleNames() const override {return QHash<int,QByteArray>();};
     int rowCount(const QModelIndex & /*parent = QModelIndex()*/) const override {return 0;};
     QVariant data(const QModelIndex &/*index*/, int /*role = Qt::DisplayRole*/) const override{return QVariant();};
