@@ -37,7 +37,6 @@ Item {
                                                   ((parent.value + parent.offsetValue)
                                                    / (parent.max + parent.offsetValue))
                                                   * 100) + "%" : parent.value
-                font.pointSize: 0
             }
         }
     }
