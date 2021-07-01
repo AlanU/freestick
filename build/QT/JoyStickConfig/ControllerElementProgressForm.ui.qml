@@ -14,11 +14,16 @@ Item {
     ColumnLayout {
         id: columnLayout
         anchors.fill: parent
+        clip: true
 
-        Label {
+        Text {
             id: elementLabel
             text: qsTr("Label")
+            minimumPointSize: 8
+            minimumPixelSize: 8
+            fontSizeMode: Text.Fit
             Layout.fillWidth: true
+            clip: true
         }
 
         ContolProgressBar {
