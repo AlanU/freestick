@@ -14,7 +14,7 @@ Item {
         width: element.width / 4
         height: width
         anchors.top: parent.top
-        anchors.topMargin: 10
+        anchors.topMargin: 25
         anchors.horizontalCenterOffset: 0
         anchors.horizontalCenter: parent.horizontalCenter
         buttonText.text: "Y"
@@ -27,7 +27,7 @@ Item {
         width: element.width / 4
         height: width
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 10
+        anchors.bottomMargin: 25
         anchors.horizontalCenterOffset: 0
         anchors.horizontalCenter: yButton.horizontalCenter
         buttonText.text: "A"
@@ -39,7 +39,7 @@ Item {
         width: element.width / 4
         height: width
         anchors.left: parent.left
-        anchors.leftMargin: 10
+        anchors.leftMargin: 25
         anchors.verticalCenterOffset: 0
         anchors.verticalCenter: parent.verticalCenter
         buttonText.text: "X"
@@ -52,7 +52,7 @@ Item {
         width: element.width / 4
         height: width
         anchors.right: parent.right
-        anchors.rightMargin: 10
+        anchors.rightMargin: 25
         anchors.verticalCenter: xButton.verticalCenter
         buttonText.text: "B"
     }

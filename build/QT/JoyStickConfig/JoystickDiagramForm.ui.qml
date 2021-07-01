@@ -38,14 +38,11 @@ Item {
                 ColumnLayout {
                     id: columnLayout
                     anchors.verticalCenter: parent.verticalCenter
-                    // width: childrenRect.width
                     Layout.preferredHeight: childrenRect.height
                     anchors.left: parent.left
                     anchors.right: parent.right
                     anchors.rightMargin: 12
                     anchors.leftMargin: 12
-
-                    //anchors.fill: parent
                     spacing: 30
                     RowLayout {
                         id: shoulderRow
@@ -69,6 +66,7 @@ Item {
                     }
                     RowLayout {
                         id: axisRow
+                        spacing: 10.03667
                         Layout.fillHeight: true
                         ContollerAxis {
                             id: contollerLeftAxis
@@ -184,7 +182,7 @@ Item {
 
                 RowLayout {
                     id: buttonRow
-                    spacing: 20
+                    spacing: 30
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     ContorllerDpadButtons {
@@ -251,7 +249,6 @@ Item {
                         Layout.preferredHeight: 40
                         Layout.fillWidth: true
                         Layout.fillHeight: true
-
                         color: "transparent"
                     }
                 }
