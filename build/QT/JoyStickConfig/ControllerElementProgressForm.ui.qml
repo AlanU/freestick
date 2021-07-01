@@ -30,11 +30,14 @@ Item {
             forgroundColor: "#49E746"
             Layout.fillWidth: true
             Layout.fillHeight: true
+            property real offsetValue: progressBar.min < 0 ? 0 - progressBar.min : 0
             Label {
                 anchors.centerIn: parent
                 text: root.precent === true ? Math.floor(
-                                                  (parent.value / parent.max)
+                                                  ((parent.value + parent.offsetValue)
+                                                   / (parent.max + parent.offsetValue))
                                                   * 100) + "%" : parent.value
+                font.pointSize: 0
             }
         }
     }
