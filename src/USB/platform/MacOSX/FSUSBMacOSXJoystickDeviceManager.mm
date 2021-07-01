@@ -36,7 +36,7 @@ and must not be misrepresented as being the original software.
 #include "stdio.h"
 #include "../../../3rdParty/Mac/IOHID/IOHIDDevice_.h"
 #include "common/FreeStickLog.h"
-
+#import <GameController/GCController.h> //need to check on mac OS 11 if the device is handeld by GCController
 #import <Foundation/Foundation.h>
 using namespace freestick;
 
@@ -348,7 +348,14 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadWasAdded(void* inContext, IOReturn
     FSUSBMacOSXJoystickDeviceManager * manager = (FSUSBMacOSXJoystickDeviceManager *) inContext;
     vendorIDType vendorID = static_cast<vendorIDType>(IOHIDDevice_GetVendorID(device));
 
-    if (@available(macOS 10.15, *))
+    if(@available(macOS 11, *))
+    {
+        if(![GCController supportsHIDDevice:device])
+        {
+           manager->addDevice(device);
+        }
+    }
+    else if (@available(macOS 10.15, *))
     {
         std::string deviceName = FSUSBMacOSXJoystick::getManufactureName(device);
         if(deviceName.empty() || !containsControler(deviceName)  ) //vendorID != MIFIVenderID)// && productID != Playstation4ControllerIDV1 && productID != Playstation4ControllerIDV2)
