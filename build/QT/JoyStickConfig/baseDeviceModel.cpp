@@ -20,8 +20,11 @@ void BaseDeviceModel::setManager(QFreestickDeviceManger* manager)
     if(!m_manager.expired())
     {
         m_manager.lock()->UnListenForAllJoysticksForEventTypes(FS_JOYSTICK_CONNECTED_EVENT |
-                                                        FS_JOYSTICK_DISCONNECT_EVENT,
-                                                         *this);
+                                                               FS_JOYSTICK_DISCONNECT_EVENT |
+                                                               FS_BUTTON_EVENT |
+                                                               FS_AXIS_EVENT |
+                                                               FS_TRIGGER_EVENT,
+                                                               *this);
     }
 
     if(manager)
@@ -33,7 +36,8 @@ void BaseDeviceModel::setManager(QFreestickDeviceManger* manager)
              m_manager.lock()->ListenForAllJoysticksForEventTypes(FS_JOYSTICK_CONNECTED_EVENT |
                                                                   FS_JOYSTICK_DISCONNECT_EVENT |
                                                                   FS_BUTTON_EVENT |
-                                                                  FS_AXIS_EVENT,
+                                                                  FS_AXIS_EVENT |
+                                                                  FS_TRIGGER_EVENT,
                                                                    *this);
         }
     }

@@ -119,6 +119,8 @@ public:
     Q_INVOKABLE bool hasBackShoulder();
     Q_INVOKABLE bool hasFrontShoulder();
     Q_INVOKABLE bool hasYXButtons();
+    Q_INVOKABLE int  triggersMin();
+    Q_INVOKABLE int  triggersMax();
 
     QHash<int,QByteArray> roleNames() const override {return QHash<int,QByteArray>();};
     int rowCount(const QModelIndex & /*parent = QModelIndex()*/) const override {return 0;};

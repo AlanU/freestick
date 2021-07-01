@@ -41,8 +41,14 @@ JoystickDiagramForm {
        function updateVisablity(){
             centerButtons.aButton.visible = hasCenter()
             let triggers = hasTriggers()
+            let tMin = triggersMin()
+            let tMax = triggersMax()
             rigthSholderBar.visible = triggers
+            rigthSholderBar.min = tMin
+            rigthSholderBar.max = tMax
             leftSholderBar.visible = triggers
+            leftSholderBar.min = tMin
+            leftSholderBar.max = tMax
             centerButtons.bButton.visible = hasStart()
             setAxisVisabilty(contollerLeftAxis,xAxis1Bar,yAxis1Bar,hasAxis1())
             setAxisVisabilty(contollerRightAxis,xAxis2Bar,yAxis2Bar,hasAxis2())

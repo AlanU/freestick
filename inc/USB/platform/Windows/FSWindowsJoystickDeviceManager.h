@@ -25,62 +25,14 @@
    3. This notice may not be removed or altered from any source distribution.
 */
 #pragma once
-//direct input
-#include "USB/platform/Windows/FSDirectInputJoystick.h"
-#include "USB/platform/Windows/FSDirectInputJoystickManager.h"
 
-//Xinput
-#include "USB/platform/Windows/FSXInputJoystickDeviceManager.h"
-#include "USB/platform/Windows/FSXInputJoystick.h"
-
-#include "Interfaces/IFSDeviceIDCreator.h"
-#include "USB/common/FSUpdatableJoystickDeviceManager.h"
-#include "common/FSTypes.h"
-#include <memory>
-#include <functional>
-
-typedef freestick::FSUpdatableJoystickDeviceManager managerType;
-typedef std::unique_ptr<managerType> unique_ptr_of_managers;
-
+#include "USB/common/FSMultJoystickDeviceManger.h"
 namespace freestick {
 
-    class FSWindowsJoystickDeviceManager : public IFSDeviceIDCreator
+    class FSWindowsJoystickDeviceManager : public FSMultJoystickDeviceManger
     {
     public:
         FSWindowsJoystickDeviceManager();
-        virtual ~FSWindowsJoystickDeviceManager();
-        void update();
-        void init( );
-        elementID getNextID();
-        const FSUSBJoystick * getUSBJoystickDevice(idNumber deviceID){return static_cast<const FSUSBJoystick *>(getDevice(deviceID));}
-        const FSBaseDevice * getDevice(idNumber deviceID);
-        void ListenForAllJoysticksForEventTypes(unsigned int eventFlags,IFSJoystickListener & listener);
-        void UnListenForAllJoysticksForEventTypes(unsigned int eventFlags,IFSJoystickListener & listener);
-
-        //add or replace mapping
-         //void addMappingForButton(unsigned int vendorUSBID,unsigned int productUSBID,unsigned int controlUSBID,FSDeviceInput deviceInput);
-         void addMapping(vendorIDType vendorUSBID,productIDType productUSBID, idNumber controlUSBID,FSDeviceInput deviceInput);
-         void addMapping(idNumber deviceID, idNumber controlID,FSDeviceInput deviceInput);
-         //FSUSBElementInfoMap lookUpDeviceInputFromID(unsigned int deviceID, unsigned int controlID);
-         FSUSBElementInfoMap lookUpDeviceInputFromID(idNumber deviceID, idNumber controlID, minMaxNumber min, minMaxNumber max,physicalValueNumber value);
-         FSUSBElementInfoMap lookUpDeviceInputFromUSBID( vendorIDType vendorUSBID, productIDType productUSBID , idNumber controlID,minMaxNumber min,minMaxNumber max,physicalValueNumber value);
-         FSUSBElementInfoMap infoMapForInputType(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor );
-
-         bool doesDeviceHaveDeviceInput(idNumber deviceID,FSDeviceInput inputToLookFor);
-         bool doesElementHaveDeviceInputForValue(vendorIDType vendorUSBID, productIDType productUSBID , idNumber elementID, FSDeviceInput inputToLookFor );
-         bool doesDeviceHaveDeviceInput(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor);
-         bool doesDeviceHaveDeviceInputForValue(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor,physicalValueNumber value );
-         bool doesDeviceHaveDeviceInputForValue(idNumber deviceID,FSDeviceInput inputToLookFor,  physicalValueNumber value );
-
-         managerType * findManagerForDevice(idNumber deviceID);
-
-    private:
-         bool _listeningForEvents;
-         std::vector<unique_ptr_of_managers> managers;
-         bool DoesDeviceHaveInput(std::function<bool(unique_ptr_of_managers&)>const &func);
-
-
-
     };
 
 }

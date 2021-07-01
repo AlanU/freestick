@@ -338,6 +338,24 @@ bool ControllerDiagramModel::hasAxis2Button()
      return hasControl(Axis2Button);
 }
 
+int ControllerDiagramModel::triggersMin()
+{
+    int minValue = 0;
+    if(!m_manager.expired())
+    {
+        auto device = m_manager.lock()->getDevice(m_joystickId);
+        if(device->getClassType() == FSXInputJoystickType)
+        {
+            minValue = -1;
+        }
+    }
+    return minValue;
+}
+int  ControllerDiagramModel::triggersMax()
+{
+    return 1;
+}
+
 void ControllerDiagramModel::updateControllerValues(FSDeviceInputEvent & event,bool pressed)
 {
     if(m_joystickId == event.getDeviceID())

@@ -79,6 +79,10 @@ int main(int argc, char *argv[])
     engine.load(QUrl(QStringLiteral("qrc:/Main.qml")));
 
     auto returnValue = a.exec();
+    #ifdef Q_OS_WIN
+        timer->stop();
+        delete timer;
+    #endif
     return returnValue;
 }
 
