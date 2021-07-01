@@ -33,7 +33,9 @@
 using namespace freestick;
 FSXInputJoystickDeviceManager::FSXInputJoystickDeviceManager()
 {
-
+    //Removed Center button since it is not avabile on Xinput Contorllers
+    _usageMapToInputEvent[createVPId(MicrosoftVendorID,MicrosoftXbox360WindowsControllerID)].erase(589835);
+    _usageMapToInputEvent[createVPId(MicrosoftVendorID,MicrosoftXbox360WindowsControllerID)].erase(589840);
 }
 
 void FSXInputJoystickDeviceManager::update()
