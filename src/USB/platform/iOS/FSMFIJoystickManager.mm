@@ -101,8 +101,8 @@ void FSMFIJoystickDeviceManager::addMFIDevice(void * device)
         unsigned int numberOfAnlogSticks =2;
         unsigned int numberOfDigitalSticks=1;
         bool  forceFeedBackSupported =false;
-        vendorIDType vendorID = 0;
-        productIDType productID = 0;
+        vendorIDType vendorID = APPLE_VENDER_ID;
+        productIDType productID = MFI_PRODUCT_ID;
        // controller.playerIndex = static_cast<GCControllerPlayerIndex>(contorllerCount++);
 
 #if TARGET_OS_OSX
