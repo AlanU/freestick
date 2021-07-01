@@ -1,5 +1,6 @@
 import QtQuick 2.4
 import QtQuick.Controls 2.5
+import QtQuick.Layouts 1.12
 
 Item {
     id: mainForm
@@ -13,8 +14,28 @@ Item {
     Page {
         id: page
         anchors.fill: parent
-        header: ComboBox {
-            id: devices
+        header: ColumnLayout {
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.rightMargin: 0
+            anchors.leftMargin: 0
+            TabBar {
+                Layout.fillWidth: true
+                id: tabBar
+                TabButton {
+                    text: "Infomation"
+                }
+                TabButton {
+                    text: "Controller"
+                }
+                TabButton {
+                    text: "Input Table"
+                }
+            }
+            ComboBox {
+                id: devices
+                Layout.fillWidth: true
+            }
         }
 
         SwipeView {
@@ -43,7 +64,9 @@ Item {
             }
         }
 
-        footer: TabBar {
+        //for mobile
+
+        /*footer: TabBar {
             id: tabBar
             TabButton {
                 text: "Infomation"
@@ -54,6 +77,6 @@ Item {
             TabButton {
                 text: "Input Table"
             }
-        }
+        }*/
     }
 }
