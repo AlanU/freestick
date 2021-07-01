@@ -4,12 +4,12 @@ import org.freestick.models 1.0
 
 ApplicationWindow {
     id: window
-    width: 734
-    height: 456
+    width: 900
+    height: 600
     visible: true
     title: "Joystick Config"
-    minimumWidth: 734
-    minimumHeight: 456
+    minimumWidth: 900
+    minimumHeight: 600
     MainForm {
         id:main
         anchors.fill: parent

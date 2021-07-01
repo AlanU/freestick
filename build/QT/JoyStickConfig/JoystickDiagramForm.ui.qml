@@ -42,8 +42,8 @@ Item {
                     Layout.preferredHeight: childrenRect.height
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    anchors.rightMargin: 15
-                    anchors.leftMargin: 15
+                    anchors.rightMargin: 12
+                    anchors.leftMargin: 12
 
                     //anchors.fill: parent
                     spacing: 30

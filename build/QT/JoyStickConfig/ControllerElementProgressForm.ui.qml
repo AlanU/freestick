@@ -21,7 +21,6 @@ Item {
             text: qsTr("Label")
             minimumPointSize: 8
             minimumPixelSize: 8
-            fontSizeMode: Text.Fit
             Layout.fillWidth: true
             clip: true
         }
