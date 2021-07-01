@@ -18,6 +18,7 @@ Item {
             Layout.fillWidth: true
             Layout.fillHeight: true
             rounded: false
+            Layout.maximumHeight: width/3
         }
 
         ControllerButton {
@@ -25,6 +26,7 @@ Item {
             Layout.fillWidth: true
             Layout.fillHeight: true
             rounded: false
+            Layout.maximumHeight: width/3
         }
     }
 }
