@@ -13,7 +13,7 @@ JoystickDiagramForm {
        manager: deviceManager
        function updateButton(button,value)
        {
-            button.button.color = value > 0 ? "green" : "#EEEEEE"
+            button.button.color = value > 0 ? "#49E746" : "#EEEEEE"
        }
 
        function updateAxis(axis, value, xAxis){
@@ -29,7 +29,7 @@ JoystickDiagramForm {
 
        function updateAxisButton(axisObj,value)
        {
-           axisObj.button.color = value > 0 ? "green" : "#EEEEEE"
+           axisObj.button.color = value > 0 ? "#49E746" : "#EEEEEE"
        }
 
        function setAxisVisabilty(axisObj,axisBarX,axisBarY,visibleValue){
