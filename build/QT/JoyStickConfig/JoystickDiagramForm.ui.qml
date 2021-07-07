@@ -58,7 +58,7 @@ Item {
                         ControllerElementProgressForm {
                             id: rigthSholderProgress
                             Layout.fillWidth: true
-                            elemnetName: qsTr("Rigth Shoulder")
+                            elemnetName: qsTr("Right Shoulder")
                             min: 0
                             max: 1
                             value: 0
