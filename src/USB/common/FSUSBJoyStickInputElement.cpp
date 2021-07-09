@@ -227,6 +227,12 @@ void FSUSBJoyStickInputElement::calibrate(physicalValueNumber currentValue, minM
 
         _needsDeadZone = true;
    }
+   else
+   {
+        _value = currentValue;
+        _oldValue = currentValue;
+        _intialized = true;
+    }
 }
 
 void FSUSBJoyStickInputElement::recalibrate(physicalValueNumber currentValue, minMaxNumber elementMin, minMaxNumber elementMax )
