@@ -95,7 +95,7 @@ end
 
 $build_target = ''
 $qt_path = ''
-
+$build_test_app = false
 def processArgs()
   ARGV.each do |arg|
     commands = arg.split('=')
@@ -105,12 +105,13 @@ def processArgs()
     command = commands[0].delete('-')
     value =  commands[1].delete("'").delete('"')
     case command
+    when 'build_test_app'
+      $build_test_app = true
     when 'qt'
       $qt_path = value
     when 'target'
       $build_target = value.downcase()
     end
-
   end
 end
 
@@ -147,19 +148,18 @@ when 'windows'
   out_put_file_name = 'windows64'
 end
 
-
 if spec.empty? && qt_compiler.empty? && config_string.empty?
   exit -1
 else
   lib_build_results = build("#{$qt_path}/#{qt_compiler}", "#{spec}", make_path, config_string, '../../FreeStick/FreeStick.pro')
-  # TODO Fix Building test App
-  test_app_build_results = build("#{$qt_path}/#{qt_compiler}", "#{spec}", make_path, config_string, '../../FreeStickTestApp/FreeStickTestApp.pro')
+  if($build_test_app)
+    # TODO Fix Building test App
+    test_app_build_results = build("#{$qt_path}/#{qt_compiler}", "#{spec}", make_path, config_string, '../../FreeStickTestApp/FreeStickTestApp.pro')
+  end
   Dir.chdir('..')
-  deploy_qt($qt_path, qt_compiler, './JoyStickConfig/release/JoyStickConfig.app')
+  deploy_qt($qt_path, qt_compiler, './JoyStickConfig/release/JoyStickConfig.app') if($build_test_app)
   FileUtils.cp_r("#{HEADER_PATH}", "#{BUILD_DIR}/release") #copy headers over
   copyArtifacts(out_put_file_name, BUILD_DIR)
-  copyArtifacts('joystickConfig', TEST_APP_BUILD_DIR)
-  unless lib_build_results # && test_app_build_results
-    exit -1
-  end
+  copyArtifacts('joystickConfig', TEST_APP_BUILD_DIR) if($build_test_app)
+  exit -1 unless lib_build_results # && test_app_build_results
 end
