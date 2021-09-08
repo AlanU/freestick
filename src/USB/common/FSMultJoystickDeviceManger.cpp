@@ -1,5 +1,5 @@
 #include "USB/common/FSMultJoystickDeviceManger.h"
-
+#include <algorithm>
 using namespace freestick;
 
 bool FSMultJoystickDeviceManger::DoesDeviceHaveInput(std::function<bool(unique_ptr_of_managers&)>const &func)
