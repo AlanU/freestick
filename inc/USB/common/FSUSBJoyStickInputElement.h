@@ -72,6 +72,9 @@ namespace freestick
         minMaxNumber getOldValue() const {return _oldValue;};
         bool isValueInDeadZone(minMaxNumber value);
 		bool isIntialized();
+        bool getUsesLastValueStack();
+        bool getNeedsDeadZone();
+        bool isCalibrated();
         inline minMaxNumber getMaxValue() const {return _elementMax;}
         inline minMaxNumber getMinValue() const {return _elementMin;}
         inline minMaxNumber getDeadZoneMin() const {return _deadZoneMin;}
@@ -80,6 +83,7 @@ namespace freestick
         void recalibrate(physicalValueNumber currentValue, minMaxNumber elementMin, minMaxNumber elementMax );
         uint16_t getHIDUsage();
         uint16_t getHIDUsagePage();
+        virtual FSDeviceType getClassType() const {return FSUSBJoyStickInputElementType;}
         //used to pad out the dead zone when calibrating
         void setCalibrationOffsetPrecent(float offset ) ;
     };

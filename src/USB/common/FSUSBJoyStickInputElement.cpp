@@ -238,3 +238,18 @@ bool FSUSBJoyStickInputElement::isIntialized()
 {
 	return _intialized;
 }
+
+bool FSUSBJoyStickInputElement::getUsesLastValueStack()
+{
+    return _useLastValueStack;
+}
+
+bool FSUSBJoyStickInputElement::getNeedsDeadZone()
+{
+    return _needsDeadZone;
+}
+
+bool FSUSBJoyStickInputElement::isCalibrated()
+{
+    return _calibrated;
+}
