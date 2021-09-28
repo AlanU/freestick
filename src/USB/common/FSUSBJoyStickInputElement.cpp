@@ -70,9 +70,10 @@ void FSUSBJoyStickInputElement::getMapping(int inputValue ,std::stack<FSUSBEleme
 
 
       infoMapsToReturn.push(map);
-      this->setValue(inputValue);
+
 
    }
+    this->setValue(inputValue);
 
 }
 
