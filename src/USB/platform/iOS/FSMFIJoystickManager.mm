@@ -9,7 +9,7 @@ using namespace freestick;
 #if TARGET_OS_OSX
 #include "USB/platform/MacOSX/FSMacUtil.h"
 #endif
-
+const int valueMultiplier = 10000000;
 FSMFIJoystickDeviceManager::FSMFIJoystickDeviceManager()
 {
 
@@ -23,9 +23,11 @@ FSMFIJoystickDeviceManager::FSMFIJoystickDeviceManager()
     _usageMapToInputEvent[createVPId(APPLE_VENDER_ID,MFI_PRODUCT_ID)][LEFT_SHOULDER_BUTTON_MFI_EID] = LeftShoulder;//L1 sholder button
     _usageMapToInputEvent[createVPId(APPLE_VENDER_ID,MFI_PRODUCT_ID)][RIGHT_SHOULDER_BUTTON_MFI_EID] = RightShoulder;//R2 sholder button
 
-    //xbox 360 is for 0 - 255 but xbox one is for 0 - 1023 and the xbox one driver pretends it is a xbox 360 with the 1023 value
     _usageMapToInputRangeEvent[createVPId(APPLE_VENDER_ID,MFI_PRODUCT_ID)][LTRIGGER_MFI_EID].push_back(FSUSBElementInfoMap(0,1,Trigger1,FSInputChanged));//L2 trigger
     _usageMapToInputRangeEvent[createVPId(APPLE_VENDER_ID,MFI_PRODUCT_ID)][RTRIGGER_MFI_EID].push_back(FSUSBElementInfoMap(0,1,Trigger2,FSInputChanged));//R2 trigger
+
+    _usageMapToInputRangeEvent[createVPId(APPLE_VENDER_ID,MFI_PRODUCT_ID)][LTRIGGER_MFI_EID].push_back(FSUSBElementInfoMap(0,valueMultiplier,Trigger1,FSInputChanged));//L2 trigger
+    _usageMapToInputRangeEvent[createVPId(APPLE_VENDER_ID,MFI_PRODUCT_ID)][RTRIGGER_MFI_EID].push_back(FSUSBElementInfoMap(0,valueMultiplier,Trigger2,FSInputChanged));//R2 trigger
 
     _usageMapToInputEvent[createVPId(APPLE_VENDER_ID,MFI_PRODUCT_ID)][LEFT_AXIS_BUTTON_MFI_EID] = Axis1Button;//L3 left thumb down
     _usageMapToInputEvent[createVPId(APPLE_VENDER_ID,MFI_PRODUCT_ID)][RIGHT_AXIS_BUTTON_MFI_EID] = Axis2Button;//R3 right thumb down
@@ -39,10 +41,13 @@ FSMFIJoystickDeviceManager::FSMFIJoystickDeviceManager()
 
     _usageMapToInputRangeEvent[createVPId(APPLE_VENDER_ID,MFI_PRODUCT_ID)][LEFT_XAXIS_MFI_EID].push_back(FSUSBElementInfoMap(-1,1,XAxis,FSInputChanged));//LXaxis stick trigger
     _usageMapToInputRangeEvent[createVPId(APPLE_VENDER_ID,MFI_PRODUCT_ID)][LEFT_YAXIS_MFI_EID].push_back(FSUSBElementInfoMap(-1,1,YAxis,FSInputChanged));//LYaxis stick trigger
+    _usageMapToInputRangeEvent[createVPId(APPLE_VENDER_ID,MFI_PRODUCT_ID)][LEFT_XAXIS_MFI_EID].push_back(FSUSBElementInfoMap(valueMultiplier*-1,valueMultiplier,XAxis,FSInputChanged));//LXaxis stick trigger
+    _usageMapToInputRangeEvent[createVPId(APPLE_VENDER_ID,MFI_PRODUCT_ID)][LEFT_YAXIS_MFI_EID].push_back(FSUSBElementInfoMap(valueMultiplier*-1,valueMultiplier,YAxis,FSInputChanged));//LXaxis stick trigger
 
     _usageMapToInputRangeEvent[createVPId(APPLE_VENDER_ID,MFI_PRODUCT_ID)][RIGHT_XAXIS_MFI_EID].push_back(FSUSBElementInfoMap(-1,1,XAxis2,FSInputChanged));//RXaxis stick trigger
     _usageMapToInputRangeEvent[createVPId(APPLE_VENDER_ID,MFI_PRODUCT_ID)][RIGHT_YAXIS_MFI_EID].push_back(FSUSBElementInfoMap(-1,1,YAxis2,FSInputChanged));//RYaxis stick trigger
-
+    _usageMapToInputRangeEvent[createVPId(APPLE_VENDER_ID,MFI_PRODUCT_ID)][RIGHT_XAXIS_MFI_EID].push_back(FSUSBElementInfoMap(valueMultiplier*-1,valueMultiplier,XAxis2,FSInputChanged));//RXaxis stick trigger
+    _usageMapToInputRangeEvent[createVPId(APPLE_VENDER_ID,MFI_PRODUCT_ID)][RIGHT_YAXIS_MFI_EID].push_back(FSUSBElementInfoMap(valueMultiplier*-1,valueMultiplier,YAxis2,FSInputChanged));//RYaxis stick trigger
 
 }
 
@@ -136,7 +141,7 @@ void FSMFIJoystickDeviceManager::updateJoystickButtons(idNumber joyStickID,idNum
     }
     if(contorller)
     {
-        contorller->setElementValue(elementID,value*10000);
+        contorller->setElementValue(elementID,value*valueMultiplier);
     }
     FSEventAction buttonEvent = FSEventAction::FSInputRest;
     if(pressed)
@@ -165,6 +170,15 @@ void FSMFIJoystickDeviceManager::updateJoystickButtons(idNumber joyStickID,idNum
 
 void FSMFIJoystickDeviceManager::updateJoystickAnalog(idNumber joyStickID,idNumber elementID,float value)
 {
+    FSMFIJoystick * contorller = nullptr;
+    if(deviceMap.find(joyStickID) != deviceMap.end())
+    {
+         contorller = static_cast<FSMFIJoystick *>(deviceMap[joyStickID]);
+    }
+    if(contorller)
+    {
+        contorller->setElementValue(elementID,value*valueMultiplier);
+    }
     bool forceAnalog = elementID == LTRIGGER_MFI_EID || elementID == RTRIGGER_MFI_EID;
     //TODO get old value form elemement
     auto map = lookUpDeviceInputFromUSBID(APPLE_VENDER_ID,MFI_PRODUCT_ID,elementID,forceAnalog ? 0 :-1,1,value,forceAnalog);
