@@ -57,6 +57,7 @@ void  FSXInputJoystickDeviceManager::updateAnalog(unsigned int axisToLookFor , c
         if (element->getValue() != value) {
             updateEvents(controllerID, element, value);
         }
+        element->setValue(value);
     }
 }
 
@@ -64,7 +65,9 @@ void  FSXInputJoystickDeviceManager::updateButton(WORD buttons,WORD xButtonToLoo
 {
     bool value = ((buttons & xButtonToLookFor)!= 0 );
     FSUSBJoyStickInputElement * pad = (FSUSBJoyStickInputElement*) xinputJoystick->findInputElement(buttonToLookFor) ;
-	updateEvents(controllerID, pad, value ? 1 : 0);
+    physicalValueNumber numValue = value ? 1 : 0;
+    updateEvents(controllerID, pad, numValue);
+    pad->setValue(numValue);
 }
 
 void FSXInputJoystickDeviceManager::updateJoysticks()
