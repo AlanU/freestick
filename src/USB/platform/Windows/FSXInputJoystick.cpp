@@ -98,7 +98,6 @@ void FSXInputJoystick::addXinputElements(XINPUT_STATE & state)
 
     addButtonElement(START_BUTTON_XINPUT_EID);
     addButtonElement(BACK_BUTTON_XINPUT_EID);
-    addButtonElement(CENTER_BUTTON_XINPUT_EID);
 
     addButtonElement(LEFT_SHOULDER_BUTTON_XINPUT_EID);
     addButtonElement(RIGHT_SHOULDER_BUTTON_XINPUT_EID);
