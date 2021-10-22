@@ -347,7 +347,9 @@ uint32_t FSUSBMacOSXJoystickDeviceManager::createIdForElement(uint32_t usage, ui
 void FSUSBMacOSXJoystickDeviceManager::gamepadWasAdded(void* inContext, IOReturn /*inResult*/, void* /*inSender*/, IOHIDDeviceRef device) {
     FSUSBMacOSXJoystickDeviceManager * manager = (FSUSBMacOSXJoystickDeviceManager *) inContext;
     vendorIDType vendorID = static_cast<vendorIDType>(IOHIDDevice_GetVendorID(device));
-
+    productIDType productID = static_cast<productIDType>(IOHIDDevice_GetProductID(device));
+    //Work around for a bug where supportsHIDDevice returns false for PlayStation 5 controller
+    if(vendorID == SonyVendorID && productID == Playstation5Controller) return;
     if(@available(macOS 11, *))
     {
         if(![GCController supportsHIDDevice:device])
@@ -541,6 +543,7 @@ void FSUSBMacOSXJoystickDeviceManager::addDevice(IOHIDDeviceRef  device)
 {
     if(IOHIDDeviceToIDMap.find(device) == IOHIDDeviceToIDMap.end())
     {
+
         FSUSBMacOSXJoystick * temp = new FSUSBMacOSXJoystick(device, this->getNextID(),numberOfButtons(device),numberOfAnalogSticks(device),0,isForceFeedBackSupported(device));
         temp->Init(*this);
         this->addDevice(temp);
