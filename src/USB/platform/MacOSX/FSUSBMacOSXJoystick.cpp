@@ -160,7 +160,8 @@ FSUSBMacOSXJoystick::FSUSBMacOSXJoystick(IOHIDDeviceRef device,
                                          unsigned int numberOfButtons,
                                          unsigned int numberOfAnlogSticks,
                                          unsigned int numberOfDigitalSticks,
-                                         bool forceFeedBackSupported ):FSUSBJoystick(joyStickID,
+                                         bool forceFeedBackSupported,
+                                         const std::string & physicalDeviceUniqueID):FSUSBJoystick(joyStickID,
                                                                                      numberOfButtons,
                                                                                      numberOfAnlogSticks,
                                                                                      numberOfDigitalSticks,
@@ -168,6 +169,7 @@ FSUSBMacOSXJoystick::FSUSBMacOSXJoystick(IOHIDDeviceRef device,
                                                                                      0,
                                                                                      0 )
 {
+    _physicalDeviceUniqueID = physicalDeviceUniqueID;
     _vendorID = static_cast<vendorIDType>(IOHIDDevice_GetVendorID(device));
     _productID = static_cast<productIDType>( IOHIDDevice_GetProductID(device));
 

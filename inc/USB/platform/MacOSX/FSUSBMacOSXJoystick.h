@@ -35,6 +35,7 @@ namespace freestick
     {
     private:
         IOHIDDeviceRef _macIOHIDDeviceRef;
+        std::string _physicalDeviceUniqueID;
     protected:
         FSUSBMacOSXJoystick();
     public:
@@ -43,11 +44,13 @@ namespace freestick
                             unsigned int numberOfButtons,
                             unsigned int numberOfAnlogSticks,
                             unsigned int numberOfDigitalSticks,
-                            bool forceFeedBackSupported );
+                            bool forceFeedBackSupported,
+                            const std::string & physicalDeviceUniqueID);
         unsigned int Init(FSUSBJoystickDeviceManager & usbJoystickManager);
         virtual ~FSUSBMacOSXJoystick();
         IOHIDDeviceRef GetIOHIDDeviceRef() const {return _macIOHIDDeviceRef;}
         virtual FSDeviceType getClassType() const {return FSUSBMACOSXJoystickType;}
+        const std::string getPhysicalDeviceUniqueID() const {return _physicalDeviceUniqueID; }
         static std::string CFStringRefToString(CFStringRef refString);
         static std::string getManufactureName(IOHIDDeviceRef device);
 

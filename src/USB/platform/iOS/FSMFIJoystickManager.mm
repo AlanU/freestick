@@ -8,6 +8,7 @@ using namespace freestick;
 
 #if TARGET_OS_OSX
 #include "USB/platform/MacOSX/FSMacUtil.h"
+#import "USB/platform/MacOSX/GCController+hidServices.h"
 #endif
 const int valueMultiplier = 10000000;
 FSMFIJoystickDeviceManager::FSMFIJoystickDeviceManager()
@@ -106,14 +107,19 @@ void FSMFIJoystickDeviceManager::addMFIDevice(void * device)
         unsigned int numberOfAnlogSticks =2;
         unsigned int numberOfDigitalSticks=1;
         bool  forceFeedBackSupported =false;
-        vendorIDType vendorID = APPLE_VENDER_ID;
-        productIDType productID = MFI_PRODUCT_ID;
+        uint16_t vendorID = APPLE_VENDER_ID;
+        uint16_t productID = MFI_PRODUCT_ID;
        // controller.playerIndex = static_cast<GCControllerPlayerIndex>(contorllerCount++);
 
 #if TARGET_OS_OSX
         GCController * gccontroller = static_cast<GCController*>(device);
         std::string temp([[gccontroller vendorName] UTF8String]);
-       connectKnownControllers(temp);
+        connectKnownControllers(temp);
+        auto vpId = getVendorAndProductFromUniqueID([[gccontroller identifier] UTF8String]);
+        if(vpId.first)
+        {
+            FSUSBJoystickDeviceManager::getUsageFromIdForElement(vpId.second,vendorID,productID);
+        }
 #endif
         FSUSBDeviceManager::addDevice(new FSMFIJoystick(device,
                                                         newId,
@@ -279,4 +285,9 @@ void FSMFIJoystickDeviceManager::connectControlesToController(void * contorllerT
             // TODO add support
         }
     }
+}
+
+FSUSBElementInfoMap  FSMFIJoystickDeviceManager::lookUpDeviceInputFromUSBID( vendorIDType vendorUSBID, productIDType productUSBID , unsigned int controlID,minMaxNumber min,minMaxNumber max,int value,bool forceAnalogLookup)
+{
+    return FSUpdatableJoystickDeviceManager::lookUpDeviceInputFromUSBID(APPLE_VENDER_ID,MFI_PRODUCT_ID, controlID,min,max,value,forceAnalogLookup);
 }

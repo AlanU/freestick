@@ -130,7 +130,8 @@ macx {
         ../../../inc/USB/platform/MacOSX/FSUSBMacOSXJoystick.h \
         ../../../inc/USB/platform/MacOSX/FSUSBMacOSXJoystickDeviceManager.h \
         ../../../inc/USB/platform/MacOSX/FSMacOSXJoystickDeviceManager.h \
-        ../../../inc/USB/platform/MacOSX/FSMacUtil.h
+        ../../../inc/USB/platform/MacOSX/FSMacUtil.h \
+        ../../../inc/USB/platform/MacOSX/GCController+hidServices.h
 
 
     OBJECTIVE_SOURCES += ../../../src/USB/platform/iOS/FSMFIJoystickManager.mm \

@@ -353,20 +353,16 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadWasAdded(void* inContext, IOReturn
     if([physicalDeviceUniqueID length] == 0 && serial != nil)
     {
         physicalDeviceUniqueID = serial;
-
     }
-
+    std::string deviceUniqueID = physicalDeviceUniqueID == nil ? "": [[NSString stringWithFormat:@"LOGICAL_DEVICE(%@)", physicalDeviceUniqueID] UTF8String];
+    bool mfiController = true;
     if(@available(macOS 11, *))
     {
-        if(![GCController supportsHIDDevice:device])
+        //The Sony Playstation 5 Controller is the only MFI contorller where [GCController supportsHIDDevice:device] returns no and physicalDeviceUniqueID == nil
+        if(![GCController supportsHIDDevice:device] && physicalDeviceUniqueID == nil && !(vendorID == SonyVendorID && productID == Playstation5Controller))
         {
-            if(physicalDeviceUniqueID == nil )
-            {
-               if(!(vendorID == SonyVendorID && productID == Playstation5Controller))//The one MFI contorller where [GCController supportsHIDDevice:device] returns no and physicalDeviceUniqueID == nil
-                 manager->addDevice(device);
-            }
-
-
+            manager->addDevice(device,deviceUniqueID);
+            mfiController = false;
         }
     }
     else if (@available(macOS 10.15, *))
@@ -374,17 +370,22 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadWasAdded(void* inContext, IOReturn
         std::string deviceName = FSUSBMacOSXJoystick::getManufactureName(device);
         if(deviceName.empty() || !containsControler(deviceName)  ) //vendorID != MIFIVenderID)// && productID != Playstation4ControllerIDV1 && productID != Playstation4ControllerIDV2)
         {
-            manager->addDevice(device);
+            manager->addDevice(device,deviceUniqueID);
+            mfiController = false;
         }
     }
     else
     {
         if(vendorID != MIFIVenderID)
         {
-            manager->addDevice(device);
+            manager->addDevice(device, deviceUniqueID);
+            mfiController = false;
         }
     }
-
+    if(mfiController && deviceUniqueID != "")
+    {
+        connectUniqueIDControllers(deviceUniqueID,FSUSBJoystickDeviceManager::createIdForElement(vendorID,productID));
+    }
 }
 
 void FSUSBMacOSXJoystickDeviceManager::gamepadWasRemoved(void* inContext, IOReturn inResult, void* inSender, IOHIDDeviceRef device) {
@@ -552,12 +553,12 @@ FSUSBMacOSXJoystickDeviceManager::~FSUSBMacOSXJoystickDeviceManager()
     CFRelease(hidManagerJoyStick);
 }
 
-void FSUSBMacOSXJoystickDeviceManager::addDevice(IOHIDDeviceRef  device)
+void FSUSBMacOSXJoystickDeviceManager::addDevice(IOHIDDeviceRef  device, const std::string & physicalDeviceUniqueID)
 {
     if(IOHIDDeviceToIDMap.find(device) == IOHIDDeviceToIDMap.end())
     {
 
-        FSUSBMacOSXJoystick * temp = new FSUSBMacOSXJoystick(device, this->getNextID(),numberOfButtons(device),numberOfAnalogSticks(device),0,isForceFeedBackSupported(device));
+        FSUSBMacOSXJoystick * temp = new FSUSBMacOSXJoystick(device, this->getNextID(),numberOfButtons(device),numberOfAnalogSticks(device),0,isForceFeedBackSupported(device),physicalDeviceUniqueID);
         temp->Init(*this);
         this->addDevice(temp);
         //findDpad(device);
@@ -570,6 +571,8 @@ void FSUSBMacOSXJoystickDeviceManager::removeDevice(IOHIDDeviceRef device)
 {
     if(this->IOHIDDeviceToIDMap.find(device) != IOHIDDeviceToIDMap.end())
     {
-        this->removeDevice((FSBaseDevice *)this->getDevice(this->IOHIDDeviceToIDMap[device]));
+        FSUSBMacOSXJoystick * deviceToDelete = (FSUSBMacOSXJoystick *)this->getDevice(this->IOHIDDeviceToIDMap[device]);
+        dissconnectUniqueIDControllers(deviceToDelete->getPhysicalDeviceUniqueID());
+        this->removeDevice((FSBaseDevice *)deviceToDelete);
     }
 }

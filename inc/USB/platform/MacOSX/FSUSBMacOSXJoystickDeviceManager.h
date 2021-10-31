@@ -51,7 +51,7 @@ namespace freestick
     protected:
         virtual void addDevice(FSBaseDevice * device);
         virtual void removeDevice(FSBaseDevice * device);
-        virtual void addDevice(IOHIDDeviceRef  device);
+        virtual void addDevice(IOHIDDeviceRef  device, const std::string & physicalDeviceUniqueID);
         virtual void removeDevice(IOHIDDeviceRef device);
         unsigned int getDeviceIDFromIOHIDevice(IOHIDDeviceRef deviceRef);
 
