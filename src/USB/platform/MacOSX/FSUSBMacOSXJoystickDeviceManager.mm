@@ -348,13 +348,25 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadWasAdded(void* inContext, IOReturn
     FSUSBMacOSXJoystickDeviceManager * manager = (FSUSBMacOSXJoystickDeviceManager *) inContext;
     vendorIDType vendorID = static_cast<vendorIDType>(IOHIDDevice_GetVendorID(device));
     productIDType productID = static_cast<productIDType>(IOHIDDevice_GetProductID(device));
-    //Work around for a bug where supportsHIDDevice returns false for PlayStation 5 controller
-    if(vendorID == SonyVendorID && productID == Playstation5Controller) return;
+    NSString * physicalDeviceUniqueID = static_cast<NSString *>(( IOHIDDeviceGetProperty( device, CFSTR(kIOHIDPhysicalDeviceUniqueIDKey) ) ));
+    NSString * serial = static_cast<NSString*>( ( IOHIDDeviceGetProperty( device, CFSTR(kIOHIDSerialNumberKey) ) ));
+    if([physicalDeviceUniqueID length] == 0 && serial != nil)
+    {
+        physicalDeviceUniqueID = serial;
+
+    }
+
     if(@available(macOS 11, *))
     {
         if(![GCController supportsHIDDevice:device])
         {
-           manager->addDevice(device);
+            if(physicalDeviceUniqueID == nil )
+            {
+               if(!(vendorID == SonyVendorID && productID == Playstation5Controller))//The one MFI contorller where [GCController supportsHIDDevice:device] returns no and physicalDeviceUniqueID == nil
+                 manager->addDevice(device);
+            }
+
+
         }
     }
     else if (@available(macOS 10.15, *))
@@ -372,6 +384,7 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadWasAdded(void* inContext, IOReturn
             manager->addDevice(device);
         }
     }
+
 }
 
 void FSUSBMacOSXJoystickDeviceManager::gamepadWasRemoved(void* inContext, IOReturn inResult, void* inSender, IOHIDDeviceRef device) {
