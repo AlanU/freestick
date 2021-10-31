@@ -24,7 +24,7 @@ FSMFIJoystick::FSMFIJoystick(void * controller,idNumber joyStickID,
                             productID)
 {
     GCController * gccontroller = static_cast<GCController*>(controller);
-    addMFIElements();
+    addMFIElements(static_cast<void *>(gccontroller));
     _vendorIDFriendlyName = [[gccontroller vendorName] UTF8String];
     #if TARGET_OS_IPHONE
     if (@available(iOS 13.0, *) )
@@ -53,8 +53,9 @@ bool FSMFIJoystick::setElementValue(elementID element,float value)
     return false;
 }
 
-void FSMFIJoystick::addMFIElements()
+void FSMFIJoystick::addMFIElements(void * controller)
 {
+    GCController * gccontroller = static_cast<GCController*>(controller);
     addButtonElement(UP_DPAD_MFI_EID);
     addButtonElement(DOWN_DPAD_MFI_EID);
     addButtonElement(LEFT_DPAD_MFI_EID);
@@ -69,12 +70,23 @@ void FSMFIJoystick::addMFIElements()
 
     addButtonElement(LEFT_SHOULDER_BUTTON_MFI_EID);
     addButtonElement(RIGHT_SHOULDER_BUTTON_MFI_EID);
-
-
-    addButtonElement(LEFT_AXIS_BUTTON_MFI_EID);
-    addButtonElement(RIGHT_AXIS_BUTTON_MFI_EID);
-
-
+#if TARGET_OS_IPHONE
+if (@available(iOS 12.1, *) )
+#elif TARGET_OS_TV
+if (@available(tvOS 12.1, *) )
+#else
+if (@available(macOS 10.14.1, *))
+#endif
+{
+    if([gccontroller extendedGamepad].leftThumbstickButton != nil)
+    {
+        addButtonElement(LEFT_AXIS_BUTTON_MFI_EID);
+    }
+    if([gccontroller extendedGamepad].rightThumbstickButton != nil)
+    {
+        addButtonElement(RIGHT_AXIS_BUTTON_MFI_EID);
+    }
+}
     addElement(LEFT_XAXIS_MFI_EID,-1,1,0);
     addElement(LEFT_YAXIS_MFI_EID,-1,1,0);
 

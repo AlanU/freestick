@@ -76,7 +76,7 @@ namespace freestick
     protected:
         void addButtonElement(unsigned int buttonID);
         void addElement(unsigned int buttonID,minMaxNumber min,minMaxNumber max,physicalValueNumber currentValue);
-        void addMFIElements();
+        void addMFIElements(void * controller);
         minMaxNumber _totalButtonNumber = 0;
     };
 }
