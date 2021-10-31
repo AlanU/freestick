@@ -85,8 +85,6 @@ void FSMFIJoystickDeviceManager::removeMFIDevice(void * device)
     {
 #if TARGET_OS_OSX
         GCController * gccontroller = static_cast<GCController*>(device);
-        std::string temp([[gccontroller vendorName] UTF8String]);
-        dissconnectKnownControllers(temp);
 #endif
         elementID id = _wordToIDControllerMap[device];
         const FSBaseDevice * joystickToDelete = getDevice(id);
@@ -113,12 +111,13 @@ void FSMFIJoystickDeviceManager::addMFIDevice(void * device)
 
 #if TARGET_OS_OSX
         GCController * gccontroller = static_cast<GCController*>(device);
-        std::string temp([[gccontroller vendorName] UTF8String]);
-        connectKnownControllers(temp);
-        auto vpId = getVendorAndProductFromUniqueID([[gccontroller identifier] UTF8String]);
-        if(vpId.first)
+        if(@available(macOS 11, *))
         {
-            FSUSBJoystickDeviceManager::getUsageFromIdForElement(vpId.second,vendorID,productID);
+            auto vpId = getVendorAndProductFromUniqueID([[gccontroller identifier] UTF8String]);
+            if(vpId.first)
+            {
+                FSUSBJoystickDeviceManager::getUsageFromIdForElement(vpId.second,vendorID,productID);
+            }
         }
 #endif
         FSUSBDeviceManager::addDevice(new FSMFIJoystick(device,
