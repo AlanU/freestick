@@ -287,7 +287,19 @@ void FSMFIJoystickDeviceManager::connectControlesToController(void * contorllerT
     }
 }
 
-FSUSBElementInfoMap  FSMFIJoystickDeviceManager::lookUpDeviceInputFromUSBID( vendorIDType vendorUSBID, productIDType productUSBID , unsigned int controlID,minMaxNumber min,minMaxNumber max,int value,bool forceAnalogLookup)
+FSUSBElementInfoMap FSMFIJoystickDeviceManager::lookUpDeviceInputFromUSBID( vendorIDType vendorUSBID, productIDType productUSBID , unsigned int controlID,minMaxNumber min,minMaxNumber max,int value,bool forceAnalogLookup)
 {
     return FSUpdatableJoystickDeviceManager::lookUpDeviceInputFromUSBID(APPLE_VENDER_ID,MFI_PRODUCT_ID, controlID,min,max,value,forceAnalogLookup);
 }
+
+bool FSMFIJoystickDeviceManager::doesDeviceHaveDeviceInput(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor)
+{
+    return FSUpdatableJoystickDeviceManager::doesDeviceHaveDeviceInput(APPLE_VENDER_ID, MFI_PRODUCT_ID, inputToLookFor);
+}
+
+bool FSMFIJoystickDeviceManager::doesDeviceHaveDeviceInputForValue(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor,physicalValueNumber value )
+{
+    return FSUpdatableJoystickDeviceManager::doesDeviceHaveDeviceInputForValue(APPLE_VENDER_ID, MFI_PRODUCT_ID, inputToLookFor, value );
+}
+
+

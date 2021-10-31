@@ -116,12 +116,12 @@ const uint32_t MIFIVenderID = 273;
         FSUSBElementInfoMap infoMapForInputType(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor );
 
 
-        bool doesDeviceHaveDeviceInput(idNumber deviceID,FSDeviceInput inputToLookFor);
+       bool doesDeviceHaveDeviceInput(idNumber deviceID,FSDeviceInput inputToLookFor);
         //TODO have androd overide this fuction
-        bool doesElementHaveDeviceInputForValue(vendorIDType vendorUSBID, productIDType productUSBID ,elementID elementID, FSDeviceInput inputToLookFor );
-        bool doesDeviceHaveDeviceInput(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor);
-        bool doesDeviceHaveDeviceInputForValue(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor,physicalValueNumber value );
-        bool doesDeviceHaveDeviceInputForValue(idNumber deviceID,FSDeviceInput inputToLookFor,  physicalValueNumber value );
+        virtual bool doesElementHaveDeviceInputForValue(vendorIDType vendorUSBID, productIDType productUSBID ,elementID elementID, FSDeviceInput inputToLookFor );
+        virtual bool doesDeviceHaveDeviceInput(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor);
+        virtual bool doesDeviceHaveDeviceInputForValue(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor,physicalValueNumber value );
+        virtual bool doesDeviceHaveDeviceInputForValue(idNumber deviceID,FSDeviceInput inputToLookFor,  physicalValueNumber value );
 
 
         //creates a 64 bit id from the vendor and product id
