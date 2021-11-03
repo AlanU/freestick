@@ -17,6 +17,7 @@ Class ControllerClassForService(IOHIDServiceClientRef);
 @property (nonatomic, readonly) IOHIDServiceClientRef service;
 @end
 //#endif*/
+#ifdef __OBJC__
 #import <GameController/GCController.h>
 #import <IOKit/hidsystem/IOHIDEventSystemClient.h>
 typedef struct __IOHIDServiceClient* IOHIDServiceClientRef;
@@ -30,6 +31,6 @@ typedef struct __IOHIDServiceClient* IOHIDServiceClientRef;
 @property (nonatomic, retain, readonly) NSArray<_GCCControllerHIDServiceInfo *> *hidServices;
 @property (nonatomic, retain, readonly) NSString * identifier;
 @end
-
+#endif
 
 

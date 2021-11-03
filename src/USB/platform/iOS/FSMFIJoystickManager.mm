@@ -9,6 +9,11 @@ using namespace freestick;
 #if TARGET_OS_OSX
 #include "USB/platform/MacOSX/FSMacUtil.h"
 #import "USB/platform/MacOSX/GCController+hidServices.h"
+#include <CoreFoundation/CoreFoundation.h>
+#include <IOKit/hid/IOHIDLib.h>
+#include <IOKit/IOKitLib.h>
+typedef struct CF_BRIDGED_TYPE(id) __IOHIDServiceClient * IOHIDServiceClientRef;
+extern "C" CFTypeRef _Nullable IOHIDServiceClientCopyProperty(IOHIDServiceClientRef service, CFStringRef key);
 #endif
 const int valueMultiplier = 10000000;
 FSMFIJoystickDeviceManager::FSMFIJoystickDeviceManager()
@@ -117,6 +122,33 @@ void FSMFIJoystickDeviceManager::addMFIDevice(void * device)
             if(vpId.first)
             {
                 FSUSBJoystickDeviceManager::getUsageFromIdForElement(vpId.second,vendorID,productID);
+            }
+        }
+        else if(@available(macOS 10.15, *))
+        {
+            for (_GCCControllerHIDServiceInfo *serviceInfo in controller.hidServices) {
+                if (serviceInfo.service)
+                {
+                        int vendorInt = 0 ;
+                        int productInt = 0;
+                        CFNumberRef vendor = static_cast<CFNumberRef>(IOHIDServiceClientCopyProperty(serviceInfo.service, CFSTR(kIOHIDVendorIDKey)));
+                        if (vendor)
+                        {
+                            CFNumberGetValue(vendor, kCFNumberSInt32Type, &vendorInt);
+                            vendorID = vendorInt;
+                            CFRelease(vendor);
+                        }
+
+                        CFNumberRef product = static_cast<CFNumberRef>(IOHIDServiceClientCopyProperty(serviceInfo.service, CFSTR(kIOHIDProductIDKey)));
+                        if (product)
+                        {
+                            CFNumberGetValue(product, kCFNumberSInt32Type, &productInt);
+                            productID = productInt;
+                            CFRelease(product);
+                        }
+
+
+                }
             }
         }
 #endif
