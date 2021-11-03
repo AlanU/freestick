@@ -124,7 +124,7 @@ void FSMFIJoystickDeviceManager::addMFIDevice(void * device)
                 FSUSBJoystickDeviceManager::getUsageFromIdForElement(vpId.second,vendorID,productID);
             }
         }
-        else if(@available(macOS 10.15, *))
+        else if(@available(macOS 10.9, *))
         {
             for (_GCCControllerHIDServiceInfo *serviceInfo in controller.hidServices) {
                 if (serviceInfo.service)
