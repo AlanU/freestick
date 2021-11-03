@@ -40,14 +40,16 @@ typedef int mfiID;
         virtual void init( );
         const FSUSBJoystick * getUSBJoystickDevice(idNumber deviceID){return static_cast<const FSUSBJoystick *>(FSUSBDeviceManager::getDevice(deviceID));}
         virtual FSUSBElementInfoMap  lookUpDeviceInputFromUSBID( vendorIDType vendorUSBID, productIDType productUSBID , unsigned int controlID,minMaxNumber min,minMaxNumber max,int value,bool forceAnalogLookup);
-        virtual bool doesDeviceHaveDeviceInput(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor);
-        virtual bool doesDeviceHaveDeviceInputForValue(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor,physicalValueNumber value );
+        virtual bool doesDeviceHaveDeviceInput(idNumber deviceID,FSDeviceInput inputToLookFor);
     protected:
         void updateJoystickButtons(idNumber joyStickID, idNumber elementID, bool pressed,float value);
         void updateJoystickAnalog(idNumber joyStickID,idNumber elementID,float value);
         void updateConnectedControllers();
         void addMFIDevice(void * controller);
         void removeMFIDevice(void * device);
+        virtual bool doesDeviceHaveDeviceInput(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor);
+        virtual bool doesDeviceHaveDeviceInputForValue(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor,physicalValueNumber value );
+
 
        // void updateControllers();
         void connectControlesToController(void * contorller,idNumber joyStickID);

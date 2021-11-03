@@ -150,7 +150,6 @@ FSUSBJoyStickInputElement::FSUSBJoyStickInputElement(idNumber id,  idNumber pare
 
     _parentID = parentID;
 
-
     _useLastValueStack = _usbDeviceManager->doesElementHaveDeviceInputForValue(vendorID,productID,id,LastValueUp);
 
     calibrate(currentValue,elementMin,elementMax);
@@ -178,7 +177,8 @@ FSUSBJoyStickInputElement::FSUSBJoyStickInputElement(idNumber id,  idNumber pare
 
     if(_usbDeviceManager)
     {
-        _useLastValueStack = _usbDeviceManager->doesElementHaveDeviceInputForValue(vendorID,productID,id,LastValueUp);
+        _useLastValueStack =  _usbDeviceManager->doesDeviceHaveDeviceInput(id,LastValueUp);
+
     }
     calibrate(currentValue,elementMin,elementMax);
 

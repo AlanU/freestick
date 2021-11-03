@@ -19,9 +19,7 @@ bool FSMultJoystickDeviceManger::DoesDeviceHaveInput(std::function<bool(unique_p
 
 FSMultJoystickDeviceManger::FSMultJoystickDeviceManger()
 {
-   /*managers.reserve(2);
-   managers.push_back(unique_ptr_of_managers (new FSDirectInputJoystickManager));
-   managers.push_back(unique_ptr_of_managers (new FSXInputJoystickDeviceManager));*/
+
 }
 
 FSMultJoystickDeviceManger::~FSMultJoystickDeviceManger()
@@ -156,24 +154,7 @@ bool FSMultJoystickDeviceManger::doesElementHaveDeviceInputForValue(vendorIDType
          return manager->doesElementHaveDeviceInputForValue( vendorUSBID,  productUSBID , elementID, inputToLookFor );});
 }
 
-bool FSMultJoystickDeviceManger::doesDeviceHaveDeviceInput(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor)
-{
-    return DoesDeviceHaveInput([vendorUSBID, productUSBID,&inputToLookFor](unique_ptr_of_managers &manager) {
-         return manager->doesDeviceHaveDeviceInput( vendorUSBID,  productUSBID , inputToLookFor );});
-}
 
-bool FSMultJoystickDeviceManger::doesDeviceHaveDeviceInputForValue(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor,physicalValueNumber value )
-{
-
-    return DoesDeviceHaveInput([vendorUSBID, productUSBID,&inputToLookFor,value](unique_ptr_of_managers &manager) {
-         return manager->doesDeviceHaveDeviceInputForValue( vendorUSBID,  productUSBID , inputToLookFor ,value);});
-}
-
-bool FSMultJoystickDeviceManger::doesDeviceHaveDeviceInputForValue(idNumber /*deviceID*/,FSDeviceInput inputToLookFor,  physicalValueNumber value )
-{
-    return DoesDeviceHaveInput([&inputToLookFor, value](unique_ptr_of_managers &manager) {
-         return manager->doesDeviceHaveDeviceInputForValue( inputToLookFor,inputToLookFor ,value);});
-}
 
 
 

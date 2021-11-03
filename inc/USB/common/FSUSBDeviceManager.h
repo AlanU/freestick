@@ -103,6 +103,11 @@ const uint32_t MIFIVenderID = 273;
          */
         std::unordered_map<deviceID,std::unordered_map<idNumber,FSDeviceInput> > _usageMapToInputEvent; //can only have a value of 1 or 0 where 1 is pressed and 0 is not
         std::unordered_map<deviceID,std::unordered_map<idNumber,std::vector<FSUSBElementInfoMap> > > _usageMapToInputRangeEvent;
+        //TODO have androd overide this fuction
+        virtual bool doesDeviceHaveDeviceInput(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor);
+        virtual bool doesDeviceHaveDeviceInputForValue(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor,physicalValueNumber value );
+        virtual bool doesDeviceHaveDeviceInputForValue(idNumber deviceID,FSDeviceInput inputToLookFor,  physicalValueNumber value );
+
     public:
 
        //add or replace mapping
@@ -114,16 +119,8 @@ const uint32_t MIFIVenderID = 273;
         virtual FSUSBElementInfoMap lookUpDeviceInputFromID(idNumber deviceID, idNumber controlID, minMaxNumber min, minMaxNumber max,physicalValueNumber value);
         virtual FSUSBElementInfoMap lookUpDeviceInputFromUSBID( vendorIDType vendorUSBID, productIDType productUSBID , idNumber controlID, minMaxNumber min, minMaxNumber max, physicalValueNumber value, bool forceAnalogLookup = false);
         FSUSBElementInfoMap infoMapForInputType(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor );
-
-
-       bool doesDeviceHaveDeviceInput(idNumber deviceID,FSDeviceInput inputToLookFor);
-        //TODO have androd overide this fuction
+        virtual bool doesDeviceHaveDeviceInput(idNumber deviceID,FSDeviceInput inputToLookFor);
         virtual bool doesElementHaveDeviceInputForValue(vendorIDType vendorUSBID, productIDType productUSBID ,elementID elementID, FSDeviceInput inputToLookFor );
-        virtual bool doesDeviceHaveDeviceInput(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor);
-        virtual bool doesDeviceHaveDeviceInputForValue(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor,physicalValueNumber value );
-        virtual bool doesDeviceHaveDeviceInputForValue(idNumber deviceID,FSDeviceInput inputToLookFor,  physicalValueNumber value );
-
-
         //creates a 64 bit id from the vendor and product id
         static deviceID createVPId(uint32_t vendor, uint32_t product ) {deviceID newID = product ; return (newID << 32) | vendor;}
 

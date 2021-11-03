@@ -318,6 +318,8 @@ void FSMFIJoystickDeviceManager::connectControlesToController(void * contorllerT
     }
 }
 
+
+
 FSUSBElementInfoMap FSMFIJoystickDeviceManager::lookUpDeviceInputFromUSBID( vendorIDType vendorUSBID, productIDType productUSBID , unsigned int controlID,minMaxNumber min,minMaxNumber max,int value,bool forceAnalogLookup)
 {
     return FSUpdatableJoystickDeviceManager::lookUpDeviceInputFromUSBID(APPLE_VENDER_ID,MFI_PRODUCT_ID, controlID,min,max,value,forceAnalogLookup);
@@ -330,7 +332,25 @@ bool FSMFIJoystickDeviceManager::doesDeviceHaveDeviceInput(vendorIDType vendorUS
 
 bool FSMFIJoystickDeviceManager::doesDeviceHaveDeviceInputForValue(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor,physicalValueNumber value )
 {
-    return FSUpdatableJoystickDeviceManager::doesDeviceHaveDeviceInputForValue(APPLE_VENDER_ID, MFI_PRODUCT_ID, inputToLookFor, value );
+   return FSUpdatableJoystickDeviceManager::doesDeviceHaveDeviceInputForValue(APPLE_VENDER_ID, MFI_PRODUCT_ID, inputToLookFor, value );
 }
 
+bool FSMFIJoystickDeviceManager::doesDeviceHaveDeviceInput(idNumber deviceID,FSDeviceInput inputToLookFor)
+{
+    if(inputToLookFor == FSDeviceInput::Axis1Button || inputToLookFor == FSDeviceInput::Axis2Button )
+    {
+       bool hasInput = false;
+       auto device =  getDevice(deviceID);
+       if(device && device->getClassType() == FSMFIJoystickType)
+       {
+           auto mfiDevice = static_cast<const FSMFIJoystick *>(device);
+           hasInput = inputToLookFor == FSDeviceInput::Axis1Button ? mfiDevice->hasL3Button() : mfiDevice->hasR3Button();
+       }
+       return hasInput;
+    }
+    else
+    {
+       return  FSUpdatableJoystickDeviceManager::doesDeviceHaveDeviceInput(deviceID,inputToLookFor);
+    }
+}
 

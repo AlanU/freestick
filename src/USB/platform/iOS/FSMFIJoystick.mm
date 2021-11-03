@@ -81,10 +81,12 @@ if (@available(macOS 10.14.1, *))
     if([gccontroller extendedGamepad].leftThumbstickButton != nil)
     {
         addButtonElement(LEFT_AXIS_BUTTON_MFI_EID);
+        _hasL3Button = true;
     }
     if([gccontroller extendedGamepad].rightThumbstickButton != nil)
     {
         addButtonElement(RIGHT_AXIS_BUTTON_MFI_EID);
+        _hasR3Button = true;
     }
 }
     addElement(LEFT_XAXIS_MFI_EID,-1,1,0);

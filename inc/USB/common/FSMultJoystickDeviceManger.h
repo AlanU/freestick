@@ -50,19 +50,14 @@ namespace freestick {
         void UnListenForAllJoysticksForEventTypes(unsigned int eventFlags,IFSJoystickListener & listener);
 
         //add or replace mapping
-         //void addMappingForButton(unsigned int vendorUSBID,unsigned int productUSBID,unsigned int controlUSBID,FSDeviceInput deviceInput);
          void addMapping(vendorIDType vendorUSBID,productIDType productUSBID, idNumber controlUSBID,FSDeviceInput deviceInput);
          void addMapping(idNumber deviceID, idNumber controlID,FSDeviceInput deviceInput);
-         //FSUSBElementInfoMap lookUpDeviceInputFromID(unsigned int deviceID, unsigned int controlID);
          FSUSBElementInfoMap lookUpDeviceInputFromID(idNumber deviceID, idNumber controlID, minMaxNumber min, minMaxNumber max,physicalValueNumber value);
          FSUSBElementInfoMap lookUpDeviceInputFromUSBID( vendorIDType vendorUSBID, productIDType productUSBID , idNumber controlID,minMaxNumber min,minMaxNumber max,physicalValueNumber value);
          FSUSBElementInfoMap infoMapForInputType(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor );
 
          bool doesDeviceHaveDeviceInput(idNumber deviceID,FSDeviceInput inputToLookFor);
          bool doesElementHaveDeviceInputForValue(vendorIDType vendorUSBID, productIDType productUSBID , idNumber elementID, FSDeviceInput inputToLookFor );
-         bool doesDeviceHaveDeviceInput(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor);
-         bool doesDeviceHaveDeviceInputForValue(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor,physicalValueNumber value );
-         bool doesDeviceHaveDeviceInputForValue(idNumber deviceID,FSDeviceInput inputToLookFor,  physicalValueNumber value );
 
          managerType * findManagerForDevice(idNumber deviceID);
 

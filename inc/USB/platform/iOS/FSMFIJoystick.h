@@ -72,11 +72,16 @@ namespace freestick
                       vendorIDType vendorID,
                       productIDType productID);
         bool setElementValue(elementID element,float value);
+        bool hasL3Button() const { return _hasL3Button;}
+        bool hasR3Button() const { return _hasR3Button;}
         virtual FSDeviceType getClassType() const {return FSMFIJoystickType;}
     protected:
         void addButtonElement(unsigned int buttonID);
         void addElement(unsigned int buttonID,minMaxNumber min,minMaxNumber max,physicalValueNumber currentValue);
         void addMFIElements(void * controller);
         minMaxNumber _totalButtonNumber = 0;
+        bool _hasL3Button = false;
+        bool _hasR3Button = false;
+
     };
 }
