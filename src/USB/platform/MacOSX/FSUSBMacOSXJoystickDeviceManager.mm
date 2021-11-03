@@ -371,7 +371,7 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadWasAdded(void* inContext, IOReturn
             mfiController = false;
         }
     }
-    else∫
+    else
     {
         manager->addDevice(device, deviceUniqueID);
         mfiController = false;
