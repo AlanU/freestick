@@ -356,16 +356,19 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadWasAdded(void* inContext, IOReturn
     }
     std::string deviceUniqueID = physicalDeviceUniqueID == nil ? "": [[NSString stringWithFormat:@"LOGICAL_DEVICE(%@)", physicalDeviceUniqueID] UTF8String];
     bool mfiController = true;
-    BOOL mfiSupportController = NO;
     if(@available(macOS 11, *))
     {
-        mfiSupportController = ![GCController supportsHIDDevice:device] ;
-
+        //The Sony Playstation 5 Controller is the only MFI contorller where [GCController supportsHIDDevice:device] returns no and physicalDeviceUniqueID == nil
+        if(![GCController supportsHIDDevice:device] && physicalDeviceUniqueID == nil && !(vendorID == SonyVendorID && productID == Playstation5Controller))
+        {
+            manager->addDevice(device,deviceUniqueID);
+            mfiController = false;
+        }
     }
-
-    if(@available(macOS 10.15, *))
+    else if (@available(macOS 10.9, *))
     {
-        if(!mfiSupportController && physicalDeviceUniqueID == nil && !(vendorID == SonyVendorID && productID == Playstation5Controller))
+        std::string deviceName = FSUSBMacOSXJoystick::getManufactureName(device);
+        if(deviceName.empty() || !containsControler(deviceName)  ) //vendorID != MIFIVenderID)// && productID != Playstation4ControllerIDV1 && productID != Playstation4ControllerIDV2)
         {
             manager->addDevice(device,deviceUniqueID);
             mfiController = false;
@@ -373,11 +376,8 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadWasAdded(void* inContext, IOReturn
     }
     else
     {
-        if(vendorID != MIFIVenderID)
-        {
-            manager->addDevice(device, deviceUniqueID);
-            mfiController = false;
-        }
+        mfiController = false;
+        manager->addDevice(device,deviceUniqueID);
     }
     if(mfiController && deviceUniqueID != "")
     {
