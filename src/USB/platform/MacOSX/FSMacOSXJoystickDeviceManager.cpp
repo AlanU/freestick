@@ -7,8 +7,9 @@ FSMacOSXJoystickDeviceManager::FSMacOSXJoystickDeviceManager()
 {
    //TODO fix name of header file FSMFIJoystickDeviceManager
    managers.reserve(2);
+    managers.push_back(unique_ptr_of_managers (new FSMFIJoystickDeviceManager));
    managers.push_back(unique_ptr_of_managers (new FSUSBMacOSXJoystickDeviceManager));
-   managers.push_back(unique_ptr_of_managers (new FSMFIJoystickDeviceManager));
+
 }
 
 FSMacOSXJoystickDeviceManager::~FSMacOSXJoystickDeviceManager()

@@ -344,6 +344,23 @@ uint32_t FSUSBMacOSXJoystickDeviceManager::createIdForElement(uint32_t usage, ui
     return FSUSBJoystickDeviceManager::createIdForElement(usage,usagePage);
 }
 
+bool isHidDeviceMFI(NSString * controllerId)
+{
+    for(GCController * controller in [GCController controllers])
+       {
+          NSString * GCIdentifier  = [controller identifier];
+          NSLog(@"%@", GCIdentifier);
+          if([GCIdentifier isEqualToString:controllerId ])
+          {
+
+              [GCIdentifier release];
+              return true;
+          }
+          [GCIdentifier release];
+       }
+       return false;
+}
+
 void FSUSBMacOSXJoystickDeviceManager::gamepadWasAdded(void* inContext, IOReturn /*inResult*/, void* /*inSender*/, IOHIDDeviceRef device) {
     FSUSBMacOSXJoystickDeviceManager * manager = (FSUSBMacOSXJoystickDeviceManager *) inContext;
     vendorIDType vendorID = static_cast<vendorIDType>(IOHIDDevice_GetVendorID(device));
@@ -354,28 +371,33 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadWasAdded(void* inContext, IOReturn
     {
         physicalDeviceUniqueID = serial;
     }
-    std::string deviceUniqueID = physicalDeviceUniqueID == nil ? "": [[NSString stringWithFormat:@"LOGICAL_DEVICE(%@)", physicalDeviceUniqueID] UTF8String];
+    NSString * nsDeviceUniqueID = physicalDeviceUniqueID == nil ? nil: [NSString stringWithFormat:@"LOGICAL_DEVICE(%@)", physicalDeviceUniqueID];
+    std::string deviceUniqueID = nsDeviceUniqueID ? [nsDeviceUniqueID UTF8String] : "";
     bool mfiController = true;
     BOOL mfiSupportController = NO;
+    unsigned long numContorls = (unsigned long)[GCController controllers].count;
+    NSLog(@"GCController controllers %lu",(unsigned long)[GCController controllers].count);
+
     if(@available(macOS 11, *))
     {
-        mfiSupportController = ![GCController supportsHIDDevice:device] ;
-
-    }
-
-    if(@available(macOS 10.9, *))
-    {
-        if(!mfiSupportController && physicalDeviceUniqueID == nil && !(vendorID == SonyVendorID && productID == Playstation5Controller))
+        mfiSupportController = [GCController supportsHIDDevice:device];
+        if(!mfiSupportController)
         {
-            manager->addDevice(device,deviceUniqueID);
-            mfiController = false;
+           mfiSupportController = isHidDeviceMFI(nsDeviceUniqueID);
         }
-    }
-    else
+
+    } else if(@available(macOS 10.9, *))
     {
-        manager->addDevice(device, deviceUniqueID);
+
+    }
+
+    if(!mfiSupportController)
+    {
+        manager->addDevice(device,deviceUniqueID);
         mfiController = false;
     }
+
+
     if(mfiController && deviceUniqueID != "")
     {
         connectUniqueIDControllers(deviceUniqueID,FSUSBJoystickDeviceManager::createIdForElement(vendorID,productID));
