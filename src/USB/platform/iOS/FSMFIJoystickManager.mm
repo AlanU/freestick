@@ -122,6 +122,7 @@ void FSMFIJoystickDeviceManager::addMFIDevice(void * device)
             if(vpId.first)
             {
                 FSUSBJoystickDeviceManager::getUsageFromIdForElement(vpId.second,vendorID,productID);
+                removeDeviceFromManagers(vendorID,productID);
             }
         }
         else if(@available(macOS 10.9, *))
@@ -146,8 +147,7 @@ void FSMFIJoystickDeviceManager::addMFIDevice(void * device)
                             productID = productInt;
                             CFRelease(product);
                         }
-
-
+                        removeDeviceFromManagers(vendorID,productID);
                 }
             }
         }

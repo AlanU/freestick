@@ -28,10 +28,11 @@ and must not be misrepresented as being the original software.
 #pragma once
 #include "USB/common/FSUSBJoystickDeviceManager.h"
 #include "USB/common/FSUpdatableJoystickDeviceManager.h"
+#include "Interfaces/IMuitControllerManager.h"
 #include <IOKit/hid/IOHIDLib.h>
 namespace freestick
 {
-    class FSUSBMacOSXJoystickDeviceManager : public FSUpdatableJoystickDeviceManager
+    class FSUSBMacOSXJoystickDeviceManager : public FSUpdatableJoystickDeviceManager, public IMuitControllerManager
     {
     public:
         FSUSBMacOSXJoystickDeviceManager();
@@ -43,6 +44,11 @@ namespace freestick
         static uint32_t createIdForElement(uint32_t usage, uint32_t usagePage, uint32_t elementCookie, long vendorID, long productID );
 
         void update();
+
+        //From IMuitControllerManager
+        bool isDeviceInOtherManagers(void * manager, freestick::vendorIDType vendorID, freestick::productIDType prodcutID) override;
+        bool removeDeviceFromManagers(freestick::vendorIDType vendorID, freestick::productIDType prodcutID) override;
+
     private:
         IOHIDManagerRef  hidManagerGamePad;
         IOHIDManagerRef  hidManagerJoyStick;

@@ -388,7 +388,7 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadWasAdded(void* inContext, IOReturn
 
     } else if(@available(macOS 10.9, *))
     {
-
+        //TODO create isHidDeviceMFI for 10.9
     }
 
     if(!mfiSupportController)
@@ -397,8 +397,7 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadWasAdded(void* inContext, IOReturn
         mfiController = false;
     }
 
-
-    if(mfiController && deviceUniqueID != "")
+    if(deviceUniqueID != "")
     {
         connectUniqueIDControllers(deviceUniqueID,FSUSBJoystickDeviceManager::createIdForElement(vendorID,productID));
     }
@@ -427,17 +426,11 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn i
     CFIndex min = IOHIDElementGetLogicalMin(element);
     CFIndex max = IOHIDElementGetLogicalMax(element);
 
-
-    //if(min+1 != max)
-    //  return;
-
     int elementValue = 0;
     if(IOHIDValueGetLength(value) > static_cast<CFIndex>(sizeof(CFIndex)))
     {
-        //  printf("\n");
         return ;
     }
-
 
     elementValue=  static_cast<int>(IOHIDValueGetIntegerValue(value));
     double_t elementScaleValue = IOHIDValueGetScaledValue(value,kIOHIDValueScaleTypeCalibrated);
@@ -592,3 +585,44 @@ void FSUSBMacOSXJoystickDeviceManager::removeDevice(IOHIDDeviceRef device)
         this->removeDevice((FSBaseDevice *)deviceToDelete);
     }
 }
+
+bool  FSUSBMacOSXJoystickDeviceManager::isDeviceInOtherManagers(void * manager, freestick::vendorIDType vendorID, freestick::productIDType prodcutID)
+{
+    return deviceMap.end() != std::find_if(deviceMap.begin(),deviceMap.end(),[vendorID,prodcutID](std::pair<unsigned int, FSBaseDevice * > device){
+        if(device.second->getClassType() == FSUSBMACOSXJoystickType){
+            FSUSBMacOSXJoystick * macDevice = static_cast<FSUSBMacOSXJoystick*>(device.second);
+            return macDevice->getVendorID() == vendorID && macDevice->getProductID() == prodcutID;
+        }
+        else
+        {
+            return false;
+        }
+    });
+}
+
+bool  FSUSBMacOSXJoystickDeviceManager::removeDeviceFromManagers(freestick::vendorIDType vendorID, freestick::productIDType prodcutID)
+{
+    bool returnValue = false;
+    std::vector <FSUSBMacOSXJoystick *> idsToRemove;
+
+    for(const auto & controller : deviceMap)
+    {
+        if(controller.second->getClassType() == FSUSBMACOSXJoystickType){
+            FSUSBMacOSXJoystick * device = static_cast<FSUSBMacOSXJoystick*>(controller.second);
+            if(device->getVendorID() == vendorID && device->getProductID() == prodcutID )
+            {
+                idsToRemove.push_back(device);
+            }
+        }
+    }
+
+    returnValue = idsToRemove.size() > 0;
+    for(auto * deviceToDelete : idsToRemove)
+    {
+        dissconnectUniqueIDControllers(deviceToDelete->getPhysicalDeviceUniqueID());
+        this->removeDevice((FSBaseDevice *)deviceToDelete);
+    }
+    idsToRemove.clear();
+    return returnValue;
+}
+
