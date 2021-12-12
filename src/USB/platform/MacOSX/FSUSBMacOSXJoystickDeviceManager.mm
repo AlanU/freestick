@@ -348,15 +348,10 @@ bool isHidDeviceMFI(NSString * controllerId)
 {
     for(GCController * controller in [GCController controllers])
        {
-          NSString * GCIdentifier  = [controller identifier];
-          NSLog(@"%@", GCIdentifier);
-          if([GCIdentifier isEqualToString:controllerId ])
-          {
-
-              [GCIdentifier release];
+         if([controller respondsToSelector:@selector(identifier)] && [[controller identifier] isEqualToString:controllerId ])
+         {
               return true;
-          }
-          [GCIdentifier release];
+         }
        }
        return false;
 }
