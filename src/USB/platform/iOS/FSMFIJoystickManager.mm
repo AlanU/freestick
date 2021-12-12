@@ -88,9 +88,6 @@ void FSMFIJoystickDeviceManager::removeMFIDevice(void * device)
 {
     if(_wordToIDControllerMap.find(device) != _wordToIDControllerMap.end())
     {
-#if TARGET_OS_OSX
-        GCController * gccontroller = static_cast<GCController*>(device);
-#endif
         elementID id = _wordToIDControllerMap[device];
         const FSBaseDevice * joystickToDelete = getDevice(id);
         removeDevice(const_cast<FSBaseDevice*>(joystickToDelete));
@@ -109,7 +106,17 @@ void FSMFIJoystickDeviceManager::addMFIDevice(void * device)
         unsigned int numberOfButtons = 5;
         unsigned int numberOfAnlogSticks =2;
         unsigned int numberOfDigitalSticks=1;
-        bool  forceFeedBackSupported =false;
+        bool  forceFeedbackSupported =false;
+        #if TARGET_OS_OSX
+        if(@available(macOS 11, *))
+        #elif TARGET_OS_IOS
+        if(@available(iOS 14, *))
+        #elif TARGET_OS_TV
+        if(@available(tvOS 14, *))
+        #endif
+        {
+          forceFeedbackSupported = [controller haptics] != nil;
+        }
         uint16_t vendorID = APPLE_VENDER_ID;
         uint16_t productID = MFI_PRODUCT_ID;
        // controller.playerIndex = static_cast<GCControllerPlayerIndex>(contorllerCount++);
@@ -157,7 +164,7 @@ void FSMFIJoystickDeviceManager::addMFIDevice(void * device)
                                                         numberOfButtons,
                                                         numberOfAnlogSticks,
                                                         numberOfDigitalSticks,
-                                                        forceFeedBackSupported,
+                                                        forceFeedbackSupported,
                                                         vendorID,
                                                         productID));
 
