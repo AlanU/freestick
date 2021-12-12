@@ -188,120 +188,6 @@ void vibrateJoystick(IOHIDDeviceRef device)
     FreeFFDevice(FFDevice);
 }
 
-unsigned int numberOfDeviecType(IOHIDDeviceRef device,int * TotalNumberOfButtons,int * TotalNumberOfAxis,int * TotalNumberOfAnalogButtons)
-{
-    CFArrayRef  deviceElements;
-    unsigned int numberOfButtons = 0;
-    unsigned int numberOfAnalogSticks = 0;
-    unsigned int numberOfAnalogButtons = 0;
-    IOHIDElementCookie elemnetID = 0;
-    uint32_t usage = 0;
-    uint32_t usagePage = 0;
-    //std::map<IOHIDElementCookie,int> idMap;
-    CFIndex min = 0;
-    CFIndex max  = 0;
-    if (device) {
-        assert( IOHIDDeviceGetTypeID() == CFGetTypeID(device) );
-
-        deviceElements = IOHIDDeviceCopyMatchingElements(device, NULL, kIOHIDOptionsTypeNone);
-        CFIndex index;
-        CFIndex deviceArrayCount = CFArrayGetCount(deviceElements);
-        if(deviceArrayCount > 0)
-        {
-            for (index =0; index < deviceArrayCount;index++)
-            {
-                IOHIDElementRef elemnet = (IOHIDElementRef) CFArrayGetValueAtIndex(deviceElements, index);
-                if(!elemnet)
-                    continue;
-
-                IOHIDElementType type = IOHIDElementGetType(elemnet);
-                min = IOHIDElementGetLogicalMin(elemnet);
-                max = IOHIDElementGetLogicalMax(elemnet);
-                elemnetID =IOHIDElementGetCookie(elemnet);
-                usage =IOHIDElementGetUsage(elemnet);
-                usagePage = IOHIDElementGetUsagePage(elemnet);
-                CFStringRef name = IOHIDElementGetName(elemnet);
-                const char * nameChar = CFStringGetCStringPtr(name,kCFStringEncodingASCII);
-                CFIndex value = 0;
-                //IOHIDValueRef   tIOHIDValueRef;
-                /*  if ( kIOReturnSuccess == IOHIDDeviceGetValue(device, elemnet, &tIOHIDValueRef) )
-                 {
-                      if(CFGetTypeID(tIOHIDValueRef) == IOHIDValueGetTypeID())
-                      {
-                         if(IOHIDValueGetLength(tIOHIDValueRef) <= sizeof(CFIndex))
-                         {
-                             value =  IOHIDValueGetIntegerValue(tIOHIDValueRef);
-
-                         }
-                      }
-                 }*/
-                if(type == kIOHIDElementTypeInput_Axis || type == kIOHIDElementTypeInput_Button )// type == kIOHIDElementTypeInput_Misc || type == kIOHIDElementTypeInput_ScanCodes)
-                {
-                    if(min != max)
-                    {
-
-                        EE_DEBUG<<"("<<min<<","<<max<<")"<<" ID: "<<elemnetID<<" name "<<(nameChar?nameChar:"")<<" Usage page" <<usagePage<< " Usage "<<usage<<" Value "<<value<<std::endl;
-                    }
-                    if (min == 0 && max == 1)
-                    {
-                        numberOfButtons++;
-                    }
-                    else if ((min*-1) == (max+1) )
-                    {
-                        numberOfAnalogSticks++;
-                    }
-                    else if (min == 0 && max > 1)
-                    {
-                        numberOfAnalogButtons++;
-                    }
-
-                }
-
-            }
-
-        }
-        CFRelease(deviceElements);
-
-    }
-    if(TotalNumberOfButtons)
-    {
-        (*TotalNumberOfButtons) = numberOfButtons;
-    }
-    if(TotalNumberOfAxis)
-    {
-        (*TotalNumberOfAxis) =  numberOfAnalogSticks;
-    }
-    if(TotalNumberOfAnalogButtons)
-    {
-        (*TotalNumberOfAnalogButtons) = numberOfAnalogButtons;
-    }
-    return numberOfButtons + numberOfAnalogSticks + numberOfAnalogButtons;
-}
-
-
-unsigned int numberOfButtons(IOHIDDeviceRef device)
-{
-
-    int numberbuttons = 0 ;
-    int numberOfAnalogButtons = 0;
-    numberOfDeviecType(device,& numberbuttons,NULL,& numberOfAnalogButtons);
-
-    return numberbuttons + numberOfAnalogButtons;
-}
-
-unsigned int numberOfAnalogSticks(IOHIDDeviceRef device)
-{
-    int numberOfAnalogSticks = 0;
-    numberOfDeviecType(device,NULL,& numberOfAnalogSticks,NULL);
-    return numberOfAnalogSticks/2;
-}
-
-unsigned int numberOfAnalogAxis(IOHIDDeviceRef device)
-{
-    int numberOfAnalogSticks = 0;
-    numberOfDeviecType(device,NULL,& numberOfAnalogSticks,NULL);
-    return numberOfAnalogSticks;
-}
 
 void FSUSBMacOSXJoystickDeviceManager::findDpad(IOHIDDeviceRef device)
 {
@@ -562,7 +448,7 @@ void FSUSBMacOSXJoystickDeviceManager::addDevice(IOHIDDeviceRef  device, const s
     if(IOHIDDeviceToIDMap.find(device) == IOHIDDeviceToIDMap.end())
     {
 
-        FSUSBMacOSXJoystick * temp = new FSUSBMacOSXJoystick(device, this->getNextID(),numberOfButtons(device),numberOfAnalogSticks(device),0,isForceFeedBackSupported(device),physicalDeviceUniqueID);
+        FSUSBMacOSXJoystick * temp = new FSUSBMacOSXJoystick(device, this->getNextID(),0,0,0,isForceFeedBackSupported(device),physicalDeviceUniqueID);
         temp->Init(*this);
         this->addDevice(temp);
         //findDpad(device);
