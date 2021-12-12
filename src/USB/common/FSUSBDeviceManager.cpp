@@ -926,3 +926,8 @@ bool FSUSBDeviceManager::doesDeviceHaveDeviceInput(unsigned int vendorUSBID, uns
     lastResult = false;
     return false;
 }
+
+void FSUSBDeviceManager::vibrateController(idNumber deviceID)
+{
+
+}

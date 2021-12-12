@@ -61,6 +61,8 @@ namespace freestick {
 
          managerType * findManagerForDevice(idNumber deviceID);
 
+         virtual void vibrateController(idNumber deviceID);
+
     protected:
          bool _listeningForEvents;
          std::vector<unique_ptr_of_managers> managers;

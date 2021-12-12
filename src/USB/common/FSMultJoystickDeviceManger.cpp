@@ -67,6 +67,15 @@ const FSBaseDevice * FSMultJoystickDeviceManger::getDevice(elementID deviceID)
     return device;
 }
 
+void FSMultJoystickDeviceManger::vibrateController(idNumber deviceID)
+{
+   managerType * manager = findManagerForDevice(deviceID);
+   if(manager != nullptr)
+   {
+       manager->vibrateController(deviceID);
+   }
+}
+
 managerType * FSMultJoystickDeviceManger::findManagerForDevice(elementID deviceID)
 {
     managerType * resultManger = nullptr;

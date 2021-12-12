@@ -121,6 +121,7 @@ const uint32_t MIFIVenderID = 273;
         FSUSBElementInfoMap infoMapForInputType(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor );
         virtual bool doesDeviceHaveDeviceInput(idNumber deviceID,FSDeviceInput inputToLookFor);
         virtual bool doesElementHaveDeviceInputForValue(vendorIDType vendorUSBID, productIDType productUSBID ,elementID elementID, FSDeviceInput inputToLookFor );
+        virtual void vibrateController(idNumber deviceID);
         //creates a 64 bit id from the vendor and product id
         static deviceID createVPId(uint32_t vendor, uint32_t product ) {deviceID newID = product ; return (newID << 32) | vendor;}
 

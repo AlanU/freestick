@@ -140,6 +140,7 @@ bool isForceFeedBackSupported(IOHIDDeviceRef device)
     return returnValue;
 }
 
+
 void vibrateJoystick(IOHIDDeviceRef device)
 {
     io_service_t FFDevice;
@@ -186,6 +187,12 @@ void vibrateJoystick(IOHIDDeviceRef device)
         }
     }
     FreeFFDevice(FFDevice);
+}
+
+void FSUSBMacOSXJoystickDeviceManager::vibrateController(idNumber deviceID)
+{
+   FSUSBMacOSXJoystick * device =  (FSUSBMacOSXJoystick *) (getDevice(deviceID));
+   vibrateJoystick( device->GetIOHIDDeviceRef());
 }
 
 
@@ -256,8 +263,6 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadWasAdded(void* inContext, IOReturn
     std::string deviceUniqueID = nsDeviceUniqueID ? [nsDeviceUniqueID UTF8String] : "";
     bool mfiController = true;
     BOOL mfiSupportController = NO;
-    unsigned long numContorls = (unsigned long)[GCController controllers].count;
-    NSLog(@"GCController controllers %lu",(unsigned long)[GCController controllers].count);
 
     if(@available(macOS 11, *))
     {
@@ -357,7 +362,6 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadAction(void* inContext, IOReturn i
         //pass in FSEventMaping so we can map release vs press
         if( eventType != FS_LAST_EVENT && inputType.getDeviceInput() != LastInput)
         {
-
             if(!isValueVaild)
             {
                 manager->inputOnDeviceChangedWithNormilzedValues(eventType,inputType.getEventMapping(),inputType.getDeviceInput(),
