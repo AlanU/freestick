@@ -122,42 +122,26 @@ void FSMFIJoystickDeviceManager::addMFIDevice(void * device)
        // controller.playerIndex = static_cast<GCControllerPlayerIndex>(contorllerCount++);
 
 #if TARGET_OS_OSX
+        std::pair<bool,uint32_t> vpId(false,0);
         GCController * gccontroller = static_cast<GCController*>(device);
         if(@available(macOS 11, *))
         {
-            auto vpId = getVendorAndProductFromUniqueID([[gccontroller identifier] UTF8String]);
-            if(vpId.first)
-            {
-                FSUSBJoystickDeviceManager::getUsageFromIdForElement(vpId.second,vendorID,productID);
-                removeDeviceFromManagers(vendorID,productID);
-            }
+             vpId = getVendorAndProductFromUniqueID([[gccontroller identifier] UTF8String]);
         }
         else if(@available(macOS 10.9, *))
         {
-            for (_GCCControllerHIDServiceInfo *serviceInfo in controller.hidServices) {
-                if (serviceInfo.service)
-                {
-                        int vendorInt = 0 ;
-                        int productInt = 0;
-                        CFNumberRef vendor = static_cast<CFNumberRef>(IOHIDServiceClientCopyProperty(serviceInfo.service, CFSTR(kIOHIDVendorIDKey)));
-                        if (vendor)
-                        {
-                            CFNumberGetValue(vendor, kCFNumberSInt32Type, &vendorInt);
-                            vendorID = vendorInt;
-                            CFRelease(vendor);
-                        }
-
-                        CFNumberRef product = static_cast<CFNumberRef>(IOHIDServiceClientCopyProperty(serviceInfo.service, CFSTR(kIOHIDProductIDKey)));
-                        if (product)
-                        {
-                            CFNumberGetValue(product, kCFNumberSInt32Type, &productInt);
-                            productID = productInt;
-                            CFRelease(product);
-                        }
-                        removeDeviceFromManagers(vendorID,productID);
-                }
-            }
+             vpId = getVendroAndProductID(device);
         }
+        if(vpId.first)
+        {
+            FSUSBJoystickDeviceManager::getUsageFromIdForElement(vpId.second,vendorID,productID);
+            removeDeviceFromManagers(vendorID,productID);
+        }
+        else
+        {
+            return;
+        }
+
 #endif
         FSUSBDeviceManager::addDevice(new FSMFIJoystick(device,
                                                         newId,

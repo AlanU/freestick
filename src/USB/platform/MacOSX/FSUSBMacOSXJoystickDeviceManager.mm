@@ -37,6 +37,7 @@ and must not be misrepresented as being the original software.
 #include "../../../3rdParty/Mac/IOHID/IOHIDDevice_.h"
 #include "common/FreeStickLog.h"
 #import <GameController/GCController.h> //need to check on mac OS 11 if the device is handeld by GCController
+#import "USB/platform/MacOSX/GCController+hidServices.h"//need to check on mac OS less than 11 if the device is handeld by GCController
 #import <Foundation/Foundation.h>
 using namespace freestick;
 
@@ -249,6 +250,27 @@ bool isHidDeviceMFI(NSString * controllerId)
        return false;
 }
 
+bool isHidDeviceMFI(vendorIDType vendor,productIDType product)
+{
+     bool isMFI = false;
+     uint16_t vendorID = 0;
+     uint16_t productID = 0;
+     for(GCController * controller in [GCController controllers])
+     {
+          auto vpId = getVendroAndProductID(controller);
+          if(vpId.first)
+          {
+             FSUSBJoystickDeviceManager::getUsageFromIdForElement(vpId.second,vendorID,productID);
+             if(vendor == vendorID && product == productID)
+             {
+               isMFI = true;
+               break;
+             }
+          }
+     }
+     return isMFI;
+}
+
 void FSUSBMacOSXJoystickDeviceManager::gamepadWasAdded(void* inContext, IOReturn /*inResult*/, void* /*inSender*/, IOHIDDeviceRef device) {
     FSUSBMacOSXJoystickDeviceManager * manager = (FSUSBMacOSXJoystickDeviceManager *) inContext;
     vendorIDType vendorID = static_cast<vendorIDType>(IOHIDDevice_GetVendorID(device));
@@ -274,7 +296,7 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadWasAdded(void* inContext, IOReturn
 
     } else if(@available(macOS 10.9, *))
     {
-        //TODO create isHidDeviceMFI for 10.9
+        mfiSupportController = isHidDeviceMFI(vendorID,productID);
     }
 
     if(!mfiSupportController)

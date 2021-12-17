@@ -10,7 +10,10 @@ FSMacOSXJoystickDeviceManager::FSMacOSXJoystickDeviceManager()
    FSUSBMacOSXJoystickDeviceManager * macLegacy  = new FSUSBMacOSXJoystickDeviceManager;
    setManger(macLegacy);
    managers.reserve(2);
-   managers.push_back(unique_ptr_of_managers (new FSMFIJoystickDeviceManager));
+   if(isMFISupported())
+   {
+        managers.push_back(unique_ptr_of_managers (new FSMFIJoystickDeviceManager));
+   }
    managers.push_back(unique_ptr_of_managers (macLegacy));
    macLegacy = nullptr;
 

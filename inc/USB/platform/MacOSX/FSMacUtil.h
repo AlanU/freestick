@@ -8,3 +8,5 @@ bool isDeviceInOtherManagers(void * manager, freestick::vendorIDType vendorID, f
 bool removeDeviceFromManagers(freestick::vendorIDType vendorID, freestick::productIDType prodcutID);
 void setManger(freestick::IMuitControllerManager * manager);
 void unSetManger();
+std::pair<bool,uint32_t> getVendroAndProductID(void * controller);
+bool isMFISupported();

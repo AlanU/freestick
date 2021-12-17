@@ -121,8 +121,7 @@ macx {
     SOURCES += \
          $$files(../../../src/3rdParty/Mac/IOHID/*.c) \
         ../../../src/USB/platform/MacOSX/FSUSBMacOSXJoystick.cpp \
-        ../../../src/USB/platform/MacOSX/FSMacOSXJoystickDeviceManager.cpp \
-        ../../../src/USB/platform/MacOSX/FSMacUtil.cpp
+        ../../../src/USB/platform/MacOSX/FSMacOSXJoystickDeviceManager.cpp
 
 
     HEADERS += \
@@ -138,6 +137,7 @@ macx {
     OBJECTIVE_SOURCES += ../../../src/USB/platform/iOS/FSMFIJoystickManager.mm \
                          ../../../src/USB/platform/iOS/FSMFIJoystick.mm \
                          ../../../src/USB/platform/MacOSX/FSUSBMacOSXJoystickDeviceManager.mm \
+                         ../../../src/USB/platform/MacOSX/FSMacUtil.mm \
 
 
     LIBS += -framework IOKit \
