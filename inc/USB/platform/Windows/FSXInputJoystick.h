@@ -57,8 +57,8 @@
 #define XAXIS2_XINPUT_EID 65587
 #define YAXIS2_XINPUT_EID 65588
 
-#define LTRIGGER_XINPUT_EID 65589
-#define RTRIGGER_XINPUT_EID 65586
+#define LTRIGGER_XINPUT_EID 65586
+#define RTRIGGER_XINPUT_EID 65589
 
 namespace  freestick {
     class FSXInputJoystick : public FSUSBJoystick
