@@ -178,6 +178,32 @@ void FSXInputJoystickDeviceManager::removeXInputDevice(DWORD device)
     EE_DEBUG<<"Removed Device"<<std::endl;
 }
 
+void vibrateController(DWORD index){
+    XINPUT_VIBRATION vibration;
+    ZeroMemory( &vibration, sizeof(XINPUT_VIBRATION) );
+    vibration.wLeftMotorSpeed = 32000; // use any value between 0-65535 here
+    vibration.wRightMotorSpeed = 16000; // use any value between 0-65535 here
+    if(XInputSetState( index, &vibration ) == ERROR_SUCCESS)
+    {
+
+    }
+}
+
+bool hasFFSupport(DWORD index)
+{
+    bool support = false;
+    XINPUT_CAPABILITIES deviceCap;
+    ZeroMemory(&deviceCap , sizeof(XINPUT_CAPABILITIES));
+    XInputGetCapabilities(index,0,&deviceCap);
+    bool temp = deviceCap.Flags & XINPUT_CAPS_FFB_SUPPORTED;
+    if(deviceCap.Vibration.wLeftMotorSpeed == 255 && deviceCap.Vibration.wRightMotorSpeed == 255)
+    {
+        support = true;
+    }
+    return support;
+}
+
+
 void FSXInputJoystickDeviceManager::addXInputDevice(DWORD device, XINPUT_STATE & xState)
 {
     if(_wordToIDControllerMap.find(device) == _wordToIDControllerMap.end())
@@ -186,7 +212,7 @@ void FSXInputJoystickDeviceManager::addXInputDevice(DWORD device, XINPUT_STATE &
        _wordToIDControllerMap[device] = newId;
 
       //XBox Controller
-       FSXInputJoystick * newJoystick = new FSXInputJoystick(xState,device,newId,13,2,1,true,MicrosoftVendorID,MicrosoftXbox360WindowsControllerID,static_cast<FSUSBJoystickDeviceManager &>(*this));
+       FSXInputJoystick * newJoystick = new FSXInputJoystick(xState,device,newId,13,2,1, hasFFSupport(device),MicrosoftVendorID,MicrosoftXbox360WindowsControllerID,static_cast<FSUSBJoystickDeviceManager &>(*this));
        addDevice(newJoystick);
     }
 

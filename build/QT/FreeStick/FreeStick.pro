@@ -163,7 +163,7 @@ win32 {
 
     HEADERS += $$files(../../../inc/USB/platform/Windows/*.h)
 
-    LIBS += -lXinput9_1_0 -lUser32
+    LIBS += -lXinput -lUser32
 }
 
 
