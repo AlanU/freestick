@@ -117,7 +117,7 @@ android {
 }
 
 macx {
-    QMAKE_CXXFLAGS_WARN_ON= -Wall -Wno-unused-parameter -Wsign-compare
+    QMAKE_CXXFLAGS_WARN_ON= -Wall -Wno-unused-parameter -Wsign-compare -fobjc-arc
     SOURCES += \
          $$files(../../../src/3rdParty/Mac/IOHID/*.c) \
         ../../../src/USB/platform/MacOSX/FSUSBMacOSXJoystick.cpp \

@@ -1,3 +1,6 @@
+#if  ! __has_feature(objc_arc)
+    #error This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
+#endif
 #include "USB/platform/MacOSX/FSMacUtil.h"
 #include "USB/common/FSUSBJoystickDeviceManager.h"
 #include <unordered_map>
@@ -65,11 +68,12 @@ void unSetManger()
     iMuitManager = nullptr;
 }
 
-std::pair<bool,uint32_t> getVendroAndProductID(void * controller)
+std::pair<bool,uint32_t> getVendroAndProductID(const void * controller)
 {
     uint16_t vendorID = 0;
     uint16_t productID = 0;
-    GCController * gccontroller = static_cast<GCController*>(controller);
+    GCController * gccontroller = static_cast<GCController*>(CFBridgingRelease(controller));
+    controller = nullptr;
     for (_GCCControllerHIDServiceInfo *serviceInfo in gccontroller.hidServices) {
         if (serviceInfo.service)
         {

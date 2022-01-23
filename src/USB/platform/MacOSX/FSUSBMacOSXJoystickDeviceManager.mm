@@ -24,6 +24,9 @@ and must not be misrepresented as being the original software.
 
 3. This notice may not be removed or altered from any source distribution.
 **************************************************************************/
+#if  ! __has_feature(objc_arc)
+    #error This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
+#endif
 
 #include "USB/platform/MacOSX/FSUSBMacOSXJoystickDeviceManager.h"
 #include "USB/common/FSUSBJoystickDeviceManager.h"
@@ -257,7 +260,9 @@ bool isHidDeviceMFI(vendorIDType vendor,productIDType product)
      uint16_t productID = 0;
      for(GCController * controller in [GCController controllers])
      {
-          auto vpId = getVendroAndProductID(controller);
+          const void * ctr = static_cast<const void *>(CFBridgingRetain(controller));
+          auto vpId = getVendroAndProductID(ctr);
+          CFBridgingRelease(ctr);
           if(vpId.first)
           {
              FSUSBJoystickDeviceManager::getUsageFromIdForElement(vpId.second,vendorID,productID);

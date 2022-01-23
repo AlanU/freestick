@@ -64,7 +64,7 @@ namespace freestick
     public:
         FSMFIJoystick();
         // Using void here to get around poluting the header file with objective-c
-        FSMFIJoystick(void * controller,idNumber joyStickID,
+        FSMFIJoystick(const void * controller,idNumber joyStickID,
                       unsigned int numberOfButtons,
                       unsigned int numberOfAnlogSticks,
                       unsigned int numberOfDigitalSticks,
@@ -78,7 +78,7 @@ namespace freestick
     protected:
         void addButtonElement(unsigned int buttonID);
         void addElement(unsigned int buttonID,minMaxNumber min,minMaxNumber max,physicalValueNumber currentValue);
-        void addMFIElements(void * controller);
+        void addMFIElements(const void * controller);
         minMaxNumber _totalButtonNumber = 0;
         bool _hasL3Button = false;
         bool _hasR3Button = false;

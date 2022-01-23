@@ -1,3 +1,6 @@
+#if  ! __has_feature(objc_arc)
+    #error This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
+#endif
 #include "USB/platform/iOS/FSMFIJoystickManager.h"
 #include "USB/platform/iOS/FSMFIJoystick.h"
 #include "USB/common/FSUSBJoystickDeviceManager.h"
@@ -69,7 +72,11 @@ void FSMFIJoystickDeviceManager::init() {
                           queue:nil
                           usingBlock:^(NSNotification * note)
                           {
-                            addMFIDevice(static_cast<void *>(note.object));
+                            if([note.object extendedGamepad])
+                            {
+                                const void * ctr = static_cast<const void *>(CFBridgingRetain(note.object));
+                                addMFIDevice(ctr);
+                            }
                           }
     ];
 
@@ -78,13 +85,15 @@ void FSMFIJoystickDeviceManager::init() {
                            queue:nil
                            usingBlock:^(NSNotification * note)
                            {
-                             removeMFIDevice(static_cast<void *>(note.object));\
+                             const void * ctr = static_cast<const void *>(CFBridgingRetain(note.object));
+                             removeMFIDevice(ctr);
+                             CFBridgingRelease(ctr);
                            }
      ];
 
 }
 
-void FSMFIJoystickDeviceManager::removeMFIDevice(void * device)
+void FSMFIJoystickDeviceManager::removeMFIDevice(const void * device)
 {
     if(_wordToIDControllerMap.find(device) != _wordToIDControllerMap.end())
     {
@@ -95,10 +104,9 @@ void FSMFIJoystickDeviceManager::removeMFIDevice(void * device)
     }
 }
 
-void FSMFIJoystickDeviceManager::addMFIDevice(void * device)
+void FSMFIJoystickDeviceManager::addMFIDevice(const void * device)
 {
-    GCController * controller = static_cast<GCController * >(device);
-    if([controller extendedGamepad] && _wordToIDControllerMap.find(device) == _wordToIDControllerMap.end())
+    if( _wordToIDControllerMap.find(device) == _wordToIDControllerMap.end())
     {
        unsigned int newId = getNextID();
        _wordToIDControllerMap[device] = newId;
@@ -107,6 +115,8 @@ void FSMFIJoystickDeviceManager::addMFIDevice(void * device)
         unsigned int numberOfAnlogSticks =2;
         unsigned int numberOfDigitalSticks=1;
         bool  forceFeedbackSupported =false;
+        GCController * controller = static_cast<GCController * >(CFBridgingRelease(device));
+        device = nullptr;
         #if TARGET_OS_OSX
         if(@available(macOS 11, *))
         #elif TARGET_OS_IOS
@@ -123,7 +133,7 @@ void FSMFIJoystickDeviceManager::addMFIDevice(void * device)
 
 #if TARGET_OS_OSX
         std::pair<bool,uint32_t> vpId(false,0);
-        GCController * gccontroller = static_cast<GCController*>(device);
+        GCController * gccontroller = controller;
         if(@available(macOS 11, *))
         {
              vpId = getVendorAndProductFromUniqueID([[gccontroller identifier] UTF8String]);
@@ -143,7 +153,7 @@ void FSMFIJoystickDeviceManager::addMFIDevice(void * device)
         }
 
 #endif
-        FSUSBDeviceManager::addDevice(new FSMFIJoystick(device,
+        FSUSBDeviceManager::addDevice(new FSMFIJoystick(static_cast<const void * >(CFBridgingRetain(controller)),
                                                         newId,
                                                         numberOfButtons,
                                                         numberOfAnlogSticks,
@@ -152,7 +162,7 @@ void FSMFIJoystickDeviceManager::addMFIDevice(void * device)
                                                         vendorID,
                                                         productID));
 
-        connectControlesToController(device,newId);
+        connectControlesToController(static_cast<const void * >(CFBridgingRetain(controller)),newId);
 
     }
 
@@ -221,7 +231,7 @@ void FSMFIJoystickDeviceManager::updateJoystickAnalog(idNumber joyStickID,idNumb
 
 }
 
-void FSMFIJoystickDeviceManager::connectControlesToController(void * contorllerToConnect,idNumber joyStickID )
+void FSMFIJoystickDeviceManager::connectControlesToController(const void * contorllerToConnect,idNumber joyStickID )
 {
     #if TARGET_OS_IPHONE
     if (@available(iOS 7.0, *) )
@@ -231,7 +241,8 @@ void FSMFIJoystickDeviceManager::connectControlesToController(void * contorllerT
     if (@available(macOS 10.9, *))
     #endif
     {
-    GCController * controller = static_cast<GCController*>(contorllerToConnect);
+    GCController * controller = static_cast<GCController*>(CFBridgingRelease(contorllerToConnect));
+    contorllerToConnect = nullptr;
         if([controller extendedGamepad])
         {
             [controller extendedGamepad].buttonA.valueChangedHandler = ^(GCControllerButtonInput * /*button*/,float value, BOOL pressed)

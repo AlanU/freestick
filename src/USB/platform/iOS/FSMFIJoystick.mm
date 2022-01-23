@@ -2,13 +2,16 @@
 #include <sstream>
 #import <GameController/GCController.h>
 #import <Foundation/Foundation.h>
+#if  ! __has_feature(objc_arc)
+    #error This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
+#endif
 using namespace freestick;
 FSMFIJoystick::FSMFIJoystick()
 {
 
 }
 
-FSMFIJoystick::FSMFIJoystick(void * controller,idNumber joyStickID,
+FSMFIJoystick::FSMFIJoystick(const void * controller,idNumber joyStickID,
               unsigned int numberOfButtons,
               unsigned int numberOfAnlogSticks,
               unsigned int numberOfDigitalSticks,
@@ -23,8 +26,9 @@ FSMFIJoystick::FSMFIJoystick(void * controller,idNumber joyStickID,
                             vendorID,
                             productID)
 {
-    GCController * gccontroller = static_cast<GCController*>(controller);
-    addMFIElements(static_cast<void *>(gccontroller));
+    addMFIElements(controller);
+    GCController * gccontroller = static_cast<GCController*>(CFBridgingRelease(controller));
+    controller = nullptr;
     _vendorIDFriendlyName = [[gccontroller vendorName] UTF8String];
     #if TARGET_OS_IPHONE
     if (@available(iOS 13.0, *) )
@@ -53,9 +57,9 @@ bool FSMFIJoystick::setElementValue(elementID element,float value)
     return false;
 }
 
-void FSMFIJoystick::addMFIElements(void * controller)
+void FSMFIJoystick::addMFIElements(const void * controller)
 {
-    GCController * gccontroller = static_cast<GCController*>(controller);
+    GCController * gccontroller = static_cast<GCController*>(CFBridgingRelease(controller));
     addButtonElement(UP_DPAD_MFI_EID);
     addButtonElement(DOWN_DPAD_MFI_EID);
     addButtonElement(LEFT_DPAD_MFI_EID);
