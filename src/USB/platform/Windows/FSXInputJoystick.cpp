@@ -123,5 +123,5 @@ void FSXInputJoystick::vibrate() const
     ZeroMemory( &vibration, sizeof(XINPUT_VIBRATION) );
     vibration.wLeftMotorSpeed = 32000; // use any value between 0-65535 here
     vibration.wRightMotorSpeed = 16000; // use any value between 0-65535 here
-    XInputSetState( id, &vibration )
+    XInputSetState( id, &vibration );
 }
