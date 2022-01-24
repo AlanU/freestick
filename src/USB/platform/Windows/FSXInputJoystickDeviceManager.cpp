@@ -178,17 +178,6 @@ void FSXInputJoystickDeviceManager::removeXInputDevice(DWORD device)
     EE_DEBUG<<"Removed Device"<<std::endl;
 }
 
-void vibrateController(DWORD index){
-    XINPUT_VIBRATION vibration;
-    ZeroMemory( &vibration, sizeof(XINPUT_VIBRATION) );
-    vibration.wLeftMotorSpeed = 32000; // use any value between 0-65535 here
-    vibration.wRightMotorSpeed = 16000; // use any value between 0-65535 here
-    if(XInputSetState( index, &vibration ) == ERROR_SUCCESS)
-    {
-
-    }
-}
-
 bool hasFFSupport(DWORD index)
 {
     bool support = false;

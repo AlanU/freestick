@@ -28,7 +28,6 @@
 #include "USB/platform/Windows/FSXInputJoystick.h"
 #include <sstream>
 
-
 using namespace freestick;
 FSXInputJoystick::FSXInputJoystick(XINPUT_STATE & state,
                                    DWORD id,
@@ -116,4 +115,13 @@ void FSXInputJoystick::addXinputElements(XINPUT_STATE & state)
     addElement(RTRIGGER_XINPUT_EID,0,255,state.Gamepad.bRightTrigger);
 
 
+}
+
+void FSXInputJoystick::vibrate() const
+{
+    XINPUT_VIBRATION vibration;
+    ZeroMemory( &vibration, sizeof(XINPUT_VIBRATION) );
+    vibration.wLeftMotorSpeed = 32000; // use any value between 0-65535 here
+    vibration.wRightMotorSpeed = 16000; // use any value between 0-65535 here
+    XInputSetState( id, &vibration )
 }

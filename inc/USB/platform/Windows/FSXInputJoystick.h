@@ -79,6 +79,7 @@ namespace  freestick {
         void setCalibrated();
         bool isCalibrated() const;
         virtual FSDeviceType getClassType() const {return FSXInputJoystickType;}
+        void vibrate() const override;
     private:
         DWORD id;
         FSUSBJoystickDeviceManager * _usbJoystickManager = nullptr;
