@@ -116,6 +116,8 @@ bool FreeFFDevice(io_service_t FFDevice)
 
 bool isForceFeedBackSupported(IOHIDDeviceRef device)
 {
+    //returning false for now since there is no way to test this right now
+    return false;
     io_service_t FFDevice;
     FFCAPABILITIES FFDeviceAblities;
     FFDeviceObjectReference FFDeviceRef;
