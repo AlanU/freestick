@@ -60,6 +60,7 @@ typedef std::map<idNumber,FSUSBJoyStickInputElement > JoyStickElementMap ;
         unsigned int getNumberOfDigitalSticks() const {return _numberOfDigitalSticks;}
         bool getForceFeedbackSupport() const {return _forceFeedBackSupported;}
         virtual void vibrate() const {}
+        virtual void stopVibrate() const {}
         virtual FSDeviceType getClassType() const {return FSUSBJoystickType;}
         void addInputElement(FSUSBJoyStickInputElement & element);
         JoyStickElementMap getElements() const  { return _inputElementMap; }

@@ -184,7 +184,6 @@ bool hasFFSupport(DWORD index)
     XINPUT_CAPABILITIES deviceCap;
     ZeroMemory(&deviceCap , sizeof(XINPUT_CAPABILITIES));
     XInputGetCapabilities(index,0,&deviceCap);
-    bool temp = deviceCap.Flags & XINPUT_CAPS_FFB_SUPPORTED;
     if(deviceCap.Vibration.wLeftMotorSpeed == 255 && deviceCap.Vibration.wRightMotorSpeed == 255)
     {
         support = true;

@@ -76,6 +76,16 @@ void FSMultJoystickDeviceManger::vibrateController(idNumber deviceID)
    }
 }
 
+void FSMultJoystickDeviceManger::stopVibratingController(idNumber deviceID)
+{
+   managerType * manager = findManagerForDevice(deviceID);
+   if(manager != nullptr)
+   {
+       manager->stopVibratingController(deviceID);
+   }
+}
+
+
 managerType * FSMultJoystickDeviceManger::findManagerForDevice(elementID deviceID)
 {
     managerType * resultManger = nullptr;

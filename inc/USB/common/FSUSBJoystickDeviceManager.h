@@ -38,6 +38,7 @@ namespace freestick
         virtual ~FSUSBJoystickDeviceManager();
         virtual void init( );
         virtual void vibrateController(idNumber deviceID);
+        virtual void stopVibratingController(idNumber deviceID);
         const FSUSBJoystick * getUSBJoystickDevice(idNumber deviceID){return static_cast<const FSUSBJoystick *>(FSUSBDeviceManager::getDevice(deviceID));}
         virtual void updateEvents(idNumber joystickDeviceID,FSUSBJoyStickInputElement * elementDevice, physicalValueNumber elementValue);
         static uint32_t createIdForElement(uint32_t usage, uint32_t usagePage);

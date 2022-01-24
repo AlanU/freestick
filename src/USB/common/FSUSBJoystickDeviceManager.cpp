@@ -103,3 +103,12 @@ void FSUSBJoystickDeviceManager::vibrateController(idNumber deviceID)
    }
 }
 
+void FSUSBJoystickDeviceManager::stopVibratingController(idNumber deviceID)
+{
+    const FSUSBJoystick * controller = getUSBJoystickDevice(deviceID);
+    if(controller)
+    {
+        controller->stopVibrate();
+    }
+}
+

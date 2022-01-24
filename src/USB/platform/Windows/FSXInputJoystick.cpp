@@ -50,7 +50,7 @@ FSXInputJoystick::FSXInputJoystick(XINPUT_STATE & state,
 
     std::stringstream playerNumber;
     playerNumber << id+1;
-
+    _id = id;
     _vendorIDFriendlyName = "XInputController";
     _productIDFriendlyName = "Player " + playerNumber.str();
     _friendlyName = _vendorIDFriendlyName + " "+ _productIDFriendlyName;
@@ -117,11 +117,21 @@ void FSXInputJoystick::addXinputElements(XINPUT_STATE & state)
 
 }
 
+void FSXInputJoystick::stopVibrate() const
+{
+    XINPUT_VIBRATION vibration;
+    ZeroMemory( &vibration, sizeof(XINPUT_VIBRATION) );
+    vibration.wLeftMotorSpeed = 0; // use any value between 0-65535 here
+    vibration.wRightMotorSpeed = 0; // use any value between 0-65535 here
+    XInputSetState( _id, &vibration );
+}
+
 void FSXInputJoystick::vibrate() const
 {
     XINPUT_VIBRATION vibration;
     ZeroMemory( &vibration, sizeof(XINPUT_VIBRATION) );
     vibration.wLeftMotorSpeed = 32000; // use any value between 0-65535 here
     vibration.wRightMotorSpeed = 16000; // use any value between 0-65535 here
-    XInputSetState( id, &vibration );
+    XInputSetState( _id, &vibration );
+
 }
