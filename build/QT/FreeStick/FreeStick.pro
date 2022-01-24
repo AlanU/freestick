@@ -145,6 +145,7 @@ macx {
         -framework CoreFoundation \
         -framework GameController \
         -framework Foundation \
+        -framework CoreHaptics \
 }
 
 ios {
@@ -153,7 +154,8 @@ ios {
     HEADERS += ../../../inc/USB/platform/iOS/FSMFIJoystickManager.h \
                ../../../inc/USB/platform/iOS/FSMFIJoystick.h
     LIBS += -framework GameController \
-            -framework Foundation
+            -framework Foundation \
+            -framework CoreHaptics
     QMAKE_IOS_DEPLOYMENT_TARGET = 10.0
 }
 

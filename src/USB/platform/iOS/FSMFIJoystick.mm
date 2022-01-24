@@ -1,14 +1,74 @@
 #include "USB/platform/iOS/FSMFIJoystick.h"
 #include <sstream>
 #import <GameController/GCController.h>
+#import <CoreHaptics/CHHapticEngine.h>
+#import <GameController/GCDeviceHaptics.h>
+#import <CoreHaptics/CHHapticPattern.h>
 #import <Foundation/Foundation.h>
 #if  ! __has_feature(objc_arc)
     #error This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
 #endif
+
+NSDictionary* gethapticDict(){
+static NSDictionary* hapticDict = nil;
+#if TARGET_OS_IPHONE
+if (@available(iOS 13, *) )
+#elif TARGET_OS_TV
+if (@available(tvOS 14.0, *) )
+#else
+if (@available(macOS 10.15, *))
+#endif
+{
+hapticDict =
+@{
+ CHHapticPatternKeyPattern:
+       @[ // Start of array
+         @{  // Start of first dictionary entry in the array
+             CHHapticPatternKeyEvent: @{ // Start of first item
+                     CHHapticPatternKeyEventType:CHHapticEventTypeHapticContinuous,
+                     CHHapticPatternKeyTime:@0.010f,
+                     CHHapticPatternKeyEventDuration:@2.0,
+                     CHHapticPatternKeyEventParameters: @[
+                        @{ @"ParameterID": @"HapticIntensity", @"ParameterValue":@0.9852941176470589},
+                        @{ @"ParameterID": @"HapticSharpness", @"ParameterValue":@0.9852941176470589}
+                     ]
+                     },  // End of first item
+           }, // End of first dictionary entry in the array
+        ], // End of array
+ };
+}
+return hapticDict;
+
+}
+
+class EngineWrapper
+{
+public:
+    EngineWrapper(CHHapticEngine * newEngine):engine(newEngine){}
+    ~EngineWrapper(){ engine= nullptr;}
+    CHHapticEngine * getEngine()
+    {
+        return engine;
+    }
+private:
+
+    CHHapticEngine * engine;
+};
+
+
 using namespace freestick;
+
 FSMFIJoystick::FSMFIJoystick()
 {
 
+}
+
+FSMFIJoystick::~FSMFIJoystick()
+{
+    if(hapticEngineWrapper)
+    {
+        delete hapticEngineWrapper;
+    }
 }
 
 FSMFIJoystick::FSMFIJoystick(const void * controller,idNumber joyStickID,
@@ -128,6 +188,42 @@ void FSMFIJoystick::addElement(unsigned int buttonID,minMaxNumber min,minMaxNumb
     }
     this->addInputElement(newElement);
 
+}
+
+void FSMFIJoystick::createEngine(const void * contollerToCreateEngine){
+    #if TARGET_OS_IPHONE
+    if (@available(iOS 13, *) )
+    #elif TARGET_OS_TV
+    if (@available(tvOS 14.0, *) )
+    #else
+    if (@available(macOS 11.0, *))
+    #endif
+    {
+        if(hapticEngineWrapper == nullptr && getForceFeedbackSupport())
+        {
+            GCController * controller = static_cast<GCController*>(CFBridgingRelease(contollerToCreateEngine));
+            CHHapticEngine * engine = [controller.haptics createEngineWithLocality:GCHapticsLocalityDefault];
+            hapticEngineWrapper = new EngineWrapper(engine);
+        }
+    }
+}
+
+void FSMFIJoystick::vibrate() const
+{
+    if(hapticEngineWrapper)
+    {
+        CHHapticEngine * engine = hapticEngineWrapper->getEngine();
+        [engine startAndReturnError:nil];
+        NSError * error = nil;
+        CHHapticPattern* pattern = [[CHHapticPattern alloc] initWithDictionary:gethapticDict() error:&error];
+        if(error)
+            return;
+        error = nil;
+        id<CHHapticPatternPlayer> hapticPlayer = [engine createPlayerWithPattern:pattern error:&error];
+        if(error)
+           return;
+        [hapticPlayer startAtTime:0.0f error:&error];
+    }
 }
 
 

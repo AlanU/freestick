@@ -27,6 +27,7 @@ and must not be misrepresented as being the original software.
 
 #pragma once
 #include "USB/common/FSUSBJoystick.h"
+#include <memory>
 #define UP_DPAD_MFI_EID    589836
 #define DOWN_DPAD_MFI_EID  589837
 #define LEFT_DPAD_MFI_EID  589838
@@ -56,7 +57,7 @@ and must not be misrepresented as being the original software.
 
 #define APPLE_VENDER_ID 123
 #define MFI_PRODUCT_ID 123
-
+class EngineWrapper;
 namespace freestick
 {
     class FSMFIJoystick : public FSUSBJoystick
@@ -71,10 +72,13 @@ namespace freestick
                       bool  forceFeedBackSupported,
                       vendorIDType vendorID,
                       productIDType productID);
+        ~FSMFIJoystick() override;
         bool setElementValue(elementID element,float value);
         bool hasL3Button() const { return _hasL3Button;}
         bool hasR3Button() const { return _hasR3Button;}
         virtual FSDeviceType getClassType() const {return FSMFIJoystickType;}
+        void createEngine(const void * contollerToCreateEngine);
+        void vibrate() const override;
     protected:
         void addButtonElement(unsigned int buttonID);
         void addElement(unsigned int buttonID,minMaxNumber min,minMaxNumber max,physicalValueNumber currentValue);
@@ -82,6 +86,7 @@ namespace freestick
         minMaxNumber _totalButtonNumber = 0;
         bool _hasL3Button = false;
         bool _hasR3Button = false;
+        EngineWrapper * hapticEngineWrapper = nullptr;
 
     };
 }

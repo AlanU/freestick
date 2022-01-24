@@ -93,3 +93,13 @@ void FSUSBJoystickDeviceManager::updateEvents(unsigned int joystickDeviceID,FSUS
         }
     }
 }
+
+void FSUSBJoystickDeviceManager::vibrateController(idNumber deviceID)
+{
+   const FSUSBJoystick * controller = getUSBJoystickDevice(deviceID);
+   if(controller)
+   {
+       controller->vibrate();
+   }
+}
+

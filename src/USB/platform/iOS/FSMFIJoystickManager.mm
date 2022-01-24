@@ -153,15 +153,16 @@ void FSMFIJoystickDeviceManager::addMFIDevice(const void * device)
         }
 
 #endif
-        FSUSBDeviceManager::addDevice(new FSMFIJoystick(static_cast<const void * >(CFBridgingRetain(controller)),
-                                                        newId,
-                                                        numberOfButtons,
-                                                        numberOfAnlogSticks,
-                                                        numberOfDigitalSticks,
-                                                        forceFeedbackSupported,
-                                                        vendorID,
-                                                        productID));
-
+      FSMFIJoystick * mfidevice =  new FSMFIJoystick(static_cast<const void * >(CFBridgingRetain(controller)),
+                                                                newId,
+                                                                numberOfButtons,
+                                                                numberOfAnlogSticks,
+                                                                numberOfDigitalSticks,
+                                                                forceFeedbackSupported,
+                                                                vendorID,
+                                                                productID);
+        mfidevice->createEngine(static_cast<const void * >(CFBridgingRetain(controller)));
+        FSUSBDeviceManager::addDevice(mfidevice);
         connectControlesToController(static_cast<const void * >(CFBridgingRetain(controller)),newId);
 
     }
