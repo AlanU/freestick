@@ -296,7 +296,7 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadWasAdded(void* inContext, IOReturn
     if(@available(macOS 11, *))
     {
         mfiSupportController = [GCController supportsHIDDevice:device];
-        if(!mfiSupportController)
+        if(mfiSupportController == NO)
         {
            mfiSupportController = isHidDeviceMFI(nsDeviceUniqueID);
         }
@@ -306,7 +306,7 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadWasAdded(void* inContext, IOReturn
         mfiSupportController = isHidDeviceMFI(vendorID,productID);
     }
 
-    if(!mfiSupportController)
+    if(mfiSupportController == NO)
     {
         manager->addDevice(device,deviceUniqueID);
         mfiController = false;
