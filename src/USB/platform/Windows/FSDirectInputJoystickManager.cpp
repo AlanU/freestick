@@ -32,7 +32,7 @@
 #include <string.h>
 //This is a work around for VS 2013 not supporting constexpr correctly
 //This should be change to constexpr once 2013 support is dropped
-const std::chrono::milliseconds connectionCheckSleep(1500);
+const std::chrono::milliseconds connectionCheckSleep(2500);
 using namespace freestick;
 
 
