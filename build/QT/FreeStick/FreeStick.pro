@@ -149,6 +149,7 @@ macx {
 }
 
 ios {
+    QMAKE_CXXFLAGS_WARN_ON= -Wall -Wno-unused-parameter -Wsign-compare -fobjc-arc
     OBJECTIVE_SOURCES += ../../../src/USB/platform/iOS/FSMFIJoystickManager.mm \
                          ../../../src/USB/platform/iOS/FSMFIJoystick.mm
     HEADERS += ../../../inc/USB/platform/iOS/FSMFIJoystickManager.h \
