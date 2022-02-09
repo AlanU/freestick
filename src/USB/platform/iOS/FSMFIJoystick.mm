@@ -86,8 +86,9 @@ FSMFIJoystick::FSMFIJoystick(const void * controller,idNumber joyStickID,
                             vendorID,
                             productID)
 {
-    addMFIElements(controller);
     GCController * gccontroller = static_cast<GCController*>(CFBridgingRelease(controller));
+    addMFIElements( static_cast<const void *>(CFBridgingRetain(gccontroller)));
+
     controller = nullptr;
     _vendorIDFriendlyName = [[gccontroller vendorName] UTF8String];
     #if TARGET_OS_IPHONE
