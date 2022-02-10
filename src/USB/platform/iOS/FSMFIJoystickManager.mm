@@ -140,7 +140,7 @@ void FSMFIJoystickDeviceManager::addMFIDevice(const void * device)
         }
         else if(@available(macOS 10.9, *))
         {
-             vpId = getVendroAndProductID(device);
+             vpId = getVendroAndProductID(static_cast<void const *>(CFBridgingRetain(gccontroller)));
         }
         if(vpId.first)
         {
