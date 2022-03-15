@@ -781,8 +781,7 @@ FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromUSBID( vendorIDTyp
              }
          }
      }
-
-    return FSUSBElementInfoMap(0,1,LastInput,FSInputChanged);
+     return FSUSBElementInfoMap(min,max,Unknown,FSInputChanged);
  }
 
 
