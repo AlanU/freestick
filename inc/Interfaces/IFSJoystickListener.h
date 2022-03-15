@@ -39,5 +39,6 @@ namespace freestick
         virtual void onStickMove(FSDeviceInputEvent event) = 0;
         virtual void onDisconnect(FSBaseEvent event) = 0;
         virtual void onConnect(FSBaseEvent event) = 0;
+        virtual void onUnknownChanged(FSDeviceInputEvent event) {}
     };
 }

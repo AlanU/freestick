@@ -111,6 +111,10 @@ void  FSBaseManager::ListenForAllJoysticksForEventTypes(unsigned int eventFlags,
     {
         ListenForAllJoysticksForEventType(FS_TRIGGER_EVENT,listener);
     }
+    if(eventFlags & FS_UNKNOWN_EVENT)
+    {
+        ListenForAllJoysticksForEventType(FS_UNKNOWN_EVENT,listener);
+    }
 
 }
 void  FSBaseManager::UnListenForAllJoysticksForEventTypes(unsigned int eventFlags,IFSJoystickListener & listener)
@@ -130,6 +134,10 @@ void  FSBaseManager::UnListenForAllJoysticksForEventTypes(unsigned int eventFlag
     if(eventFlags & FS_AXIS_EVENT)
     {
         UnListenForAllJoysticksForEventType(FS_AXIS_EVENT,listener);
+    }
+    if(eventFlags & FS_UNKNOWN_EVENT)
+    {
+        UnListenForAllJoysticksForEventType(FS_UNKNOWN_EVENT,listener);
     }
     if(eventFlags & FS_TRIGGER_EVENT)
     {
@@ -237,6 +245,9 @@ void FSBaseManager::updateEvent(FSBaseEvent & event)
             case FS_AXIS_EVENT:
                 ListenerToCall->onStickMove(*static_cast<FSDeviceInputEvent *>(&event));
                 break;
+            case FS_UNKNOWN_EVENT:
+                 ListenerToCall->onUnknownChanged(*(FSDeviceInputEvent *)&event);
+                break;
             default:
                 break;
             }
@@ -260,6 +271,9 @@ void FSBaseManager::updateEvent(FSBaseEvent & event)
         case FS_TRIGGER_EVENT:
         case FS_AXIS_EVENT:
             ListenerToCall->onStickMove(*(FSDeviceInputEvent *)&event);
+            break;
+        case FS_UNKNOWN_EVENT:
+             ListenerToCall->onUnknownChanged(*(FSDeviceInputEvent *)&event);
             break;
         default:
             break;

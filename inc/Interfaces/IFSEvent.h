@@ -40,7 +40,8 @@ namespace freestick
         FS_BUTTON_EVENT = 1<<3,
         FS_AXIS_EVENT = 1<<4,
         FS_TRIGGER_EVENT = 1<<5,
-        FS_LAST_EVENT = 1<<6
+        FS_UNKNOWN_EVENT = 1<<6,
+        FS_LAST_EVENT = 1<<7
     }FreeStickEventType;
 
     typedef enum
@@ -77,7 +78,7 @@ namespace freestick
                 return FS_TRIGGER_EVENT;
             }
             //assert(false);
-            return FS_LAST_EVENT;
+            return FS_UNKNOWN_EVENT;;
         }
     };
 
