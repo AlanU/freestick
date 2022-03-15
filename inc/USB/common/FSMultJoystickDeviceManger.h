@@ -53,7 +53,6 @@ namespace freestick {
          void addMapping(vendorIDType vendorUSBID,productIDType productUSBID, idNumber controlUSBID,FSDeviceInput deviceInput);
          void addMapping(idNumber deviceID, idNumber controlID,FSDeviceInput deviceInput);
          FSUSBElementInfoMap lookUpDeviceInputFromID(idNumber deviceID, idNumber controlID, minMaxNumber min, minMaxNumber max,physicalValueNumber value);
-         FSUSBElementInfoMap lookUpDeviceInputFromUSBID( vendorIDType vendorUSBID, productIDType productUSBID , idNumber controlID,minMaxNumber min,minMaxNumber max,physicalValueNumber value);
          FSUSBElementInfoMap infoMapForInputType(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor );
 
          bool doesDeviceHaveDeviceInput(idNumber deviceID,FSDeviceInput inputToLookFor);
@@ -67,6 +66,7 @@ namespace freestick {
          bool _listeningForEvents;
          std::vector<unique_ptr_of_managers> managers;
          bool DoesDeviceHaveInput(std::function<bool(unique_ptr_of_managers&)>const &func);
+         FSUSBElementInfoMap lookUpDeviceInputFromUSBID( vendorIDType vendorUSBID, productIDType productUSBID , idNumber controlID,minMaxNumber min,minMaxNumber max,physicalValueNumber value);
     };
 
 }

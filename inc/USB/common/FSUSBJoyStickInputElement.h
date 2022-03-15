@@ -55,7 +55,7 @@ namespace freestick
         time_t firstTime;
         std::queue<minMaxNumber> _lastValueStack;
         bool _useLastValueStack;
-        unsigned int _parentID;
+        elementID _parentID;
         minMaxNumber _buttonNumber;
         float _calibrationOffsetPrecent = 0.05f; //Offset used to calibrate deadzones
     protected:
@@ -75,6 +75,7 @@ namespace freestick
         bool getUsesLastValueStack();
         bool getNeedsDeadZone();
         bool isCalibrated();
+        elementID getParentJoystickId();
         inline minMaxNumber getMaxValue() const {return _elementMax;}
         inline minMaxNumber getMinValue() const {return _elementMin;}
         inline minMaxNumber getDeadZoneMin() const {return _deadZoneMin;}

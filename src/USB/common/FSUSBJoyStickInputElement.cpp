@@ -254,3 +254,8 @@ bool FSUSBJoyStickInputElement::isCalibrated()
 {
     return _calibrated;
 }
+
+elementID FSUSBJoyStickInputElement::getParentJoystickId()
+{
+    return _parentID;
+}
