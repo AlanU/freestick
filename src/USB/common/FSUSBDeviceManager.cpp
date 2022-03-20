@@ -790,7 +790,7 @@ FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromUSBID( vendorIDTyp
      {
          type = Unknown_Dpad;
      }
-     else if(min == 0 && max == 255)
+     else if((min == 0 && max == 255) || (min == (max *-1)))
      {
          type = Unknown_Axis;
      }
