@@ -86,15 +86,18 @@ namespace freestick {
         Trigger2,//Right
         LastTrigger,
         Unknown,
+        Unknown_Axis,
+        Unknown_Dpad,
+        Unknown_Button,
         LastValueUp, //use to return and event of released on the last value for the device controll (used a lot in hatswitch)
         AllInputs,
         LastInput,
     } FSDeviceInput;
 
     #define FS_isInputBetween(inputType,min,max)  inputType >= min && inputType < max ? true : false
-    #define FS_isButtion(inputType) FS_isInputBetween(inputType,Button0,LastButton)
-    #define FS_isDpad(inputType)  FS_isInputBetween(inputType,DPadUp,LastDPad) || FS_isInputBetween(inputType,LastValueUp,AllInputs)
-    #define FS_isAxis(inputType)  FS_isInputBetween(inputType,XAxis,LastAxis)
+    #define FS_isButtion(inputType) FS_isInputBetween(inputType,Button0,LastButton) || inputType == Unknown_Button
+    #define FS_isDpad(inputType)  FS_isInputBetween(inputType,DPadUp,LastDPad) || FS_isInputBetween(inputType,LastValueUp,AllInputs) || inputType == Unknown_Dpad
+    #define FS_isAxis(inputType)  FS_isInputBetween(inputType,XAxis,LastAxis) || inputType == Unknown_Axis
     #define FS_isTrigger(inputType)  FS_isInputBetween(inputType,Trigger1,LastTrigger)
 
     typedef enum

@@ -781,7 +781,20 @@ FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromUSBID( vendorIDTyp
              }
          }
      }
-     return FSUSBElementInfoMap(min,max,Unknown,FSInputChanged);
+     FSDeviceInput type = Unknown;
+     if(min == 0 && max == 1)
+     {
+        type = Unknown_Button;
+     }
+     else if(min == 0 && max == 7)
+     {
+         type = Unknown_Dpad;
+     }
+     else if(min == 0 && max == 255)
+     {
+         type = Unknown_Axis;
+     }
+     return FSUSBElementInfoMap(min,max,type,FSInputChanged);
  }
 
 
