@@ -786,7 +786,7 @@ FSUSBElementInfoMap  FSUSBDeviceManager::lookUpDeviceInputFromUSBID( vendorIDTyp
      {
         type = Unknown_Button;
      }
-     else if(min == 0 && max == 7)
+     else if(controlID == 65593)
      {
          type = Unknown_Dpad;
      }
