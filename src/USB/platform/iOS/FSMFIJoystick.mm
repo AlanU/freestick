@@ -117,8 +117,23 @@ if (@available(macOS 10.15, *))
 {
     if([gccontroller extendedGamepad].buttonOptions != nil)
     {
-        addButtonElement(RIGHT_AXIS_BUTTON_MFI_EID);
+        addButtonElement(OPTIONS_BUTTON_MFI_EID);
         _hasOptionButton = true;
+    }
+}
+
+#if TARGET_OS_IPHONE
+if (@available(iOS 14.0, *) )
+#elif TARGET_OS_TV
+if (@available(tvOS 14.0, *) )
+#else
+if (@available(macOS 11.0, *))
+#endif
+{
+    if([gccontroller extendedGamepad].buttonHome != nil)
+    {
+        addButtonElement(HOME_BUTTON_MFI_EID);
+        _hasHomeButton = true;
     }
 }
     addMFIElements();

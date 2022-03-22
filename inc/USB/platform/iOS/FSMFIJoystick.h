@@ -40,6 +40,7 @@ and must not be misrepresented as being the original software.
 
 #define MENU_BUTTON_MFI_EID 589834
 #define OPTIONS_BUTTON_MFI_EID 589833
+#define HOME_BUTTON_MFI_EID 589837
 
 #define LEFT_SHOULDER_BUTTON_MFI_EID 589829
 #define RIGHT_SHOULDER_BUTTON_MFI_EID 589830
@@ -78,6 +79,7 @@ namespace freestick
         bool hasL3Button() const { return _hasL3Button;}
         bool hasR3Button() const { return _hasR3Button;}
         bool hasOptionButton() const { return _hasOptionButton;}
+        bool hasHomeButton() const { return _hasHomeButton;}
         FSDeviceType getClassType() const override {return FSMFIJoystickType;}
         void createEngine(const void * contollerToCreateEngine);
         void vibrate() const override;
@@ -89,6 +91,7 @@ namespace freestick
         bool _hasL3Button = false;
         bool _hasR3Button = false;
         bool _hasOptionButton = false;
+        bool _hasHomeButton = false;
         EngineWrapper * hapticEngineWrapper = nullptr;
 
     };

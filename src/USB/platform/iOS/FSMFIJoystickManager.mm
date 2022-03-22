@@ -43,6 +43,7 @@ FSMFIJoystickDeviceManager::FSMFIJoystickDeviceManager()
 
     _usageMapToInputEvent[createVPId(APPLE_VENDER_ID,MFI_PRODUCT_ID)][MENU_BUTTON_MFI_EID] = ButtonSelect;//back
     _usageMapToInputEvent[createVPId(APPLE_VENDER_ID,MFI_PRODUCT_ID)][OPTIONS_BUTTON_MFI_EID] = ButtonStart;
+    _usageMapToInputEvent[createVPId(APPLE_VENDER_ID,MFI_PRODUCT_ID)][HOME_BUTTON_MFI_EID] = ButtonCenter;
 
     _usageMapToInputEvent[createVPId(APPLE_VENDER_ID,MFI_PRODUCT_ID)][UP_DPAD_MFI_EID] = DPadUp;
     _usageMapToInputEvent[createVPId(APPLE_VENDER_ID,MFI_PRODUCT_ID)][DOWN_DPAD_MFI_EID] = DPadDown;
@@ -282,6 +283,20 @@ void FSMFIJoystickDeviceManager::connectControlesToController(const void * conto
 
 
             }
+            #if TARGET_OS_IPHONE
+            if (@available(iOS 14.0, *) )
+            #elif TARGET_OS_TV
+            if (@available(tvOS 14.0, *) )
+            #else
+            if (@available(macOS 11.0, *))
+            #endif
+            {
+                if([controller extendedGamepad].buttonHome != nil)
+                {
+                    [controller extendedGamepad].buttonHome.valueChangedHandler = ^(GCControllerButtonInput * /*button*/,float value, BOOL pressed)
+                    { updateJoystickButtons(joyStickID,HOME_BUTTON_MFI_EID,pressed,value); };
+                }
+            }
             [controller extendedGamepad].dpad.up.valueChangedHandler = ^(GCControllerButtonInput * /*button*/,float value, BOOL pressed)
             { updateJoystickButtons(joyStickID,UP_DPAD_MFI_EID,pressed,value); };
             [controller extendedGamepad].dpad.down.valueChangedHandler = ^(GCControllerButtonInput * /*button*/,float value, BOOL pressed)
@@ -374,6 +389,9 @@ bool FSMFIJoystickDeviceManager::doesDeviceHaveDeviceInput(idNumber deviceID,FSD
                break;
                 case FSDeviceInput::ButtonStart:
                    hasInput = mfiDevice->hasOptionButton();
+               break;
+               case FSDeviceInput::ButtonCenter:
+                   hasInput =  mfiDevice->hasHomeButton();
                break;
                default:
                break;
