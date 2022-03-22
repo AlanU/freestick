@@ -42,6 +42,7 @@ FSMFIJoystickDeviceManager::FSMFIJoystickDeviceManager()
     _usageMapToInputEvent[createVPId(APPLE_VENDER_ID,MFI_PRODUCT_ID)][RIGHT_AXIS_BUTTON_MFI_EID] = Axis2Button;//R3 right thumb down
 
     _usageMapToInputEvent[createVPId(APPLE_VENDER_ID,MFI_PRODUCT_ID)][MENU_BUTTON_MFI_EID] = ButtonSelect;//back
+    _usageMapToInputEvent[createVPId(APPLE_VENDER_ID,MFI_PRODUCT_ID)][OPTIONS_BUTTON_MFI_EID] = ButtonStart;
 
     _usageMapToInputEvent[createVPId(APPLE_VENDER_ID,MFI_PRODUCT_ID)][UP_DPAD_MFI_EID] = DPadUp;
     _usageMapToInputEvent[createVPId(APPLE_VENDER_ID,MFI_PRODUCT_ID)][DOWN_DPAD_MFI_EID] = DPadDown;
@@ -263,8 +264,23 @@ void FSMFIJoystickDeviceManager::connectControlesToController(const void * conto
             if (@available(macOS 10.15, *))
             #endif
             {
+                idNumber optionsID = OPTIONS_BUTTON_MFI_EID;
+                idNumber menutID = MENU_BUTTON_MFI_EID;
+                if([controller extendedGamepad].buttonMenu != nil && [controller extendedGamepad].buttonOptions != nil)
+                {
+                     //Switch to standard xbox layout
+                     menutID = OPTIONS_BUTTON_MFI_EID;
+                     optionsID = MENU_BUTTON_MFI_EID ;
+                }
                 [controller extendedGamepad].buttonMenu.valueChangedHandler = ^(GCControllerButtonInput * /*button*/,float value, BOOL pressed)
-                { updateJoystickButtons(joyStickID,MENU_BUTTON_MFI_EID,pressed,value); };
+                { updateJoystickButtons(joyStickID,menutID,pressed,value); };
+                if([controller extendedGamepad].buttonOptions != nil)
+                {
+                    [controller extendedGamepad].buttonOptions.valueChangedHandler = ^(GCControllerButtonInput * /*button*/,float value, BOOL pressed)
+                    { updateJoystickButtons(joyStickID,optionsID,pressed,value); };
+                }
+
+
             }
             [controller extendedGamepad].dpad.up.valueChangedHandler = ^(GCControllerButtonInput * /*button*/,float value, BOOL pressed)
             { updateJoystickButtons(joyStickID,UP_DPAD_MFI_EID,pressed,value); };
@@ -340,14 +356,29 @@ bool FSMFIJoystickDeviceManager::doesDeviceHaveDeviceInputForValue(vendorIDType 
 
 bool FSMFIJoystickDeviceManager::doesDeviceHaveDeviceInput(idNumber deviceID,FSDeviceInput inputToLookFor)
 {
-    if(inputToLookFor == FSDeviceInput::Axis1Button || inputToLookFor == FSDeviceInput::Axis2Button )
+    if(inputToLookFor == FSDeviceInput::Axis1Button || inputToLookFor == FSDeviceInput::Axis2Button || inputToLookFor == FSDeviceInput::ButtonStart )
     {
        bool hasInput = false;
        auto device =  getDevice(deviceID);
        if(device && device->getClassType() == FSMFIJoystickType)
        {
            auto mfiDevice = static_cast<const FSMFIJoystick *>(device);
-           hasInput = inputToLookFor == FSDeviceInput::Axis1Button ? mfiDevice->hasL3Button() : mfiDevice->hasR3Button();
+
+           switch(inputToLookFor)
+           {
+               case FSDeviceInput::Axis1Button:
+                   hasInput = mfiDevice->hasL3Button();
+               break;
+               case FSDeviceInput::Axis2Button:
+                  hasInput = mfiDevice->hasR3Button();
+               break;
+                case FSDeviceInput::ButtonStart:
+                   hasInput = mfiDevice->hasOptionButton();
+               break;
+               default:
+               break;
+           }
+
        }
        return hasInput;
     }

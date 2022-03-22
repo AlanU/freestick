@@ -105,6 +105,21 @@ if (@available(macOS 10.14.1, *))
         addButtonElement(RIGHT_AXIS_BUTTON_MFI_EID);
         _hasR3Button = true;
     }
+
+}
+#if TARGET_OS_IPHONE
+if (@available(iOS 13.0, *) )
+#elif TARGET_OS_TV
+if (@available(tvOS 13.0, *) )
+#else
+if (@available(macOS 10.15, *))
+#endif
+{
+    if([gccontroller extendedGamepad].buttonOptions != nil)
+    {
+        addButtonElement(RIGHT_AXIS_BUTTON_MFI_EID);
+        _hasOptionButton = true;
+    }
 }
     addMFIElements();
     controller = nullptr;
