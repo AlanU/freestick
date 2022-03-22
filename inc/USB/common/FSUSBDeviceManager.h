@@ -107,6 +107,7 @@ const uint32_t MIFIVenderID = 273;
         virtual bool doesDeviceHaveDeviceInput(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor);
         virtual bool doesDeviceHaveDeviceInputForValue(vendorIDType vendorUSBID, productIDType productUSBID ,FSDeviceInput inputToLookFor,physicalValueNumber value );
         virtual bool doesDeviceHaveDeviceInputForValue(idNumber deviceID,FSDeviceInput inputToLookFor,  physicalValueNumber value );
+        virtual bool findInputInRangeMap(deviceID vendorProductID, FSDeviceInput inputToLookFor);
 
     public:
 
