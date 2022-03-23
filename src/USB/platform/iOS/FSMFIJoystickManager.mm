@@ -371,7 +371,10 @@ bool FSMFIJoystickDeviceManager::doesDeviceHaveDeviceInputForValue(vendorIDType 
 
 bool FSMFIJoystickDeviceManager::doesDeviceHaveDeviceInput(idNumber deviceID,FSDeviceInput inputToLookFor)
 {
-    if(inputToLookFor == FSDeviceInput::Axis1Button || inputToLookFor == FSDeviceInput::Axis2Button || inputToLookFor == FSDeviceInput::ButtonStart )
+    if(inputToLookFor == FSDeviceInput::Axis1Button ||
+       inputToLookFor == FSDeviceInput::Axis2Button ||
+       inputToLookFor == FSDeviceInput::ButtonStart ||
+       inputToLookFor == FSDeviceInput::ButtonCenter)
     {
        bool hasInput = false;
        auto device =  getDevice(deviceID);

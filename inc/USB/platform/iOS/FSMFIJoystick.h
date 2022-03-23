@@ -40,7 +40,7 @@ and must not be misrepresented as being the original software.
 
 #define MENU_BUTTON_MFI_EID 589834
 #define OPTIONS_BUTTON_MFI_EID 589833
-#define HOME_BUTTON_MFI_EID 589837
+#define HOME_BUTTON_MFI_EID 589835
 
 #define LEFT_SHOULDER_BUTTON_MFI_EID 589829
 #define RIGHT_SHOULDER_BUTTON_MFI_EID 589830
