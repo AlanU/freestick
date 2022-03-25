@@ -846,7 +846,8 @@ FSUSBElementInfoMap FSUSBDeviceManager::infoMapForInputType(vendorIDType vendorU
           }
        }
     }
-     FSUSBElementInfoMap temp(0,0,LastInput,FSLastEventAction);
+
+    FSUSBElementInfoMap temp(0,0,LastInput,FSLastEventAction);
     return temp;
 }
 
@@ -944,20 +945,6 @@ bool FSUSBDeviceManager::doesDeviceHaveDeviceInput(unsigned int vendorUSBID, uns
     }
     else
     {
-        /*std::unordered_map<idNumber,std::vector<FSUSBElementInfoMap> >::iterator itRange = _usageMapToInputRangeEvent[vendorProductID].begin();
-        for(itRange;itRange != _usageMapToInputRangeEvent[vendorProductID].end();++itRange)
-        {
-           std::vector<FSUSBElementInfoMap>::iterator vItr = itRange->second.begin();
-           for(vItr;vItr !=  itRange->second.end(); ++vItr)
-           {
-              FSUSBElementInfoMap infoMapToLookThrough = *vItr;
-              if(infoMapToLookThrough.getDeviceInput() == inputToLookFor)
-              {
-                  lastResult = true;
-                  return true;
-              }
-           }
-        }*/
         bool result = findInputInRangeMap(vendorProductID,inputToLookFor);
         if(result == true)
         {

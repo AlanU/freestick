@@ -141,37 +141,58 @@ void FSDirectInputJoystickManager::update()
 
 void FSDirectInputJoystickManager::updateJoysticksPOV(FSDirectInputJoystick & device, LONG axisValue, long int idForXAxis)
 {
-    FSDeviceInput povInput = LastInput;
-    if (axisValue == -1) {
-        povInput = LastValueUp;
-
-    }else if (axisValue == 102 ) {
-        povInput = DPadRight;
-
-    }else if (axisValue == 308 ) {
-        povInput = DPadLeft;
-
-    }else if ((axisValue >= 0 && axisValue < 102) || axisValue > 308) {
-        povInput = DPadUp;
-    }else  {
-        povInput = DPadDown;
-
-    }
 
    if(lastPOVValue[device.getJoystickID()] != axisValue)
     {
-        FSUSBElementInfoMap temp = this->infoMapForInputType(device.getVendorID(), device.getProductID(), povInput);
-        if (temp.getDeviceInput() != LastInput && temp.getEventMapping() != FSLastEventAction ) {
-            FSUSBJoyStickInputElement * element = (FSUSBJoyStickInputElement*)device.findInputElement(idForXAxis);
-            if (element!= NULL) {
+        FSUSBJoyStickInputElement * element = (FSUSBJoyStickInputElement*)device.findInputElement(idForXAxis);
+        if(element != nullptr)
+        {
+            int base = element->getMaxValue()/7;
+            int newValue = element->getMaxValue() == 7 ? 8 : element->getMaxValue();
+            FSDeviceInput povInput = LastInput;
+            if (axisValue == -1) {
+                povInput = LastValueUp;
 
-                if (!element->isIntialized())
-                {
-                    std::stack<FSUSBElementInfoMap> inputTypes;
-                    element->getMapping(temp.getMin(), inputTypes);
+            }else if (axisValue == 102 ) {
+                povInput = DPadRight;
+                newValue = (base*4)-1;
+
+            }else if (axisValue == 308 ) {
+                povInput = DPadLeft;
+                newValue = (base*8)-1;
+
+
+            }else if ((axisValue >= 0 && axisValue < 102) || axisValue > 308) {
+                povInput = DPadUp;
+                newValue = (base*2) -1;
+
+            }else  {
+                povInput = DPadDown;
+                newValue = (base*6) -1;
+
+
+            }
+
+            FSUSBElementInfoMap temp = this->infoMapForInputType(device.getVendorID(), device.getProductID(), povInput);
+            if(temp.getDeviceInput() == LastInput)
+            {
+                  temp = FSUSBElementInfoMap(element->getMinValue(),element->getMaxValue(),Unknown_Dpad,FSInputChanged);
+            }
+            else
+            {
+                  newValue = temp.getMin();
+            }
+
+            if (temp.getDeviceInput() != LastInput && temp.getEventMapping() != FSLastEventAction ) {
+                if (element!= NULL) {
+
+                    if (!element->isIntialized())
+                    {
+                        std::stack<FSUSBElementInfoMap> inputTypes;
+                        element->getMapping(newValue, inputTypes);
+                    }
+                    FSUSBJoystickDeviceManager::updateEvents(device.getJoystickID(), element, newValue);
                 }
-                FSUSBJoystickDeviceManager::updateEvents(device.getJoystickID(), element, temp.getMin());
-               // updateEvents(device.getJoystickID(), element,  temp.getMin());
             }
         }
     }
