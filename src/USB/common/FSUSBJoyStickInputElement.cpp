@@ -34,6 +34,7 @@ and must not be misrepresented as being the original software.
 using namespace freestick;
 FSUSBJoyStickInputElement::FSUSBJoyStickInputElement():FSUSBDevice()
 {
+      firstTime = time(nullptr);
 }
 
 void FSUSBJoyStickInputElement::EmptyQue(std::stack<FSUSBElementInfoMap> & infoMapsToReturn,unsigned int sizeToleft)
