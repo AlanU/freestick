@@ -37,7 +37,6 @@ and must not be misrepresented as being the original software.
 
 //This is a work around for VS 2013 not supporting constexpr correctly
 //This should be change to constexpr once 2013 support is dropped
-const char * version = "0.0.4";
 #ifdef Q_OS_ANDROID
 
 #include <native_app_glue/android_native_app_glue.h>
@@ -50,7 +49,7 @@ const char * version = "0.0.4";
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    a.setApplicationVersion(version);
+    a.setApplicationVersion(freestick::FF_Version);
     QQmlApplicationEngine engine;
     //MainWindow w;
   //  w.show();

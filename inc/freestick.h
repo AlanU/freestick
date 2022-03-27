@@ -24,7 +24,6 @@ and must not be misrepresented as being the original software.
 
 3. This notice may not be removed or altered from any source distribution.
 **************************************************************************/
-
 #ifndef FREESTICK_H
 #define FREESTICK_H
 
@@ -45,6 +44,12 @@ and must not be misrepresented as being the original software.
 #include "USB/common/FSUSBJoyStickInputElement.h"
 
 #include "common/FSDeviceInputEvent.h"
+#define FREESTICK_VERSION_MAJOR 0
+#define FREESTICK_VERSION_MINOR 0
+#define FREESTICK_VERSION_PATCH 5
+namespace freestick {
+    const char * const FF_Version = "0.0.5";
+}
 
 #ifdef __APPLE__
     #include "USB/platform/NULL/FSUSBNullJoystickDeviceManager.h"
