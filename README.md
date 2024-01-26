@@ -22,8 +22,8 @@ We are looking for contributors. Contact AlanU for more information
 FreeStick is licensed under the [Zlib license]( http://opensource.org/licenses/Zlib)
 
 ### Currently in the following commercial products ###
-[Gamepad Inspector](https://www.swordpointstudios.com/gamepad-inspector)
-[GameSalad](https://gamesalad.com/)
+* [Gamepad Inspector](https://www.swordpointstudios.com/gamepad-inspector)
+* [GameSalad](https://gamesalad.com/)
 
 ### Example ###
 Create a device manager and call init.
