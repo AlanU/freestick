@@ -31,69 +31,97 @@ and must not be misrepresented as being the original software.
 #include <sys/stat.h>
 #include <iostream>
 #include <string>
-
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <filesystem>
+#include <set>
 using namespace freestick;
 FSLinuxJoystickDeviceManager::FSLinuxJoystickDeviceManager()
 {
-    updateConnectJoysticks();
+
 }
 
 void FSLinuxJoystickDeviceManager::update()
 {
-
+     updateConnectJoysticks();
+    int rc = -EAGAIN;
+     for(const std::string & event : _linuxMapKeys) //TODO make this more effient
+     {
+        int rc = 1;
+        int fd = open(event.c_str(), O_RDONLY|O_NONBLOCK);
+        rc = libevdev_new_from_fd(fd, &m_evdevHandel);
+        if (rc < 0) {
+            //fprintf(stderr, "Failed to init libevdev (%s)\n", strerror(-rc));
+            continue;
+        }
+        do {
+            struct input_event ev;
+            rc = libevdev_next_event(m_evdevHandel, LIBEVDEV_READ_FLAG_NORMAL, &ev);
+            if (rc == 0)
+                printf("Event: %s %s %d\n",
+                       libevdev_event_type_get_name(ev.type),
+                       libevdev_event_code_get_name(ev.type, ev.code),
+                       ev.value);
+        } while (rc != -EAGAIN);
+        close(fd);
+     }
+    int t = 0;
 }
-
 void FSLinuxJoystickDeviceManager::updateConnectJoysticks()
 {
-    int joy_fd = 0;
-    //keep a set of all open /dev/js joystick
-    //check known joysticks to see if they can be opened or found in the list
-    //if not then they have been disconnected
-    //Read all direcories in /dev and look for jsx where x is number using readdir also check to see if its a directory
-    //skip . and ..
-    //if they are not in the list then they are new connected joysticks
+    std::set<std::string> connecteContorllers (_linuxMapKeys);
+    std::string path = "/dev/input/";
+    for (const auto & entry : std::filesystem::directory_iterator(path)) {
 
-    DIR * dirPtr = nullptr;
-    struct dirent * entryDir = nullptr;
-    struct stat entryDirStat ;
-
-    if((dirPtr = opendir("/dev/input")) == nullptr)
-    {
-        return ;
-    }
-
-    //TODO see if there is a more efficent way to read all the directories
-    //TODO move over to using the evdev interface instead of the old way
-    //https://wiki.archlinux.org/index.php/Gamepad
-    while((entryDir = readdir(dirPtr)))
-    {
-        lstat(entryDir->d_name,&entryDirStat);
-        std::size_t nameLength = std::char_traits<char>::length(entryDir->d_name);
-        if(S_ISDIR(entryDirStat.st_mode) && nameLength >= 3 &&
-                entryDir->d_name[0] == 'j' && entryDir->d_name[1] =='s' &&  isdigit(entryDir->d_name[2]) )
-        {
-            std::cout<<entryDir->d_name<<std::endl;
-            if(_linuxDeviceIDMap.find(entryDir->d_name) == _linuxDeviceIDMap.end())
+        int rc = 1;
+        int fd = open(entry.path().c_str(), O_RDONLY|O_NONBLOCK);
+        rc = libevdev_new_from_fd(fd, &m_evdevHandel);
+        if (rc >= 0) {
+            int venderID = libevdev_get_id_vendor(m_evdevHandel);
+            int productID = libevdev_get_id_product(m_evdevHandel);
+            std::string deviceName =  libevdev_get_name(m_evdevHandel);
+            /*printf("Input device name: \"%s\"\n", libevdev_get_name(m_evdevHandel));
+            printf("Input device ID: bus %#x vendor %#x product %#x\n",
+                   libevdev_get_id_bustype(m_evdevHandel),
+                   libevdev_get_id_vendor(m_evdevHandel),
+                   libevdev_get_id_product(m_evdevHandel));*/
+            if (!libevdev_has_event_type(m_evdevHandel, EV_ABS))
+                {
+                printf("This device does not look like a gamepad\n");
+                exit(1);
+            }
+            if(_linuxDeviceIDMap.find(entry.path()) == _linuxDeviceIDMap.end())
             {
-                 IDNumber id = getNextID();
-                _linuxDeviceIDMap[entryDir->d_name] = id;
+                idNumber id = getNextID();
+                _linuxDeviceIDMap[entry.path()] = id;
+                _linuxMapKeys.insert(entry.path());
                 //TODO create a FSLinuxJoystick class
-                FSUSBJoystick * newJoystick =  new FSUSBJoystick(id,0 /*number of buttons*/,0 /*number of analog sticks*/ ,0 /*number of dpads*/,false /*does it support force feedback*/,0/* venderID*/,0/*productID*/ );
+                FSUSBJoystick * newJoystick =  new FSUSBJoystick(id,0 /*number of buttons*/,0 /*number of analog sticks*/ ,0 /*number of dpads*/,false /*does it support force feedback*/,venderID,productID );
                 addDevice(newJoystick);
             }
+            else {
+                connecteContorllers.erase(entry.path());
+            }
+            close(fd);
         }
     }
-
-
-
-    closedir(dirPtr);
-   /* if(joy_fd = open( "/dev/js0" , O_RDONLY)) == -1 )
+    if(connecteContorllers.size() != 0)
     {
-        printf( "Couldn't open joystick\n" );
-        return -1;
-    }*/
+        for(const std::string & controller : connecteContorllers)
+        {
+            const FSBaseDevice *  deviceToRemove = getDevice(_linuxDeviceIDMap[controller]);
+            if(deviceToRemove != nullptr)
+            {
+                _linuxDeviceIDMap.erase(controller);
+                _linuxMapKeys.erase(controller);
+                removeDevice((FSBaseDevice *)deviceToRemove); //frees the memory
+            }
+        }
+        m_evdevHandel  = nullptr;
+    }
+ }
 
-}
 
 void FSLinuxJoystickDeviceManager::updateJoysticks()
 {

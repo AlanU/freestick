@@ -27,6 +27,8 @@ and must not be misrepresented as being the original software.
 #pragma once
 #include "USB/common/FSUSBJoystickDeviceManager.h"
 #include "common/FSTypes.h"
+#include <libevdev/libevdev.h>
+#include <set>
 namespace freestick
 {
     class FSLinuxJoystickDeviceManager : public FSUSBJoystickDeviceManager
@@ -38,7 +40,9 @@ namespace freestick
         //called by update
         void updateConnectJoysticks();
         void updateJoysticks();
-        std::unordered_map<std::string,IDNumber> _linuxDeviceIDMap;
+        std::unordered_map<std::string,idNumber> _linuxDeviceIDMap;
+        std::set<std::string> _linuxMapKeys;
+        libevdev * m_evdevHandel = nullptr;
     };
 }
 
