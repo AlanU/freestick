@@ -172,10 +172,14 @@ win32 {
 unix:!macx:!symbian:!android
 {
     INCLUDEPATH += /usr/include/libevdev-1.0/
-    LIBS += -L/usr/lib/x86_64-linux-gnu/l -levdev
-    SOURCES += $$files(../../../src/USB/platform/Linux/*.cpp)
 
-    HEADERS += $$files(../../../inc/USB/platform/Linux/*.h)
+    LIBS += -L/usr/lib/x86_64-linux-gnu/l -levdev
+
+    SOURCES += ../../../src/USB/platform/Linux/FSLinuxJoystickDeviceManager.cpp \
+               ../../../src/USB/platform/Linux/FSLinuxJoystick.cpp
+
+    HEADERS += ../../../inc/USB/platform/Linux/FSLinuxJoystickDeviceManager.h \
+               ../../../inc/USB/platform/Linux/FSLinuxJoystick.h
 }
 
 

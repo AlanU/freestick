@@ -26,6 +26,7 @@ and must not be misrepresented as being the original software.
 **************************************************************************/
 #include "USB/platform/Linux/FSLinuxJoystickDeviceManager.h"
 #include "USB/common/FSUSBJoystick.h"
+#include "USB/platform/Linux/FSLinuxJoystick.h"
 #include <unistd.h>
 #include <dirent.h>
 #include <sys/stat.h>
@@ -66,8 +67,8 @@ void FSLinuxJoystickDeviceManager::update()
         } while (rc != -EAGAIN);
         close(fd);
      }
-    int t = 0;
 }
+
 void FSLinuxJoystickDeviceManager::updateConnectJoysticks()
 {
     std::set<std::string> connecteContorllers (_linuxMapKeys);
@@ -78,8 +79,8 @@ void FSLinuxJoystickDeviceManager::updateConnectJoysticks()
         int fd = open(entry.path().c_str(), O_RDONLY|O_NONBLOCK);
         rc = libevdev_new_from_fd(fd, &m_evdevHandel);
         if (rc >= 0) {
-            int venderID = libevdev_get_id_vendor(m_evdevHandel);
-            int productID = libevdev_get_id_product(m_evdevHandel);
+            vendorIDType vendorID = libevdev_get_id_vendor(m_evdevHandel);
+            productIDType productID = libevdev_get_id_product(m_evdevHandel);
             std::string deviceName =  libevdev_get_name(m_evdevHandel);
             /*printf("Input device name: \"%s\"\n", libevdev_get_name(m_evdevHandel));
             printf("Input device ID: bus %#x vendor %#x product %#x\n",
@@ -97,7 +98,11 @@ void FSLinuxJoystickDeviceManager::updateConnectJoysticks()
                 _linuxDeviceIDMap[entry.path()] = id;
                 _linuxMapKeys.insert(entry.path());
                 //TODO create a FSLinuxJoystick class
-                FSUSBJoystick * newJoystick =  new FSUSBJoystick(id,0 /*number of buttons*/,0 /*number of analog sticks*/ ,0 /*number of dpads*/,false /*does it support force feedback*/,venderID,productID );
+                FSUSBJoystick * newJoystick =  new FSLinuxJoystick(id,
+                                                                   m_evdevHandel,
+                                                                   entry.path(),
+                                                                   vendorID,
+                                                                 productID);
                 addDevice(newJoystick);
             }
             else {
