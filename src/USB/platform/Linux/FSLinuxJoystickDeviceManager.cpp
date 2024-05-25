@@ -47,37 +47,49 @@ void FSLinuxJoystickDeviceManager::update()
 {
      updateConnectJoysticks();
     int rc = -EAGAIN;
-     for(const std::string & event : _linuxMapKeys) //TODO make this more effient
-     {
+    for(const std::string & event : _linuxMapKeys) //TODO make this more effient
+    {
+        FSLinuxJoystick * controller = (FSLinuxJoystick *)getDevice(_linuxDeviceIDMap[event]);
         int rc = 1;
-        int fd = open(event.c_str(), O_RDONLY|O_NONBLOCK);
-        rc = libevdev_new_from_fd(fd, &m_evdevHandel);
-        if (rc < 0) {
-            //fprintf(stderr, "Failed to init libevdev (%s)\n", strerror(-rc));
-            continue;
-        }
-        do {
-            struct input_event ev;
-            rc = libevdev_next_event(m_evdevHandel, LIBEVDEV_READ_FLAG_NORMAL, &ev);
-            if (rc == 0)
-                printf("Event: %s %s %d\n",
-                       libevdev_event_type_get_name(ev.type),
-                       libevdev_event_code_get_name(ev.type, ev.code),
-                       ev.value);
-        } while (rc != -EAGAIN);
-        close(fd);
+        if(controller &&  controller->getHandel() != nullptr)
+        {
+             /* int fd = open(event.c_str(), O_RDONLY|O_NONBLOCK);
+            rc = libevdev_new_from_fd(fd, &m_evdevHandel);
+            if (rc < 0) {
+                //fprintf(stderr, "Failed to init libevdev (%s)\n", strerror(-rc));
+                continue;
+            }*/
+            do {
+                struct input_event ev;
+                rc = libevdev_next_event(controller->getHandel(), LIBEVDEV_READ_FLAG_NORMAL, &ev);
+                if (rc >=0 && !(ev.type == EV_SYN && ev.code == SYN_REPORT))
+                    printf("Event: %s %s %d\n",
+                           libevdev_event_type_get_name(ev.type),
+                           libevdev_event_code_get_name(ev.type, ev.code),
+                           ev.value);
+                auto element = (FSUSBJoyStickInputElement*)controller->findInputElement( FSUSBJoystickDeviceManager::createIdForElement(static_cast<uint32_t>(ev.code),static_cast<uint32_t>(ev.type)));
+                updateEvents(controller->getJoystickID(),element, ev.value);
+            } while (rc != -EAGAIN);
+         }
+        //close(fd);
      }
 }
 
 void FSLinuxJoystickDeviceManager::updateConnectJoysticks()
 {
+    libevdev * m_evdevHandel = nullptr;
     std::set<std::string> connecteContorllers (_linuxMapKeys);
     std::string path = "/dev/input/";
     for (const auto & entry : std::filesystem::directory_iterator(path)) {
 
-        int rc = 1;
-        int fd = open(entry.path().c_str(), O_RDONLY|O_NONBLOCK);
-        rc = libevdev_new_from_fd(fd, &m_evdevHandel);
+        int rc = -1;
+        int fd = 0;
+
+        if(_linuxDeviceIDMap.find(entry.path()) == _linuxDeviceIDMap.end())
+        {
+            int fd = open(entry.path().c_str(), O_RDONLY|O_NONBLOCK);
+            rc = libevdev_new_from_fd(fd, &m_evdevHandel);
+        }
         if (rc >= 0) {
             vendorIDType vendorID = libevdev_get_id_vendor(m_evdevHandel);
             productIDType productID = libevdev_get_id_product(m_evdevHandel);
@@ -97,21 +109,24 @@ void FSLinuxJoystickDeviceManager::updateConnectJoysticks()
                 idNumber id = getNextID();
                 _linuxDeviceIDMap[entry.path()] = id;
                 _linuxMapKeys.insert(entry.path());
-                //TODO create a FSLinuxJoystick class
                 FSUSBJoystick * newJoystick =  new FSLinuxJoystick(id,
                                                                    m_evdevHandel,
+                                                                   fd,
                                                                    entry.path(),
                                                                    vendorID,
-                                                                 productID);
+                                                                 productID,*this);
                 addDevice(newJoystick);
             }
             else {
                 connecteContorllers.erase(entry.path());
             }
-            close(fd);
+
+        }else{
+            m_evdevHandel = nullptr;
+          // close(fd); //This conflicts with file loop TODO figure this out
         }
     }
-    if(connecteContorllers.size() != 0)
+    /*if(connecteContorllers.size() != 0)
     {
         for(const std::string & controller : connecteContorllers)
         {
@@ -124,7 +139,7 @@ void FSLinuxJoystickDeviceManager::updateConnectJoysticks()
             }
         }
         m_evdevHandel  = nullptr;
-    }
+    }*/
  }
 
 

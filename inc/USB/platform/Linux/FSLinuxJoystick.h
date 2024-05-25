@@ -27,8 +27,10 @@ and must not be misrepresented as being the original software.
 #pragma once
 
 #include "USB/common/FSUSBJoystick.h"
+#include "USB/common/FSUSBJoystickDeviceManager.h"
 #include "common/FSTypes.h"
 #include <libevdev/libevdev.h>
+
 namespace freestick
 {
     class FSLinuxJoystick : public FSUSBJoystick
@@ -36,10 +38,16 @@ namespace freestick
     public:
         FSLinuxJoystick(idNumber joyStickID,
                         libevdev * openDevHandel,
+                        int openFileHandler,
                         const std::string & devicePath,
                         vendorIDType vendorID,
-                        productIDType productID);
+                        productIDType productID,
+                        FSUSBJoystickDeviceManager & usbJoystickManager);
+        ~FSLinuxJoystick() override;
+        libevdev * getHandel();
     private:
         std::string _devicePath;
+        libevdev * _evdevHandel = nullptr;
+        int _openFileHandler = -1;
     };
 }

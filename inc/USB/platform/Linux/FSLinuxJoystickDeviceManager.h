@@ -42,7 +42,6 @@ namespace freestick
         void updateJoysticks();
         std::unordered_map<std::string,idNumber> _linuxDeviceIDMap;
         std::set<std::string> _linuxMapKeys;
-        libevdev * m_evdevHandel = nullptr;
     };
 }
 
