@@ -9,7 +9,7 @@ jobs:
         os: [windows-latest,macos-13] # we build on GitHub-provided Windows and Linux images
     runs-on: ${{ matrix.os }} # use value from the matrix
     env:
-         Qt_Build_Version: '6.8.0'
+         Qt_Build_Version: '6.7.3'
     steps:
      - name: "Checking for Mac"
        if: matrix.os == 'macos-13'
