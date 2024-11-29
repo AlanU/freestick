@@ -13,7 +13,7 @@ jobs:
     steps:
      - name: "Checking for Mac"
        if: matrix.os == 'macos-13'
-       run: echo 'Target Mac' && echo "Build_Target=mac" >> $GITHUB_ENV && echo "Build_Arch=clang_64" >> $GITHUB_ENV && && echo "Build_Compiler_Dir=macos" >> $GITHUB_ENV
+       run: echo 'Target Mac' && echo "Build_Target=mac" >> $GITHUB_ENV && echo "Build_Arch=clang_64" >> $GITHUB_ENV && echo "Build_Compiler_Dir=macos" >> $GITHUB_ENV
      - name: "Checking for Windows" 
        if: matrix.os == 'windows-latest'
        run: echo 'Target Windows' && echo "Build_Target=windows" >> $GITHUB_ENV && echo "Build_Arch=win64_msvc2019_64" >> $GITHUB_ENV      
