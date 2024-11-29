@@ -13,16 +13,10 @@ jobs:
     steps:
      - name: "Checking for Mac"
        if: matrix.os == 'macos-13'
-       run: echo 'Target Mac'
-       env:
-         Build_Target: mac
-         Build_Arch: 'clang_64'
+       run: echo 'Target Mac' && echo "Build_Target=mac" >> $GITHUB_ENV && echo "Build_Arch=clang_64" >> $GITHUB_ENV
      - name: "Checking for Windows" 
        if: matrix.os == 'windows-latest'
-       run: echo 'Target Windows'
-       env:
-         Build_Target: windows
-         Build_Arch: 'msvc2017_64'
+       run: echo 'Target Windows' && echo "Build_Target=windows" >> $GITHUB_ENV && echo "Build_Arch=msvc2017_64" >> $GITHUB_ENV      
      - name: Install Qt
        uses: jurplel/install-qt-action@v3
        with:
