@@ -34,6 +34,9 @@ jobs:
        run: cd '${{github.workspace}}/build/QT/CommandLine' && bundle install 
        # We don't need to set up the environment variable for CMake to see Qt because the install-qt-action
        # sets up the necessary variables automatically
+
+     - name: Check Qt install
+       run: ls ${{runner.workspace}}/Qt/${{env.Qt_Build_Version}}/${{env.Build_Arch}}
      - name: Build FreeStick Lib
-       run: cd '${{ github.workspace}}/build/QT/CommandLine' && ruby build.rb --qt=${{runner.workspace}}/${{env.Qt_Build_Version}} --target=${{env.Build_Target}}
+       run: cd '${{ github.workspace}}/build/QT/CommandLine' && ruby build.rb --qt=${{runner.workspace}}/Qt/${{env.Qt_Build_Version}} --target=${{env.Build_Target}}
    
