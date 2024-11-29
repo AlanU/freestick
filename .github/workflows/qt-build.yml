@@ -25,10 +25,10 @@ jobs:
        uses: jurplel/install-qt-action@v3
        with:
          version: ${{env.Qt_Build_Version}}
-     - uses: actions/checkout@v3    # Actually check out the sources. GH Actions can run for events that may not require
+     - uses: actions/checkout@v4    # Actually check out the sources. GH Actions can run for events that may not require
      - uses: actions/setup-ruby@v1
        with:
-         ruby-version: 3.2.2
+         ruby-version: '3.3.6'
        # We don't need to set up the environment variable for CMake to see Qt because the install-qt-action
        # sets up the necessary variables automatically
      - name: Build FreeStick Lib
