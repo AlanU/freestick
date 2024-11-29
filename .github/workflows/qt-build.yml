@@ -9,26 +9,32 @@ jobs:
         os: [windows-latest,macos-13] # we build on GitHub-provided Windows and Linux images
     runs-on: ${{ matrix.os }} # use value from the matrix
     env:
-         Qt_Build_Version: '6.6.1'
+         Qt_Build_Version: '5.12.12'
     steps:
      - name: "Checking for Mac"
        if: matrix.os == 'macos-13'
        run: echo 'Target Mac'
        env:
-         Build_Target: mac    
+         Build_Target: mac
+         Build_Arch: 'clang_64'
      - name: "Checking for Windows" 
        if: matrix.os == 'windows-latest'
        run: echo 'Target Windows'
        env:
          Build_Target: windows
+         Build_Arch: 'msvc2017_64'
      - name: Install Qt
        uses: jurplel/install-qt-action@v3
        with:
          version: ${{env.Qt_Build_Version}}
+         arc: ${{env.Build_Arch}}
+         cache: true
+         setup-python: false
      - uses: actions/checkout@v4    # Actually check out the sources. GH Actions can run for events that may not require
-     - uses: actions/setup-ruby@v1
+     - uses: ruby/setup-ruby@v1
        with:
          ruby-version: '3.3.6'
+         bundler-cache: true
        # We don't need to set up the environment variable for CMake to see Qt because the install-qt-action
        # sets up the necessary variables automatically
      - name: Build FreeStick Lib
