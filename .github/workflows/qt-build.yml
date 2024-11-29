@@ -35,8 +35,11 @@ jobs:
        with:
          ruby-version: '3.3.6'
          bundler-cache: true
+
+     - name: Setup Ruby Gems
+       run: cd '${{github.workspace}}/build/QT/CommandLine' && bundle install 
        # We don't need to set up the environment variable for CMake to see Qt because the install-qt-action
        # sets up the necessary variables automatically
      - name: Build FreeStick Lib
-       run: cd '${{ github.workspace}}/build/QT/CommandLine' && bundle install && ruby build.rb --qt=${{runner.workspace}}/${{env.Qt_Build_Version}} --target=${{env.Build_Target}}
+       run: cd '${{ github.workspace}}/build/QT/CommandLine' && ruby build.rb --qt=${{runner.workspace}}/${{env.Qt_Build_Version}} --target=${{env.Build_Target}}
    
