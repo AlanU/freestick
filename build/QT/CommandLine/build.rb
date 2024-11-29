@@ -132,7 +132,7 @@ out_put_file_name = ''
 case $build_target
 when 'mac'
   spec = 'macx-clang'
-  qt_compiler = 'clang_64'
+  qt_compiler = 'macos'
   config_string = 'CONFIG+=x86_64'
   out_put_file_name = 'macOSX'
 when 'ios'
