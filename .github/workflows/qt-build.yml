@@ -27,7 +27,7 @@ jobs:
        uses: jurplel/install-qt-action@v3
        with:
          version: ${{env.Qt_Build_Version}}
-         arc: ${{env.Build_Arch}}
+         arch: ${{env.Build_Arch}}
          cache: true
          setup-python: false
      - uses: actions/checkout@v4    # Actually check out the sources. GH Actions can run for events that may not require
