@@ -8,19 +8,21 @@ jobs:
       matrix:
         os: [windows-latest,macos-13] # we build on GitHub-provided Windows and Linux images
     runs-on: ${{ matrix.os }} # use value from the matrix
-    if: matrix.os == 'windows-latest'
-    run: echo 'Target Windows'
     env:
-      Build_Target: windows
-      Build_Arch: 'msvc2017_64'
-      Qt_Build_Version: '5.12.12'
-    if: matrix.os == 'macos-13'
-    run: echo 'Target Mac'
-    env:
-      Build_Target: mac
-      Build_Arch: 'clang_64'
-      Qt_Build_Version: '5.12.12'
+         Qt_Build_Version: '5.12.12'
     steps:
+     - name: "Checking for Mac"
+       if: matrix.os == 'macos-13'
+       run: echo 'Target Mac'
+       env:
+         Build_Target: mac
+         Build_Arch: 'clang_64'
+     - name: "Checking for Windows" 
+       if: matrix.os == 'windows-latest'
+       run: echo 'Target Windows'
+       env:
+         Build_Target: windows
+         Build_Arch: 'msvc2017_64'
      - name: Install Qt
        uses: jurplel/install-qt-action@v3
        with:
@@ -39,11 +41,5 @@ jobs:
        # We don't need to set up the environment variable for CMake to see Qt because the install-qt-action
        # sets up the necessary variables automatically
      - name: Build FreeStick Lib
-       if: matrix.os == 'macos-13'
-       env:
-         Build_Target: mac
-         Build_Arch: 'clang_64'
-       
-       
        run: cd '${{ github.workspace}}/build/QT/CommandLine' && ruby build.rb --qt=${{runner.workspace}}/${{env.Qt_Build_Version}} --target=${{env.Build_Target}}
    
