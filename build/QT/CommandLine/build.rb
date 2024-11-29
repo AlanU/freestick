@@ -142,7 +142,7 @@ when 'ios'
   out_put_file_name = 'iOS'
 when 'windows'
   spec = 'win32-msvc'
-  qt_compiler = 'msvc2017_64'
+  qt_compiler = 'win64_msvc2019_64'
   config_string = 'CONFIG+=qtquickcompiler'
   make_path = "C:/Qt/Tools/QtCreator/bin/jom.exe" # TODO use passed in path
   out_put_file_name = 'windows64'
