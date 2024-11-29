@@ -1,0 +1,33 @@
+name: qt-build
+ 
+on: push # when to trigger this. Here, on every push
+jobs:
+  build_and_test:
+    name: "Build and test"
+    strategy:
+      matrix:
+        os: [windows-latest,macos-13] # we build on GitHub-provided Windows and Linux images
+    runs-on: ${{ matrix.os }} # use value from the matrix
+    steps:
+    - name: Setting up env
+    if: matrix.os == 'macos-13'
+      env:
+          Build_Target: mac
+    if: matrix.os == 'windows-latest'
+      env:
+          Build_Target: windows
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v3
+      with:
+        version: '6.6.1'
+    - uses: actions/checkout@v3    # Actually check out the sources. GH Actions can run for events that may not require
+    - name: Build                         
+    - uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 3.2.2
+      # We don't need to set up the environment variable for CMake to see Qt because the install-qt-action
+      # sets up the necessary variables automatically
+      run: cd ./build/QT/CommandLine/build.rb && ruby build.rb --qt=/Users/Shared/Qt/5.15.2 --target=${Build_Target}'
+ 
+    # Here we call CMake manually, there are solutions for that in the Marketplace: https://github.com/marketplace/actions/run-cmake
+   
