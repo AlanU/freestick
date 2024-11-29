@@ -16,7 +16,7 @@ jobs:
        run: echo 'Target Mac' && echo "Build_Target=mac" >> $GITHUB_ENV && echo "Build_Arch=clang_64" >> $GITHUB_ENV && echo "Build_Compiler_Dir=macos" >> $GITHUB_ENV
      - name: "Checking for Windows" 
        if: matrix.os == 'windows-latest'
-       run: echo 'Target Windows' && echo "Build_Target=windows" >> $GITHUB_ENV && echo "Build_Arch=win64_msvc2019_64" >> $GITHUB_ENV      
+       run: echo 'Target Windows' && echo "Build_Target=windows" | Out-File -FilePath $env:GITHUB_ENV -Append; echo "Build_Arch=win64_msvc2019_64" | Out-File -FilePath $env:GITHUB_ENV -Append      
      - name: Install Qt
        uses: jurplel/install-qt-action@v3
        with:
