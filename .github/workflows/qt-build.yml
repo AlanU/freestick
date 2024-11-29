@@ -9,25 +9,30 @@ jobs:
         os: [windows-latest,macos-13] # we build on GitHub-provided Windows and Linux images
     runs-on: ${{ matrix.os }} # use value from the matrix
     steps:
-    - name: Setting up env
-    if: matrix.os == 'macos-13'
+    - name: "Checking for Mac"
+      if: matrix.os == 'macos-13'
+      run: echo 'Target Mac'
       env:
-          Build_Target: mac
-    if: matrix.os == 'windows-latest'
+        Build_Target: mac
+    - name: "Checking for Windows" 
+      if: matrix.os == 'windows-latest'
+      run: echo 'Target Windows'
       env:
-          Build_Target: windows
+        Build_Target: windows
     - name: Install Qt
+      env:
+         Qt_Build_Version: '6.6.1'
       uses: jurplel/install-qt-action@v3
       with:
-        version: '6.6.1'
+        version: $Qt_Build_Version
     - uses: actions/checkout@v3    # Actually check out the sources. GH Actions can run for events that may not require
-    - name: Build                         
+    - name: Build FreeStick Lib                      
     - uses: actions/setup-ruby@v1
       with:
         ruby-version: 3.2.2
       # We don't need to set up the environment variable for CMake to see Qt because the install-qt-action
       # sets up the necessary variables automatically
-      run: cd ./build/QT/CommandLine/build.rb && ruby build.rb --qt=/Users/Shared/Qt/5.15.2 --target=${Build_Target}'
+      run: cd ./build/QT/CommandLine/build.rb && ruby build.rb --qt=$RUNNER_WORKSPACE/$Qt_Build_Version' --target=${Build_Target}'
  
     # Here we call CMake manually, there are solutions for that in the Marketplace: https://github.com/marketplace/actions/run-cmake
    
