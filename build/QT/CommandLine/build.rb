@@ -114,7 +114,6 @@ def processArgs()
       $qt_path = value
     when 'target'
       $build_target = value.downcase()
-    end
     when 'useFullPath'
       $build_use_full_path = !!value
     end
