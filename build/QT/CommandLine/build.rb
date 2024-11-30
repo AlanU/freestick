@@ -116,7 +116,7 @@ def processArgs()
     when 'target'
       $build_target = value.downcase()
     when 'useFullPath'
-      $build_use_full_path = !!value
+      $build_use_full_path = !(value.downcase() == 'false')
     end
   end
 end
