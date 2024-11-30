@@ -40,10 +40,10 @@ end
 
 def build(qtPath, spec , makePath, configString, qmakeProFile)
   # TODO make user there is a way for android to copy java files
-  qmake_command = "#{qtPath}/bin/qmake #{qmakeProFile} -r -spec #{spec} #{configString}"
+  qmake_command = $build_use_full_path ? "#{qtPath}/bin/qmake #{qmakeProFile} -r -spec #{spec} #{configString}" : "qmake #{qmakeProFile} -r -spec #{spec} #{configString}"
   make_command = "#{makePath}"
   if  OS.windows?
-    vs_command ="\"#{VISUAL_STUDIO_PATH}/vcvarsall.bat\" x86_amd64"
+    vs_command = $build_use_full_path ? "\"#{VISUAL_STUDIO_PATH}/vcvarsall.bat\" x86_amd64" : "vcvarsall.bat x86_amd64"
     qmake_command = "#{vs_command} && " + qmake_command
     make_command = "#{vs_command} && " + make_command
   end
@@ -84,9 +84,11 @@ def copyArtifacts(outputName, input_dir)
   #FileUtils.cp_r("../#{HEADER_PATH}", "../#{input_dir}/release")
   # File.rename("./#{BUILD_DIR}", outputName )
   input_Dir = "../#{input_dir}/release"
+  puts "input_Dir: #{input_Dir}"
   ::Zip::File.open("#{outputName}.zip", ::Zip::File::CREATE) do |zipFile|
     Dir["#{input_Dir}/**/**"].each do |file|
       # unless (file == 'release')
+        puts "add file to zip: #{file}"
         zipFile.add(file.sub(input_Dir + '/', ''), file)
       # end
     end
@@ -96,6 +98,7 @@ end
 $build_target = ''
 $qt_path = ''
 $build_test_app = false
+$build_use_full_path = true
 def processArgs()
   ARGV.each do |arg|
     commands = arg.split('=')
@@ -111,6 +114,9 @@ def processArgs()
       $qt_path = value
     when 'target'
       $build_target = value.downcase()
+    end
+    when 'useFullPath'
+      $build_use_full_path = !!value
     end
   end
 end

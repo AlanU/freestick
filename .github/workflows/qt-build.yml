@@ -38,5 +38,5 @@ jobs:
      - name: Check Qt install
        run: ls ${{runner.workspace}}/Qt/${{env.Qt_Build_Version}}/${{env.Build_Arch}}
      - name: Build FreeStick Lib
-       run: cd '${{ github.workspace}}/build/QT/CommandLine' && ruby build.rb --qt=${{runner.workspace}}/Qt/${{env.Qt_Build_Version}} --target=${{env.Build_Target}}
+       run: cd '${{ github.workspace}}/build/QT/CommandLine' && ruby build.rb --qt=${{runner.workspace}}/Qt/${{env.Qt_Build_Version}} --target=${{env.Build_Target}} --useFullPath=false
    
