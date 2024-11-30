@@ -38,17 +38,18 @@ def self.sh_output_result(command, command_display_override = nil)
 end
 
 
-def build(qtPath, spec , makePath, configString, qmakeProFile)
+def build(qtPath, spec , makePath, configString, qmakeProFile, fullPathToTools)
   # TODO make user there is a way for android to copy java files
-  qmake_command = $build_use_full_path ? "#{qtPath}/bin/qmake #{qmakeProFile} -r -spec #{spec} #{configString}" : "qmake #{qmakeProFile} -r -spec #{spec} #{configString}"
+  qmake_command = fullPathToTools == true ? "#{qtPath}/bin/qmake #{qmakeProFile} -r -spec #{spec} #{configString}" : "qmake #{qmakeProFile} -r -spec #{spec} #{configString}"
   make_command = "#{makePath}"
   if  OS.windows?
-    vs_command = $build_use_full_path ? "\"#{VISUAL_STUDIO_PATH}/vcvarsall.bat\" x86_amd64" : "vcvarsall.bat x86_amd64"
-    qmake_command = "#{vs_command} && " + qmake_command
-    make_command = "#{vs_command} && " + make_command
+    vs_command = fullPathToTools == true ? "\"#{VISUAL_STUDIO_PATH}/vcvarsall.bat\" x86_amd64" : "vcvarsall.bat x86_amd64"
+    qmake_command = "#{vs_command} ; " + qmake_command
+    make_command = "#{vs_command} ; " + make_command
   end
   qmake_results = sh "#{qmake_command}"
   build_results = sh "#{make_command}"
+  puts "****** Building with qmake: #{qmake_command} and make: #{make_command}"
   return qmake_results && build_results
 end
 
@@ -156,10 +157,10 @@ end
 if spec.empty? && qt_compiler.empty? && config_string.empty?
   exit -1
 else
-  lib_build_results = build("#{$qt_path}/#{qt_compiler}", "#{spec}", make_path, config_string, '../../FreeStick/FreeStick.pro')
+  lib_build_results = build("#{$qt_path}/#{qt_compiler}", "#{spec}", make_path, config_string, '../../FreeStick/FreeStick.pro',$build_use_full_path)
   if($build_test_app)
     # TODO Fix Building test App
-    test_app_build_results = build("#{$qt_path}/#{qt_compiler}", "#{spec}", make_path, config_string, '../../FreeStickTestApp/FreeStickTestApp.pro')
+    test_app_build_results = build("#{$qt_path}/#{qt_compiler}", "#{spec}", make_path, config_string, '../../FreeStickTestApp/FreeStickTestApp.pro',$build_use_full_path)
   end
   Dir.chdir('..')
   deploy_qt($qt_path, qt_compiler, './JoyStickConfig/release/JoyStickConfig.app') if($build_test_app)
