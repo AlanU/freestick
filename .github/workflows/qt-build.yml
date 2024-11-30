@@ -12,7 +12,7 @@ jobs:
          Qt_Build_Version: '6.7.3'
     steps:
      - name: "Checking for Mac"
-       if: matrix.os == 'macos-13'
+       if: matrix.os == 'macos-12'
        run: echo 'Target Mac' && echo "Build_Target=mac" >> $GITHUB_ENV && echo "Build_Arch=clang_64" >> $GITHUB_ENV && echo "Build_Compiler_Dir=macos" >> $GITHUB_ENV
      - name: "Checking for Windows" 
        if: matrix.os == 'windows-latest'
@@ -22,7 +22,7 @@ jobs:
        with:
          version: ${{env.Qt_Build_Version}}
          arch: ${{env.Build_Arch}}
-         cache: true
+         cache: false
          setup-python: false
      - uses: actions/checkout@v4    # Actually check out the sources. GH Actions can run for events that may not require
      - uses: ruby/setup-ruby@v1
