@@ -13,10 +13,10 @@ jobs:
     steps:
      - name: "Checking for Mac"
        if: matrix.os == 'macos-12'
-       run: echo 'Target Mac' && echo "Build_Target=mac" >> $GITHUB_ENV && echo "Build_Arch=clang_64" >> $GITHUB_ENV && echo "Build_Compiler_Dir=macos" >> $GITHUB_ENV
+       run: echo 'Target Mac' && echo "Build_Target=mac" >> $GITHUB_ENV && echo "Build_Arch=clang_64" >> $GITHUB_ENV && echo "Build_Compiler_Dir=macos" >> $GITHUB_ENV && echo "Artifact_Name=macOSX" >> $GITHUB_ENV
      - name: "Checking for Windows" 
        if: matrix.os == 'windows-latest'
-       run: echo 'Target Windows' && echo "Build_Target=windows" | Out-File -FilePath $env:GITHUB_ENV -Append; echo "Build_Arch=win64_msvc2019_64" | Out-File -FilePath $env:GITHUB_ENV -Append; echo "Build_Compiler_Dir=msvc2019_64" | Out-File -FilePath $env:GITHUB_ENV -Append       
+       run: echo 'Target Windows' && echo "Build_Target=windows" | Out-File -FilePath $env:GITHUB_ENV -Append; echo "Build_Arch=win64_msvc2019_64" | Out-File -FilePath $env:GITHUB_ENV -Append; echo "Build_Compiler_Dir=msvc2019_64" | Out-File -FilePath $env:GITHUB_ENV -Append; echo "Artifact_Name=windows64" | Out-File -FilePath $env:GITHUB_ENV -Append     
      - name: Install Qt
        uses: jurplel/install-qt-action@v3
        with:
@@ -39,4 +39,8 @@ jobs:
        run: ls ${{runner.workspace}}/Qt/${{env.Qt_Build_Version}}/${{env.Build_Compiler_Dir}}
      - name: Build FreeStick Lib
        run: cd '${{ github.workspace}}/build/QT/CommandLine' && ruby build.rb --qt=${{runner.workspace}}/Qt/${{env.Qt_Build_Version}} --target=${{env.Build_Target}} --useFullPath=false
-   
+     - name: Archive Lib Build Results
+         uses: actions/upload-artifact@v4
+         with:
+            name: ${{env.Artifact_Name}} Lib
+            path: ${{ github.workspace}}/build/QT/CommandLine/out/${{env.Artifact_Name}}.zip
