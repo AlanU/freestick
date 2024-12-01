@@ -43,10 +43,9 @@ def build(qtPath, spec , makePath, configString, qmakeProFile, fullPathToTools)
   qmake_command = fullPathToTools == true ? "#{qtPath}/bin/qmake #{qmakeProFile} -r -spec #{spec} #{configString}" : "qmake #{qmakeProFile} -r -spec #{spec} #{configString}"
   make_command = "#{makePath}"
   if OS.windows?
-    vs_command = fullPathToTools == true ? "\"#{VISUAL_STUDIO_PATH}/vcvarsall.bat\" x86_amd64" : "vcvarsall.bat x86_amd64"
-    if fullPathToTools == true
-      qmake_command = "#{vs_command} ; " + qmake_command
-      make_command = "#{vs_command} ; " + make_command
+    vs_command = fullPathToTools == true ? "\"#{VISUAL_STUDIO_PATH}/vcvarsall.bat\" x86_amd64" : "& vcvarsall.bat x86_amd64"
+    qmake_command = "#{vs_command} ; " + qmake_command
+    make_command = "#{vs_command} ; " + make_command
     end
   end
   puts "****** Building with qmake: #{qmake_command} and make: #{make_command}"

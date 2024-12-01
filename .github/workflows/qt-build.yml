@@ -20,6 +20,8 @@ jobs:
      - name: 'Add msbuild to PATH on Windows'
        if: matrix.os == 'windows-latest'
        uses: microsoft/setup-msbuild@v2
+       with:
+           msbuild-architecture: x64
      - name: Install Qt
        uses: jurplel/install-qt-action@v3
        with:
