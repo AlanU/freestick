@@ -42,10 +42,12 @@ def build(qtPath, spec , makePath, configString, qmakeProFile, fullPathToTools)
   # TODO make user there is a way for android to copy java files
   qmake_command = fullPathToTools == true ? "#{qtPath}/bin/qmake #{qmakeProFile} -r -spec #{spec} #{configString}" : "qmake #{qmakeProFile} -r -spec #{spec} #{configString}"
   make_command = "#{makePath}"
-  if  OS.windows?
+  if OS.windows?
     vs_command = fullPathToTools == true ? "\"#{VISUAL_STUDIO_PATH}/vcvarsall.bat\" x86_amd64" : "vcvarsall.bat x86_amd64"
-    qmake_command = "#{vs_command} ; " + qmake_command
-    make_command = "#{vs_command} ; " + make_command
+    unless fullPathToTools
+      qmake_command = "#{vs_command} ; " + qmake_command
+      make_command = "#{vs_command} ; " + make_command
+    end
   end
   puts "****** Building with qmake: #{qmake_command} and make: #{make_command}"
   qmake_results = sh "#{qmake_command}"
@@ -110,7 +112,7 @@ def processArgs()
       break;
     end
     command = commands[0].delete('-')
-    value =  commands[1].delete("'").delete('"')
+    value = commands[1].delete("'").delete('"')
     case command
     when 'build_test_app'
       $build_test_app = true
