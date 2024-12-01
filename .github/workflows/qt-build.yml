@@ -43,7 +43,7 @@ jobs:
      - name: Check Qt install
        run: ls ${{runner.workspace}}/Qt/${{env.Qt_Build_Version}}/${{env.Build_Compiler_Dir}}
      - name: Build FreeStick Lib
-       run: cd '${{ github.workspace}}/build/QT/CommandLine' && ruby build.rb --qt=${{runner.workspace}}/Qt/${{env.Qt_Build_Version}} --target=${{env.Build_Target}} --useFullPath=false
+       run: cd '${{ github.workspace}}/build/QT/CommandLine' && ruby build.rb --qt=${{runner.workspace}}/Qt/${{env.Qt_Build_Version}} --target=${{env.Build_Target}} --useFullPath=false --usePowerShell=true
      - name: Archive Lib Build Results
        uses: actions/upload-artifact@v4
        with:
