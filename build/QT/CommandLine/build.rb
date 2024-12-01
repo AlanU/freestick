@@ -38,12 +38,16 @@ def self.sh_output_result(command, command_display_override = nil)
 end
 
 
-def build(qtPath, spec , makePath, configString, qmakeProFile, fullPathToTools)
+def build(qtPath, spec , makePath, configString, qmakeProFile, fullPathToTools,usePowerShell)
   # TODO make user there is a way for android to copy java files
   qmake_command = fullPathToTools == true ? "#{qtPath}/bin/qmake #{qmakeProFile} -r -spec #{spec} #{configString}" : "qmake #{qmakeProFile} -r -spec #{spec} #{configString}"
   make_command = "#{makePath}"
   if OS.windows?
-    vs_command = fullPathToTools == true ? "\"#{VISUAL_STUDIO_PATH}/vcvarsall.bat\" x86_amd64" : "& vcvarsall.bat x86_amd64"
+    if usePowerShell == true
+      vs_command = fullPathToTools == true ? "\"#{VISUAL_STUDIO_PATH}/Launch-VsDevShell.ps1\" -Arch x86_amd64" : "Launch-VsDevShell.ps1 -Arch x86_amd64"
+    else
+      vs_command = fullPathToTools == true ? "\"#{VISUAL_STUDIO_PATH}/vcvarsall.bat\" x86_amd64" : "vcvarsall.bat x86_amd64"
+    end
     qmake_command = "#{vs_command} ; " + qmake_command
     make_command = "#{vs_command} ; " + make_command
   end
@@ -103,6 +107,7 @@ $build_target = ''
 $qt_path = ''
 $build_test_app = false
 $build_use_full_path = true
+$use_power_shell = false
 def processArgs()
   ARGV.each do |arg|
     commands = arg.split('=')
@@ -120,6 +125,8 @@ def processArgs()
       $build_target = value.downcase()
     when 'useFullPath'
       $build_use_full_path = !(value.downcase() == 'false')
+    when 'usePowerShell'
+      $use_power_shell = !(value.downcase() == 'false')
     end
   end
 end
