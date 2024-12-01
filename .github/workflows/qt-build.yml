@@ -27,7 +27,7 @@ jobs:
      - uses: actions/checkout@v4    # Actually check out the sources. GH Actions can run for events that may not require
      - uses: ruby/setup-ruby@v1
        with:
-         ruby-version: '3.3.6'
+         ruby-version: '3.0.0'
          bundler-cache: true
 
      - name: Setup Ruby Gems

@@ -47,9 +47,9 @@ def build(qtPath, spec , makePath, configString, qmakeProFile, fullPathToTools)
     qmake_command = "#{vs_command} ; " + qmake_command
     make_command = "#{vs_command} ; " + make_command
   end
+  puts "****** Building with qmake: #{qmake_command} and make: #{make_command}"
   qmake_results = sh "#{qmake_command}"
   build_results = sh "#{make_command}"
-  puts "****** Building with qmake: #{qmake_command} and make: #{make_command}"
   return qmake_results && build_results
 end
 
@@ -86,14 +86,17 @@ def copyArtifacts(outputName, input_dir)
   # File.rename("./#{BUILD_DIR}", outputName )
   input_Dir = "../#{input_dir}/release"
   puts "input_Dir: #{input_Dir}"
-  ::Zip::File.open("#{outputName}.zip", ::Zip::File::CREATE) do |zipFile|
+  zip_file_name = "#{outputName}.zip"
+  puts "******Zipping Output #{zip_file_name}**********"
+  ::Zip::File.open(zip_file_name, ::Zip::File::CREATE) do |zipFile|
     Dir["#{input_Dir}/**/**"].each do |file|
       # unless (file == 'release')
-        puts "add file to zip: #{file}"
         zipFile.add(file.sub(input_Dir + '/', ''), file)
       # end
     end
   end
+  puts "******Finished Zipping Output#{zip_file_name} ************** "
+
 end
 
 $build_target = ''
