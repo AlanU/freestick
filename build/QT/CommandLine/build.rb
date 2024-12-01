@@ -44,7 +44,7 @@ def build(qtPath, spec , makePath, configString, qmakeProFile, fullPathToTools,u
   make_command = "#{makePath}"
   if OS.windows?
     if usePowerShell == true
-      vs_command = fullPathToTools == true ? "\"#{VISUAL_STUDIO_PATH}/Launch-VsDevShell.ps1\" -Arch x86_amd64" : "Launch-VsDevShell.ps1 -Arch x86_amd64"
+      vs_command = fullPathToTools == true ? "\"#{VISUAL_STUDIO_PATH}/Launch-VsDevShell.ps1\" -Arch x86_amd64" : 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\Launch-VsDevShell.ps1 -Arch arm64 -HostArch amd64'
     else
       vs_command = fullPathToTools == true ? "\"#{VISUAL_STUDIO_PATH}/vcvarsall.bat\" x86_amd64" : "vcvarsall.bat x86_amd64"
     end
