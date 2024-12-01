@@ -38,15 +38,20 @@ def self.sh_output_result(command, command_display_override = nil)
 end
 
 
-def build(qtPath, spec , makePath, configString, qmakeProFile)
+def build(qtPath, spec , makePath, configString, qmakeProFile, fullPathToTools,usePowerShell)
   # TODO make user there is a way for android to copy java files
-  qmake_command = "#{qtPath}/bin/qmake #{qmakeProFile} -r -spec #{spec} #{configString}"
+  qmake_command = fullPathToTools == true ? "#{qtPath}/bin/qmake #{qmakeProFile} -r -spec #{spec} #{configString}" : "qmake #{qmakeProFile} -r -spec #{spec} #{configString}"
   make_command = "#{makePath}"
-  if  OS.windows?
-    vs_command ="\"#{VISUAL_STUDIO_PATH}/vcvarsall.bat\" x86_amd64"
-    qmake_command = "#{vs_command} && " + qmake_command
-    make_command = "#{vs_command} && " + make_command
+  if OS.windows?
+    if usePowerShell == true
+      vs_command = fullPathToTools == true ? "\"#{VISUAL_STUDIO_PATH}/Launch-VsDevShell.ps1\" -Arch x86_amd64" : 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\Launch-VsDevShell.ps1 -Arch arm64 -HostArch amd64'
+    else
+      vs_command = fullPathToTools == true ? "\"#{VISUAL_STUDIO_PATH}/vcvarsall.bat\" x86_amd64" : "vcvarsall.bat x86_amd64"
+    end
+    qmake_command = "#{vs_command} ; " + qmake_command
+    make_command = "#{vs_command} ; " + make_command
   end
+  puts "****** Building with qmake: #{qmake_command} and make: #{make_command}"
   qmake_results = sh "#{qmake_command}"
   build_results = sh "#{make_command}"
   return qmake_results && build_results
@@ -84,18 +89,25 @@ def copyArtifacts(outputName, input_dir)
   #FileUtils.cp_r("../#{HEADER_PATH}", "../#{input_dir}/release")
   # File.rename("./#{BUILD_DIR}", outputName )
   input_Dir = "../#{input_dir}/release"
-  ::Zip::File.open("#{outputName}.zip", ::Zip::File::CREATE) do |zipFile|
+  puts "input_Dir: #{input_Dir}"
+  zip_file_name = "#{outputName}.zip"
+  puts "******Zipping Output #{zip_file_name}**********"
+  ::Zip::File.open(zip_file_name, ::Zip::File::CREATE) do |zipFile|
     Dir["#{input_Dir}/**/**"].each do |file|
       # unless (file == 'release')
         zipFile.add(file.sub(input_Dir + '/', ''), file)
       # end
     end
   end
+  puts "******Finished Zipping Output#{zip_file_name} ************** "
+
 end
 
 $build_target = ''
 $qt_path = ''
 $build_test_app = false
+$build_use_full_path = true
+$use_power_shell = false
 def processArgs()
   ARGV.each do |arg|
     commands = arg.split('=')
@@ -103,7 +115,7 @@ def processArgs()
       break;
     end
     command = commands[0].delete('-')
-    value =  commands[1].delete("'").delete('"')
+    value = commands[1].delete("'").delete('"')
     case command
     when 'build_test_app'
       $build_test_app = true
@@ -111,6 +123,10 @@ def processArgs()
       $qt_path = value
     when 'target'
       $build_target = value.downcase()
+    when 'useFullPath'
+      $build_use_full_path = !(value.downcase() == 'false')
+    when 'usePowerShell'
+      $use_power_shell = !(value.downcase() == 'false')
     end
   end
 end
@@ -132,7 +148,7 @@ out_put_file_name = ''
 case $build_target
 when 'mac'
   spec = 'macx-clang'
-  qt_compiler = 'clang_64'
+  qt_compiler = 'macos'
   config_string = 'CONFIG+=x86_64'
   out_put_file_name = 'macOSX'
 when 'ios'
@@ -142,7 +158,7 @@ when 'ios'
   out_put_file_name = 'iOS'
 when 'windows'
   spec = 'win32-msvc'
-  qt_compiler = 'msvc2017_64'
+  qt_compiler = 'win64_msvc2019_64'
   config_string = 'CONFIG+=qtquickcompiler'
   make_path = "C:/Qt/Tools/QtCreator/bin/jom.exe" # TODO use passed in path
   out_put_file_name = 'windows64'
@@ -151,10 +167,10 @@ end
 if spec.empty? && qt_compiler.empty? && config_string.empty?
   exit -1
 else
-  lib_build_results = build("#{$qt_path}/#{qt_compiler}", "#{spec}", make_path, config_string, '../../FreeStick/FreeStick.pro')
+  lib_build_results = build("#{$qt_path}/#{qt_compiler}", "#{spec}", make_path, config_string, '../../FreeStick/FreeStick.pro',$build_use_full_path,$use_power_shell)
   if($build_test_app)
     # TODO Fix Building test App
-    test_app_build_results = build("#{$qt_path}/#{qt_compiler}", "#{spec}", make_path, config_string, '../../FreeStickTestApp/FreeStickTestApp.pro')
+    test_app_build_results = build("#{$qt_path}/#{qt_compiler}", "#{spec}", make_path, config_string, '../../FreeStickTestApp/FreeStickTestApp.pro',$build_use_full_path,$use_power_shell)
   end
   Dir.chdir('..')
   deploy_qt($qt_path, qt_compiler, './JoyStickConfig/release/JoyStickConfig.app') if($build_test_app)
