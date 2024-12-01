@@ -167,10 +167,10 @@ end
 if spec.empty? && qt_compiler.empty? && config_string.empty?
   exit -1
 else
-  lib_build_results = build("#{$qt_path}/#{qt_compiler}", "#{spec}", make_path, config_string, '../../FreeStick/FreeStick.pro',$build_use_full_path)
+  lib_build_results = build("#{$qt_path}/#{qt_compiler}", "#{spec}", make_path, config_string, '../../FreeStick/FreeStick.pro',$build_use_full_path,$use_power_shell)
   if($build_test_app)
     # TODO Fix Building test App
-    test_app_build_results = build("#{$qt_path}/#{qt_compiler}", "#{spec}", make_path, config_string, '../../FreeStickTestApp/FreeStickTestApp.pro',$build_use_full_path)
+    test_app_build_results = build("#{$qt_path}/#{qt_compiler}", "#{spec}", make_path, config_string, '../../FreeStickTestApp/FreeStickTestApp.pro',$build_use_full_path,$use_power_shell)
   end
   Dir.chdir('..')
   deploy_qt($qt_path, qt_compiler, './JoyStickConfig/release/JoyStickConfig.app') if($build_test_app)
