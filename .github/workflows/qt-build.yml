@@ -43,7 +43,7 @@ jobs:
      - name: Build FreeStick Lib
        run: cd '${{ github.workspace}}/build/QT/CommandLine' && ruby build.rb --qt=${{runner.workspace}}/Qt/${{env.Qt_Build_Version}} --target=${{env.Build_Target}} --useFullPath=false
      - name: Archive Lib Build Results
-         uses: actions/upload-artifact@v4
-         with:
-            name: ${{env.Artifact_Name}} Lib
-            path: ${{ github.workspace}}/build/QT/CommandLine/out/${{env.Artifact_Name}}.zip
+       uses: actions/upload-artifact@v4
+       with:
+        name: ${{env.Artifact_Name}} Lib
+        path: ${{ github.workspace}}/build/QT/CommandLine/out/${{env.Artifact_Name}}.zip
