@@ -44,7 +44,7 @@ def build(qtPath, spec , makePath, configString, qmakeProFile, fullPathToTools)
   make_command = "#{makePath}"
   if OS.windows?
     vs_command = fullPathToTools == true ? "\"#{VISUAL_STUDIO_PATH}/vcvarsall.bat\" x86_amd64" : "vcvarsall.bat x86_amd64"
-    unless fullPathToTools
+    if fullPathToTools == true
       qmake_command = "#{vs_command} ; " + qmake_command
       make_command = "#{vs_command} ; " + make_command
     end
