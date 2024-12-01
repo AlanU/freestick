@@ -17,6 +17,9 @@ jobs:
      - name: "Checking for Windows" 
        if: matrix.os == 'windows-latest'
        run: echo 'Target Windows' && echo "Build_Target=windows" | Out-File -FilePath $env:GITHUB_ENV -Append; echo "Build_Arch=win64_msvc2019_64" | Out-File -FilePath $env:GITHUB_ENV -Append; echo "Build_Compiler_Dir=msvc2019_64" | Out-File -FilePath $env:GITHUB_ENV -Append       
+     - name: 'Add msbuild to PATH on Windows'
+       if: matrix.os == 'windows-latest'
+       uses: microsoft/setup-msbuild@v2
      - name: Install Qt
        uses: jurplel/install-qt-action@v3
        with:
