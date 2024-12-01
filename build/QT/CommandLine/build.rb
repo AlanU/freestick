@@ -46,7 +46,6 @@ def build(qtPath, spec , makePath, configString, qmakeProFile, fullPathToTools)
     vs_command = fullPathToTools == true ? "\"#{VISUAL_STUDIO_PATH}/vcvarsall.bat\" x86_amd64" : "& vcvarsall.bat x86_amd64"
     qmake_command = "#{vs_command} ; " + qmake_command
     make_command = "#{vs_command} ; " + make_command
-    end
   end
   puts "****** Building with qmake: #{qmake_command} and make: #{make_command}"
   qmake_results = sh "#{qmake_command}"
