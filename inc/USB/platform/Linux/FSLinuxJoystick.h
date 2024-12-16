@@ -36,6 +36,48 @@ namespace freestick
     class FSLinuxJoystick : public FSUSBJoystick
     {
     public:
+        // Helper function to combine event_type and event_code into a single uint32_t key
+        static constexpr uint32_t makeKey(uint16_t event_type, uint16_t event_code) {
+            return (static_cast<uint32_t>(event_type) << 16) | event_code;
+        }
+
+        // Structure to store HID Usage and Usage Page
+        struct HIDMapping {
+            uint16_t usage_page = 0;
+            uint16_t usage = 0;
+        };
+        static std::map<uint32_t, HIDMapping> createEventToHIDMapping() {
+            return {
+                    // Generic Desktop Page
+                    {makeKey(EV_ABS, ABS_X),      {HID_USAGE_PAGE_GENERIC_DESKTOP, HID_USAGE_X}},
+                    {makeKey(EV_ABS, ABS_Y),      {HID_USAGE_PAGE_GENERIC_DESKTOP, HID_USAGE_Y}},
+                    {makeKey(EV_ABS, ABS_Z),      {HID_USAGE_PAGE_GENERIC_DESKTOP, HID_USAGE_Z}},
+                    {makeKey(EV_ABS, ABS_RX),     {HID_USAGE_PAGE_GENERIC_DESKTOP, HID_USAGE_RX}},
+                    {makeKey(EV_ABS, ABS_RY),     {HID_USAGE_PAGE_GENERIC_DESKTOP, HID_USAGE_RY}},
+                    {makeKey(EV_ABS, ABS_RZ),     {HID_USAGE_PAGE_GENERIC_DESKTOP, HID_USAGE_RZ}},
+                    {makeKey(EV_ABS, ABS_HAT0X),  {HID_USAGE_PAGE_GENERIC_DESKTOP, HID_USAGE_HAT_SWITCH}},
+                    {makeKey(EV_ABS, ABS_HAT0Y),  {HID_USAGE_PAGE_GENERIC_DESKTOP, HID_USAGE_HAT_SWITCH}},
+
+                    // Buttons Page
+                    {makeKey(EV_KEY, BTN_0),      {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_1}},
+                    {makeKey(EV_KEY, BTN_1),      {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_2}},
+                    {makeKey(EV_KEY, BTN_2),      {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_3}},
+                    {makeKey(EV_KEY, BTN_3),      {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_4}},
+                    {makeKey(EV_KEY, BTN_A),      {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_A}},
+                    {makeKey(EV_KEY, BTN_B),      {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_B}},
+
+                    // Consumer Page
+                    {makeKey(EV_KEY, KEY_VOLUMEUP),   {HID_USAGE_PAGE_CONSUMER, HID_USAGE_VOLUME_UP}},
+                    {makeKey(EV_KEY, KEY_VOLUMEDOWN), {HID_USAGE_PAGE_CONSUMER, HID_USAGE_VOLUME_DOWN}},
+                    {makeKey(EV_KEY, KEY_PLAYPAUSE),  {HID_USAGE_PAGE_CONSUMER, HID_USAGE_PLAY_PAUSE}},
+
+                    // Simulation Controls Page
+                    {makeKey(EV_ABS, ABS_WHEEL),  {HID_USAGE_PAGE_SIMULATION, HID_USAGE_STEERING_WHEEL}},
+                    {makeKey(EV_ABS, ABS_GAS),    {HID_USAGE_PAGE_SIMULATION, HID_USAGE_ACCELERATOR}},
+                    {makeKey(EV_ABS, ABS_BRAKE),  {HID_USAGE_PAGE_SIMULATION, HID_USAGE_BRAKE}},
+                    };
+        }
+        static HIDMapping getHIDUsageAndPage(uint16_t event_type, uint16_t event_code);
         FSLinuxJoystick(idNumber joyStickID,
                         libevdev * openDevHandel,
                         int openFileHandler,

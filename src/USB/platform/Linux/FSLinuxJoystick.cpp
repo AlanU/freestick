@@ -5,6 +5,7 @@
 
 using namespace freestick;
 
+
 static std::vector<std::pair<unsigned int,unsigned int>> supportedButtonCodes{
 
     {BTN_MISC,EV_KEY},
@@ -91,6 +92,25 @@ static std::vector<std::pair<unsigned int,unsigned int>> supportedButtonCodes{
 /*    REL_X,
     REL_y,
     REL_Z,8?*/
+// Lookup table for mapping combined keys to HID Usage/Page
+
+// Function to convert event type and code to HID Usage and Usage Page
+FSLinuxJoystick::HIDMapping FSLinuxJoystick::getHIDUsageAndPage(uint16_t event_type, uint16_t event_code)
+{
+    static auto eventToHIDMap = createEventToHIDMapping();
+
+    // Create the key by combining event_type and event_code
+    uint32_t key = makeKey(event_type, event_code);
+
+    auto it = eventToHIDMap.find(key);
+    if (it != eventToHIDMap.end()) {
+        const HIDMapping hid = it->second;
+        return hid;
+    }
+
+    return HIDMapping{};
+}
+
 
 FSLinuxJoystick::FSLinuxJoystick(idNumber joyStickID,
                                  libevdev * openDevHandel,
@@ -126,8 +146,12 @@ FSLinuxJoystick::FSLinuxJoystick(idNumber joyStickID,
                 min =  libevdev_get_abs_minimum(_evdevHandel,code.first);
                 max = libevdev_get_abs_maximum(_evdevHandel,code.first);
             }
-            FSUSBJoyStickInputElement temp(FSUSBJoystickDeviceManager::createIdForElement(code.first,code.second), getJoystickID() ,min,max, _vendorID,_productID,usbJoystickManager,0,0);
-            addInputElement(temp);
+            HIDMapping codeHid = getHIDUsageAndPage(code.second,code.first);
+            if(codeHid.usage_page != 0 && codeHid.usage != 0)
+            {
+                FSUSBJoyStickInputElement temp(FSUSBJoystickDeviceManager::createIdForElement(codeHid.usage,codeHid.usage_page), getJoystickID() ,min,max, _vendorID,_productID,usbJoystickManager,0,0);
+                addInputElement(temp);
+            }
         }
     }
 
@@ -144,4 +168,7 @@ libevdev * FSLinuxJoystick::getHandel()
 {
     return _evdevHandel;
 }
+
+
+
 

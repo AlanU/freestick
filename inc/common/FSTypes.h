@@ -41,5 +41,36 @@ namespace freestick {
     typedef float nPhysicalValueNumber; //normlized physical number should be float to match system
     typedef double universlalMinMaxNumber; //normlized max min number should be float to match system
     typedef double universlalPhysicalValueNumber; //normlized physical number should be float to match system
+    // HID Usage Pages (Human-Readable Constants)
+    constexpr uint16_t HID_USAGE_PAGE_GENERIC_DESKTOP = 0x01;
+    constexpr uint16_t HID_USAGE_PAGE_BUTTON = 0x09;
+    constexpr uint16_t HID_USAGE_PAGE_CONSUMER = 0x0C;
+    constexpr uint16_t HID_USAGE_PAGE_SIMULATION = 0x02;
 
+    // HID Usages (Human-Readable Constants for Generic Desktop)
+    constexpr uint16_t HID_USAGE_X = 0x30;
+    constexpr uint16_t HID_USAGE_Y = 0x31;
+    constexpr uint16_t HID_USAGE_Z = 0x32;
+    constexpr uint16_t HID_USAGE_RX = 0x33;
+    constexpr uint16_t HID_USAGE_RY = 0x34;
+    constexpr uint16_t HID_USAGE_RZ = 0x35;
+    constexpr uint16_t HID_USAGE_HAT_SWITCH = 0x39;
+
+    // HID Usages (Human-Readable Constants for Buttons)
+    constexpr uint16_t HID_USAGE_BUTTON_1 = 0x01;
+    constexpr uint16_t HID_USAGE_BUTTON_2 = 0x02;
+    constexpr uint16_t HID_USAGE_BUTTON_3 = 0x03;
+    constexpr uint16_t HID_USAGE_BUTTON_4 = 0x04;
+    constexpr uint16_t HID_USAGE_BUTTON_A = 0x04;  // Alias
+    constexpr uint16_t HID_USAGE_BUTTON_B = 0x05;
+
+    // HID Usages (Human-Readable Constants for Consumer Controls)
+    constexpr uint16_t HID_USAGE_VOLUME_UP = 0xE9;
+    constexpr uint16_t HID_USAGE_VOLUME_DOWN = 0xEA;
+    constexpr uint16_t HID_USAGE_PLAY_PAUSE = 0xCD;
+
+    // HID Usages (Human-Readable Constants for Simulation Controls)
+    constexpr uint16_t HID_USAGE_STEERING_WHEEL = 0xC0;
+    constexpr uint16_t HID_USAGE_ACCELERATOR = 0xC4;
+    constexpr uint16_t HID_USAGE_BRAKE = 0xC5;
 }

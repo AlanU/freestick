@@ -46,80 +46,10 @@ libusb_device **devs;
 FSLinuxJoystickDeviceManager::FSLinuxJoystickDeviceManager()
 {
    // r = libusb_init_context(/*ctx=*/NULL, /*options=*/NULL, /*num_options=*/0);
-    r = libusb_init(nullptr);
+   // r = libusb_init(nullptr);
 }
 
-static void print_device(libusb_device *dev, libusb_device_handle *handle)
-{
-    struct libusb_device_descriptor desc;
-    unsigned char string[256];
-    const char *speed;
-    int ret;
-    uint8_t i;
 
-    switch (libusb_get_device_speed(dev)) {
-    case LIBUSB_SPEED_LOW:		speed = "1.5M"; break;
-    case LIBUSB_SPEED_FULL:		speed = "12M"; break;
-    case LIBUSB_SPEED_HIGH:		speed = "480M"; break;
-    case LIBUSB_SPEED_SUPER:	speed = "5G"; break;
-    case LIBUSB_SPEED_SUPER_PLUS:	speed = "10G"; break;
-    //case LIBUSB_SPEED_SUPER_PLUS_X2:	speed = "20G"; break;
-    default:			speed = "Unknown";
-    }
-
-    ret = libusb_get_device_descriptor(dev, &desc);
-    if (ret < 0) {
-        fprintf(stderr, "failed to get device descriptor");
-        return;
-    }
-
-    printf("Dev (bus %u, device %u): %04X - %04X speed: %s\n",
-           libusb_get_bus_number(dev), libusb_get_device_address(dev),
-           desc.idVendor, desc.idProduct, speed);
-
-    if (!handle)
-        libusb_open(dev, &handle);
-
-    if (handle) {
-        if (desc.iManufacturer) {
-            ret = libusb_get_string_descriptor_ascii(handle, desc.iManufacturer, string, sizeof(string));
-            if (ret > 0)
-                printf("  Manufacturer:              %s\n", (char *)string);
-        }
-
-        if (desc.iProduct) {
-            ret = libusb_get_string_descriptor_ascii(handle, desc.iProduct, string, sizeof(string));
-            if (ret > 0)
-                printf("  Product:                   %s\n", (char *)string);
-        }
-
-       if (desc.iSerialNumber && verbose) {
-            ret = libusb_get_string_descriptor_ascii(handle, desc.iSerialNumber, string, sizeof(string));
-            if (ret > 0)
-                printf("  Serial Number:             %s\n", (char *)string);
-        }
-    }
-
-    if (handle)
-        libusb_close(handle);
-}
-
-void getUSBInfo(vendorIDType vendorID ,vendorIDType productID )
-{
-    if (r < 0)
-        return ;
-        cnt = libusb_get_device_list(NULL, &devs);
-        if (cnt < 0) {
-            libusb_exit(NULL);
-            return ;
-        }
-        int i = 0;
-        for (i = 0; devs[i]; i++)
-            print_device(devs[i], NULL);
-
-        libusb_free_device_list(devs, 1);
-
-}
 void FSLinuxJoystickDeviceManager::update()
 {
      updateConnectJoysticks();
@@ -144,7 +74,9 @@ void FSLinuxJoystickDeviceManager::update()
                            libevdev_event_type_get_name(ev.type),
                            libevdev_event_code_get_name(ev.type, ev.code),
                            ev.value);
-                auto element = (FSUSBJoyStickInputElement*)controller->findInputElement( FSUSBJoystickDeviceManager::createIdForElement(static_cast<uint32_t>(ev.code),static_cast<uint32_t>(ev.type)));
+
+                FSLinuxJoystick::HIDMapping hidUsage = FSLinuxJoystick::getHIDUsageAndPage(ev.type,ev.code);
+                auto element = (FSUSBJoyStickInputElement*)controller->findInputElement( FSUSBJoystickDeviceManager::createIdForElement(static_cast<uint32_t>(hidUsage.usage),static_cast<uint32_t>(hidUsage.usage_page)));
                 updateEvents(controller->getJoystickID(),element, ev.value);
             } while (rc != -EAGAIN);
          }
@@ -171,7 +103,6 @@ void FSLinuxJoystickDeviceManager::updateConnectJoysticks()
             vendorIDType vendorID = libevdev_get_id_vendor(m_evdevHandel);
             productIDType productID = libevdev_get_id_product(m_evdevHandel);
             std::string deviceName =  libevdev_get_name(m_evdevHandel);
-            getUSBInfo(vendorID,productID);
             /*printf("Input device name: \"%s\"\n", libevdev_get_name(m_evdevHandel));
             printf("Input device ID: bus %#x vendor %#x product %#x\n",
                    libevdev_get_id_bustype(m_evdevHandel),
