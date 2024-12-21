@@ -30,7 +30,7 @@ and must not be misrepresented as being the original software.
 #include "USB/common/FSUSBJoystickDeviceManager.h"
 #include "common/FSTypes.h"
 #include <libevdev/libevdev.h>
-
+#include <unordered_map>
 namespace freestick
 {
     class FSLinuxJoystick : public FSUSBJoystick
@@ -46,8 +46,8 @@ namespace freestick
             uint16_t usage_page = 0;
             uint16_t usage = 0;
         };
-        static std::map<uint32_t, HIDMapping> createEventToHIDMapping() {
-            return {
+        static std::unordered_map<uint32_t, HIDMapping> createEventToHIDMapping() {
+            static std::unordered_map<uint32_t, HIDMapping> hidMap {
                     // Generic Desktop Page
                     {makeKey(EV_ABS, ABS_X),      {HID_USAGE_PAGE_GENERIC_DESKTOP, HID_USAGE_X}},
                     {makeKey(EV_ABS, ABS_Y),      {HID_USAGE_PAGE_GENERIC_DESKTOP, HID_USAGE_Y}},
@@ -66,6 +66,24 @@ namespace freestick
                     {makeKey(EV_KEY, BTN_A),      {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_A}},
                     {makeKey(EV_KEY, BTN_B),      {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_B}},
 
+                    // Buttons Page
+                    {makeKey(EV_KEY, BTN_TRIGGER), {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_1}},
+                    {makeKey(EV_KEY, BTN_THUMB),   {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_2}},
+                    {makeKey(EV_KEY, BTN_THUMB2),  {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_3}},
+                    {makeKey(EV_KEY, BTN_TOP),     {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_4}},
+                    {makeKey(EV_KEY, BTN_TOP2),    {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_5}},
+                    //{makeKey(EV_KEY, BTN_PINKIE),  {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_6}},
+                {makeKey(EV_KEY, BTN_BASE6),    {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_6}},
+                    {makeKey(EV_KEY, BTN_BASE),   {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_7}},
+                    {makeKey(EV_KEY, BTN_BASE2),   {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_8}},
+                    {makeKey(EV_KEY, BTN_BASE3),   {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_9}},
+                    {makeKey(EV_KEY, BTN_BASE4),   {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_10}},
+                    {makeKey(EV_KEY, BTN_BASE5),   {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_11}},
+
+                    // Button A and B
+                    {makeKey(EV_KEY, BTN_A),       {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_A}},
+                    {makeKey(EV_KEY, BTN_B),       {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_B}},
+
                     // Consumer Page
                     {makeKey(EV_KEY, KEY_VOLUMEUP),   {HID_USAGE_PAGE_CONSUMER, HID_USAGE_VOLUME_UP}},
                     {makeKey(EV_KEY, KEY_VOLUMEDOWN), {HID_USAGE_PAGE_CONSUMER, HID_USAGE_VOLUME_DOWN}},
@@ -76,20 +94,24 @@ namespace freestick
                     {makeKey(EV_ABS, ABS_GAS),    {HID_USAGE_PAGE_SIMULATION, HID_USAGE_ACCELERATOR}},
                     {makeKey(EV_ABS, ABS_BRAKE),  {HID_USAGE_PAGE_SIMULATION, HID_USAGE_BRAKE}},
                     };
+            return hidMap;
         }
         static HIDMapping getHIDUsageAndPage(uint16_t event_type, uint16_t event_code);
         FSLinuxJoystick(idNumber joyStickID,
-                        libevdev * openDevHandel,
-                        int openFileHandler,
                         const std::string & devicePath,
                         vendorIDType vendorID,
                         productIDType productID,
                         FSUSBJoystickDeviceManager & usbJoystickManager);
         ~FSLinuxJoystick() override;
         libevdev * getHandel();
+        int32_t getDpadDeviceInput(uint16_t type, uint16_t code, int32_t value);
+
     private:
-        std::string _devicePath;
-        libevdev * _evdevHandel = nullptr;
-        int _openFileHandler = -1;
+        std::string m_devicePath;
+        libevdev * m_evdevHandel = nullptr;
+        int m_openFileHandler = -1;
+        bool m_isHatSwitchDpad = false;
+        bool m_isMapped = false;
+        FSUSBJoystickDeviceManager * m_usbJoystickManager = nullptr;
     };
 }

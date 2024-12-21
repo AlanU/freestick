@@ -61,8 +61,18 @@ namespace freestick {
     constexpr uint16_t HID_USAGE_BUTTON_2 = 0x02;
     constexpr uint16_t HID_USAGE_BUTTON_3 = 0x03;
     constexpr uint16_t HID_USAGE_BUTTON_4 = 0x04;
-    constexpr uint16_t HID_USAGE_BUTTON_A = 0x04;  // Alias
-    constexpr uint16_t HID_USAGE_BUTTON_B = 0x05;
+    constexpr uint16_t HID_USAGE_BUTTON_5 = 0x05;
+    constexpr uint16_t HID_USAGE_BUTTON_6 = 0x06;
+    constexpr uint16_t HID_USAGE_BUTTON_7 = 0x07;
+    constexpr uint16_t HID_USAGE_BUTTON_8 = 0x08;
+    constexpr uint16_t HID_USAGE_BUTTON_9 = 0x09;
+    constexpr uint16_t HID_USAGE_BUTTON_10 = 0x0A;
+    constexpr uint16_t HID_USAGE_BUTTON_11 = 0x0B;
+    constexpr uint16_t HID_USAGE_BUTTON_12 = 0x0C;
+
+    // Additional Buttons (A and B)
+    constexpr uint16_t HID_USAGE_BUTTON_A = 0x04;  // HID Button A
+    constexpr uint16_t HID_USAGE_BUTTON_B = 0x05;  // HID Button B
 
     // HID Usages (Human-Readable Constants for Consumer Controls)
     constexpr uint16_t HID_USAGE_VOLUME_UP = 0xE9;

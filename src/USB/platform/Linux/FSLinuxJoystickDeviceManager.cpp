@@ -36,13 +36,14 @@ and must not be misrepresented as being the original software.
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <filesystem>
+#include <regex>
 #include <set>
-#include <libusb.h>
+#include <dirent.h>
+
 using namespace freestick;
 int r = -1;
 int verbose = 0;
 ssize_t cnt;
-libusb_device **devs;
 FSLinuxJoystickDeviceManager::FSLinuxJoystickDeviceManager()
 {
    // r = libusb_init_context(/*ctx=*/NULL, /*options=*/NULL, /*num_options=*/0);
@@ -69,15 +70,28 @@ void FSLinuxJoystickDeviceManager::update()
             do {
                 struct input_event ev;
                 rc = libevdev_next_event(controller->getHandel(), LIBEVDEV_READ_FLAG_NORMAL, &ev);
-                if (rc >=0 && !(ev.type == EV_SYN && ev.code == SYN_REPORT))
-                    printf("Event: %s %s %d\n",
+                if (rc >=0 && !(ev.type == EV_SYN && ev.code == SYN_REPORT) )
+                    if( ev.code != ABS_Z)   {
+                printf("Event: %s %s %d\n",
                            libevdev_event_type_get_name(ev.type),
                            libevdev_event_code_get_name(ev.type, ev.code),
                            ev.value);
+                        // If the event is for the dpad horizontal axis (ABS_HAT0X)
+                        if (ev.code == ABS_HAT0X) {
+                            if (ev.value == -1) {
+                                printf("Dpad Left\n");
+                            } else if (ev.value == 1) {
+                                printf("Dpad Right\n");
+                            } else if (ev.value == 0) {
+                                printf("Dpad Centered\n");
+                            }
+                        }
+                    }
 
                 FSLinuxJoystick::HIDMapping hidUsage = FSLinuxJoystick::getHIDUsageAndPage(ev.type,ev.code);
+                int32_t fsValue = controller->getDpadDeviceInput(ev.type,ev.code,ev.value);//this will return back the code if its not a dpad
                 auto element = (FSUSBJoyStickInputElement*)controller->findInputElement( FSUSBJoystickDeviceManager::createIdForElement(static_cast<uint32_t>(hidUsage.usage),static_cast<uint32_t>(hidUsage.usage_page)));
-                updateEvents(controller->getJoystickID(),element, ev.value);
+                updateEvents(controller->getJoystickID(),element, fsValue);
             } while (rc != -EAGAIN);
          }
         //close(fd);
@@ -87,54 +101,83 @@ void FSLinuxJoystickDeviceManager::update()
 void FSLinuxJoystickDeviceManager::updateConnectJoysticks()
 {
     libevdev * m_evdevHandel = nullptr;
-    std::set<std::string> connecteContorllers (_linuxMapKeys);
+    std::set<std::string> connectedControllers (_linuxMapKeys);
+
     std::string path = "/dev/input/";
-    for (const auto & entry : std::filesystem::directory_iterator(path)) {
-
-        int rc = -1;
-        int fd = 0;
-
-        if(_linuxDeviceIDMap.find(entry.path()) == _linuxDeviceIDMap.end())
-        {
-            int fd = open(entry.path().c_str(), O_RDONLY|O_NONBLOCK);
-            rc = libevdev_new_from_fd(fd, &m_evdevHandel);
-        }
-        if (rc >= 0) {
-            vendorIDType vendorID = libevdev_get_id_vendor(m_evdevHandel);
-            productIDType productID = libevdev_get_id_product(m_evdevHandel);
-            std::string deviceName =  libevdev_get_name(m_evdevHandel);
-            /*printf("Input device name: \"%s\"\n", libevdev_get_name(m_evdevHandel));
-            printf("Input device ID: bus %#x vendor %#x product %#x\n",
-                   libevdev_get_id_bustype(m_evdevHandel),
-                   libevdev_get_id_vendor(m_evdevHandel),
-                   libevdev_get_id_product(m_evdevHandel));*/
-            if (!libevdev_has_event_type(m_evdevHandel, EV_ABS))
-                {
-                printf("This device does not look like a gamepad\n");
-                exit(1);
-            }
-            if(_linuxDeviceIDMap.find(entry.path()) == _linuxDeviceIDMap.end())
-            {
-                idNumber id = getNextID();
-                _linuxDeviceIDMap[entry.path()] = id;
-                _linuxMapKeys.insert(entry.path());
-                FSUSBJoystick * newJoystick =  new FSLinuxJoystick(id,
-                                                                   m_evdevHandel,
-                                                                   fd,
-                                                                   entry.path(),
-                                                                   vendorID,
-                                                                 productID,*this);
-                addDevice(newJoystick);
-            }
-            else {
-                connecteContorllers.erase(entry.path());
-            }
-
-        }else{
-            m_evdevHandel = nullptr;
-          // close(fd); //This conflicts with file loop TODO figure this out
-        }
+    DIR* dir = opendir(path.c_str());
+    if (!dir) {
+        perror("Failed to open directory");
+        return;
     }
+
+        struct dirent* entry;
+        while ((entry = readdir(dir)) != nullptr) {
+            if (entry->d_type != DT_CHR) {
+                continue; // Skip non-regular files
+            }
+
+            // Validate that the file name matches the expected pattern (e.g., event*)
+            std::string deviceName = entry->d_name;
+            if (!std::regex_match(deviceName, std::regex("event[0-9]+"))) {
+                continue; // Skip non-evdev files
+            }
+
+
+            std::string fullPath = path + entry->d_name;
+            int fd = open(fullPath.c_str(), O_RDONLY | O_NONBLOCK);
+            if (fd < 0) {
+               /* if (errno == EACCES) {
+                    std::cerr << "Permission denied for device: " << fullPath << "\n";
+                } else {
+                    perror(("Failed to open device: " + fullPath).c_str());
+                }*/
+                continue; // Skip to the next file
+            }
+
+
+            int rc = libevdev_new_from_fd(fd, &m_evdevHandel);
+            if (rc < 0) {
+                perror("Failed to initialize libevdev");
+                close(fd);
+                m_evdevHandel = nullptr;
+                continue; // Skip to the next file
+            }
+
+            if (libevdev_has_event_type(m_evdevHandel, EV_ABS)) {
+                if (_linuxDeviceIDMap.find(entry->d_name) == _linuxDeviceIDMap.end()) {
+                    idNumber id = getNextID();
+                    _linuxDeviceIDMap[entry->d_name] = id;
+                    _linuxMapKeys.insert(entry->d_name);
+                    std::cout << " Found controller "<<entry->d_name<<std::endl;
+                    std::cout << " createing controller "<<entry->d_name<<std::endl;
+                    vendorIDType vendorID = libevdev_get_id_vendor(m_evdevHandel);
+                    productIDType productID = libevdev_get_id_product(m_evdevHandel);
+                    libevdev_free(m_evdevHandel);
+                    m_evdevHandel = nullptr;
+                    close(fd);
+                    auto* newJoystick = new FSLinuxJoystick(id, fullPath,
+                                                          vendorID,
+                                                          productID,
+                                                          *this);
+                    std::cout << "addDevice "<<entry->d_name<<std::endl;
+
+                    addDevice(newJoystick);
+                } else {
+                    connectedControllers.erase(entry->d_name);
+                }
+            } else {
+                std::cout << "This device does not look like a gamepad\n";
+            }
+            if(m_evdevHandel != nullptr)
+            {
+                libevdev_free(m_evdevHandel);
+                m_evdevHandel = nullptr;
+                close(fd);
+            }
+        }
+
+        closedir(dir);
+
     /*if(connecteContorllers.size() != 0)
     {
         for(const std::string & controller : connecteContorllers)
