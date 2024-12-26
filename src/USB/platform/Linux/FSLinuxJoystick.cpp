@@ -249,8 +249,9 @@ FSLinuxJoystick::FSLinuxJoystick(idNumber joyStickID,
 
     HIDMapping key= createEventToHIDMapping()[makeKey(EV_ABS, ABS_HAT0X)];
     auto hidKey = FSUSBDeviceManager::createVPId(key.usage,key.usage_page);
-    m_isHatSwitchDpad = usbJoystickManager.doesElementHaveDeviceInputForValue(vendorID,productID,hidKey,LastValueUp);
-     m_isMapped = usbJoystickManager.doesDeviceHaveDeviceInput(getJoystickID(),Button0);
+    auto inputMap = usbJoystickManager.infoMapForInputType(vendorID,productID,LastValueUp) ;
+    m_isHatSwitchDpad = inputMap.getDeviceInput() == LastValueUp ? true : false;
+    m_isMapped = usbJoystickManager.doesDeviceHaveDeviceInput(getJoystickID(),Button0);
     std::cout << "FSLinuxJoystick end"<<std::endl;
 
 

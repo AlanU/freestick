@@ -65,6 +65,9 @@ namespace freestick
                     {makeKey(EV_KEY, BTN_3),      {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_4}},
                     {makeKey(EV_KEY, BTN_A),      {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_A}},
                     {makeKey(EV_KEY, BTN_B),      {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_B}},
+                    {makeKey(EV_KEY, BTN_C),      {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_3}},
+                    {makeKey(EV_KEY, BTN_NORTH),      {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_3}},
+                    {makeKey(EV_KEY, BTN_WEST),      {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_4}},
 
                     // Buttons Page
                     {makeKey(EV_KEY, BTN_TRIGGER), {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_1}},
@@ -73,10 +76,20 @@ namespace freestick
                     {makeKey(EV_KEY, BTN_TOP),     {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_4}},
                     {makeKey(EV_KEY, BTN_TOP2),    {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_5}},
                     //{makeKey(EV_KEY, BTN_PINKIE),  {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_6}},
-                {makeKey(EV_KEY, BTN_BASE6),    {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_6}},
+                    {makeKey(EV_KEY, BTN_BASE6),    {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_6}},
+                    {makeKey(EV_KEY, BTN_Z),    {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_6}},
+                    {makeKey(EV_KEY, BTN_TR),    {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_6}},
+                    {makeKey(EV_KEY, BTN_TL),    {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_5}},
+
+
                     {makeKey(EV_KEY, BTN_BASE),   {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_7}},
+                    {makeKey(EV_KEY, BTN_TL2),   {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_7}},
                     {makeKey(EV_KEY, BTN_BASE2),   {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_8}},
+                    {makeKey(EV_KEY, BTN_TR2),   {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_8}},
                     {makeKey(EV_KEY, BTN_BASE3),   {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_9}},
+                    {makeKey(EV_KEY, BTN_SELECT),   {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_9}},
+                    {makeKey(EV_KEY, BTN_START),   {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_10}},
+
                     {makeKey(EV_KEY, BTN_BASE4),   {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_10}},
                     {makeKey(EV_KEY, BTN_BASE5),   {HID_USAGE_PAGE_BUTTON, HID_USAGE_BUTTON_11}},
 
