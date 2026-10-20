@@ -28,10 +28,11 @@ and must not be misrepresented as being the original software.
 
 #include "freestick.h"
 #include "MacOSHUD.h"
-#include "3rdParty/EELog/src/EELog.h"
 #include <thread>
 #include <chrono>
 #include <iostream>
+#include <atomic>
+#include <string>
 
 using namespace freestick;
 class JoystickEventHandler: public IFSJoystickListener
@@ -41,52 +42,71 @@ class JoystickEventHandler: public IFSJoystickListener
           ~JoystickEventHandler(){};
           virtual void onButtonDown(freestick::FSDeviceInputEvent event)
           {
-              EE_INFO<<"ButtonDown "<<std::endl;
+              std::cout<<"ButtonDown "<<std::endl;
           }
           virtual void onButtonUp(freestick::FSDeviceInputEvent event)
           {
-              EE_INFO<<"ButtonUp "<<std::endl;
+              std::cout<<"ButtonUp "<<std::endl;
 
           }
           virtual void onStickMove(freestick::FSDeviceInputEvent event)
           {
-              EE_INFO<<"OnStickMove"<<std::endl;
+              std::cout<<"OnStickMove"<<std::endl;
+          }
+          void onUnknownChanged(freestick::FSDeviceInputEvent event) override
+          {
+              std::cout << "OnUnknownChanged device=" << event.getDeviceID()
+                        << " control=" << event.getControlID()
+                        << " value=" << event.getNewInputValue() << std::endl;
           }
           virtual void onDisconnect(freestick::FSBaseEvent event)
           {
-              EE_INFO<<"OnDisconnect"<<std::endl;
+              std::cout<<"OnDisconnect"<<std::endl;
 
           }
           virtual void onConnect(freestick::FSBaseEvent event)
           {
-              EE_INFO<<"OnConnect"<<std::endl;
+              std::cout<<"OnConnect"<<std::endl;
           }
    };
 int main(int argc, char *argv[])
 {
+    // Altered: allow a bounded initialization check without opening the Mac HUD.
+    const bool smokeTest = argc == 2 && std::string(argv[1]) == "--smoke-test";
     JoystickEventHandler handler;
     FreeStickDeviceManager deviceManager;
 
+    std::cout << "Starting FreeStick command-line harness" << std::endl;
     deviceManager.init();
     deviceManager.ListenForAllJoysticksForEventTypes(FS_JOYSTICK_CONNECTED_EVENT |
                                                             FS_JOYSTICK_DISCONNECT_EVENT |
                                                             FS_BUTTON_EVENT | FS_AXIS_EVENT |
-                                                            FS_TRIGGER_EVENT , handler);
+                                                            FS_TRIGGER_EVENT | FS_UNKNOWN_EVENT, handler);
 
-#ifdef TARGET_OS_OSX
+    if(smokeTest)
+    {
+        deviceManager.update();
+        std::cout << "FreeStick initialization smoke test completed" << std::endl;
+        return 0;
+    }
+
+#if defined(__APPLE__) && TARGET_OS_OSX
     MacOSHUD hud(true);
     hud.setUpForNSEvents();
 #else
-    char command = ' ';
-     while(true)
-     {
-         command = std::cin.peek();
-         if(tolower(command) == 'q')
-         {
-            hud.quitApp();
-         }
-         deviceManager.update();
-     }
+    // Altered: keep polling while input waits; quit on q or end of input.
+    std::atomic<bool> running(true);
+    std::thread inputThread([&running]() {
+        char command;
+        while(std::cin.get(command) && command != 'q' && command != 'Q') {}
+        running = false;
+    });
+    while(running)
+    {
+        deviceManager.update();
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+    inputThread.join();
 #endif
 
     return 0;

@@ -73,6 +73,10 @@ std::ostream &  EEStream::operator<<(std::ostream & (*f) (std::ostream &))
 	if(m_EEOut)
 	{
 		(*f)(*m_EEOut);
+        return *m_EEOut;
 	}
-	return *m_EEOut;
+    // Altered: disabled logging must not return a reference through nullptr.
+    // A stream without a buffer also discards any chained output after endl.
+    static thread_local std::ostream nullStream(nullptr);
+    return nullStream;
 }
