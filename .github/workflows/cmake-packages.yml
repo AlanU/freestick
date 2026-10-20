@@ -1,0 +1,58 @@
+name: FreeStick release packages
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches: [master]
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    name: ${{ matrix.package }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {package: macos-universal, runner: macos-15}
+          - {package: windows-x64, runner: windows-2022}
+          - {package: linux-x64, runner: ubuntu-22.04}
+          - {package: android-arm64-v8a, runner: ubuntu-22.04}
+          - {package: android-armeabi-v7a, runner: ubuntu-22.04}
+          - {package: android-x86, runner: ubuntu-22.04}
+          - {package: android-x86_64, runner: ubuntu-22.04}
+          - {package: ios-arm64, runner: macos-15}
+          - {package: ios-simulator-universal, runner: macos-15}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          submodules: recursive
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Android NDK
+        if: startsWith(matrix.package, 'android-')
+        shell: bash
+        run: |
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'ndk;27.2.12479018'
+          echo "ANDROID_NDK_ROOT=$ANDROID_HOME/ndk/27.2.12479018" >> "$GITHUB_ENV"
+      - name: Build and package
+        env:
+          FREESTICK_PACKAGE: ${{ matrix.package }}
+        run: python build/CMake/package.py
+      - name: Upload release ZIP and checksum
+        uses: actions/upload-artifact@v4
+        with:
+          name: FreeStick-${{ matrix.package }}-Release
+          path: |
+            build/CMake/out/packages/*.zip
+            build/CMake/out/packages/*.sha256
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
