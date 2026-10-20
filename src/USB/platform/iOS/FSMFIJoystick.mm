@@ -1,6 +1,7 @@
 #include "USB/platform/iOS/FSMFIJoystick.h"
 #include <sstream>
-#import <GameController/GCController.h>
+// Altered: include complete gamepad types with current Apple SDKs.
+#import <GameController/GameController.h>
 #import <CoreHaptics/CHHapticEngine.h>
 #import <GameController/GCDeviceHaptics.h>
 #import <CoreHaptics/CHHapticPattern.h>

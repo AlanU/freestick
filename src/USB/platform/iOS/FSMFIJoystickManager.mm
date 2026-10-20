@@ -5,7 +5,8 @@
 #include "USB/platform/iOS/FSMFIJoystick.h"
 #include "USB/common/FSUSBJoystickDeviceManager.h"
 #include <array>
-#import <GameController/GCController.h>
+// Altered: include complete gamepad types with current Apple SDKs.
+#import <GameController/GameController.h>
 #import <Foundation/Foundation.h>
 using namespace freestick;
 
@@ -108,6 +109,16 @@ void FSMFIJoystickDeviceManager::removeMFIDevice(const void * device)
 
 void FSMFIJoystickDeviceManager::addMFIDevice(const void * device)
 {
+    // Consume the caller's retained reference even when registration is rejected.
+    GCController * controller = static_cast<GCController *>(CFBridgingRelease(device));
+#if TARGET_OS_OSX
+    // Altered: match the legacy HID backend's MFi-only selection on macOS 12+.
+    if (@available(macOS 12.0, *))
+    {
+        if (![controller.productCategory isEqualToString:GCProductCategoryMFi])
+            return;
+    }
+#endif
     if( _wordToIDControllerMap.find(device) == _wordToIDControllerMap.end())
     {
        unsigned int newId = getNextID();
@@ -117,7 +128,6 @@ void FSMFIJoystickDeviceManager::addMFIDevice(const void * device)
         unsigned int numberOfAnlogSticks =2;
         unsigned int numberOfDigitalSticks=1;
         bool  forceFeedbackSupported =false;
-        GCController * controller = static_cast<GCController * >(CFBridgingRelease(device));
         device = nullptr;
         #if TARGET_OS_OSX
         if(@available(macOS 11, *))

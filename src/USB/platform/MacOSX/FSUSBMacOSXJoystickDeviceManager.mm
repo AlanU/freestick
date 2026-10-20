@@ -40,6 +40,7 @@ and must not be misrepresented as being the original software.
 #include "../../../3rdParty/Mac/IOHID/IOHIDDevice_.h"
 #include "common/FreeStickLog.h"
 #import <GameController/GCController.h> //need to check on mac OS 11 if the device is handeld by GCController
+#import <GameController/GCProductCategories.h>
 #import "USB/platform/MacOSX/GCController+hidServices.h"//need to check on mac OS less than 11 if the device is handeld by GCController
 #import <Foundation/Foundation.h>
 using namespace freestick;
@@ -247,6 +248,13 @@ bool isHidDeviceMFI(NSString * controllerId)
 {
     for(GCController * controller in [GCController controllers])
        {
+         // Altered: enumeration alone does not identify an MFi controller.
+         // Preserve legacy matching where the category constant is unavailable.
+         if (@available(macOS 12.0, *))
+         {
+             if (![controller.productCategory isEqualToString:GCProductCategoryMFi])
+                 continue;
+         }
          if([controller respondsToSelector:@selector(identifier)] && [[controller identifier] isEqualToString:controllerId ])
          {
               return true;
@@ -262,6 +270,12 @@ bool isHidDeviceMFI(vendorIDType vendor,productIDType product)
      uint16_t productID = 0;
      for(GCController * controller in [GCController controllers])
      {
+          // Altered: apply the same MFi category check as the identifier overload.
+          if (@available(macOS 12.0, *))
+          {
+              if (![controller.productCategory isEqualToString:GCProductCategoryMFi])
+                  continue;
+          }
           const void * ctr = static_cast<const void *>(CFBridgingRetain(controller));
           auto vpId = getVendroAndProductID(ctr);
           CFBridgingRelease(ctr);
@@ -293,7 +307,10 @@ void FSUSBMacOSXJoystickDeviceManager::gamepadWasAdded(void* inContext, IOReturn
     bool mfiController = true;
     BOOL mfiSupportController = NO;
 
-    if(@available(macOS 11, *))
+    if(@available(macOS 12, *)) {
+         mfiSupportController = isHidDeviceMFI(nsDeviceUniqueID);
+    }
+    else if(@available(macOS 11, *))
     {
         mfiSupportController = [GCController supportsHIDDevice:device];
         if(mfiSupportController == NO)
